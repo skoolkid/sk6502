@@ -1,0 +1,13 @@
+[Game]
+AddressAnchor={address:04X}
+Bytes=/02X/ /
+Game=C64 ROM
+LinkInternalOperands=1
+LinkOperands=BCC,BCS,BEQ,BMI,BNE,BPL,BVC,BVS,JMP,JSR,.WORD
+Copyright=&copy; 2012 Lee Davison.
+
+[PageHeaders]
+GameIndex=The almost completely commented<>disassembly
+
+[Paths]
+CodeFiles={address:04X}.html
