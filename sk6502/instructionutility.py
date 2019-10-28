@@ -9,6 +9,27 @@ def get_address(operation):
     if search:
         return search.group(2)
 
+def convert_case(operation, lower):
+    i = 0
+    converted = ''
+    convert = True
+    while i < len(operation):
+        c = operation[i]
+        if c == '"':
+            convert = not convert
+            converted += c
+        elif c == '\\' and not convert:
+            converted += operation[i:i + 2]
+            i += 1
+        elif not convert:
+            converted += c
+        elif lower:
+            converted += c.lower()
+        else:
+            converted += c.upper()
+        i += 1
+    return converted
+
 class InstructionUtility:
     def calculate_references(self, entries, remote_entries):
         references = {}
@@ -30,7 +51,10 @@ class InstructionUtility:
         return references, referrers
 
     def convert(self, entries, base, case):
-        pass
+        if case:
+            for entry in entries:
+                for instruction in entry.instructions:
+                    instruction.operation = convert_case(instruction.operation, case == 1)
 
     def set_byte_values(self, instruction, assemble):
         is_def = instruction.operation.upper().startswith('.')

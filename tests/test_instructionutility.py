@@ -30,14 +30,16 @@ class Instruction:
 
 class InstructionUtilityTest(unittest.TestCase):
     def _test_convert(self, base, case):
-        instructions = (
-            Instruction(0, 'BRK'),
-            Instruction(1, '.BYTE $01'),
-            Instruction(2, '.FILL $02'),
-            Instruction(4, '.TEXT "A"'),
-            Instruction(5, '.WORD $0101')
+        specs = (
+            (0, 'BRK', 'brk'),
+            (1, '.BYTE $0A', '.byte $0a'),
+            (2, '.FILL $0B', '.fill $0b'),
+            (4, '.TEXT "A"', '.text "A"'),
+            (5, '.WORD $0A0B', '.word $0a0b'),
+            (7, r'.BYTE "\"b"', r'.byte "\"b"')
         )
-        exp_operations = [i.operation for i in instructions]
+        instructions = [Instruction(s[0], s[case or 1]) for s in specs]
+        exp_operations = [s[case + 1 if case < 2 else 1] for s in specs]
         entries = [Entry(instructions, 'c')]
         InstructionUtility().convert(entries, base, case)
         operations = [i.operation for i in entries[0].instructions]

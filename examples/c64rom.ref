@@ -1,6 +1,6 @@
 [Game]
-AddressAnchor={address:04X}
-Bytes=/02X/ /
+AddressAnchor={address:04#IF({case}==1)(x,X)}
+Bytes=/02#IF({case}==1)(x,X)/ /
 Game=C64 ROM
 LinkInternalOperands=1
 LinkOperands=BCC,BCS,BEQ,BMI,BNE,BPL,BVC,BVS,JMP,JSR,.WORD
@@ -10,4 +10,4 @@ Copyright=&copy; 2012 Lee Davison.
 GameIndex=The almost completely commented<>disassembly
 
 [Paths]
-CodeFiles={address:04X}.html
+CodeFiles={address:04#IF({case}==1)(x,X)}.html
