@@ -10,6 +10,7 @@ What's done
 * Skool reference calculator (for converting address operands into hyperlinks)
 * Label substitution (when converting a skool file to ASM or HTML)
 * Case conversion (when converting a skool file to ASM or HTML)
+* Control directive composer (for converting skool files into control files)
 
 In short, you can create a cross-referenced HTML disassembly and
 assembler-ready source file right now.
@@ -17,7 +18,6 @@ assembler-ready source file right now.
 What's left to do
 -----------------
 * Base conversion (when converting a skool file to ASM or HTML)
-* Control directive composer (for converting skool files into control files)
 * Control file generator (for identifying code and data in memory dumps)
 * Snapshot reader (for extracting memory dumps from emulator snapshot files)
 
