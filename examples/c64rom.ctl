@@ -2462,17 +2462,17 @@ N $B1BF evaluate integer expression, no sign check
 
 c $B1D1 find or make array
 D $B1D1 an array is stored as follows
-D $B1D1 #TABLE(default,,:w,:w,:w,:w)
-. { =r5 array name        | =c4 two bytes with the following patterns for different types }
-. {                         =h 1st char b7 | =h 2nd char b7 | =h type        | =h element size }
-. {                         0              | 0              | floating point | 5 }
-. {                         0              | 1              | string         | 3 }
-. {                         1              | 1              | integer        | 2 }
-. { offset to next array  | =c4 word }
-. { dimension count       | =c4 byte }
-. { 1st dimension size    | =c4 word, this is the number of elements including 0 }
-. { 2nd dimension size    | =c4 word, only here if the array has a second dimension }
-. { 3rd dimension size    | =c4 word, only here if the array has a third dimension }
+D $B1D1 #TABLE(default,,:w,:w,:w,:w)<nowrap>
+. { =r5 array name       | =c4 two bytes with the following patterns for different types }
+. {                        =h 1st char b7 | =h 2nd char b7 | =h type        | =h element size }
+. {                        0              | 0              | floating point | 5 }
+. {                        0              | 1              | string         | 3 }
+. {                        1              | 1              | integer        | 2 }
+. { offset to next array | =c4 word }
+. { dimension count      | =c4 byte }
+. { 1st dimension size   | =c4 word, this is the number of elements including 0 }
+. { 2nd dimension size   | =c4 word, only here if the array has a second dimension }
+. { 3rd dimension size   | =c4 word, only here if the array has a third dimension }
 . TABLE#
 D $B1D1 note: the dimension size word is in high byte low byte format, not like most 6502 words then for each element the required number of bytes given as the element size above
 N $B1D1 find or make array
@@ -6081,11 +6081,17 @@ c $EA87 scan the keyboard
 D $EA87 scan keyboard performs the following ..
 . #LIST(contents,)
 . { 1) check if key pressed, if not then exit the routine }
-. { 2) init I/O ports of VIA ?? for keyboard scan and set pointers to decode table 1. clear the character counter }
-. { 3) set one line of port B low and test for a closed key on port A by shifting the byte read from the port. if the carry is clear then a key is closed so save the count which is incremented on each shift. check for shift/stop/cbm keys and flag if closed }
+. { 2) init I/O ports of VIA ?? for keyboard scan and set pointers to decode
+. table 1. clear the character counter }
+. { 3) set one line of port B low and test for a closed key on port A by
+. shifting the byte read from the port. if the carry is clear then a key is
+. closed so save the count which is incremented on each shift. check for
+. shift/stop/cbm keys and flag if closed }
 . { 4) repeat step 3 for the whole matrix }
-. { 5) evaluate the SHIFT/CTRL/C= keys, this may change the decode table selected }
-. { 6) use the key count saved in step 3 as an index into the table selected in step 5 }
+. { 5) evaluate the SHIFT/CTRL/C= keys, this may change the decode table
+. selected }
+. { 6) use the key count saved in step 3 as an index into the table selected in
+. step 5 }
 . { 7) check for key repeat operation }
 . { 8) save the decoded key to the buffer if first press or repeat }
 . LIST#
@@ -8104,9 +8110,12 @@ c $F92C read tape bits, IRQ routine
 D $F92C On Commodore computers, the streams consist of four kinds of symbols that denote different kinds of low-to-high-to-low transitions on the read or write signals of the Commodore cassette interface.
 D $F92C #LIST
 . { A break in the communications, or a pulse with very long cycle time. }
-. { A short pulse, whose cycle time typically ranges from 296 to 424 microseconds, depending on the computer model. }
-. { A medium-length pulse, whose cycle time typically ranges from 440 to 576 microseconds, depending on the computer model. }
-. { A long pulse, whose cycle time typically ranges from 600 to 744 microseconds, depending on the computer model. }
+. { A short pulse, whose cycle time typically ranges from 296 to 424
+. microseconds, depending on the computer model. }
+. { A medium-length pulse, whose cycle time typically ranges from 440 to 576
+. microseconds, depending on the computer model. }
+. { A long pulse, whose cycle time typically ranges from 600 to 744
+. microseconds, depending on the computer model. }
 . LIST#
 D $F92C The actual interpretation of the serial data takes a little more work to explain. The typical ROM tape loader (and the turbo loaders) will initialize a timer with a specified value and start it counting down. If either the tape data changes or the timer runs out, an IRQ will occur. The loader will determine which condition caused the IRQ. If the tape data changed before the timer ran out, we have a short pulse, or a "0" bit. If the timer ran out first, we have a long pulse, or a "1" bit. Doing this continuously and we decode the entire file.
 N $F92C read T2C which has been counting down from $FFFF. subtract this from $FFFF
