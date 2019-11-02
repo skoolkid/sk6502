@@ -11,6 +11,7 @@ What's done
 * Label substitution (when converting a skool file to ASM or HTML)
 * Case conversion (when converting a skool file to ASM or HTML)
 * Control directive composer (for converting skool files into control files)
+* Control file generator (for identifying code and data in memory dumps)
 
 In short, you can create a cross-referenced HTML disassembly and
 assembler-ready source file right now.
@@ -18,7 +19,7 @@ assembler-ready source file right now.
 What's left to do
 -----------------
 * Base conversion (when converting a skool file to ASM or HTML)
-* Control file generator (for identifying code and data in memory dumps)
+* Control file generator with code map support
 * Snapshot reader (for extracting memory dumps from emulator snapshot files)
 
 Note that the stock SkoolKit snapshot reader can be used to read binary (raw
