@@ -4,6 +4,7 @@ Bytes=/02#IF({case}==1)(x,X)/ /
 Game=C64 ROM
 LinkInternalOperands=1
 LinkOperands=BCC,BCS,BEQ,BMI,BNE,BPL,BVC,BVS,JMP,JSR,.WORD
+Created=Created using <a href="https://skoolkit.ca">SkoolKit</a> #VERSION and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.
 Copyright=&copy; 2012 Lee Davison.
 
 [PageHeaders]
