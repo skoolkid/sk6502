@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Data at ECB9</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EC78.html">EC78</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#ECB9">Map</a></td>
+<td class="next">
+Next: <a href="ECE7.html">ECE7</a>
+</td>
+</tr>
+</table>
+<div class="description">ECB9: vic ii chip initialisation values</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECB9"></span>ECB9</td>
+<td class="instruction">.BYTE $00,$00</td>
+<td class="comment-1" rowspan="1">sprite 0 x,y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECBB"></span>ECBB</td>
+<td class="instruction">.BYTE $00,$00</td>
+<td class="comment-1" rowspan="1">sprite 1 x,y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECBD"></span>ECBD</td>
+<td class="instruction">.BYTE $00,$00</td>
+<td class="comment-1" rowspan="1">sprite 2 x,y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECBF"></span>ECBF</td>
+<td class="instruction">.BYTE $00,$00</td>
+<td class="comment-1" rowspan="1">sprite 3 x,y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECC1"></span>ECC1</td>
+<td class="instruction">.BYTE $00,$00</td>
+<td class="comment-1" rowspan="1">sprite 4 x,y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECC3"></span>ECC3</td>
+<td class="instruction">.BYTE $00,$00</td>
+<td class="comment-1" rowspan="1">sprite 5 x,y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECC5"></span>ECC5</td>
+<td class="instruction">.BYTE $00,$00</td>
+<td class="comment-1" rowspan="1">sprite 6 x,y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECC7"></span>ECC7</td>
+<td class="instruction">.BYTE $00,$00</td>
+<td class="comment-1" rowspan="1">sprite 7 x,y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECC9"></span>ECC9</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">sprites 0 to 7 x bit 8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECCA"></span>ECCA</td>
+<td class="instruction">.BYTE $9B</td>
+<td class="comment-1" rowspan="1">enable screen, enable 25 rows</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ECCB"></span>
+<div class="comments">
+<div class="paragraph">
+vertical fine scroll and control <table class="default">
+<tr>
+<th colspan="1" rowspan="1">bit</th>
+<th colspan="1" rowspan="1">function</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">7</td>
+<td class="" colspan="1" rowspan="1">raster compare bit 8</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">6</td>
+<td class="" colspan="1" rowspan="1">1 = enable extended color text mode</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">5</td>
+<td class="" colspan="1" rowspan="1">1 = enable bitmap graphics mode</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">4</td>
+<td class="" colspan="1" rowspan="1">1 = enable screen, 0 = blank screen</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">1 = 25 row display, 0 = 24 row display</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">2-0</td>
+<td class="" colspan="1" rowspan="1">vertical scroll count</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECCB"></span>ECCB</td>
+<td class="instruction">.BYTE $37</td>
+<td class="comment-1" rowspan="1">raster compare</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECCC"></span>ECCC</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">light pen x</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECCD"></span>ECCD</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">light pen y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECCE"></span>ECCE</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">sprite 0 to 7 enable</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECCF"></span>ECCF</td>
+<td class="instruction">.BYTE $08</td>
+<td class="comment-1" rowspan="1">enable 40 column display</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ECD0"></span>
+<div class="comments">
+<div class="paragraph">
+horizontal fine scroll and control <table class="default">
+<tr>
+<th colspan="1" rowspan="1">bit</th>
+<th colspan="1" rowspan="1">function</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">7-6</td>
+<td class="" colspan="1" rowspan="1">unused</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">5</td>
+<td class="" colspan="1" rowspan="1">1 = vic reset, 0 = vic on</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">4</td>
+<td class="" colspan="1" rowspan="1">1 = enable multicolor mode</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">1 = 40 column display, 0 = 38 column display</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">2-0</td>
+<td class="" colspan="1" rowspan="1">horizontal scroll count</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECD0"></span>ECD0</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">sprite 0 to 7 y expand</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECD1"></span>ECD1</td>
+<td class="instruction">.BYTE $14</td>
+<td class="comment-1" rowspan="1">memory control</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ECD2"></span>
+<div class="comments">
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">bit</th>
+<th colspan="1" rowspan="1">function</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">7-4</td>
+<td class="" colspan="1" rowspan="1">video matrix base address</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">3-1</td>
+<td class="" colspan="1" rowspan="1">character data base address</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">unused</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECD2"></span>ECD2</td>
+<td class="instruction">.BYTE $0F</td>
+<td class="comment-1" rowspan="1">clear all interrupts</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ECD3"></span>
+<div class="comments">
+<div class="paragraph">
+interrupt flags <table class="default">
+<tr>
+<th colspan="1" rowspan="1">bit</th>
+<th colspan="1" rowspan="1">function</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">7</td>
+<td class="" colspan="1" rowspan="1">1 = interrupt</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">6-4</td>
+<td class="" colspan="1" rowspan="1">unused</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">1 = light pen interrupt</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">2</td>
+<td class="" colspan="1" rowspan="1">1 = sprite to sprite collision interrupt</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">1 = sprite to foreground collision interrupt</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">1 = raster compare interrupt</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECD3"></span>ECD3</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">all vic IRQs disabled</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ECD4"></span>
+<div class="comments">
+<div class="paragraph">
+IRQ enable <table class="default">
+<tr>
+<th colspan="1" rowspan="1">bit</th>
+<th colspan="1" rowspan="1">function</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">7-4</td>
+<td class="" colspan="1" rowspan="1">unused</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">1 = enable light pen</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">2</td>
+<td class="" colspan="1" rowspan="1">1 = enable sprite to sprite collision</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">1 = enable sprite to foreground collision</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">1 = enable raster compare</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECD4"></span>ECD4</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">sprite 0 to 7 foreground priority</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECD5"></span>ECD5</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">sprite 0 to 7 multicolour</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECD6"></span>ECD6</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">sprite 0 to 7 x expand</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECD7"></span>ECD7</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">sprite 0 to 7 sprite collision</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECD8"></span>ECD8</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">sprite 0 to 7 foreground collision</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECD9"></span>ECD9</td>
+<td class="instruction">.BYTE $0E</td>
+<td class="comment-1" rowspan="1">border colour</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECDA"></span>ECDA</td>
+<td class="instruction">.BYTE $06</td>
+<td class="comment-1" rowspan="1">background colour 0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECDB"></span>ECDB</td>
+<td class="instruction">.BYTE $01</td>
+<td class="comment-1" rowspan="1">background colour 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECDC"></span>ECDC</td>
+<td class="instruction">.BYTE $02</td>
+<td class="comment-1" rowspan="1">background colour 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECDD"></span>ECDD</td>
+<td class="instruction">.BYTE $03</td>
+<td class="comment-1" rowspan="1">background colour 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECDE"></span>ECDE</td>
+<td class="instruction">.BYTE $04</td>
+<td class="comment-1" rowspan="1">sprite multicolour 0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECDF"></span>ECDF</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">sprite multicolour 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECE0"></span>ECE0</td>
+<td class="instruction">.BYTE $01</td>
+<td class="comment-1" rowspan="1">sprite 0 colour</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECE1"></span>ECE1</td>
+<td class="instruction">.BYTE $02</td>
+<td class="comment-1" rowspan="1">sprite 1 colour</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECE2"></span>ECE2</td>
+<td class="instruction">.BYTE $03</td>
+<td class="comment-1" rowspan="1">sprite 2 colour</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECE3"></span>ECE3</td>
+<td class="instruction">.BYTE $04</td>
+<td class="comment-1" rowspan="1">sprite 3 colour</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECE4"></span>ECE4</td>
+<td class="instruction">.BYTE $05</td>
+<td class="comment-1" rowspan="1">sprite 4 colour</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECE5"></span>ECE5</td>
+<td class="instruction">.BYTE $06</td>
+<td class="comment-1" rowspan="1">sprite 5 colour</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ECE6"></span>ECE6</td>
+<td class="instruction">.BYTE $07</td>
+<td class="comment-1" rowspan="1">sprite 6 colour</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="comments">
+<div class="paragraph">
+sprite 7 colour is actually the first character of <a href="ECE7.html">"LOAD"</a> ($4C)
+</div>
+</div>
+</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EC78.html">EC78</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#ECB9">Map</a></td>
+<td class="next">
+Next: <a href="ECE7.html">ECE7</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

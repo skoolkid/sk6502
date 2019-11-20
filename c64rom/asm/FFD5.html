@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FFD5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFD2.html">FFD2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFD5">Map</a></td>
+<td class="next">
+Next: <a href="FFD8.html">FFD8</a>
+</td>
+</tr>
+</table>
+<div class="description">FFD5: load RAM from a device</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E168.html">E168</a>.
+</div>
+<div class="paragraph">
+this routine will load data bytes from any input device directly into the memory of the computer. It can also be used for a verify operation comparing data from a device with the data already in memory, leaving the data stored in RAM unchanged. The accumulator must be set to 0 for a load operation or 1 for a verify. If the input device was OPENed with a secondary address of 0 the header information from device will be ignored. In this case <span class="register">XY</span> must contain the starting address for the load. If the device was addressed with a secondary address of 1 or 2 the data will load into memory starting at the location specified by the header. This routine returns the address of the highest RAM location which was loaded. Before this routine can be called, the SETLFS, <a href="FFBA.html">FFBA</a>, and SETNAM, <a href="FFBD.html">FFBD</a>, routines must be called.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FFD5"></span>FFD5</td>
+<td class="bytes">4C 9E F4</td>
+<td class="instruction">JMP <a href="F49E.html">$F49E</a></td>
+<td class="comment-1" rowspan="1">load RAM from a device</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFD2.html">FFD2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFD5">Map</a></td>
+<td class="next">
+Next: <a href="FFD8.html">FFD8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

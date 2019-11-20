@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E1D4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E1C7.html">E1C7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E1D4">Map</a></td>
+<td class="next">
+Next: <a href="E200.html">E200</a>
+</td>
+</tr>
+</table>
+<div class="description">E1D4: get parameters for LOAD/SAVE</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="E156.html">E156</a> and <a href="E168.html">E168</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E1D4"></span>E1D4</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear file name length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1D6"></span>E1D6</td>
+<td class="bytes">20 BD FF</td>
+<td class="instruction">JSR <a href="FFBD.html">$FFBD</a></td>
+<td class="comment-1" rowspan="1">clear the filename</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1D9"></span>E1D9</td>
+<td class="bytes">A2 01</td>
+<td class="instruction">LDX #$01</td>
+<td class="comment-1" rowspan="1">set default device number, cassette</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1DB"></span>E1DB</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set default command</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1DD"></span>E1DD</td>
+<td class="bytes">20 BA FF</td>
+<td class="instruction">JSR <a href="FFBA.html">$FFBA</a></td>
+<td class="comment-1" rowspan="1">set logical, first and second addresses</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1E0"></span>E1E0</td>
+<td class="bytes">20 06 E2</td>
+<td class="instruction">JSR <a href="E206.html">$E206</a></td>
+<td class="comment-1" rowspan="1">exit function if [EOT] or ":"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1E3"></span>E1E3</td>
+<td class="bytes">20 57 E2</td>
+<td class="instruction">JSR <a href="E257.html">$E257</a></td>
+<td class="comment-1" rowspan="1">set filename</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1E6"></span>E1E6</td>
+<td class="bytes">20 06 E2</td>
+<td class="instruction">JSR <a href="E206.html">$E206</a></td>
+<td class="comment-1" rowspan="1">exit function if [EOT] or ":"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1E9"></span>E1E9</td>
+<td class="bytes">20 00 E2</td>
+<td class="instruction">JSR <a href="E200.html">$E200</a></td>
+<td class="comment-1" rowspan="1">scan and get byte, else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1EC"></span>E1EC</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear command</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1EE"></span>E1EE</td>
+<td class="bytes">86 49</td>
+<td class="instruction">STX $49</td>
+<td class="comment-1" rowspan="1">save device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1F0"></span>E1F0</td>
+<td class="bytes">20 BA FF</td>
+<td class="instruction">JSR <a href="FFBA.html">$FFBA</a></td>
+<td class="comment-1" rowspan="1">set logical, first and second addresses</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1F3"></span>E1F3</td>
+<td class="bytes">20 06 E2</td>
+<td class="instruction">JSR <a href="E206.html">$E206</a></td>
+<td class="comment-1" rowspan="1">exit function if [EOT] or ":"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1F6"></span>E1F6</td>
+<td class="bytes">20 00 E2</td>
+<td class="instruction">JSR <a href="E200.html">$E200</a></td>
+<td class="comment-1" rowspan="1">scan and get byte, else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1F9"></span>E1F9</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy command to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1FA"></span>E1FA</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy command to <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1FB"></span>E1FB</td>
+<td class="bytes">A6 49</td>
+<td class="instruction">LDX $49</td>
+<td class="comment-1" rowspan="1">get device number back</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1FD"></span>E1FD</td>
+<td class="bytes">4C BA FF</td>
+<td class="instruction">JMP <a href="FFBA.html">$FFBA</a></td>
+<td class="comment-1" rowspan="1">set logical, first and second addresses and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E1C7.html">E1C7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E1D4">Map</a></td>
+<td class="next">
+Next: <a href="E200.html">E200</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AD8A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AD1E.html">AD1E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AD8A">Map</a></td>
+<td class="next">
+Next: <a href="AD9E.html">AD9E</a>
+</td>
+</tr>
+</table>
+<div class="description">AD8A: evaluate expression and check type mismatch</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A742.html">A742</a>, <a href="B3F4.html">B3F4</a>, <a href="B79E.html">B79E</a>, <a href="B7EB.html">B7EB</a> and <a href="E12A.html">E12A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD8A"></span>AD8A</td>
+<td class="bytes">20 9E AD</td>
+<td class="instruction">JSR <a href="AD9E.html">$AD9E</a></td>
+<td class="comment-1" rowspan="1">evaluate expression</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AD8D"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="A742.html">A742</a>, <a href="AD9E.html">AD9E</a>, <a href="AE58.html">AE58</a>, <a href="AFA7.html">AFA7</a>, <a href="B1B2.html">B1B2</a>, <a href="B3B3.html">B3B3</a>, <a href="B3E1.html">B3E1</a>, <a href="B3F4.html">B3F4</a> and <a href="B465.html">B465</a>.
+</div>
+<div class="paragraph">
+check if source and destination are numeric
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD8D"></span>AD8D</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD8E"></span>AD8E</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $24</td>
+<td class="comment-1" rowspan="1">makes next line BIT $38</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AD8F"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="AFA7.html">AFA7</a>, <a href="B63D.html">B63D</a> and <a href="B6A3.html">B6A3</a>.
+</div>
+<div class="paragraph">
+check if source and destination are string
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD8F"></span>AD8F</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">destination is string</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AD90"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="A9A5.html">A9A5</a> and <a href="B016.html">B016</a>.
+</div>
+<div class="paragraph">
+type match check, set C for string, clear C for numeric
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD90"></span>AD90</td>
+<td class="bytes">24 0D</td>
+<td class="instruction">BIT $0D</td>
+<td class="comment-1" rowspan="1">test data type flag, $FF = string, $00 = numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD92"></span>AD92</td>
+<td class="bytes">30 03</td>
+<td class="instruction">BMI <a href="AD8A.html#AD97">$AD97</a></td>
+<td class="comment-1" rowspan="1">branch if string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD94"></span>AD94</td>
+<td class="bytes">B0 03</td>
+<td class="instruction">BCS <a href="AD8A.html#AD99">$AD99</a></td>
+<td class="comment-1" rowspan="1">if destiantion is numeric do type missmatch error</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD96"></span>AD96</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD97"></span>AD97</td>
+<td class="bytes">B0 FD</td>
+<td class="instruction">BCS <a href="AD8A.html#AD96">$AD96</a></td>
+<td class="comment-1" rowspan="1">exit if destination is string</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AD99"></span>
+<div class="comments">
+<div class="paragraph">
+do type mismatch error
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD99"></span>AD99</td>
+<td class="bytes">A2 16</td>
+<td class="instruction">LDX #$16</td>
+<td class="comment-1" rowspan="1">error code $16, type mismatch error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD9B"></span>AD9B</td>
+<td class="bytes">4C 37 A4</td>
+<td class="instruction">JMP <a href="A435.html#A437">$A437</a></td>
+<td class="comment-1" rowspan="1">do error #<span class="register">X</span> then warm start</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AD1E.html">AD1E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AD8A">Map</a></td>
+<td class="next">
+Next: <a href="AD9E.html">AD9E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

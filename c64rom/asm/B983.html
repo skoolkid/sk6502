@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B983</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B97E.html">B97E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B983">Map</a></td>
+<td class="next">
+Next: <a href="B9BC.html">B9BC</a>
+</td>
+</tr>
+</table>
+<div class="description">B983: shift FCAtemp &lt;&lt; <span class="register">A</span>+8 times</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="BA28.html">BA28</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B983"></span>B983</td>
+<td class="bytes">A2 25</td>
+<td class="instruction">LDX #$25</td>
+<td class="comment-1" rowspan="1">set the offset to FACtemp</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B985"></span>B985</td>
+<td class="bytes">B4 04</td>
+<td class="instruction">LDY $04,X</td>
+<td class="comment-1" rowspan="1">get FACX mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B987"></span>B987</td>
+<td class="bytes">84 70</td>
+<td class="instruction">STY $70</td>
+<td class="comment-1" rowspan="1">save as FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B989"></span>B989</td>
+<td class="bytes">B4 03</td>
+<td class="instruction">LDY $03,X</td>
+<td class="comment-1" rowspan="1">get FACX mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B98B"></span>B98B</td>
+<td class="bytes">94 04</td>
+<td class="instruction">STY $04,X</td>
+<td class="comment-1" rowspan="1">save FACX mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B98D"></span>B98D</td>
+<td class="bytes">B4 02</td>
+<td class="instruction">LDY $02,X</td>
+<td class="comment-1" rowspan="1">get FACX mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B98F"></span>B98F</td>
+<td class="bytes">94 03</td>
+<td class="instruction">STY $03,X</td>
+<td class="comment-1" rowspan="1">save FACX mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B991"></span>B991</td>
+<td class="bytes">B4 01</td>
+<td class="instruction">LDY $01,X</td>
+<td class="comment-1" rowspan="1">get FACX mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B993"></span>B993</td>
+<td class="bytes">94 02</td>
+<td class="instruction">STY $02,X</td>
+<td class="comment-1" rowspan="1">save FACX mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B995"></span>B995</td>
+<td class="bytes">A4 68</td>
+<td class="instruction">LDY $68</td>
+<td class="comment-1" rowspan="1">get FAC1 overflow byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B997"></span>B997</td>
+<td class="bytes">94 01</td>
+<td class="instruction">STY $01,X</td>
+<td class="comment-1" rowspan="1">save FACX mantissa 1</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B999"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="B862.html">B862</a> and <a href="BC9B.html">BC9B</a>.
+</div>
+<div class="paragraph">
+shift FACX -<span class="register">A</span> times right (&gt; 8 shifts)
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B999"></span>B999</td>
+<td class="bytes">69 08</td>
+<td class="instruction">ADC #$08</td>
+<td class="comment-1" rowspan="1">add 8 to shift count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B99B"></span>B99B</td>
+<td class="bytes">30 E8</td>
+<td class="instruction">BMI <a href="B983.html#B985">$B985</a></td>
+<td class="comment-1" rowspan="1">go do 8 shift if still -ve</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B99D"></span>B99D</td>
+<td class="bytes">F0 E6</td>
+<td class="instruction">BEQ <a href="B983.html#B985">$B985</a></td>
+<td class="comment-1" rowspan="1">go do 8 shift if zero</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B99F"></span>B99F</td>
+<td class="bytes">E9 08</td>
+<td class="instruction">SBC #$08</td>
+<td class="comment-1" rowspan="1">else subtract 8 again</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B9A1"></span>B9A1</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">save count to <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B9A2"></span>B9A2</td>
+<td class="bytes">A5 70</td>
+<td class="instruction">LDA $70</td>
+<td class="comment-1" rowspan="1">get FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B9A4"></span>B9A4</td>
+<td class="bytes">B0 14</td>
+<td class="instruction">BCS <a href="B983.html#B9BA">$B9BA</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="B9A6"></span>B9A6</td>
+<td class="bytes">16 01</td>
+<td class="instruction">ASL $01,X</td>
+<td class="comment-1" rowspan="1">shift FACX mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B9A8"></span>B9A8</td>
+<td class="bytes">90 02</td>
+<td class="instruction">BCC <a href="B983.html#B9AC">$B9AC</a></td>
+<td class="comment-1" rowspan="1">branch if +ve</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B9AA"></span>B9AA</td>
+<td class="bytes">F6 01</td>
+<td class="instruction">INC $01,X</td>
+<td class="comment-1" rowspan="1">this sets b7 eventually</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B9AC"></span>B9AC</td>
+<td class="bytes">76 01</td>
+<td class="instruction">ROR $01,X</td>
+<td class="comment-1" rowspan="1">shift FACX mantissa 1 (correct for ASL)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B9AE"></span>B9AE</td>
+<td class="bytes">76 01</td>
+<td class="instruction">ROR $01,X</td>
+<td class="comment-1" rowspan="1">shift FACX mantissa 1 (put carry in b7)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B9B0"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="B86A.html">B86A</a> and <a href="BCBB.html">BCBB</a>.
+</div>
+<div class="paragraph">
+shift FACX <span class="register">Y</span> times right
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B9B0"></span>B9B0</td>
+<td class="bytes">76 02</td>
+<td class="instruction">ROR $02,X</td>
+<td class="comment-1" rowspan="1">shift FACX mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B9B2"></span>B9B2</td>
+<td class="bytes">76 03</td>
+<td class="instruction">ROR $03,X</td>
+<td class="comment-1" rowspan="1">shift FACX mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B9B4"></span>B9B4</td>
+<td class="bytes">76 04</td>
+<td class="instruction">ROR $04,X</td>
+<td class="comment-1" rowspan="1">shift FACX mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B9B6"></span>B9B6</td>
+<td class="bytes">6A</td>
+<td class="instruction">ROR A</td>
+<td class="comment-1" rowspan="1">shift FACX rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B9B7"></span>B9B7</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment exponent diff</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B9B8"></span>B9B8</td>
+<td class="bytes">D0 EC</td>
+<td class="instruction">BNE <a href="B983.html#B9A6">$B9A6</a></td>
+<td class="comment-1" rowspan="1">branch if range adjust not complete</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B9BA"></span>B9BA</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">just clear it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B9BB"></span>B9BB</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B97E.html">B97E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B983">Map</a></td>
+<td class="next">
+Next: <a href="B9BC.html">B9BC</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E701</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E6B6.html">E6B6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E701">Map</a></td>
+<td class="next">
+Next: <a href="E716.html">E716</a>
+</td>
+</tr>
+</table>
+<div class="description">E701: back onto the previous line if possible</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E716.html">E716</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E701"></span>E701</td>
+<td class="bytes">A6 D6</td>
+<td class="instruction">LDX $D6</td>
+<td class="comment-1" rowspan="1">get the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E703"></span>E703</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="E701.html#E70B">$E70B</a></td>
+<td class="comment-1" rowspan="1">branch if not top row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E705"></span>E705</td>
+<td class="bytes">86 D3</td>
+<td class="instruction">STX $D3</td>
+<td class="comment-1" rowspan="1">clear cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E707"></span>E707</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E708"></span>E708</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump return address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E709"></span>E709</td>
+<td class="bytes">D0 9D</td>
+<td class="instruction">BNE <a href="E691.html#E6A8">$E6A8</a></td>
+<td class="comment-1" rowspan="1">restore registers, set quote flag and exit, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E70B"></span>E70B</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E70C"></span>E70C</td>
+<td class="bytes">86 D6</td>
+<td class="instruction">STX $D6</td>
+<td class="comment-1" rowspan="1">save the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E70E"></span>E70E</td>
+<td class="bytes">20 6C E5</td>
+<td class="instruction">JSR <a href="E56C.html">$E56C</a></td>
+<td class="comment-1" rowspan="1">set the screen pointers for cursor row, column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E711"></span>E711</td>
+<td class="bytes">A4 D5</td>
+<td class="instruction">LDY $D5</td>
+<td class="comment-1" rowspan="1">get current screen line length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E713"></span>E713</td>
+<td class="bytes">84 D3</td>
+<td class="instruction">STY $D3</td>
+<td class="comment-1" rowspan="1">save the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E715"></span>E715</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E6B6.html">E6B6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E701">Map</a></td>
+<td class="next">
+Next: <a href="E716.html">E716</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

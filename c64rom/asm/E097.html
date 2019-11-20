@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E097</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E08D.html">E08D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E097">Map</a></td>
+<td class="next">
+Next: <a href="E0F6.html">E0F6</a>
+</td>
+</tr>
+</table>
+<div class="description">E097: perform RND()</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E097"></span>E097</td>
+<td class="bytes">20 2B BC</td>
+<td class="instruction">JSR <a href="BC2B.html">$BC2B</a></td>
+<td class="comment-1" rowspan="1">get FAC1 sign</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E09A"></span>
+<div class="comments">
+<div class="paragraph">
+return <span class="register">A</span> = $FF -ve, <span class="register">A</span> = $01 +ve
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E09A"></span>E09A</td>
+<td class="bytes">30 37</td>
+<td class="instruction">BMI <a href="E097.html#E0D3">$E0D3</a></td>
+<td class="comment-1" rowspan="1">if n&lt;0 copy byte swapped FAC1 into RND() seed</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E09C"></span>E09C</td>
+<td class="bytes">D0 20</td>
+<td class="instruction">BNE <a href="E097.html#E0BE">$E0BE</a></td>
+<td class="comment-1" rowspan="1">if n&gt;0 get next number in RND() sequence</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E09E"></span>
+<div class="comments">
+<div class="paragraph">
+else n=0 so get the RND() number from VIA 1 timers
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E09E"></span>E09E</td>
+<td class="bytes">20 F3 FF</td>
+<td class="instruction">JSR <a href="FFF3.html">$FFF3</a></td>
+<td class="comment-1" rowspan="1">return base address of I/O devices</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0A1"></span>E0A1</td>
+<td class="bytes">86 22</td>
+<td class="instruction">STX $22</td>
+<td class="comment-1" rowspan="1">save pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0A3"></span>E0A3</td>
+<td class="bytes">84 23</td>
+<td class="instruction">STY $23</td>
+<td class="comment-1" rowspan="1">save pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0A5"></span>E0A5</td>
+<td class="bytes">A0 04</td>
+<td class="instruction">LDY #$04</td>
+<td class="comment-1" rowspan="1">set index to T1 low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0A7"></span>E0A7</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get T1 low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0A9"></span>E0A9</td>
+<td class="bytes">85 62</td>
+<td class="instruction">STA $62</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0AB"></span>E0AB</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0AC"></span>E0AC</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get T1 high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0AE"></span>E0AE</td>
+<td class="bytes">85 64</td>
+<td class="instruction">STA $64</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0B0"></span>E0B0</td>
+<td class="bytes">A0 08</td>
+<td class="instruction">LDY #$08</td>
+<td class="comment-1" rowspan="1">set index to T2 low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0B2"></span>E0B2</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get T2 low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0B4"></span>E0B4</td>
+<td class="bytes">85 63</td>
+<td class="instruction">STA $63</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0B6"></span>E0B6</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0B7"></span>E0B7</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get T2 high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0B9"></span>E0B9</td>
+<td class="bytes">85 65</td>
+<td class="instruction">STA $65</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0BB"></span>E0BB</td>
+<td class="bytes">4C E3 E0</td>
+<td class="instruction">JMP <a href="E097.html#E0E3">$E0E3</a></td>
+<td class="comment-1" rowspan="1">set exponent and exit</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E0BE"></span>E0BE</td>
+<td class="bytes">A9 8B</td>
+<td class="instruction">LDA #$8B</td>
+<td class="comment-1" rowspan="1">set seed pointer low address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0C0"></span>E0C0</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set seed pointer high address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0C2"></span>E0C2</td>
+<td class="bytes">20 A2 BB</td>
+<td class="instruction">JSR <a href="BBA2.html">$BBA2</a></td>
+<td class="comment-1" rowspan="1">unpack memory (<span class="register">AY</span>) into FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0C5"></span>E0C5</td>
+<td class="bytes">A9 8D</td>
+<td class="instruction">LDA #$8D</td>
+<td class="comment-1" rowspan="1">set 11879546 pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0C7"></span>E0C7</td>
+<td class="bytes">A0 E0</td>
+<td class="instruction">LDY #$E0</td>
+<td class="comment-1" rowspan="1">set 11879546 pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0C9"></span>E0C9</td>
+<td class="bytes">20 28 BA</td>
+<td class="instruction">JSR <a href="BA28.html">$BA28</a></td>
+<td class="comment-1" rowspan="1">do convert <span class="register">AY</span>, FCA1*(<span class="register">AY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0CC"></span>E0CC</td>
+<td class="bytes">A9 92</td>
+<td class="instruction">LDA #$92</td>
+<td class="comment-1" rowspan="1">set 3.927677739E-8 pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0CE"></span>E0CE</td>
+<td class="bytes">A0 E0</td>
+<td class="instruction">LDY #$E0</td>
+<td class="comment-1" rowspan="1">set 3.927677739E-8 pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0D0"></span>E0D0</td>
+<td class="bytes">20 67 B8</td>
+<td class="instruction">JSR <a href="B862.html#B867">$B867</a></td>
+<td class="comment-1" rowspan="1">add (<span class="register">AY</span>) to FAC1</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E0D3"></span>E0D3</td>
+<td class="bytes">A6 65</td>
+<td class="instruction">LDX $65</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0D5"></span>E0D5</td>
+<td class="bytes">A5 62</td>
+<td class="instruction">LDA $62</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0D7"></span>E0D7</td>
+<td class="bytes">85 65</td>
+<td class="instruction">STA $65</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0D9"></span>E0D9</td>
+<td class="bytes">86 62</td>
+<td class="instruction">STX $62</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0DB"></span>E0DB</td>
+<td class="bytes">A6 63</td>
+<td class="instruction">LDX $63</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0DD"></span>E0DD</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0DF"></span>E0DF</td>
+<td class="bytes">85 63</td>
+<td class="instruction">STA $63</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0E1"></span>E0E1</td>
+<td class="bytes">86 64</td>
+<td class="instruction">STX $64</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E0E3"></span>E0E3</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0E5"></span>E0E5</td>
+<td class="bytes">85 66</td>
+<td class="instruction">STA $66</td>
+<td class="comment-1" rowspan="1">clear FAC1 sign (always +ve)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0E7"></span>E0E7</td>
+<td class="bytes">A5 61</td>
+<td class="instruction">LDA $61</td>
+<td class="comment-1" rowspan="1">get FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0E9"></span>E0E9</td>
+<td class="bytes">85 70</td>
+<td class="instruction">STA $70</td>
+<td class="comment-1" rowspan="1">save FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0EB"></span>E0EB</td>
+<td class="bytes">A9 80</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1">set exponent = $80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0ED"></span>E0ED</td>
+<td class="bytes">85 61</td>
+<td class="instruction">STA $61</td>
+<td class="comment-1" rowspan="1">save FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0EF"></span>E0EF</td>
+<td class="bytes">20 D7 B8</td>
+<td class="instruction">JSR <a href="B8D7.html">$B8D7</a></td>
+<td class="comment-1" rowspan="1">normalise FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0F2"></span>E0F2</td>
+<td class="bytes">A2 8B</td>
+<td class="instruction">LDX #$8B</td>
+<td class="comment-1" rowspan="1">set seed pointer low address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0F4"></span>E0F4</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set seed pointer high address</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E08D.html">E08D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E097">Map</a></td>
+<td class="next">
+Next: <a href="E0F6.html">E0F6</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

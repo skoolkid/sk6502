@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A831</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A82F.html">A82F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A831">Map</a></td>
+<td class="next">
+Next: <a href="A857.html">A857</a>
+</td>
+</tr>
+</table>
+<div class="description">A831: perform END</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A831"></span>A831</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A832"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="A82F.html">A82F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A832"></span>A832</td>
+<td class="bytes">D0 3C</td>
+<td class="instruction">BNE <a href="A857.html#A870">$A870</a></td>
+<td class="comment-1" rowspan="1">return if wasn't CTRL-C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A834"></span>A834</td>
+<td class="bytes">A5 7A</td>
+<td class="instruction">LDA $7A</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A836"></span>A836</td>
+<td class="bytes">A4 7B</td>
+<td class="instruction">LDY $7B</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A838"></span>A838</td>
+<td class="bytes">A6 3A</td>
+<td class="instruction">LDX $3A</td>
+<td class="comment-1" rowspan="1">get current line number high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A83A"></span>A83A</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A83B"></span>A83B</td>
+<td class="bytes">F0 0C</td>
+<td class="instruction">BEQ <a href="A831.html#A849">$A849</a></td>
+<td class="comment-1" rowspan="1">branch if was immediate mode</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A83D"></span>A83D</td>
+<td class="bytes">85 3D</td>
+<td class="instruction">STA $3D</td>
+<td class="comment-1" rowspan="1">save continue pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A83F"></span>A83F</td>
+<td class="bytes">84 3E</td>
+<td class="instruction">STY $3E</td>
+<td class="comment-1" rowspan="1">save continue pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A841"></span>A841</td>
+<td class="bytes">A5 39</td>
+<td class="instruction">LDA $39</td>
+<td class="comment-1" rowspan="1">get current line number low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A843"></span>A843</td>
+<td class="bytes">A4 3A</td>
+<td class="instruction">LDY $3A</td>
+<td class="comment-1" rowspan="1">get current line number high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A845"></span>A845</td>
+<td class="bytes">85 3B</td>
+<td class="instruction">STA $3B</td>
+<td class="comment-1" rowspan="1">save break line number low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A847"></span>A847</td>
+<td class="bytes">84 3C</td>
+<td class="instruction">STY $3C</td>
+<td class="comment-1" rowspan="1">save break line number high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A849"></span>A849</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A84A"></span>A84A</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump return address high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A84B"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="A7AE.html">A7AE</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A84B"></span>A84B</td>
+<td class="bytes">A9 81</td>
+<td class="instruction">LDA #$81</td>
+<td class="comment-1" rowspan="1">set [CR][LF]"BREAK" pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A84D"></span>A84D</td>
+<td class="bytes">A0 A3</td>
+<td class="instruction">LDY #$A3</td>
+<td class="comment-1" rowspan="1">set [CR][LF]"BREAK" pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A84F"></span>A84F</td>
+<td class="bytes">90 03</td>
+<td class="instruction">BCC <a href="A831.html#A854">$A854</a></td>
+<td class="comment-1" rowspan="1">if was program end skip the print string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A851"></span>A851</td>
+<td class="bytes">4C 69 A4</td>
+<td class="instruction">JMP <a href="A469.html">$A469</a></td>
+<td class="comment-1" rowspan="1">print string and do warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A854"></span>A854</td>
+<td class="bytes">4C 86 E3</td>
+<td class="instruction">JMP <a href="E37B.html#E386">$E386</a></td>
+<td class="comment-1" rowspan="1">do warm start</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A82F.html">A82F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A831">Map</a></td>
+<td class="next">
+Next: <a href="A857.html">A857</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

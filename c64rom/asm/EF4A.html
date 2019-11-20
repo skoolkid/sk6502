@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EF4A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EF3B.html">EF3B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EF4A">Map</a></td>
+<td class="next">
+Next: <a href="EF59.html">EF59</a>
+</td>
+</tr>
+</table>
+<div class="description">EF4A: compute bit count</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F409.html">F409</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EF4A"></span>EF4A</td>
+<td class="bytes">A2 09</td>
+<td class="instruction">LDX #$09</td>
+<td class="comment-1" rowspan="1">set bit count to 9, 8 data + 1 stop bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF4C"></span>EF4C</td>
+<td class="bytes">A9 20</td>
+<td class="instruction">LDA #%00100000</td>
+<td class="comment-1" rowspan="1">mask for 8/7 data bits</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF4E"></span>EF4E</td>
+<td class="bytes">2C 93 02</td>
+<td class="instruction">BIT $0293</td>
+<td class="comment-1" rowspan="1">test pseudo 6551 control register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF51"></span>EF51</td>
+<td class="bytes">F0 01</td>
+<td class="instruction">BEQ <a href="EF4A.html#EF54">$EF54</a></td>
+<td class="comment-1" rowspan="1">branch if 8 bits</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF53"></span>EF53</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">else decrement count for 7 data bits</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EF54"></span>EF54</td>
+<td class="bytes">50 02</td>
+<td class="instruction">BVC <a href="EF4A.html#EF58">$EF58</a></td>
+<td class="comment-1" rowspan="1">branch if 7 bits</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF56"></span>EF56</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">else decrement count ..</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF57"></span>EF57</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">.. for 5 data bits</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EF58"></span>EF58</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EF3B.html">EF3B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EF4A">Map</a></td>
+<td class="next">
+Next: <a href="EF59.html">EF59</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

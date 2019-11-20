@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A742</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A71A.html">A71A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A742">Map</a></td>
+<td class="next">
+Next: <a href="A7AE.html">A7AE</a>
+</td>
+</tr>
+</table>
+<div class="description">A742: perform FOR</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A742"></span>A742</td>
+<td class="bytes">A9 80</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1">set FNX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A744"></span>A744</td>
+<td class="bytes">85 10</td>
+<td class="instruction">STA $10</td>
+<td class="comment-1" rowspan="1">set subscript/FNX flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A746"></span>A746</td>
+<td class="bytes">20 A5 A9</td>
+<td class="instruction">JSR <a href="A9A5.html">$A9A5</a></td>
+<td class="comment-1" rowspan="1">perform LET</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A749"></span>A749</td>
+<td class="bytes">20 8A A3</td>
+<td class="instruction">JSR <a href="A38A.html">$A38A</a></td>
+<td class="comment-1" rowspan="1">search the stack for FOR or GOSUB activity</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A74C"></span>A74C</td>
+<td class="bytes">D0 05</td>
+<td class="instruction">BNE <a href="A742.html#A753">$A753</a></td>
+<td class="comment-1" rowspan="1">branch if FOR, this variable, not found</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A74E"></span>
+<div class="comments">
+<div class="paragraph">
+FOR, this variable, was found so first we dump the old one
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A74E"></span>A74E</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A74F"></span>A74F</td>
+<td class="bytes">69 0F</td>
+<td class="instruction">ADC #$0F</td>
+<td class="comment-1" rowspan="1">add FOR structure size-2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A751"></span>A751</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy to index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A752"></span>A752</td>
+<td class="bytes">9A</td>
+<td class="instruction">TXS</td>
+<td class="comment-1" rowspan="1">set stack (dump FOR structure (-2 bytes))</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A753"></span>A753</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull return address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A754"></span>A754</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull return address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A755"></span>A755</td>
+<td class="bytes">A9 09</td>
+<td class="instruction">LDA #$09</td>
+<td class="comment-1" rowspan="1">we need 18d bytes !</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A757"></span>A757</td>
+<td class="bytes">20 FB A3</td>
+<td class="instruction">JSR <a href="A3FB.html">$A3FB</a></td>
+<td class="comment-1" rowspan="1">check room on stack for 2*A bytes</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A75A"></span>A75A</td>
+<td class="bytes">20 06 A9</td>
+<td class="instruction">JSR <a href="A906.html">$A906</a></td>
+<td class="comment-1" rowspan="1">scan for next BASIC statement ([:] or [EOL])</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A75D"></span>A75D</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A75E"></span>A75E</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy index to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A75F"></span>A75F</td>
+<td class="bytes">65 7A</td>
+<td class="instruction">ADC $7A</td>
+<td class="comment-1" rowspan="1">add BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A761"></span>A761</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push onto stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A762"></span>A762</td>
+<td class="bytes">A5 7B</td>
+<td class="instruction">LDA $7B</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A764"></span>A764</td>
+<td class="bytes">69 00</td>
+<td class="instruction">ADC #$00</td>
+<td class="comment-1" rowspan="1">add carry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A766"></span>A766</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push onto stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A767"></span>A767</td>
+<td class="bytes">A5 3A</td>
+<td class="instruction">LDA $3A</td>
+<td class="comment-1" rowspan="1">get current line number high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A769"></span>A769</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push onto stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A76A"></span>A76A</td>
+<td class="bytes">A5 39</td>
+<td class="instruction">LDA $39</td>
+<td class="comment-1" rowspan="1">get current line number low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A76C"></span>A76C</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push onto stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A76D"></span>A76D</td>
+<td class="bytes">A9 A4</td>
+<td class="instruction">LDA #$A4</td>
+<td class="comment-1" rowspan="1">set "TO" token</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A76F"></span>A76F</td>
+<td class="bytes">20 FF AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEFF">$AEFF</a></td>
+<td class="comment-1" rowspan="1">scan for CHR$(<span class="register">A</span>), else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A772"></span>A772</td>
+<td class="bytes">20 8D AD</td>
+<td class="instruction">JSR <a href="AD8A.html#AD8D">$AD8D</a></td>
+<td class="comment-1" rowspan="1">check if source is numeric, else do type mismatch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A775"></span>A775</td>
+<td class="bytes">20 8A AD</td>
+<td class="instruction">JSR <a href="AD8A.html">$AD8A</a></td>
+<td class="comment-1" rowspan="1">evaluate expression and check is numeric, else do type mismatch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A778"></span>A778</td>
+<td class="bytes">A5 66</td>
+<td class="instruction">LDA $66</td>
+<td class="comment-1" rowspan="1">get FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A77A"></span>A77A</td>
+<td class="bytes">09 7F</td>
+<td class="instruction">ORA #$7F</td>
+<td class="comment-1" rowspan="1">set all non sign bits</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A77C"></span>A77C</td>
+<td class="bytes">25 62</td>
+<td class="instruction">AND $62</td>
+<td class="comment-1" rowspan="1">and FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A77E"></span>A77E</td>
+<td class="bytes">85 62</td>
+<td class="instruction">STA $62</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A780"></span>A780</td>
+<td class="bytes">A9 8B</td>
+<td class="instruction">LDA #$8B</td>
+<td class="comment-1" rowspan="1">set return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A782"></span>A782</td>
+<td class="bytes">A0 A7</td>
+<td class="instruction">LDY #$A7</td>
+<td class="comment-1" rowspan="1">set return address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A784"></span>A784</td>
+<td class="bytes">85 22</td>
+<td class="instruction">STA $22</td>
+<td class="comment-1" rowspan="1">save return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A786"></span>A786</td>
+<td class="bytes">84 23</td>
+<td class="instruction">STY $23</td>
+<td class="comment-1" rowspan="1">save return address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A788"></span>A788</td>
+<td class="bytes">4C 43 AE</td>
+<td class="instruction">JMP <a href="AE43.html">$AE43</a></td>
+<td class="comment-1" rowspan="1">round FAC1 and put on stack, returns to next instruction</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A78B"></span>A78B</td>
+<td class="bytes">A9 BC</td>
+<td class="instruction">LDA #$BC</td>
+<td class="comment-1" rowspan="1">set 1 pointer low address, default step size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A78D"></span>A78D</td>
+<td class="bytes">A0 B9</td>
+<td class="instruction">LDY #$B9</td>
+<td class="comment-1" rowspan="1">set 1 pointer high address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A78F"></span>A78F</td>
+<td class="bytes">20 A2 BB</td>
+<td class="instruction">JSR <a href="BBA2.html">$BBA2</a></td>
+<td class="comment-1" rowspan="1">unpack memory (<span class="register">AY</span>) into FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A792"></span>A792</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A795"></span>A795</td>
+<td class="bytes">C9 A9</td>
+<td class="instruction">CMP #$A9</td>
+<td class="comment-1" rowspan="1">compare with STEP token</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A797"></span>A797</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="A742.html#A79F">$A79F</a></td>
+<td class="comment-1" rowspan="1">if not "STEP" continue</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A799"></span>
+<div class="comments">
+<div class="paragraph">
+was step so ....
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A799"></span>A799</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A79C"></span>A79C</td>
+<td class="bytes">20 8A AD</td>
+<td class="instruction">JSR <a href="AD8A.html">$AD8A</a></td>
+<td class="comment-1" rowspan="1">evaluate expression and check is numeric, else do type mismatch</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A79F"></span>A79F</td>
+<td class="bytes">20 2B BC</td>
+<td class="instruction">JSR <a href="BC2B.html">$BC2B</a></td>
+<td class="comment-1" rowspan="1">get FAC1 sign, return <span class="register">A</span> = $FF -ve, <span class="register">A</span> = $01 +ve</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7A2"></span>A7A2</td>
+<td class="bytes">20 38 AE</td>
+<td class="instruction">JSR <a href="AE38.html">$AE38</a></td>
+<td class="comment-1" rowspan="1">push sign, round FAC1 and put on stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7A5"></span>A7A5</td>
+<td class="bytes">A5 4A</td>
+<td class="instruction">LDA $4A</td>
+<td class="comment-1" rowspan="1">get FOR/NEXT variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7A7"></span>A7A7</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push on stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7A8"></span>A7A8</td>
+<td class="bytes">A5 49</td>
+<td class="instruction">LDA $49</td>
+<td class="comment-1" rowspan="1">get FOR/NEXT variable pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7AA"></span>A7AA</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push on stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7AB"></span>A7AB</td>
+<td class="bytes">A9 81</td>
+<td class="instruction">LDA #$81</td>
+<td class="comment-1" rowspan="1">get FOR token</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7AD"></span>A7AD</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push on stack</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A71A.html">A71A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A742">Map</a></td>
+<td class="next">
+Next: <a href="A7AE.html">A7AE</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E891</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E87C.html">E87C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E891">Map</a></td>
+<td class="next">
+Next: <a href="E8A1.html">E8A1</a>
+</td>
+</tr>
+</table>
+<div class="description">E891: output [CR]</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E716.html">E716</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E891"></span>E891</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E893"></span>E893</td>
+<td class="bytes">86 D8</td>
+<td class="instruction">STX $D8</td>
+<td class="comment-1" rowspan="1">clear the insert count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E895"></span>E895</td>
+<td class="bytes">86 C7</td>
+<td class="instruction">STX $C7</td>
+<td class="comment-1" rowspan="1">clear the reverse flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E897"></span>E897</td>
+<td class="bytes">86 D4</td>
+<td class="instruction">STX $D4</td>
+<td class="comment-1" rowspan="1">clear the cursor quote flag, $xx = quote, $00 = no quote</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E899"></span>E899</td>
+<td class="bytes">86 D3</td>
+<td class="instruction">STX $D3</td>
+<td class="comment-1" rowspan="1">save the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E89B"></span>E89B</td>
+<td class="bytes">20 7C E8</td>
+<td class="instruction">JSR <a href="E87C.html">$E87C</a></td>
+<td class="comment-1" rowspan="1">do newline</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E89E"></span>E89E</td>
+<td class="bytes">4C A8 E6</td>
+<td class="instruction">JMP <a href="E691.html#E6A8">$E6A8</a></td>
+<td class="comment-1" rowspan="1">restore the registers, set the quote flag and exit</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E87C.html">E87C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E891">Map</a></td>
+<td class="next">
+Next: <a href="E8A1.html">E8A1</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

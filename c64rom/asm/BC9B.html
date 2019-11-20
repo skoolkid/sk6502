@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BC9B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BC5B.html">BC5B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BC9B">Map</a></td>
+<td class="next">
+Next: <a href="BCBB.html">BCBB</a>
+</td>
+</tr>
+</table>
+<div class="description">BC9B: convert FAC1 floating to fixed</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A9A5.html">A9A5</a>, <a href="B1B2.html">B1B2</a>, <a href="B7F7.html">B7F7</a>, <a href="BCCC.html">BCCC</a> and <a href="BDDD.html">BDDD</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BC9B"></span>BC9B</td>
+<td class="bytes">A5 61</td>
+<td class="instruction">LDA $61</td>
+<td class="comment-1" rowspan="1">get FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC9D"></span>BC9D</td>
+<td class="bytes">F0 4A</td>
+<td class="instruction">BEQ <a href="BCE9.html">$BCE9</a></td>
+<td class="comment-1" rowspan="1">if zero go clear FAC1 and return</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC9F"></span>BC9F</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCA0"></span>BCA0</td>
+<td class="bytes">E9 A0</td>
+<td class="instruction">SBC #$A0</td>
+<td class="comment-1" rowspan="1">subtract maximum integer range exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCA2"></span>BCA2</td>
+<td class="bytes">24 66</td>
+<td class="instruction">BIT $66</td>
+<td class="comment-1" rowspan="1">test FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCA4"></span>BCA4</td>
+<td class="bytes">10 09</td>
+<td class="instruction">BPL <a href="BC9B.html#BCAF">$BCAF</a></td>
+<td class="comment-1" rowspan="1">branch if FAC1 +ve</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BCA6"></span>
+<div class="comments">
+<div class="paragraph">
+FAC1 was -ve
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCA6"></span>BCA6</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy subtracted exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCA7"></span>BCA7</td>
+<td class="bytes">A9 FF</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="1">overflow for -ve number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCA9"></span>BCA9</td>
+<td class="bytes">85 68</td>
+<td class="instruction">STA $68</td>
+<td class="comment-1" rowspan="1">set FAC1 overflow byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCAB"></span>BCAB</td>
+<td class="bytes">20 4D B9</td>
+<td class="instruction">JSR <a href="B947.html#B94D">$B94D</a></td>
+<td class="comment-1" rowspan="1">twos complement FAC1 mantissa</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCAE"></span>BCAE</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">restore subtracted exponent</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BCAF"></span>BCAF</td>
+<td class="bytes">A2 61</td>
+<td class="instruction">LDX #$61</td>
+<td class="comment-1" rowspan="1">set index to FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCB1"></span>BCB1</td>
+<td class="bytes">C9 F9</td>
+<td class="instruction">CMP #$F9</td>
+<td class="comment-1" rowspan="1">compare exponent result</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCB3"></span>BCB3</td>
+<td class="bytes">10 06</td>
+<td class="instruction">BPL <a href="BCBB.html">$BCBB</a></td>
+<td class="comment-1" rowspan="1">if &lt; 8 shifts shift FAC1 <span class="register">A</span> times right and return</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCB5"></span>BCB5</td>
+<td class="bytes">20 99 B9</td>
+<td class="instruction">JSR <a href="B983.html#B999">$B999</a></td>
+<td class="comment-1" rowspan="1">shift FAC1 <span class="register">A</span> times right (&gt; 8 shifts)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCB8"></span>BCB8</td>
+<td class="bytes">84 68</td>
+<td class="instruction">STY $68</td>
+<td class="comment-1" rowspan="1">clear FAC1 overflow byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BCBA"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="BC5B.html">BC5B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BCBA"></span>BCBA</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BC5B.html">BC5B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BC9B">Map</a></td>
+<td class="next">
+Next: <a href="BCBB.html">BCBB</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

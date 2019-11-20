@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E3BF</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E3BA.html">E3BA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E3BF">Map</a></td>
+<td class="next">
+Next: <a href="E422.html">E422</a>
+</td>
+</tr>
+</table>
+<div class="description">E3BF: initialise BASIC RAM locations</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E394.html">E394</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E3BF"></span>E3BF</td>
+<td class="bytes">A9 4C</td>
+<td class="instruction">LDA #$4C</td>
+<td class="comment-1" rowspan="1">opcode for JMP</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3C1"></span>E3C1</td>
+<td class="bytes">85 54</td>
+<td class="instruction">STA $54</td>
+<td class="comment-1" rowspan="1">save for functions vector jump</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3C3"></span>E3C3</td>
+<td class="bytes">8D 10 03</td>
+<td class="instruction">STA $0310</td>
+<td class="comment-1" rowspan="1">save for USR() vector jump</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E3C6"></span>
+<div class="comments">
+<div class="paragraph">
+set USR() vector to illegal quantity error
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3C6"></span>E3C6</td>
+<td class="bytes">A9 48</td>
+<td class="instruction">LDA #$48</td>
+<td class="comment-1" rowspan="1">set USR() vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3C8"></span>E3C8</td>
+<td class="bytes">A0 B2</td>
+<td class="instruction">LDY #$B2</td>
+<td class="comment-1" rowspan="1">set USR() vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3CA"></span>E3CA</td>
+<td class="bytes">8D 11 03</td>
+<td class="instruction">STA $0311</td>
+<td class="comment-1" rowspan="1">save USR() vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3CD"></span>E3CD</td>
+<td class="bytes">8C 12 03</td>
+<td class="instruction">STY $0312</td>
+<td class="comment-1" rowspan="1">save USR() vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3D0"></span>E3D0</td>
+<td class="bytes">A9 91</td>
+<td class="instruction">LDA #$91</td>
+<td class="comment-1" rowspan="1">set fixed to float vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3D2"></span>E3D2</td>
+<td class="bytes">A0 B3</td>
+<td class="instruction">LDY #$B3</td>
+<td class="comment-1" rowspan="1">set fixed to float vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3D4"></span>E3D4</td>
+<td class="bytes">85 05</td>
+<td class="instruction">STA $05</td>
+<td class="comment-1" rowspan="1">save fixed to float vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3D6"></span>E3D6</td>
+<td class="bytes">84 06</td>
+<td class="instruction">STY $06</td>
+<td class="comment-1" rowspan="1">save fixed to float vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3D8"></span>E3D8</td>
+<td class="bytes">A9 AA</td>
+<td class="instruction">LDA #$AA</td>
+<td class="comment-1" rowspan="1">set float to fixed vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3DA"></span>E3DA</td>
+<td class="bytes">A0 B1</td>
+<td class="instruction">LDY #$B1</td>
+<td class="comment-1" rowspan="1">set float to fixed vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3DC"></span>E3DC</td>
+<td class="bytes">85 03</td>
+<td class="instruction">STA $03</td>
+<td class="comment-1" rowspan="1">save float to fixed vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3DE"></span>E3DE</td>
+<td class="bytes">84 04</td>
+<td class="instruction">STY $04</td>
+<td class="comment-1" rowspan="1">save float to fixed vector high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E3E0"></span>
+<div class="comments">
+<div class="paragraph">
+copy the character get subroutine from <a href="E3A2.html">E3A2</a> to $0074
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3E0"></span>E3E0</td>
+<td class="bytes">A2 1C</td>
+<td class="instruction">LDX #$1C</td>
+<td class="comment-1" rowspan="1">set the byte count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E3E2"></span>E3E2</td>
+<td class="bytes">BD A2 E3</td>
+<td class="instruction">LDA $E3A2,X</td>
+<td class="comment-1" rowspan="1">get a byte from the table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3E5"></span>E3E5</td>
+<td class="bytes">95 73</td>
+<td class="instruction">STA $73,X</td>
+<td class="comment-1" rowspan="1">save the byte in page zero</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3E7"></span>E3E7</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement the count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3E8"></span>E3E8</td>
+<td class="bytes">10 F8</td>
+<td class="instruction">BPL <a href="E3BF.html#E3E2">$E3E2</a></td>
+<td class="comment-1" rowspan="1">loop if not all done</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E3EA"></span>
+<div class="comments">
+<div class="paragraph">
+clear descriptors, strings, program area and mamory pointers
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3EA"></span>E3EA</td>
+<td class="bytes">A9 03</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="1">set the step size, collecting descriptors</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3EC"></span>E3EC</td>
+<td class="bytes">85 53</td>
+<td class="instruction">STA $53</td>
+<td class="comment-1" rowspan="1">save the garbage collection step size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3EE"></span>E3EE</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3F0"></span>E3F0</td>
+<td class="bytes">85 68</td>
+<td class="instruction">STA $68</td>
+<td class="comment-1" rowspan="1">clear FAC1 overflow byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3F2"></span>E3F2</td>
+<td class="bytes">85 13</td>
+<td class="instruction">STA $13</td>
+<td class="comment-1" rowspan="1">clear the current I/O channel, flag default</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3F4"></span>E3F4</td>
+<td class="bytes">85 18</td>
+<td class="instruction">STA $18</td>
+<td class="comment-1" rowspan="1">clear the current descriptor stack item pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3F6"></span>E3F6</td>
+<td class="bytes">A2 01</td>
+<td class="instruction">LDX #$01</td>
+<td class="comment-1" rowspan="1">set <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3F8"></span>E3F8</td>
+<td class="bytes">8E FD 01</td>
+<td class="instruction">STX $01FD</td>
+<td class="comment-1" rowspan="1">set the chain link pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3FB"></span>E3FB</td>
+<td class="bytes">8E FC 01</td>
+<td class="instruction">STX $01FC</td>
+<td class="comment-1" rowspan="1">set the chain link pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3FE"></span>E3FE</td>
+<td class="bytes">A2 19</td>
+<td class="instruction">LDX #$19</td>
+<td class="comment-1" rowspan="1">initial the value for descriptor stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E400"></span>E400</td>
+<td class="bytes">86 16</td>
+<td class="instruction">STX $16</td>
+<td class="comment-1" rowspan="1">set descriptor stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E402"></span>E402</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set Cb = 1 to read the bottom of memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E403"></span>E403</td>
+<td class="bytes">20 9C FF</td>
+<td class="instruction">JSR <a href="FF9C.html">$FF9C</a></td>
+<td class="comment-1" rowspan="1">read/set the bottom of memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E406"></span>E406</td>
+<td class="bytes">86 2B</td>
+<td class="instruction">STX $2B</td>
+<td class="comment-1" rowspan="1">save the start of memory low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E408"></span>E408</td>
+<td class="bytes">84 2C</td>
+<td class="instruction">STY $2C</td>
+<td class="comment-1" rowspan="1">save the start of memory high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E40A"></span>E40A</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set Cb = 1 to read the top of memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E40B"></span>E40B</td>
+<td class="bytes">20 99 FF</td>
+<td class="instruction">JSR <a href="FF99.html">$FF99</a></td>
+<td class="comment-1" rowspan="1">read/set the top of memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E40E"></span>E40E</td>
+<td class="bytes">86 37</td>
+<td class="instruction">STX $37</td>
+<td class="comment-1" rowspan="1">save the end of memory low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E410"></span>E410</td>
+<td class="bytes">84 38</td>
+<td class="instruction">STY $38</td>
+<td class="comment-1" rowspan="1">save the end of memory high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E412"></span>E412</td>
+<td class="bytes">86 33</td>
+<td class="instruction">STX $33</td>
+<td class="comment-1" rowspan="1">set the bottom of string space low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E414"></span>E414</td>
+<td class="bytes">84 34</td>
+<td class="instruction">STY $34</td>
+<td class="comment-1" rowspan="1">set the bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E416"></span>E416</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear the index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E418"></span>E418</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">clear the <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E419"></span>E419</td>
+<td class="bytes">91 2B</td>
+<td class="instruction">STA ($2B),Y</td>
+<td class="comment-1" rowspan="1">clear the the first byte of memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E41B"></span>E41B</td>
+<td class="bytes">E6 2B</td>
+<td class="instruction">INC $2B</td>
+<td class="comment-1" rowspan="1">increment the start of memory low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E41D"></span>E41D</td>
+<td class="bytes">D0 02</td>
+<td class="instruction">BNE <a href="E3BF.html#E421">$E421</a></td>
+<td class="comment-1" rowspan="1">if no rollover skip the high byte increment</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E41F"></span>E41F</td>
+<td class="bytes">E6 2C</td>
+<td class="instruction">INC $2C</td>
+<td class="comment-1" rowspan="1">increment start of memory high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E421"></span>E421</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E3BA.html">E3BA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E3BF">Map</a></td>
+<td class="next">
+Next: <a href="E422.html">E422</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

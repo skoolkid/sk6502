@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E043</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E000.html">E000</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E043">Map</a></td>
+<td class="next">
+Next: <a href="E059.html">E059</a>
+</td>
+</tr>
+</table>
+<div class="description">E043: ^2 then series evaluation</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="B9EA.html">B9EA</a>, <a href="E26B.html">E26B</a> and <a href="E30E.html">E30E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E043"></span>E043</td>
+<td class="bytes">85 71</td>
+<td class="instruction">STA $71</td>
+<td class="comment-1" rowspan="1">save count pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E045"></span>E045</td>
+<td class="bytes">84 72</td>
+<td class="instruction">STY $72</td>
+<td class="comment-1" rowspan="1">save count pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E047"></span>E047</td>
+<td class="bytes">20 CA BB</td>
+<td class="instruction">JSR <a href="BBCA.html">$BBCA</a></td>
+<td class="comment-1" rowspan="1">pack FAC1 into $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E04A"></span>E04A</td>
+<td class="bytes">A9 57</td>
+<td class="instruction">LDA #$57</td>
+<td class="comment-1" rowspan="1">set pointer low byte (Y already $00)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E04C"></span>E04C</td>
+<td class="bytes">20 28 BA</td>
+<td class="instruction">JSR <a href="BA28.html">$BA28</a></td>
+<td class="comment-1" rowspan="1">do convert <span class="register">AY</span>, FCA1*(<span class="register">AY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E04F"></span>E04F</td>
+<td class="bytes">20 5D E0</td>
+<td class="instruction">JSR <a href="E059.html#E05D">$E05D</a></td>
+<td class="comment-1" rowspan="1">go do series evaluation</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E052"></span>E052</td>
+<td class="bytes">A9 57</td>
+<td class="instruction">LDA #$57</td>
+<td class="comment-1" rowspan="1">pointer to original # low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E054"></span>E054</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">pointer to original # high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E056"></span>E056</td>
+<td class="bytes">4C 28 BA</td>
+<td class="instruction">JMP <a href="BA28.html">$BA28</a></td>
+<td class="comment-1" rowspan="1">do convert <span class="register">AY</span>, FCA1*(<span class="register">AY</span>)</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E000.html">E000</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E043">Map</a></td>
+<td class="next">
+Next: <a href="E059.html">E059</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

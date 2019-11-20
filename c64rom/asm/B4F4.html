@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B4F4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B487.html">B487</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B4F4">Map</a></td>
+<td class="next">
+Next: <a href="B526.html">B526</a>
+</td>
+</tr>
+</table>
+<div class="description">B4F4: make space in string memory for string <span class="register">A</span> long</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="B47D.html">B47D</a>.
+</div>
+<div class="paragraph">
+return <span class="register">X</span> = pointer low byte, <span class="register">Y</span> = pointer high byte
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B4F4"></span>B4F4</td>
+<td class="bytes">46 0F</td>
+<td class="instruction">LSR $0F</td>
+<td class="comment-1" rowspan="1">clear garbage collected flag (b7)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B4F6"></span>
+<div class="comments">
+<div class="paragraph">
+make space for string <span class="register">A</span> long
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B4F6"></span>B4F6</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save string length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4F7"></span>B4F7</td>
+<td class="bytes">49 FF</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">complement it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4F9"></span>B4F9</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract, two's complement add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4FA"></span>B4FA</td>
+<td class="bytes">65 33</td>
+<td class="instruction">ADC $33</td>
+<td class="comment-1" rowspan="1">add bottom of string space low byte, subtract length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4FC"></span>B4FC</td>
+<td class="bytes">A4 34</td>
+<td class="instruction">LDY $34</td>
+<td class="comment-1" rowspan="1">get bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4FE"></span>B4FE</td>
+<td class="bytes">B0 01</td>
+<td class="instruction">BCS <a href="B4F4.html#B501">$B501</a></td>
+<td class="comment-1" rowspan="1">skip decrement if no underflow</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B500"></span>B500</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B501"></span>B501</td>
+<td class="bytes">C4 32</td>
+<td class="instruction">CPY $32</td>
+<td class="comment-1" rowspan="1">compare with end of arrays high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B503"></span>B503</td>
+<td class="bytes">90 11</td>
+<td class="instruction">BCC <a href="B4F4.html#B516">$B516</a></td>
+<td class="comment-1" rowspan="1">do out of memory error if less</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B505"></span>B505</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="B4F4.html#B50B">$B50B</a></td>
+<td class="comment-1" rowspan="1">if not = skip next test</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B507"></span>B507</td>
+<td class="bytes">C5 31</td>
+<td class="instruction">CMP $31</td>
+<td class="comment-1" rowspan="1">compare with end of arrays low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B509"></span>B509</td>
+<td class="bytes">90 0B</td>
+<td class="instruction">BCC <a href="B4F4.html#B516">$B516</a></td>
+<td class="comment-1" rowspan="1">do out of memory error if less</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B50B"></span>B50B</td>
+<td class="bytes">85 33</td>
+<td class="instruction">STA $33</td>
+<td class="comment-1" rowspan="1">save bottom of string space low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B50D"></span>B50D</td>
+<td class="bytes">84 34</td>
+<td class="instruction">STY $34</td>
+<td class="comment-1" rowspan="1">save bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B50F"></span>B50F</td>
+<td class="bytes">85 35</td>
+<td class="instruction">STA $35</td>
+<td class="comment-1" rowspan="1">save string utility ptr low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B511"></span>B511</td>
+<td class="bytes">84 36</td>
+<td class="instruction">STY $36</td>
+<td class="comment-1" rowspan="1">save string utility ptr high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B513"></span>B513</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy low byte to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B514"></span>B514</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">get string length back</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B515"></span>B515</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="B516"></span>B516</td>
+<td class="bytes">A2 10</td>
+<td class="instruction">LDX #$10</td>
+<td class="comment-1" rowspan="1">error code $10, out of memory error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B518"></span>B518</td>
+<td class="bytes">A5 0F</td>
+<td class="instruction">LDA $0F</td>
+<td class="comment-1" rowspan="1">get garbage collected flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B51A"></span>B51A</td>
+<td class="bytes">30 B6</td>
+<td class="instruction">BMI <a href="B487.html#B4D2">$B4D2</a></td>
+<td class="comment-1" rowspan="1">if set then do error code <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B51C"></span>B51C</td>
+<td class="bytes">20 26 B5</td>
+<td class="instruction">JSR <a href="B526.html">$B526</a></td>
+<td class="comment-1" rowspan="1">else go do garbage collection</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B51F"></span>B51F</td>
+<td class="bytes">A9 80</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1">flag for garbage collected</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B521"></span>B521</td>
+<td class="bytes">85 0F</td>
+<td class="instruction">STA $0F</td>
+<td class="comment-1" rowspan="1">set garbage collected flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B523"></span>B523</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B524"></span>B524</td>
+<td class="bytes">D0 D0</td>
+<td class="instruction">BNE <a href="B4F4.html#B4F6">$B4F6</a></td>
+<td class="comment-1" rowspan="1">go try again (loop always, length should never be = $00)</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B487.html">B487</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B4F4">Map</a></td>
+<td class="next">
+Next: <a href="B526.html">B526</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B6DB</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B6A3.html">B6A3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B6DB">Map</a></td>
+<td class="next">
+Next: <a href="B6EC.html">B6EC</a>
+</td>
+</tr>
+</table>
+<div class="description">B6DB: clean descriptor stack</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="AA2C.html">AA2C</a> and <a href="B6A3.html">B6A3</a>.
+</div>
+<div class="paragraph">
+<span class="register">YA</span> = pointer. checks if <span class="register">AY</span> is on the descriptor stack, if so does a stack discard
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B6DB"></span>B6DB</td>
+<td class="bytes">C4 18</td>
+<td class="instruction">CPY $18</td>
+<td class="comment-1" rowspan="1">compare high byte with current descriptor stack item pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B6DD"></span>B6DD</td>
+<td class="bytes">D0 0C</td>
+<td class="instruction">BNE <a href="B6DB.html#B6EB">$B6EB</a></td>
+<td class="comment-1" rowspan="1">exit if &lt;&gt;</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B6DF"></span>B6DF</td>
+<td class="bytes">C5 17</td>
+<td class="instruction">CMP $17</td>
+<td class="comment-1" rowspan="1">compare low byte with current descriptor stack item pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B6E1"></span>B6E1</td>
+<td class="bytes">D0 08</td>
+<td class="instruction">BNE <a href="B6DB.html#B6EB">$B6EB</a></td>
+<td class="comment-1" rowspan="1">exit if &lt;&gt;</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B6E3"></span>B6E3</td>
+<td class="bytes">85 16</td>
+<td class="instruction">STA $16</td>
+<td class="comment-1" rowspan="1">set descriptor stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B6E5"></span>B6E5</td>
+<td class="bytes">E9 03</td>
+<td class="instruction">SBC #$03</td>
+<td class="comment-1" rowspan="1">update last string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B6E7"></span>B6E7</td>
+<td class="bytes">85 17</td>
+<td class="instruction">STA $17</td>
+<td class="comment-1" rowspan="1">save current descriptor stack item pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B6E9"></span>B6E9</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B6EB"></span>B6EB</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B6A3.html">B6A3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B6DB">Map</a></td>
+<td class="next">
+Next: <a href="B6EC.html">B6EC</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

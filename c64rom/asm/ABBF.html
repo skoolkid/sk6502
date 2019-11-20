@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at ABBF</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="ABB5.html">ABB5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#ABBF">Map</a></td>
+<td class="next">
+Next: <a href="ABF9.html">ABF9</a>
+</td>
+</tr>
+</table>
+<div class="description">ABBF: perform INPUT</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ABBF"></span>ABBF</td>
+<td class="bytes">C9 22</td>
+<td class="instruction">CMP #$22</td>
+<td class="comment-1" rowspan="1">compare next byte with open quote</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABC1"></span>ABC1</td>
+<td class="bytes">D0 0B</td>
+<td class="instruction">BNE <a href="ABBF.html#ABCE">$ABCE</a></td>
+<td class="comment-1" rowspan="1">if no prompt string just do INPUT</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABC3"></span>ABC3</td>
+<td class="bytes">20 BD AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEBD">$AEBD</a></td>
+<td class="comment-1" rowspan="1">print "..." string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABC6"></span>ABC6</td>
+<td class="bytes">A9 3B</td>
+<td class="instruction">LDA #";"</td>
+<td class="comment-1" rowspan="1">load <span class="register">A</span> with ";"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABC8"></span>ABC8</td>
+<td class="bytes">20 FF AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEFF">$AEFF</a></td>
+<td class="comment-1" rowspan="1">scan for CHR$(<span class="register">A</span>), else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABCB"></span>ABCB</td>
+<td class="bytes">20 21 AB</td>
+<td class="instruction">JSR <a href="AB21.html">$AB21</a></td>
+<td class="comment-1" rowspan="1">print string from utility pointer</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ABCE"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="ABA5.html">ABA5</a>.
+</div>
+<div class="paragraph">
+done with prompt, now get data
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ABCE"></span>ABCE</td>
+<td class="bytes">20 A6 B3</td>
+<td class="instruction">JSR <a href="B39E.html#B3A6">$B3A6</a></td>
+<td class="comment-1" rowspan="1">check not Direct, back here if ok</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABD1"></span>ABD1</td>
+<td class="bytes">A9 2C</td>
+<td class="instruction">LDA #","</td>
+<td class="comment-1" rowspan="1">set ","</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABD3"></span>ABD3</td>
+<td class="bytes">8D FF 01</td>
+<td class="instruction">STA $01FF</td>
+<td class="comment-1" rowspan="1">save to start of buffer - 1</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ABD6"></span>ABD6</td>
+<td class="bytes">20 F9 AB</td>
+<td class="instruction">JSR <a href="ABF9.html">$ABF9</a></td>
+<td class="comment-1" rowspan="1">print "? " and get BASIC input</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABD9"></span>ABD9</td>
+<td class="bytes">A5 13</td>
+<td class="instruction">LDA $13</td>
+<td class="comment-1" rowspan="1">get current I/O channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABDB"></span>ABDB</td>
+<td class="bytes">F0 0D</td>
+<td class="instruction">BEQ <a href="ABBF.html#ABEA">$ABEA</a></td>
+<td class="comment-1" rowspan="1">branch if default I/O channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABDD"></span>ABDD</td>
+<td class="bytes">20 B7 FF</td>
+<td class="instruction">JSR <a href="FFB7.html">$FFB7</a></td>
+<td class="comment-1" rowspan="1">read I/O status word</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABE0"></span>ABE0</td>
+<td class="bytes">29 02</td>
+<td class="instruction">AND #%00000010</td>
+<td class="comment-1" rowspan="1">mask no DSR/timeout</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABE2"></span>ABE2</td>
+<td class="bytes">F0 06</td>
+<td class="instruction">BEQ <a href="ABBF.html#ABEA">$ABEA</a></td>
+<td class="comment-1" rowspan="1">branch if not error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABE4"></span>ABE4</td>
+<td class="bytes">20 B5 AB</td>
+<td class="instruction">JSR <a href="ABB5.html">$ABB5</a></td>
+<td class="comment-1" rowspan="1">close input and output channels</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABE7"></span>ABE7</td>
+<td class="bytes">4C F8 A8</td>
+<td class="instruction">JMP <a href="A8F8.html">$A8F8</a></td>
+<td class="comment-1" rowspan="1">perform DATA</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ABEA"></span>ABEA</td>
+<td class="bytes">AD 00 02</td>
+<td class="instruction">LDA $0200</td>
+<td class="comment-1" rowspan="1">get first byte in input buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABED"></span>ABED</td>
+<td class="bytes">D0 1E</td>
+<td class="instruction">BNE <a href="AC06.html#AC0D">$AC0D</a></td>
+<td class="comment-1" rowspan="1">branch if not null</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ABEF"></span>
+<div class="comments">
+<div class="paragraph">
+else ..
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABEF"></span>ABEF</td>
+<td class="bytes">A5 13</td>
+<td class="instruction">LDA $13</td>
+<td class="comment-1" rowspan="1">get current I/O channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABF1"></span>ABF1</td>
+<td class="bytes">D0 E3</td>
+<td class="instruction">BNE <a href="ABBF.html#ABD6">$ABD6</a></td>
+<td class="comment-1" rowspan="1">if not default channel go get BASIC input</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABF3"></span>ABF3</td>
+<td class="bytes">20 06 A9</td>
+<td class="instruction">JSR <a href="A906.html">$A906</a></td>
+<td class="comment-1" rowspan="1">scan for next BASIC statement ([:] or [EOL])</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ABF6"></span>ABF6</td>
+<td class="bytes">4C FB A8</td>
+<td class="instruction">JMP <a href="A8FB.html">$A8FB</a></td>
+<td class="comment-1" rowspan="1">add <span class="register">Y</span> to the BASIC execute pointer and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="ABB5.html">ABB5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#ABBF">Map</a></td>
+<td class="next">
+Next: <a href="ABF9.html">ABF9</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

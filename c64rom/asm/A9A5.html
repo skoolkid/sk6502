@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A9A5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A96B.html">A96B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A9A5">Map</a></td>
+<td class="next">
+Next: <a href="AA1D.html">AA1D</a>
+</td>
+</tr>
+</table>
+<div class="description">A9A5: perform LET</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A742.html">A742</a> and <a href="A7AE.html">A7AE</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A9A5"></span>A9A5</td>
+<td class="bytes">20 8B B0</td>
+<td class="instruction">JSR <a href="B08B.html">$B08B</a></td>
+<td class="comment-1" rowspan="1">get variable address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9A8"></span>A9A8</td>
+<td class="bytes">85 49</td>
+<td class="instruction">STA $49</td>
+<td class="comment-1" rowspan="1">save variable address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9AA"></span>A9AA</td>
+<td class="bytes">84 4A</td>
+<td class="instruction">STY $4A</td>
+<td class="comment-1" rowspan="1">save variable address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9AC"></span>A9AC</td>
+<td class="bytes">A9 B2</td>
+<td class="instruction">LDA #$B2</td>
+<td class="comment-1" rowspan="1">$B2 is "=" token</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9AE"></span>A9AE</td>
+<td class="bytes">20 FF AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEFF">$AEFF</a></td>
+<td class="comment-1" rowspan="1">scan for CHR$(<span class="register">A</span>), else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9B1"></span>A9B1</td>
+<td class="bytes">A5 0E</td>
+<td class="instruction">LDA $0E</td>
+<td class="comment-1" rowspan="1">get data type flag, $80 = integer, $00 = float</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9B3"></span>A9B3</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push data type flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9B4"></span>A9B4</td>
+<td class="bytes">A5 0D</td>
+<td class="instruction">LDA $0D</td>
+<td class="comment-1" rowspan="1">get data type flag, $FF = string, $00 = numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9B6"></span>A9B6</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push data type flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9B7"></span>A9B7</td>
+<td class="bytes">20 9E AD</td>
+<td class="instruction">JSR <a href="AD9E.html">$AD9E</a></td>
+<td class="comment-1" rowspan="1">evaluate expression</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9BA"></span>A9BA</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop data type flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9BB"></span>A9BB</td>
+<td class="bytes">2A</td>
+<td class="instruction">ROL A</td>
+<td class="comment-1" rowspan="1">string bit into carry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9BC"></span>A9BC</td>
+<td class="bytes">20 90 AD</td>
+<td class="instruction">JSR <a href="AD8A.html#AD90">$AD90</a></td>
+<td class="comment-1" rowspan="1">do type match check</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9BF"></span>A9BF</td>
+<td class="bytes">D0 18</td>
+<td class="instruction">BNE <a href="A9A5.html#A9D9">$A9D9</a></td>
+<td class="comment-1" rowspan="1">branch if string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9C1"></span>A9C1</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop integer/float data type flag</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A9C2"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AC0F.html">AC0F</a>.
+</div>
+<div class="paragraph">
+assign value to numeric variable
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A9C2"></span>A9C2</td>
+<td class="bytes">10 12</td>
+<td class="instruction">BPL <a href="A9A5.html#A9D6">$A9D6</a></td>
+<td class="comment-1" rowspan="1">branch if float expression is numeric integer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9C4"></span>A9C4</td>
+<td class="bytes">20 1B BC</td>
+<td class="instruction">JSR <a href="BC1B.html">$BC1B</a></td>
+<td class="comment-1" rowspan="1">round FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9C7"></span>A9C7</td>
+<td class="bytes">20 BF B1</td>
+<td class="instruction">JSR <a href="B1B2.html#B1BF">$B1BF</a></td>
+<td class="comment-1" rowspan="1">evaluate integer expression, no sign check</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9CA"></span>A9CA</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9CC"></span>A9CC</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9CE"></span>A9CE</td>
+<td class="bytes">91 49</td>
+<td class="instruction">STA ($49),Y</td>
+<td class="comment-1" rowspan="1">save as integer variable low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9D0"></span>A9D0</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9D1"></span>A9D1</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9D3"></span>A9D3</td>
+<td class="bytes">91 49</td>
+<td class="instruction">STA ($49),Y</td>
+<td class="comment-1" rowspan="1">save as integer variable high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9D5"></span>A9D5</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="A9D6"></span>A9D6</td>
+<td class="bytes">4C D0 BB</td>
+<td class="instruction">JMP <a href="BBD0.html">$BBD0</a></td>
+<td class="comment-1" rowspan="1">pack FAC1 into variable pointer and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A9D9"></span>
+<div class="comments">
+<div class="paragraph">
+assign value to numeric variable
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A9D9"></span>A9D9</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump integer/float data type flag</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A9DA"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AC0F.html">AC0F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A9DA"></span>A9DA</td>
+<td class="bytes">A4 4A</td>
+<td class="instruction">LDY $4A</td>
+<td class="comment-1" rowspan="1">get variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9DC"></span>A9DC</td>
+<td class="bytes">C0 BF</td>
+<td class="instruction">CPY #$BF</td>
+<td class="comment-1" rowspan="1">was it TI$ pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9DE"></span>A9DE</td>
+<td class="bytes">D0 4C</td>
+<td class="instruction">BNE <a href="AA2C.html">$AA2C</a></td>
+<td class="comment-1" rowspan="1">branch if not</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A9E0"></span>
+<div class="comments">
+<div class="paragraph">
+else it's TI$ = &lt;expr$&gt;
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9E0"></span>A9E0</td>
+<td class="bytes">20 A6 B6</td>
+<td class="instruction">JSR <a href="B6A3.html#B6A6">$B6A6</a></td>
+<td class="comment-1" rowspan="1">pop string off descriptor stack, or from top of string; space returns with <span class="register">A</span> = length, <span class="register">X</span> = pointer low byte, <span class="register">Y</span> = pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9E3"></span>A9E3</td>
+<td class="bytes">C9 06</td>
+<td class="instruction">CMP #$06</td>
+<td class="comment-1" rowspan="1">compare length with 6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9E5"></span>A9E5</td>
+<td class="bytes">D0 3D</td>
+<td class="instruction">BNE <a href="AA1D.html#AA24">$AA24</a></td>
+<td class="comment-1" rowspan="1">if length not 6 do illegal quantity error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9E7"></span>A9E7</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9E9"></span>A9E9</td>
+<td class="bytes">84 61</td>
+<td class="instruction">STY $61</td>
+<td class="comment-1" rowspan="1">clear FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9EB"></span>A9EB</td>
+<td class="bytes">84 66</td>
+<td class="instruction">STY $66</td>
+<td class="comment-1" rowspan="1">clear FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A9ED"></span>A9ED</td>
+<td class="bytes">84 71</td>
+<td class="instruction">STY $71</td>
+<td class="comment-1" rowspan="1">save index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9EF"></span>A9EF</td>
+<td class="bytes">20 1D AA</td>
+<td class="instruction">JSR <a href="AA1D.html">$AA1D</a></td>
+<td class="comment-1" rowspan="1">check and evaluate numeric digit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9F2"></span>A9F2</td>
+<td class="bytes">20 E2 BA</td>
+<td class="instruction">JSR <a href="BAE2.html">$BAE2</a></td>
+<td class="comment-1" rowspan="1">multiply FAC1 by 10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9F5"></span>A9F5</td>
+<td class="bytes">E6 71</td>
+<td class="instruction">INC $71</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9F7"></span>A9F7</td>
+<td class="bytes">A4 71</td>
+<td class="instruction">LDY $71</td>
+<td class="comment-1" rowspan="1">restore index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9F9"></span>A9F9</td>
+<td class="bytes">20 1D AA</td>
+<td class="instruction">JSR <a href="AA1D.html">$AA1D</a></td>
+<td class="comment-1" rowspan="1">check and evaluate numeric digit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9FC"></span>A9FC</td>
+<td class="bytes">20 0C BC</td>
+<td class="instruction">JSR <a href="BC0C.html">$BC0C</a></td>
+<td class="comment-1" rowspan="1">round and copy FAC1 to FAC2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9FF"></span>A9FF</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA00"></span>AA00</td>
+<td class="bytes">F0 05</td>
+<td class="instruction">BEQ <a href="A9A5.html#AA07">$AA07</a></td>
+<td class="comment-1" rowspan="1">branch if FAC1 zero</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA02"></span>AA02</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment index, * 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA03"></span>AA03</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy back to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA04"></span>AA04</td>
+<td class="bytes">20 ED BA</td>
+<td class="instruction">JSR <a href="BAE2.html#BAED">$BAED</a></td>
+<td class="comment-1" rowspan="1">FAC1 = (FAC1 + (FAC2 * 2)) * 2 = FAC1 * 6</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AA07"></span>AA07</td>
+<td class="bytes">A4 71</td>
+<td class="instruction">LDY $71</td>
+<td class="comment-1" rowspan="1">get index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA09"></span>AA09</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA0A"></span>AA0A</td>
+<td class="bytes">C0 06</td>
+<td class="instruction">CPY #$06</td>
+<td class="comment-1" rowspan="1">compare index with 6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA0C"></span>AA0C</td>
+<td class="bytes">D0 DF</td>
+<td class="instruction">BNE <a href="A9A5.html#A9ED">$A9ED</a></td>
+<td class="comment-1" rowspan="1">loop if not 6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA0E"></span>AA0E</td>
+<td class="bytes">20 E2 BA</td>
+<td class="instruction">JSR <a href="BAE2.html">$BAE2</a></td>
+<td class="comment-1" rowspan="1">multiply FAC1 by 10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA11"></span>AA11</td>
+<td class="bytes">20 9B BC</td>
+<td class="instruction">JSR <a href="BC9B.html">$BC9B</a></td>
+<td class="comment-1" rowspan="1">convert FAC1 floating to fixed</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA14"></span>AA14</td>
+<td class="bytes">A6 64</td>
+<td class="instruction">LDX $64</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA16"></span>AA16</td>
+<td class="bytes">A4 63</td>
+<td class="instruction">LDY $63</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA18"></span>AA18</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA1A"></span>AA1A</td>
+<td class="bytes">4C DB FF</td>
+<td class="instruction">JMP <a href="FFDB.html">$FFDB</a></td>
+<td class="comment-1" rowspan="1">set real time clock and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A96B.html">A96B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A9A5">Map</a></td>
+<td class="next">
+Next: <a href="AA1D.html">AA1D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

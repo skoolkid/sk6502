@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B3F4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B3E1.html">B3E1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B3F4">Map</a></td>
+<td class="next">
+Next: <a href="B449.html">B449</a>
+</td>
+</tr>
+</table>
+<div class="description">B3F4: Evaluate FNx</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="AE86.html">AE86</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B3F4"></span>B3F4</td>
+<td class="bytes">20 E1 B3</td>
+<td class="instruction">JSR <a href="B3E1.html">$B3E1</a></td>
+<td class="comment-1" rowspan="1">check FNx syntax</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3F7"></span>B3F7</td>
+<td class="bytes">A5 4F</td>
+<td class="instruction">LDA $4F</td>
+<td class="comment-1" rowspan="1">get function pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3F9"></span>B3F9</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3FA"></span>B3FA</td>
+<td class="bytes">A5 4E</td>
+<td class="instruction">LDA $4E</td>
+<td class="comment-1" rowspan="1">get function pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3FC"></span>B3FC</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3FD"></span>B3FD</td>
+<td class="bytes">20 F1 AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEF1">$AEF1</a></td>
+<td class="comment-1" rowspan="1">evaluate expression within parentheses</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B400"></span>B400</td>
+<td class="bytes">20 8D AD</td>
+<td class="instruction">JSR <a href="AD8A.html#AD8D">$AD8D</a></td>
+<td class="comment-1" rowspan="1">check if source is numeric, else do type mismatch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B403"></span>B403</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop function pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B404"></span>B404</td>
+<td class="bytes">85 4E</td>
+<td class="instruction">STA $4E</td>
+<td class="comment-1" rowspan="1">restore it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B406"></span>B406</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop function pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B407"></span>B407</td>
+<td class="bytes">85 4F</td>
+<td class="instruction">STA $4F</td>
+<td class="comment-1" rowspan="1">restore it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B409"></span>B409</td>
+<td class="bytes">A0 02</td>
+<td class="instruction">LDY #$02</td>
+<td class="comment-1" rowspan="1">index to variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B40B"></span>B40B</td>
+<td class="bytes">B1 4E</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="1">get variable address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B40D"></span>B40D</td>
+<td class="bytes">85 47</td>
+<td class="instruction">STA $47</td>
+<td class="comment-1" rowspan="1">save current variable pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B40F"></span>B40F</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B410"></span>B410</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">index to variable address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B411"></span>B411</td>
+<td class="bytes">B1 4E</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="1">get variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B413"></span>B413</td>
+<td class="bytes">F0 99</td>
+<td class="instruction">BEQ <a href="B39E.html#B3AE">$B3AE</a></td>
+<td class="comment-1" rowspan="1">branch if high byte zero</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B415"></span>B415</td>
+<td class="bytes">85 48</td>
+<td class="instruction">STA $48</td>
+<td class="comment-1" rowspan="1">save current variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B417"></span>B417</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">index to mantissa 3</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B418"></span>
+<div class="comments">
+<div class="paragraph">
+now stack the function variable value before use
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B418"></span>B418</td>
+<td class="bytes">B1 47</td>
+<td class="instruction">LDA ($47),Y</td>
+<td class="comment-1" rowspan="1">get byte from variable</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B41A"></span>B41A</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">stack it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B41B"></span>B41B</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B41C"></span>B41C</td>
+<td class="bytes">10 FA</td>
+<td class="instruction">BPL <a href="B3F4.html#B418">$B418</a></td>
+<td class="comment-1" rowspan="1">loop until variable stacked</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B41E"></span>B41E</td>
+<td class="bytes">A4 48</td>
+<td class="instruction">LDY $48</td>
+<td class="comment-1" rowspan="1">get current variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B420"></span>B420</td>
+<td class="bytes">20 D4 BB</td>
+<td class="instruction">JSR <a href="BBD4.html">$BBD4</a></td>
+<td class="comment-1" rowspan="1">pack FAC1 into (<span class="register">XY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B423"></span>B423</td>
+<td class="bytes">A5 7B</td>
+<td class="instruction">LDA $7B</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B425"></span>B425</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B426"></span>B426</td>
+<td class="bytes">A5 7A</td>
+<td class="instruction">LDA $7A</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B428"></span>B428</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B429"></span>B429</td>
+<td class="bytes">B1 4E</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="1">get function execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B42B"></span>B42B</td>
+<td class="bytes">85 7A</td>
+<td class="instruction">STA $7A</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B42D"></span>B42D</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">index to high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B42E"></span>B42E</td>
+<td class="bytes">B1 4E</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="1">get function execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B430"></span>B430</td>
+<td class="bytes">85 7B</td>
+<td class="instruction">STA $7B</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B432"></span>B432</td>
+<td class="bytes">A5 48</td>
+<td class="instruction">LDA $48</td>
+<td class="comment-1" rowspan="1">get current variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B434"></span>B434</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B435"></span>B435</td>
+<td class="bytes">A5 47</td>
+<td class="instruction">LDA $47</td>
+<td class="comment-1" rowspan="1">get current variable pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B437"></span>B437</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B438"></span>B438</td>
+<td class="bytes">20 8A AD</td>
+<td class="instruction">JSR <a href="AD8A.html">$AD8A</a></td>
+<td class="comment-1" rowspan="1">evaluate expression and check is numeric, else do type mismatch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B43B"></span>B43B</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull variable address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B43C"></span>B43C</td>
+<td class="bytes">85 4E</td>
+<td class="instruction">STA $4E</td>
+<td class="comment-1" rowspan="1">save variable address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B43E"></span>B43E</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull variable address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B43F"></span>B43F</td>
+<td class="bytes">85 4F</td>
+<td class="instruction">STA $4F</td>
+<td class="comment-1" rowspan="1">save variable address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B441"></span>B441</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B444"></span>B444</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="B449.html">$B449</a></td>
+<td class="comment-1" rowspan="1">branch if null (should be [EOL] marker)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B446"></span>B446</td>
+<td class="bytes">4C 08 AF</td>
+<td class="instruction">JMP <a href="AE86.html#AF08">$AF08</a></td>
+<td class="comment-1" rowspan="1">else syntax error then warm start</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B3E1.html">B3E1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B3F4">Map</a></td>
+<td class="next">
+Next: <a href="B449.html">B449</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

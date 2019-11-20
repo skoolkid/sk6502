@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FCD1</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FCCA.html">FCCA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FCD1">Map</a></td>
+<td class="next">
+Next: <a href="FCDB.html">FCDB</a>
+</td>
+</tr>
+</table>
+<div class="description">FCD1: check read/write pointer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="F5ED.html">F5ED</a>, <a href="FA60.html">FA60</a> and <a href="FBCD.html">FBCD</a>.
+</div>
+<div class="paragraph">
+return Cb = 1 if pointer &gt;= end
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FCD1"></span>FCD1</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCD2"></span>FCD2</td>
+<td class="bytes">A5 AC</td>
+<td class="instruction">LDA $AC</td>
+<td class="comment-1" rowspan="1">get buffer address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCD4"></span>FCD4</td>
+<td class="bytes">E5 AE</td>
+<td class="instruction">SBC $AE</td>
+<td class="comment-1" rowspan="1">subtract buffer end low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCD6"></span>FCD6</td>
+<td class="bytes">A5 AD</td>
+<td class="instruction">LDA $AD</td>
+<td class="comment-1" rowspan="1">get buffer address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCD8"></span>FCD8</td>
+<td class="bytes">E5 AF</td>
+<td class="instruction">SBC $AF</td>
+<td class="comment-1" rowspan="1">subtract buffer end high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCDA"></span>FCDA</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FCCA.html">FCCA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FCD1">Map</a></td>
+<td class="next">
+Next: <a href="FCDB.html">FCDB</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

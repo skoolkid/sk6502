@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B8FE</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B8FB.html">B8FB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B8FE">Map</a></td>
+<td class="next">
+Next: <a href="B947.html">B947</a>
+</td>
+</tr>
+</table>
+<div class="description">B8FE: add FAC2 mantissa to FAC1 mantissa</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="B86A.html">B86A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B8FE"></span>B8FE</td>
+<td class="bytes">65 56</td>
+<td class="instruction">ADC $56</td>
+<td class="comment-1" rowspan="1">add FAC2 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B900"></span>B900</td>
+<td class="bytes">85 70</td>
+<td class="instruction">STA $70</td>
+<td class="comment-1" rowspan="1">save FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B902"></span>B902</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B904"></span>B904</td>
+<td class="bytes">65 6D</td>
+<td class="instruction">ADC $6D</td>
+<td class="comment-1" rowspan="1">add FAC2 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B906"></span>B906</td>
+<td class="bytes">85 65</td>
+<td class="instruction">STA $65</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B908"></span>B908</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B90A"></span>B90A</td>
+<td class="bytes">65 6C</td>
+<td class="instruction">ADC $6C</td>
+<td class="comment-1" rowspan="1">add FAC2 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B90C"></span>B90C</td>
+<td class="bytes">85 64</td>
+<td class="instruction">STA $64</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B90E"></span>B90E</td>
+<td class="bytes">A5 63</td>
+<td class="instruction">LDA $63</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B910"></span>B910</td>
+<td class="bytes">65 6B</td>
+<td class="instruction">ADC $6B</td>
+<td class="comment-1" rowspan="1">add FAC2 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B912"></span>B912</td>
+<td class="bytes">85 63</td>
+<td class="instruction">STA $63</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B914"></span>B914</td>
+<td class="bytes">A5 62</td>
+<td class="instruction">LDA $62</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B916"></span>B916</td>
+<td class="bytes">65 6A</td>
+<td class="instruction">ADC $6A</td>
+<td class="comment-1" rowspan="1">add FAC2 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B918"></span>B918</td>
+<td class="bytes">85 62</td>
+<td class="instruction">STA $62</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B91A"></span>B91A</td>
+<td class="bytes">4C 36 B9</td>
+<td class="instruction">JMP <a href="B8FE.html#B936">$B936</a></td>
+<td class="comment-1" rowspan="1">test and normalise FAC1 for C=0/1</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B91D"></span>B91D</td>
+<td class="bytes">69 01</td>
+<td class="instruction">ADC #$01</td>
+<td class="comment-1" rowspan="1">add 1 to exponent offset</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B91F"></span>B91F</td>
+<td class="bytes">06 70</td>
+<td class="instruction">ASL $70</td>
+<td class="comment-1" rowspan="1">shift FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B921"></span>B921</td>
+<td class="bytes">26 65</td>
+<td class="instruction">ROL $65</td>
+<td class="comment-1" rowspan="1">shift FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B923"></span>B923</td>
+<td class="bytes">26 64</td>
+<td class="instruction">ROL $64</td>
+<td class="comment-1" rowspan="1">shift FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B925"></span>B925</td>
+<td class="bytes">26 63</td>
+<td class="instruction">ROL $63</td>
+<td class="comment-1" rowspan="1">shift FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B927"></span>B927</td>
+<td class="bytes">26 62</td>
+<td class="instruction">ROL $62</td>
+<td class="comment-1" rowspan="1">shift FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B929"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="B8D7.html">B8D7</a>.
+</div>
+<div class="paragraph">
+normalise FAC1
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B929"></span>B929</td>
+<td class="bytes">10 F2</td>
+<td class="instruction">BPL <a href="B8FE.html#B91D">$B91D</a></td>
+<td class="comment-1" rowspan="1">loop if not normalised</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B92B"></span>B92B</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B92C"></span>B92C</td>
+<td class="bytes">E5 61</td>
+<td class="instruction">SBC $61</td>
+<td class="comment-1" rowspan="1">subtract FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B92E"></span>B92E</td>
+<td class="bytes">B0 C7</td>
+<td class="instruction">BCS <a href="B8F7.html">$B8F7</a></td>
+<td class="comment-1" rowspan="1">branch if underflow (set result = $0)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B930"></span>B930</td>
+<td class="bytes">49 FF</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">complement exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B932"></span>B932</td>
+<td class="bytes">69 01</td>
+<td class="instruction">ADC #$01</td>
+<td class="comment-1" rowspan="1">+1 (twos complement)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B934"></span>B934</td>
+<td class="bytes">85 61</td>
+<td class="instruction">STA $61</td>
+<td class="comment-1" rowspan="1">save FAC1 exponent</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B936"></span>
+<div class="comments">
+<div class="paragraph">
+test and normalise FAC1 for C=0/1
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B936"></span>B936</td>
+<td class="bytes">90 0E</td>
+<td class="instruction">BCC <a href="B8FE.html#B946">$B946</a></td>
+<td class="comment-1" rowspan="1">exit if no overflow</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B938"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="BC1B.html">BC1B</a>.
+</div>
+<div class="paragraph">
+normalise FAC1 for C=1
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B938"></span>B938</td>
+<td class="bytes">E6 61</td>
+<td class="instruction">INC $61</td>
+<td class="comment-1" rowspan="1">increment FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B93A"></span>B93A</td>
+<td class="bytes">F0 42</td>
+<td class="instruction">BEQ <a href="B97E.html">$B97E</a></td>
+<td class="comment-1" rowspan="1">if zero do overflow error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B93C"></span>B93C</td>
+<td class="bytes">66 62</td>
+<td class="instruction">ROR $62</td>
+<td class="comment-1" rowspan="1">shift FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B93E"></span>B93E</td>
+<td class="bytes">66 63</td>
+<td class="instruction">ROR $63</td>
+<td class="comment-1" rowspan="1">shift FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B940"></span>B940</td>
+<td class="bytes">66 64</td>
+<td class="instruction">ROR $64</td>
+<td class="comment-1" rowspan="1">shift FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B942"></span>B942</td>
+<td class="bytes">66 65</td>
+<td class="instruction">ROR $65</td>
+<td class="comment-1" rowspan="1">shift FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B944"></span>B944</td>
+<td class="bytes">66 70</td>
+<td class="instruction">ROR $70</td>
+<td class="comment-1" rowspan="1">shift FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B946"></span>B946</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B8FB.html">B8FB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B8FE">Map</a></td>
+<td class="next">
+Next: <a href="B947.html">B947</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

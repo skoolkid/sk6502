@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F333</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F32F.html">F32F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F333">Map</a></td>
+<td class="next">
+Next: <a href="F34A.html">F34A</a>
+</td>
+</tr>
+</table>
+<div class="description">F333: close input and output channels</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F333"></span>F333</td>
+<td class="bytes">A2 03</td>
+<td class="instruction">LDX #$03</td>
+<td class="comment-1" rowspan="1">set the screen device</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F335"></span>F335</td>
+<td class="bytes">E4 9A</td>
+<td class="instruction">CPX $9A</td>
+<td class="comment-1" rowspan="1">compare the screen with the output device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F337"></span>F337</td>
+<td class="bytes">B0 03</td>
+<td class="instruction">BCS <a href="F333.html#F33C">$F33C</a></td>
+<td class="comment-1" rowspan="1">if &lt;= screen skip the serial bus unlisten</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F339"></span>F339</td>
+<td class="bytes">20 FE ED</td>
+<td class="instruction">JSR <a href="EDFE.html">$EDFE</a></td>
+<td class="comment-1" rowspan="1">else command the serial bus to UNLISTEN</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F33C"></span>F33C</td>
+<td class="bytes">E4 99</td>
+<td class="instruction">CPX $99</td>
+<td class="comment-1" rowspan="1">compare the screen with the input device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F33E"></span>F33E</td>
+<td class="bytes">B0 03</td>
+<td class="instruction">BCS <a href="F333.html#F343">$F343</a></td>
+<td class="comment-1" rowspan="1">if &lt;= screen skip the serial bus untalk</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F340"></span>F340</td>
+<td class="bytes">20 EF ED</td>
+<td class="instruction">JSR <a href="EDEF.html">$EDEF</a></td>
+<td class="comment-1" rowspan="1">else command the serial bus to UNTALK</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F343"></span>F343</td>
+<td class="bytes">86 9A</td>
+<td class="instruction">STX $9A</td>
+<td class="comment-1" rowspan="1">save the screen as the output device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F345"></span>F345</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">set the keyboard as the input device</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F347"></span>F347</td>
+<td class="bytes">85 99</td>
+<td class="instruction">STA $99</td>
+<td class="comment-1" rowspan="1">save the input device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F349"></span>F349</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F32F.html">F32F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F333">Map</a></td>
+<td class="next">
+Next: <a href="F34A.html">F34A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

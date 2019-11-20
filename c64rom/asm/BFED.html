@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BFED</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BFBF.html">BFBF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BFED">Map</a></td>
+<td class="next">
+Next: <a href="E000.html">E000</a>
+</td>
+</tr>
+</table>
+<div class="description">BFED: perform EXP()</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="BF7B.html">BF7B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BFED"></span>BFED</td>
+<td class="bytes">A9 BF</td>
+<td class="instruction">LDA #$BF</td>
+<td class="comment-1" rowspan="1">set 1.443 pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFEF"></span>BFEF</td>
+<td class="bytes">A0 BF</td>
+<td class="instruction">LDY #$BF</td>
+<td class="comment-1" rowspan="1">set 1.443 pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFF1"></span>BFF1</td>
+<td class="bytes">20 28 BA</td>
+<td class="instruction">JSR <a href="BA28.html">$BA28</a></td>
+<td class="comment-1" rowspan="1">do convert <span class="register">AY</span>, FCA1*(<span class="register">AY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFF4"></span>BFF4</td>
+<td class="bytes">A5 70</td>
+<td class="instruction">LDA $70</td>
+<td class="comment-1" rowspan="1">get FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFF6"></span>BFF6</td>
+<td class="bytes">69 50</td>
+<td class="instruction">ADC #$50</td>
+<td class="comment-1" rowspan="1">+$50/$100</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFF8"></span>BFF8</td>
+<td class="bytes">90 03</td>
+<td class="instruction">BCC <a href="BFED.html#BFFD">$BFFD</a></td>
+<td class="comment-1" rowspan="1">skip rounding if no carry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFFA"></span>BFFA</td>
+<td class="bytes">20 23 BC</td>
+<td class="instruction">JSR <a href="BC1B.html#BC23">$BC23</a></td>
+<td class="comment-1" rowspan="1">round FAC1 (no check)</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BFFD"></span>BFFD</td>
+<td class="bytes">4C 00 E0</td>
+<td class="instruction">JMP <a href="E000.html">$E000</a></td>
+<td class="comment-1" rowspan="1">continue EXP()</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BFBF.html">BFBF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BFED">Map</a></td>
+<td class="next">
+Next: <a href="E000.html">E000</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FF93</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FF90.html">FF90</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FF93">Map</a></td>
+<td class="next">
+Next: <a href="FF96.html">FF96</a>
+</td>
+</tr>
+</table>
+<div class="description">FF93: send secondary address after LISTEN</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+this routine is used to send a secondary address to an I/O device after a call to the LISTEN routine is made and the device commanded to LISTEN. The routine cannot be used to send a secondary address after a call to the TALK routine. A secondary address is usually used to give set-up information to a device before I/O operations begin. When a secondary address is to be sent to a device on the serial bus the address must first be ORed with $60.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FF93"></span>FF93</td>
+<td class="bytes">4C B9 ED</td>
+<td class="instruction">JMP <a href="EDB9.html">$EDB9</a></td>
+<td class="comment-1" rowspan="1">send secondary address after LISTEN</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FF90.html">FF90</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FF93">Map</a></td>
+<td class="next">
+Next: <a href="FF96.html">FF96</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

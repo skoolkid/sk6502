@@ -1,0 +1,2584 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routines</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="RoutinesMap">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<div class="map-intro"></div>
+<table class="map">
+<tr>
+<th>Address</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="map-c"><span id="A38A"></span><a href="../asm/A38A.html">A38A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A38A.html">search the stack for FOR or GOSUB activity</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A3B8"></span><a href="../asm/A3B8.html">A3B8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A3B8.html">open up a space in the memory, set the end of arrays</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A3FB"></span><a href="../asm/A3FB.html">A3FB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A3FB.html">check room on stack for <span class="register">A</span> bytes</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A408"></span><a href="../asm/A408.html">A408</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A408.html">check available memory, do out of memory error if no room</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A435"></span><a href="../asm/A435.html">A435</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A435.html">do out of memory error then warm start</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A43A"></span><a href="../asm/A43A.html">A43A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A43A.html">do error #<span class="register">X</span> then warm start</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A469"></span><a href="../asm/A469.html">A469</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A469.html">print string and do warm start, break entry</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A474"></span><a href="../asm/A474.html">A474</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A474.html">do warm start</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A483"></span><a href="../asm/A483.html">A483</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A483.html">BASIC warm start</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A49C"></span><a href="../asm/A49C.html">A49C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A49C.html">handle new BASIC line</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A533"></span><a href="../asm/A533.html">A533</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A533.html">rebuild BASIC line chaining</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A560"></span><a href="../asm/A560.html">A560</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A560.html">call for BASIC input</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A579"></span><a href="../asm/A579.html">A579</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A579.html">crunch BASIC tokens vector</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A57C"></span><a href="../asm/A57C.html">A57C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A57C.html">crunch BASIC tokens</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A613"></span><a href="../asm/A613.html">A613</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A613.html">search BASIC for temporary integer line number</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A617"></span><a href="../asm/A617.html">A617</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A617.html">search Basic for temp integer line number from <span class="register">AX</span></a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A642"></span><a href="../asm/A642.html">A642</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A642.html">perform NEW</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A659"></span><a href="../asm/A659.html">A659</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A659.html">reset execute pointer and do CLR</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A65E"></span><a href="../asm/A65E.html">A65E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A65E.html">perform CLR</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A677"></span><a href="../asm/A677.html">A677</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A677.html">do RESTORE and clear stack</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A67A"></span><a href="../asm/A67A.html">A67A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A67A.html">flush BASIC stack and clear the continue pointer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A68E"></span><a href="../asm/A68E.html">A68E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A68E.html">set BASIC execute pointer to start of memory - 1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A69C"></span><a href="../asm/A69C.html">A69C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A69C.html">perform LIST</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A71A"></span><a href="../asm/A71A.html">A71A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A71A.html">uncrunch BASIC tokens</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A742"></span><a href="../asm/A742.html">A742</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A742.html">perform FOR</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A7AE"></span><a href="../asm/A7AE.html">A7AE</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A7AE.html">interpreter inner loop</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A81D"></span><a href="../asm/A81D.html">A81D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A81D.html">perform RESTORE</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A82C"></span><a href="../asm/A82C.html">A82C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A82C.html">do CRTL-C check vector</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A82F"></span><a href="../asm/A82F.html">A82F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A82F.html">perform STOP</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A831"></span><a href="../asm/A831.html">A831</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A831.html">perform END</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A857"></span><a href="../asm/A857.html">A857</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A857.html">perform CONT</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A871"></span><a href="../asm/A871.html">A871</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A871.html">perform RUN</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A883"></span><a href="../asm/A883.html">A883</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A883.html">perform GOSUB</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A8A0"></span><a href="../asm/A8A0.html">A8A0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A8A0.html">perform GOTO</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A8BC"></span><a href="../asm/A8BC.html">A8BC</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A8BC.html">search for line number in temporary integer from start of memory pointer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A8C0"></span><a href="../asm/A8C0.html">A8C0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A8C0.html">search for line # in temporary integer from (<span class="register">AX</span>)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A8D2"></span><a href="../asm/A8D2.html">A8D2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A8D2.html">perform RETURN</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A8E8"></span><a href="../asm/A8E8.html">A8E8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A8E8.html">do syntax error then warm start</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A8EB"></span><a href="../asm/A8EB.html">A8EB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A8EB.html">perform RETURN (continued)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A8F8"></span><a href="../asm/A8F8.html">A8F8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A8F8.html">perform DATA</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A8FB"></span><a href="../asm/A8FB.html">A8FB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A8FB.html">add <span class="register">Y</span> to the BASIC execute pointer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A906"></span><a href="../asm/A906.html">A906</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A906.html">scan for next BASIC statement ([:] or [EOL])</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A909"></span><a href="../asm/A909.html">A909</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A909.html">scan for next BASIC line</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A928"></span><a href="../asm/A928.html">A928</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A928.html">perform IF</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A93B"></span><a href="../asm/A93B.html">A93B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A93B.html">perform REM</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A94B"></span><a href="../asm/A94B.html">A94B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A94B.html">perform ON</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A96B"></span><a href="../asm/A96B.html">A96B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A96B.html">get fixed-point number into temporary integer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="A9A5"></span><a href="../asm/A9A5.html">A9A5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/A9A5.html">perform LET</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AA1D"></span><a href="../asm/AA1D.html">AA1D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AA1D.html">check and evaluate numeric digit</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AA2C"></span><a href="../asm/AA2C.html">AA2C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AA2C.html">assign value to numeric variable, but not TI$</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AA80"></span><a href="../asm/AA80.html">AA80</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AA80.html">perform PRINT#</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AA86"></span><a href="../asm/AA86.html">AA86</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AA86.html">perform CMD</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AA9A"></span><a href="../asm/AA9A.html">AA9A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AA9A.html">print string and scan memory</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AAA0"></span><a href="../asm/AAA0.html">AAA0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AAA0.html">perform PRINT</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AACA"></span><a href="../asm/AACA.html">AACA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AACA.html">set <span class="register">XY</span> to $0200 - 1 and print [CR]</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AAD7"></span><a href="../asm/AAD7.html">AAD7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AAD7.html">print CR/LF</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AAE8"></span><a href="../asm/AAE8.html">AAE8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AAE8.html">skip to the next TAB position</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AB1E"></span><a href="../asm/AB1E.html">AB1E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AB1E.html">print null terminated string</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AB21"></span><a href="../asm/AB21.html">AB21</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AB21.html">print string from utility pointer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AB3B"></span><a href="../asm/AB3B.html">AB3B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AB3B.html">print [SPACE] or [CURSOR RIGHT]</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AB45"></span><a href="../asm/AB45.html">AB45</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AB45.html">print "?"</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AB47"></span><a href="../asm/AB47.html">AB47</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AB47.html">print character</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AB4D"></span><a href="../asm/AB4D.html">AB4D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AB4D.html">bad input routine</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AB7B"></span><a href="../asm/AB7B.html">AB7B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AB7B.html">perform GET</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="ABA5"></span><a href="../asm/ABA5.html">ABA5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/ABA5.html">perform INPUT#</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="ABB5"></span><a href="../asm/ABB5.html">ABB5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/ABB5.html">close input and output channels</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="ABBF"></span><a href="../asm/ABBF.html">ABBF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/ABBF.html">perform INPUT</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="ABF9"></span><a href="../asm/ABF9.html">ABF9</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/ABF9.html">print "? " and get BASIC input</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AC06"></span><a href="../asm/AC06.html">AC06</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AC06.html">perform READ</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AC0F"></span><a href="../asm/AC0F.html">AC0F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AC0F.html">perform GET</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AD1E"></span><a href="../asm/AD1E.html">AD1E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AD1E.html">perform NEXT</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AD8A"></span><a href="../asm/AD8A.html">AD8A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AD8A.html">evaluate expression and check type mismatch</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AD9E"></span><a href="../asm/AD9E.html">AD9E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AD9E.html">evaluate expression</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AE20"></span><a href="../asm/AE20.html">AE20</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AE20.html">get vector, execute function then continue evaluation</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AE30"></span><a href="../asm/AE30.html">AE30</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AE30.html">do syntax error then warm start</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AE33"></span><a href="../asm/AE33.html">AE33</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AE33.html">get vector, execute function then continue evaluation (continued)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AE38"></span><a href="../asm/AE38.html">AE38</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AE38.html">push sign, round FAC1 and put on stack</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AE43"></span><a href="../asm/AE43.html">AE43</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AE43.html">round FAC1 and put on stack</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AE58"></span><a href="../asm/AE58.html">AE58</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AE58.html">do functions</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AE83"></span><a href="../asm/AE83.html">AE83</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AE83.html">get value from line</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AE86"></span><a href="../asm/AE86.html">AE86</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AE86.html">get arithmetic element</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AF14"></span><a href="../asm/AF14.html">AF14</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AF14.html">check address range</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AF28"></span><a href="../asm/AF28.html">AF28</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AF28.html">variable name set-up</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AFA7"></span><a href="../asm/AFA7.html">AFA7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AFA7.html">get value from line continued</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AFE6"></span><a href="../asm/AFE6.html">AFE6</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AFE6.html">perform OR</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="AFE9"></span><a href="../asm/AFE9.html">AFE9</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/AFE9.html">perform AND</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B016"></span><a href="../asm/B016.html">B016</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B016.html">perform comparisons</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B07E"></span><a href="../asm/B07E.html">B07E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B07E.html">perform DIM</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B08B"></span><a href="../asm/B08B.html">B08B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B08B.html">search for variable</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B194"></span><a href="../asm/B194.html">B194</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B194.html">set-up array pointer to first element in array</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B1AA"></span><a href="../asm/B1AA.html">B1AA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B1AA.html">convert float to fixed</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B1B2"></span><a href="../asm/B1B2.html">B1B2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B1B2.html">evaluate integer expression</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B1D1"></span><a href="../asm/B1D1.html">B1D1</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B1D1.html">find or make array</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B37D"></span><a href="../asm/B37D.html">B37D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B37D.html">perform FRE()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B391"></span><a href="../asm/B391.html">B391</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B391.html">convert fixed integer <span class="register">AY</span> to float FAC1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B39E"></span><a href="../asm/B39E.html">B39E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B39E.html">perform POS()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B3B3"></span><a href="../asm/B3B3.html">B3B3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B3B3.html">perform DEF</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B3E1"></span><a href="../asm/B3E1.html">B3E1</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B3E1.html">check FNx syntax</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B3F4"></span><a href="../asm/B3F4.html">B3F4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B3F4.html">Evaluate FNx</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B449"></span><a href="../asm/B449.html">B449</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B449.html">restore BASIC execute pointer and function variable from stack</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B465"></span><a href="../asm/B465.html">B465</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B465.html">perform STR$()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B475"></span><a href="../asm/B475.html">B475</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B475.html">do string vector</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B47D"></span><a href="../asm/B47D.html">B47D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B47D.html">make string space <span class="register">A</span> bytes long</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B487"></span><a href="../asm/B487.html">B487</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B487.html">scan, set up string</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B4F4"></span><a href="../asm/B4F4.html">B4F4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B4F4.html">make space in string memory for string <span class="register">A</span> long</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B526"></span><a href="../asm/B526.html">B526</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B526.html">garbage collection routine</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B63D"></span><a href="../asm/B63D.html">B63D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B63D.html">concatenate</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B67A"></span><a href="../asm/B67A.html">B67A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B67A.html">copy string from descriptor to utility pointer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B6A3"></span><a href="../asm/B6A3.html">B6A3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B6A3.html">evaluate string</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B6DB"></span><a href="../asm/B6DB.html">B6DB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B6DB.html">clean descriptor stack</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B6EC"></span><a href="../asm/B6EC.html">B6EC</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B6EC.html">perform CHR$()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B700"></span><a href="../asm/B700.html">B700</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B700.html">perform LEFT$()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B72C"></span><a href="../asm/B72C.html">B72C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B72C.html">perform RIGHT$()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B737"></span><a href="../asm/B737.html">B737</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B737.html">perform MID$()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B761"></span><a href="../asm/B761.html">B761</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B761.html">pull string data and byte parameter from stack</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B77C"></span><a href="../asm/B77C.html">B77C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B77C.html">perform LEN()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B782"></span><a href="../asm/B782.html">B782</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B782.html">evaluate string, get length in <span class="register">Y</span></a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B78B"></span><a href="../asm/B78B.html">B78B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B78B.html">perform ASC()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B798"></span><a href="../asm/B798.html">B798</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B798.html">do illegal quantity error then warm start</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B79B"></span><a href="../asm/B79B.html">B79B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B79B.html">scan and get byte parameter</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B79E"></span><a href="../asm/B79E.html">B79E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B79E.html">get byte parameter</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B7A1"></span><a href="../asm/B7A1.html">B7A1</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B7A1.html">evaluate byte expression, result in <span class="register">X</span></a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B7AD"></span><a href="../asm/B7AD.html">B7AD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B7AD.html">perform VAL()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B7E2"></span><a href="../asm/B7E2.html">B7E2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B7E2.html">restore BASIC execute pointer from temp</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B7EB"></span><a href="../asm/B7EB.html">B7EB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B7EB.html">get parameters for POKE/WAIT</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B7F7"></span><a href="../asm/B7F7.html">B7F7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B7F7.html">convert FAC_1 to integer in temporary integer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B80D"></span><a href="../asm/B80D.html">B80D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B80D.html">perform PEEK()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B824"></span><a href="../asm/B824.html">B824</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B824.html">perform POKE</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B82D"></span><a href="../asm/B82D.html">B82D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B82D.html">perform WAIT</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B849"></span><a href="../asm/B849.html">B849</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B849.html">add 0.5 to FAC1 (round FAC1)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B850"></span><a href="../asm/B850.html">B850</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B850.html">perform subtraction, FAC1 from (<span class="register">AY</span>)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B853"></span><a href="../asm/B853.html">B853</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B853.html">perform subtraction, FAC1 from FAC2</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B862"></span><a href="../asm/B862.html">B862</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B862.html">shift FACX <span class="register">A</span> times right</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B86A"></span><a href="../asm/B86A.html">B86A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B86A.html">add FAC2 to FAC1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B8D2"></span><a href="../asm/B8D2.html">B8D2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B8D2.html">do ABS and normalise FAC1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B8D7"></span><a href="../asm/B8D7.html">B8D7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B8D7.html">normalise FAC1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B8F7"></span><a href="../asm/B8F7.html">B8F7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B8F7.html">clear FAC1 exponent and sign</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B8FB"></span><a href="../asm/B8FB.html">B8FB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B8FB.html">save FAC1 sign</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B8FE"></span><a href="../asm/B8FE.html">B8FE</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B8FE.html">add FAC2 mantissa to FAC1 mantissa</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B947"></span><a href="../asm/B947.html">B947</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B947.html">negate FAC1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B97E"></span><a href="../asm/B97E.html">B97E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B97E.html">do overflow error then warm start</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B983"></span><a href="../asm/B983.html">B983</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B983.html">shift FCAtemp &lt;&lt; <span class="register">A</span>+8 times</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B9EA"></span><a href="../asm/B9EA.html">B9EA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B9EA.html">perform LOG()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BA28"></span><a href="../asm/BA28.html">BA28</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BA28.html">do convert <span class="register">AY</span>, FCA1*(<span class="register">AY</span>)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BA8C"></span><a href="../asm/BA8C.html">BA8C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BA8C.html">unpack memory (<span class="register">AY</span>) into FAC2</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BAB7"></span><a href="../asm/BAB7.html">BAB7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BAB7.html">test and adjust accumulators</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BAD4"></span><a href="../asm/BAD4.html">BAD4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BAD4.html">handle overflow and underflow</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BAE2"></span><a href="../asm/BAE2.html">BAE2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BAE2.html">multiply FAC1 by 10</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BAFE"></span><a href="../asm/BAFE.html">BAFE</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BAFE.html">divide FAC1 by 10</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BB07"></span><a href="../asm/BB07.html">BB07</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BB07.html">divide by (<span class="register">AY</span>) (<span class="register">X</span>=sign)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BB0F"></span><a href="../asm/BB0F.html">BB0F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BB0F.html">convert <span class="register">AY</span> and do (<span class="register">AY</span>)/FAC1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BBA2"></span><a href="../asm/BBA2.html">BBA2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BBA2.html">unpack memory (<span class="register">AY</span>) into FAC1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BBC7"></span><a href="../asm/BBC7.html">BBC7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BBC7.html">pack FAC1 into $5C</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BBCA"></span><a href="../asm/BBCA.html">BBCA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BBCA.html">pack FAC1 into $57</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BBD0"></span><a href="../asm/BBD0.html">BBD0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BBD0.html">pack FAC1 into variable pointer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BBD4"></span><a href="../asm/BBD4.html">BBD4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BBD4.html">pack FAC1 into (<span class="register">XY</span>)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BBFC"></span><a href="../asm/BBFC.html">BBFC</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BBFC.html">copy FAC2 to FAC1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BC0C"></span><a href="../asm/BC0C.html">BC0C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BC0C.html">round and copy FAC1 to FAC2</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BC1B"></span><a href="../asm/BC1B.html">BC1B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BC1B.html">round FAC1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BC2B"></span><a href="../asm/BC2B.html">BC2B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BC2B.html">get FAC1 sign</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BC39"></span><a href="../asm/BC39.html">BC39</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BC39.html">perform SGN()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BC3C"></span><a href="../asm/BC3C.html">BC3C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BC3C.html">save <span class="register">A</span> as integer byte</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BC58"></span><a href="../asm/BC58.html">BC58</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BC58.html">perform ABS()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BC5B"></span><a href="../asm/BC5B.html">BC5B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BC5B.html">compare FAC1 with (<span class="register">AY</span>)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BC9B"></span><a href="../asm/BC9B.html">BC9B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BC9B.html">convert FAC1 floating to fixed</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BCBB"></span><a href="../asm/BCBB.html">BCBB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BCBB.html">shift FAC1 <span class="register">A</span> times right</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BCCC"></span><a href="../asm/BCCC.html">BCCC</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BCCC.html">perform INT()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BCE9"></span><a href="../asm/BCE9.html">BCE9</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BCE9.html">clear FAC1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BCF3"></span><a href="../asm/BCF3.html">BCF3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BCF3.html">get FAC1 from string</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BD67"></span><a href="../asm/BD67.html">BD67</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BD67.html">do - FAC1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BD6A"></span><a href="../asm/BD6A.html">BD6A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BD6A.html">do unsigned FAC1*10+number</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BD7E"></span><a href="../asm/BD7E.html">BD7E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BD7E.html">evaluate new ASCII digit</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BD91"></span><a href="../asm/BD91.html">BD91</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BD91.html">evaluate next character of exponential part of number</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BDC2"></span><a href="../asm/BDC2.html">BDC2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BDC2.html">do " IN " line number message</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BDCD"></span><a href="../asm/BDCD.html">BDCD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BDCD.html">print <span class="register">XA</span> as unsigned integer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BDDD"></span><a href="../asm/BDDD.html">BDDD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BDDD.html">convert FAC1 to ASCII string result in (<span class="register">AY</span>)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BF71"></span><a href="../asm/BF71.html">BF71</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BF71.html">perform SQR()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BF7B"></span><a href="../asm/BF7B.html">BF7B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BF7B.html">perform power function</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BFED"></span><a href="../asm/BFED.html">BFED</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BFED.html">perform EXP()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E000"></span><a href="../asm/E000.html">E000</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E000.html">start of the kernal ROM</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E043"></span><a href="../asm/E043.html">E043</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E043.html">^2 then series evaluation</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E059"></span><a href="../asm/E059.html">E059</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E059.html">do series evaluation</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E097"></span><a href="../asm/E097.html">E097</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E097.html">perform RND()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E0F6"></span><a href="../asm/E0F6.html">E0F6</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E0F6.html">pack FAC1 into (<span class="register">XY</span>)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E0F9"></span><a href="../asm/E0F9.html">E0F9</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E0F9.html">handle BASIC I/O error</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E10C"></span><a href="../asm/E10C.html">E10C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E10C.html">output character to channel with error check</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E112"></span><a href="../asm/E112.html">E112</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E112.html">input character from channel with error check</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E118"></span><a href="../asm/E118.html">E118</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E118.html">open channel for output with error check</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E11E"></span><a href="../asm/E11E.html">E11E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E11E.html">open channel for input with error check</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E124"></span><a href="../asm/E124.html">E124</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E124.html">get character from input device with error check</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E12A"></span><a href="../asm/E12A.html">E12A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E12A.html">perform SYS</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E156"></span><a href="../asm/E156.html">E156</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E156.html">perform SAVE</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E165"></span><a href="../asm/E165.html">E165</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E165.html">perform VERIFY</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E168"></span><a href="../asm/E168.html">E168</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E168.html">perform LOAD</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E195"></span><a href="../asm/E195.html">E195</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E195.html">do READY return to BASIC</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E1BE"></span><a href="../asm/E1BE.html">E1BE</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E1BE.html">perform OPEN</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E1C7"></span><a href="../asm/E1C7.html">E1C7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E1C7.html">perform CLOSE</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E1D4"></span><a href="../asm/E1D4.html">E1D4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E1D4.html">get parameters for LOAD/SAVE</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E200"></span><a href="../asm/E200.html">E200</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E200.html">scan and get byte, else do syntax error then warm start</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E206"></span><a href="../asm/E206.html">E206</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E206.html">exit function if [EOT] or ":"</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E20E"></span><a href="../asm/E20E.html">E20E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E20E.html">scan for ",valid byte", else do syntax error then warm start</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E211"></span><a href="../asm/E211.html">E211</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E211.html">scan for valid byte, not [EOL] or ":", else do syntax error then warm start</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E219"></span><a href="../asm/E219.html">E219</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E219.html">get parameters for OPEN/CLOSE</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E257"></span><a href="../asm/E257.html">E257</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E257.html">set filename</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E264"></span><a href="../asm/E264.html">E264</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E264.html">perform COS()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E26B"></span><a href="../asm/E26B.html">E26B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E26B.html">perform SIN()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E2B4"></span><a href="../asm/E2B4.html">E2B4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E2B4.html">perform TAN()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E2DC"></span><a href="../asm/E2DC.html">E2DC</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E2DC.html">save comparison flag and do series evaluation</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E30E"></span><a href="../asm/E30E.html">E30E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E30E.html">perform ATN()</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E37B"></span><a href="../asm/E37B.html">E37B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E37B.html">BASIC warm start entry point</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E394"></span><a href="../asm/E394.html">E394</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E394.html">BASIC cold start entry point</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E3A2"></span><a href="../asm/E3A2.html">E3A2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E3A2.html">character get subroutine for zero page</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E3BF"></span><a href="../asm/E3BF.html">E3BF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E3BF.html">initialise BASIC RAM locations</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E422"></span><a href="../asm/E422.html">E422</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E422.html">print the start up message and initialise the memory pointers</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E453"></span><a href="../asm/E453.html">E453</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E453.html">initialise the BASIC vectors</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E4AD"></span><a href="../asm/E4AD.html">E4AD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E4AD.html">open channel for output</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E4D3"></span><a href="../asm/E4D3.html">E4D3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E4D3.html">flag the RS232 start bit and set the parity</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E4DA"></span><a href="../asm/E4DA.html">E4DA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E4DA.html">save the current colour to the colour RAM</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E4E0"></span><a href="../asm/E4E0.html">E4E0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E4E0.html">wait ~8.5 seconds for any key from the STOP key column</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E500"></span><a href="../asm/E500.html">E500</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E500.html">return the base address of the I/O devices</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E505"></span><a href="../asm/E505.html">E505</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E505.html">return the x,y organization of the screen</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E50A"></span><a href="../asm/E50A.html">E50A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E50A.html">read/set the x,y cursor position</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E518"></span><a href="../asm/E518.html">E518</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E518.html">initialise the screen and keyboard</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E544"></span><a href="../asm/E544.html">E544</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E544.html">clear the screen</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E566"></span><a href="../asm/E566.html">E566</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E566.html">home the cursor</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E56C"></span><a href="../asm/E56C.html">E56C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E56C.html">set screen pointers for cursor row, column</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E591"></span><a href="../asm/E591.html">E591</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E591.html">find and set the pointers for the start of logical line</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E599"></span><a href="../asm/E599.html">E599</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E599.html">orphan bytes ??</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E5A0"></span><a href="../asm/E5A0.html">E5A0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E5A0.html">initialise the vic chip</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E5B4"></span><a href="../asm/E5B4.html">E5B4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E5B4.html">input from the keyboard buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E5CA"></span><a href="../asm/E5CA.html">E5CA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E5CA.html">write character and wait for key</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E5CD"></span><a href="../asm/E5CD.html">E5CD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E5CD.html">wait for a key from the keyboard</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E632"></span><a href="../asm/E632.html">E632</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E632.html">input from screen or keyboard</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E684"></span><a href="../asm/E684.html">E684</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E684.html">if open quote toggle cursor quote flag</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E691"></span><a href="../asm/E691.html">E691</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E691.html">insert uppercase/graphic character</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E6B6"></span><a href="../asm/E6B6.html">E6B6</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E6B6.html">advance the cursor</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E701"></span><a href="../asm/E701.html">E701</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E701.html">back onto the previous line if possible</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E716"></span><a href="../asm/E716.html">E716</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E716.html">output a character to the screen</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E87C"></span><a href="../asm/E87C.html">E87C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E87C.html">do newline</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E891"></span><a href="../asm/E891.html">E891</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E891.html">output [CR]</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E8A1"></span><a href="../asm/E8A1.html">E8A1</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E8A1.html">test for line decrement</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E8B3"></span><a href="../asm/E8B3.html">E8B3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E8B3.html">test for line increment</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E8CB"></span><a href="../asm/E8CB.html">E8CB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E8CB.html">set the colour code</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E8EA"></span><a href="../asm/E8EA.html">E8EA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E8EA.html">scroll the screen</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E965"></span><a href="../asm/E965.html">E965</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E965.html">open up a space on the screen</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E9C8"></span><a href="../asm/E9C8.html">E9C8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E9C8.html">shift screen line up/down</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E9E0"></span><a href="../asm/E9E0.html">E9E0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E9E0.html">calculate pointers to screen lines colour RAM</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E9F0"></span><a href="../asm/E9F0.html">E9F0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E9F0.html">fetch a screen address</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="E9FF"></span><a href="../asm/E9FF.html">E9FF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/E9FF.html">clear screen line <span class="register">X</span></a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EA13"></span><a href="../asm/EA13.html">EA13</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EA13.html">print character <span class="register">A</span> and colour <span class="register">X</span></a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EA1C"></span><a href="../asm/EA1C.html">EA1C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EA1C.html">save the character and colour to the screen @ the cursor</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EA24"></span><a href="../asm/EA24.html">EA24</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EA24.html">calculate the pointer to colour RAM</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EA31"></span><a href="../asm/EA31.html">EA31</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EA31.html">IRQ vector</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EA87"></span><a href="../asm/EA87.html">EA87</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EA87.html">scan the keyboard</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EB48"></span><a href="../asm/EB48.html">EB48</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EB48.html">evaluate the SHIFT/CTRL/C= keys</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EC44"></span><a href="../asm/EC44.html">EC44</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EC44.html">check for special character codes</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="ED09"></span><a href="../asm/ED09.html">ED09</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/ED09.html">command serial bus device to TALK</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="ED0C"></span><a href="../asm/ED0C.html">ED0C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/ED0C.html">command devices on the serial bus to LISTEN</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="ED11"></span><a href="../asm/ED11.html">ED11</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/ED11.html">send a control character</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="ED21"></span><a href="../asm/ED21.html">ED21</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/ED21.html">defer a command</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="ED40"></span><a href="../asm/ED40.html">ED40</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/ED40.html">Tx byte on serial bus</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EDB9"></span><a href="../asm/EDB9.html">EDB9</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EDB9.html">send secondary address after LISTEN</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EDBE"></span><a href="../asm/EDBE.html">EDBE</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EDBE.html">set serial ATN high</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EDC7"></span><a href="../asm/EDC7.html">EDC7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EDC7.html">send secondary address after TALK</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EDCC"></span><a href="../asm/EDCC.html">EDCC</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EDCC.html">wait for the serial bus end after send</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EDDD"></span><a href="../asm/EDDD.html">EDDD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EDDD.html">output a byte to the serial bus</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EDEF"></span><a href="../asm/EDEF.html">EDEF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EDEF.html">command serial bus to UNTALK</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EDFE"></span><a href="../asm/EDFE.html">EDFE</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EDFE.html">command serial bus to UNLISTEN</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EE13"></span><a href="../asm/EE13.html">EE13</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EE13.html">input a byte from the serial bus</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EE85"></span><a href="../asm/EE85.html">EE85</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EE85.html">set the serial clock out high</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EE8E"></span><a href="../asm/EE8E.html">EE8E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EE8E.html">set the serial clock out low</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EE97"></span><a href="../asm/EE97.html">EE97</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EE97.html">set the serial data out high</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EEA0"></span><a href="../asm/EEA0.html">EEA0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EEA0.html">set the serial data out low</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EEA9"></span><a href="../asm/EEA9.html">EEA9</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EEA9.html">get the serial data status in Cb</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EEB3"></span><a href="../asm/EEB3.html">EEB3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EEB3.html">1ms delay</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EEBB"></span><a href="../asm/EEBB.html">EEBB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EEBB.html">RS232 Tx NMI routine</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EED7"></span><a href="../asm/EED7.html">EED7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EED7.html">do RS232 parity bit</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EF06"></span><a href="../asm/EF06.html">EF06</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EF06.html">setup next RS232 Tx byte</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EF2E"></span><a href="../asm/EF2E.html">EF2E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EF2E.html">set DSR signal not present</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EF31"></span><a href="../asm/EF31.html">EF31</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EF31.html">set CTS signal not present</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EF39"></span><a href="../asm/EF39.html">EF39</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EF39.html">disable timer A interrupt</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EF3B"></span><a href="../asm/EF3B.html">EF3B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EF3B.html">set VIA 2 ICR from <span class="register">A</span></a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EF4A"></span><a href="../asm/EF4A.html">EF4A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EF4A.html">compute bit count</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EF59"></span><a href="../asm/EF59.html">EF59</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EF59.html">RS232 Rx NMI</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EF7E"></span><a href="../asm/EF7E.html">EF7E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EF7E.html">setup to receive an RS232 bit</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EF90"></span><a href="../asm/EF90.html">EF90</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EF90.html">no RS232 start bit received</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EF97"></span><a href="../asm/EF97.html">EF97</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EF97.html">received a whole byte, add it to the buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EFDB"></span><a href="../asm/EFDB.html">EFDB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EFDB.html">Routine at EFDB</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="EFE1"></span><a href="../asm/EFE1.html">EFE1</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/EFE1.html">open RS232 channel for output</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F014"></span><a href="../asm/F014.html">F014</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F014.html">send byte to the RS232 buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F028"></span><a href="../asm/F028.html">F028</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F028.html">setup for RS232 transmit</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F04D"></span><a href="../asm/F04D.html">F04D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F04D.html">input from RS232 buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F086"></span><a href="../asm/F086.html">F086</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F086.html">get byte from RS232 buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F0A4"></span><a href="../asm/F0A4.html">F0A4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F0A4.html">check RS232 bus idle</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F12B"></span><a href="../asm/F12B.html">F12B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F12B.html">display control I/O message if in direct mode</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F13E"></span><a href="../asm/F13E.html">F13E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F13E.html">get character from the input device</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F157"></span><a href="../asm/F157.html">F157</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F157.html">input a character from channel</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F199"></span><a href="../asm/F199.html">F199</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F199.html">get byte from tape</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F1AD"></span><a href="../asm/F1AD.html">F1AD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F1AD.html">input device was serial bus</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F1B8"></span><a href="../asm/F1B8.html">F1B8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F1B8.html">input device was RS232 device</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F1CA"></span><a href="../asm/F1CA.html">F1CA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F1CA.html">output character to channel</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F1DD"></span><a href="../asm/F1DD.html">F1DD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F1DD.html">output the character to the cassette or RS232 device</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F20E"></span><a href="../asm/F20E.html">F20E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F20E.html">open channel for input</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F250"></span><a href="../asm/F250.html">F250</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F250.html">open channel for output</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F291"></span><a href="../asm/F291.html">F291</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F291.html">close a specified logical file</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F2EE"></span><a href="../asm/F2EE.html">F2EE</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F2EE.html">serial bus device close</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F2F2"></span><a href="../asm/F2F2.html">F2F2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F2F2.html">close file index <span class="register">X</span></a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F30F"></span><a href="../asm/F30F.html">F30F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F30F.html">find a file</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F314"></span><a href="../asm/F314.html">F314</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F314.html">find file <span class="register">A</span></a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F31F"></span><a href="../asm/F31F.html">F31F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F31F.html">set file details from table,X</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F32F"></span><a href="../asm/F32F.html">F32F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F32F.html">close all channels and files</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F333"></span><a href="../asm/F333.html">F333</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F333.html">close input and output channels</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F34A"></span><a href="../asm/F34A.html">F34A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F34A.html">open a logical file</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F3D5"></span><a href="../asm/F3D5.html">F3D5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F3D5.html">send secondary address and filename</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F409"></span><a href="../asm/F409.html">F409</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F409.html">open RS232 device</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F47D"></span><a href="../asm/F47D.html">F47D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F47D.html">set the top of memory to F0xx</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F483"></span><a href="../asm/F483.html">F483</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F483.html">initialise RS232 output</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F49E"></span><a href="../asm/F49E.html">F49E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F49E.html">load RAM from a device</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F4A5"></span><a href="../asm/F4A5.html">F4A5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F4A5.html">load</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F533"></span><a href="../asm/F533.html">F533</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F533.html">??</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F5AF"></span><a href="../asm/F5AF.html">F5AF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F5AF.html">print "Searching..."</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F5C1"></span><a href="../asm/F5C1.html">F5C1</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F5C1.html">print file name</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F5D2"></span><a href="../asm/F5D2.html">F5D2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F5D2.html">display "LOADING" or "VERIFYING"</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F5DD"></span><a href="../asm/F5DD.html">F5DD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F5DD.html">save RAM to device</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F5ED"></span><a href="../asm/F5ED.html">F5ED</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F5ED.html">save</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F68F"></span><a href="../asm/F68F.html">F68F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F68F.html">print saving &lt;file name&gt;</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F69B"></span><a href="../asm/F69B.html">F69B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F69B.html">increment the real time clock</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F6DD"></span><a href="../asm/F6DD.html">F6DD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F6DD.html">read the real time clock</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F6E4"></span><a href="../asm/F6E4.html">F6E4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F6E4.html">set the real time clock</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F6ED"></span><a href="../asm/F6ED.html">F6ED</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F6ED.html">scan the stop key</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F6FB"></span><a href="../asm/F6FB.html">F6FB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F6FB.html">file error messages</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F72C"></span><a href="../asm/F72C.html">F72C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F72C.html">find the tape header, exit with header in buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F76A"></span><a href="../asm/F76A.html">F76A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F76A.html">write the tape header</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F7D0"></span><a href="../asm/F7D0.html">F7D0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F7D0.html">get the tape buffer start pointer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F7D7"></span><a href="../asm/F7D7.html">F7D7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F7D7.html">set the tape buffer start and end pointers</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F7EA"></span><a href="../asm/F7EA.html">F7EA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F7EA.html">find specific tape header</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F80D"></span><a href="../asm/F80D.html">F80D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F80D.html">bump tape pointer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F817"></span><a href="../asm/F817.html">F817</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F817.html">wait for PLAY</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F82E"></span><a href="../asm/F82E.html">F82E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F82E.html">return cassette sense in Zb</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F838"></span><a href="../asm/F838.html">F838</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F838.html">wait for PLAY/RECORD</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F841"></span><a href="../asm/F841.html">F841</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F841.html">initiate a tape read</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F864"></span><a href="../asm/F864.html">F864</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F864.html">initiate a tape write</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F875"></span><a href="../asm/F875.html">F875</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F875.html">tape read/write</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F8D0"></span><a href="../asm/F8D0.html">F8D0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F8D0.html">scan stop key and flag abort if pressed</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F8DC"></span><a href="../asm/F8DC.html">F8DC</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F8DC.html">clear saved IRQ address</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F8E2"></span><a href="../asm/F8E2.html">F8E2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F8E2.html">set timing</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="F92C"></span><a href="../asm/F92C.html">F92C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/F92C.html">read tape bits, IRQ routine</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FA60"></span><a href="../asm/FA60.html">FA60</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FA60.html">store character</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FB8E"></span><a href="../asm/FB8E.html">FB8E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FB8E.html">copy I/O start address to buffer address</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FB97"></span><a href="../asm/FB97.html">FB97</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FB97.html">new tape byte setup</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FBA6"></span><a href="../asm/FBA6.html">FBA6</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FBA6.html">send lsb from tape write byte to tape</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FBC8"></span><a href="../asm/FBC8.html">FBC8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FBC8.html">flag block done and exit interrupt</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FBCD"></span><a href="../asm/FBCD.html">FBCD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FBCD.html">tape write IRQ routine</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FC6A"></span><a href="../asm/FC6A.html">FC6A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FC6A.html">write tape leader IRQ routine</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FC93"></span><a href="../asm/FC93.html">FC93</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FC93.html">restore everything for STOP</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FCB8"></span><a href="../asm/FCB8.html">FCB8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FCB8.html">reset vector</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FCBD"></span><a href="../asm/FCBD.html">FCBD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FCBD.html">set tape vector</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FCCA"></span><a href="../asm/FCCA.html">FCCA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FCCA.html">stop the cassette motor</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FCD1"></span><a href="../asm/FCD1.html">FCD1</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FCD1.html">check read/write pointer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FCDB"></span><a href="../asm/FCDB.html">FCDB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FCDB.html">increment read/write pointer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FCE2"></span><a href="../asm/FCE2.html">FCE2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FCE2.html">RESET, hardware reset starts here</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FD02"></span><a href="../asm/FD02.html">FD02</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FD02.html">scan for autostart ROM at $8000</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FD15"></span><a href="../asm/FD15.html">FD15</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FD15.html">restore default I/O vectors</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FD1A"></span><a href="../asm/FD1A.html">FD1A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FD1A.html">set/read vectored I/O from (<span class="register">XY</span>)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FD50"></span><a href="../asm/FD50.html">FD50</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FD50.html">test RAM and find RAM end</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FDA3"></span><a href="../asm/FDA3.html">FDA3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FDA3.html">initialise SID, CIA and IRQ</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FDF9"></span><a href="../asm/FDF9.html">FDF9</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FDF9.html">set filename</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE00"></span><a href="../asm/FE00.html">FE00</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE00.html">set logical, first and second addresses</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE07"></span><a href="../asm/FE07.html">FE07</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE07.html">read I/O status word</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE18"></span><a href="../asm/FE18.html">FE18</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE18.html">control kernal messages</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE1C"></span><a href="../asm/FE1C.html">FE1C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE1C.html">OR into the serial status byte</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE21"></span><a href="../asm/FE21.html">FE21</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE21.html">set timeout on serial bus</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE25"></span><a href="../asm/FE25.html">FE25</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE25.html">read/set the top of memory</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE27"></span><a href="../asm/FE27.html">FE27</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE27.html">read the top of memory</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE2D"></span><a href="../asm/FE2D.html">FE2D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE2D.html">set the top of memory</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE34"></span><a href="../asm/FE34.html">FE34</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE34.html">read/set the bottom of memory</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE43"></span><a href="../asm/FE43.html">FE43</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE43.html">NMI vector</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE47"></span><a href="../asm/FE47.html">FE47</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE47.html">NMI handler</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE66"></span><a href="../asm/FE66.html">FE66</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE66.html">user function default vector</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FE72"></span><a href="../asm/FE72.html">FE72</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FE72.html">RS232 NMI routine</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FED6"></span><a href="../asm/FED6.html">FED6</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FED6.html">??</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF07"></span><a href="../asm/FF07.html">FF07</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF07.html">??</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF2E"></span><a href="../asm/FF2E.html">FF2E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF2E.html">??</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF43"></span><a href="../asm/FF43.html">FF43</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF43.html">save the status and do the IRQ routine</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF48"></span><a href="../asm/FF48.html">FF48</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF48.html">IRQ vector</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF5B"></span><a href="../asm/FF5B.html">FF5B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF5B.html">initialise VIC and screen editor</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF6E"></span><a href="../asm/FF6E.html">FF6E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF6E.html">??</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF81"></span><a href="../asm/FF81.html">FF81</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF81.html">initialise VIC and screen editor</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF84"></span><a href="../asm/FF84.html">FF84</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF84.html">initialise SID, CIA and IRQ, unused</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF87"></span><a href="../asm/FF87.html">FF87</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF87.html">RAM test and find RAM end</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF8A"></span><a href="../asm/FF8A.html">FF8A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF8A.html">restore default I/O vectors</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF8D"></span><a href="../asm/FF8D.html">FF8D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF8D.html">read/set vectored I/O</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF90"></span><a href="../asm/FF90.html">FF90</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF90.html">control kernal messages</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF93"></span><a href="../asm/FF93.html">FF93</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF93.html">send secondary address after LISTEN</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF96"></span><a href="../asm/FF96.html">FF96</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF96.html">send secondary address after TALK</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF99"></span><a href="../asm/FF99.html">FF99</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF99.html">read/set the top of memory</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF9C"></span><a href="../asm/FF9C.html">FF9C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF9C.html">read/set the bottom of memory</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FF9F"></span><a href="../asm/FF9F.html">FF9F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FF9F.html">scan the keyboard</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFA2"></span><a href="../asm/FFA2.html">FFA2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFA2.html">set timeout on serial bus</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFA5"></span><a href="../asm/FFA5.html">FFA5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFA5.html">input byte from serial bus</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFA8"></span><a href="../asm/FFA8.html">FFA8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFA8.html">output a byte to serial bus</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFAB"></span><a href="../asm/FFAB.html">FFAB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFAB.html">command serial bus to UNTALK</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFAE"></span><a href="../asm/FFAE.html">FFAE</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFAE.html">command serial bus to UNLISTEN</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFB1"></span><a href="../asm/FFB1.html">FFB1</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFB1.html">command devices on the serial bus to LISTEN</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFB4"></span><a href="../asm/FFB4.html">FFB4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFB4.html">command serial bus device to TALK</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFB7"></span><a href="../asm/FFB7.html">FFB7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFB7.html">read I/O status word</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFBA"></span><a href="../asm/FFBA.html">FFBA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFBA.html">set logical, first and second addresses</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFBD"></span><a href="../asm/FFBD.html">FFBD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFBD.html">set the filename</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFC0"></span><a href="../asm/FFC0.html">FFC0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFC0.html">open a logical file</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFC3"></span><a href="../asm/FFC3.html">FFC3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFC3.html">close a specified logical file</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFC6"></span><a href="../asm/FFC6.html">FFC6</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFC6.html">open channel for input</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFC9"></span><a href="../asm/FFC9.html">FFC9</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFC9.html">open channel for output</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFCC"></span><a href="../asm/FFCC.html">FFCC</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFCC.html">close input and output channels</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFCF"></span><a href="../asm/FFCF.html">FFCF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFCF.html">input character from channel</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFD2"></span><a href="../asm/FFD2.html">FFD2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFD2.html">output character to channel</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFD5"></span><a href="../asm/FFD5.html">FFD5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFD5.html">load RAM from a device</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFD8"></span><a href="../asm/FFD8.html">FFD8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFD8.html">save RAM to a device</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFDB"></span><a href="../asm/FFDB.html">FFDB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFDB.html">set the real time clock</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFDE"></span><a href="../asm/FFDE.html">FFDE</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFDE.html">read the real time clock</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFE1"></span><a href="../asm/FFE1.html">FFE1</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFE1.html">scan the stop key</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFE4"></span><a href="../asm/FFE4.html">FFE4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFE4.html">get character from input device</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFE7"></span><a href="../asm/FFE7.html">FFE7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFE7.html">close all channels and files</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFEA"></span><a href="../asm/FFEA.html">FFEA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFEA.html">increment real time clock</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFED"></span><a href="../asm/FFED.html">FFED</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFED.html">return X,Y organization of screen</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFF0"></span><a href="../asm/FFF0.html">FFF0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFF0.html">read/set X,Y cursor position</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="FFF3"></span><a href="../asm/FFF3.html">FFF3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/FFF3.html">return the base address of the I/O devices</a></div>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A67A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A677.html">A677</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A67A">Map</a></td>
+<td class="next">
+Next: <a href="A68E.html">A68E</a>
+</td>
+</tr>
+</table>
+<div class="description">A67A: flush BASIC stack and clear the continue pointer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A43A.html">A43A</a> and <a href="E37B.html">E37B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A67A"></span>A67A</td>
+<td class="bytes">A2 19</td>
+<td class="instruction">LDX #$19</td>
+<td class="comment-1" rowspan="1">get the descriptor stack start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A67C"></span>A67C</td>
+<td class="bytes">86 16</td>
+<td class="instruction">STX $16</td>
+<td class="comment-1" rowspan="1">set the descriptor stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A67E"></span>A67E</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull the return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A67F"></span>A67F</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A680"></span>A680</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull the return address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A681"></span>A681</td>
+<td class="bytes">A2 FA</td>
+<td class="instruction">LDX #$FA</td>
+<td class="comment-1" rowspan="1">set the cleared stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A683"></span>A683</td>
+<td class="bytes">9A</td>
+<td class="instruction">TXS</td>
+<td class="comment-1" rowspan="1">set the stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A684"></span>A684</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push the return address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A685"></span>A685</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">restore the return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A686"></span>A686</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push the return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A687"></span>A687</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A689"></span>A689</td>
+<td class="bytes">85 3E</td>
+<td class="instruction">STA $3E</td>
+<td class="comment-1" rowspan="1">clear the continue pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A68B"></span>A68B</td>
+<td class="bytes">85 10</td>
+<td class="instruction">STA $10</td>
+<td class="comment-1" rowspan="1">clear the subscript/FNX flag</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A68D"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="A65E.html">A65E</a> and <a href="A69C.html">A69C</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A68D"></span>A68D</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A677.html">A677</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A67A">Map</a></td>
+<td class="next">
+Next: <a href="A68E.html">A68E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E453</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E447.html">E447</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E453">Map</a></td>
+<td class="next">
+Next: <a href="E45F.html">E45F</a>
+</td>
+</tr>
+</table>
+<div class="description">E453: initialise the BASIC vectors</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E394.html">E394</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E453"></span>E453</td>
+<td class="bytes">A2 0B</td>
+<td class="instruction">LDX #$0B</td>
+<td class="comment-1" rowspan="1">set byte count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E455"></span>E455</td>
+<td class="bytes">BD 47 E4</td>
+<td class="instruction">LDA $E447,X</td>
+<td class="comment-1" rowspan="1">get byte from table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E458"></span>E458</td>
+<td class="bytes">9D 00 03</td>
+<td class="instruction">STA $0300,X</td>
+<td class="comment-1" rowspan="1">save byte to RAM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E45B"></span>E45B</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E45C"></span>E45C</td>
+<td class="bytes">10 F7</td>
+<td class="instruction">BPL <a href="E453.html#E455">$E455</a></td>
+<td class="comment-1" rowspan="1">loop if more to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E45E"></span>E45E</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E447.html">E447</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E453">Map</a></td>
+<td class="next">
+Next: <a href="E45F.html">E45F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

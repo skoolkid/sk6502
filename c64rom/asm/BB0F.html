@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BB0F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BB07.html">BB07</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BB0F">Map</a></td>
+<td class="next">
+Next: <a href="BBA2.html">BBA2</a>
+</td>
+</tr>
+</table>
+<div class="description">BB0F: convert <span class="register">AY</span> and do (<span class="register">AY</span>)/FAC1</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="B9EA.html">B9EA</a>, <a href="E2B4.html">E2B4</a> and <a href="E30E.html">E30E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BB0F"></span>
+<div class="comments">
+<div class="paragraph">
+Perform divide-by
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB0F"></span>BB0F</td>
+<td class="bytes">20 8C BA</td>
+<td class="instruction">JSR <a href="BA8C.html">$BA8C</a></td>
+<td class="comment-1" rowspan="1">unpack memory (<span class="register">AY</span>) into FAC2</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BB12"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="BB07.html">BB07</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB12"></span>BB12</td>
+<td class="bytes">F0 76</td>
+<td class="instruction">BEQ <a href="BB0F.html#BB8A">$BB8A</a></td>
+<td class="comment-1" rowspan="1">if zero go do /0 error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB14"></span>BB14</td>
+<td class="bytes">20 1B BC</td>
+<td class="instruction">JSR <a href="BC1B.html">$BC1B</a></td>
+<td class="comment-1" rowspan="1">round FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB17"></span>BB17</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB19"></span>BB19</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB1A"></span>BB1A</td>
+<td class="bytes">E5 61</td>
+<td class="instruction">SBC $61</td>
+<td class="comment-1" rowspan="1">subtract FAC1 exponent (2s complement)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB1C"></span>BB1C</td>
+<td class="bytes">85 61</td>
+<td class="instruction">STA $61</td>
+<td class="comment-1" rowspan="1">save FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB1E"></span>BB1E</td>
+<td class="bytes">20 B7 BA</td>
+<td class="instruction">JSR <a href="BAB7.html">$BAB7</a></td>
+<td class="comment-1" rowspan="1">test and adjust accumulators</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB21"></span>BB21</td>
+<td class="bytes">E6 61</td>
+<td class="instruction">INC $61</td>
+<td class="comment-1" rowspan="1">increment FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB23"></span>BB23</td>
+<td class="bytes">F0 BA</td>
+<td class="instruction">BEQ <a href="BAD4.html#BADF">$BADF</a></td>
+<td class="comment-1" rowspan="1">if zero do overflow error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB25"></span>BB25</td>
+<td class="bytes">A2 FC</td>
+<td class="instruction">LDX #$FC</td>
+<td class="comment-1" rowspan="1">set index to FAC temp</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB27"></span>BB27</td>
+<td class="bytes">A9 01</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1">set byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB29"></span>BB29</td>
+<td class="bytes">A4 6A</td>
+<td class="instruction">LDY $6A</td>
+<td class="comment-1" rowspan="1">get FAC2 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB2B"></span>BB2B</td>
+<td class="bytes">C4 62</td>
+<td class="instruction">CPY $62</td>
+<td class="comment-1" rowspan="1">compare FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB2D"></span>BB2D</td>
+<td class="bytes">D0 10</td>
+<td class="instruction">BNE <a href="BB0F.html#BB3F">$BB3F</a></td>
+<td class="comment-1" rowspan="1">branch if &lt;&gt;</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB2F"></span>BB2F</td>
+<td class="bytes">A4 6B</td>
+<td class="instruction">LDY $6B</td>
+<td class="comment-1" rowspan="1">get FAC2 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB31"></span>BB31</td>
+<td class="bytes">C4 63</td>
+<td class="instruction">CPY $63</td>
+<td class="comment-1" rowspan="1">compare FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB33"></span>BB33</td>
+<td class="bytes">D0 0A</td>
+<td class="instruction">BNE <a href="BB0F.html#BB3F">$BB3F</a></td>
+<td class="comment-1" rowspan="1">branch if &lt;&gt;</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB35"></span>BB35</td>
+<td class="bytes">A4 6C</td>
+<td class="instruction">LDY $6C</td>
+<td class="comment-1" rowspan="1">get FAC2 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB37"></span>BB37</td>
+<td class="bytes">C4 64</td>
+<td class="instruction">CPY $64</td>
+<td class="comment-1" rowspan="1">compare FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB39"></span>BB39</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="BB0F.html#BB3F">$BB3F</a></td>
+<td class="comment-1" rowspan="1">branch if &lt;&gt;</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB3B"></span>BB3B</td>
+<td class="bytes">A4 6D</td>
+<td class="instruction">LDY $6D</td>
+<td class="comment-1" rowspan="1">get FAC2 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB3D"></span>BB3D</td>
+<td class="bytes">C4 65</td>
+<td class="instruction">CPY $65</td>
+<td class="comment-1" rowspan="1">compare FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB3F"></span>BB3F</td>
+<td class="bytes">08</td>
+<td class="instruction">PHP</td>
+<td class="comment-1" rowspan="1">save FAC2-FAC1 compare status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB40"></span>BB40</td>
+<td class="bytes">2A</td>
+<td class="instruction">ROL A</td>
+<td class="comment-1" rowspan="1">shift byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB41"></span>BB41</td>
+<td class="bytes">90 09</td>
+<td class="instruction">BCC <a href="BB0F.html#BB4C">$BB4C</a></td>
+<td class="comment-1" rowspan="1">skip next if no carry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB43"></span>BB43</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment index to FAC temp</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB44"></span>BB44</td>
+<td class="bytes">95 29</td>
+<td class="instruction">STA $29,X</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB46"></span>BB46</td>
+<td class="bytes">F0 32</td>
+<td class="instruction">BEQ <a href="BB0F.html#BB7A">$BB7A</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB48"></span>BB48</td>
+<td class="bytes">10 34</td>
+<td class="instruction">BPL <a href="BB0F.html#BB7E">$BB7E</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB4A"></span>BB4A</td>
+<td class="bytes">A9 01</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB4C"></span>BB4C</td>
+<td class="bytes">28</td>
+<td class="instruction">PLP</td>
+<td class="comment-1" rowspan="1">restore FAC2-FAC1 compare status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB4D"></span>BB4D</td>
+<td class="bytes">B0 0E</td>
+<td class="instruction">BCS <a href="BB0F.html#BB5D">$BB5D</a></td>
+<td class="comment-1" rowspan="1">if FAC2 &gt;= FAC1 then do subtract</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BB4F"></span>
+<div class="comments">
+<div class="paragraph">
+FAC2 = FAC2*2
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB4F"></span>BB4F</td>
+<td class="bytes">06 6D</td>
+<td class="instruction">ASL $6D</td>
+<td class="comment-1" rowspan="1">shift FAC2 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB51"></span>BB51</td>
+<td class="bytes">26 6C</td>
+<td class="instruction">ROL $6C</td>
+<td class="comment-1" rowspan="1">shift FAC2 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB53"></span>BB53</td>
+<td class="bytes">26 6B</td>
+<td class="instruction">ROL $6B</td>
+<td class="comment-1" rowspan="1">shift FAC2 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB55"></span>BB55</td>
+<td class="bytes">26 6A</td>
+<td class="instruction">ROL $6A</td>
+<td class="comment-1" rowspan="1">shift FAC2 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB57"></span>BB57</td>
+<td class="bytes">B0 E6</td>
+<td class="instruction">BCS <a href="BB0F.html#BB3F">$BB3F</a></td>
+<td class="comment-1" rowspan="1">loop with no compare</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB59"></span>BB59</td>
+<td class="bytes">30 CE</td>
+<td class="instruction">BMI <a href="BB0F.html#BB29">$BB29</a></td>
+<td class="comment-1" rowspan="1">loop with compare</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB5B"></span>BB5B</td>
+<td class="bytes">10 E2</td>
+<td class="instruction">BPL <a href="BB0F.html#BB3F">$BB3F</a></td>
+<td class="comment-1" rowspan="1">loop with no compare, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB5D"></span>BB5D</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">save FAC2-FAC1 compare status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB5E"></span>BB5E</td>
+<td class="bytes">A5 6D</td>
+<td class="instruction">LDA $6D</td>
+<td class="comment-1" rowspan="1">get FAC2 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB60"></span>BB60</td>
+<td class="bytes">E5 65</td>
+<td class="instruction">SBC $65</td>
+<td class="comment-1" rowspan="1">subtract FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB62"></span>BB62</td>
+<td class="bytes">85 6D</td>
+<td class="instruction">STA $6D</td>
+<td class="comment-1" rowspan="1">save FAC2 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB64"></span>BB64</td>
+<td class="bytes">A5 6C</td>
+<td class="instruction">LDA $6C</td>
+<td class="comment-1" rowspan="1">get FAC2 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB66"></span>BB66</td>
+<td class="bytes">E5 64</td>
+<td class="instruction">SBC $64</td>
+<td class="comment-1" rowspan="1">subtract FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB68"></span>BB68</td>
+<td class="bytes">85 6C</td>
+<td class="instruction">STA $6C</td>
+<td class="comment-1" rowspan="1">save FAC2 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB6A"></span>BB6A</td>
+<td class="bytes">A5 6B</td>
+<td class="instruction">LDA $6B</td>
+<td class="comment-1" rowspan="1">get FAC2 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB6C"></span>BB6C</td>
+<td class="bytes">E5 63</td>
+<td class="instruction">SBC $63</td>
+<td class="comment-1" rowspan="1">subtract FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB6E"></span>BB6E</td>
+<td class="bytes">85 6B</td>
+<td class="instruction">STA $6B</td>
+<td class="comment-1" rowspan="1">save FAC2 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB70"></span>BB70</td>
+<td class="bytes">A5 6A</td>
+<td class="instruction">LDA $6A</td>
+<td class="comment-1" rowspan="1">get FAC2 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB72"></span>BB72</td>
+<td class="bytes">E5 62</td>
+<td class="instruction">SBC $62</td>
+<td class="comment-1" rowspan="1">subtract FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB74"></span>BB74</td>
+<td class="bytes">85 6A</td>
+<td class="instruction">STA $6A</td>
+<td class="comment-1" rowspan="1">save FAC2 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB76"></span>BB76</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">restore FAC2-FAC1 compare status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB77"></span>BB77</td>
+<td class="bytes">4C 4F BB</td>
+<td class="instruction">JMP <a href="BB0F.html#BB4F">$BB4F</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB7A"></span>BB7A</td>
+<td class="bytes">A9 40</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB7C"></span>BB7C</td>
+<td class="bytes">D0 CE</td>
+<td class="instruction">BNE <a href="BB0F.html#BB4C">$BB4C</a></td>
+<td class="comment-1" rowspan="1">branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BB7E"></span>
+<div class="comments">
+<div class="paragraph">
+do <span class="register">A</span>&lt;&lt;6, save as FAC1 rounding byte, normalise and return
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB7E"></span>BB7E</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB7F"></span>BB7F</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB80"></span>BB80</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB81"></span>BB81</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB82"></span>BB82</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB83"></span>BB83</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB84"></span>BB84</td>
+<td class="bytes">85 70</td>
+<td class="instruction">STA $70</td>
+<td class="comment-1" rowspan="1">save FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB86"></span>BB86</td>
+<td class="bytes">28</td>
+<td class="instruction">PLP</td>
+<td class="comment-1" rowspan="1">dump FAC2-FAC1 compare status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB87"></span>BB87</td>
+<td class="bytes">4C 8F BB</td>
+<td class="instruction">JMP <a href="BB0F.html#BB8F">$BB8F</a></td>
+<td class="comment-1" rowspan="1">copy temp to FAC1, normalise and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BB8A"></span>
+<div class="comments">
+<div class="paragraph">
+do "Divide by zero" error
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB8A"></span>BB8A</td>
+<td class="bytes">A2 14</td>
+<td class="instruction">LDX #$14</td>
+<td class="comment-1" rowspan="1">error $14, divide by zero error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB8C"></span>BB8C</td>
+<td class="bytes">4C 37 A4</td>
+<td class="instruction">JMP <a href="A435.html#A437">$A437</a></td>
+<td class="comment-1" rowspan="1">do error #<span class="register">X</span> then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BB8F"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="BA28.html">BA28</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB8F"></span>BB8F</td>
+<td class="bytes">A5 26</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">get temp mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB91"></span>BB91</td>
+<td class="bytes">85 62</td>
+<td class="instruction">STA $62</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB93"></span>BB93</td>
+<td class="bytes">A5 27</td>
+<td class="instruction">LDA $27</td>
+<td class="comment-1" rowspan="1">get temp mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB95"></span>BB95</td>
+<td class="bytes">85 63</td>
+<td class="instruction">STA $63</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB97"></span>BB97</td>
+<td class="bytes">A5 28</td>
+<td class="instruction">LDA $28</td>
+<td class="comment-1" rowspan="1">get temp mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB99"></span>BB99</td>
+<td class="bytes">85 64</td>
+<td class="instruction">STA $64</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB9B"></span>BB9B</td>
+<td class="bytes">A5 29</td>
+<td class="instruction">LDA $29</td>
+<td class="comment-1" rowspan="1">get temp mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB9D"></span>BB9D</td>
+<td class="bytes">85 65</td>
+<td class="instruction">STA $65</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB9F"></span>BB9F</td>
+<td class="bytes">4C D7 B8</td>
+<td class="instruction">JMP <a href="B8D7.html">$B8D7</a></td>
+<td class="comment-1" rowspan="1">normalise FAC1 and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BB07.html">BB07</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BB0F">Map</a></td>
+<td class="next">
+Next: <a href="BBA2.html">BBA2</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FD1A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FD15.html">FD15</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FD1A">Map</a></td>
+<td class="next">
+Next: <a href="FD30.html">FD30</a>
+</td>
+</tr>
+</table>
+<div class="description">FD1A: set/read vectored I/O from (<span class="register">XY</span>)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="FF8D.html">FF8D</a>.
+</div>
+<div class="paragraph">
+Cb = 1 to read, Cb = 0 to set
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FD1A"></span>FD1A</td>
+<td class="bytes">86 C3</td>
+<td class="instruction">STX $C3</td>
+<td class="comment-1" rowspan="1">save pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD1C"></span>FD1C</td>
+<td class="bytes">84 C4</td>
+<td class="instruction">STY $C4</td>
+<td class="comment-1" rowspan="1">save pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD1E"></span>FD1E</td>
+<td class="bytes">A0 1F</td>
+<td class="instruction">LDY #$1F</td>
+<td class="comment-1" rowspan="1">set byte count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FD20"></span>FD20</td>
+<td class="bytes">B9 14 03</td>
+<td class="instruction">LDA $0314,Y</td>
+<td class="comment-1" rowspan="1">read vector byte from vectors</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD23"></span>FD23</td>
+<td class="bytes">B0 02</td>
+<td class="instruction">BCS <a href="FD1A.html#FD27">$FD27</a></td>
+<td class="comment-1" rowspan="1">branch if read vectors</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD25"></span>FD25</td>
+<td class="bytes">B1 C3</td>
+<td class="instruction">LDA ($C3),Y</td>
+<td class="comment-1" rowspan="1">read vector byte from (<span class="register">XY</span>)</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FD27"></span>FD27</td>
+<td class="bytes">91 C3</td>
+<td class="instruction">STA ($C3),Y</td>
+<td class="comment-1" rowspan="1">save byte to (<span class="register">XY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD29"></span>FD29</td>
+<td class="bytes">99 14 03</td>
+<td class="instruction">STA $0314,Y</td>
+<td class="comment-1" rowspan="1">save byte to vector</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD2C"></span>FD2C</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD2D"></span>FD2D</td>
+<td class="bytes">10 F1</td>
+<td class="instruction">BPL <a href="FD1A.html#FD20">$FD20</a></td>
+<td class="comment-1" rowspan="1">loop if more to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD2F"></span>FD2F</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="comments">
+<div class="paragraph">
+The above code works but it tries to write to the ROM. while this is usually harmless systems that use flash ROM may suffer. Here is a version that makes the extra write to RAM instead but is otherwise identical in function.
+</div>
+<div class="paragraph">
+<table class="asm">
+<tr>
+<td class="address-1" colspan="1" rowspan="1">FD1A</td>
+<td class="instruction" colspan="1" rowspan="1">STX $C3</td>
+<td class="comment-1" colspan="1" rowspan="1">save pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">FD1C</td>
+<td class="instruction" colspan="1" rowspan="1">STY $C4</td>
+<td class="comment-1" colspan="1" rowspan="1">save pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">FD1E</td>
+<td class="instruction" colspan="1" rowspan="1">LDY #$1F</td>
+<td class="comment-1" colspan="1" rowspan="1">set byte count</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">FD20</td>
+<td class="instruction" colspan="1" rowspan="1">LDA ($C3),Y</td>
+<td class="comment-1" colspan="1" rowspan="1">read vector byte from (<span class="register">XY</span>)</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">FD22</td>
+<td class="instruction" colspan="1" rowspan="1">BCC $FD29</td>
+<td class="comment-1" colspan="1" rowspan="1">branch if set vectors</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">FD24</td>
+<td class="instruction" colspan="1" rowspan="1">LDA $0314,Y</td>
+<td class="comment-1" colspan="1" rowspan="1">else read vector byte from vectors</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">FD27</td>
+<td class="instruction" colspan="1" rowspan="1">STA ($C3),Y</td>
+<td class="comment-1" colspan="1" rowspan="1">save byte to (<span class="register">XY</span>)</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">FD29</td>
+<td class="instruction" colspan="1" rowspan="1">STA $0314,Y</td>
+<td class="comment-1" colspan="1" rowspan="1">save byte to vector</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">FD2C</td>
+<td class="instruction" colspan="1" rowspan="1">DEY</td>
+<td class="comment-1" colspan="1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">FD2D</td>
+<td class="instruction" colspan="1" rowspan="1">BPL $FD20</td>
+<td class="comment-1" colspan="1" rowspan="1">loop if more to do</td>
+</tr>
+<tr>
+<td class="address-1" colspan="1" rowspan="1">FD2F</td>
+<td class="instruction" colspan="1" rowspan="1">RTS</td>
+<td class="comment-1" colspan="1" rowspan="1"></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FD15.html">FD15</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FD1A">Map</a></td>
+<td class="next">
+Next: <a href="FD30.html">FD30</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

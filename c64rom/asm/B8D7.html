@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B8D7</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B8D2.html">B8D2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B8D7">Map</a></td>
+<td class="next">
+Next: <a href="B8F7.html">B8F7</a>
+</td>
+</tr>
+</table>
+<div class="description">B8D7: normalise FAC1</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="B8D2.html">B8D2</a>, <a href="BB0F.html">BB0F</a> and <a href="E097.html">E097</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B8D7"></span>B8D7</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8D9"></span>B8D9</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8DA"></span>B8DA</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B8DB"></span>B8DB</td>
+<td class="bytes">A6 62</td>
+<td class="instruction">LDX $62</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8DD"></span>B8DD</td>
+<td class="bytes">D0 4A</td>
+<td class="instruction">BNE <a href="B8FE.html#B929">$B929</a></td>
+<td class="comment-1" rowspan="1">if not zero normalise FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8DF"></span>B8DF</td>
+<td class="bytes">A6 63</td>
+<td class="instruction">LDX $63</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8E1"></span>B8E1</td>
+<td class="bytes">86 62</td>
+<td class="instruction">STX $62</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8E3"></span>B8E3</td>
+<td class="bytes">A6 64</td>
+<td class="instruction">LDX $64</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8E5"></span>B8E5</td>
+<td class="bytes">86 63</td>
+<td class="instruction">STX $63</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8E7"></span>B8E7</td>
+<td class="bytes">A6 65</td>
+<td class="instruction">LDX $65</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8E9"></span>B8E9</td>
+<td class="bytes">86 64</td>
+<td class="instruction">STX $64</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8EB"></span>B8EB</td>
+<td class="bytes">A6 70</td>
+<td class="instruction">LDX $70</td>
+<td class="comment-1" rowspan="1">get FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8ED"></span>B8ED</td>
+<td class="bytes">86 65</td>
+<td class="instruction">STX $65</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8EF"></span>B8EF</td>
+<td class="bytes">84 70</td>
+<td class="instruction">STY $70</td>
+<td class="comment-1" rowspan="1">clear FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8F1"></span>B8F1</td>
+<td class="bytes">69 08</td>
+<td class="instruction">ADC #$08</td>
+<td class="comment-1" rowspan="1">add x to exponent offset</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8F3"></span>B8F3</td>
+<td class="bytes">C9 20</td>
+<td class="instruction">CMP #$20</td>
+<td class="comment-1" rowspan="1">compare with $20, max offset, all bits would be = 0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B8F5"></span>B8F5</td>
+<td class="bytes">D0 E4</td>
+<td class="instruction">BNE <a href="B8D7.html#B8DB">$B8DB</a></td>
+<td class="comment-1" rowspan="1">loop if not max</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B8D2.html">B8D2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B8D7">Map</a></td>
+<td class="next">
+Next: <a href="B8F7.html">B8F7</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FBA6</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FB97.html">FB97</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FBA6">Map</a></td>
+<td class="next">
+Next: <a href="FBC8.html">FBC8</a>
+</td>
+</tr>
+</table>
+<div class="description">FBA6: send lsb from tape write byte to tape</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="FBCD.html">FBCD</a>.
+</div>
+<div class="paragraph">
+this routine tests the least significant bit in the tape write byte and sets VIA 2 T2 depending on the state of the bit. if the bit is a 1 a time of $00B0 cycles is set, if the bot is a 0 a time of $0060 cycles is set. note that this routine does not shift the bits of the tape write byte but uses a copy of that byte, the byte itself is shifted elsewhere
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FBA6"></span>FBA6</td>
+<td class="bytes">A5 BD</td>
+<td class="instruction">LDA $BD</td>
+<td class="comment-1" rowspan="1">get tape write byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBA8"></span>FBA8</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">shift lsb into Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBA9"></span>FBA9</td>
+<td class="bytes">A9 60</td>
+<td class="instruction">LDA #$60</td>
+<td class="comment-1" rowspan="1">set time constant low byte for bit = 0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBAB"></span>FBAB</td>
+<td class="bytes">90 02</td>
+<td class="instruction">BCC <a href="FBA6.html#FBAF">$FBAF</a></td>
+<td class="comment-1" rowspan="1">branch if bit was 0</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FBAD"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="FBCD.html">FBCD</a>.
+</div>
+<div class="paragraph">
+set time constant for bit = 1 and toggle tape
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FBAD"></span>FBAD</td>
+<td class="bytes">A9 B0</td>
+<td class="instruction">LDA #$B0</td>
+<td class="comment-1" rowspan="1">set time constant low byte for bit = 1</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FBAF"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="FC6A.html">FC6A</a>.
+</div>
+<div class="paragraph">
+write time constant and toggle tape
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FBAF"></span>FBAF</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">set time constant high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FBB1"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="FBCD.html">FBCD</a>.
+</div>
+<div class="paragraph">
+write time constant and toggle tape
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FBB1"></span>FBB1</td>
+<td class="bytes">8D 06 DC</td>
+<td class="instruction">STA $DC06</td>
+<td class="comment-1" rowspan="1">save VIA 1 timer B low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBB4"></span>FBB4</td>
+<td class="bytes">8E 07 DC</td>
+<td class="instruction">STX $DC07</td>
+<td class="comment-1" rowspan="1">save VIA 1 timer B high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBB7"></span>FBB7</td>
+<td class="bytes">AD 0D DC</td>
+<td class="instruction">LDA $DC0D</td>
+<td class="comment-1" rowspan="1">read VIA 1 ICR</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBBA"></span>FBBA</td>
+<td class="bytes">A9 19</td>
+<td class="instruction">LDA #$19</td>
+<td class="comment-1" rowspan="1">load timer B, timer B single shot, start timer B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBBC"></span>FBBC</td>
+<td class="bytes">8D 0F DC</td>
+<td class="instruction">STA $DC0F</td>
+<td class="comment-1" rowspan="1">save VIA 1 CRB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBBF"></span>FBBF</td>
+<td class="bytes">A5 01</td>
+<td class="instruction">LDA $01</td>
+<td class="comment-1" rowspan="1">read the 6510 I/O port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBC1"></span>FBC1</td>
+<td class="bytes">49 08</td>
+<td class="instruction">EOR #%00001000</td>
+<td class="comment-1" rowspan="1">toggle tape out bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBC3"></span>FBC3</td>
+<td class="bytes">85 01</td>
+<td class="instruction">STA $01</td>
+<td class="comment-1" rowspan="1">save the 6510 I/O port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBC5"></span>FBC5</td>
+<td class="bytes">29 08</td>
+<td class="instruction">AND #%00001000</td>
+<td class="comment-1" rowspan="1">mask tape out bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBC7"></span>FBC7</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FB97.html">FB97</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FBA6">Map</a></td>
+<td class="next">
+Next: <a href="FBC8.html">FBC8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

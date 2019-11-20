@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AFA7</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AF28.html">AF28</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AFA7">Map</a></td>
+<td class="next">
+Next: <a href="AFE6.html">AFE6</a>
+</td>
+</tr>
+</table>
+<div class="description">AFA7: get value from line continued</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="AE86.html">AE86</a>.
+</div>
+<div class="paragraph">
+only functions left so .. set up function references
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AFA7"></span>AFA7</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">*2 (2 bytes per function address)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFA8"></span>AFA8</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save function offset</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFA9"></span>AFA9</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy function offset</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFAA"></span>AFAA</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFAD"></span>AFAD</td>
+<td class="bytes">E0 8F</td>
+<td class="instruction">CPX #$8F</td>
+<td class="comment-1" rowspan="1">compare function offset to CHR$ token offset+1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFAF"></span>AFAF</td>
+<td class="bytes">90 20</td>
+<td class="instruction">BCC <a href="AFA7.html#AFD1">$AFD1</a></td>
+<td class="comment-1" rowspan="1">branch if &lt; LEFT$ (can not be =)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AFB1"></span>
+<div class="comments">
+<div class="paragraph">
+get value from line .. continued
+</div>
+<div class="paragraph">
+was LEFT$, RIGHT$ or MID$ so..
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFB1"></span>AFB1</td>
+<td class="bytes">20 FA AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEFA">$AEFA</a></td>
+<td class="comment-1" rowspan="1">scan for "(", else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFB4"></span>AFB4</td>
+<td class="bytes">20 9E AD</td>
+<td class="instruction">JSR <a href="AD9E.html">$AD9E</a></td>
+<td class="comment-1" rowspan="1">evaluate, should be string, expression</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFB7"></span>AFB7</td>
+<td class="bytes">20 FD AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEFD">$AEFD</a></td>
+<td class="comment-1" rowspan="1">scan for ",", else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFBA"></span>AFBA</td>
+<td class="bytes">20 8F AD</td>
+<td class="instruction">JSR <a href="AD8A.html#AD8F">$AD8F</a></td>
+<td class="comment-1" rowspan="1">check if source is string, else do type mismatch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFBD"></span>AFBD</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore function offset</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFBE"></span>AFBE</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFBF"></span>AFBF</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get descriptor pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFC1"></span>AFC1</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFC2"></span>AFC2</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFC4"></span>AFC4</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFC5"></span>AFC5</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">restore function offset</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFC6"></span>AFC6</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save function offset</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFC7"></span>AFC7</td>
+<td class="bytes">20 9E B7</td>
+<td class="instruction">JSR <a href="B79E.html">$B79E</a></td>
+<td class="comment-1" rowspan="1">get byte parameter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFCA"></span>AFCA</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore function offset</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFCB"></span>AFCB</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy function offset</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFCC"></span>AFCC</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy byte parameter to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFCD"></span>AFCD</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push byte parameter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFCE"></span>AFCE</td>
+<td class="bytes">4C D6 AF</td>
+<td class="instruction">JMP <a href="AFA7.html#AFD6">$AFD6</a></td>
+<td class="comment-1" rowspan="1">go call function</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AFD1"></span>
+<div class="comments">
+<div class="paragraph">
+get value from line .. continued
+</div>
+<div class="paragraph">
+was SGN() to CHR$() so..
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AFD1"></span>AFD1</td>
+<td class="bytes">20 F1 AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEF1">$AEF1</a></td>
+<td class="comment-1" rowspan="1">evaluate expression within parentheses</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFD4"></span>AFD4</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore function offset</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFD5"></span>AFD5</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy to index</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AFD6"></span>AFD6</td>
+<td class="bytes">B9 EA 9F</td>
+<td class="instruction">LDA $9FEA,Y</td>
+<td class="comment-1" rowspan="1">get function jump vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFD9"></span>AFD9</td>
+<td class="bytes">85 55</td>
+<td class="instruction">STA $55</td>
+<td class="comment-1" rowspan="1">save functions jump vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFDB"></span>AFDB</td>
+<td class="bytes">B9 EB 9F</td>
+<td class="instruction">LDA $9FEB,Y</td>
+<td class="comment-1" rowspan="1">get function jump vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFDE"></span>AFDE</td>
+<td class="bytes">85 56</td>
+<td class="instruction">STA $56</td>
+<td class="comment-1" rowspan="1">save functions jump vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFE0"></span>AFE0</td>
+<td class="bytes">20 54 00</td>
+<td class="instruction">JSR $0054</td>
+<td class="comment-1" rowspan="1">do function call</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFE3"></span>AFE3</td>
+<td class="bytes">4C 8D AD</td>
+<td class="instruction">JMP <a href="AD8A.html#AD8D">$AD8D</a></td>
+<td class="comment-1" rowspan="1">check if source is numeric and RTS, else do type mismatch; string functions avoid this by dumping the return address</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AF28.html">AF28</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AFA7">Map</a></td>
+<td class="next">
+Next: <a href="AFE6.html">AFE6</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

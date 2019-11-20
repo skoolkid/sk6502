@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E632</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E5CD.html">E5CD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E632">Map</a></td>
+<td class="next">
+Next: <a href="E684.html">E684</a>
+</td>
+</tr>
+</table>
+<div class="description">E632: input from screen or keyboard</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F157.html">F157</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E632"></span>E632</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E633"></span>E633</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E634"></span>E634</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E635"></span>E635</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E636"></span>E636</td>
+<td class="bytes">A5 D0</td>
+<td class="instruction">LDA $D0</td>
+<td class="comment-1" rowspan="1">input from keyboard or screen, $xx = screen, $00 = keyboard</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E638"></span>E638</td>
+<td class="bytes">F0 93</td>
+<td class="instruction">BEQ <a href="E5CD.html">$E5CD</a></td>
+<td class="comment-1" rowspan="1">if keyboard go wait for key</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E63A"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E5CD.html">E5CD</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E63A"></span>E63A</td>
+<td class="bytes">A4 D3</td>
+<td class="instruction">LDY $D3</td>
+<td class="comment-1" rowspan="1">get the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E63C"></span>E63C</td>
+<td class="bytes">B1 D1</td>
+<td class="instruction">LDA ($D1),Y</td>
+<td class="comment-1" rowspan="1">get character from the current screen line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E63E"></span>E63E</td>
+<td class="bytes">85 D7</td>
+<td class="instruction">STA $D7</td>
+<td class="comment-1" rowspan="1">save temporary last character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E640"></span>E640</td>
+<td class="bytes">29 3F</td>
+<td class="instruction">AND #%00111111</td>
+<td class="comment-1" rowspan="1">mask key bits</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E642"></span>E642</td>
+<td class="bytes">06 D7</td>
+<td class="instruction">ASL $D7</td>
+<td class="comment-1" rowspan="1">&lt;&lt; temporary last character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E644"></span>E644</td>
+<td class="bytes">24 D7</td>
+<td class="instruction">BIT $D7</td>
+<td class="comment-1" rowspan="1">test it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E646"></span>E646</td>
+<td class="bytes">10 02</td>
+<td class="instruction">BPL <a href="E632.html#E64A">$E64A</a></td>
+<td class="comment-1" rowspan="1">branch if not [NO KEY]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E648"></span>E648</td>
+<td class="bytes">09 80</td>
+<td class="instruction">ORA #$80</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="E64A"></span>E64A</td>
+<td class="bytes">90 04</td>
+<td class="instruction">BCC <a href="E632.html#E650">$E650</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E64C"></span>E64C</td>
+<td class="bytes">A6 D4</td>
+<td class="instruction">LDX $D4</td>
+<td class="comment-1" rowspan="1">get the cursor quote flag, $xx = quote, $00 = no quote</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E64E"></span>E64E</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="E632.html#E654">$E654</a></td>
+<td class="comment-1" rowspan="1">if in quote mode go ??</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E650"></span>E650</td>
+<td class="bytes">70 02</td>
+<td class="instruction">BVS <a href="E632.html#E654">$E654</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E652"></span>E652</td>
+<td class="bytes">09 40</td>
+<td class="instruction">ORA #$40</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="E654"></span>E654</td>
+<td class="bytes">E6 D3</td>
+<td class="instruction">INC $D3</td>
+<td class="comment-1" rowspan="1">increment the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E656"></span>E656</td>
+<td class="bytes">20 84 E6</td>
+<td class="instruction">JSR <a href="E684.html">$E684</a></td>
+<td class="comment-1" rowspan="1">if open quote toggle the cursor quote flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E659"></span>E659</td>
+<td class="bytes">C4 C8</td>
+<td class="instruction">CPY $C8</td>
+<td class="comment-1" rowspan="1">compare ?? with input [EOL] pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E65B"></span>E65B</td>
+<td class="bytes">D0 17</td>
+<td class="instruction">BNE <a href="E632.html#E674">$E674</a></td>
+<td class="comment-1" rowspan="1">if not at line end go ??</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E65D"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E5CD.html">E5CD</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E65D"></span>E65D</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E65F"></span>E65F</td>
+<td class="bytes">85 D0</td>
+<td class="instruction">STA $D0</td>
+<td class="comment-1" rowspan="1">clear input from keyboard or screen, $xx = screen, $00 = keyboard</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E661"></span>E661</td>
+<td class="bytes">A9 0D</td>
+<td class="instruction">LDA #$0D</td>
+<td class="comment-1" rowspan="1">set character [CR]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E663"></span>E663</td>
+<td class="bytes">A6 99</td>
+<td class="instruction">LDX $99</td>
+<td class="comment-1" rowspan="1">get the input device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E665"></span>E665</td>
+<td class="bytes">E0 03</td>
+<td class="instruction">CPX #$03</td>
+<td class="comment-1" rowspan="1">compare the input device with the screen</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E667"></span>E667</td>
+<td class="bytes">F0 06</td>
+<td class="instruction">BEQ <a href="E632.html#E66F">$E66F</a></td>
+<td class="comment-1" rowspan="1">if screen go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E669"></span>E669</td>
+<td class="bytes">A6 9A</td>
+<td class="instruction">LDX $9A</td>
+<td class="comment-1" rowspan="1">get the output device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E66B"></span>E66B</td>
+<td class="bytes">E0 03</td>
+<td class="instruction">CPX #$03</td>
+<td class="comment-1" rowspan="1">compare the output device with the screen</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E66D"></span>E66D</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="E632.html#E672">$E672</a></td>
+<td class="comment-1" rowspan="1">if screen go ??</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E66F"></span>E66F</td>
+<td class="bytes">20 16 E7</td>
+<td class="instruction">JSR <a href="E716.html">$E716</a></td>
+<td class="comment-1" rowspan="1">output the character</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E672"></span>E672</td>
+<td class="bytes">A9 0D</td>
+<td class="instruction">LDA #$0D</td>
+<td class="comment-1" rowspan="1">set character [CR]</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E674"></span>E674</td>
+<td class="bytes">85 D7</td>
+<td class="instruction">STA $D7</td>
+<td class="comment-1" rowspan="1">save character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E676"></span>E676</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E677"></span>E677</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">restore <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E678"></span>E678</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E679"></span>E679</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">restore <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E67A"></span>E67A</td>
+<td class="bytes">A5 D7</td>
+<td class="instruction">LDA $D7</td>
+<td class="comment-1" rowspan="1">restore character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E67C"></span>E67C</td>
+<td class="bytes">C9 DE</td>
+<td class="instruction">CMP #$DE</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E67E"></span>E67E</td>
+<td class="bytes">D0 02</td>
+<td class="instruction">BNE <a href="E632.html#E682">$E682</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E680"></span>E680</td>
+<td class="bytes">A9 FF</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="E682"></span>E682</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">flag ok</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E683"></span>E683</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E5CD.html">E5CD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E632">Map</a></td>
+<td class="next">
+Next: <a href="E684.html">E684</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

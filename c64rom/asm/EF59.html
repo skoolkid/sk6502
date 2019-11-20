@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EF59</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EF4A.html">EF4A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EF59">Map</a></td>
+<td class="next">
+Next: <a href="EF7E.html">EF7E</a>
+</td>
+</tr>
+</table>
+<div class="description">EF59: RS232 Rx NMI</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="FED6.html">FED6</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EF59"></span>EF59</td>
+<td class="bytes">A6 A9</td>
+<td class="instruction">LDX $A9</td>
+<td class="comment-1" rowspan="1">get start bit check flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF5B"></span>EF5B</td>
+<td class="bytes">D0 33</td>
+<td class="instruction">BNE <a href="EF90.html">$EF90</a></td>
+<td class="comment-1" rowspan="1">if no start bit received go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF5D"></span>EF5D</td>
+<td class="bytes">C6 A8</td>
+<td class="instruction">DEC $A8</td>
+<td class="comment-1" rowspan="1">decrement receiver bit count in</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF5F"></span>EF5F</td>
+<td class="bytes">F0 36</td>
+<td class="instruction">BEQ <a href="EF97.html">$EF97</a></td>
+<td class="comment-1" rowspan="1">if the byte is complete go add it to the buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF61"></span>EF61</td>
+<td class="bytes">30 0D</td>
+<td class="instruction">BMI <a href="EF59.html#EF70">$EF70</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF63"></span>EF63</td>
+<td class="bytes">A5 A7</td>
+<td class="instruction">LDA $A7</td>
+<td class="comment-1" rowspan="1">get the RS232 received data bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF65"></span>EF65</td>
+<td class="bytes">45 AB</td>
+<td class="instruction">EOR $AB</td>
+<td class="comment-1" rowspan="1">EOR with the receiver parity bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF67"></span>EF67</td>
+<td class="bytes">85 AB</td>
+<td class="instruction">STA $AB</td>
+<td class="comment-1" rowspan="1">save the receiver parity bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF69"></span>EF69</td>
+<td class="bytes">46 A7</td>
+<td class="instruction">LSR $A7</td>
+<td class="comment-1" rowspan="1">shift the RS232 received data bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF6B"></span>EF6B</td>
+<td class="bytes">66 AA</td>
+<td class="instruction">ROR $AA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EF6D"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="EF97.html">EF97</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EF6D"></span>EF6D</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EF6E"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="EF97.html">EF97</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EF6E"></span>EF6E</td>
+<td class="bytes">C6 A8</td>
+<td class="instruction">DEC $A8</td>
+<td class="comment-1" rowspan="1">decrement receiver bit count in</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EF70"></span>EF70</td>
+<td class="bytes">A5 A7</td>
+<td class="instruction">LDA $A7</td>
+<td class="comment-1" rowspan="1">get the RS232 received data bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF72"></span>EF72</td>
+<td class="bytes">F0 67</td>
+<td class="instruction">BEQ <a href="EFDB.html">$EFDB</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF74"></span>EF74</td>
+<td class="bytes">AD 93 02</td>
+<td class="instruction">LDA $0293</td>
+<td class="comment-1" rowspan="1">get pseudo 6551 control register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF77"></span>EF77</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">shift the stop bit flag to Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF78"></span>EF78</td>
+<td class="bytes">A9 01</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1">+ 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF7A"></span>EF7A</td>
+<td class="bytes">65 A8</td>
+<td class="instruction">ADC $A8</td>
+<td class="comment-1" rowspan="1">add receiver bit count in</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF7C"></span>EF7C</td>
+<td class="bytes">D0 EF</td>
+<td class="instruction">BNE <a href="EF59.html#EF6D">$EF6D</a></td>
+<td class="comment-1" rowspan="1">exit, branch always</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EF4A.html">EF4A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EF59">Map</a></td>
+<td class="next">
+Next: <a href="EF7E.html">EF7E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

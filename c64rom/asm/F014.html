@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F014</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EFE1.html">EFE1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F014">Map</a></td>
+<td class="next">
+Next: <a href="F028.html">F028</a>
+</td>
+</tr>
+</table>
+<div class="description">F014: send byte to the RS232 buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F014"></span>F014</td>
+<td class="bytes">20 28 F0</td>
+<td class="instruction">JSR <a href="F028.html">$F028</a></td>
+<td class="comment-1" rowspan="1">setup for RS232 transmit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F017"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F1DD.html">F1DD</a>.
+</div>
+<div class="paragraph">
+send byte to the RS232 buffer, no setup
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F017"></span>F017</td>
+<td class="bytes">AC 9E 02</td>
+<td class="instruction">LDY $029E</td>
+<td class="comment-1" rowspan="1">get index to Tx buffer end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F01A"></span>F01A</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">+ 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F01B"></span>F01B</td>
+<td class="bytes">CC 9D 02</td>
+<td class="instruction">CPY $029D</td>
+<td class="comment-1" rowspan="1">compare with index to Tx buffer start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F01E"></span>F01E</td>
+<td class="bytes">F0 F4</td>
+<td class="instruction">BEQ <a href="F014.html#F014">$F014</a></td>
+<td class="comment-1" rowspan="1">loop while buffer full</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F020"></span>F020</td>
+<td class="bytes">8C 9E 02</td>
+<td class="instruction">STY $029E</td>
+<td class="comment-1" rowspan="1">set index to Tx buffer end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F023"></span>F023</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">index to available buffer byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F024"></span>F024</td>
+<td class="bytes">A5 9E</td>
+<td class="instruction">LDA $9E</td>
+<td class="comment-1" rowspan="1">read the RS232 character buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F026"></span>F026</td>
+<td class="bytes">91 F9</td>
+<td class="instruction">STA ($F9),Y</td>
+<td class="comment-1" rowspan="1">save the byte to the buffer</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EFE1.html">EFE1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F014">Map</a></td>
+<td class="next">
+Next: <a href="F028.html">F028</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EA87</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EA31.html">EA31</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EA87">Map</a></td>
+<td class="next">
+Next: <a href="EB48.html">EB48</a>
+</td>
+</tr>
+</table>
+<div class="description">EA87: scan the keyboard</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="EA31.html">EA31</a> and <a href="FF9F.html">FF9F</a>.
+</div>
+<div class="paragraph">
+scan keyboard performs the following .. <ul class="contents">
+<li>1) check if key pressed, if not then exit the routine</li>
+<li>2) init I/O ports of VIA ?? for keyboard scan and set pointers to decode table 1. clear the character counter</li>
+<li>3) set one line of port B low and test for a closed key on port A by shifting the byte read from the port. if the carry is clear then a key is closed so save the count which is incremented on each shift. check for shift/stop/cbm keys and flag if closed</li>
+<li>4) repeat step 3 for the whole matrix</li>
+<li>5) evaluate the SHIFT/CTRL/C= keys, this may change the decode table selected</li>
+<li>6) use the key count saved in step 3 as an index into the table selected in step 5</li>
+<li>7) check for key repeat operation</li>
+<li>8) save the decoded key to the buffer if first press or repeat</li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EA87"></span>EA87</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA89"></span>EA89</td>
+<td class="bytes">8D 8D 02</td>
+<td class="instruction">STA $028D</td>
+<td class="comment-1" rowspan="1">clear the keyboard shift/control/c= flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA8C"></span>EA8C</td>
+<td class="bytes">A0 40</td>
+<td class="instruction">LDY #$40</td>
+<td class="comment-1" rowspan="1">set no key</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA8E"></span>EA8E</td>
+<td class="bytes">84 CB</td>
+<td class="instruction">STY $CB</td>
+<td class="comment-1" rowspan="1">save which key</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA90"></span>EA90</td>
+<td class="bytes">8D 00 DC</td>
+<td class="instruction">STA $DC00</td>
+<td class="comment-1" rowspan="1">clear VIA 1 DRA, keyboard column drive</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA93"></span>EA93</td>
+<td class="bytes">AE 01 DC</td>
+<td class="instruction">LDX $DC01</td>
+<td class="comment-1" rowspan="1">read VIA 1 DRB, keyboard row port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA96"></span>EA96</td>
+<td class="bytes">E0 FF</td>
+<td class="instruction">CPX #$FF</td>
+<td class="comment-1" rowspan="1">compare with all bits set</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA98"></span>EA98</td>
+<td class="bytes">F0 61</td>
+<td class="instruction">BEQ <a href="EA87.html#EAFB">$EAFB</a></td>
+<td class="comment-1" rowspan="1">if no key pressed clear current key and exit (does further BEQ to <a href="EA87.html#EB26">EB26</a>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA9A"></span>EA9A</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">clear the key count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA9B"></span>EA9B</td>
+<td class="bytes">A9 81</td>
+<td class="instruction">LDA #$81</td>
+<td class="comment-1" rowspan="1">get the decode table low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA9D"></span>EA9D</td>
+<td class="bytes">85 F5</td>
+<td class="instruction">STA $F5</td>
+<td class="comment-1" rowspan="1">save the keyboard pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA9F"></span>EA9F</td>
+<td class="bytes">A9 EB</td>
+<td class="instruction">LDA #$EB</td>
+<td class="comment-1" rowspan="1">get the decode table high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAA1"></span>EAA1</td>
+<td class="bytes">85 F6</td>
+<td class="instruction">STA $F6</td>
+<td class="comment-1" rowspan="1">save the keyboard pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAA3"></span>EAA3</td>
+<td class="bytes">A9 FE</td>
+<td class="instruction">LDA #$FE</td>
+<td class="comment-1" rowspan="1">set column 0 low</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAA5"></span>EAA5</td>
+<td class="bytes">8D 00 DC</td>
+<td class="instruction">STA $DC00</td>
+<td class="comment-1" rowspan="1">save VIA 1 DRA, keyboard column drive</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EAA8"></span>EAA8</td>
+<td class="bytes">A2 08</td>
+<td class="instruction">LDX #$08</td>
+<td class="comment-1" rowspan="1">set the row count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAAA"></span>EAAA</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save the column</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EAAB"></span>EAAB</td>
+<td class="bytes">AD 01 DC</td>
+<td class="instruction">LDA $DC01</td>
+<td class="comment-1" rowspan="1">read VIA 1 DRB, keyboard row port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAAE"></span>EAAE</td>
+<td class="bytes">CD 01 DC</td>
+<td class="instruction">CMP $DC01</td>
+<td class="comment-1" rowspan="1">compare it with itself</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAB1"></span>EAB1</td>
+<td class="bytes">D0 F8</td>
+<td class="instruction">BNE <a href="EA87.html#EAAB">$EAAB</a></td>
+<td class="comment-1" rowspan="1">loop if changing</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EAB3"></span>EAB3</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">shift row to Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAB4"></span>EAB4</td>
+<td class="bytes">B0 16</td>
+<td class="instruction">BCS <a href="EA87.html#EACC">$EACC</a></td>
+<td class="comment-1" rowspan="1">if no key closed on this row go do next row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAB6"></span>EAB6</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAB7"></span>EAB7</td>
+<td class="bytes">B1 F5</td>
+<td class="instruction">LDA ($F5),Y</td>
+<td class="comment-1" rowspan="1">get character from decode table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAB9"></span>EAB9</td>
+<td class="bytes">C9 05</td>
+<td class="instruction">CMP #$05</td>
+<td class="comment-1" rowspan="1">compare with $05, there is no $05 key but the control keys are all less than $05</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EABB"></span>EABB</td>
+<td class="bytes">B0 0C</td>
+<td class="instruction">BCS <a href="EA87.html#EAC9">$EAC9</a></td>
+<td class="comment-1" rowspan="1">if not shift/control/c=/stop go save key count</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EABD"></span>
+<div class="comments">
+<div class="paragraph">
+else was shift/control/c=/stop key
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EABD"></span>EABD</td>
+<td class="bytes">C9 03</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">compare with $03, stop</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EABF"></span>EABF</td>
+<td class="bytes">F0 08</td>
+<td class="instruction">BEQ <a href="EA87.html#EAC9">$EAC9</a></td>
+<td class="comment-1" rowspan="1">if stop go save key count and continue</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EAC1"></span>
+<div class="comments">
+<div class="paragraph">
+character is $01 - shift, $02 - c= or $04 - control
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAC1"></span>EAC1</td>
+<td class="bytes">0D 8D 02</td>
+<td class="instruction">ORA $028D</td>
+<td class="comment-1" rowspan="1">OR it with the keyboard shift/control/c= flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAC4"></span>EAC4</td>
+<td class="bytes">8D 8D 02</td>
+<td class="instruction">STA $028D</td>
+<td class="comment-1" rowspan="1">save the keyboard shift/control/c= flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAC7"></span>EAC7</td>
+<td class="bytes">10 02</td>
+<td class="instruction">BPL <a href="EA87.html#EACB">$EACB</a></td>
+<td class="comment-1" rowspan="1">skip save key, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EAC9"></span>EAC9</td>
+<td class="bytes">84 CB</td>
+<td class="instruction">STY $CB</td>
+<td class="comment-1" rowspan="1">save key count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EACB"></span>EACB</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore row</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EACC"></span>EACC</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment key count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EACD"></span>EACD</td>
+<td class="bytes">C0 41</td>
+<td class="instruction">CPY #$41</td>
+<td class="comment-1" rowspan="1">compare with max+1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EACF"></span>EACF</td>
+<td class="bytes">B0 0B</td>
+<td class="instruction">BCS <a href="EA87.html#EADC">$EADC</a></td>
+<td class="comment-1" rowspan="1">exit loop if &gt;= max+1</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EAD1"></span>
+<div class="comments">
+<div class="paragraph">
+else still in matrix
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAD1"></span>EAD1</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement row count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAD2"></span>EAD2</td>
+<td class="bytes">D0 DF</td>
+<td class="instruction">BNE <a href="EA87.html#EAB3">$EAB3</a></td>
+<td class="comment-1" rowspan="1">loop if more rows to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAD4"></span>EAD4</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for keyboard column shift</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAD5"></span>EAD5</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore the column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAD6"></span>EAD6</td>
+<td class="bytes">2A</td>
+<td class="instruction">ROL A</td>
+<td class="comment-1" rowspan="1">shift the keyboard column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAD7"></span>EAD7</td>
+<td class="bytes">8D 00 DC</td>
+<td class="instruction">STA $DC00</td>
+<td class="comment-1" rowspan="1">save VIA 1 DRA, keyboard column drive</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EADA"></span>EADA</td>
+<td class="bytes">D0 CC</td>
+<td class="instruction">BNE <a href="EA87.html#EAA8">$EAA8</a></td>
+<td class="comment-1" rowspan="1">loop for next column, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EADC"></span>EADC</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump the saved column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EADD"></span>EADD</td>
+<td class="bytes">6C 8F 02</td>
+<td class="instruction">JMP ($028F)</td>
+<td class="comment-1" rowspan="1">evaluate the SHIFT/CTRL/C= keys, <a href="EB48.html">EB48</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EAE0"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="EB48.html">EB48</a>.
+</div>
+<div class="paragraph">
+key decoding continues here after the SHIFT/CTRL/C= keys are evaluated
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EAE0"></span>EAE0</td>
+<td class="bytes">A4 CB</td>
+<td class="instruction">LDY $CB</td>
+<td class="comment-1" rowspan="1">get saved key count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAE2"></span>EAE2</td>
+<td class="bytes">B1 F5</td>
+<td class="instruction">LDA ($F5),Y</td>
+<td class="comment-1" rowspan="1">get character from decode table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAE4"></span>EAE4</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy character to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAE5"></span>EAE5</td>
+<td class="bytes">C4 C5</td>
+<td class="instruction">CPY $C5</td>
+<td class="comment-1" rowspan="1">compare key count with last key count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAE7"></span>EAE7</td>
+<td class="bytes">F0 07</td>
+<td class="instruction">BEQ <a href="EA87.html#EAF0">$EAF0</a></td>
+<td class="comment-1" rowspan="1">if this key = current key, key held, go test repeat</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAE9"></span>EAE9</td>
+<td class="bytes">A0 10</td>
+<td class="instruction">LDY #$10</td>
+<td class="comment-1" rowspan="1">set the repeat delay count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAEB"></span>EAEB</td>
+<td class="bytes">8C 8C 02</td>
+<td class="instruction">STY $028C</td>
+<td class="comment-1" rowspan="1">save the repeat delay count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAEE"></span>EAEE</td>
+<td class="bytes">D0 36</td>
+<td class="instruction">BNE <a href="EA87.html#EB26">$EB26</a></td>
+<td class="comment-1" rowspan="1">go save key to buffer and exit, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EAF0"></span>EAF0</td>
+<td class="bytes">29 7F</td>
+<td class="instruction">AND #%01111111</td>
+<td class="comment-1" rowspan="1">clear b7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAF2"></span>EAF2</td>
+<td class="bytes">2C 8A 02</td>
+<td class="instruction">BIT $028A</td>
+<td class="comment-1" rowspan="1">test key repeat</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAF5"></span>EAF5</td>
+<td class="bytes">30 16</td>
+<td class="instruction">BMI <a href="EA87.html#EB0D">$EB0D</a></td>
+<td class="comment-1" rowspan="1">if repeat all go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAF7"></span>EAF7</td>
+<td class="bytes">70 49</td>
+<td class="instruction">BVS <a href="EA87.html#EB42">$EB42</a></td>
+<td class="comment-1" rowspan="1">if repeat none go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAF9"></span>EAF9</td>
+<td class="bytes">C9 7F</td>
+<td class="instruction">CMP #$7F</td>
+<td class="comment-1" rowspan="1">compare with end marker</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EAFB"></span>EAFB</td>
+<td class="bytes">F0 29</td>
+<td class="instruction">BEQ <a href="EA87.html#EB26">$EB26</a></td>
+<td class="comment-1" rowspan="1">if $00/end marker go save key to buffer and exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAFD"></span>EAFD</td>
+<td class="bytes">C9 14</td>
+<td class="instruction">CMP #$14</td>
+<td class="comment-1" rowspan="1">compare with [INSERT]/[DELETE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EAFF"></span>EAFF</td>
+<td class="bytes">F0 0C</td>
+<td class="instruction">BEQ <a href="EA87.html#EB0D">$EB0D</a></td>
+<td class="comment-1" rowspan="1">if [INSERT]/[DELETE] go test for repeat</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB01"></span>EB01</td>
+<td class="bytes">C9 20</td>
+<td class="instruction">CMP #" "</td>
+<td class="comment-1" rowspan="1">compare with [SPACE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB03"></span>EB03</td>
+<td class="bytes">F0 08</td>
+<td class="instruction">BEQ <a href="EA87.html#EB0D">$EB0D</a></td>
+<td class="comment-1" rowspan="1">if [SPACE] go test for repeat</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB05"></span>EB05</td>
+<td class="bytes">C9 1D</td>
+<td class="instruction">CMP #$1D</td>
+<td class="comment-1" rowspan="1">compare with [CURSOR RIGHT]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB07"></span>EB07</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="EA87.html#EB0D">$EB0D</a></td>
+<td class="comment-1" rowspan="1">if [CURSOR RIGHT] go test for repeat</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB09"></span>EB09</td>
+<td class="bytes">C9 11</td>
+<td class="instruction">CMP #$11</td>
+<td class="comment-1" rowspan="1">compare with [CURSOR DOWN]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB0B"></span>EB0B</td>
+<td class="bytes">D0 35</td>
+<td class="instruction">BNE <a href="EA87.html#EB42">$EB42</a></td>
+<td class="comment-1" rowspan="1">if not [CURSOR DOWN] just exit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EB0D"></span>
+<div class="comments">
+<div class="paragraph">
+was one of the cursor movement keys, insert/delete key or the space bar so always do repeat tests
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EB0D"></span>EB0D</td>
+<td class="bytes">AC 8C 02</td>
+<td class="instruction">LDY $028C</td>
+<td class="comment-1" rowspan="1">get the repeat delay counter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB10"></span>EB10</td>
+<td class="bytes">F0 05</td>
+<td class="instruction">BEQ <a href="EA87.html#EB17">$EB17</a></td>
+<td class="comment-1" rowspan="1">if delay expired go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB12"></span>EB12</td>
+<td class="bytes">CE 8C 02</td>
+<td class="instruction">DEC $028C</td>
+<td class="comment-1" rowspan="1">else decrement repeat delay counter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB15"></span>EB15</td>
+<td class="bytes">D0 2B</td>
+<td class="instruction">BNE <a href="EA87.html#EB42">$EB42</a></td>
+<td class="comment-1" rowspan="1">if delay not expired go ??</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EB17"></span>
+<div class="comments">
+<div class="paragraph">
+repeat delay counter has expired
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EB17"></span>EB17</td>
+<td class="bytes">CE 8B 02</td>
+<td class="instruction">DEC $028B</td>
+<td class="comment-1" rowspan="1">decrement the repeat speed counter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB1A"></span>EB1A</td>
+<td class="bytes">D0 26</td>
+<td class="instruction">BNE <a href="EA87.html#EB42">$EB42</a></td>
+<td class="comment-1" rowspan="1">branch if repeat speed count not expired</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB1C"></span>EB1C</td>
+<td class="bytes">A0 04</td>
+<td class="instruction">LDY #$04</td>
+<td class="comment-1" rowspan="1">set for 4/60ths of a second</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB1E"></span>EB1E</td>
+<td class="bytes">8C 8B 02</td>
+<td class="instruction">STY $028B</td>
+<td class="comment-1" rowspan="1">save the repeat speed counter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB21"></span>EB21</td>
+<td class="bytes">A4 C6</td>
+<td class="instruction">LDY $C6</td>
+<td class="comment-1" rowspan="1">get the keyboard buffer index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB23"></span>EB23</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB24"></span>EB24</td>
+<td class="bytes">10 1C</td>
+<td class="instruction">BPL <a href="EA87.html#EB42">$EB42</a></td>
+<td class="comment-1" rowspan="1">if the buffer isn't empty just exit else repeat the key immediately</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EB26"></span>
+<div class="comments">
+<div class="paragraph">
+possibly save the key to the keyboard buffer. if there was no key pressed or the key was not found during the scan (possibly due to key bounce) then <span class="register">X</span> will be $FF here
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EB26"></span>EB26</td>
+<td class="bytes">A4 CB</td>
+<td class="instruction">LDY $CB</td>
+<td class="comment-1" rowspan="1">get the key count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB28"></span>EB28</td>
+<td class="bytes">84 C5</td>
+<td class="instruction">STY $C5</td>
+<td class="comment-1" rowspan="1">save it as the current key count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB2A"></span>EB2A</td>
+<td class="bytes">AC 8D 02</td>
+<td class="instruction">LDY $028D</td>
+<td class="comment-1" rowspan="1">get the keyboard shift/control/c= flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB2D"></span>EB2D</td>
+<td class="bytes">8C 8E 02</td>
+<td class="instruction">STY $028E</td>
+<td class="comment-1" rowspan="1">save it as last keyboard shift pattern</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB30"></span>EB30</td>
+<td class="bytes">E0 FF</td>
+<td class="instruction">CPX #$FF</td>
+<td class="comment-1" rowspan="1">compare the character with the table end marker or no key</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB32"></span>EB32</td>
+<td class="bytes">F0 0E</td>
+<td class="instruction">BEQ <a href="EA87.html#EB42">$EB42</a></td>
+<td class="comment-1" rowspan="1">if it was the table end marker or no key just exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB34"></span>EB34</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy the character to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB35"></span>EB35</td>
+<td class="bytes">A6 C6</td>
+<td class="instruction">LDX $C6</td>
+<td class="comment-1" rowspan="1">get the keyboard buffer index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB37"></span>EB37</td>
+<td class="bytes">EC 89 02</td>
+<td class="instruction">CPX $0289</td>
+<td class="comment-1" rowspan="1">compare it with the keyboard buffer size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB3A"></span>EB3A</td>
+<td class="bytes">B0 06</td>
+<td class="instruction">BCS <a href="EA87.html#EB42">$EB42</a></td>
+<td class="comment-1" rowspan="1">if the buffer is full just exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB3C"></span>EB3C</td>
+<td class="bytes">9D 77 02</td>
+<td class="instruction">STA $0277,X</td>
+<td class="comment-1" rowspan="1">save the character to the keyboard buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB3F"></span>EB3F</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment the index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB40"></span>EB40</td>
+<td class="bytes">86 C6</td>
+<td class="instruction">STX $C6</td>
+<td class="comment-1" rowspan="1">save the keyboard buffer index</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EB42"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="EB48.html">EB48</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EB42"></span>EB42</td>
+<td class="bytes">A9 7F</td>
+<td class="instruction">LDA #$7F</td>
+<td class="comment-1" rowspan="1">enable column 7 for the stop key</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB44"></span>EB44</td>
+<td class="bytes">8D 00 DC</td>
+<td class="instruction">STA $DC00</td>
+<td class="comment-1" rowspan="1">save VIA 1 DRA, keyboard column drive</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB47"></span>EB47</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EA31.html">EA31</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EA87">Map</a></td>
+<td class="next">
+Next: <a href="EB48.html">EB48</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

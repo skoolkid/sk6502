@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BF7B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BF71.html">BF71</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BF7B">Map</a></td>
+<td class="next">
+Next: <a href="BFBF.html">BFBF</a>
+</td>
+</tr>
+</table>
+<div class="description">BF7B: perform power function</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BF7B"></span>BF7B</td>
+<td class="bytes">F0 70</td>
+<td class="instruction">BEQ <a href="BFED.html">$BFED</a></td>
+<td class="comment-1" rowspan="1">perform EXP()</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF7D"></span>BF7D</td>
+<td class="bytes">A5 69</td>
+<td class="instruction">LDA $69</td>
+<td class="comment-1" rowspan="1">get FAC2 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF7F"></span>BF7F</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="BF7B.html#BF84">$BF84</a></td>
+<td class="comment-1" rowspan="1">branch if FAC2&lt;&gt;0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF81"></span>BF81</td>
+<td class="bytes">4C F9 B8</td>
+<td class="instruction">JMP <a href="B8F7.html#B8F9">$B8F9</a></td>
+<td class="comment-1" rowspan="1">clear FAC1 exponent and sign and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BF84"></span>BF84</td>
+<td class="bytes">A2 4E</td>
+<td class="instruction">LDX #$4E</td>
+<td class="comment-1" rowspan="1">set destination pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF86"></span>BF86</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set destination pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF88"></span>BF88</td>
+<td class="bytes">20 D4 BB</td>
+<td class="instruction">JSR <a href="BBD4.html">$BBD4</a></td>
+<td class="comment-1" rowspan="1">pack FAC1 into (<span class="register">XY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF8B"></span>BF8B</td>
+<td class="bytes">A5 6E</td>
+<td class="instruction">LDA $6E</td>
+<td class="comment-1" rowspan="1">get FAC2 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF8D"></span>BF8D</td>
+<td class="bytes">10 0F</td>
+<td class="instruction">BPL <a href="BF7B.html#BF9E">$BF9E</a></td>
+<td class="comment-1" rowspan="1">branch if FAC2&gt;0</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BF8F"></span>
+<div class="comments">
+<div class="paragraph">
+else FAC2 is -ve and can only be raised to an integer power which gives an x + j0 result
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF8F"></span>BF8F</td>
+<td class="bytes">20 CC BC</td>
+<td class="instruction">JSR <a href="BCCC.html">$BCCC</a></td>
+<td class="comment-1" rowspan="1">perform INT()</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF92"></span>BF92</td>
+<td class="bytes">A9 4E</td>
+<td class="instruction">LDA #$4E</td>
+<td class="comment-1" rowspan="1">set source pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF94"></span>BF94</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set source pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF96"></span>BF96</td>
+<td class="bytes">20 5B BC</td>
+<td class="instruction">JSR <a href="BC5B.html">$BC5B</a></td>
+<td class="comment-1" rowspan="1">compare FAC1 with (<span class="register">AY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF99"></span>BF99</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="BF7B.html#BF9E">$BF9E</a></td>
+<td class="comment-1" rowspan="1">branch if FAC1 &lt;&gt; (<span class="register">AY</span>) to allow Function Call error. this will leave FAC1 -ve and cause a Function Call error when LOG() is called</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF9B"></span>BF9B</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">clear sign b7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF9C"></span>BF9C</td>
+<td class="bytes">A4 07</td>
+<td class="instruction">LDY $07</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 4 from INT() function as sign in <span class="register">Y</span> for possible later negation, b0 only needed</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BF9E"></span>BF9E</td>
+<td class="bytes">20 FE BB</td>
+<td class="instruction">JSR <a href="BBFC.html#BBFE">$BBFE</a></td>
+<td class="comment-1" rowspan="1">save FAC1 sign and copy ABS(FAC2) to FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFA1"></span>BFA1</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy sign back ..</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFA2"></span>BFA2</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">.. and save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFA3"></span>BFA3</td>
+<td class="bytes">20 EA B9</td>
+<td class="instruction">JSR <a href="B9EA.html">$B9EA</a></td>
+<td class="comment-1" rowspan="1">perform LOG()</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFA6"></span>BFA6</td>
+<td class="bytes">A9 4E</td>
+<td class="instruction">LDA #$4E</td>
+<td class="comment-1" rowspan="1">set pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFA8"></span>BFA8</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFAA"></span>BFAA</td>
+<td class="bytes">20 28 BA</td>
+<td class="instruction">JSR <a href="BA28.html">$BA28</a></td>
+<td class="comment-1" rowspan="1">do convert <span class="register">AY</span>, FCA1*(<span class="register">AY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFAD"></span>BFAD</td>
+<td class="bytes">20 ED BF</td>
+<td class="instruction">JSR <a href="BFED.html">$BFED</a></td>
+<td class="comment-1" rowspan="1">perform EXP()</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFB0"></span>BFB0</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull sign from stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFB1"></span>BFB1</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">b0 is to be tested</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFB2"></span>BFB2</td>
+<td class="bytes">90 0A</td>
+<td class="instruction">BCC <a href="BF7B.html#BFBE">$BFBE</a></td>
+<td class="comment-1" rowspan="1">if no bit then exit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BFB4"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="BD67.html">BD67</a>, <a href="E000.html">E000</a>, <a href="E26B.html">E26B</a> and <a href="E30E.html">E30E</a>.
+</div>
+<div class="paragraph">
+do - FAC1
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BFB4"></span>BFB4</td>
+<td class="bytes">A5 61</td>
+<td class="instruction">LDA $61</td>
+<td class="comment-1" rowspan="1">get FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFB6"></span>BFB6</td>
+<td class="bytes">F0 06</td>
+<td class="instruction">BEQ <a href="BF7B.html#BFBE">$BFBE</a></td>
+<td class="comment-1" rowspan="1">exit if FAC1_e = $00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFB8"></span>BFB8</td>
+<td class="bytes">A5 66</td>
+<td class="instruction">LDA $66</td>
+<td class="comment-1" rowspan="1">get FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFBA"></span>BFBA</td>
+<td class="bytes">49 FF</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">complement it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFBC"></span>BFBC</td>
+<td class="bytes">85 66</td>
+<td class="instruction">STA $66</td>
+<td class="comment-1" rowspan="1">save FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BFBE"></span>BFBE</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BF71.html">BF71</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BF7B">Map</a></td>
+<td class="next">
+Next: <a href="BFBF.html">BFBF</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

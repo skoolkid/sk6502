@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BAD4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BAB7.html">BAB7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BAD4">Map</a></td>
+<td class="next">
+Next: <a href="BAE2.html">BAE2</a>
+</td>
+</tr>
+</table>
+<div class="description">BAD4: handle overflow and underflow</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E000.html">E000</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BAD4"></span>BAD4</td>
+<td class="bytes">A5 66</td>
+<td class="instruction">LDA $66</td>
+<td class="comment-1" rowspan="1">get FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAD6"></span>BAD6</td>
+<td class="bytes">49 FF</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">complement it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAD8"></span>BAD8</td>
+<td class="bytes">30 05</td>
+<td class="instruction">BMI <a href="BAD4.html#BADF">$BADF</a></td>
+<td class="comment-1" rowspan="1">do overflow error</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BADA"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="BAB7.html">BAB7</a>.
+</div>
+<div class="paragraph">
+handle underflow
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BADA"></span>BADA</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BADB"></span>BADB</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop return address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BADC"></span>BADC</td>
+<td class="bytes">4C F7 B8</td>
+<td class="instruction">JMP <a href="B8F7.html">$B8F7</a></td>
+<td class="comment-1" rowspan="1">clear FAC1 exponent and sign and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BADF"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="BAB7.html">BAB7</a>, <a href="BAE2.html">BAE2</a> and <a href="BB0F.html">BB0F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BADF"></span>BADF</td>
+<td class="bytes">4C 7E B9</td>
+<td class="instruction">JMP <a href="B97E.html">$B97E</a></td>
+<td class="comment-1" rowspan="1">do overflow error then warm start</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BAB7.html">BAB7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BAD4">Map</a></td>
+<td class="next">
+Next: <a href="BAE2.html">BAE2</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

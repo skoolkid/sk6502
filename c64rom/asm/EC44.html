@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EC44</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EC03.html">EC03</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EC44">Map</a></td>
+<td class="next">
+Next: <a href="EC78.html">EC78</a>
+</td>
+</tr>
+</table>
+<div class="description">EC44: check for special character codes</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E716.html">E716</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EC44"></span>EC44</td>
+<td class="bytes">C9 0E</td>
+<td class="instruction">CMP #$0E</td>
+<td class="comment-1" rowspan="1">compare with [SWITCH TO LOWER CASE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC46"></span>EC46</td>
+<td class="bytes">D0 07</td>
+<td class="instruction">BNE <a href="EC44.html#EC4F">$EC4F</a></td>
+<td class="comment-1" rowspan="1">if not [SWITCH TO LOWER CASE] skip the switch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC48"></span>EC48</td>
+<td class="bytes">AD 18 D0</td>
+<td class="instruction">LDA $D018</td>
+<td class="comment-1" rowspan="1">get the start of character memory address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC4B"></span>EC4B</td>
+<td class="bytes">09 02</td>
+<td class="instruction">ORA #%00000010</td>
+<td class="comment-1" rowspan="1">mask xxxx xx1x, set lower case characters</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC4D"></span>EC4D</td>
+<td class="bytes">D0 09</td>
+<td class="instruction">BNE <a href="EC44.html#EC58">$EC58</a></td>
+<td class="comment-1" rowspan="1">go save the new value, branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EC4F"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E716.html">E716</a>.
+</div>
+<div class="paragraph">
+check for special character codes except for switch to lower case
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EC4F"></span>EC4F</td>
+<td class="bytes">C9 8E</td>
+<td class="instruction">CMP #$8E</td>
+<td class="comment-1" rowspan="1">compare with [SWITCH TO UPPER CASE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC51"></span>EC51</td>
+<td class="bytes">D0 0B</td>
+<td class="instruction">BNE <a href="EC44.html#EC5E">$EC5E</a></td>
+<td class="comment-1" rowspan="1">if not [SWITCH TO UPPER CASE] go do the [SHIFT]+[C=] key check</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC53"></span>EC53</td>
+<td class="bytes">AD 18 D0</td>
+<td class="instruction">LDA $D018</td>
+<td class="comment-1" rowspan="1">get the start of character memory address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC56"></span>EC56</td>
+<td class="bytes">29 FD</td>
+<td class="instruction">AND #%11111101</td>
+<td class="comment-1" rowspan="1">mask xxxx xx0x, set upper case characters</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EC58"></span>EC58</td>
+<td class="bytes">8D 18 D0</td>
+<td class="instruction">STA $D018</td>
+<td class="comment-1" rowspan="1">save the start of character memory address</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EC5B"></span>EC5B</td>
+<td class="bytes">4C A8 E6</td>
+<td class="instruction">JMP <a href="E691.html#E6A8">$E6A8</a></td>
+<td class="comment-1" rowspan="1">restore the registers, set the quote flag and exit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EC5E"></span>
+<div class="comments">
+<div class="paragraph">
+do the [SHIFT]+[C=] key check
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EC5E"></span>EC5E</td>
+<td class="bytes">C9 08</td>
+<td class="instruction">CMP #$08</td>
+<td class="comment-1" rowspan="1">compare with disable [SHIFT][C=]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC60"></span>EC60</td>
+<td class="bytes">D0 07</td>
+<td class="instruction">BNE <a href="EC44.html#EC69">$EC69</a></td>
+<td class="comment-1" rowspan="1">if not disable [SHIFT][C=] skip the set</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC62"></span>EC62</td>
+<td class="bytes">A9 80</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1">set to lock shift mode switch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC64"></span>EC64</td>
+<td class="bytes">0D 91 02</td>
+<td class="instruction">ORA $0291</td>
+<td class="comment-1" rowspan="1">OR it with the shift mode switch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC67"></span>EC67</td>
+<td class="bytes">30 09</td>
+<td class="instruction">BMI <a href="EC44.html#EC72">$EC72</a></td>
+<td class="comment-1" rowspan="1">go save the value, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EC69"></span>EC69</td>
+<td class="bytes">C9 09</td>
+<td class="instruction">CMP #$09</td>
+<td class="comment-1" rowspan="1">compare with enable [SHIFT][C=]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC6B"></span>EC6B</td>
+<td class="bytes">D0 EE</td>
+<td class="instruction">BNE <a href="EC44.html#EC5B">$EC5B</a></td>
+<td class="comment-1" rowspan="1">exit if not enable [SHIFT][C=]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC6D"></span>EC6D</td>
+<td class="bytes">A9 7F</td>
+<td class="instruction">LDA #$7F</td>
+<td class="comment-1" rowspan="1">set to unlock shift mode switch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC6F"></span>EC6F</td>
+<td class="bytes">2D 91 02</td>
+<td class="instruction">AND $0291</td>
+<td class="comment-1" rowspan="1">AND it with the shift mode switch</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EC72"></span>EC72</td>
+<td class="bytes">8D 91 02</td>
+<td class="instruction">STA $0291</td>
+<td class="comment-1" rowspan="1">save the shift mode switch $00 = enabled, $80 = locked</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EC75"></span>EC75</td>
+<td class="bytes">4C A8 E6</td>
+<td class="instruction">JMP <a href="E691.html#E6A8">$E6A8</a></td>
+<td class="comment-1" rowspan="1">restore the registers, set the quote flag and exit</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EC03.html">EC03</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EC44">Map</a></td>
+<td class="next">
+Next: <a href="EC78.html">EC78</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

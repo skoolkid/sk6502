@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B526</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B4F4.html">B4F4</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B526">Map</a></td>
+<td class="next">
+Next: <a href="B63D.html">B63D</a>
+</td>
+</tr>
+</table>
+<div class="description">B526: garbage collection routine</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A408.html">A408</a>, <a href="B37D.html">B37D</a> and <a href="B4F4.html">B4F4</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B526"></span>B526</td>
+<td class="bytes">A6 37</td>
+<td class="instruction">LDX $37</td>
+<td class="comment-1" rowspan="1">get end of memory low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B528"></span>B528</td>
+<td class="bytes">A5 38</td>
+<td class="instruction">LDA $38</td>
+<td class="comment-1" rowspan="1">get end of memory high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B52A"></span>
+<div class="comments">
+<div class="paragraph">
+re-run routine from last ending
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B52A"></span>B52A</td>
+<td class="bytes">86 33</td>
+<td class="instruction">STX $33</td>
+<td class="comment-1" rowspan="1">set bottom of string space low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B52C"></span>B52C</td>
+<td class="bytes">85 34</td>
+<td class="instruction">STA $34</td>
+<td class="comment-1" rowspan="1">set bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B52E"></span>B52E</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B530"></span>B530</td>
+<td class="bytes">84 4F</td>
+<td class="instruction">STY $4F</td>
+<td class="comment-1" rowspan="1">clear working pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B532"></span>B532</td>
+<td class="bytes">84 4E</td>
+<td class="instruction">STY $4E</td>
+<td class="comment-1" rowspan="1">clear working pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B534"></span>B534</td>
+<td class="bytes">A5 31</td>
+<td class="instruction">LDA $31</td>
+<td class="comment-1" rowspan="1">get end of arrays low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B536"></span>B536</td>
+<td class="bytes">A6 32</td>
+<td class="instruction">LDX $32</td>
+<td class="comment-1" rowspan="1">get end of arrays high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B538"></span>B538</td>
+<td class="bytes">85 5F</td>
+<td class="instruction">STA $5F</td>
+<td class="comment-1" rowspan="1">save as highest uncollected string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B53A"></span>B53A</td>
+<td class="bytes">86 60</td>
+<td class="instruction">STX $60</td>
+<td class="comment-1" rowspan="1">save as highest uncollected string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B53C"></span>B53C</td>
+<td class="bytes">A9 19</td>
+<td class="instruction">LDA #$19</td>
+<td class="comment-1" rowspan="1">set descriptor stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B53E"></span>B53E</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B540"></span>B540</td>
+<td class="bytes">85 22</td>
+<td class="instruction">STA $22</td>
+<td class="comment-1" rowspan="1">save descriptor stack pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B542"></span>B542</td>
+<td class="bytes">86 23</td>
+<td class="instruction">STX $23</td>
+<td class="comment-1" rowspan="1">save descriptor stack pointer high byte ($00)</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B544"></span>B544</td>
+<td class="bytes">C5 16</td>
+<td class="instruction">CMP $16</td>
+<td class="comment-1" rowspan="1">compare with descriptor stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B546"></span>B546</td>
+<td class="bytes">F0 05</td>
+<td class="instruction">BEQ <a href="B526.html#B54D">$B54D</a></td>
+<td class="comment-1" rowspan="1">branch if =</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B548"></span>B548</td>
+<td class="bytes">20 C7 B5</td>
+<td class="instruction">JSR <a href="B526.html#B5C7">$B5C7</a></td>
+<td class="comment-1" rowspan="1">check string salvageability</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B54B"></span>B54B</td>
+<td class="bytes">F0 F7</td>
+<td class="instruction">BEQ <a href="B526.html#B544">$B544</a></td>
+<td class="comment-1" rowspan="1">loop always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B54D"></span>
+<div class="comments">
+<div class="paragraph">
+done stacked strings, now do string variables
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B54D"></span>B54D</td>
+<td class="bytes">A9 07</td>
+<td class="instruction">LDA #$07</td>
+<td class="comment-1" rowspan="1">set step size = $07, collecting variables</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B54F"></span>B54F</td>
+<td class="bytes">85 53</td>
+<td class="instruction">STA $53</td>
+<td class="comment-1" rowspan="1">save garbage collection step size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B551"></span>B551</td>
+<td class="bytes">A5 2D</td>
+<td class="instruction">LDA $2D</td>
+<td class="comment-1" rowspan="1">get start of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B553"></span>B553</td>
+<td class="bytes">A6 2E</td>
+<td class="instruction">LDX $2E</td>
+<td class="comment-1" rowspan="1">get start of variables high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B555"></span>B555</td>
+<td class="bytes">85 22</td>
+<td class="instruction">STA $22</td>
+<td class="comment-1" rowspan="1">save as pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B557"></span>B557</td>
+<td class="bytes">86 23</td>
+<td class="instruction">STX $23</td>
+<td class="comment-1" rowspan="1">save as pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B559"></span>B559</td>
+<td class="bytes">E4 30</td>
+<td class="instruction">CPX $30</td>
+<td class="comment-1" rowspan="1">compare end of variables high byte, start of arrays high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B55B"></span>B55B</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="B526.html#B561">$B561</a></td>
+<td class="comment-1" rowspan="1">branch if no high byte match</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B55D"></span>B55D</td>
+<td class="bytes">C5 2F</td>
+<td class="instruction">CMP $2F</td>
+<td class="comment-1" rowspan="1">else compare end of variables low byte, start of arrays low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B55F"></span>B55F</td>
+<td class="bytes">F0 05</td>
+<td class="instruction">BEQ <a href="B526.html#B566">$B566</a></td>
+<td class="comment-1" rowspan="1">branch if = variable memory end</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B561"></span>B561</td>
+<td class="bytes">20 BD B5</td>
+<td class="instruction">JSR <a href="B526.html#B5BD">$B5BD</a></td>
+<td class="comment-1" rowspan="1">check variable salvageability</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B564"></span>B564</td>
+<td class="bytes">F0 F3</td>
+<td class="instruction">BEQ <a href="B526.html#B559">$B559</a></td>
+<td class="comment-1" rowspan="1">loop always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B566"></span>
+<div class="comments">
+<div class="paragraph">
+done string variables, now do string arrays
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B566"></span>B566</td>
+<td class="bytes">85 58</td>
+<td class="instruction">STA $58</td>
+<td class="comment-1" rowspan="1">save start of arrays low byte as working pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B568"></span>B568</td>
+<td class="bytes">86 59</td>
+<td class="instruction">STX $59</td>
+<td class="comment-1" rowspan="1">save start of arrays high byte as working pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B56A"></span>B56A</td>
+<td class="bytes">A9 03</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="1">set step size, collecting descriptors</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B56C"></span>B56C</td>
+<td class="bytes">85 53</td>
+<td class="instruction">STA $53</td>
+<td class="comment-1" rowspan="1">save step size</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B56E"></span>B56E</td>
+<td class="bytes">A5 58</td>
+<td class="instruction">LDA $58</td>
+<td class="comment-1" rowspan="1">get pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B570"></span>B570</td>
+<td class="bytes">A6 59</td>
+<td class="instruction">LDX $59</td>
+<td class="comment-1" rowspan="1">get pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B572"></span>B572</td>
+<td class="bytes">E4 32</td>
+<td class="instruction">CPX $32</td>
+<td class="comment-1" rowspan="1">compare with end of arrays high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B574"></span>B574</td>
+<td class="bytes">D0 07</td>
+<td class="instruction">BNE <a href="B526.html#B57D">$B57D</a></td>
+<td class="comment-1" rowspan="1">branch if not at end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B576"></span>B576</td>
+<td class="bytes">C5 31</td>
+<td class="instruction">CMP $31</td>
+<td class="comment-1" rowspan="1">else compare with end of arrays low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B578"></span>B578</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="B526.html#B57D">$B57D</a></td>
+<td class="comment-1" rowspan="1">branch if not at end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B57A"></span>B57A</td>
+<td class="bytes">4C 06 B6</td>
+<td class="instruction">JMP <a href="B526.html#B606">$B606</a></td>
+<td class="comment-1" rowspan="1">collect string, tidy up and exit if at end ??</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B57D"></span>B57D</td>
+<td class="bytes">85 22</td>
+<td class="instruction">STA $22</td>
+<td class="comment-1" rowspan="1">save pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B57F"></span>B57F</td>
+<td class="bytes">86 23</td>
+<td class="instruction">STX $23</td>
+<td class="comment-1" rowspan="1">save pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B581"></span>B581</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B583"></span>B583</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get array name first byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B585"></span>B585</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B586"></span>B586</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B587"></span>B587</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get array name second byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B589"></span>B589</td>
+<td class="bytes">08</td>
+<td class="instruction">PHP</td>
+<td class="comment-1" rowspan="1">push the flags</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B58A"></span>B58A</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B58B"></span>B58B</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get array size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B58D"></span>B58D</td>
+<td class="bytes">65 58</td>
+<td class="instruction">ADC $58</td>
+<td class="comment-1" rowspan="1">add start of this array low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B58F"></span>B58F</td>
+<td class="bytes">85 58</td>
+<td class="instruction">STA $58</td>
+<td class="comment-1" rowspan="1">save start of next array low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B591"></span>B591</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B592"></span>B592</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get array size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B594"></span>B594</td>
+<td class="bytes">65 59</td>
+<td class="instruction">ADC $59</td>
+<td class="comment-1" rowspan="1">add start of this array high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B596"></span>B596</td>
+<td class="bytes">85 59</td>
+<td class="instruction">STA $59</td>
+<td class="comment-1" rowspan="1">save start of next array high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B598"></span>B598</td>
+<td class="bytes">28</td>
+<td class="instruction">PLP</td>
+<td class="comment-1" rowspan="1">restore the flags</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B599"></span>B599</td>
+<td class="bytes">10 D3</td>
+<td class="instruction">BPL <a href="B526.html#B56E">$B56E</a></td>
+<td class="comment-1" rowspan="1">skip if not string array</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B59B"></span>
+<div class="comments">
+<div class="paragraph">
+was possibly string array so ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B59B"></span>B59B</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">get name first byte back</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B59C"></span>B59C</td>
+<td class="bytes">30 D0</td>
+<td class="instruction">BMI <a href="B526.html#B56E">$B56E</a></td>
+<td class="comment-1" rowspan="1">skip if not string array</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B59E"></span>B59E</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B59F"></span>B59F</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get # of dimensions</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5A1"></span>B5A1</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5A3"></span>B5A3</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">*2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5A4"></span>B5A4</td>
+<td class="bytes">69 05</td>
+<td class="instruction">ADC #$05</td>
+<td class="comment-1" rowspan="1">+5 (array header size)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5A6"></span>B5A6</td>
+<td class="bytes">65 22</td>
+<td class="instruction">ADC $22</td>
+<td class="comment-1" rowspan="1">add pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5A8"></span>B5A8</td>
+<td class="bytes">85 22</td>
+<td class="instruction">STA $22</td>
+<td class="comment-1" rowspan="1">save pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5AA"></span>B5AA</td>
+<td class="bytes">90 02</td>
+<td class="instruction">BCC <a href="B526.html#B5AE">$B5AE</a></td>
+<td class="comment-1" rowspan="1">branch if no rollover</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5AC"></span>B5AC</td>
+<td class="bytes">E6 23</td>
+<td class="instruction">INC $23</td>
+<td class="comment-1" rowspan="1">else increment pointer hgih byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B5AE"></span>B5AE</td>
+<td class="bytes">A6 23</td>
+<td class="instruction">LDX $23</td>
+<td class="comment-1" rowspan="1">get pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B5B0"></span>B5B0</td>
+<td class="bytes">E4 59</td>
+<td class="instruction">CPX $59</td>
+<td class="comment-1" rowspan="1">compare pointer high byte with end of this array high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5B2"></span>B5B2</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="B526.html#B5B8">$B5B8</a></td>
+<td class="comment-1" rowspan="1">branch if not there yet</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5B4"></span>B5B4</td>
+<td class="bytes">C5 58</td>
+<td class="instruction">CMP $58</td>
+<td class="comment-1" rowspan="1">compare pointer low byte with end of this array low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5B6"></span>B5B6</td>
+<td class="bytes">F0 BA</td>
+<td class="instruction">BEQ <a href="B526.html#B572">$B572</a></td>
+<td class="comment-1" rowspan="1">if at end of this array go check next array</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B5B8"></span>B5B8</td>
+<td class="bytes">20 C7 B5</td>
+<td class="instruction">JSR <a href="B526.html#B5C7">$B5C7</a></td>
+<td class="comment-1" rowspan="1">check string salvageability</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5BB"></span>B5BB</td>
+<td class="bytes">F0 F3</td>
+<td class="instruction">BEQ <a href="B526.html#B5B0">$B5B0</a></td>
+<td class="comment-1" rowspan="1">loop</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B5BD"></span>
+<div class="comments">
+<div class="paragraph">
+check variable salvageability
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B5BD"></span>B5BD</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get variable name first byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5BF"></span>B5BF</td>
+<td class="bytes">30 35</td>
+<td class="instruction">BMI <a href="B526.html#B5F6">$B5F6</a></td>
+<td class="comment-1" rowspan="1">add step and exit if not string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5C1"></span>B5C1</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5C2"></span>B5C2</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get variable name second byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5C4"></span>B5C4</td>
+<td class="bytes">10 30</td>
+<td class="instruction">BPL <a href="B526.html#B5F6">$B5F6</a></td>
+<td class="comment-1" rowspan="1">add step and exit if not string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5C6"></span>B5C6</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B5C7"></span>
+<div class="comments">
+<div class="paragraph">
+check string salvageability
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B5C7"></span>B5C7</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get string length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5C9"></span>B5C9</td>
+<td class="bytes">F0 2B</td>
+<td class="instruction">BEQ <a href="B526.html#B5F6">$B5F6</a></td>
+<td class="comment-1" rowspan="1">add step and exit if null string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5CB"></span>B5CB</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5CC"></span>B5CC</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5CE"></span>B5CE</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5CF"></span>B5CF</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5D0"></span>B5D0</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5D2"></span>B5D2</td>
+<td class="bytes">C5 34</td>
+<td class="instruction">CMP $34</td>
+<td class="comment-1" rowspan="1">compare string pointer high byte with bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5D4"></span>B5D4</td>
+<td class="bytes">90 06</td>
+<td class="instruction">BCC <a href="B526.html#B5DC">$B5DC</a></td>
+<td class="comment-1" rowspan="1">if bottom of string space greater go test against highest uncollected string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5D6"></span>B5D6</td>
+<td class="bytes">D0 1E</td>
+<td class="instruction">BNE <a href="B526.html#B5F6">$B5F6</a></td>
+<td class="comment-1" rowspan="1">if bottom of string space less string has been collected so go update pointers, step to next and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B5D8"></span>
+<div class="comments">
+<div class="paragraph">
+high bytes were equal so test low bytes
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5D8"></span>B5D8</td>
+<td class="bytes">E4 33</td>
+<td class="instruction">CPX $33</td>
+<td class="comment-1" rowspan="1">compare string pointer low byte with bottom of string space low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5DA"></span>B5DA</td>
+<td class="bytes">B0 1A</td>
+<td class="instruction">BCS <a href="B526.html#B5F6">$B5F6</a></td>
+<td class="comment-1" rowspan="1">if bottom of string space less string has been collected so go update pointers, step to next and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B5DC"></span>
+<div class="comments">
+<div class="paragraph">
+else test string against highest uncollected string so far
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B5DC"></span>B5DC</td>
+<td class="bytes">C5 60</td>
+<td class="instruction">CMP $60</td>
+<td class="comment-1" rowspan="1">compare string pointer high byte with highest uncollected string high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5DE"></span>B5DE</td>
+<td class="bytes">90 16</td>
+<td class="instruction">BCC <a href="B526.html#B5F6">$B5F6</a></td>
+<td class="comment-1" rowspan="1">if highest uncollected string is greater then go update pointers, step to next and return</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5E0"></span>B5E0</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="B526.html#B5E6">$B5E6</a></td>
+<td class="comment-1" rowspan="1">if highest uncollected string is less then go set this string as highest uncollected so far</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B5E2"></span>
+<div class="comments">
+<div class="paragraph">
+high bytes were equal so test low bytes
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5E2"></span>B5E2</td>
+<td class="bytes">E4 5F</td>
+<td class="instruction">CPX $5F</td>
+<td class="comment-1" rowspan="1">compare string pointer low byte with highest uncollected string low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5E4"></span>B5E4</td>
+<td class="bytes">90 10</td>
+<td class="instruction">BCC <a href="B526.html#B5F6">$B5F6</a></td>
+<td class="comment-1" rowspan="1">if highest uncollected string is greater then go update pointers, step to next and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B5E6"></span>
+<div class="comments">
+<div class="paragraph">
+else set current string as highest uncollected string
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B5E6"></span>B5E6</td>
+<td class="bytes">86 5F</td>
+<td class="instruction">STX $5F</td>
+<td class="comment-1" rowspan="1">save string pointer low byte as highest uncollected string low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5E8"></span>B5E8</td>
+<td class="bytes">85 60</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">save string pointer high byte as highest uncollected string high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5EA"></span>B5EA</td>
+<td class="bytes">A5 22</td>
+<td class="instruction">LDA $22</td>
+<td class="comment-1" rowspan="1">get descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5EC"></span>B5EC</td>
+<td class="bytes">A6 23</td>
+<td class="instruction">LDX $23</td>
+<td class="comment-1" rowspan="1">get descriptor pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5EE"></span>B5EE</td>
+<td class="bytes">85 4E</td>
+<td class="instruction">STA $4E</td>
+<td class="comment-1" rowspan="1">save working pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5F0"></span>B5F0</td>
+<td class="bytes">86 4F</td>
+<td class="instruction">STX $4F</td>
+<td class="comment-1" rowspan="1">save working pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5F2"></span>B5F2</td>
+<td class="bytes">A5 53</td>
+<td class="instruction">LDA $53</td>
+<td class="comment-1" rowspan="1">get step size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5F4"></span>B5F4</td>
+<td class="bytes">85 55</td>
+<td class="instruction">STA $55</td>
+<td class="comment-1" rowspan="1">copy step size</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B5F6"></span>B5F6</td>
+<td class="bytes">A5 53</td>
+<td class="instruction">LDA $53</td>
+<td class="comment-1" rowspan="1">get step size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5F8"></span>B5F8</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5F9"></span>B5F9</td>
+<td class="bytes">65 22</td>
+<td class="instruction">ADC $22</td>
+<td class="comment-1" rowspan="1">add pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5FB"></span>B5FB</td>
+<td class="bytes">85 22</td>
+<td class="instruction">STA $22</td>
+<td class="comment-1" rowspan="1">save pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5FD"></span>B5FD</td>
+<td class="bytes">90 02</td>
+<td class="instruction">BCC <a href="B526.html#B601">$B601</a></td>
+<td class="comment-1" rowspan="1">branch if no rollover</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B5FF"></span>B5FF</td>
+<td class="bytes">E6 23</td>
+<td class="instruction">INC $23</td>
+<td class="comment-1" rowspan="1">else increment pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B601"></span>B601</td>
+<td class="bytes">A6 23</td>
+<td class="instruction">LDX $23</td>
+<td class="comment-1" rowspan="1">get pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B603"></span>B603</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">flag not moved</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B605"></span>B605</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B606"></span>
+<div class="comments">
+<div class="paragraph">
+collect string
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B606"></span>B606</td>
+<td class="bytes">A5 4F</td>
+<td class="instruction">LDA $4F</td>
+<td class="comment-1" rowspan="1">get working pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B608"></span>B608</td>
+<td class="bytes">05 4E</td>
+<td class="instruction">ORA $4E</td>
+<td class="comment-1" rowspan="1">OR working pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B60A"></span>B60A</td>
+<td class="bytes">F0 F5</td>
+<td class="instruction">BEQ <a href="B526.html#B601">$B601</a></td>
+<td class="comment-1" rowspan="1">exit if nothing to collect</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B60C"></span>B60C</td>
+<td class="bytes">A5 55</td>
+<td class="instruction">LDA $55</td>
+<td class="comment-1" rowspan="1">get copied step size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B60E"></span>B60E</td>
+<td class="bytes">29 04</td>
+<td class="instruction">AND #$04</td>
+<td class="comment-1" rowspan="1">mask step size, $04 for variables, $00 for array or stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B610"></span>B610</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">&gt;&gt; 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B611"></span>B611</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy to index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B612"></span>B612</td>
+<td class="bytes">85 55</td>
+<td class="instruction">STA $55</td>
+<td class="comment-1" rowspan="1">save offset to descriptor start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B614"></span>B614</td>
+<td class="bytes">B1 4E</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="1">get string length low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B616"></span>B616</td>
+<td class="bytes">65 5F</td>
+<td class="instruction">ADC $5F</td>
+<td class="comment-1" rowspan="1">add string start low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B618"></span>B618</td>
+<td class="bytes">85 5A</td>
+<td class="instruction">STA $5A</td>
+<td class="comment-1" rowspan="1">set block end low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B61A"></span>B61A</td>
+<td class="bytes">A5 60</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">get string start high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B61C"></span>B61C</td>
+<td class="bytes">69 00</td>
+<td class="instruction">ADC #$00</td>
+<td class="comment-1" rowspan="1">add carry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B61E"></span>B61E</td>
+<td class="bytes">85 5B</td>
+<td class="instruction">STA $5B</td>
+<td class="comment-1" rowspan="1">set block end high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B620"></span>B620</td>
+<td class="bytes">A5 33</td>
+<td class="instruction">LDA $33</td>
+<td class="comment-1" rowspan="1">get bottom of string space low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B622"></span>B622</td>
+<td class="bytes">A6 34</td>
+<td class="instruction">LDX $34</td>
+<td class="comment-1" rowspan="1">get bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B624"></span>B624</td>
+<td class="bytes">85 58</td>
+<td class="instruction">STA $58</td>
+<td class="comment-1" rowspan="1">save destination end low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B626"></span>B626</td>
+<td class="bytes">86 59</td>
+<td class="instruction">STX $59</td>
+<td class="comment-1" rowspan="1">save destination end high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B628"></span>B628</td>
+<td class="bytes">20 BF A3</td>
+<td class="instruction">JSR <a href="A3B8.html#A3BF">$A3BF</a></td>
+<td class="comment-1" rowspan="1">open up space in memory, don't set array end. this copies the string from where it is to the end of the uncollected string memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B62B"></span>B62B</td>
+<td class="bytes">A4 55</td>
+<td class="instruction">LDY $55</td>
+<td class="comment-1" rowspan="1">restore offset to descriptor start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B62D"></span>B62D</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index to string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B62E"></span>B62E</td>
+<td class="bytes">A5 58</td>
+<td class="instruction">LDA $58</td>
+<td class="comment-1" rowspan="1">get new string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B630"></span>B630</td>
+<td class="bytes">91 4E</td>
+<td class="instruction">STA ($4E),Y</td>
+<td class="comment-1" rowspan="1">save new string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B632"></span>B632</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B633"></span>B633</td>
+<td class="bytes">E6 59</td>
+<td class="instruction">INC $59</td>
+<td class="comment-1" rowspan="1">increment new string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B635"></span>B635</td>
+<td class="bytes">A5 59</td>
+<td class="instruction">LDA $59</td>
+<td class="comment-1" rowspan="1">get new string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B637"></span>B637</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index to string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B638"></span>B638</td>
+<td class="bytes">91 4E</td>
+<td class="instruction">STA ($4E),Y</td>
+<td class="comment-1" rowspan="1">save new string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B63A"></span>B63A</td>
+<td class="bytes">4C 2A B5</td>
+<td class="instruction">JMP <a href="B526.html#B52A">$B52A</a></td>
+<td class="comment-1" rowspan="1">re-run routine from last ending, <span class="register">XA</span> holds new bottom of string memory pointer</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B4F4.html">B4F4</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B526">Map</a></td>
+<td class="next">
+Next: <a href="B63D.html">B63D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E9C8</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E965.html">E965</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E9C8">Map</a></td>
+<td class="next">
+Next: <a href="E9E0.html">E9E0</a>
+</td>
+</tr>
+</table>
+<div class="description">E9C8: shift screen line up/down</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="E8EA.html">E8EA</a> and <a href="E965.html">E965</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E9C8"></span>E9C8</td>
+<td class="bytes">29 03</td>
+<td class="instruction">AND #%00000011</td>
+<td class="comment-1" rowspan="1">mask 0000 00xx, line memory page</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E9CA"></span>E9CA</td>
+<td class="bytes">0D 88 02</td>
+<td class="instruction">ORA $0288</td>
+<td class="comment-1" rowspan="1">OR with screen memory page</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E9CD"></span>E9CD</td>
+<td class="bytes">85 AD</td>
+<td class="instruction">STA $AD</td>
+<td class="comment-1" rowspan="1">save next/previous line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E9CF"></span>E9CF</td>
+<td class="bytes">20 E0 E9</td>
+<td class="instruction">JSR <a href="E9E0.html">$E9E0</a></td>
+<td class="comment-1" rowspan="1">calculate pointers to screen lines colour RAM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E9D2"></span>E9D2</td>
+<td class="bytes">A0 27</td>
+<td class="instruction">LDY #$27</td>
+<td class="comment-1" rowspan="1">set the column count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E9D4"></span>E9D4</td>
+<td class="bytes">B1 AC</td>
+<td class="instruction">LDA ($AC),Y</td>
+<td class="comment-1" rowspan="1">get character from next/previous screen line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E9D6"></span>E9D6</td>
+<td class="bytes">91 D1</td>
+<td class="instruction">STA ($D1),Y</td>
+<td class="comment-1" rowspan="1">save character to current screen line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E9D8"></span>E9D8</td>
+<td class="bytes">B1 AE</td>
+<td class="instruction">LDA ($AE),Y</td>
+<td class="comment-1" rowspan="1">get colour from next/previous screen line colour RAM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E9DA"></span>E9DA</td>
+<td class="bytes">91 F3</td>
+<td class="instruction">STA ($F3),Y</td>
+<td class="comment-1" rowspan="1">save colour to current screen line colour RAM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E9DC"></span>E9DC</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement column index/count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E9DD"></span>E9DD</td>
+<td class="bytes">10 F5</td>
+<td class="instruction">BPL <a href="E9C8.html#E9D4">$E9D4</a></td>
+<td class="comment-1" rowspan="1">loop if more to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E9DF"></span>E9DF</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E965.html">E965</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E9C8">Map</a></td>
+<td class="next">
+Next: <a href="E9E0.html">E9E0</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

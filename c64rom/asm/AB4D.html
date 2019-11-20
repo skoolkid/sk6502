@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AB4D</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AB47.html">AB47</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AB4D">Map</a></td>
+<td class="next">
+Next: <a href="AB7B.html">AB7B</a>
+</td>
+</tr>
+</table>
+<div class="description">AB4D: bad input routine</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="AC0F.html">AC0F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB4D"></span>AB4D</td>
+<td class="bytes">A5 11</td>
+<td class="instruction">LDA $11</td>
+<td class="comment-1" rowspan="1">get INPUT mode flag, $00 = INPUT, $40 = GET, $98 = READ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB4F"></span>AB4F</td>
+<td class="bytes">F0 11</td>
+<td class="instruction">BEQ <a href="AB4D.html#AB62">$AB62</a></td>
+<td class="comment-1" rowspan="1">branch if INPUT</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB51"></span>AB51</td>
+<td class="bytes">30 04</td>
+<td class="instruction">BMI <a href="AB4D.html#AB57">$AB57</a></td>
+<td class="comment-1" rowspan="1">branch if READ</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AB53"></span>
+<div class="comments">
+<div class="paragraph">
+else was GET
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB53"></span>AB53</td>
+<td class="bytes">A0 FF</td>
+<td class="instruction">LDY #$FF</td>
+<td class="comment-1" rowspan="1">set current line high byte to -1, indicate immediate mode</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB55"></span>AB55</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="AB4D.html#AB5B">$AB5B</a></td>
+<td class="comment-1" rowspan="1">branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB57"></span>AB57</td>
+<td class="bytes">A5 3F</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="1">get current DATA line number low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB59"></span>AB59</td>
+<td class="bytes">A4 40</td>
+<td class="instruction">LDY $40</td>
+<td class="comment-1" rowspan="1">get current DATA line number high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB5B"></span>AB5B</td>
+<td class="bytes">85 39</td>
+<td class="instruction">STA $39</td>
+<td class="comment-1" rowspan="1">set current line number low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB5D"></span>AB5D</td>
+<td class="bytes">84 3A</td>
+<td class="instruction">STY $3A</td>
+<td class="comment-1" rowspan="1">set current line number high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AB5F"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AAE8.html">AAE8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB5F"></span>AB5F</td>
+<td class="bytes">4C 08 AF</td>
+<td class="instruction">JMP <a href="AE86.html#AF08">$AF08</a></td>
+<td class="comment-1" rowspan="1">do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AB62"></span>
+<div class="comments">
+<div class="paragraph">
+was INPUT
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB62"></span>AB62</td>
+<td class="bytes">A5 13</td>
+<td class="instruction">LDA $13</td>
+<td class="comment-1" rowspan="1">get current I/O channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB64"></span>AB64</td>
+<td class="bytes">F0 05</td>
+<td class="instruction">BEQ <a href="AB4D.html#AB6B">$AB6B</a></td>
+<td class="comment-1" rowspan="1">branch if default channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB66"></span>AB66</td>
+<td class="bytes">A2 18</td>
+<td class="instruction">LDX #$18</td>
+<td class="comment-1" rowspan="1">else error $18, file data error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB68"></span>AB68</td>
+<td class="bytes">4C 37 A4</td>
+<td class="instruction">JMP <a href="A435.html#A437">$A437</a></td>
+<td class="comment-1" rowspan="1">do error #<span class="register">X</span> then warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB6B"></span>AB6B</td>
+<td class="bytes">A9 0C</td>
+<td class="instruction">LDA #$0C</td>
+<td class="comment-1" rowspan="1">set "?REDO FROM START" pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB6D"></span>AB6D</td>
+<td class="bytes">A0 AD</td>
+<td class="instruction">LDY #$AD</td>
+<td class="comment-1" rowspan="1">set "?REDO FROM START" pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB6F"></span>AB6F</td>
+<td class="bytes">20 1E AB</td>
+<td class="instruction">JSR <a href="AB1E.html">$AB1E</a></td>
+<td class="comment-1" rowspan="1">print null terminated string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB72"></span>AB72</td>
+<td class="bytes">A5 3D</td>
+<td class="instruction">LDA $3D</td>
+<td class="comment-1" rowspan="1">get continue pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB74"></span>AB74</td>
+<td class="bytes">A4 3E</td>
+<td class="instruction">LDY $3E</td>
+<td class="comment-1" rowspan="1">get continue pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB76"></span>AB76</td>
+<td class="bytes">85 7A</td>
+<td class="instruction">STA $7A</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB78"></span>AB78</td>
+<td class="bytes">84 7B</td>
+<td class="instruction">STY $7B</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB7A"></span>AB7A</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AB47.html">AB47</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AB4D">Map</a></td>
+<td class="next">
+Next: <a href="AB7B.html">AB7B</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

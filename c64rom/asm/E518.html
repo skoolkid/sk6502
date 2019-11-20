@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E518</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E50A.html">E50A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E518">Map</a></td>
+<td class="next">
+Next: <a href="E544.html">E544</a>
+</td>
+</tr>
+</table>
+<div class="description">E518: initialise the screen and keyboard</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="FE66.html">FE66</a> and <a href="FF5B.html">FF5B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E518"></span>E518</td>
+<td class="bytes">20 A0 E5</td>
+<td class="instruction">JSR <a href="E5A0.html">$E5A0</a></td>
+<td class="comment-1" rowspan="1">initialise the vic chip</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E51B"></span>E51B</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E51D"></span>E51D</td>
+<td class="bytes">8D 91 02</td>
+<td class="instruction">STA $0291</td>
+<td class="comment-1" rowspan="1">clear the shift mode switch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E520"></span>E520</td>
+<td class="bytes">85 CF</td>
+<td class="instruction">STA $CF</td>
+<td class="comment-1" rowspan="1">clear the cursor blink phase</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E522"></span>E522</td>
+<td class="bytes">A9 48</td>
+<td class="instruction">LDA #$48</td>
+<td class="comment-1" rowspan="1">get the keyboard decode logic pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E524"></span>E524</td>
+<td class="bytes">8D 8F 02</td>
+<td class="instruction">STA $028F</td>
+<td class="comment-1" rowspan="1">save the keyboard decode logic pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E527"></span>E527</td>
+<td class="bytes">A9 EB</td>
+<td class="instruction">LDA #$EB</td>
+<td class="comment-1" rowspan="1">get the keyboard decode logic pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E529"></span>E529</td>
+<td class="bytes">8D 90 02</td>
+<td class="instruction">STA $0290</td>
+<td class="comment-1" rowspan="1">save the keyboard decode logic pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E52C"></span>E52C</td>
+<td class="bytes">A9 0A</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="1">set the maximum size of the keyboard buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E52E"></span>E52E</td>
+<td class="bytes">8D 89 02</td>
+<td class="instruction">STA $0289</td>
+<td class="comment-1" rowspan="1">save the maximum size of the keyboard buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E531"></span>E531</td>
+<td class="bytes">8D 8C 02</td>
+<td class="instruction">STA $028C</td>
+<td class="comment-1" rowspan="1">save the repeat delay counter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E534"></span>E534</td>
+<td class="bytes">A9 0E</td>
+<td class="instruction">LDA #$0E</td>
+<td class="comment-1" rowspan="1">set light blue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E536"></span>E536</td>
+<td class="bytes">8D 86 02</td>
+<td class="instruction">STA $0286</td>
+<td class="comment-1" rowspan="1">save the current colour code</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E539"></span>E539</td>
+<td class="bytes">A9 04</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="1">speed 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E53B"></span>E53B</td>
+<td class="bytes">8D 8B 02</td>
+<td class="instruction">STA $028B</td>
+<td class="comment-1" rowspan="1">save the repeat speed counter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E53E"></span>E53E</td>
+<td class="bytes">A9 0C</td>
+<td class="instruction">LDA #$0C</td>
+<td class="comment-1" rowspan="1">set the cursor flash timing</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E540"></span>E540</td>
+<td class="bytes">85 CD</td>
+<td class="instruction">STA $CD</td>
+<td class="comment-1" rowspan="1">save the cursor timing countdown</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E542"></span>E542</td>
+<td class="bytes">85 CC</td>
+<td class="instruction">STA $CC</td>
+<td class="comment-1" rowspan="1">save the cursor enable, $00 = flash cursor</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E50A.html">E50A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E518">Map</a></td>
+<td class="next">
+Next: <a href="E544.html">E544</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EF06</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EED7.html">EED7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EF06">Map</a></td>
+<td class="next">
+Next: <a href="EF2E.html">EF2E</a>
+</td>
+</tr>
+</table>
+<div class="description">EF06: setup next RS232 Tx byte</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="EEBB.html">EEBB</a> and <a href="F028.html">F028</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EF06"></span>EF06</td>
+<td class="bytes">AD 94 02</td>
+<td class="instruction">LDA $0294</td>
+<td class="comment-1" rowspan="1">read the 6551 pseudo command register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF09"></span>EF09</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">handshake bit inot Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF0A"></span>EF0A</td>
+<td class="bytes">90 07</td>
+<td class="instruction">BCC <a href="EF06.html#EF13">$EF13</a></td>
+<td class="comment-1" rowspan="1">if 3 line interface go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF0C"></span>EF0C</td>
+<td class="bytes">2C 01 DD</td>
+<td class="instruction">BIT $DD01</td>
+<td class="comment-1" rowspan="1">test VIA 2 DRB, RS232 port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF0F"></span>EF0F</td>
+<td class="bytes">10 1D</td>
+<td class="instruction">BPL <a href="EF2E.html">$EF2E</a></td>
+<td class="comment-1" rowspan="1">if DSR = 0 set DSR signal not present and exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF11"></span>EF11</td>
+<td class="bytes">50 1E</td>
+<td class="instruction">BVC <a href="EF31.html">$EF31</a></td>
+<td class="comment-1" rowspan="1">if CTS = 0 set CTS signal not present and exit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EF13"></span>
+<div class="comments">
+<div class="paragraph">
+was 3 line interface
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EF13"></span>EF13</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF15"></span>EF15</td>
+<td class="bytes">85 BD</td>
+<td class="instruction">STA $BD</td>
+<td class="comment-1" rowspan="1">clear the RS232 parity byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF17"></span>EF17</td>
+<td class="bytes">85 B5</td>
+<td class="instruction">STA $B5</td>
+<td class="comment-1" rowspan="1">clear the RS232 next bit to send</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF19"></span>EF19</td>
+<td class="bytes">AE 98 02</td>
+<td class="instruction">LDX $0298</td>
+<td class="comment-1" rowspan="1">get the number of bits to be sent/received</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF1C"></span>EF1C</td>
+<td class="bytes">86 B4</td>
+<td class="instruction">STX $B4</td>
+<td class="comment-1" rowspan="1">set the RS232 bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF1E"></span>EF1E</td>
+<td class="bytes">AC 9D 02</td>
+<td class="instruction">LDY $029D</td>
+<td class="comment-1" rowspan="1">get the index to the Tx buffer start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF21"></span>EF21</td>
+<td class="bytes">CC 9E 02</td>
+<td class="instruction">CPY $029E</td>
+<td class="comment-1" rowspan="1">compare it with the index to the Tx buffer end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF24"></span>EF24</td>
+<td class="bytes">F0 13</td>
+<td class="instruction">BEQ <a href="EF39.html">$EF39</a></td>
+<td class="comment-1" rowspan="1">if all done go disable T?? interrupt and return</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF26"></span>EF26</td>
+<td class="bytes">B1 F9</td>
+<td class="instruction">LDA ($F9),Y</td>
+<td class="comment-1" rowspan="1">else get a byte from the buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF28"></span>EF28</td>
+<td class="bytes">85 B6</td>
+<td class="instruction">STA $B6</td>
+<td class="comment-1" rowspan="1">save it to the RS232 output byte buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF2A"></span>EF2A</td>
+<td class="bytes">EE 9D 02</td>
+<td class="instruction">INC $029D</td>
+<td class="comment-1" rowspan="1">increment the index to the Tx buffer start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF2D"></span>EF2D</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EED7.html">EED7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EF06">Map</a></td>
+<td class="next">
+Next: <a href="EF2E.html">EF2E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

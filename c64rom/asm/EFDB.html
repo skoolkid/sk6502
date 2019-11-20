@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EFDB</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EF97.html">EF97</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EFDB">Map</a></td>
+<td class="next">
+Next: <a href="EFE1.html">EFE1</a>
+</td>
+</tr>
+</table>
+<div class="description">EFDB: Routine at EFDB</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="EF59.html">EF59</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EFDB"></span>EFDB</td>
+<td class="bytes">A5 AA</td>
+<td class="instruction">LDA $AA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFDD"></span>EFDD</td>
+<td class="bytes">D0 F1</td>
+<td class="instruction">BNE <a href="EF97.html#EFD0">$EFD0</a></td>
+<td class="comment-1" rowspan="1">if ?? do frame error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFDF"></span>EFDF</td>
+<td class="bytes">F0 EC</td>
+<td class="instruction">BEQ <a href="EF97.html#EFCD">$EFCD</a></td>
+<td class="comment-1" rowspan="1">else do break error, branch always</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EF97.html">EF97</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EFDB">Map</a></td>
+<td class="next">
+Next: <a href="EFE1.html">EFE1</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

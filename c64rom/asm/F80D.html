@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F80D</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F7EA.html">F7EA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F80D">Map</a></td>
+<td class="next">
+Next: <a href="F817.html">F817</a>
+</td>
+</tr>
+</table>
+<div class="description">F80D: bump tape pointer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="F199.html">F199</a> and <a href="F1DD.html">F1DD</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F80D"></span>F80D</td>
+<td class="bytes">20 D0 F7</td>
+<td class="instruction">JSR <a href="F7D0.html">$F7D0</a></td>
+<td class="comment-1" rowspan="1">get tape buffer start pointer in <span class="register">XY</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F810"></span>F810</td>
+<td class="bytes">E6 A6</td>
+<td class="instruction">INC $A6</td>
+<td class="comment-1" rowspan="1">increment tape buffer index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F812"></span>F812</td>
+<td class="bytes">A4 A6</td>
+<td class="instruction">LDY $A6</td>
+<td class="comment-1" rowspan="1">get tape buffer index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F814"></span>F814</td>
+<td class="bytes">C0 C0</td>
+<td class="instruction">CPY #$C0</td>
+<td class="comment-1" rowspan="1">compare with buffer length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F816"></span>F816</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F7EA.html">F7EA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F80D">Map</a></td>
+<td class="next">
+Next: <a href="F817.html">F817</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

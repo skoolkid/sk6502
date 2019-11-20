@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EF97</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EF90.html">EF90</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EF97">Map</a></td>
+<td class="next">
+Next: <a href="EFDB.html">EFDB</a>
+</td>
+</tr>
+</table>
+<div class="description">EF97: received a whole byte, add it to the buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="EF59.html">EF59</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EF97"></span>EF97</td>
+<td class="bytes">AC 9B 02</td>
+<td class="instruction">LDY $029B</td>
+<td class="comment-1" rowspan="1">get index to Rx buffer end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF9A"></span>EF9A</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF9B"></span>EF9B</td>
+<td class="bytes">CC 9C 02</td>
+<td class="instruction">CPY $029C</td>
+<td class="comment-1" rowspan="1">compare with index to Rx buffer start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF9E"></span>EF9E</td>
+<td class="bytes">F0 2A</td>
+<td class="instruction">BEQ <a href="EF97.html#EFCA">$EFCA</a></td>
+<td class="comment-1" rowspan="1">if buffer full go do Rx overrun error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFA0"></span>EFA0</td>
+<td class="bytes">8C 9B 02</td>
+<td class="instruction">STY $029B</td>
+<td class="comment-1" rowspan="1">save index to Rx buffer end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFA3"></span>EFA3</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFA4"></span>EFA4</td>
+<td class="bytes">A5 AA</td>
+<td class="instruction">LDA $AA</td>
+<td class="comment-1" rowspan="1">get assembled byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFA6"></span>EFA6</td>
+<td class="bytes">AE 98 02</td>
+<td class="instruction">LDX $0298</td>
+<td class="comment-1" rowspan="1">get bit count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EFA9"></span>EFA9</td>
+<td class="bytes">E0 09</td>
+<td class="instruction">CPX #$09</td>
+<td class="comment-1" rowspan="1">compare with byte + stop</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFAB"></span>EFAB</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="EF97.html#EFB1">$EFB1</a></td>
+<td class="comment-1" rowspan="1">branch if all nine bits received</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFAD"></span>EFAD</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">else shift byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFAE"></span>EFAE</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFAF"></span>EFAF</td>
+<td class="bytes">D0 F8</td>
+<td class="instruction">BNE <a href="EF97.html#EFA9">$EFA9</a></td>
+<td class="comment-1" rowspan="1">loop, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EFB1"></span>EFB1</td>
+<td class="bytes">91 F7</td>
+<td class="instruction">STA ($F7),Y</td>
+<td class="comment-1" rowspan="1">save received byte to Rx buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFB3"></span>EFB3</td>
+<td class="bytes">A9 20</td>
+<td class="instruction">LDA #%00100000</td>
+<td class="comment-1" rowspan="1">mask 00x0 0000, parity enable bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFB5"></span>EFB5</td>
+<td class="bytes">2C 94 02</td>
+<td class="instruction">BIT $0294</td>
+<td class="comment-1" rowspan="1">test the pseudo 6551 command register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFB8"></span>EFB8</td>
+<td class="bytes">F0 B4</td>
+<td class="instruction">BEQ <a href="EF59.html#EF6E">$EF6E</a></td>
+<td class="comment-1" rowspan="1">branch if parity disabled</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFBA"></span>EFBA</td>
+<td class="bytes">30 B1</td>
+<td class="instruction">BMI <a href="EF59.html#EF6D">$EF6D</a></td>
+<td class="comment-1" rowspan="1">branch if mark or space parity</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFBC"></span>EFBC</td>
+<td class="bytes">A5 A7</td>
+<td class="instruction">LDA $A7</td>
+<td class="comment-1" rowspan="1">get the RS232 received data bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFBE"></span>EFBE</td>
+<td class="bytes">45 AB</td>
+<td class="instruction">EOR $AB</td>
+<td class="comment-1" rowspan="1">EOR with the receiver parity bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFC0"></span>EFC0</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="EF97.html#EFC5">$EFC5</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFC2"></span>EFC2</td>
+<td class="bytes">70 A9</td>
+<td class="instruction">BVS <a href="EF59.html#EF6D">$EF6D</a></td>
+<td class="comment-1" rowspan="1">if ?? just exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFC4"></span>EFC4</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $A650</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EFC5"></span>EFC5</td>
+<td class="bytes">50 A6</td>
+<td class="instruction">BVC <a href="EF59.html#EF6D">$EF6D</a></td>
+<td class="comment-1" rowspan="1">if ?? just exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFC7"></span>EFC7</td>
+<td class="bytes">A9 01</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1">set Rx parity error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFC9"></span>EFC9</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $04A9</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EFCA"></span>EFCA</td>
+<td class="bytes">A9 04</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="1">set Rx overrun error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFCC"></span>EFCC</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $80A9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EFCD"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="EFDB.html">EFDB</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EFCD"></span>EFCD</td>
+<td class="bytes">A9 80</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1">set Rx break error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFCF"></span>EFCF</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $02A9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EFD0"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="EFDB.html">EFDB</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EFD0"></span>EFD0</td>
+<td class="bytes">A9 02</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="1">set Rx frame error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFD2"></span>EFD2</td>
+<td class="bytes">0D 97 02</td>
+<td class="instruction">ORA $0297</td>
+<td class="comment-1" rowspan="1">OR it with the RS232 status byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFD5"></span>EFD5</td>
+<td class="bytes">8D 97 02</td>
+<td class="instruction">STA $0297</td>
+<td class="comment-1" rowspan="1">save the RS232 status byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EFD8"></span>EFD8</td>
+<td class="bytes">4C 7E EF</td>
+<td class="instruction">JMP <a href="EF7E.html">$EF7E</a></td>
+<td class="comment-1" rowspan="1">setup to receive an RS232 bit and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EF90.html">EF90</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EF97">Map</a></td>
+<td class="next">
+Next: <a href="EFDB.html">EFDB</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FFCC</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFC9.html">FFC9</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFCC">Map</a></td>
+<td class="next">
+Next: <a href="FFCF.html">FFCF</a>
+</td>
+</tr>
+</table>
+<div class="description">FFCC: close input and output channels</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A43A.html">A43A</a>, <a href="ABB5.html">ABB5</a>, <a href="E37B.html">E37B</a>, <a href="F6ED.html">F6ED</a> and <a href="F6FB.html">F6FB</a>.
+</div>
+<div class="paragraph">
+this routine is called to clear all open channels and restore the I/O channels to their original default values. It is usually called after opening other I/O channels and using them for input/output operations. The default input device is 0, the keyboard. The default output device is 3, the screen. If one of the channels to be closed is to the serial port, an UNTALK signal is sent first to clear the input channel or an UNLISTEN is sent to clear the output channel. By not calling this routine and leaving listener(s) active on the serial bus, several devices can receive the same data from the VIC at the same time. One way to take advantage of this would be to command the printer to TALK and the disk to LISTEN. This would allow direct printing of a disk file.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FFCC"></span>FFCC</td>
+<td class="bytes">6C 22 03</td>
+<td class="instruction">JMP ($0322)</td>
+<td class="comment-1" rowspan="1">do close input and output channels</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFC9.html">FFC9</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFCC">Map</a></td>
+<td class="next">
+Next: <a href="FFCF.html">FFCF</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

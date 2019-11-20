@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FE07</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FE00.html">FE00</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FE07">Map</a></td>
+<td class="next">
+Next: <a href="FE18.html">FE18</a>
+</td>
+</tr>
+</table>
+<div class="description">FE07: read I/O status word</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="FFB7.html">FFB7</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FE07"></span>FE07</td>
+<td class="bytes">A5 BA</td>
+<td class="instruction">LDA $BA</td>
+<td class="comment-1" rowspan="1">get the device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE09"></span>FE09</td>
+<td class="bytes">C9 02</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">compare device with RS232 device</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE0B"></span>FE0B</td>
+<td class="bytes">D0 0D</td>
+<td class="instruction">BNE <a href="FE18.html#FE1A">$FE1A</a></td>
+<td class="comment-1" rowspan="1">if not RS232 device go ??</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FE0D"></span>
+<div class="comments">
+<div class="paragraph">
+get RS232 device status
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE0D"></span>FE0D</td>
+<td class="bytes">AD 97 02</td>
+<td class="instruction">LDA $0297</td>
+<td class="comment-1" rowspan="1">get the RS232 status register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE10"></span>FE10</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save the RS232 status value</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE11"></span>FE11</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE13"></span>FE13</td>
+<td class="bytes">8D 97 02</td>
+<td class="instruction">STA $0297</td>
+<td class="comment-1" rowspan="1">clear the RS232 status register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE16"></span>FE16</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore the RS232 status value</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE17"></span>FE17</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FE00.html">FE00</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FE07">Map</a></td>
+<td class="next">
+Next: <a href="FE18.html">FE18</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

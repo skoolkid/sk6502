@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AFE9</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AFE6.html">AFE6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AFE9">Map</a></td>
+<td class="next">
+Next: <a href="B016.html">B016</a>
+</td>
+</tr>
+</table>
+<div class="description">AFE9: perform AND</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AFE9"></span>AFE9</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">Y</span> for AND</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFEB"></span>AFEB</td>
+<td class="bytes">84 0B</td>
+<td class="instruction">STY $0B</td>
+<td class="comment-1" rowspan="1">set AND/OR invert value</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFED"></span>AFED</td>
+<td class="bytes">20 BF B1</td>
+<td class="instruction">JSR <a href="B1B2.html#B1BF">$B1BF</a></td>
+<td class="comment-1" rowspan="1">evaluate integer expression, no sign check</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFF0"></span>AFF0</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFF2"></span>AFF2</td>
+<td class="bytes">45 0B</td>
+<td class="instruction">EOR $0B</td>
+<td class="comment-1" rowspan="1">EOR low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFF4"></span>AFF4</td>
+<td class="bytes">85 07</td>
+<td class="instruction">STA $07</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFF6"></span>AFF6</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFF8"></span>AFF8</td>
+<td class="bytes">45 0B</td>
+<td class="instruction">EOR $0B</td>
+<td class="comment-1" rowspan="1">EOR high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFFA"></span>AFFA</td>
+<td class="bytes">85 08</td>
+<td class="instruction">STA $08</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFFC"></span>AFFC</td>
+<td class="bytes">20 FC BB</td>
+<td class="instruction">JSR <a href="BBFC.html">$BBFC</a></td>
+<td class="comment-1" rowspan="1">copy FAC2 to FAC1, get 2nd value in expression</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFFF"></span>AFFF</td>
+<td class="bytes">20 BF B1</td>
+<td class="instruction">JSR <a href="B1B2.html#B1BF">$B1BF</a></td>
+<td class="comment-1" rowspan="1">evaluate integer expression, no sign check</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B002"></span>B002</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B004"></span>B004</td>
+<td class="bytes">45 0B</td>
+<td class="instruction">EOR $0B</td>
+<td class="comment-1" rowspan="1">EOR high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B006"></span>B006</td>
+<td class="bytes">25 08</td>
+<td class="instruction">AND $08</td>
+<td class="comment-1" rowspan="1">AND with expression 1 high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B008"></span>B008</td>
+<td class="bytes">45 0B</td>
+<td class="instruction">EOR $0B</td>
+<td class="comment-1" rowspan="1">EOR result high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B00A"></span>B00A</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">save in <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B00B"></span>B00B</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B00D"></span>B00D</td>
+<td class="bytes">45 0B</td>
+<td class="instruction">EOR $0B</td>
+<td class="comment-1" rowspan="1">EOR low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B00F"></span>B00F</td>
+<td class="bytes">25 07</td>
+<td class="instruction">AND $07</td>
+<td class="comment-1" rowspan="1">AND with expression 1 low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B011"></span>B011</td>
+<td class="bytes">45 0B</td>
+<td class="instruction">EOR $0B</td>
+<td class="comment-1" rowspan="1">EOR result low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B013"></span>B013</td>
+<td class="bytes">4C 91 B3</td>
+<td class="instruction">JMP <a href="B391.html">$B391</a></td>
+<td class="comment-1" rowspan="1">convert fixed integer <span class="register">AY</span> to float FAC1 and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AFE6.html">AFE6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AFE9">Map</a></td>
+<td class="next">
+Next: <a href="B016.html">B016</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

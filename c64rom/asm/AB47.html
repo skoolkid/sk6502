@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AB47</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AB45.html">AB45</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AB47">Map</a></td>
+<td class="next">
+Next: <a href="AB4D.html">AB4D</a>
+</td>
+</tr>
+</table>
+<div class="description">AB47: print character</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A43A.html">A43A</a>, <a href="A69C.html">A69C</a>, <a href="A71A.html">A71A</a>, <a href="AAD7.html">AAD7</a> and <a href="AB21.html">AB21</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB47"></span>AB47</td>
+<td class="bytes">20 0C E1</td>
+<td class="instruction">JSR <a href="E10C.html">$E10C</a></td>
+<td class="comment-1" rowspan="1">output character to channel with error check</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB4A"></span>AB4A</td>
+<td class="bytes">29 FF</td>
+<td class="instruction">AND #$FF</td>
+<td class="comment-1" rowspan="1">set the flags on <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB4C"></span>AB4C</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AB45.html">AB45</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AB47">Map</a></td>
+<td class="next">
+Next: <a href="AB4D.html">AB4D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

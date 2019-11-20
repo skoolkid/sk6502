@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AE20</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AD9E.html">AD9E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AE20">Map</a></td>
+<td class="next">
+Next: <a href="AE30.html">AE30</a>
+</td>
+</tr>
+</table>
+<div class="description">AE20: get vector, execute function then continue evaluation</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="AD9E.html">AD9E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE20"></span>AE20</td>
+<td class="bytes">B9 82 A0</td>
+<td class="instruction">LDA $A082,Y</td>
+<td class="comment-1" rowspan="2">get function vector high byte onto stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE23"></span>AE23</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE24"></span>AE24</td>
+<td class="bytes">B9 81 A0</td>
+<td class="instruction">LDA $A081,Y</td>
+<td class="comment-1" rowspan="2">get function vector low byte onto stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE27"></span>AE27</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AE28"></span>
+<div class="comments">
+<div class="paragraph">
+now push sign, round FAC1 and put on stack
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE28"></span>AE28</td>
+<td class="bytes">20 33 AE</td>
+<td class="instruction">JSR <a href="AE33.html">$AE33</a></td>
+<td class="comment-1" rowspan="1">function will return here, then the next RTS will call the function</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE2B"></span>AE2B</td>
+<td class="bytes">A5 4D</td>
+<td class="instruction">LDA $4D</td>
+<td class="comment-1" rowspan="1">get comparrison evaluation flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE2D"></span>AE2D</td>
+<td class="bytes">4C A9 AD</td>
+<td class="instruction">JMP <a href="AD9E.html#ADA9">$ADA9</a></td>
+<td class="comment-1" rowspan="1">continue evaluating expression</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AD9E.html">AD9E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AE20">Map</a></td>
+<td class="next">
+Next: <a href="AE30.html">AE30</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E195</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E168.html">E168</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E195">Map</a></td>
+<td class="next">
+Next: <a href="E1BE.html">E1BE</a>
+</td>
+</tr>
+</table>
+<div class="description">E195: do READY return to BASIC</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E168.html">E168</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E195"></span>E195</td>
+<td class="bytes">20 B7 FF</td>
+<td class="instruction">JSR <a href="FFB7.html">$FFB7</a></td>
+<td class="comment-1" rowspan="1">read I/O status word</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E198"></span>E198</td>
+<td class="bytes">29 BF</td>
+<td class="instruction">AND #%10111111</td>
+<td class="comment-1" rowspan="1">mask x0xx xxxx, clear read error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E19A"></span>E19A</td>
+<td class="bytes">F0 05</td>
+<td class="instruction">BEQ <a href="E195.html#E1A1">$E1A1</a></td>
+<td class="comment-1" rowspan="1">branch if no errors</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E19C"></span>E19C</td>
+<td class="bytes">A2 1D</td>
+<td class="instruction">LDX #$1D</td>
+<td class="comment-1" rowspan="1">error $1D, load error</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E19E"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E168.html">E168</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E19E"></span>E19E</td>
+<td class="bytes">4C 37 A4</td>
+<td class="instruction">JMP <a href="A435.html#A437">$A437</a></td>
+<td class="comment-1" rowspan="1">do error #<span class="register">X</span> then warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E1A1"></span>E1A1</td>
+<td class="bytes">A5 7B</td>
+<td class="instruction">LDA $7B</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1A3"></span>E1A3</td>
+<td class="bytes">C9 02</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">compare with $02xx</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1A5"></span>E1A5</td>
+<td class="bytes">D0 0E</td>
+<td class="instruction">BNE <a href="E195.html#E1B5">$E1B5</a></td>
+<td class="comment-1" rowspan="1">branch if not immediate mode</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1A7"></span>E1A7</td>
+<td class="bytes">86 2D</td>
+<td class="instruction">STX $2D</td>
+<td class="comment-1" rowspan="1">set start of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1A9"></span>E1A9</td>
+<td class="bytes">84 2E</td>
+<td class="instruction">STY $2E</td>
+<td class="comment-1" rowspan="1">set start of variables high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1AB"></span>E1AB</td>
+<td class="bytes">A9 76</td>
+<td class="instruction">LDA #$76</td>
+<td class="comment-1" rowspan="1">set "READY." pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1AD"></span>E1AD</td>
+<td class="bytes">A0 A3</td>
+<td class="instruction">LDY #$A3</td>
+<td class="comment-1" rowspan="1">set "READY." pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1AF"></span>E1AF</td>
+<td class="bytes">20 1E AB</td>
+<td class="instruction">JSR <a href="AB1E.html">$AB1E</a></td>
+<td class="comment-1" rowspan="1">print null terminated string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1B2"></span>E1B2</td>
+<td class="bytes">4C 2A A5</td>
+<td class="instruction">JMP <a href="A49C.html#A52A">$A52A</a></td>
+<td class="comment-1" rowspan="1">reset execution, clear variables, flush stack, rebuild BASIC chain and do warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E1B5"></span>E1B5</td>
+<td class="bytes">20 8E A6</td>
+<td class="instruction">JSR <a href="A68E.html">$A68E</a></td>
+<td class="comment-1" rowspan="1">set BASIC execute pointer to start of memory - 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1B8"></span>E1B8</td>
+<td class="bytes">20 33 A5</td>
+<td class="instruction">JSR <a href="A533.html">$A533</a></td>
+<td class="comment-1" rowspan="1">rebuild BASIC line chaining</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E1BB"></span>E1BB</td>
+<td class="bytes">4C 77 A6</td>
+<td class="instruction">JMP <a href="A677.html">$A677</a></td>
+<td class="comment-1" rowspan="1">rebuild BASIC line chaining, do RESTORE and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E168.html">E168</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E195">Map</a></td>
+<td class="next">
+Next: <a href="E1BE.html">E1BE</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

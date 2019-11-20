@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E156</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E12A.html">E12A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E156">Map</a></td>
+<td class="next">
+Next: <a href="E165.html">E165</a>
+</td>
+</tr>
+</table>
+<div class="description">E156: perform SAVE</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E156"></span>E156</td>
+<td class="bytes">20 D4 E1</td>
+<td class="instruction">JSR <a href="E1D4.html">$E1D4</a></td>
+<td class="comment-1" rowspan="1">get parameters for LOAD/SAVE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E159"></span>E159</td>
+<td class="bytes">A6 2D</td>
+<td class="instruction">LDX $2D</td>
+<td class="comment-1" rowspan="1">get start of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E15B"></span>E15B</td>
+<td class="bytes">A4 2E</td>
+<td class="instruction">LDY $2E</td>
+<td class="comment-1" rowspan="1">get start of variables high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E15D"></span>E15D</td>
+<td class="bytes">A9 2B</td>
+<td class="instruction">LDA #$2B</td>
+<td class="comment-1" rowspan="1">index to start of program memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E15F"></span>E15F</td>
+<td class="bytes">20 D8 FF</td>
+<td class="instruction">JSR <a href="FFD8.html">$FFD8</a></td>
+<td class="comment-1" rowspan="1">save RAM to device, <span class="register">A</span> = index to start address, <span class="register">XY</span> = end address low/high</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E162"></span>E162</td>
+<td class="bytes">B0 95</td>
+<td class="instruction">BCS <a href="E0F9.html">$E0F9</a></td>
+<td class="comment-1" rowspan="1">if error go handle BASIC I/O error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E164"></span>E164</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E12A.html">E12A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E156">Map</a></td>
+<td class="next">
+Next: <a href="E165.html">E165</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

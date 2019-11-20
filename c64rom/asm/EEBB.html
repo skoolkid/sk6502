@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EEBB</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EEB3.html">EEB3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EEBB">Map</a></td>
+<td class="next">
+Next: <a href="EED7.html">EED7</a>
+</td>
+</tr>
+</table>
+<div class="description">EEBB: RS232 Tx NMI routine</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="FE72.html">FE72</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EEBB"></span>EEBB</td>
+<td class="bytes">A5 B4</td>
+<td class="instruction">LDA $B4</td>
+<td class="comment-1" rowspan="1">get RS232 bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEBD"></span>EEBD</td>
+<td class="bytes">F0 47</td>
+<td class="instruction">BEQ <a href="EF06.html">$EF06</a></td>
+<td class="comment-1" rowspan="1">if zero go setup next RS232 Tx byte and return</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEBF"></span>EEBF</td>
+<td class="bytes">30 3F</td>
+<td class="instruction">BMI <a href="EED7.html#EF00">$EF00</a></td>
+<td class="comment-1" rowspan="1">if -ve go do stop bit(s)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EEC1"></span>
+<div class="comments">
+<div class="paragraph">
+else bit count is non zero and +ve
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEC1"></span>EEC1</td>
+<td class="bytes">46 B6</td>
+<td class="instruction">LSR $B6</td>
+<td class="comment-1" rowspan="1">shift RS232 output byte buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEC3"></span>EEC3</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">set $00 for bit = 0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEC5"></span>EEC5</td>
+<td class="bytes">90 01</td>
+<td class="instruction">BCC <a href="EEBB.html#EEC8">$EEC8</a></td>
+<td class="comment-1" rowspan="1">branch if bit was 0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEC7"></span>EEC7</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">set $FF for bit = 1</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EEC8"></span>EEC8</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy bit to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEC9"></span>EEC9</td>
+<td class="bytes">45 BD</td>
+<td class="instruction">EOR $BD</td>
+<td class="comment-1" rowspan="1">EOR with RS232 parity byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EECB"></span>EECB</td>
+<td class="bytes">85 BD</td>
+<td class="instruction">STA $BD</td>
+<td class="comment-1" rowspan="1">save RS232 parity byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EECD"></span>EECD</td>
+<td class="bytes">C6 B4</td>
+<td class="instruction">DEC $B4</td>
+<td class="comment-1" rowspan="1">decrement RS232 bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EECF"></span>EECF</td>
+<td class="bytes">F0 06</td>
+<td class="instruction">BEQ <a href="EED7.html">$EED7</a></td>
+<td class="comment-1" rowspan="1">if RS232 bit count now zero go do parity bit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EED1"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="EED7.html">EED7</a>.
+</div>
+<div class="paragraph">
+save bit and exit
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EED1"></span>EED1</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy bit to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EED2"></span>EED2</td>
+<td class="bytes">29 04</td>
+<td class="instruction">AND #%00000100</td>
+<td class="comment-1" rowspan="1">mask 0000 0x00, RS232 Tx DATA bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EED4"></span>EED4</td>
+<td class="bytes">85 B5</td>
+<td class="instruction">STA $B5</td>
+<td class="comment-1" rowspan="1">save the next RS232 data bit to send</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EED6"></span>EED6</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EEB3.html">EEB3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EEBB">Map</a></td>
+<td class="next">
+Next: <a href="EED7.html">EED7</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

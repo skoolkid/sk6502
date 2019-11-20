@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F086</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F04D.html">F04D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F086">Map</a></td>
+<td class="next">
+Next: <a href="F0A4.html">F0A4</a>
+</td>
+</tr>
+</table>
+<div class="description">F086: get byte from RS232 buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F13E.html">F13E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F086"></span>F086</td>
+<td class="bytes">AD 97 02</td>
+<td class="instruction">LDA $0297</td>
+<td class="comment-1" rowspan="1">get the RS232 status register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F089"></span>F089</td>
+<td class="bytes">AC 9C 02</td>
+<td class="instruction">LDY $029C</td>
+<td class="comment-1" rowspan="1">get index to Rx buffer start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F08C"></span>F08C</td>
+<td class="bytes">CC 9B 02</td>
+<td class="instruction">CPY $029B</td>
+<td class="comment-1" rowspan="1">compare with index to Rx buffer end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F08F"></span>F08F</td>
+<td class="bytes">F0 0B</td>
+<td class="instruction">BEQ <a href="F086.html#F09C">$F09C</a></td>
+<td class="comment-1" rowspan="1">return null if buffer empty</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F091"></span>F091</td>
+<td class="bytes">29 F7</td>
+<td class="instruction">AND #$F7</td>
+<td class="comment-1" rowspan="1">clear the Rx buffer empty bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F093"></span>F093</td>
+<td class="bytes">8D 97 02</td>
+<td class="instruction">STA $0297</td>
+<td class="comment-1" rowspan="1">save the RS232 status register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F096"></span>F096</td>
+<td class="bytes">B1 F7</td>
+<td class="instruction">LDA ($F7),Y</td>
+<td class="comment-1" rowspan="1">get byte from Rx buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F098"></span>F098</td>
+<td class="bytes">EE 9C 02</td>
+<td class="instruction">INC $029C</td>
+<td class="comment-1" rowspan="1">increment index to Rx buffer start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F09B"></span>F09B</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F09C"></span>F09C</td>
+<td class="bytes">09 08</td>
+<td class="instruction">ORA #$08</td>
+<td class="comment-1" rowspan="1">set the Rx buffer empty bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F09E"></span>F09E</td>
+<td class="bytes">8D 97 02</td>
+<td class="instruction">STA $0297</td>
+<td class="comment-1" rowspan="1">save the RS232 status register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F0A1"></span>F0A1</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">return null</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F0A3"></span>F0A3</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F04D.html">F04D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F086">Map</a></td>
+<td class="next">
+Next: <a href="F0A4.html">F0A4</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

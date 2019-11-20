@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E26B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E264.html">E264</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E26B">Map</a></td>
+<td class="next">
+Next: <a href="E2B4.html">E2B4</a>
+</td>
+</tr>
+</table>
+<div class="description">E26B: perform SIN()</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E2B4.html">E2B4</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E26B"></span>E26B</td>
+<td class="bytes">20 0C BC</td>
+<td class="instruction">JSR <a href="BC0C.html">$BC0C</a></td>
+<td class="comment-1" rowspan="1">round and copy FAC1 to FAC2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E26E"></span>E26E</td>
+<td class="bytes">A9 E5</td>
+<td class="instruction">LDA #$E5</td>
+<td class="comment-1" rowspan="1">set 2*pi pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E270"></span>E270</td>
+<td class="bytes">A0 E2</td>
+<td class="instruction">LDY #$E2</td>
+<td class="comment-1" rowspan="1">set 2*pi pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E272"></span>E272</td>
+<td class="bytes">A6 6E</td>
+<td class="instruction">LDX $6E</td>
+<td class="comment-1" rowspan="1">get FAC2 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E274"></span>E274</td>
+<td class="bytes">20 07 BB</td>
+<td class="instruction">JSR <a href="BB07.html">$BB07</a></td>
+<td class="comment-1" rowspan="1">divide by (<span class="register">AY</span>) (<span class="register">X</span>=sign)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E277"></span>E277</td>
+<td class="bytes">20 0C BC</td>
+<td class="instruction">JSR <a href="BC0C.html">$BC0C</a></td>
+<td class="comment-1" rowspan="1">round and copy FAC1 to FAC2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E27A"></span>E27A</td>
+<td class="bytes">20 CC BC</td>
+<td class="instruction">JSR <a href="BCCC.html">$BCCC</a></td>
+<td class="comment-1" rowspan="1">perform INT()</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E27D"></span>E27D</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E27F"></span>E27F</td>
+<td class="bytes">85 6F</td>
+<td class="instruction">STA $6F</td>
+<td class="comment-1" rowspan="1">clear sign compare (FAC1 EOR FAC2)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E281"></span>E281</td>
+<td class="bytes">20 53 B8</td>
+<td class="instruction">JSR <a href="B853.html">$B853</a></td>
+<td class="comment-1" rowspan="1">perform subtraction, FAC2 from FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E284"></span>E284</td>
+<td class="bytes">A9 EA</td>
+<td class="instruction">LDA #$EA</td>
+<td class="comment-1" rowspan="1">set 0.25 pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E286"></span>E286</td>
+<td class="bytes">A0 E2</td>
+<td class="instruction">LDY #$E2</td>
+<td class="comment-1" rowspan="1">set 0.25 pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E288"></span>E288</td>
+<td class="bytes">20 50 B8</td>
+<td class="instruction">JSR <a href="B850.html">$B850</a></td>
+<td class="comment-1" rowspan="1">perform subtraction, FAC1 from (<span class="register">AY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E28B"></span>E28B</td>
+<td class="bytes">A5 66</td>
+<td class="instruction">LDA $66</td>
+<td class="comment-1" rowspan="1">get FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E28D"></span>E28D</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save FAC1 sign</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E28E"></span>E28E</td>
+<td class="bytes">10 0D</td>
+<td class="instruction">BPL <a href="E26B.html#E29D">$E29D</a></td>
+<td class="comment-1" rowspan="1">branch if +ve</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E290"></span>
+<div class="comments">
+<div class="paragraph">
+FAC1 sign was -ve
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E290"></span>E290</td>
+<td class="bytes">20 49 B8</td>
+<td class="instruction">JSR <a href="B849.html">$B849</a></td>
+<td class="comment-1" rowspan="1">add 0.5 to FAC1 (round FAC1)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E293"></span>E293</td>
+<td class="bytes">A5 66</td>
+<td class="instruction">LDA $66</td>
+<td class="comment-1" rowspan="1">get FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E295"></span>E295</td>
+<td class="bytes">30 09</td>
+<td class="instruction">BMI <a href="E26B.html#E2A0">$E2A0</a></td>
+<td class="comment-1" rowspan="1">branch if -ve</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E297"></span>E297</td>
+<td class="bytes">A5 12</td>
+<td class="instruction">LDA $12</td>
+<td class="comment-1" rowspan="1">get the comparison evaluation flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E299"></span>E299</td>
+<td class="bytes">49 FF</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">toggle flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E29B"></span>E29B</td>
+<td class="bytes">85 12</td>
+<td class="instruction">STA $12</td>
+<td class="comment-1" rowspan="1">save the comparison evaluation flag</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E29D"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E2DC.html">E2DC</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E29D"></span>E29D</td>
+<td class="bytes">20 B4 BF</td>
+<td class="instruction">JSR <a href="BF7B.html#BFB4">$BFB4</a></td>
+<td class="comment-1" rowspan="1">do - FAC1</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E2A0"></span>E2A0</td>
+<td class="bytes">A9 EA</td>
+<td class="instruction">LDA #$EA</td>
+<td class="comment-1" rowspan="1">set 0.25 pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2A2"></span>E2A2</td>
+<td class="bytes">A0 E2</td>
+<td class="instruction">LDY #$E2</td>
+<td class="comment-1" rowspan="1">set 0.25 pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2A4"></span>E2A4</td>
+<td class="bytes">20 67 B8</td>
+<td class="instruction">JSR <a href="B862.html#B867">$B867</a></td>
+<td class="comment-1" rowspan="1">add (<span class="register">AY</span>) to FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2A7"></span>E2A7</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore FAC1 sign</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2A8"></span>E2A8</td>
+<td class="bytes">10 03</td>
+<td class="instruction">BPL <a href="E26B.html#E2AD">$E2AD</a></td>
+<td class="comment-1" rowspan="1">branch if was +ve</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E2AA"></span>
+<div class="comments">
+<div class="paragraph">
+else correct FAC1
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2AA"></span>E2AA</td>
+<td class="bytes">20 B4 BF</td>
+<td class="instruction">JSR <a href="BF7B.html#BFB4">$BFB4</a></td>
+<td class="comment-1" rowspan="1">do - FAC1</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E2AD"></span>E2AD</td>
+<td class="bytes">A9 EF</td>
+<td class="instruction">LDA #$EF</td>
+<td class="comment-1" rowspan="1">set pointer low byte to counter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2AF"></span>E2AF</td>
+<td class="bytes">A0 E2</td>
+<td class="instruction">LDY #$E2</td>
+<td class="comment-1" rowspan="1">set pointer high byte to counter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2B1"></span>E2B1</td>
+<td class="bytes">4C 43 E0</td>
+<td class="instruction">JMP <a href="E043.html">$E043</a></td>
+<td class="comment-1" rowspan="1">^2 then series evaluation and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E264.html">E264</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E26B">Map</a></td>
+<td class="next">
+Next: <a href="E2B4.html">E2B4</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

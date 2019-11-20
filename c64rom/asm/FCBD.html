@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FCBD</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FCB8.html">FCB8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FCBD">Map</a></td>
+<td class="next">
+Next: <a href="FCCA.html">FCCA</a>
+</td>
+</tr>
+</table>
+<div class="description">FCBD: set tape vector</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="F875.html">F875</a>, <a href="FBCD.html">FBCD</a> and <a href="FC6A.html">FC6A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FCBD"></span>FCBD</td>
+<td class="bytes">BD 93 FD</td>
+<td class="instruction">LDA $FD93,X</td>
+<td class="comment-1" rowspan="1">get tape IRQ vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCC0"></span>FCC0</td>
+<td class="bytes">8D 14 03</td>
+<td class="instruction">STA $0314</td>
+<td class="comment-1" rowspan="1">set IRQ vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCC3"></span>FCC3</td>
+<td class="bytes">BD 94 FD</td>
+<td class="instruction">LDA $FD94,X</td>
+<td class="comment-1" rowspan="1">get tape IRQ vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCC6"></span>FCC6</td>
+<td class="bytes">8D 15 03</td>
+<td class="instruction">STA $0315</td>
+<td class="comment-1" rowspan="1">set IRQ vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCC9"></span>FCC9</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FCB8.html">FCB8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FCBD">Map</a></td>
+<td class="next">
+Next: <a href="FCCA.html">FCCA</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

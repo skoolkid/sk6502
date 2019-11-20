@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A49C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A483.html">A483</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A49C">Map</a></td>
+<td class="next">
+Next: <a href="A533.html">A533</a>
+</td>
+</tr>
+</table>
+<div class="description">A49C: handle new BASIC line</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="A483.html">A483</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A49C"></span>A49C</td>
+<td class="bytes">20 6B A9</td>
+<td class="instruction">JSR <a href="A96B.html">$A96B</a></td>
+<td class="comment-1" rowspan="1">get fixed-point number into temporary integer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A49F"></span>A49F</td>
+<td class="bytes">20 79 A5</td>
+<td class="instruction">JSR <a href="A579.html">$A579</a></td>
+<td class="comment-1" rowspan="1">crunch keywords into BASIC tokens</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4A2"></span>A4A2</td>
+<td class="bytes">84 0B</td>
+<td class="instruction">STY $0B</td>
+<td class="comment-1" rowspan="1">save index pointer to end of crunched line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4A4"></span>A4A4</td>
+<td class="bytes">20 13 A6</td>
+<td class="instruction">JSR <a href="A613.html">$A613</a></td>
+<td class="comment-1" rowspan="1">search BASIC for temporary integer line number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4A7"></span>A4A7</td>
+<td class="bytes">90 44</td>
+<td class="instruction">BCC <a href="A49C.html#A4ED">$A4ED</a></td>
+<td class="comment-1" rowspan="1">if not found skip the line delete</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A4A9"></span>
+<div class="comments">
+<div class="paragraph">
+line # already exists so delete it
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4A9"></span>A4A9</td>
+<td class="bytes">A0 01</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="1">set index to next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4AB"></span>A4AB</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4AD"></span>A4AD</td>
+<td class="bytes">85 23</td>
+<td class="instruction">STA $23</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4AF"></span>A4AF</td>
+<td class="bytes">A5 2D</td>
+<td class="instruction">LDA $2D</td>
+<td class="comment-1" rowspan="1">get start of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4B1"></span>A4B1</td>
+<td class="bytes">85 22</td>
+<td class="instruction">STA $22</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4B3"></span>A4B3</td>
+<td class="bytes">A5 60</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">get found line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4B5"></span>A4B5</td>
+<td class="bytes">85 25</td>
+<td class="instruction">STA $25</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4B7"></span>A4B7</td>
+<td class="bytes">A5 5F</td>
+<td class="instruction">LDA $5F</td>
+<td class="comment-1" rowspan="1">get found line pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4B9"></span>A4B9</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4BA"></span>A4BA</td>
+<td class="bytes">F1 5F</td>
+<td class="instruction">SBC ($5F),Y</td>
+<td class="comment-1" rowspan="1">subtract next line pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4BC"></span>A4BC</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4BD"></span>A4BD</td>
+<td class="bytes">65 2D</td>
+<td class="instruction">ADC $2D</td>
+<td class="comment-1" rowspan="1">add start of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4BF"></span>A4BF</td>
+<td class="bytes">85 2D</td>
+<td class="instruction">STA $2D</td>
+<td class="comment-1" rowspan="1">set start of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4C1"></span>A4C1</td>
+<td class="bytes">85 24</td>
+<td class="instruction">STA $24</td>
+<td class="comment-1" rowspan="1">save destination pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4C3"></span>A4C3</td>
+<td class="bytes">A5 2E</td>
+<td class="instruction">LDA $2E</td>
+<td class="comment-1" rowspan="1">get start of variables high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4C5"></span>A4C5</td>
+<td class="bytes">69 FF</td>
+<td class="instruction">ADC #$FF</td>
+<td class="comment-1" rowspan="1">-1 + carry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4C7"></span>A4C7</td>
+<td class="bytes">85 2E</td>
+<td class="instruction">STA $2E</td>
+<td class="comment-1" rowspan="1">set start of variables high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4C9"></span>A4C9</td>
+<td class="bytes">E5 60</td>
+<td class="instruction">SBC $60</td>
+<td class="comment-1" rowspan="1">subtract found line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4CB"></span>A4CB</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy to block count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4CC"></span>A4CC</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4CD"></span>A4CD</td>
+<td class="bytes">A5 5F</td>
+<td class="instruction">LDA $5F</td>
+<td class="comment-1" rowspan="1">get found line pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4CF"></span>A4CF</td>
+<td class="bytes">E5 2D</td>
+<td class="instruction">SBC $2D</td>
+<td class="comment-1" rowspan="1">subtract start of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4D1"></span>A4D1</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy to bytes in first block count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4D2"></span>A4D2</td>
+<td class="bytes">B0 03</td>
+<td class="instruction">BCS <a href="A49C.html#A4D7">$A4D7</a></td>
+<td class="comment-1" rowspan="1">branch if no underflow</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4D4"></span>A4D4</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment block count, correct for = 0 loop exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4D5"></span>A4D5</td>
+<td class="bytes">C6 25</td>
+<td class="instruction">DEC $25</td>
+<td class="comment-1" rowspan="1">decrement destination high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A4D7"></span>A4D7</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4D8"></span>A4D8</td>
+<td class="bytes">65 22</td>
+<td class="instruction">ADC $22</td>
+<td class="comment-1" rowspan="1">add source pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4DA"></span>A4DA</td>
+<td class="bytes">90 03</td>
+<td class="instruction">BCC <a href="A49C.html#A4DF">$A4DF</a></td>
+<td class="comment-1" rowspan="1">branch if no overflow</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4DC"></span>A4DC</td>
+<td class="bytes">C6 23</td>
+<td class="instruction">DEC $23</td>
+<td class="comment-1" rowspan="1">else decrement source pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4DE"></span>A4DE</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A4DF"></span>
+<div class="comments">
+<div class="paragraph">
+close up memory to delete old line
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A4DF"></span>A4DF</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get byte from source</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4E1"></span>A4E1</td>
+<td class="bytes">91 24</td>
+<td class="instruction">STA ($24),Y</td>
+<td class="comment-1" rowspan="1">copy to destination</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4E3"></span>A4E3</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4E4"></span>A4E4</td>
+<td class="bytes">D0 F9</td>
+<td class="instruction">BNE <a href="A49C.html#A4DF">$A4DF</a></td>
+<td class="comment-1" rowspan="1">while &lt;&gt; 0 do this block</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4E6"></span>A4E6</td>
+<td class="bytes">E6 23</td>
+<td class="instruction">INC $23</td>
+<td class="comment-1" rowspan="1">increment source pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4E8"></span>A4E8</td>
+<td class="bytes">E6 25</td>
+<td class="instruction">INC $25</td>
+<td class="comment-1" rowspan="1">increment destination pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4EA"></span>A4EA</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement block count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4EB"></span>A4EB</td>
+<td class="bytes">D0 F2</td>
+<td class="instruction">BNE <a href="A49C.html#A4DF">$A4DF</a></td>
+<td class="comment-1" rowspan="1">loop until all done</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A4ED"></span>
+<div class="comments">
+<div class="paragraph">
+got new line in buffer and no existing same #
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A4ED"></span>A4ED</td>
+<td class="bytes">20 59 A6</td>
+<td class="instruction">JSR <a href="A659.html">$A659</a></td>
+<td class="comment-1" rowspan="1">reset execution to start, clear variables, flush stack and return</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4F0"></span>A4F0</td>
+<td class="bytes">20 33 A5</td>
+<td class="instruction">JSR <a href="A533.html">$A533</a></td>
+<td class="comment-1" rowspan="1">rebuild BASIC line chaining</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4F3"></span>A4F3</td>
+<td class="bytes">AD 00 02</td>
+<td class="instruction">LDA $0200</td>
+<td class="comment-1" rowspan="1">get first byte from buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4F6"></span>A4F6</td>
+<td class="bytes">F0 88</td>
+<td class="instruction">BEQ <a href="A474.html#A480">$A480</a></td>
+<td class="comment-1" rowspan="1">if no line go do BASIC warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A4F8"></span>
+<div class="comments">
+<div class="paragraph">
+else insert line into memory
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4F8"></span>A4F8</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4F9"></span>A4F9</td>
+<td class="bytes">A5 2D</td>
+<td class="instruction">LDA $2D</td>
+<td class="comment-1" rowspan="1">get start of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4FB"></span>A4FB</td>
+<td class="bytes">85 5A</td>
+<td class="instruction">STA $5A</td>
+<td class="comment-1" rowspan="1">save as source end pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4FD"></span>A4FD</td>
+<td class="bytes">65 0B</td>
+<td class="instruction">ADC $0B</td>
+<td class="comment-1" rowspan="1">add index pointer to end of crunched line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A4FF"></span>A4FF</td>
+<td class="bytes">85 58</td>
+<td class="instruction">STA $58</td>
+<td class="comment-1" rowspan="1">save as destination end pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A501"></span>A501</td>
+<td class="bytes">A4 2E</td>
+<td class="instruction">LDY $2E</td>
+<td class="comment-1" rowspan="1">get start of variables high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A503"></span>A503</td>
+<td class="bytes">84 5B</td>
+<td class="instruction">STY $5B</td>
+<td class="comment-1" rowspan="1">save as source end pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A505"></span>A505</td>
+<td class="bytes">90 01</td>
+<td class="instruction">BCC <a href="A49C.html#A508">$A508</a></td>
+<td class="comment-1" rowspan="1">branch if no carry to high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A507"></span>A507</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">else increment high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A508"></span>A508</td>
+<td class="bytes">84 59</td>
+<td class="instruction">STY $59</td>
+<td class="comment-1" rowspan="1">save as destination end pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A50A"></span>A50A</td>
+<td class="bytes">20 B8 A3</td>
+<td class="instruction">JSR <a href="A3B8.html">$A3B8</a></td>
+<td class="comment-1" rowspan="1">open up space in memory</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A50D"></span>
+<div class="comments">
+<div class="paragraph">
+most of what remains to do is copy the crunched line into the space opened up in memory, however, before the crunched line comes the next line pointer and the line number. the line number is retrieved from the temporary integer and stored in memory, this overwrites the bottom two bytes on the stack. next the line is copied and the next line pointer is filled with whatever was in two bytes above the line number in the stack. this is ok because the line pointer gets fixed in the line chain re-build.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A50D"></span>A50D</td>
+<td class="bytes">A5 14</td>
+<td class="instruction">LDA $14</td>
+<td class="comment-1" rowspan="1">get line number low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A50F"></span>A50F</td>
+<td class="bytes">A4 15</td>
+<td class="instruction">LDY $15</td>
+<td class="comment-1" rowspan="1">get line number high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A511"></span>A511</td>
+<td class="bytes">8D FE 01</td>
+<td class="instruction">STA $01FE</td>
+<td class="comment-1" rowspan="1">save line number low byte before crunched line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A514"></span>A514</td>
+<td class="bytes">8C FF 01</td>
+<td class="instruction">STY $01FF</td>
+<td class="comment-1" rowspan="1">save line number high byte before crunched line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A517"></span>A517</td>
+<td class="bytes">A5 31</td>
+<td class="instruction">LDA $31</td>
+<td class="comment-1" rowspan="1">get end of arrays low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A519"></span>A519</td>
+<td class="bytes">A4 32</td>
+<td class="instruction">LDY $32</td>
+<td class="comment-1" rowspan="1">get end of arrays high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A51B"></span>A51B</td>
+<td class="bytes">85 2D</td>
+<td class="instruction">STA $2D</td>
+<td class="comment-1" rowspan="1">set start of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A51D"></span>A51D</td>
+<td class="bytes">84 2E</td>
+<td class="instruction">STY $2E</td>
+<td class="comment-1" rowspan="1">set start of variables high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A51F"></span>A51F</td>
+<td class="bytes">A4 0B</td>
+<td class="instruction">LDY $0B</td>
+<td class="comment-1" rowspan="1">get index to end of crunched line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A521"></span>A521</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">-1</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A522"></span>A522</td>
+<td class="bytes">B9 FC 01</td>
+<td class="instruction">LDA $01FC,Y</td>
+<td class="comment-1" rowspan="1">get byte from crunched line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A525"></span>A525</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">save byte to memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A527"></span>A527</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A528"></span>A528</td>
+<td class="bytes">10 F8</td>
+<td class="instruction">BPL <a href="A49C.html#A522">$A522</a></td>
+<td class="comment-1" rowspan="1">loop while more to do</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A52A"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E195.html">E195</a>.
+</div>
+<div class="paragraph">
+reset execution, clear variables, flush stack, rebuild BASIC chain and do warm start
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A52A"></span>A52A</td>
+<td class="bytes">20 59 A6</td>
+<td class="instruction">JSR <a href="A659.html">$A659</a></td>
+<td class="comment-1" rowspan="1">reset execution to start, clear variables and flush stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A52D"></span>A52D</td>
+<td class="bytes">20 33 A5</td>
+<td class="instruction">JSR <a href="A533.html">$A533</a></td>
+<td class="comment-1" rowspan="1">rebuild BASIC line chaining</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A530"></span>A530</td>
+<td class="bytes">4C 80 A4</td>
+<td class="instruction">JMP <a href="A474.html#A480">$A480</a></td>
+<td class="comment-1" rowspan="1">go do BASIC warm start</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A483.html">A483</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A49C">Map</a></td>
+<td class="next">
+Next: <a href="A533.html">A533</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

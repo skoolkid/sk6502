@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F7EA</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F7D7.html">F7D7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F7EA">Map</a></td>
+<td class="next">
+Next: <a href="F80D.html">F80D</a>
+</td>
+</tr>
+</table>
+<div class="description">F7EA: find specific tape header</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="F34A.html">F34A</a> and <a href="F533.html">F533</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F7EA"></span>F7EA</td>
+<td class="bytes">20 2C F7</td>
+<td class="instruction">JSR <a href="F72C.html">$F72C</a></td>
+<td class="comment-1" rowspan="1">find tape header, exit with header in buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F7ED"></span>F7ED</td>
+<td class="bytes">B0 1D</td>
+<td class="instruction">BCS <a href="F7EA.html#F80C">$F80C</a></td>
+<td class="comment-1" rowspan="1">just exit if error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F7EF"></span>F7EF</td>
+<td class="bytes">A0 05</td>
+<td class="instruction">LDY #$05</td>
+<td class="comment-1" rowspan="1">index to name</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F7F1"></span>F7F1</td>
+<td class="bytes">84 9F</td>
+<td class="instruction">STY $9F</td>
+<td class="comment-1" rowspan="1">save as tape buffer index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F7F3"></span>F7F3</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F7F5"></span>F7F5</td>
+<td class="bytes">84 9E</td>
+<td class="instruction">STY $9E</td>
+<td class="comment-1" rowspan="1">save as name buffer index</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F7F7"></span>F7F7</td>
+<td class="bytes">C4 B7</td>
+<td class="instruction">CPY $B7</td>
+<td class="comment-1" rowspan="1">compare with file name length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F7F9"></span>F7F9</td>
+<td class="bytes">F0 10</td>
+<td class="instruction">BEQ <a href="F7EA.html#F80B">$F80B</a></td>
+<td class="comment-1" rowspan="1">ok exit if match</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F7FB"></span>F7FB</td>
+<td class="bytes">B1 BB</td>
+<td class="instruction">LDA ($BB),Y</td>
+<td class="comment-1" rowspan="1">get file name byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F7FD"></span>F7FD</td>
+<td class="bytes">A4 9F</td>
+<td class="instruction">LDY $9F</td>
+<td class="comment-1" rowspan="1">get index to tape buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F7FF"></span>F7FF</td>
+<td class="bytes">D1 B2</td>
+<td class="instruction">CMP ($B2),Y</td>
+<td class="comment-1" rowspan="1">compare with tape header name byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F801"></span>F801</td>
+<td class="bytes">D0 E7</td>
+<td class="instruction">BNE <a href="F7EA.html#F7EA">$F7EA</a></td>
+<td class="comment-1" rowspan="1">if no match go get next header</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F803"></span>F803</td>
+<td class="bytes">E6 9E</td>
+<td class="instruction">INC $9E</td>
+<td class="comment-1" rowspan="1">else increment name buffer index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F805"></span>F805</td>
+<td class="bytes">E6 9F</td>
+<td class="instruction">INC $9F</td>
+<td class="comment-1" rowspan="1">increment tape buffer index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F807"></span>F807</td>
+<td class="bytes">A4 9E</td>
+<td class="instruction">LDY $9E</td>
+<td class="comment-1" rowspan="1">get name buffer index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F809"></span>F809</td>
+<td class="bytes">D0 EC</td>
+<td class="instruction">BNE <a href="F7EA.html#F7F7">$F7F7</a></td>
+<td class="comment-1" rowspan="1">loop, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F80B"></span>F80B</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">flag ok</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F80C"></span>F80C</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F7D7.html">F7D7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F7EA">Map</a></td>
+<td class="next">
+Next: <a href="F80D.html">F80D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

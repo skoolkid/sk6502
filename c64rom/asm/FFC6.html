@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FFC6</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFC3.html">FFC3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFC6">Map</a></td>
+<td class="next">
+Next: <a href="FFC9.html">FFC9</a>
+</td>
+</tr>
+</table>
+<div class="description">FFC6: open channel for input</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E11E.html">E11E</a>.
+</div>
+<div class="paragraph">
+any logical file that has already been opened by the OPEN routine, <a href="FFC0.html">FFC0</a>, can be defined as an input channel by this routine. the device on the channel must be an input device or an error will occur and the routine will abort.
+</div>
+<div class="paragraph">
+if you are getting data from anywhere other than the keyboard, this routine must be called before using either the CHRIN routine, <a href="FFCF.html">FFCF</a>, or the GETIN routine, <a href="FFE4.html">FFE4</a>. if you are getting data from the keyboard and no other input channels are open then the calls to this routine and to the OPEN routine, <a href="FFC0.html">FFC0</a>, are not needed.
+</div>
+<div class="paragraph">
+when used with a device on the serial bus this routine will automatically send the listen address specified by the OPEN routine, <a href="FFC0.html">FFC0</a>, and any secondary address.
+</div>
+<div class="paragraph">
+possible errors are:
+</div>
+<div class="paragraph">
+<ul class="">
+<li>3 : file not open</li>
+<li>5 : device not present</li>
+<li>6 : file is not an input file</li>
+</ul>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FFC6"></span>FFC6</td>
+<td class="bytes">6C 1E 03</td>
+<td class="instruction">JMP ($031E)</td>
+<td class="comment-1" rowspan="1">do open channel for input</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFC3.html">FFC3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFC6">Map</a></td>
+<td class="next">
+Next: <a href="FFC9.html">FFC9</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

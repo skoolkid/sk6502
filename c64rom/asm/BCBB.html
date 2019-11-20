@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BCBB</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BC9B.html">BC9B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BCBB">Map</a></td>
+<td class="next">
+Next: <a href="BCCC.html">BCCC</a>
+</td>
+</tr>
+</table>
+<div class="description">BCBB: shift FAC1 <span class="register">A</span> times right</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="BC9B.html">BC9B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BCBB"></span>BCBB</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy shift count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCBC"></span>BCBC</td>
+<td class="bytes">A5 66</td>
+<td class="instruction">LDA $66</td>
+<td class="comment-1" rowspan="1">get FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCBE"></span>BCBE</td>
+<td class="bytes">29 80</td>
+<td class="instruction">AND #%10000000</td>
+<td class="comment-1" rowspan="1">mask sign bit only (x000 0000)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCC0"></span>BCC0</td>
+<td class="bytes">46 62</td>
+<td class="instruction">LSR $62</td>
+<td class="comment-1" rowspan="1">shift FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCC2"></span>BCC2</td>
+<td class="bytes">05 62</td>
+<td class="instruction">ORA $62</td>
+<td class="comment-1" rowspan="1">OR sign in b7 FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCC4"></span>BCC4</td>
+<td class="bytes">85 62</td>
+<td class="instruction">STA $62</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCC6"></span>BCC6</td>
+<td class="bytes">20 B0 B9</td>
+<td class="instruction">JSR <a href="B983.html#B9B0">$B9B0</a></td>
+<td class="comment-1" rowspan="1">shift FAC1 <span class="register">Y</span> times right</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCC9"></span>BCC9</td>
+<td class="bytes">84 68</td>
+<td class="instruction">STY $68</td>
+<td class="comment-1" rowspan="1">clear FAC1 overflow byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCCB"></span>BCCB</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BC9B.html">BC9B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BCBB">Map</a></td>
+<td class="next">
+Next: <a href="BCCC.html">BCCC</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

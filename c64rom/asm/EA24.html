@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EA24</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EA1C.html">EA1C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EA24">Map</a></td>
+<td class="next">
+Next: <a href="EA31.html">EA31</a>
+</td>
+</tr>
+</table>
+<div class="description">EA24: calculate the pointer to colour RAM</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="E56C.html">E56C</a>, <a href="E716.html">E716</a>, <a href="E9E0.html">E9E0</a>, <a href="E9FF.html">E9FF</a>, <a href="EA13.html">EA13</a> and <a href="EA31.html">EA31</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EA24"></span>EA24</td>
+<td class="bytes">A5 D1</td>
+<td class="instruction">LDA $D1</td>
+<td class="comment-1" rowspan="1">get current screen line pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA26"></span>EA26</td>
+<td class="bytes">85 F3</td>
+<td class="instruction">STA $F3</td>
+<td class="comment-1" rowspan="1">save pointer to colour RAM low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA28"></span>EA28</td>
+<td class="bytes">A5 D2</td>
+<td class="instruction">LDA $D2</td>
+<td class="comment-1" rowspan="1">get current screen line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA2A"></span>EA2A</td>
+<td class="bytes">29 03</td>
+<td class="instruction">AND #%00000011</td>
+<td class="comment-1" rowspan="1">mask 0000 00xx, line memory page</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA2C"></span>EA2C</td>
+<td class="bytes">09 D8</td>
+<td class="instruction">ORA #%11011000</td>
+<td class="comment-1" rowspan="1">set 1101 10xx, colour memory page</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA2E"></span>EA2E</td>
+<td class="bytes">85 F4</td>
+<td class="instruction">STA $F4</td>
+<td class="comment-1" rowspan="1">save pointer to colour RAM high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA30"></span>EA30</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EA1C.html">EA1C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EA24">Map</a></td>
+<td class="next">
+Next: <a href="EA31.html">EA31</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

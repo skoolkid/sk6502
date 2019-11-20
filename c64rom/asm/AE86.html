@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AE86</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AE83.html">AE83</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AE86">Map</a></td>
+<td class="next">
+Next: <a href="AF14.html">AF14</a>
+</td>
+</tr>
+</table>
+<div class="description">AE86: get arithmetic element</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+the get arithmetic element vector is initialised to point here
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE86"></span>AE86</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE88"></span>AE88</td>
+<td class="bytes">85 0D</td>
+<td class="instruction">STA $0D</td>
+<td class="comment-1" rowspan="1">clear data type flag, $FF = string, $00 = numeric</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE8A"></span>AE8A</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE8D"></span>AE8D</td>
+<td class="bytes">B0 03</td>
+<td class="instruction">BCS <a href="AE86.html#AE92">$AE92</a></td>
+<td class="comment-1" rowspan="1">branch if not numeric character</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AE8F"></span>
+<div class="comments">
+<div class="paragraph">
+else numeric string found (e.g. 123)
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE8F"></span>AE8F</td>
+<td class="bytes">4C F3 BC</td>
+<td class="instruction">JMP <a href="BCF3.html">$BCF3</a></td>
+<td class="comment-1" rowspan="1">get FAC1 from string and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AE92"></span>
+<div class="comments">
+<div class="paragraph">
+wasn't a number so ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE92"></span>AE92</td>
+<td class="bytes">20 13 B1</td>
+<td class="instruction">JSR <a href="B08B.html#B113">$B113</a></td>
+<td class="comment-1" rowspan="1">check byte, return Cb = 0 if&lt;"A" or &gt;"Z"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE95"></span>AE95</td>
+<td class="bytes">90 03</td>
+<td class="instruction">BCC <a href="AE86.html#AE9A">$AE9A</a></td>
+<td class="comment-1" rowspan="1">branch if not variable name</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE97"></span>AE97</td>
+<td class="bytes">4C 28 AF</td>
+<td class="instruction">JMP <a href="AF28.html">$AF28</a></td>
+<td class="comment-1" rowspan="1">variable name set-up and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE9A"></span>AE9A</td>
+<td class="bytes">C9 FF</td>
+<td class="instruction">CMP #$FF</td>
+<td class="comment-1" rowspan="1">compare with token for PI</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE9C"></span>AE9C</td>
+<td class="bytes">D0 0F</td>
+<td class="instruction">BNE <a href="AE86.html#AEAD">$AEAD</a></td>
+<td class="comment-1" rowspan="1">branch if not PI</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE9E"></span>AE9E</td>
+<td class="bytes">A9 A8</td>
+<td class="instruction">LDA #$A8</td>
+<td class="comment-1" rowspan="1">get PI pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEA0"></span>AEA0</td>
+<td class="bytes">A0 AE</td>
+<td class="instruction">LDY #$AE</td>
+<td class="comment-1" rowspan="1">get PI pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEA2"></span>AEA2</td>
+<td class="bytes">20 A2 BB</td>
+<td class="instruction">JSR <a href="BBA2.html">$BBA2</a></td>
+<td class="comment-1" rowspan="1">unpack memory (<span class="register">AY</span>) into FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEA5"></span>AEA5</td>
+<td class="bytes">4C 73 00</td>
+<td class="instruction">JMP $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory and return</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEA8"></span>AEA8</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $82,$49,$0F,$DA,$A1</td>
+<td class="comment-1" rowspan="1">3.141592653 (PI as floating number)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEAD"></span>
+<div class="comments">
+<div class="paragraph">
+wasn't variable name so ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AEAD"></span>AEAD</td>
+<td class="bytes">C9 2E</td>
+<td class="instruction">CMP #"."</td>
+<td class="comment-1" rowspan="1">compare with "."</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEAF"></span>AEAF</td>
+<td class="bytes">F0 DE</td>
+<td class="instruction">BEQ <a href="AE86.html#AE8F">$AE8F</a></td>
+<td class="comment-1" rowspan="1">if so get FAC1 from string and return, e.g. was .123</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEB1"></span>
+<div class="comments">
+<div class="paragraph">
+wasn't .123 so ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEB1"></span>AEB1</td>
+<td class="bytes">C9 AB</td>
+<td class="instruction">CMP #$AB</td>
+<td class="comment-1" rowspan="1">compare with token for -</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEB3"></span>AEB3</td>
+<td class="bytes">F0 58</td>
+<td class="instruction">BEQ <a href="AE86.html#AF0D">$AF0D</a></td>
+<td class="comment-1" rowspan="1">branch if - token, do set-up for functions</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEB5"></span>
+<div class="comments">
+<div class="paragraph">
+wasn't -123 so ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEB5"></span>AEB5</td>
+<td class="bytes">C9 AA</td>
+<td class="instruction">CMP #$AA</td>
+<td class="comment-1" rowspan="1">compare with token for +</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEB7"></span>AEB7</td>
+<td class="bytes">F0 D1</td>
+<td class="instruction">BEQ <a href="AE86.html#AE8A">$AE8A</a></td>
+<td class="comment-1" rowspan="1">branch if + token, +1 = 1 so ignore leading +</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEB9"></span>
+<div class="comments">
+<div class="paragraph">
+it wasn't any sort of number so ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEB9"></span>AEB9</td>
+<td class="bytes">C9 22</td>
+<td class="instruction">CMP #$22</td>
+<td class="comment-1" rowspan="1">compare with "</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEBB"></span>AEBB</td>
+<td class="bytes">D0 0F</td>
+<td class="instruction">BNE <a href="AE86.html#AECC">$AECC</a></td>
+<td class="comment-1" rowspan="1">branch if not open quote</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEBD"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="ABBF.html">ABBF</a>.
+</div>
+<div class="paragraph">
+was open quote so get the enclosed string
+</div>
+<div class="paragraph">
+print "..." string to string utility area
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AEBD"></span>AEBD</td>
+<td class="bytes">A5 7A</td>
+<td class="instruction">LDA $7A</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEBF"></span>AEBF</td>
+<td class="bytes">A4 7B</td>
+<td class="instruction">LDY $7B</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEC1"></span>AEC1</td>
+<td class="bytes">69 00</td>
+<td class="instruction">ADC #$00</td>
+<td class="comment-1" rowspan="1">add carry to low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEC3"></span>AEC3</td>
+<td class="bytes">90 01</td>
+<td class="instruction">BCC <a href="AE86.html#AEC6">$AEC6</a></td>
+<td class="comment-1" rowspan="1">branch if no overflow</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEC5"></span>AEC5</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AEC6"></span>AEC6</td>
+<td class="bytes">20 87 B4</td>
+<td class="instruction">JSR <a href="B487.html">$B487</a></td>
+<td class="comment-1" rowspan="1">print " terminated string to utility pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEC9"></span>AEC9</td>
+<td class="bytes">4C E2 B7</td>
+<td class="instruction">JMP <a href="B7E2.html">$B7E2</a></td>
+<td class="comment-1" rowspan="1">restore BASIC execute pointer from temp and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AECC"></span>
+<div class="comments">
+<div class="paragraph">
+wasn't a string so ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AECC"></span>AECC</td>
+<td class="bytes">C9 A8</td>
+<td class="instruction">CMP #$A8</td>
+<td class="comment-1" rowspan="1">compare with token for NOT</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AECE"></span>AECE</td>
+<td class="bytes">D0 13</td>
+<td class="instruction">BNE <a href="AE86.html#AEE3">$AEE3</a></td>
+<td class="comment-1" rowspan="1">branch if not token for NOT</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AED0"></span>
+<div class="comments">
+<div class="paragraph">
+was NOT token
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AED0"></span>AED0</td>
+<td class="bytes">A0 18</td>
+<td class="instruction">LDY #$18</td>
+<td class="comment-1" rowspan="1">offset to NOT function</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AED2"></span>AED2</td>
+<td class="bytes">D0 3B</td>
+<td class="instruction">BNE <a href="AE86.html#AF0F">$AF0F</a></td>
+<td class="comment-1" rowspan="1">do set-up for function then execute, branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AED4"></span>
+<div class="comments">
+<div class="paragraph">
+do = compare
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AED4"></span>AED4</td>
+<td class="bytes">20 BF B1</td>
+<td class="instruction">JSR <a href="B1B2.html#B1BF">$B1BF</a></td>
+<td class="comment-1" rowspan="1">evaluate integer expression, no sign check</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AED7"></span>AED7</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AED9"></span>AED9</td>
+<td class="bytes">49 FF</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">invert it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEDB"></span>AEDB</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEDC"></span>AEDC</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEDE"></span>AEDE</td>
+<td class="bytes">49 FF</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">invert it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEE0"></span>AEE0</td>
+<td class="bytes">4C 91 B3</td>
+<td class="instruction">JMP <a href="B391.html">$B391</a></td>
+<td class="comment-1" rowspan="1">convert fixed integer <span class="register">AY</span> to float FAC1 and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEE3"></span>
+<div class="comments">
+<div class="paragraph">
+wasn't a string or NOT so ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AEE3"></span>AEE3</td>
+<td class="bytes">C9 A5</td>
+<td class="instruction">CMP #$A5</td>
+<td class="comment-1" rowspan="1">compare with token for FN</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEE5"></span>AEE5</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="AE86.html#AEEA">$AEEA</a></td>
+<td class="comment-1" rowspan="1">branch if not token for FN</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEE7"></span>AEE7</td>
+<td class="bytes">4C F4 B3</td>
+<td class="instruction">JMP <a href="B3F4.html">$B3F4</a></td>
+<td class="comment-1" rowspan="1">else go evaluate FNx</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEEA"></span>
+<div class="comments">
+<div class="paragraph">
+wasn't a string, NOT or FN so ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AEEA"></span>AEEA</td>
+<td class="bytes">C9 B4</td>
+<td class="instruction">CMP #$B4</td>
+<td class="comment-1" rowspan="1">compare with token for SGN</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEEC"></span>AEEC</td>
+<td class="bytes">90 03</td>
+<td class="instruction">BCC <a href="AE86.html#AEF1">$AEF1</a></td>
+<td class="comment-1" rowspan="1">if less than SGN token evaluate expression in parentheses</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEEE"></span>
+<div class="comments">
+<div class="paragraph">
+else was a function token
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEEE"></span>AEEE</td>
+<td class="bytes">4C A7 AF</td>
+<td class="instruction">JMP <a href="AFA7.html">$AFA7</a></td>
+<td class="comment-1" rowspan="1">go set up function references, branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEF1"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="AFA7.html">AFA7</a> and <a href="B3F4.html">B3F4</a>.
+</div>
+<div class="paragraph">
+if here it can only be something in brackets so .... evaluate expression within parentheses
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AEF1"></span>AEF1</td>
+<td class="bytes">20 FA AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEFA">$AEFA</a></td>
+<td class="comment-1" rowspan="1">scan for "(", else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEF4"></span>AEF4</td>
+<td class="bytes">20 9E AD</td>
+<td class="instruction">JSR <a href="AD9E.html">$AD9E</a></td>
+<td class="comment-1" rowspan="1">evaluate expression</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEF7"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="B1D1.html">B1D1</a>, <a href="B3B3.html">B3B3</a> and <a href="B761.html">B761</a>.
+</div>
+<div class="paragraph">
+all the 'scan for' routines return the character after the sought character
+</div>
+<div class="paragraph">
+scan for ")", else do syntax error then warm start
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AEF7"></span>AEF7</td>
+<td class="bytes">A9 29</td>
+<td class="instruction">LDA #")"</td>
+<td class="comment-1" rowspan="1">load <span class="register">A</span> with ")"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEF9"></span>AEF9</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $28A9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEFA"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="AFA7.html">AFA7</a> and <a href="B3B3.html">B3B3</a>.
+</div>
+<div class="paragraph">
+scan for "(", else do syntax error then warm start
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AEFA"></span>AEFA</td>
+<td class="bytes">A9 28</td>
+<td class="instruction">LDA #"("</td>
+<td class="comment-1" rowspan="1">load <span class="register">A</span> with "("</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AEFC"></span>AEFC</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $2CA9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEFD"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="AC0F.html">AC0F</a>, <a href="AFA7.html">AFA7</a>, <a href="B07E.html">B07E</a>, <a href="B737.html">B737</a>, <a href="B7EB.html">B7EB</a> and <a href="E20E.html">E20E</a>.
+</div>
+<div class="paragraph">
+scan for ",", else do syntax error then warm start
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AEFD"></span>AEFD</td>
+<td class="bytes">A9 2C</td>
+<td class="instruction">LDA #","</td>
+<td class="comment-1" rowspan="1">load <span class="register">A</span> with ","</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AEFF"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="A742.html">A742</a>, <a href="A7AE.html">A7AE</a>, <a href="A928.html">A928</a>, <a href="A9A5.html">A9A5</a>, <a href="AA86.html">AA86</a>, <a href="AB7B.html">AB7B</a>, <a href="ABA5.html">ABA5</a>, <a href="ABBF.html">ABBF</a>, <a href="B3B3.html">B3B3</a> and <a href="B3E1.html">B3E1</a>.
+</div>
+<div class="paragraph">
+scan for CHR$(<span class="register">A</span>), else do syntax error then warm start
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AEFF"></span>AEFF</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF01"></span>AF01</td>
+<td class="bytes">D1 7A</td>
+<td class="instruction">CMP ($7A),Y</td>
+<td class="comment-1" rowspan="1">compare with BASIC byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF03"></span>AF03</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="AE86.html#AF08">$AF08</a></td>
+<td class="comment-1" rowspan="1">if not expected byte do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF05"></span>AF05</td>
+<td class="bytes">4C 73 00</td>
+<td class="instruction">JMP $0073</td>
+<td class="comment-1" rowspan="1">else increment and scan memory and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AF08"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="A7AE.html">A7AE</a>, <a href="A8E8.html">A8E8</a>, <a href="AB4D.html">AB4D</a>, <a href="AE30.html">AE30</a>, <a href="B08B.html">B08B</a>, <a href="B3F4.html">B3F4</a> and <a href="E211.html">E211</a>.
+</div>
+<div class="paragraph">
+syntax error then warm start
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AF08"></span>AF08</td>
+<td class="bytes">A2 0B</td>
+<td class="instruction">LDX #$0B</td>
+<td class="comment-1" rowspan="1">error code $0B, syntax error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF0A"></span>AF0A</td>
+<td class="bytes">4C 37 A4</td>
+<td class="instruction">JMP <a href="A435.html#A437">$A437</a></td>
+<td class="comment-1" rowspan="1">do error #<span class="register">X</span> then warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AF0D"></span>AF0D</td>
+<td class="bytes">A0 15</td>
+<td class="instruction">LDY #$15</td>
+<td class="comment-1" rowspan="1">set offset from base to &gt; operator</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AF0F"></span>AF0F</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF10"></span>AF10</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump return address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF11"></span>AF11</td>
+<td class="bytes">4C FA AD</td>
+<td class="instruction">JMP <a href="AD9E.html#ADFA">$ADFA</a></td>
+<td class="comment-1" rowspan="1">execute function then continue evaluation</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AE83.html">AE83</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AE86">Map</a></td>
+<td class="next">
+Next: <a href="AF14.html">AF14</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

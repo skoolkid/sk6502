@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A642</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A617.html">A617</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A642">Map</a></td>
+<td class="next">
+Next: <a href="A659.html">A659</a>
+</td>
+</tr>
+</table>
+<div class="description">A642: perform NEW</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A642"></span>A642</td>
+<td class="bytes">D0 FD</td>
+<td class="instruction">BNE <a href="A617.html#A641">$A641</a></td>
+<td class="comment-1" rowspan="1">exit if following byte to allow syntax error</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A644"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E422.html">E422</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A644"></span>A644</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A646"></span>A646</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A647"></span>A647</td>
+<td class="bytes">91 2B</td>
+<td class="instruction">STA ($2B),Y</td>
+<td class="comment-1" rowspan="1">clear pointer to next line low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A649"></span>A649</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A64A"></span>A64A</td>
+<td class="bytes">91 2B</td>
+<td class="instruction">STA ($2B),Y</td>
+<td class="comment-1" rowspan="1">clear pointer to next line high byte, erase program</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A64C"></span>A64C</td>
+<td class="bytes">A5 2B</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="1">get start of memory low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A64E"></span>A64E</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A64F"></span>A64F</td>
+<td class="bytes">69 02</td>
+<td class="instruction">ADC #$02</td>
+<td class="comment-1" rowspan="1">add null program length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A651"></span>A651</td>
+<td class="bytes">85 2D</td>
+<td class="instruction">STA $2D</td>
+<td class="comment-1" rowspan="1">set start of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A653"></span>A653</td>
+<td class="bytes">A5 2C</td>
+<td class="instruction">LDA $2C</td>
+<td class="comment-1" rowspan="1">get start of memory high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A655"></span>A655</td>
+<td class="bytes">69 00</td>
+<td class="instruction">ADC #$00</td>
+<td class="comment-1" rowspan="1">add carry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A657"></span>A657</td>
+<td class="bytes">85 2E</td>
+<td class="instruction">STA $2E</td>
+<td class="comment-1" rowspan="1">set start of variables high byte</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A617.html">A617</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A642">Map</a></td>
+<td class="next">
+Next: <a href="A659.html">A659</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

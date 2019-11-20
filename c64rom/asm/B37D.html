@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B37D</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B1D1.html">B1D1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B37D">Map</a></td>
+<td class="next">
+Next: <a href="B391.html">B391</a>
+</td>
+</tr>
+</table>
+<div class="description">B37D: perform FRE()</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B37D"></span>B37D</td>
+<td class="bytes">A5 0D</td>
+<td class="instruction">LDA $0D</td>
+<td class="comment-1" rowspan="1">get data type flag, $FF = string, $00 = numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B37F"></span>B37F</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="B37D.html#B384">$B384</a></td>
+<td class="comment-1" rowspan="1">branch if numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B381"></span>B381</td>
+<td class="bytes">20 A6 B6</td>
+<td class="instruction">JSR <a href="B6A3.html#B6A6">$B6A6</a></td>
+<td class="comment-1" rowspan="1">pop string off descriptor stack, or from top of string space; returns with <span class="register">A</span> = length, <span class="register">X</span>=$71=pointer low byte, <span class="register">Y</span>=$72=pointer high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B384"></span>
+<div class="comments">
+<div class="paragraph">
+FRE(n) was numeric so do this
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B384"></span>B384</td>
+<td class="bytes">20 26 B5</td>
+<td class="instruction">JSR <a href="B526.html">$B526</a></td>
+<td class="comment-1" rowspan="1">go do garbage collection</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B387"></span>B387</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B388"></span>B388</td>
+<td class="bytes">A5 33</td>
+<td class="instruction">LDA $33</td>
+<td class="comment-1" rowspan="1">get bottom of string space low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B38A"></span>B38A</td>
+<td class="bytes">E5 31</td>
+<td class="instruction">SBC $31</td>
+<td class="comment-1" rowspan="1">subtract end of arrays low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B38C"></span>B38C</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy result to <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B38D"></span>B38D</td>
+<td class="bytes">A5 34</td>
+<td class="instruction">LDA $34</td>
+<td class="comment-1" rowspan="1">get bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B38F"></span>B38F</td>
+<td class="bytes">E5 32</td>
+<td class="instruction">SBC $32</td>
+<td class="comment-1" rowspan="1">subtract end of arrays high byte</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B1D1.html">B1D1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B37D">Map</a></td>
+<td class="next">
+Next: <a href="B391.html">B391</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

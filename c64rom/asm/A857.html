@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A857</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A831.html">A831</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A857">Map</a></td>
+<td class="next">
+Next: <a href="A871.html">A871</a>
+</td>
+</tr>
+</table>
+<div class="description">A857: perform CONT</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A857"></span>A857</td>
+<td class="bytes">D0 17</td>
+<td class="instruction">BNE <a href="A857.html#A870">$A870</a></td>
+<td class="comment-1" rowspan="1">exit if following byte to allow syntax error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A859"></span>A859</td>
+<td class="bytes">A2 1A</td>
+<td class="instruction">LDX #$1A</td>
+<td class="comment-1" rowspan="1">error code $1A, can't continue error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A85B"></span>A85B</td>
+<td class="bytes">A4 3E</td>
+<td class="instruction">LDY $3E</td>
+<td class="comment-1" rowspan="1">get continue pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A85D"></span>A85D</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="A857.html#A862">$A862</a></td>
+<td class="comment-1" rowspan="1">go do continue if we can</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A85F"></span>A85F</td>
+<td class="bytes">4C 37 A4</td>
+<td class="instruction">JMP <a href="A435.html#A437">$A437</a></td>
+<td class="comment-1" rowspan="1">else do error #<span class="register">X</span> then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A862"></span>
+<div class="comments">
+<div class="paragraph">
+we can continue so ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A862"></span>A862</td>
+<td class="bytes">A5 3D</td>
+<td class="instruction">LDA $3D</td>
+<td class="comment-1" rowspan="1">get continue pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A864"></span>A864</td>
+<td class="bytes">85 7A</td>
+<td class="instruction">STA $7A</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A866"></span>A866</td>
+<td class="bytes">84 7B</td>
+<td class="instruction">STY $7B</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A868"></span>A868</td>
+<td class="bytes">A5 3B</td>
+<td class="instruction">LDA $3B</td>
+<td class="comment-1" rowspan="1">get break line low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A86A"></span>A86A</td>
+<td class="bytes">A4 3C</td>
+<td class="instruction">LDY $3C</td>
+<td class="comment-1" rowspan="1">get break line high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A86C"></span>A86C</td>
+<td class="bytes">85 39</td>
+<td class="instruction">STA $39</td>
+<td class="comment-1" rowspan="1">set current line number low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A86E"></span>A86E</td>
+<td class="bytes">84 3A</td>
+<td class="instruction">STY $3A</td>
+<td class="comment-1" rowspan="1">set current line number high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A870"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="A831.html">A831</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A870"></span>A870</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A831.html">A831</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A857">Map</a></td>
+<td class="next">
+Next: <a href="A871.html">A871</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

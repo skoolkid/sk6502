@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F69B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F68F.html">F68F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F69B">Map</a></td>
+<td class="next">
+Next: <a href="F6DD.html">F6DD</a>
+</td>
+</tr>
+</table>
+<div class="description">F69B: increment the real time clock</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="FFEA.html">FFEA</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F69B"></span>F69B</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F69D"></span>F69D</td>
+<td class="bytes">E6 A2</td>
+<td class="instruction">INC $A2</td>
+<td class="comment-1" rowspan="1">increment the jiffy clock low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F69F"></span>F69F</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="F69B.html#F6A7">$F6A7</a></td>
+<td class="comment-1" rowspan="1">if no rollover ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6A1"></span>F6A1</td>
+<td class="bytes">E6 A1</td>
+<td class="instruction">INC $A1</td>
+<td class="comment-1" rowspan="1">increment the jiffy clock mid byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6A3"></span>F6A3</td>
+<td class="bytes">D0 02</td>
+<td class="instruction">BNE <a href="F69B.html#F6A7">$F6A7</a></td>
+<td class="comment-1" rowspan="1">branch if no rollover</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6A5"></span>F6A5</td>
+<td class="bytes">E6 A0</td>
+<td class="instruction">INC $A0</td>
+<td class="comment-1" rowspan="1">increment the jiffy clock high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F6A7"></span>
+<div class="comments">
+<div class="paragraph">
+now subtract a days worth of jiffies from current count and remember only the Cb result
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F6A7"></span>F6A7</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6A8"></span>F6A8</td>
+<td class="bytes">A5 A2</td>
+<td class="instruction">LDA $A2</td>
+<td class="comment-1" rowspan="1">get the jiffy clock low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6AA"></span>F6AA</td>
+<td class="bytes">E9 01</td>
+<td class="instruction">SBC #$01</td>
+<td class="comment-1" rowspan="1">subtract $4F1A01 low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6AC"></span>F6AC</td>
+<td class="bytes">A5 A1</td>
+<td class="instruction">LDA $A1</td>
+<td class="comment-1" rowspan="1">get the jiffy clock mid byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6AE"></span>F6AE</td>
+<td class="bytes">E9 1A</td>
+<td class="instruction">SBC #$1A</td>
+<td class="comment-1" rowspan="1">subtract $4F1A01 mid byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6B0"></span>F6B0</td>
+<td class="bytes">A5 A0</td>
+<td class="instruction">LDA $A0</td>
+<td class="comment-1" rowspan="1">get the jiffy clock high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6B2"></span>F6B2</td>
+<td class="bytes">E9 4F</td>
+<td class="instruction">SBC #$4F</td>
+<td class="comment-1" rowspan="1">subtract $4F1A01 high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6B4"></span>F6B4</td>
+<td class="bytes">90 06</td>
+<td class="instruction">BCC <a href="F69B.html#F6BC">$F6BC</a></td>
+<td class="comment-1" rowspan="1">if less than $4F1A01 jiffies skip the clock reset</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F6B6"></span>
+<div class="comments">
+<div class="paragraph">
+else ..
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6B6"></span>F6B6</td>
+<td class="bytes">86 A0</td>
+<td class="instruction">STX $A0</td>
+<td class="comment-1" rowspan="1">clear the jiffy clock high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6B8"></span>F6B8</td>
+<td class="bytes">86 A1</td>
+<td class="instruction">STX $A1</td>
+<td class="comment-1" rowspan="1">clear the jiffy clock mid byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6BA"></span>F6BA</td>
+<td class="bytes">86 A2</td>
+<td class="instruction">STX $A2</td>
+<td class="comment-1" rowspan="1">clear the jiffy clock low byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F6BC"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="F875.html">F875</a> and <a href="FE47.html">FE47</a>.
+</div>
+<div class="paragraph">
+this is wrong, there are $4F1A00 jiffies in a day so the reset to zero should occur when the value reaches $4F1A00 and not $4F1A01. this would give an extra jiffy every day and a possible TI value of 24:00:00
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F6BC"></span>F6BC</td>
+<td class="bytes">AD 01 DC</td>
+<td class="instruction">LDA $DC01</td>
+<td class="comment-1" rowspan="1">read VIA 1 DRB, keyboard row port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6BF"></span>F6BF</td>
+<td class="bytes">CD 01 DC</td>
+<td class="instruction">CMP $DC01</td>
+<td class="comment-1" rowspan="1">compare it with itself</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6C2"></span>F6C2</td>
+<td class="bytes">D0 F8</td>
+<td class="instruction">BNE <a href="F69B.html#F6BC">$F6BC</a></td>
+<td class="comment-1" rowspan="1">loop if changing</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6C4"></span>F6C4</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6C5"></span>F6C5</td>
+<td class="bytes">30 13</td>
+<td class="instruction">BMI <a href="F69B.html#F6DA">$F6DA</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6C7"></span>F6C7</td>
+<td class="bytes">A2 BD</td>
+<td class="instruction">LDX #$BD</td>
+<td class="comment-1" rowspan="1">set c6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6C9"></span>F6C9</td>
+<td class="bytes">8E 00 DC</td>
+<td class="instruction">STX $DC00</td>
+<td class="comment-1" rowspan="1">save VIA 1 DRA, keyboard column drive</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F6CC"></span>F6CC</td>
+<td class="bytes">AE 01 DC</td>
+<td class="instruction">LDX $DC01</td>
+<td class="comment-1" rowspan="1">read VIA 1 DRB, keyboard row port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6CF"></span>F6CF</td>
+<td class="bytes">EC 01 DC</td>
+<td class="instruction">CPX $DC01</td>
+<td class="comment-1" rowspan="1">compare it with itself</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6D2"></span>F6D2</td>
+<td class="bytes">D0 F8</td>
+<td class="instruction">BNE <a href="F69B.html#F6CC">$F6CC</a></td>
+<td class="comment-1" rowspan="1">loop if changing</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6D4"></span>F6D4</td>
+<td class="bytes">8D 00 DC</td>
+<td class="instruction">STA $DC00</td>
+<td class="comment-1" rowspan="1">save VIA 1 DRA, keyboard column drive</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6D7"></span>F6D7</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6D8"></span>F6D8</td>
+<td class="bytes">D0 02</td>
+<td class="instruction">BNE <a href="F69B.html#F6DC">$F6DC</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F6DA"></span>F6DA</td>
+<td class="bytes">85 91</td>
+<td class="instruction">STA $91</td>
+<td class="comment-1" rowspan="1">save the stop key column</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F6DC"></span>F6DC</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F68F.html">F68F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F69B">Map</a></td>
+<td class="next">
+Next: <a href="F6DD.html">F6DD</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

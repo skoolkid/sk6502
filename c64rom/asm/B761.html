@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B761</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B737.html">B737</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B761">Map</a></td>
+<td class="next">
+Next: <a href="B77C.html">B77C</a>
+</td>
+</tr>
+</table>
+<div class="description">B761: pull string data and byte parameter from stack</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="B700.html">B700</a>, <a href="B72C.html">B72C</a> and <a href="B737.html">B737</a>.
+</div>
+<div class="paragraph">
+return pointer in descriptor, byte in <span class="register">A</span> (and <span class="register">X</span>), <span class="register">Y</span>=0
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B761"></span>B761</td>
+<td class="bytes">20 F7 AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEF7">$AEF7</a></td>
+<td class="comment-1" rowspan="1">scan for ")", else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B764"></span>B764</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B765"></span>B765</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">save return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B766"></span>B766</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull return address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B767"></span>B767</td>
+<td class="bytes">85 55</td>
+<td class="instruction">STA $55</td>
+<td class="comment-1" rowspan="1">save return address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B769"></span>B769</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump call to function vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B76A"></span>B76A</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump call to function vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B76B"></span>B76B</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull byte parameter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B76C"></span>B76C</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy byte parameter to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B76D"></span>B76D</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B76E"></span>B76E</td>
+<td class="bytes">85 50</td>
+<td class="instruction">STA $50</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B770"></span>B770</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B771"></span>B771</td>
+<td class="bytes">85 51</td>
+<td class="instruction">STA $51</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B773"></span>B773</td>
+<td class="bytes">A5 55</td>
+<td class="instruction">LDA $55</td>
+<td class="comment-1" rowspan="1">get return address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B775"></span>B775</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">back on stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B776"></span>B776</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">get return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B777"></span>B777</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">back on stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B778"></span>B778</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B77A"></span>B77A</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy byte parameter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B77B"></span>B77B</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B737.html">B737</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B761">Map</a></td>
+<td class="next">
+Next: <a href="B77C.html">B77C</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

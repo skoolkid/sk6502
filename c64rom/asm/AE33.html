@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AE33</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AE30.html">AE30</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AE33">Map</a></td>
+<td class="next">
+Next: <a href="AE38.html">AE38</a>
+</td>
+</tr>
+</table>
+<div class="description">AE33: get vector, execute function then continue evaluation (continued)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="AE20.html">AE20</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE33"></span>AE33</td>
+<td class="bytes">A5 66</td>
+<td class="instruction">LDA $66</td>
+<td class="comment-1" rowspan="1">get FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE35"></span>AE35</td>
+<td class="bytes">BE 80 A0</td>
+<td class="instruction">LDX $A080,Y</td>
+<td class="comment-1" rowspan="1">get precedence byte</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AE30.html">AE30</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AE33">Map</a></td>
+<td class="next">
+Next: <a href="AE38.html">AE38</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B7AD</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B7A1.html">B7A1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B7AD">Map</a></td>
+<td class="next">
+Next: <a href="B7E2.html">B7E2</a>
+</td>
+</tr>
+</table>
+<div class="description">B7AD: perform VAL()</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B7AD"></span>B7AD</td>
+<td class="bytes">20 82 B7</td>
+<td class="instruction">JSR <a href="B782.html">$B782</a></td>
+<td class="comment-1" rowspan="1">evaluate string, get length in <span class="register">A</span> (and <span class="register">Y</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7B0"></span>B7B0</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="B7AD.html#B7B5">$B7B5</a></td>
+<td class="comment-1" rowspan="1">branch if not null string</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B7B2"></span>
+<div class="comments">
+<div class="paragraph">
+string was null so set result = $00
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7B2"></span>B7B2</td>
+<td class="bytes">4C F7 B8</td>
+<td class="instruction">JMP <a href="B8F7.html">$B8F7</a></td>
+<td class="comment-1" rowspan="1">clear FAC1 exponent and sign and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B7B5"></span>B7B5</td>
+<td class="bytes">A6 7A</td>
+<td class="instruction">LDX $7A</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7B7"></span>B7B7</td>
+<td class="bytes">A4 7B</td>
+<td class="instruction">LDY $7B</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7B9"></span>B7B9</td>
+<td class="bytes">86 71</td>
+<td class="instruction">STX $71</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7BB"></span>B7BB</td>
+<td class="bytes">84 72</td>
+<td class="instruction">STY $72</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7BD"></span>B7BD</td>
+<td class="bytes">A6 22</td>
+<td class="instruction">LDX $22</td>
+<td class="comment-1" rowspan="1">get string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7BF"></span>B7BF</td>
+<td class="bytes">86 7A</td>
+<td class="instruction">STX $7A</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7C1"></span>B7C1</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7C2"></span>B7C2</td>
+<td class="bytes">65 22</td>
+<td class="instruction">ADC $22</td>
+<td class="comment-1" rowspan="1">add string length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7C4"></span>B7C4</td>
+<td class="bytes">85 24</td>
+<td class="instruction">STA $24</td>
+<td class="comment-1" rowspan="1">save string end low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7C6"></span>B7C6</td>
+<td class="bytes">A6 23</td>
+<td class="instruction">LDX $23</td>
+<td class="comment-1" rowspan="1">get string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7C8"></span>B7C8</td>
+<td class="bytes">86 7B</td>
+<td class="instruction">STX $7B</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7CA"></span>B7CA</td>
+<td class="bytes">90 01</td>
+<td class="instruction">BCC <a href="B7AD.html#B7CD">$B7CD</a></td>
+<td class="comment-1" rowspan="1">branch if no high byte increment</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7CC"></span>B7CC</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment string end high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B7CD"></span>B7CD</td>
+<td class="bytes">86 25</td>
+<td class="instruction">STX $25</td>
+<td class="comment-1" rowspan="1">save string end high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7CF"></span>B7CF</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set index to $00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7D1"></span>B7D1</td>
+<td class="bytes">B1 24</td>
+<td class="instruction">LDA ($24),Y</td>
+<td class="comment-1" rowspan="1">get string end byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7D3"></span>B7D3</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7D4"></span>B7D4</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7D5"></span>B7D5</td>
+<td class="bytes">91 24</td>
+<td class="instruction">STA ($24),Y</td>
+<td class="comment-1" rowspan="1">terminate string with $00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7D7"></span>B7D7</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7DA"></span>B7DA</td>
+<td class="bytes">20 F3 BC</td>
+<td class="instruction">JSR <a href="BCF3.html">$BCF3</a></td>
+<td class="comment-1" rowspan="1">get FAC1 from string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7DD"></span>B7DD</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore string end byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7DE"></span>B7DE</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B7E0"></span>B7E0</td>
+<td class="bytes">91 24</td>
+<td class="instruction">STA ($24),Y</td>
+<td class="comment-1" rowspan="1">put string end byte back</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B7A1.html">B7A1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B7AD">Map</a></td>
+<td class="next">
+Next: <a href="B7E2.html">B7E2</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

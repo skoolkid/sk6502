@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A57C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A579.html">A579</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A57C">Map</a></td>
+<td class="next">
+Next: <a href="A613.html">A613</a>
+</td>
+</tr>
+</table>
+<div class="description">A57C: crunch BASIC tokens</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+the crunch BASIC tokens vector is initialised to point here
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A57C"></span>A57C</td>
+<td class="bytes">A6 7A</td>
+<td class="instruction">LDX $7A</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A57E"></span>A57E</td>
+<td class="bytes">A0 04</td>
+<td class="instruction">LDY #$04</td>
+<td class="comment-1" rowspan="1">set save index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A580"></span>A580</td>
+<td class="bytes">84 0F</td>
+<td class="instruction">STY $0F</td>
+<td class="comment-1" rowspan="1">clear open quote/DATA flag</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A582"></span>A582</td>
+<td class="bytes">BD 00 02</td>
+<td class="instruction">LDA $0200,X</td>
+<td class="comment-1" rowspan="1">get a byte from the input buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A585"></span>A585</td>
+<td class="bytes">10 07</td>
+<td class="instruction">BPL <a href="A57C.html#A58E">$A58E</a></td>
+<td class="comment-1" rowspan="1">if b7 clear go do crunching</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A587"></span>A587</td>
+<td class="bytes">C9 FF</td>
+<td class="instruction">CMP #$FF</td>
+<td class="comment-1" rowspan="1">compare with the token for PI, this token is input directly from the keyboard as the PI character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A589"></span>A589</td>
+<td class="bytes">F0 3E</td>
+<td class="instruction">BEQ <a href="A57C.html#A5C9">$A5C9</a></td>
+<td class="comment-1" rowspan="1">if PI save byte then continue crunching</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A58B"></span>
+<div class="comments">
+<div class="paragraph">
+this is the bit of code that stops you being able to enter some keywords as just single shifted characters. If this dropped through you would be able to enter GOTO as just [SHIFT]G
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A58B"></span>A58B</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment read index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A58C"></span>A58C</td>
+<td class="bytes">D0 F4</td>
+<td class="instruction">BNE <a href="A57C.html#A582">$A582</a></td>
+<td class="comment-1" rowspan="1">loop if more to do, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A58E"></span>A58E</td>
+<td class="bytes">C9 20</td>
+<td class="instruction">CMP #" "</td>
+<td class="comment-1" rowspan="1">compare with [SPACE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A590"></span>A590</td>
+<td class="bytes">F0 37</td>
+<td class="instruction">BEQ <a href="A57C.html#A5C9">$A5C9</a></td>
+<td class="comment-1" rowspan="1">if [SPACE] save byte then continue crunching</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A592"></span>A592</td>
+<td class="bytes">85 08</td>
+<td class="instruction">STA $08</td>
+<td class="comment-1" rowspan="1">save buffer byte as search character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A594"></span>A594</td>
+<td class="bytes">C9 22</td>
+<td class="instruction">CMP #$22</td>
+<td class="comment-1" rowspan="1">compare with quote character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A596"></span>A596</td>
+<td class="bytes">F0 56</td>
+<td class="instruction">BEQ <a href="A57C.html#A5EE">$A5EE</a></td>
+<td class="comment-1" rowspan="1">if quote go copy quoted string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A598"></span>A598</td>
+<td class="bytes">24 0F</td>
+<td class="instruction">BIT $0F</td>
+<td class="comment-1" rowspan="1">get open quote/DATA token flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A59A"></span>A59A</td>
+<td class="bytes">70 2D</td>
+<td class="instruction">BVS <a href="A57C.html#A5C9">$A5C9</a></td>
+<td class="comment-1" rowspan="1">branch if b6 of quote set, was DATA</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A59C"></span>
+<div class="comments">
+<div class="paragraph">
+go save byte then continue crunching
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A59C"></span>A59C</td>
+<td class="bytes">C9 3F</td>
+<td class="instruction">CMP #$3F</td>
+<td class="comment-1" rowspan="1">compare with "?" character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A59E"></span>A59E</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="A57C.html#A5A4">$A5A4</a></td>
+<td class="comment-1" rowspan="1">if not "?" continue crunching</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5A0"></span>A5A0</td>
+<td class="bytes">A9 99</td>
+<td class="instruction">LDA #$99</td>
+<td class="comment-1" rowspan="1">else the keyword token is $99, PRINT</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5A2"></span>A5A2</td>
+<td class="bytes">D0 25</td>
+<td class="instruction">BNE <a href="A57C.html#A5C9">$A5C9</a></td>
+<td class="comment-1" rowspan="1">go save byte then continue crunching, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A5A4"></span>A5A4</td>
+<td class="bytes">C9 30</td>
+<td class="instruction">CMP #"0"</td>
+<td class="comment-1" rowspan="1">compare with "0"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5A6"></span>A5A6</td>
+<td class="bytes">90 04</td>
+<td class="instruction">BCC <a href="A57C.html#A5AC">$A5AC</a></td>
+<td class="comment-1" rowspan="1">branch if &lt;, continue crunching</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5A8"></span>A5A8</td>
+<td class="bytes">C9 3C</td>
+<td class="instruction">CMP #"&lt;"</td>
+<td class="comment-1" rowspan="1">compare with "&lt;"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5AA"></span>A5AA</td>
+<td class="bytes">90 1D</td>
+<td class="instruction">BCC <a href="A57C.html#A5C9">$A5C9</a></td>
+<td class="comment-1" rowspan="1">if &lt;, 0123456789:; go save byte then continue crunching</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A5AC"></span>
+<div class="comments">
+<div class="paragraph">
+gets here with next character not numeric, ";" or ":"
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A5AC"></span>A5AC</td>
+<td class="bytes">84 71</td>
+<td class="instruction">STY $71</td>
+<td class="comment-1" rowspan="1">copy save index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5AE"></span>A5AE</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear table pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5B0"></span>A5B0</td>
+<td class="bytes">84 0B</td>
+<td class="instruction">STY $0B</td>
+<td class="comment-1" rowspan="1">clear word index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5B2"></span>A5B2</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">adjust for pre increment loop</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5B3"></span>A5B3</td>
+<td class="bytes">86 7A</td>
+<td class="instruction">STX $7A</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer low byte, buffer index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5B5"></span>A5B5</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">adjust for pre increment loop</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A5B6"></span>A5B6</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">next table byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5B7"></span>A5B7</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">next buffer byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A5B8"></span>A5B8</td>
+<td class="bytes">BD 00 02</td>
+<td class="instruction">LDA $0200,X</td>
+<td class="comment-1" rowspan="1">get byte from input buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5BB"></span>A5BB</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5BC"></span>A5BC</td>
+<td class="bytes">F9 9E A0</td>
+<td class="instruction">SBC $A09E,Y</td>
+<td class="comment-1" rowspan="1">subtract table byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5BF"></span>A5BF</td>
+<td class="bytes">F0 F5</td>
+<td class="instruction">BEQ <a href="A57C.html#A5B6">$A5B6</a></td>
+<td class="comment-1" rowspan="1">go compare next if match</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5C1"></span>A5C1</td>
+<td class="bytes">C9 80</td>
+<td class="instruction">CMP #$80</td>
+<td class="comment-1" rowspan="1">was it end marker match ?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5C3"></span>A5C3</td>
+<td class="bytes">D0 30</td>
+<td class="instruction">BNE <a href="A57C.html#A5F5">$A5F5</a></td>
+<td class="comment-1" rowspan="1">branch if not, not found keyword; actually this works even if the input buffer byte is the end marker, i.e. a shifted character. As you can't enter any keywords as a single shifted character, see above, you can enter keywords in shorthand by shifting any character after the first. so RETURN can be entered as R[SHIFT]E, RE[SHIFT]T, RET[SHIFT]U or RETU[SHIFT]R. RETUR[SHIFT]N however will not work because the [SHIFT]N will match the RETURN end marker so the routine will try to match the next character.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A5C5"></span>
+<div class="comments">
+<div class="paragraph">
+else found keyword
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5C5"></span>A5C5</td>
+<td class="bytes">05 0B</td>
+<td class="instruction">ORA $0B</td>
+<td class="comment-1" rowspan="1">OR with word index, +$80 in <span class="register">A</span> makes token</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A5C7"></span>A5C7</td>
+<td class="bytes">A4 71</td>
+<td class="instruction">LDY $71</td>
+<td class="comment-1" rowspan="1">restore save index</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A5C9"></span>
+<div class="comments">
+<div class="paragraph">
+save byte then continue crunching
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A5C9"></span>A5C9</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment buffer read index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5CA"></span>A5CA</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment save index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5CB"></span>A5CB</td>
+<td class="bytes">99 FB 01</td>
+<td class="instruction">STA $01FB,Y</td>
+<td class="comment-1" rowspan="1">save byte to output</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5CE"></span>A5CE</td>
+<td class="bytes">B9 FB 01</td>
+<td class="instruction">LDA $01FB,Y</td>
+<td class="comment-1" rowspan="1">get byte from output, set flags</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5D1"></span>A5D1</td>
+<td class="bytes">F0 36</td>
+<td class="instruction">BEQ <a href="A57C.html#A609">$A609</a></td>
+<td class="comment-1" rowspan="1">branch if was null [EOL]</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A5D3"></span>
+<div class="comments">
+<div class="paragraph">
+<span class="register">A</span> holds the token here
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5D3"></span>A5D3</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5D4"></span>A5D4</td>
+<td class="bytes">E9 3A</td>
+<td class="instruction">SBC #":"</td>
+<td class="comment-1" rowspan="1">subtract ":"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5D6"></span>A5D6</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="A57C.html#A5DC">$A5DC</a></td>
+<td class="comment-1" rowspan="1">branch if it was (is now $00)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A5D8"></span>
+<div class="comments">
+<div class="paragraph">
+<span class="register">A</span> now holds token-':'
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5D8"></span>A5D8</td>
+<td class="bytes">C9 49</td>
+<td class="instruction">CMP #$49</td>
+<td class="comment-1" rowspan="1">compare with the token for DATA-':'</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5DA"></span>A5DA</td>
+<td class="bytes">D0 02</td>
+<td class="instruction">BNE <a href="A57C.html#A5DE">$A5DE</a></td>
+<td class="comment-1" rowspan="1">if not DATA go try REM</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A5DC"></span>
+<div class="comments">
+<div class="paragraph">
+token was : or DATA
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A5DC"></span>A5DC</td>
+<td class="bytes">85 0F</td>
+<td class="instruction">STA $0F</td>
+<td class="comment-1" rowspan="1">save the token-$3A</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A5DE"></span>A5DE</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5DF"></span>A5DF</td>
+<td class="bytes">E9 55</td>
+<td class="instruction">SBC #$55</td>
+<td class="comment-1" rowspan="1">subtract the token for REM-':'</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5E1"></span>A5E1</td>
+<td class="bytes">D0 9F</td>
+<td class="instruction">BNE <a href="A57C.html#A582">$A582</a></td>
+<td class="comment-1" rowspan="1">if wasn't REM crunch next bit of line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5E3"></span>A5E3</td>
+<td class="bytes">85 08</td>
+<td class="instruction">STA $08</td>
+<td class="comment-1" rowspan="1">else was REM so set search for [EOL]</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A5E5"></span>
+<div class="comments">
+<div class="paragraph">
+loop for "..." etc.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A5E5"></span>A5E5</td>
+<td class="bytes">BD 00 02</td>
+<td class="instruction">LDA $0200,X</td>
+<td class="comment-1" rowspan="1">get byte from input buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5E8"></span>A5E8</td>
+<td class="bytes">F0 DF</td>
+<td class="instruction">BEQ <a href="A57C.html#A5C9">$A5C9</a></td>
+<td class="comment-1" rowspan="1">if null [EOL] save byte then continue crunching</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5EA"></span>A5EA</td>
+<td class="bytes">C5 08</td>
+<td class="instruction">CMP $08</td>
+<td class="comment-1" rowspan="1">compare with stored character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5EC"></span>A5EC</td>
+<td class="bytes">F0 DB</td>
+<td class="instruction">BEQ <a href="A57C.html#A5C9">$A5C9</a></td>
+<td class="comment-1" rowspan="1">if match save byte then continue crunching</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A5EE"></span>A5EE</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment save index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5EF"></span>A5EF</td>
+<td class="bytes">99 FB 01</td>
+<td class="instruction">STA $01FB,Y</td>
+<td class="comment-1" rowspan="1">save byte to output</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5F2"></span>A5F2</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment buffer index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5F3"></span>A5F3</td>
+<td class="bytes">D0 F0</td>
+<td class="instruction">BNE <a href="A57C.html#A5E5">$A5E5</a></td>
+<td class="comment-1" rowspan="1">loop while &lt;&gt; 0, should never reach 0</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A5F5"></span>
+<div class="comments">
+<div class="paragraph">
+not found keyword this go
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A5F5"></span>A5F5</td>
+<td class="bytes">A6 7A</td>
+<td class="instruction">LDX $7A</td>
+<td class="comment-1" rowspan="1">restore BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5F7"></span>A5F7</td>
+<td class="bytes">E6 0B</td>
+<td class="instruction">INC $0B</td>
+<td class="comment-1" rowspan="1">increment word index (next word)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A5F9"></span>
+<div class="comments">
+<div class="paragraph">
+now find end of this word in the table
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A5F9"></span>A5F9</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment table index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5FA"></span>A5FA</td>
+<td class="bytes">B9 9D A0</td>
+<td class="instruction">LDA $A09D,Y</td>
+<td class="comment-1" rowspan="1">get table byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5FD"></span>A5FD</td>
+<td class="bytes">10 FA</td>
+<td class="instruction">BPL <a href="A57C.html#A5F9">$A5F9</a></td>
+<td class="comment-1" rowspan="1">loop if not end of word yet</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A5FF"></span>A5FF</td>
+<td class="bytes">B9 9E A0</td>
+<td class="instruction">LDA $A09E,Y</td>
+<td class="comment-1" rowspan="1">get byte from keyword table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A602"></span>A602</td>
+<td class="bytes">D0 B4</td>
+<td class="instruction">BNE <a href="A57C.html#A5B8">$A5B8</a></td>
+<td class="comment-1" rowspan="1">go test next word if not zero byte, end of table</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A604"></span>
+<div class="comments">
+<div class="paragraph">
+reached end of table with no match
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A604"></span>A604</td>
+<td class="bytes">BD 00 02</td>
+<td class="instruction">LDA $0200,X</td>
+<td class="comment-1" rowspan="1">restore byte from input buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A607"></span>A607</td>
+<td class="bytes">10 BE</td>
+<td class="instruction">BPL <a href="A57C.html#A5C7">$A5C7</a></td>
+<td class="comment-1" rowspan="1">branch always, all unmatched bytes in the buffer are $00 to $7F, go save byte in output and continue crunching</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A609"></span>
+<div class="comments">
+<div class="paragraph">
+reached [EOL]
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A609"></span>A609</td>
+<td class="bytes">99 FD 01</td>
+<td class="instruction">STA $01FD,Y</td>
+<td class="comment-1" rowspan="1">save [EOL]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A60C"></span>A60C</td>
+<td class="bytes">C6 7B</td>
+<td class="instruction">DEC $7B</td>
+<td class="comment-1" rowspan="1">decrement BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A60E"></span>A60E</td>
+<td class="bytes">A9 FF</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="1">point to start of buffer-1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A610"></span>A610</td>
+<td class="bytes">85 7A</td>
+<td class="instruction">STA $7A</td>
+<td class="comment-1" rowspan="1">set BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A612"></span>A612</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A579.html">A579</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A57C">Map</a></td>
+<td class="next">
+Next: <a href="A613.html">A613</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

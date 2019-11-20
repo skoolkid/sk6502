@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F72C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F6FB.html">F6FB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F72C">Map</a></td>
+<td class="next">
+Next: <a href="F76A.html">F76A</a>
+</td>
+</tr>
+</table>
+<div class="description">F72C: find the tape header, exit with header in buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="F34A.html">F34A</a>, <a href="F533.html">F533</a> and <a href="F7EA.html">F7EA</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F72C"></span>F72C</td>
+<td class="bytes">A5 93</td>
+<td class="instruction">LDA $93</td>
+<td class="comment-1" rowspan="1">get load/verify flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F72E"></span>F72E</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save load/verify flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F72F"></span>F72F</td>
+<td class="bytes">20 41 F8</td>
+<td class="instruction">JSR <a href="F841.html">$F841</a></td>
+<td class="comment-1" rowspan="1">initiate tape read</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F732"></span>F732</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore load/verify flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F733"></span>F733</td>
+<td class="bytes">85 93</td>
+<td class="instruction">STA $93</td>
+<td class="comment-1" rowspan="1">save load/verify flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F735"></span>F735</td>
+<td class="bytes">B0 32</td>
+<td class="instruction">BCS <a href="F72C.html#F769">$F769</a></td>
+<td class="comment-1" rowspan="1">exit if error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F737"></span>F737</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear the index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F739"></span>F739</td>
+<td class="bytes">B1 B2</td>
+<td class="instruction">LDA ($B2),Y</td>
+<td class="comment-1" rowspan="1">read first byte from tape buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F73B"></span>F73B</td>
+<td class="bytes">C9 05</td>
+<td class="instruction">CMP #$05</td>
+<td class="comment-1" rowspan="1">compare with logical end of the tape</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F73D"></span>F73D</td>
+<td class="bytes">F0 2A</td>
+<td class="instruction">BEQ <a href="F72C.html#F769">$F769</a></td>
+<td class="comment-1" rowspan="1">if end of the tape exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F73F"></span>F73F</td>
+<td class="bytes">C9 01</td>
+<td class="instruction">CMP #$01</td>
+<td class="comment-1" rowspan="1">compare with header for a relocatable program file</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F741"></span>F741</td>
+<td class="bytes">F0 08</td>
+<td class="instruction">BEQ <a href="F72C.html#F74B">$F74B</a></td>
+<td class="comment-1" rowspan="1">if program file header go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F743"></span>F743</td>
+<td class="bytes">C9 03</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">compare with header for a non relocatable program file</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F745"></span>F745</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="F72C.html#F74B">$F74B</a></td>
+<td class="comment-1" rowspan="1">if program file header go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F747"></span>F747</td>
+<td class="bytes">C9 04</td>
+<td class="instruction">CMP #$04</td>
+<td class="comment-1" rowspan="1">compare with data file header</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F749"></span>F749</td>
+<td class="bytes">D0 E1</td>
+<td class="instruction">BNE <a href="F72C.html#F72C">$F72C</a></td>
+<td class="comment-1" rowspan="1">if data file loop to find the tape header</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F74B"></span>
+<div class="comments">
+<div class="paragraph">
+was a program file header
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F74B"></span>F74B</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy header type</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F74C"></span>F74C</td>
+<td class="bytes">24 9D</td>
+<td class="instruction">BIT $9D</td>
+<td class="comment-1" rowspan="1">get message mode flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F74E"></span>F74E</td>
+<td class="bytes">10 17</td>
+<td class="instruction">BPL <a href="F72C.html#F767">$F767</a></td>
+<td class="comment-1" rowspan="1">exit if control messages off</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F750"></span>F750</td>
+<td class="bytes">A0 63</td>
+<td class="instruction">LDY #$63</td>
+<td class="comment-1" rowspan="1">index to "FOUND "</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F752"></span>F752</td>
+<td class="bytes">20 2F F1</td>
+<td class="instruction">JSR <a href="F12B.html#F12F">$F12F</a></td>
+<td class="comment-1" rowspan="1">display kernel I/O message</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F755"></span>F755</td>
+<td class="bytes">A0 05</td>
+<td class="instruction">LDY #$05</td>
+<td class="comment-1" rowspan="1">index to the tape filename</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F757"></span>F757</td>
+<td class="bytes">B1 B2</td>
+<td class="instruction">LDA ($B2),Y</td>
+<td class="comment-1" rowspan="1">get byte from tape buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F759"></span>F759</td>
+<td class="bytes">20 D2 FF</td>
+<td class="instruction">JSR <a href="FFD2.html">$FFD2</a></td>
+<td class="comment-1" rowspan="1">output character to channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F75C"></span>F75C</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment the index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F75D"></span>F75D</td>
+<td class="bytes">C0 15</td>
+<td class="instruction">CPY #$15</td>
+<td class="comment-1" rowspan="1">compare it with end+1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F75F"></span>F75F</td>
+<td class="bytes">D0 F6</td>
+<td class="instruction">BNE <a href="F72C.html#F757">$F757</a></td>
+<td class="comment-1" rowspan="1">loop if more to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F761"></span>F761</td>
+<td class="bytes">A5 A1</td>
+<td class="instruction">LDA $A1</td>
+<td class="comment-1" rowspan="1">get the jiffy clock mid byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F763"></span>F763</td>
+<td class="bytes">20 E0 E4</td>
+<td class="instruction">JSR <a href="E4E0.html">$E4E0</a></td>
+<td class="comment-1" rowspan="1">wait ~8.5 seconds for any key from the STOP key column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F766"></span>F766</td>
+<td class="bytes">EA</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1">waste cycles</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F767"></span>F767</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">flag no error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F768"></span>F768</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement the index</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F769"></span>F769</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F6FB.html">F6FB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F72C">Map</a></td>
+<td class="next">
+Next: <a href="F76A.html">F76A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

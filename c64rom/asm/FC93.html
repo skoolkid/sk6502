@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FC93</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FC6A.html">FC6A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FC93">Map</a></td>
+<td class="next">
+Next: <a href="FCB8.html">FCB8</a>
+</td>
+</tr>
+</table>
+<div class="description">FC93: restore everything for STOP</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="F8D0.html">F8D0</a>, <a href="FA60.html">FA60</a> and <a href="FCB8.html">FCB8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FC93"></span>FC93</td>
+<td class="bytes">08</td>
+<td class="instruction">PHP</td>
+<td class="comment-1" rowspan="1">save status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC94"></span>FC94</td>
+<td class="bytes">78</td>
+<td class="instruction">SEI</td>
+<td class="comment-1" rowspan="1">disable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC95"></span>FC95</td>
+<td class="bytes">AD 11 D0</td>
+<td class="instruction">LDA $D011</td>
+<td class="comment-1" rowspan="1">read the vertical fine scroll and control register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC98"></span>FC98</td>
+<td class="bytes">09 10</td>
+<td class="instruction">ORA #%00010000</td>
+<td class="comment-1" rowspan="1">mask xxx1 xxxx, unblank the screen</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC9A"></span>FC9A</td>
+<td class="bytes">8D 11 D0</td>
+<td class="instruction">STA $D011</td>
+<td class="comment-1" rowspan="1">save the vertical fine scroll and control register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC9D"></span>FC9D</td>
+<td class="bytes">20 CA FC</td>
+<td class="instruction">JSR <a href="FCCA.html">$FCCA</a></td>
+<td class="comment-1" rowspan="1">stop the cassette motor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCA0"></span>FCA0</td>
+<td class="bytes">A9 7F</td>
+<td class="instruction">LDA #$7F</td>
+<td class="comment-1" rowspan="1">disable all interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCA2"></span>FCA2</td>
+<td class="bytes">8D 0D DC</td>
+<td class="instruction">STA $DC0D</td>
+<td class="comment-1" rowspan="1">save VIA 1 ICR</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCA5"></span>FCA5</td>
+<td class="bytes">20 DD FD</td>
+<td class="instruction">JSR <a href="FDA3.html#FDDD">$FDDD</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCA8"></span>FCA8</td>
+<td class="bytes">AD A0 02</td>
+<td class="instruction">LDA $02A0</td>
+<td class="comment-1" rowspan="1">get saved IRQ vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCAB"></span>FCAB</td>
+<td class="bytes">F0 09</td>
+<td class="instruction">BEQ <a href="FC93.html#FCB6">$FCB6</a></td>
+<td class="comment-1" rowspan="1">branch if null</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCAD"></span>FCAD</td>
+<td class="bytes">8D 15 03</td>
+<td class="instruction">STA $0315</td>
+<td class="comment-1" rowspan="1">restore IRQ vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCB0"></span>FCB0</td>
+<td class="bytes">AD 9F 02</td>
+<td class="instruction">LDA $029F</td>
+<td class="comment-1" rowspan="1">get saved IRQ vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCB3"></span>FCB3</td>
+<td class="bytes">8D 14 03</td>
+<td class="instruction">STA $0314</td>
+<td class="comment-1" rowspan="1">restore IRQ vector low byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FCB6"></span>FCB6</td>
+<td class="bytes">28</td>
+<td class="instruction">PLP</td>
+<td class="comment-1" rowspan="1">restore status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCB7"></span>FCB7</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FC6A.html">FC6A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FC93">Map</a></td>
+<td class="next">
+Next: <a href="FCB8.html">FCB8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BA8C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BA28.html">BA28</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BA8C">Map</a></td>
+<td class="next">
+Next: <a href="BAB7.html">BAB7</a>
+</td>
+</tr>
+</table>
+<div class="description">BA8C: unpack memory (<span class="register">AY</span>) into FAC2</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="B850.html">B850</a>, <a href="B862.html">B862</a>, <a href="BA28.html">BA28</a> and <a href="BB0F.html">BB0F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BA8C"></span>BA8C</td>
+<td class="bytes">85 22</td>
+<td class="instruction">STA $22</td>
+<td class="comment-1" rowspan="1">save pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA8E"></span>BA8E</td>
+<td class="bytes">84 23</td>
+<td class="instruction">STY $23</td>
+<td class="comment-1" rowspan="1">save pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA90"></span>BA90</td>
+<td class="bytes">A0 04</td>
+<td class="instruction">LDY #$04</td>
+<td class="comment-1" rowspan="1">5 bytes to get (0-4)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA92"></span>BA92</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA94"></span>BA94</td>
+<td class="bytes">85 6D</td>
+<td class="instruction">STA $6D</td>
+<td class="comment-1" rowspan="1">save FAC2 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA96"></span>BA96</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA97"></span>BA97</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA99"></span>BA99</td>
+<td class="bytes">85 6C</td>
+<td class="instruction">STA $6C</td>
+<td class="comment-1" rowspan="1">save FAC2 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA9B"></span>BA9B</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA9C"></span>BA9C</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA9E"></span>BA9E</td>
+<td class="bytes">85 6B</td>
+<td class="instruction">STA $6B</td>
+<td class="comment-1" rowspan="1">save FAC2 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAA0"></span>BAA0</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAA1"></span>BAA1</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get mantissa 1 + sign</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAA3"></span>BAA3</td>
+<td class="bytes">85 6E</td>
+<td class="instruction">STA $6E</td>
+<td class="comment-1" rowspan="1">save FAC2 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAA5"></span>BAA5</td>
+<td class="bytes">45 66</td>
+<td class="instruction">EOR $66</td>
+<td class="comment-1" rowspan="1">EOR with FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAA7"></span>BAA7</td>
+<td class="bytes">85 6F</td>
+<td class="instruction">STA $6F</td>
+<td class="comment-1" rowspan="1">save sign compare (FAC1 EOR FAC2)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAA9"></span>BAA9</td>
+<td class="bytes">A5 6E</td>
+<td class="instruction">LDA $6E</td>
+<td class="comment-1" rowspan="1">recover FAC2 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAAB"></span>BAAB</td>
+<td class="bytes">09 80</td>
+<td class="instruction">ORA #$80</td>
+<td class="comment-1" rowspan="1">set 1xxx xxx (set normal bit)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAAD"></span>BAAD</td>
+<td class="bytes">85 6A</td>
+<td class="instruction">STA $6A</td>
+<td class="comment-1" rowspan="1">save FAC2 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAAF"></span>BAAF</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAB0"></span>BAB0</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get exponent byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAB2"></span>BAB2</td>
+<td class="bytes">85 69</td>
+<td class="instruction">STA $69</td>
+<td class="comment-1" rowspan="1">save FAC2 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAB4"></span>BAB4</td>
+<td class="bytes">A5 61</td>
+<td class="instruction">LDA $61</td>
+<td class="comment-1" rowspan="1">get FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAB6"></span>BAB6</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BA28.html">BA28</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BA8C">Map</a></td>
+<td class="next">
+Next: <a href="BAB7.html">BAB7</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

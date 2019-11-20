@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FFA2</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FF9F.html">FF9F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFA2">Map</a></td>
+<td class="next">
+Next: <a href="FFA5.html">FFA5</a>
+</td>
+</tr>
+</table>
+<div class="description">FFA2: set timeout on serial bus</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+this routine sets the timeout flag for the serial bus. When the timeout flag is set, the computer will wait for a device on the serial port for 64 milliseconds. If the device does not respond to the computer's DAV signal within that time the computer will recognize an error condition and leave the handshake sequence. When this routine is called and the accumulator contains a 0 in bit 7, timeouts are enabled. A 1 in bit 7 will disable the timeouts. NOTE: The the timeout feature is used to communicate that a disk file is not found on an attempt to OPEN a file.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FFA2"></span>FFA2</td>
+<td class="bytes">4C 21 FE</td>
+<td class="instruction">JMP <a href="FE21.html">$FE21</a></td>
+<td class="comment-1" rowspan="1">set timeout on serial bus</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FF9F.html">FF9F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFA2">Map</a></td>
+<td class="next">
+Next: <a href="FFA5.html">FFA5</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

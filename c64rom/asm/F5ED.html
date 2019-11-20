@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F5ED</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F5DD.html">F5DD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F5ED">Map</a></td>
+<td class="next">
+Next: <a href="F68F.html">F68F</a>
+</td>
+</tr>
+</table>
+<div class="description">F5ED: save</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F5ED"></span>F5ED</td>
+<td class="bytes">A5 BA</td>
+<td class="instruction">LDA $BA</td>
+<td class="comment-1" rowspan="1">get the device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5EF"></span>F5EF</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="F5ED.html#F5F4">$F5F4</a></td>
+<td class="comment-1" rowspan="1">if not keyboard go ??</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F5F1"></span>
+<div class="comments">
+<div class="paragraph">
+else ..
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F5F1"></span>F5F1</td>
+<td class="bytes">4C 13 F7</td>
+<td class="instruction">JMP <a href="F6FB.html#F713">$F713</a></td>
+<td class="comment-1" rowspan="1">else do 'illegal device number' and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F5F4"></span>F5F4</td>
+<td class="bytes">C9 03</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">compare device number with screen</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5F6"></span>F5F6</td>
+<td class="bytes">F0 F9</td>
+<td class="instruction">BEQ <a href="F5ED.html#F5F1">$F5F1</a></td>
+<td class="comment-1" rowspan="1">if screen do illegal device number and return</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5F8"></span>F5F8</td>
+<td class="bytes">90 5F</td>
+<td class="instruction">BCC <a href="F5ED.html#F659">$F659</a></td>
+<td class="comment-1" rowspan="1">branch if &lt; screen</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F5FA"></span>
+<div class="comments">
+<div class="paragraph">
+is greater than screen so is serial bus
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5FA"></span>F5FA</td>
+<td class="bytes">A9 61</td>
+<td class="instruction">LDA #$61</td>
+<td class="comment-1" rowspan="1">set secondary address to $01</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F5FC"></span>
+<div class="comments">
+<div class="paragraph">
+when a secondary address is to be sent to a device on the serial bus the address must first be ORed with $60
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5FC"></span>F5FC</td>
+<td class="bytes">85 B9</td>
+<td class="instruction">STA $B9</td>
+<td class="comment-1" rowspan="1">save the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5FE"></span>F5FE</td>
+<td class="bytes">A4 B7</td>
+<td class="instruction">LDY $B7</td>
+<td class="comment-1" rowspan="1">get the file name length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F600"></span>F600</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="F5ED.html#F605">$F605</a></td>
+<td class="comment-1" rowspan="1">if filename not null continue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F602"></span>F602</td>
+<td class="bytes">4C 10 F7</td>
+<td class="instruction">JMP <a href="F6FB.html#F710">$F710</a></td>
+<td class="comment-1" rowspan="1">else do 'missing file name' error and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F605"></span>F605</td>
+<td class="bytes">20 D5 F3</td>
+<td class="instruction">JSR <a href="F3D5.html">$F3D5</a></td>
+<td class="comment-1" rowspan="1">send secondary address and filename</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F608"></span>F608</td>
+<td class="bytes">20 8F F6</td>
+<td class="instruction">JSR <a href="F68F.html">$F68F</a></td>
+<td class="comment-1" rowspan="1">print saving &lt;file name&gt;</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F60B"></span>F60B</td>
+<td class="bytes">A5 BA</td>
+<td class="instruction">LDA $BA</td>
+<td class="comment-1" rowspan="1">get the device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F60D"></span>F60D</td>
+<td class="bytes">20 0C ED</td>
+<td class="instruction">JSR <a href="ED0C.html">$ED0C</a></td>
+<td class="comment-1" rowspan="1">command devices on the serial bus to LISTEN</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F610"></span>F610</td>
+<td class="bytes">A5 B9</td>
+<td class="instruction">LDA $B9</td>
+<td class="comment-1" rowspan="1">get the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F612"></span>F612</td>
+<td class="bytes">20 B9 ED</td>
+<td class="instruction">JSR <a href="EDB9.html">$EDB9</a></td>
+<td class="comment-1" rowspan="1">send secondary address after LISTEN</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F615"></span>F615</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F617"></span>F617</td>
+<td class="bytes">20 8E FB</td>
+<td class="instruction">JSR <a href="FB8E.html">$FB8E</a></td>
+<td class="comment-1" rowspan="1">copy I/O start address to buffer address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F61A"></span>F61A</td>
+<td class="bytes">A5 AC</td>
+<td class="instruction">LDA $AC</td>
+<td class="comment-1" rowspan="1">get buffer address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F61C"></span>F61C</td>
+<td class="bytes">20 DD ED</td>
+<td class="instruction">JSR <a href="EDDD.html">$EDDD</a></td>
+<td class="comment-1" rowspan="1">output byte to serial bus</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F61F"></span>F61F</td>
+<td class="bytes">A5 AD</td>
+<td class="instruction">LDA $AD</td>
+<td class="comment-1" rowspan="1">get buffer address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F621"></span>F621</td>
+<td class="bytes">20 DD ED</td>
+<td class="instruction">JSR <a href="EDDD.html">$EDDD</a></td>
+<td class="comment-1" rowspan="1">output byte to serial bus</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F624"></span>F624</td>
+<td class="bytes">20 D1 FC</td>
+<td class="instruction">JSR <a href="FCD1.html">$FCD1</a></td>
+<td class="comment-1" rowspan="1">check read/write pointer, return Cb = 1 if pointer &gt;= end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F627"></span>F627</td>
+<td class="bytes">B0 16</td>
+<td class="instruction">BCS <a href="F5ED.html#F63F">$F63F</a></td>
+<td class="comment-1" rowspan="1">go do UNLISTEN if at end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F629"></span>F629</td>
+<td class="bytes">B1 AC</td>
+<td class="instruction">LDA ($AC),Y</td>
+<td class="comment-1" rowspan="1">get byte from buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F62B"></span>F62B</td>
+<td class="bytes">20 DD ED</td>
+<td class="instruction">JSR <a href="EDDD.html">$EDDD</a></td>
+<td class="comment-1" rowspan="1">output byte to serial bus</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F62E"></span>F62E</td>
+<td class="bytes">20 E1 FF</td>
+<td class="instruction">JSR <a href="FFE1.html">$FFE1</a></td>
+<td class="comment-1" rowspan="1">scan stop key</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F631"></span>F631</td>
+<td class="bytes">D0 07</td>
+<td class="instruction">BNE <a href="F5ED.html#F63A">$F63A</a></td>
+<td class="comment-1" rowspan="1">if stop not pressed go increment pointer and loop for next</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F633"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F4A5.html">F4A5</a>.
+</div>
+<div class="paragraph">
+else .. close the serial bus device and flag stop
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F633"></span>F633</td>
+<td class="bytes">20 42 F6</td>
+<td class="instruction">JSR <a href="F5ED.html#F642">$F642</a></td>
+<td class="comment-1" rowspan="1">close serial bus device</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F636"></span>F636</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F638"></span>F638</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">flag stop</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F639"></span>F639</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F63A"></span>F63A</td>
+<td class="bytes">20 DB FC</td>
+<td class="instruction">JSR <a href="FCDB.html">$FCDB</a></td>
+<td class="comment-1" rowspan="1">increment read/write pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F63D"></span>F63D</td>
+<td class="bytes">D0 E5</td>
+<td class="instruction">BNE <a href="F5ED.html#F624">$F624</a></td>
+<td class="comment-1" rowspan="1">loop, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F63F"></span>F63F</td>
+<td class="bytes">20 FE ED</td>
+<td class="instruction">JSR <a href="EDFE.html">$EDFE</a></td>
+<td class="comment-1" rowspan="1">command serial bus to UNLISTEN</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F642"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="F2EE.html">F2EE</a> and <a href="F4A5.html">F4A5</a>.
+</div>
+<div class="paragraph">
+close serial bus device
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F642"></span>F642</td>
+<td class="bytes">24 B9</td>
+<td class="instruction">BIT $B9</td>
+<td class="comment-1" rowspan="1">test the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F644"></span>F644</td>
+<td class="bytes">30 11</td>
+<td class="instruction">BMI <a href="F5ED.html#F657">$F657</a></td>
+<td class="comment-1" rowspan="1">if already closed just exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F646"></span>F646</td>
+<td class="bytes">A5 BA</td>
+<td class="instruction">LDA $BA</td>
+<td class="comment-1" rowspan="1">get the device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F648"></span>F648</td>
+<td class="bytes">20 0C ED</td>
+<td class="instruction">JSR <a href="ED0C.html">$ED0C</a></td>
+<td class="comment-1" rowspan="1">command devices on the serial bus to LISTEN</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F64B"></span>F64B</td>
+<td class="bytes">A5 B9</td>
+<td class="instruction">LDA $B9</td>
+<td class="comment-1" rowspan="1">get the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F64D"></span>F64D</td>
+<td class="bytes">29 EF</td>
+<td class="instruction">AND #%11101111</td>
+<td class="comment-1" rowspan="1">mask the channel number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F64F"></span>F64F</td>
+<td class="bytes">09 E0</td>
+<td class="instruction">ORA #%11100000</td>
+<td class="comment-1" rowspan="1">OR with the CLOSE command</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F651"></span>F651</td>
+<td class="bytes">20 B9 ED</td>
+<td class="instruction">JSR <a href="EDB9.html">$EDB9</a></td>
+<td class="comment-1" rowspan="1">send secondary address after LISTEN</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F654"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F3D5.html">F3D5</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F654"></span>F654</td>
+<td class="bytes">20 FE ED</td>
+<td class="instruction">JSR <a href="EDFE.html">$EDFE</a></td>
+<td class="comment-1" rowspan="1">command serial bus to UNLISTEN</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F657"></span>F657</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">flag ok</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F658"></span>F658</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F659"></span>F659</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F65A"></span>F65A</td>
+<td class="bytes">B0 03</td>
+<td class="instruction">BCS <a href="F5ED.html#F65F">$F65F</a></td>
+<td class="comment-1" rowspan="1">if not RS232 device ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F65C"></span>F65C</td>
+<td class="bytes">4C 13 F7</td>
+<td class="instruction">JMP <a href="F6FB.html#F713">$F713</a></td>
+<td class="comment-1" rowspan="1">else do 'illegal device number' and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F65F"></span>F65F</td>
+<td class="bytes">20 D0 F7</td>
+<td class="instruction">JSR <a href="F7D0.html">$F7D0</a></td>
+<td class="comment-1" rowspan="1">get tape buffer start pointer in <span class="register">XY</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F662"></span>F662</td>
+<td class="bytes">90 8D</td>
+<td class="instruction">BCC <a href="F5ED.html#F5F1">$F5F1</a></td>
+<td class="comment-1" rowspan="1">if &lt; $0200 do illegal device number and return</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F664"></span>F664</td>
+<td class="bytes">20 38 F8</td>
+<td class="instruction">JSR <a href="F838.html">$F838</a></td>
+<td class="comment-1" rowspan="1">wait for PLAY/RECORD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F667"></span>F667</td>
+<td class="bytes">B0 25</td>
+<td class="instruction">BCS <a href="F5ED.html#F68E">$F68E</a></td>
+<td class="comment-1" rowspan="1">exit if STOP was pressed</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F669"></span>F669</td>
+<td class="bytes">20 8F F6</td>
+<td class="instruction">JSR <a href="F68F.html">$F68F</a></td>
+<td class="comment-1" rowspan="1">print saving &lt;file name&gt;</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F66C"></span>F66C</td>
+<td class="bytes">A2 03</td>
+<td class="instruction">LDX #$03</td>
+<td class="comment-1" rowspan="1">set header for a non relocatable program file</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F66E"></span>F66E</td>
+<td class="bytes">A5 B9</td>
+<td class="instruction">LDA $B9</td>
+<td class="comment-1" rowspan="1">get the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F670"></span>F670</td>
+<td class="bytes">29 01</td>
+<td class="instruction">AND #%00000001</td>
+<td class="comment-1" rowspan="1">mask non relocatable bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F672"></span>F672</td>
+<td class="bytes">D0 02</td>
+<td class="instruction">BNE <a href="F5ED.html#F676">$F676</a></td>
+<td class="comment-1" rowspan="1">if non relocatable program go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F674"></span>F674</td>
+<td class="bytes">A2 01</td>
+<td class="instruction">LDX #$01</td>
+<td class="comment-1" rowspan="1">else set header for a relocatable program file</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F676"></span>F676</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy header type to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F677"></span>F677</td>
+<td class="bytes">20 6A F7</td>
+<td class="instruction">JSR <a href="F76A.html">$F76A</a></td>
+<td class="comment-1" rowspan="1">write tape header</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F67A"></span>F67A</td>
+<td class="bytes">B0 12</td>
+<td class="instruction">BCS <a href="F5ED.html#F68E">$F68E</a></td>
+<td class="comment-1" rowspan="1">exit if error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F67C"></span>F67C</td>
+<td class="bytes">20 67 F8</td>
+<td class="instruction">JSR <a href="F864.html#F867">$F867</a></td>
+<td class="comment-1" rowspan="1">do tape write, 20 cycle count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F67F"></span>F67F</td>
+<td class="bytes">B0 0D</td>
+<td class="instruction">BCS <a href="F5ED.html#F68E">$F68E</a></td>
+<td class="comment-1" rowspan="1">exit if error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F681"></span>F681</td>
+<td class="bytes">A5 B9</td>
+<td class="instruction">LDA $B9</td>
+<td class="comment-1" rowspan="1">get the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F683"></span>F683</td>
+<td class="bytes">29 02</td>
+<td class="instruction">AND #%00000010</td>
+<td class="comment-1" rowspan="1">mask end of tape flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F685"></span>F685</td>
+<td class="bytes">F0 06</td>
+<td class="instruction">BEQ <a href="F5ED.html#F68D">$F68D</a></td>
+<td class="comment-1" rowspan="1">if not end of tape go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F687"></span>F687</td>
+<td class="bytes">A9 05</td>
+<td class="instruction">LDA #$05</td>
+<td class="comment-1" rowspan="1">else set logical end of the tape</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F689"></span>F689</td>
+<td class="bytes">20 6A F7</td>
+<td class="instruction">JSR <a href="F76A.html">$F76A</a></td>
+<td class="comment-1" rowspan="1">write tape header</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F68C"></span>F68C</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $24</td>
+<td class="comment-1" rowspan="1">makes next line BIT $18 so Cb is not changed</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F68D"></span>F68D</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">flag ok</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F68E"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F68F.html">F68F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F68E"></span>F68E</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F5DD.html">F5DD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F5ED">Map</a></td>
+<td class="next">
+Next: <a href="F68F.html">F68F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

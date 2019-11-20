@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BDC2</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BDB3.html">BDB3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BDC2">Map</a></td>
+<td class="next">
+Next: <a href="BDCD.html">BDCD</a>
+</td>
+</tr>
+</table>
+<div class="description">BDC2: do " IN " line number message</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="A469.html">A469</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BDC2"></span>BDC2</td>
+<td class="bytes">A9 71</td>
+<td class="instruction">LDA #$71</td>
+<td class="comment-1" rowspan="1">set " IN " pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDC4"></span>BDC4</td>
+<td class="bytes">A0 A3</td>
+<td class="instruction">LDY #$A3</td>
+<td class="comment-1" rowspan="1">set " IN " pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDC6"></span>BDC6</td>
+<td class="bytes">20 DA BD</td>
+<td class="instruction">JSR <a href="BDCD.html#BDDA">$BDDA</a></td>
+<td class="comment-1" rowspan="1">print null terminated string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDC9"></span>BDC9</td>
+<td class="bytes">A5 3A</td>
+<td class="instruction">LDA $3A</td>
+<td class="comment-1" rowspan="1">get the current line number high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDCB"></span>BDCB</td>
+<td class="bytes">A6 39</td>
+<td class="instruction">LDX $39</td>
+<td class="comment-1" rowspan="1">get the current line number low byte</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BDB3.html">BDB3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BDC2">Map</a></td>
+<td class="next">
+Next: <a href="BDCD.html">BDCD</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

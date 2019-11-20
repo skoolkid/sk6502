@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FED6</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FEC2.html">FEC2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FED6">Map</a></td>
+<td class="next">
+Next: <a href="FF07.html">FF07</a>
+</td>
+</tr>
+</table>
+<div class="description">FED6: ??</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="FE72.html">FE72</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FED6"></span>FED6</td>
+<td class="bytes">AD 01 DD</td>
+<td class="instruction">LDA $DD01</td>
+<td class="comment-1" rowspan="1">read VIA 2 DRB, RS232 port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FED9"></span>FED9</td>
+<td class="bytes">29 01</td>
+<td class="instruction">AND #%00000001</td>
+<td class="comment-1" rowspan="1">mask 0000 000x, RS232 Rx DATA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEDB"></span>FEDB</td>
+<td class="bytes">85 A7</td>
+<td class="instruction">STA $A7</td>
+<td class="comment-1" rowspan="1">save the RS232 received data bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEDD"></span>FEDD</td>
+<td class="bytes">AD 06 DD</td>
+<td class="instruction">LDA $DD06</td>
+<td class="comment-1" rowspan="1">get VIA 2 timer B low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEE0"></span>FEE0</td>
+<td class="bytes">E9 1C</td>
+<td class="instruction">SBC #$1C</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEE2"></span>FEE2</td>
+<td class="bytes">6D 99 02</td>
+<td class="instruction">ADC $0299</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEE5"></span>FEE5</td>
+<td class="bytes">8D 06 DD</td>
+<td class="instruction">STA $DD06</td>
+<td class="comment-1" rowspan="1">save VIA 2 timer B low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEE8"></span>FEE8</td>
+<td class="bytes">AD 07 DD</td>
+<td class="instruction">LDA $DD07</td>
+<td class="comment-1" rowspan="1">get VIA 2 timer B high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEEB"></span>FEEB</td>
+<td class="bytes">6D 9A 02</td>
+<td class="instruction">ADC $029A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEEE"></span>FEEE</td>
+<td class="bytes">8D 07 DD</td>
+<td class="instruction">STA $DD07</td>
+<td class="comment-1" rowspan="1">save VIA 2 timer B high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEF1"></span>FEF1</td>
+<td class="bytes">A9 11</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="1">set timer B single shot, start timer B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEF3"></span>FEF3</td>
+<td class="bytes">8D 0F DD</td>
+<td class="instruction">STA $DD0F</td>
+<td class="comment-1" rowspan="1">save VIA 2 CRB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEF6"></span>FEF6</td>
+<td class="bytes">AD A1 02</td>
+<td class="instruction">LDA $02A1</td>
+<td class="comment-1" rowspan="1">get the RS-232 interrupt enable byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEF9"></span>FEF9</td>
+<td class="bytes">8D 0D DD</td>
+<td class="instruction">STA $DD0D</td>
+<td class="comment-1" rowspan="1">save VIA 2 ICR</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEFC"></span>FEFC</td>
+<td class="bytes">A9 FF</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEFE"></span>FEFE</td>
+<td class="bytes">8D 06 DD</td>
+<td class="instruction">STA $DD06</td>
+<td class="comment-1" rowspan="1">save VIA 2 timer B low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FF01"></span>FF01</td>
+<td class="bytes">8D 07 DD</td>
+<td class="instruction">STA $DD07</td>
+<td class="comment-1" rowspan="1">save VIA 2 timer B high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FF04"></span>FF04</td>
+<td class="bytes">4C 59 EF</td>
+<td class="instruction">JMP <a href="EF59.html">$EF59</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FEC2.html">FEC2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FED6">Map</a></td>
+<td class="next">
+Next: <a href="FF07.html">FF07</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

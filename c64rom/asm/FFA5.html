@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FFA5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFA2.html">FFA2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFA5">Map</a></td>
+<td class="next">
+Next: <a href="FFA8.html">FFA8</a>
+</td>
+</tr>
+</table>
+<div class="description">FFA5: input byte from serial bus</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+this routine reads a byte of data from the serial bus using full handshaking. the data is returned in the accumulator. before using this routine the TALK routine, <a href="FFB4.html">FFB4</a>, must have been called first to command the device on the serial bus to send data on the bus. if the input device needs a secondary command it must be sent by using the TKSA routine, <a href="FF96.html">FF96</a>, before calling this routine.
+</div>
+<div class="paragraph">
+errors are returned in the status word which can be read by calling the READST routine, <a href="FFB7.html">FFB7</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FFA5"></span>FFA5</td>
+<td class="bytes">4C 13 EE</td>
+<td class="instruction">JMP <a href="EE13.html">$EE13</a></td>
+<td class="comment-1" rowspan="1">input byte from serial bus</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFA2.html">FFA2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFA5">Map</a></td>
+<td class="next">
+Next: <a href="FFA8.html">FFA8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

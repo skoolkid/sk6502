@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B82D</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B824.html">B824</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B82D">Map</a></td>
+<td class="next">
+Next: <a href="B849.html">B849</a>
+</td>
+</tr>
+</table>
+<div class="description">B82D: perform WAIT</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B82D"></span>B82D</td>
+<td class="bytes">20 EB B7</td>
+<td class="instruction">JSR <a href="B7EB.html">$B7EB</a></td>
+<td class="comment-1" rowspan="1">get parameters for POKE/WAIT</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B830"></span>B830</td>
+<td class="bytes">86 49</td>
+<td class="instruction">STX $49</td>
+<td class="comment-1" rowspan="1">save byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B832"></span>B832</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">clear mask</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B834"></span>B834</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B837"></span>B837</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="B82D.html#B83C">$B83C</a></td>
+<td class="comment-1" rowspan="1">skip if no third argument</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B839"></span>B839</td>
+<td class="bytes">20 F1 B7</td>
+<td class="instruction">JSR <a href="B7EB.html#B7F1">$B7F1</a></td>
+<td class="comment-1" rowspan="1">scan for "," and get byte, else syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B83C"></span>B83C</td>
+<td class="bytes">86 4A</td>
+<td class="instruction">STX $4A</td>
+<td class="comment-1" rowspan="1">save EOR argument</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B83E"></span>B83E</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B840"></span>B840</td>
+<td class="bytes">B1 14</td>
+<td class="instruction">LDA ($14),Y</td>
+<td class="comment-1" rowspan="1">get byte via temporary integer (address)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B842"></span>B842</td>
+<td class="bytes">45 4A</td>
+<td class="instruction">EOR $4A</td>
+<td class="comment-1" rowspan="1">EOR with second argument (mask)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B844"></span>B844</td>
+<td class="bytes">25 49</td>
+<td class="instruction">AND $49</td>
+<td class="comment-1" rowspan="1">AND with first argument (byte)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B846"></span>B846</td>
+<td class="bytes">F0 F8</td>
+<td class="instruction">BEQ <a href="B82D.html#B840">$B840</a></td>
+<td class="comment-1" rowspan="1">loop if result is zero</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B848"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="B86A.html">B86A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B848"></span>B848</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B824.html">B824</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B82D">Map</a></td>
+<td class="next">
+Next: <a href="B849.html">B849</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

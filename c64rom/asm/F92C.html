@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F92C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F8E2.html">F8E2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F92C">Map</a></td>
+<td class="next">
+Next: <a href="FA60.html">FA60</a>
+</td>
+</tr>
+</table>
+<div class="description">F92C: read tape bits, IRQ routine</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+On Commodore computers, the streams consist of four kinds of symbols that denote different kinds of low-to-high-to-low transitions on the read or write signals of the Commodore cassette interface.
+</div>
+<div class="paragraph">
+<ul class="">
+<li>A break in the communications, or a pulse with very long cycle time.</li>
+<li>A short pulse, whose cycle time typically ranges from 296 to 424 microseconds, depending on the computer model.</li>
+<li>A medium-length pulse, whose cycle time typically ranges from 440 to 576 microseconds, depending on the computer model.</li>
+<li>A long pulse, whose cycle time typically ranges from 600 to 744 microseconds, depending on the computer model.</li>
+</ul>
+</div>
+<div class="paragraph">
+The actual interpretation of the serial data takes a little more work to explain. The typical ROM tape loader (and the turbo loaders) will initialize a timer with a specified value and start it counting down. If either the tape data changes or the timer runs out, an IRQ will occur. The loader will determine which condition caused the IRQ. If the tape data changed before the timer ran out, we have a short pulse, or a "0" bit. If the timer ran out first, we have a long pulse, or a "1" bit. Doing this continuously and we decode the entire file.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F92C"></span>
+<div class="comments">
+<div class="paragraph">
+read T2C which has been counting down from $FFFF. subtract this from $FFFF
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F92C"></span>F92C</td>
+<td class="bytes">AE 07 DC</td>
+<td class="instruction">LDX $DC07</td>
+<td class="comment-1" rowspan="1">read VIA 1 timer B high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F92F"></span>F92F</td>
+<td class="bytes">A0 FF</td>
+<td class="instruction">LDY #$FF</td>
+<td class="comment-1" rowspan="1">set $FF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F931"></span>F931</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span> = $FF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F932"></span>F932</td>
+<td class="bytes">ED 06 DC</td>
+<td class="instruction">SBC $DC06</td>
+<td class="comment-1" rowspan="1">subtract VIA 1 timer B low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F935"></span>F935</td>
+<td class="bytes">EC 07 DC</td>
+<td class="instruction">CPX $DC07</td>
+<td class="comment-1" rowspan="1">compare it with VIA 1 timer B high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F938"></span>F938</td>
+<td class="bytes">D0 F2</td>
+<td class="instruction">BNE <a href="F92C.html#F92C">$F92C</a></td>
+<td class="comment-1" rowspan="1">if timer low byte rolled over loop</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F93A"></span>F93A</td>
+<td class="bytes">86 B1</td>
+<td class="instruction">STX $B1</td>
+<td class="comment-1" rowspan="1">save tape timing constant max byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F93C"></span>F93C</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy $FF - T2C_l</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F93D"></span>F93D</td>
+<td class="bytes">8C 06 DC</td>
+<td class="instruction">STY $DC06</td>
+<td class="comment-1" rowspan="1">save VIA 1 timer B low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F940"></span>F940</td>
+<td class="bytes">8C 07 DC</td>
+<td class="instruction">STY $DC07</td>
+<td class="comment-1" rowspan="1">save VIA 1 timer B high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F943"></span>F943</td>
+<td class="bytes">A9 19</td>
+<td class="instruction">LDA #$19</td>
+<td class="comment-1" rowspan="1">load timer B, timer B single shot, start timer B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F945"></span>F945</td>
+<td class="bytes">8D 0F DC</td>
+<td class="instruction">STA $DC0F</td>
+<td class="comment-1" rowspan="1">save VIA 1 CRB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F948"></span>F948</td>
+<td class="bytes">AD 0D DC</td>
+<td class="instruction">LDA $DC0D</td>
+<td class="comment-1" rowspan="1">read VIA 1 ICR</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F94B"></span>F94B</td>
+<td class="bytes">8D A3 02</td>
+<td class="instruction">STA $02A3</td>
+<td class="comment-1" rowspan="1">save VIA 1 ICR shadow copy</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F94E"></span>F94E</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span> = $FF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F94F"></span>F94F</td>
+<td class="bytes">E5 B1</td>
+<td class="instruction">SBC $B1</td>
+<td class="comment-1" rowspan="1">subtract tape timing constant max byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F951"></span>
+<div class="comments">
+<div class="paragraph">
+<span class="register">A</span> = $FF - T2C_h
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F951"></span>F951</td>
+<td class="bytes">86 B1</td>
+<td class="instruction">STX $B1</td>
+<td class="comment-1" rowspan="1">save tape timing constant max byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F953"></span>
+<div class="comments">
+<div class="paragraph">
+$B1 = $FF - T2C_l
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F953"></span>F953</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span> = $FF - T2C_h &gt;&gt; 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F954"></span>F954</td>
+<td class="bytes">66 B1</td>
+<td class="instruction">ROR $B1</td>
+<td class="comment-1" rowspan="1">shift tape timing constant max byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F956"></span>
+<div class="comments">
+<div class="paragraph">
+$B1 = $FF - T2C_l &gt;&gt; 1
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F956"></span>F956</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span> = $FF - T2C_h &gt;&gt; 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F957"></span>F957</td>
+<td class="bytes">66 B1</td>
+<td class="instruction">ROR $B1</td>
+<td class="comment-1" rowspan="1">shift tape timing constant max byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F959"></span>
+<div class="comments">
+<div class="paragraph">
+$B1 = $FF - T2C_l &gt;&gt; 1
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F959"></span>F959</td>
+<td class="bytes">A5 B0</td>
+<td class="instruction">LDA $B0</td>
+<td class="comment-1" rowspan="1">get tape timing constant min byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F95B"></span>F95B</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F95C"></span>F95C</td>
+<td class="bytes">69 3C</td>
+<td class="instruction">ADC #$3C</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F95E"></span>F95E</td>
+<td class="bytes">C5 B1</td>
+<td class="instruction">CMP $B1</td>
+<td class="comment-1" rowspan="1">compare with tape timing constant max byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F960"></span>
+<div class="comments">
+<div class="paragraph">
+compare with ($FFFF - T2C) &gt;&gt; 2
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F960"></span>F960</td>
+<td class="bytes">B0 4A</td>
+<td class="instruction">BCS <a href="F92C.html#F9AC">$F9AC</a></td>
+<td class="comment-1" rowspan="1">branch if min + $3C &gt;= ($FFFF - T2C) &gt;&gt; 2</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F962"></span>
+<div class="comments">
+<div class="paragraph">
+min + $3C &lt; ($FFFF - T2C) &gt;&gt; 2
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F962"></span>F962</td>
+<td class="bytes">A6 9C</td>
+<td class="instruction">LDX $9C</td>
+<td class="comment-1" rowspan="1">get byte received flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F964"></span>F964</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="F92C.html#F969">$F969</a></td>
+<td class="comment-1" rowspan="1">if not byte received ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F966"></span>F966</td>
+<td class="bytes">4C 60 FA</td>
+<td class="instruction">JMP <a href="FA60.html">$FA60</a></td>
+<td class="comment-1" rowspan="1">store the tape character</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F969"></span>F969</td>
+<td class="bytes">A6 A3</td>
+<td class="instruction">LDX $A3</td>
+<td class="comment-1" rowspan="1">get EOI flag byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F96B"></span>F96B</td>
+<td class="bytes">30 1B</td>
+<td class="instruction">BMI <a href="F92C.html#F988">$F988</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F96D"></span>F96D</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F96F"></span>F96F</td>
+<td class="bytes">69 30</td>
+<td class="instruction">ADC #$30</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F971"></span>F971</td>
+<td class="bytes">65 B0</td>
+<td class="instruction">ADC $B0</td>
+<td class="comment-1" rowspan="1">add tape timing constant min byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F973"></span>F973</td>
+<td class="bytes">C5 B1</td>
+<td class="instruction">CMP $B1</td>
+<td class="comment-1" rowspan="1">compare with tape timing constant max byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F975"></span>F975</td>
+<td class="bytes">B0 1C</td>
+<td class="instruction">BCS <a href="F92C.html#F993">$F993</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F977"></span>F977</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F978"></span>F978</td>
+<td class="bytes">69 26</td>
+<td class="instruction">ADC #$26</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F97A"></span>F97A</td>
+<td class="bytes">65 B0</td>
+<td class="instruction">ADC $B0</td>
+<td class="comment-1" rowspan="1">add tape timing constant min byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F97C"></span>F97C</td>
+<td class="bytes">C5 B1</td>
+<td class="instruction">CMP $B1</td>
+<td class="comment-1" rowspan="1">compare with tape timing constant max byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F97E"></span>F97E</td>
+<td class="bytes">B0 17</td>
+<td class="instruction">BCS <a href="F92C.html#F997">$F997</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F980"></span>F980</td>
+<td class="bytes">69 2C</td>
+<td class="instruction">ADC #$2C</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F982"></span>F982</td>
+<td class="bytes">65 B0</td>
+<td class="instruction">ADC $B0</td>
+<td class="comment-1" rowspan="1">add tape timing constant min byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F984"></span>F984</td>
+<td class="bytes">C5 B1</td>
+<td class="instruction">CMP $B1</td>
+<td class="comment-1" rowspan="1">compare with tape timing constant max byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F986"></span>F986</td>
+<td class="bytes">90 03</td>
+<td class="instruction">BCC <a href="F92C.html#F98B">$F98B</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F988"></span>F988</td>
+<td class="bytes">4C 10 FA</td>
+<td class="instruction">JMP <a href="F92C.html#FA10">$FA10</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F98B"></span>F98B</td>
+<td class="bytes">A5 B4</td>
+<td class="instruction">LDA $B4</td>
+<td class="comment-1" rowspan="1">get the bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F98D"></span>F98D</td>
+<td class="bytes">F0 1D</td>
+<td class="instruction">BEQ <a href="F92C.html#F9AC">$F9AC</a></td>
+<td class="comment-1" rowspan="1">if all done go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F98F"></span>F98F</td>
+<td class="bytes">85 A8</td>
+<td class="instruction">STA $A8</td>
+<td class="comment-1" rowspan="1">save receiver bit count in</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F991"></span>F991</td>
+<td class="bytes">D0 19</td>
+<td class="instruction">BNE <a href="F92C.html#F9AC">$F9AC</a></td>
+<td class="comment-1" rowspan="1">branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F993"></span>F993</td>
+<td class="bytes">E6 A9</td>
+<td class="instruction">INC $A9</td>
+<td class="comment-1" rowspan="1">increment ?? start bit check flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F995"></span>F995</td>
+<td class="bytes">B0 02</td>
+<td class="instruction">BCS <a href="F92C.html#F999">$F999</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F997"></span>F997</td>
+<td class="bytes">C6 A9</td>
+<td class="instruction">DEC $A9</td>
+<td class="comment-1" rowspan="1">decrement ?? start bit check flag</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F999"></span>F999</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F99A"></span>F99A</td>
+<td class="bytes">E9 13</td>
+<td class="instruction">SBC #$13</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F99C"></span>F99C</td>
+<td class="bytes">E5 B1</td>
+<td class="instruction">SBC $B1</td>
+<td class="comment-1" rowspan="1">subtract tape timing constant max byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F99E"></span>F99E</td>
+<td class="bytes">65 92</td>
+<td class="instruction">ADC $92</td>
+<td class="comment-1" rowspan="1">add timing constant for tape</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9A0"></span>F9A0</td>
+<td class="bytes">85 92</td>
+<td class="instruction">STA $92</td>
+<td class="comment-1" rowspan="1">save timing constant for tape</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9A2"></span>F9A2</td>
+<td class="bytes">A5 A4</td>
+<td class="instruction">LDA $A4</td>
+<td class="comment-1" rowspan="1">get tape bit cycle phase</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9A4"></span>F9A4</td>
+<td class="bytes">49 01</td>
+<td class="instruction">EOR #%00000001</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9A6"></span>F9A6</td>
+<td class="bytes">85 A4</td>
+<td class="instruction">STA $A4</td>
+<td class="comment-1" rowspan="1">save tape bit cycle phase</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9A8"></span>F9A8</td>
+<td class="bytes">F0 2B</td>
+<td class="instruction">BEQ <a href="F92C.html#F9D5">$F9D5</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9AA"></span>F9AA</td>
+<td class="bytes">86 D7</td>
+<td class="instruction">STX $D7</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F9AC"></span>F9AC</td>
+<td class="bytes">A5 B4</td>
+<td class="instruction">LDA $B4</td>
+<td class="comment-1" rowspan="1">get the bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9AE"></span>F9AE</td>
+<td class="bytes">F0 22</td>
+<td class="instruction">BEQ <a href="F92C.html#F9D2">$F9D2</a></td>
+<td class="comment-1" rowspan="1">if all done go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9B0"></span>F9B0</td>
+<td class="bytes">AD A3 02</td>
+<td class="instruction">LDA $02A3</td>
+<td class="comment-1" rowspan="1">read VIA 1 ICR shadow copy</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9B3"></span>F9B3</td>
+<td class="bytes">29 01</td>
+<td class="instruction">AND #%00000001</td>
+<td class="comment-1" rowspan="1">mask 0000 000x, timer A interrupt enabled</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9B5"></span>F9B5</td>
+<td class="bytes">D0 05</td>
+<td class="instruction">BNE <a href="F92C.html#F9BC">$F9BC</a></td>
+<td class="comment-1" rowspan="1">if timer A is enabled go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9B7"></span>F9B7</td>
+<td class="bytes">AD A4 02</td>
+<td class="instruction">LDA $02A4</td>
+<td class="comment-1" rowspan="1">read VIA 1 CRA shadow copy</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9BA"></span>F9BA</td>
+<td class="bytes">D0 16</td>
+<td class="instruction">BNE <a href="F92C.html#F9D2">$F9D2</a></td>
+<td class="comment-1" rowspan="1">if ?? just exit</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F9BC"></span>F9BC</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9BE"></span>F9BE</td>
+<td class="bytes">85 A4</td>
+<td class="instruction">STA $A4</td>
+<td class="comment-1" rowspan="1">clear the tape bit cycle phase</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9C0"></span>F9C0</td>
+<td class="bytes">8D A4 02</td>
+<td class="instruction">STA $02A4</td>
+<td class="comment-1" rowspan="1">save VIA 1 CRA shadow copy</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9C3"></span>F9C3</td>
+<td class="bytes">A5 A3</td>
+<td class="instruction">LDA $A3</td>
+<td class="comment-1" rowspan="1">get EOI flag byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9C5"></span>F9C5</td>
+<td class="bytes">10 30</td>
+<td class="instruction">BPL <a href="F92C.html#F9F7">$F9F7</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9C7"></span>F9C7</td>
+<td class="bytes">30 BF</td>
+<td class="instruction">BMI <a href="F92C.html#F988">$F988</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F9C9"></span>F9C9</td>
+<td class="bytes">A2 A6</td>
+<td class="instruction">LDX #$A6</td>
+<td class="comment-1" rowspan="1">set timimg max byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9CB"></span>F9CB</td>
+<td class="bytes">20 E2 F8</td>
+<td class="instruction">JSR <a href="F8E2.html">$F8E2</a></td>
+<td class="comment-1" rowspan="1">set timing</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9CE"></span>F9CE</td>
+<td class="bytes">A5 9B</td>
+<td class="instruction">LDA $9B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9D0"></span>F9D0</td>
+<td class="bytes">D0 B9</td>
+<td class="instruction">BNE <a href="F92C.html#F98B">$F98B</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F9D2"></span>F9D2</td>
+<td class="bytes">4C BC FE</td>
+<td class="instruction">JMP <a href="FE72.html#FEBC">$FEBC</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F9D5"></span>F9D5</td>
+<td class="bytes">A5 92</td>
+<td class="instruction">LDA $92</td>
+<td class="comment-1" rowspan="1">get timing constant for tape</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9D7"></span>F9D7</td>
+<td class="bytes">F0 07</td>
+<td class="instruction">BEQ <a href="F92C.html#F9E0">$F9E0</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9D9"></span>F9D9</td>
+<td class="bytes">30 03</td>
+<td class="instruction">BMI <a href="F92C.html#F9DE">$F9DE</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9DB"></span>F9DB</td>
+<td class="bytes">C6 B0</td>
+<td class="instruction">DEC $B0</td>
+<td class="comment-1" rowspan="1">decrement tape timing constant min byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9DD"></span>F9DD</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $B0E6</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F9DE"></span>F9DE</td>
+<td class="bytes">E6 B0</td>
+<td class="instruction">INC $B0</td>
+<td class="comment-1" rowspan="1">increment tape timing constant min byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F9E0"></span>F9E0</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9E2"></span>F9E2</td>
+<td class="bytes">85 92</td>
+<td class="instruction">STA $92</td>
+<td class="comment-1" rowspan="1">clear timing constant for tape</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9E4"></span>F9E4</td>
+<td class="bytes">E4 D7</td>
+<td class="instruction">CPX $D7</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9E6"></span>F9E6</td>
+<td class="bytes">D0 0F</td>
+<td class="instruction">BNE <a href="F92C.html#F9F7">$F9F7</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9E8"></span>F9E8</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9E9"></span>F9E9</td>
+<td class="bytes">D0 A0</td>
+<td class="instruction">BNE <a href="F92C.html#F98B">$F98B</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9EB"></span>F9EB</td>
+<td class="bytes">A5 A9</td>
+<td class="instruction">LDA $A9</td>
+<td class="comment-1" rowspan="1">get start bit check flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9ED"></span>F9ED</td>
+<td class="bytes">30 BD</td>
+<td class="instruction">BMI <a href="F92C.html#F9AC">$F9AC</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9EF"></span>F9EF</td>
+<td class="bytes">C9 10</td>
+<td class="instruction">CMP #$10</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9F1"></span>F9F1</td>
+<td class="bytes">90 B9</td>
+<td class="instruction">BCC <a href="F92C.html#F9AC">$F9AC</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9F3"></span>F9F3</td>
+<td class="bytes">85 96</td>
+<td class="instruction">STA $96</td>
+<td class="comment-1" rowspan="1">save cassette block synchronization number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9F5"></span>F9F5</td>
+<td class="bytes">B0 B5</td>
+<td class="instruction">BCS <a href="F92C.html#F9AC">$F9AC</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F9F7"></span>F9F7</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9F8"></span>F9F8</td>
+<td class="bytes">45 9B</td>
+<td class="instruction">EOR $9B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9FA"></span>F9FA</td>
+<td class="bytes">85 9B</td>
+<td class="instruction">STA $9B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9FC"></span>F9FC</td>
+<td class="bytes">A5 B4</td>
+<td class="instruction">LDA $B4</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F9FE"></span>F9FE</td>
+<td class="bytes">F0 D2</td>
+<td class="instruction">BEQ <a href="F92C.html#F9D2">$F9D2</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA00"></span>FA00</td>
+<td class="bytes">C6 A3</td>
+<td class="instruction">DEC $A3</td>
+<td class="comment-1" rowspan="1">decrement EOI flag byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA02"></span>FA02</td>
+<td class="bytes">30 C5</td>
+<td class="instruction">BMI <a href="F92C.html#F9C9">$F9C9</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA04"></span>FA04</td>
+<td class="bytes">46 D7</td>
+<td class="instruction">LSR $D7</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA06"></span>FA06</td>
+<td class="bytes">66 BF</td>
+<td class="instruction">ROR $BF</td>
+<td class="comment-1" rowspan="1">parity count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA08"></span>FA08</td>
+<td class="bytes">A2 DA</td>
+<td class="instruction">LDX #$DA</td>
+<td class="comment-1" rowspan="1">set timimg max byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA0A"></span>FA0A</td>
+<td class="bytes">20 E2 F8</td>
+<td class="instruction">JSR <a href="F8E2.html">$F8E2</a></td>
+<td class="comment-1" rowspan="1">set timing</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA0D"></span>FA0D</td>
+<td class="bytes">4C BC FE</td>
+<td class="instruction">JMP <a href="FE72.html#FEBC">$FEBC</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FA10"></span>FA10</td>
+<td class="bytes">A5 96</td>
+<td class="instruction">LDA $96</td>
+<td class="comment-1" rowspan="1">get cassette block synchronization number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA12"></span>FA12</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="F92C.html#FA18">$FA18</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA14"></span>FA14</td>
+<td class="bytes">A5 B4</td>
+<td class="instruction">LDA $B4</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA16"></span>FA16</td>
+<td class="bytes">F0 07</td>
+<td class="instruction">BEQ <a href="F92C.html#FA1F">$FA1F</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FA18"></span>FA18</td>
+<td class="bytes">A5 A3</td>
+<td class="instruction">LDA $A3</td>
+<td class="comment-1" rowspan="1">get EOI flag byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA1A"></span>FA1A</td>
+<td class="bytes">30 03</td>
+<td class="instruction">BMI <a href="F92C.html#FA1F">$FA1F</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA1C"></span>FA1C</td>
+<td class="bytes">4C 97 F9</td>
+<td class="instruction">JMP <a href="F92C.html#F997">$F997</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FA1F"></span>FA1F</td>
+<td class="bytes">46 B1</td>
+<td class="instruction">LSR $B1</td>
+<td class="comment-1" rowspan="1">shift tape timing constant max byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA21"></span>FA21</td>
+<td class="bytes">A9 93</td>
+<td class="instruction">LDA #$93</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA23"></span>FA23</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA24"></span>FA24</td>
+<td class="bytes">E5 B1</td>
+<td class="instruction">SBC $B1</td>
+<td class="comment-1" rowspan="1">subtract tape timing constant max byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA26"></span>FA26</td>
+<td class="bytes">65 B0</td>
+<td class="instruction">ADC $B0</td>
+<td class="comment-1" rowspan="1">add tape timing constant min byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA28"></span>FA28</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA29"></span>FA29</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy timimg high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA2A"></span>FA2A</td>
+<td class="bytes">20 E2 F8</td>
+<td class="instruction">JSR <a href="F8E2.html">$F8E2</a></td>
+<td class="comment-1" rowspan="1">set timing</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA2D"></span>FA2D</td>
+<td class="bytes">E6 9C</td>
+<td class="instruction">INC $9C</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA2F"></span>FA2F</td>
+<td class="bytes">A5 B4</td>
+<td class="instruction">LDA $B4</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA31"></span>FA31</td>
+<td class="bytes">D0 11</td>
+<td class="instruction">BNE <a href="F92C.html#FA44">$FA44</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA33"></span>FA33</td>
+<td class="bytes">A5 96</td>
+<td class="instruction">LDA $96</td>
+<td class="comment-1" rowspan="1">get cassette block synchronization number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA35"></span>FA35</td>
+<td class="bytes">F0 26</td>
+<td class="instruction">BEQ <a href="F92C.html#FA5D">$FA5D</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA37"></span>FA37</td>
+<td class="bytes">85 A8</td>
+<td class="instruction">STA $A8</td>
+<td class="comment-1" rowspan="1">save receiver bit count in</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA39"></span>FA39</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA3B"></span>FA3B</td>
+<td class="bytes">85 96</td>
+<td class="instruction">STA $96</td>
+<td class="comment-1" rowspan="1">clear cassette block synchronization number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA3D"></span>FA3D</td>
+<td class="bytes">A9 81</td>
+<td class="instruction">LDA #$81</td>
+<td class="comment-1" rowspan="1">enable timer A interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA3F"></span>FA3F</td>
+<td class="bytes">8D 0D DC</td>
+<td class="instruction">STA $DC0D</td>
+<td class="comment-1" rowspan="1">save VIA 1 ICR</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA42"></span>FA42</td>
+<td class="bytes">85 B4</td>
+<td class="instruction">STA $B4</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FA44"></span>FA44</td>
+<td class="bytes">A5 96</td>
+<td class="instruction">LDA $96</td>
+<td class="comment-1" rowspan="1">get cassette block synchronization number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA46"></span>FA46</td>
+<td class="bytes">85 B5</td>
+<td class="instruction">STA $B5</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA48"></span>FA48</td>
+<td class="bytes">F0 09</td>
+<td class="instruction">BEQ <a href="F92C.html#FA53">$FA53</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA4A"></span>FA4A</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA4C"></span>FA4C</td>
+<td class="bytes">85 B4</td>
+<td class="instruction">STA $B4</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA4E"></span>FA4E</td>
+<td class="bytes">A9 01</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1">disable timer A interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA50"></span>FA50</td>
+<td class="bytes">8D 0D DC</td>
+<td class="instruction">STA $DC0D</td>
+<td class="comment-1" rowspan="1">save VIA 1 ICR</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FA53"></span>FA53</td>
+<td class="bytes">A5 BF</td>
+<td class="instruction">LDA $BF</td>
+<td class="comment-1" rowspan="1">parity count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA55"></span>FA55</td>
+<td class="bytes">85 BD</td>
+<td class="instruction">STA $BD</td>
+<td class="comment-1" rowspan="1">save RS232 parity byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA57"></span>FA57</td>
+<td class="bytes">A5 A8</td>
+<td class="instruction">LDA $A8</td>
+<td class="comment-1" rowspan="1">get receiver bit count in</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA59"></span>FA59</td>
+<td class="bytes">05 A9</td>
+<td class="instruction">ORA $A9</td>
+<td class="comment-1" rowspan="1">OR with start bit check flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA5B"></span>FA5B</td>
+<td class="bytes">85 B6</td>
+<td class="instruction">STA $B6</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FA5D"></span>FA5D</td>
+<td class="bytes">4C BC FE</td>
+<td class="instruction">JMP <a href="FE72.html#FEBC">$FEBC</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F8E2.html">F8E2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F92C">Map</a></td>
+<td class="next">
+Next: <a href="FA60.html">FA60</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

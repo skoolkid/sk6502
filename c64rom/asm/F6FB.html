@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F6FB</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F6ED.html">F6ED</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F6FB">Map</a></td>
+<td class="next">
+Next: <a href="F72C.html">F72C</a>
+</td>
+</tr>
+</table>
+<div class="description">F6FB: file error messages</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F34A.html">F34A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F6FB"></span>F6FB</td>
+<td class="bytes">A9 01</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1">'too many files' error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F6FD"></span>F6FD</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $02A9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F6FE"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F34A.html">F34A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F6FE"></span>F6FE</td>
+<td class="bytes">A9 02</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="1">'file already open' error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F700"></span>F700</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $03A9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F701"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="F20E.html">F20E</a> and <a href="F250.html">F250</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F701"></span>F701</td>
+<td class="bytes">A9 03</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="1">'file not open' error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F703"></span>F703</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $04A9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F704"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="F34A.html">F34A</a> and <a href="F4A5.html">F4A5</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F704"></span>F704</td>
+<td class="bytes">A9 04</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="1">'file not found' error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F706"></span>F706</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $05A9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F707"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="F20E.html">F20E</a>, <a href="F250.html">F250</a> and <a href="F3D5.html">F3D5</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F707"></span>F707</td>
+<td class="bytes">A9 05</td>
+<td class="instruction">LDA #$05</td>
+<td class="comment-1" rowspan="1">'device not present' error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F709"></span>F709</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $06A9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F70A"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="F20E.html">F20E</a> and <a href="F34A.html">F34A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F70A"></span>F70A</td>
+<td class="bytes">A9 06</td>
+<td class="instruction">LDA #$06</td>
+<td class="comment-1" rowspan="1">'not input file' error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F70C"></span>F70C</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $07A9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F70D"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F250.html">F250</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F70D"></span>F70D</td>
+<td class="bytes">A9 07</td>
+<td class="instruction">LDA #$07</td>
+<td class="comment-1" rowspan="1">'not output file' error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F70F"></span>F70F</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $08A9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F710"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="F4A5.html">F4A5</a> and <a href="F5ED.html">F5ED</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F710"></span>F710</td>
+<td class="bytes">A9 08</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="1">'missing file name' error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F712"></span>F712</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $09A9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F713"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="F34A.html">F34A</a>, <a href="F4A5.html">F4A5</a>, <a href="F533.html">F533</a> and <a href="F5ED.html">F5ED</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F713"></span>F713</td>
+<td class="bytes">A9 09</td>
+<td class="instruction">LDA #$09</td>
+<td class="comment-1" rowspan="1">do 'illegal device number'</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F715"></span>F715</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save the error #</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F716"></span>F716</td>
+<td class="bytes">20 CC FF</td>
+<td class="instruction">JSR <a href="FFCC.html">$FFCC</a></td>
+<td class="comment-1" rowspan="1">close input and output channels</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F719"></span>F719</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">index to "I/O ERROR #"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F71B"></span>F71B</td>
+<td class="bytes">24 9D</td>
+<td class="instruction">BIT $9D</td>
+<td class="comment-1" rowspan="1">test message mode flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F71D"></span>F71D</td>
+<td class="bytes">50 0A</td>
+<td class="instruction">BVC <a href="F6FB.html#F729">$F729</a></td>
+<td class="comment-1" rowspan="1">exit if kernal messages off</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F71F"></span>F71F</td>
+<td class="bytes">20 2F F1</td>
+<td class="instruction">JSR <a href="F12B.html#F12F">$F12F</a></td>
+<td class="comment-1" rowspan="1">display kernel I/O message</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F722"></span>F722</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore error #</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F723"></span>F723</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">copy error #</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F724"></span>F724</td>
+<td class="bytes">09 30</td>
+<td class="instruction">ORA #"0"</td>
+<td class="comment-1" rowspan="1">convert to ASCII</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F726"></span>F726</td>
+<td class="bytes">20 D2 FF</td>
+<td class="instruction">JSR <a href="FFD2.html">$FFD2</a></td>
+<td class="comment-1" rowspan="1">output character to channel</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F729"></span>F729</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull error number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F72A"></span>F72A</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">flag error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F72B"></span>F72B</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F6ED.html">F6ED</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F6FB">Map</a></td>
+<td class="next">
+Next: <a href="F72C.html">F72C</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

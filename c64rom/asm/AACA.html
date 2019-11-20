@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AACA</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AAA0.html">AAA0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AACA">Map</a></td>
+<td class="next">
+Next: <a href="AAD7.html">AAD7</a>
+</td>
+</tr>
+</table>
+<div class="description">AACA: set <span class="register">XY</span> to $0200 - 1 and print [CR]</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="A560.html">A560</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AACA"></span>AACA</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AACC"></span>AACC</td>
+<td class="bytes">9D 00 02</td>
+<td class="instruction">STA $0200,X</td>
+<td class="comment-1" rowspan="1">clear first byte of input buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AACF"></span>AACF</td>
+<td class="bytes">A2 FF</td>
+<td class="instruction">LDX #$FF</td>
+<td class="comment-1" rowspan="1">$0200 - 1 low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAD1"></span>AAD1</td>
+<td class="bytes">A0 01</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="1">$0200 - 1 high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAD3"></span>AAD3</td>
+<td class="bytes">A5 13</td>
+<td class="instruction">LDA $13</td>
+<td class="comment-1" rowspan="1">get current I/O channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAD5"></span>AAD5</td>
+<td class="bytes">D0 10</td>
+<td class="instruction">BNE <a href="AAD7.html#AAE7">$AAE7</a></td>
+<td class="comment-1" rowspan="1">exit if not default channel</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AAA0.html">AAA0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AACA">Map</a></td>
+<td class="next">
+Next: <a href="AAD7.html">AAD7</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

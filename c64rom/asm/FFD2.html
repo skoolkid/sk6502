@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FFD2</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFCF.html">FFCF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFD2">Map</a></td>
+<td class="next">
+Next: <a href="FFD5.html">FFD5</a>
+</td>
+</tr>
+</table>
+<div class="description">FFD2: output character to channel</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="E10C.html">E10C</a>, <a href="F12B.html">F12B</a>, <a href="F5C1.html">F5C1</a>, <a href="F6FB.html">F6FB</a> and <a href="F72C.html">F72C</a>.
+</div>
+<div class="paragraph">
+this routine will output a character to an already opened channel. Use the OPEN routine, <a href="FFC0.html">FFC0</a>, and the CHKOUT routine, <a href="FFC9.html">FFC9</a>, to set up the output channel before calling this routine. If these calls are omitted, data will be sent to the default output device, device 3, the screen. The data byte to be output is loaded into the accumulator, and this routine is called. The data is then sent to the specified output device. The channel is left open after the call. NOTE: Care must be taken when using routine to send data to a serial device since data will be sent to all open output channels on the bus. Unless this is desired, all open output channels on the serial bus other than the actually intended destination channel must be closed by a call to the KERNAL close channel routine.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FFD2"></span>FFD2</td>
+<td class="bytes">6C 26 03</td>
+<td class="instruction">JMP ($0326)</td>
+<td class="comment-1" rowspan="1">do output character to channel</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFCF.html">FFCF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFD2">Map</a></td>
+<td class="next">
+Next: <a href="FFD5.html">FFD5</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

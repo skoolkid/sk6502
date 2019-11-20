@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E716</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E701.html">E701</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E716">Map</a></td>
+<td class="next">
+Next: <a href="E87C.html">E87C</a>
+</td>
+</tr>
+</table>
+<div class="description">E716: output a character to the screen</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="E5CA.html">E5CA</a>, <a href="E632.html">E632</a> and <a href="F1CA.html">F1CA</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E716"></span>E716</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E717"></span>E717</td>
+<td class="bytes">85 D7</td>
+<td class="instruction">STA $D7</td>
+<td class="comment-1" rowspan="1">save temporary last character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E719"></span>E719</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E71A"></span>E71A</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E71B"></span>E71B</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E71C"></span>E71C</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E71D"></span>E71D</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E71F"></span>E71F</td>
+<td class="bytes">85 D0</td>
+<td class="instruction">STA $D0</td>
+<td class="comment-1" rowspan="1">clear input from keyboard or screen, $xx = screen, $00 = keyboard</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E721"></span>E721</td>
+<td class="bytes">A4 D3</td>
+<td class="instruction">LDY $D3</td>
+<td class="comment-1" rowspan="1">get cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E723"></span>E723</td>
+<td class="bytes">A5 D7</td>
+<td class="instruction">LDA $D7</td>
+<td class="comment-1" rowspan="1">restore last character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E725"></span>E725</td>
+<td class="bytes">10 03</td>
+<td class="instruction">BPL <a href="E716.html#E72A">$E72A</a></td>
+<td class="comment-1" rowspan="1">branch if unshifted</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E727"></span>E727</td>
+<td class="bytes">4C D4 E7</td>
+<td class="instruction">JMP <a href="E716.html#E7D4">$E7D4</a></td>
+<td class="comment-1" rowspan="1">do shifted characters and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E72A"></span>E72A</td>
+<td class="bytes">C9 0D</td>
+<td class="instruction">CMP #$0D</td>
+<td class="comment-1" rowspan="1">compare with [CR]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E72C"></span>E72C</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="E716.html#E731">$E731</a></td>
+<td class="comment-1" rowspan="1">branch if not [CR]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E72E"></span>E72E</td>
+<td class="bytes">4C 91 E8</td>
+<td class="instruction">JMP <a href="E891.html">$E891</a></td>
+<td class="comment-1" rowspan="1">else output [CR] and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E731"></span>E731</td>
+<td class="bytes">C9 20</td>
+<td class="instruction">CMP #" "</td>
+<td class="comment-1" rowspan="1">compare with [SPACE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E733"></span>E733</td>
+<td class="bytes">90 10</td>
+<td class="instruction">BCC <a href="E716.html#E745">$E745</a></td>
+<td class="comment-1" rowspan="1">branch if &lt; [SPACE], not a printable character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E735"></span>E735</td>
+<td class="bytes">C9 60</td>
+<td class="instruction">CMP #$60</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E737"></span>E737</td>
+<td class="bytes">90 04</td>
+<td class="instruction">BCC <a href="E716.html#E73D">$E73D</a></td>
+<td class="comment-1" rowspan="1">branch if $20 to $5F</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E739"></span>
+<div class="comments">
+<div class="paragraph">
+character is $60 or greater
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E739"></span>E739</td>
+<td class="bytes">29 DF</td>
+<td class="instruction">AND #$DF</td>
+<td class="comment-1" rowspan="1">conversion of PETSCII character to screen code</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E73B"></span>E73B</td>
+<td class="bytes">D0 02</td>
+<td class="instruction">BNE <a href="E716.html#E73F">$E73F</a></td>
+<td class="comment-1" rowspan="1">branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E73D"></span>
+<div class="comments">
+<div class="paragraph">
+character is $20 to $5F
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E73D"></span>E73D</td>
+<td class="bytes">29 3F</td>
+<td class="instruction">AND #$3F</td>
+<td class="comment-1" rowspan="1">conversion of PETSCII character to screen code</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E73F"></span>E73F</td>
+<td class="bytes">20 84 E6</td>
+<td class="instruction">JSR <a href="E684.html">$E684</a></td>
+<td class="comment-1" rowspan="1">if open quote toggle cursor direct/programmed flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E742"></span>E742</td>
+<td class="bytes">4C 93 E6</td>
+<td class="instruction">JMP <a href="E691.html#E693">$E693</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E745"></span>
+<div class="comments">
+<div class="paragraph">
+character was &lt; [SPACE] so is a control character of some sort
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E745"></span>E745</td>
+<td class="bytes">A6 D8</td>
+<td class="instruction">LDX $D8</td>
+<td class="comment-1" rowspan="1">get the insert count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E747"></span>E747</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="E716.html#E74C">$E74C</a></td>
+<td class="comment-1" rowspan="1">if no characters to insert continue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E749"></span>E749</td>
+<td class="bytes">4C 97 E6</td>
+<td class="instruction">JMP <a href="E691.html#E697">$E697</a></td>
+<td class="comment-1" rowspan="1">insert reversed character</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E74C"></span>E74C</td>
+<td class="bytes">C9 14</td>
+<td class="instruction">CMP #$14</td>
+<td class="comment-1" rowspan="1">compare the character with [INSERT]/[DELETE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E74E"></span>E74E</td>
+<td class="bytes">D0 2E</td>
+<td class="instruction">BNE <a href="E716.html#E77E">$E77E</a></td>
+<td class="comment-1" rowspan="1">if not [INSERT]/[DELETE] go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E750"></span>E750</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E751"></span>E751</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="E716.html#E759">$E759</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E753"></span>E753</td>
+<td class="bytes">20 01 E7</td>
+<td class="instruction">JSR <a href="E701.html">$E701</a></td>
+<td class="comment-1" rowspan="1">back onto the previous line if possible</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E756"></span>E756</td>
+<td class="bytes">4C 73 E7</td>
+<td class="instruction">JMP <a href="E716.html#E773">$E773</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="E759"></span>E759</td>
+<td class="bytes">20 A1 E8</td>
+<td class="instruction">JSR <a href="E8A1.html">$E8A1</a></td>
+<td class="comment-1" rowspan="1">test for line decrement</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E75C"></span>
+<div class="comments">
+<div class="paragraph">
+now close up the line
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E75C"></span>E75C</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index to previous character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E75D"></span>E75D</td>
+<td class="bytes">84 D3</td>
+<td class="instruction">STY $D3</td>
+<td class="comment-1" rowspan="1">save the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E75F"></span>E75F</td>
+<td class="bytes">20 24 EA</td>
+<td class="instruction">JSR <a href="EA24.html">$EA24</a></td>
+<td class="comment-1" rowspan="1">calculate the pointer to colour RAM</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E762"></span>E762</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index to next character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E763"></span>E763</td>
+<td class="bytes">B1 D1</td>
+<td class="instruction">LDA ($D1),Y</td>
+<td class="comment-1" rowspan="1">get character from current screen line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E765"></span>E765</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index to previous character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E766"></span>E766</td>
+<td class="bytes">91 D1</td>
+<td class="instruction">STA ($D1),Y</td>
+<td class="comment-1" rowspan="1">save character to current screen line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E768"></span>E768</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index to next character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E769"></span>E769</td>
+<td class="bytes">B1 F3</td>
+<td class="instruction">LDA ($F3),Y</td>
+<td class="comment-1" rowspan="1">get colour RAM byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E76B"></span>E76B</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index to previous character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E76C"></span>E76C</td>
+<td class="bytes">91 F3</td>
+<td class="instruction">STA ($F3),Y</td>
+<td class="comment-1" rowspan="1">save colour RAM byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E76E"></span>E76E</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index to next character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E76F"></span>E76F</td>
+<td class="bytes">C4 D5</td>
+<td class="instruction">CPY $D5</td>
+<td class="comment-1" rowspan="1">compare with current screen line length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E771"></span>E771</td>
+<td class="bytes">D0 EF</td>
+<td class="instruction">BNE <a href="E716.html#E762">$E762</a></td>
+<td class="comment-1" rowspan="1">loop if not there yet</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E773"></span>E773</td>
+<td class="bytes">A9 20</td>
+<td class="instruction">LDA #" "</td>
+<td class="comment-1" rowspan="1">set [SPACE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E775"></span>E775</td>
+<td class="bytes">91 D1</td>
+<td class="instruction">STA ($D1),Y</td>
+<td class="comment-1" rowspan="1">clear last character on current screen line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E777"></span>E777</td>
+<td class="bytes">AD 86 02</td>
+<td class="instruction">LDA $0286</td>
+<td class="comment-1" rowspan="1">get the current colour code</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E77A"></span>E77A</td>
+<td class="bytes">91 F3</td>
+<td class="instruction">STA ($F3),Y</td>
+<td class="comment-1" rowspan="1">save to colour RAM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E77C"></span>E77C</td>
+<td class="bytes">10 4D</td>
+<td class="instruction">BPL <a href="E716.html#E7CB">$E7CB</a></td>
+<td class="comment-1" rowspan="1">branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E77E"></span>E77E</td>
+<td class="bytes">A6 D4</td>
+<td class="instruction">LDX $D4</td>
+<td class="comment-1" rowspan="1">get cursor quote flag, $xx = quote, $00 = no quote</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E780"></span>E780</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="E716.html#E785">$E785</a></td>
+<td class="comment-1" rowspan="1">branch if not quote mode</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E782"></span>E782</td>
+<td class="bytes">4C 97 E6</td>
+<td class="instruction">JMP <a href="E691.html#E697">$E697</a></td>
+<td class="comment-1" rowspan="1">insert reversed character</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E785"></span>E785</td>
+<td class="bytes">C9 12</td>
+<td class="instruction">CMP #$12</td>
+<td class="comment-1" rowspan="1">compare with [RVS ON]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E787"></span>E787</td>
+<td class="bytes">D0 02</td>
+<td class="instruction">BNE <a href="E716.html#E78B">$E78B</a></td>
+<td class="comment-1" rowspan="1">if not [RVS ON] skip setting the reverse flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E789"></span>E789</td>
+<td class="bytes">85 C7</td>
+<td class="instruction">STA $C7</td>
+<td class="comment-1" rowspan="1">else set the reverse flag</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E78B"></span>E78B</td>
+<td class="bytes">C9 13</td>
+<td class="instruction">CMP #$13</td>
+<td class="comment-1" rowspan="1">compare with [CLR HOME]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E78D"></span>E78D</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="E716.html#E792">$E792</a></td>
+<td class="comment-1" rowspan="1">if not [CLR HOME] continue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E78F"></span>E78F</td>
+<td class="bytes">20 66 E5</td>
+<td class="instruction">JSR <a href="E566.html">$E566</a></td>
+<td class="comment-1" rowspan="1">home the cursor</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E792"></span>E792</td>
+<td class="bytes">C9 1D</td>
+<td class="instruction">CMP #$1D</td>
+<td class="comment-1" rowspan="1">compare with [CURSOR RIGHT]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E794"></span>E794</td>
+<td class="bytes">D0 17</td>
+<td class="instruction">BNE <a href="E716.html#E7AD">$E7AD</a></td>
+<td class="comment-1" rowspan="1">if not [CURSOR RIGHT] go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E796"></span>E796</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E797"></span>E797</td>
+<td class="bytes">20 B3 E8</td>
+<td class="instruction">JSR <a href="E8B3.html">$E8B3</a></td>
+<td class="comment-1" rowspan="1">test for line increment</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E79A"></span>E79A</td>
+<td class="bytes">84 D3</td>
+<td class="instruction">STY $D3</td>
+<td class="comment-1" rowspan="1">save the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E79C"></span>E79C</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E79D"></span>E79D</td>
+<td class="bytes">C4 D5</td>
+<td class="instruction">CPY $D5</td>
+<td class="comment-1" rowspan="1">compare cursor column with current screen line length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E79F"></span>E79F</td>
+<td class="bytes">90 09</td>
+<td class="instruction">BCC <a href="E716.html#E7AA">$E7AA</a></td>
+<td class="comment-1" rowspan="1">exit if less</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E7A1"></span>
+<div class="comments">
+<div class="paragraph">
+else the cursor column is &gt;= the current screen line length so back onto the current line and do a newline
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7A1"></span>E7A1</td>
+<td class="bytes">C6 D6</td>
+<td class="instruction">DEC $D6</td>
+<td class="comment-1" rowspan="1">decrement the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7A3"></span>E7A3</td>
+<td class="bytes">20 7C E8</td>
+<td class="instruction">JSR <a href="E87C.html">$E87C</a></td>
+<td class="comment-1" rowspan="1">do newline</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7A6"></span>E7A6</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear cursor column</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E7A8"></span>E7A8</td>
+<td class="bytes">84 D3</td>
+<td class="instruction">STY $D3</td>
+<td class="comment-1" rowspan="1">save the cursor column</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E7AA"></span>E7AA</td>
+<td class="bytes">4C A8 E6</td>
+<td class="instruction">JMP <a href="E691.html#E6A8">$E6A8</a></td>
+<td class="comment-1" rowspan="1">restore the registers, set the quote flag and exit</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E7AD"></span>E7AD</td>
+<td class="bytes">C9 11</td>
+<td class="instruction">CMP #$11</td>
+<td class="comment-1" rowspan="1">compare with [CURSOR DOWN]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7AF"></span>E7AF</td>
+<td class="bytes">D0 1D</td>
+<td class="instruction">BNE <a href="E716.html#E7CE">$E7CE</a></td>
+<td class="comment-1" rowspan="1">if not [CURSOR DOWN] go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7B1"></span>E7B1</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7B2"></span>E7B2</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7B3"></span>E7B3</td>
+<td class="bytes">69 28</td>
+<td class="instruction">ADC #$28</td>
+<td class="comment-1" rowspan="1">add one line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7B5"></span>E7B5</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy back to <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7B6"></span>E7B6</td>
+<td class="bytes">E6 D6</td>
+<td class="instruction">INC $D6</td>
+<td class="comment-1" rowspan="1">increment the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7B8"></span>E7B8</td>
+<td class="bytes">C5 D5</td>
+<td class="instruction">CMP $D5</td>
+<td class="comment-1" rowspan="1">compare cursor column with current screen line length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7BA"></span>E7BA</td>
+<td class="bytes">90 EC</td>
+<td class="instruction">BCC <a href="E716.html#E7A8">$E7A8</a></td>
+<td class="comment-1" rowspan="1">if less go save cursor column and exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7BC"></span>E7BC</td>
+<td class="bytes">F0 EA</td>
+<td class="instruction">BEQ <a href="E716.html#E7A8">$E7A8</a></td>
+<td class="comment-1" rowspan="1">if equal go save cursor column and exit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E7BE"></span>
+<div class="comments">
+<div class="paragraph">
+else the cursor has moved beyond the end of this line so back it up until it's on the start of the logical line
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7BE"></span>E7BE</td>
+<td class="bytes">C6 D6</td>
+<td class="instruction">DEC $D6</td>
+<td class="comment-1" rowspan="1">decrement the cursor row</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E7C0"></span>E7C0</td>
+<td class="bytes">E9 28</td>
+<td class="instruction">SBC #$28</td>
+<td class="comment-1" rowspan="1">subtract one line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7C2"></span>E7C2</td>
+<td class="bytes">90 04</td>
+<td class="instruction">BCC <a href="E716.html#E7C8">$E7C8</a></td>
+<td class="comment-1" rowspan="1">if on previous line exit the loop</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7C4"></span>E7C4</td>
+<td class="bytes">85 D3</td>
+<td class="instruction">STA $D3</td>
+<td class="comment-1" rowspan="1">else save the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7C6"></span>E7C6</td>
+<td class="bytes">D0 F8</td>
+<td class="instruction">BNE <a href="E716.html#E7C0">$E7C0</a></td>
+<td class="comment-1" rowspan="1">loop if not at the start of the line</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E7C8"></span>E7C8</td>
+<td class="bytes">20 7C E8</td>
+<td class="instruction">JSR <a href="E87C.html">$E87C</a></td>
+<td class="comment-1" rowspan="1">do newline</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E7CB"></span>E7CB</td>
+<td class="bytes">4C A8 E6</td>
+<td class="instruction">JMP <a href="E691.html#E6A8">$E6A8</a></td>
+<td class="comment-1" rowspan="1">restore the registers, set the quote flag and exit</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E7CE"></span>E7CE</td>
+<td class="bytes">20 CB E8</td>
+<td class="instruction">JSR <a href="E8CB.html">$E8CB</a></td>
+<td class="comment-1" rowspan="1">set the colour code</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7D1"></span>E7D1</td>
+<td class="bytes">4C 44 EC</td>
+<td class="instruction">JMP <a href="EC44.html">$EC44</a></td>
+<td class="comment-1" rowspan="1">go check for special character codes</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E7D4"></span>E7D4</td>
+<td class="bytes">29 7F</td>
+<td class="instruction">AND #%01111111</td>
+<td class="comment-1" rowspan="1">mask 0xxx xxxx, clear b7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7D6"></span>E7D6</td>
+<td class="bytes">C9 7F</td>
+<td class="instruction">CMP #$7F</td>
+<td class="comment-1" rowspan="1">was it $FF before the mask</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7D8"></span>E7D8</td>
+<td class="bytes">D0 02</td>
+<td class="instruction">BNE <a href="E716.html#E7DC">$E7DC</a></td>
+<td class="comment-1" rowspan="1">branch if not</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7DA"></span>E7DA</td>
+<td class="bytes">A9 5E</td>
+<td class="instruction">LDA #$5E</td>
+<td class="comment-1" rowspan="1">else make it $5E</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E7DC"></span>E7DC</td>
+<td class="bytes">C9 20</td>
+<td class="instruction">CMP #" "</td>
+<td class="comment-1" rowspan="1">compare the character with [SPACE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7DE"></span>E7DE</td>
+<td class="bytes">90 03</td>
+<td class="instruction">BCC <a href="E716.html#E7E3">$E7E3</a></td>
+<td class="comment-1" rowspan="1">if &lt; [SPACE] go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7E0"></span>E7E0</td>
+<td class="bytes">4C 91 E6</td>
+<td class="instruction">JMP <a href="E691.html">$E691</a></td>
+<td class="comment-1" rowspan="1">insert uppercase/graphic character and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E7E3"></span>
+<div class="comments">
+<div class="paragraph">
+character was $80 to $9F and is now $00 to $1F
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E7E3"></span>E7E3</td>
+<td class="bytes">C9 0D</td>
+<td class="instruction">CMP #$0D</td>
+<td class="comment-1" rowspan="1">compare with [CR]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7E5"></span>E7E5</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="E716.html#E7EA">$E7EA</a></td>
+<td class="comment-1" rowspan="1">if not [CR] continue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7E7"></span>E7E7</td>
+<td class="bytes">4C 91 E8</td>
+<td class="instruction">JMP <a href="E891.html">$E891</a></td>
+<td class="comment-1" rowspan="1">else output [CR] and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E7EA"></span>
+<div class="comments">
+<div class="paragraph">
+was not [CR]
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E7EA"></span>E7EA</td>
+<td class="bytes">A6 D4</td>
+<td class="instruction">LDX $D4</td>
+<td class="comment-1" rowspan="1">get the cursor quote flag, $xx = quote, $00 = no quote</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7EC"></span>E7EC</td>
+<td class="bytes">D0 3F</td>
+<td class="instruction">BNE <a href="E716.html#E82D">$E82D</a></td>
+<td class="comment-1" rowspan="1">branch if quote mode</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7EE"></span>E7EE</td>
+<td class="bytes">C9 14</td>
+<td class="instruction">CMP #$14</td>
+<td class="comment-1" rowspan="1">compare with [INSERT DELETE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7F0"></span>E7F0</td>
+<td class="bytes">D0 37</td>
+<td class="instruction">BNE <a href="E716.html#E829">$E829</a></td>
+<td class="comment-1" rowspan="1">if not [INSERT DELETE] go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7F2"></span>E7F2</td>
+<td class="bytes">A4 D5</td>
+<td class="instruction">LDY $D5</td>
+<td class="comment-1" rowspan="1">get current screen line length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7F4"></span>E7F4</td>
+<td class="bytes">B1 D1</td>
+<td class="instruction">LDA ($D1),Y</td>
+<td class="comment-1" rowspan="1">get character from current screen line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7F6"></span>E7F6</td>
+<td class="bytes">C9 20</td>
+<td class="instruction">CMP #" "</td>
+<td class="comment-1" rowspan="1">compare the character with [SPACE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7F8"></span>E7F8</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="E716.html#E7FE">$E7FE</a></td>
+<td class="comment-1" rowspan="1">if not [SPACE] continue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7FA"></span>E7FA</td>
+<td class="bytes">C4 D3</td>
+<td class="instruction">CPY $D3</td>
+<td class="comment-1" rowspan="1">compare the current column with the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E7FC"></span>E7FC</td>
+<td class="bytes">D0 07</td>
+<td class="instruction">BNE <a href="E716.html#E805">$E805</a></td>
+<td class="comment-1" rowspan="1">if not cursor column go open up space on line</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E7FE"></span>E7FE</td>
+<td class="bytes">C0 4F</td>
+<td class="instruction">CPY #$4F</td>
+<td class="comment-1" rowspan="1">compare current column with max line length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E800"></span>E800</td>
+<td class="bytes">F0 24</td>
+<td class="instruction">BEQ <a href="E716.html#E826">$E826</a></td>
+<td class="comment-1" rowspan="1">if at line end just exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E802"></span>E802</td>
+<td class="bytes">20 65 E9</td>
+<td class="instruction">JSR <a href="E965.html">$E965</a></td>
+<td class="comment-1" rowspan="1">else open up a space on the screen</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E805"></span>
+<div class="comments">
+<div class="paragraph">
+now open up space on the line to insert a character
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E805"></span>E805</td>
+<td class="bytes">A4 D5</td>
+<td class="instruction">LDY $D5</td>
+<td class="comment-1" rowspan="1">get current screen line length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E807"></span>E807</td>
+<td class="bytes">20 24 EA</td>
+<td class="instruction">JSR <a href="EA24.html">$EA24</a></td>
+<td class="comment-1" rowspan="1">calculate the pointer to colour RAM</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E80A"></span>E80A</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement the index to previous character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E80B"></span>E80B</td>
+<td class="bytes">B1 D1</td>
+<td class="instruction">LDA ($D1),Y</td>
+<td class="comment-1" rowspan="1">get the character from the current screen line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E80D"></span>E80D</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment the index to next character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E80E"></span>E80E</td>
+<td class="bytes">91 D1</td>
+<td class="instruction">STA ($D1),Y</td>
+<td class="comment-1" rowspan="1">save the character to the current screen line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E810"></span>E810</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement the index to previous character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E811"></span>E811</td>
+<td class="bytes">B1 F3</td>
+<td class="instruction">LDA ($F3),Y</td>
+<td class="comment-1" rowspan="1">get the current screen line colour RAM byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E813"></span>E813</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment the index to next character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E814"></span>E814</td>
+<td class="bytes">91 F3</td>
+<td class="instruction">STA ($F3),Y</td>
+<td class="comment-1" rowspan="1">save the current screen line colour RAM byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E816"></span>E816</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement the index to the previous character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E817"></span>E817</td>
+<td class="bytes">C4 D3</td>
+<td class="instruction">CPY $D3</td>
+<td class="comment-1" rowspan="1">compare the index with the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E819"></span>E819</td>
+<td class="bytes">D0 EF</td>
+<td class="instruction">BNE <a href="E716.html#E80A">$E80A</a></td>
+<td class="comment-1" rowspan="1">loop if not there yet</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E81B"></span>E81B</td>
+<td class="bytes">A9 20</td>
+<td class="instruction">LDA #" "</td>
+<td class="comment-1" rowspan="1">set [SPACE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E81D"></span>E81D</td>
+<td class="bytes">91 D1</td>
+<td class="instruction">STA ($D1),Y</td>
+<td class="comment-1" rowspan="1">clear character at cursor position on current screen line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E81F"></span>E81F</td>
+<td class="bytes">AD 86 02</td>
+<td class="instruction">LDA $0286</td>
+<td class="comment-1" rowspan="1">get current colour code</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E822"></span>E822</td>
+<td class="bytes">91 F3</td>
+<td class="instruction">STA ($F3),Y</td>
+<td class="comment-1" rowspan="1">save to cursor position on current screen line colour RAM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E824"></span>E824</td>
+<td class="bytes">E6 D8</td>
+<td class="instruction">INC $D8</td>
+<td class="comment-1" rowspan="1">increment insert count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E826"></span>E826</td>
+<td class="bytes">4C A8 E6</td>
+<td class="instruction">JMP <a href="E691.html#E6A8">$E6A8</a></td>
+<td class="comment-1" rowspan="1">restore the registers, set the quote flag and exit</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E829"></span>E829</td>
+<td class="bytes">A6 D8</td>
+<td class="instruction">LDX $D8</td>
+<td class="comment-1" rowspan="1">get the insert count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E82B"></span>E82B</td>
+<td class="bytes">F0 05</td>
+<td class="instruction">BEQ <a href="E716.html#E832">$E832</a></td>
+<td class="comment-1" rowspan="1">branch if no insert space</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E82D"></span>E82D</td>
+<td class="bytes">09 40</td>
+<td class="instruction">ORA #$40</td>
+<td class="comment-1" rowspan="1">change to uppercase/graphic</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E82F"></span>E82F</td>
+<td class="bytes">4C 97 E6</td>
+<td class="instruction">JMP <a href="E691.html#E697">$E697</a></td>
+<td class="comment-1" rowspan="1">insert reversed character</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E832"></span>E832</td>
+<td class="bytes">C9 11</td>
+<td class="instruction">CMP #$11</td>
+<td class="comment-1" rowspan="1">compare with [CURSOR UP]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E834"></span>E834</td>
+<td class="bytes">D0 16</td>
+<td class="instruction">BNE <a href="E716.html#E84C">$E84C</a></td>
+<td class="comment-1" rowspan="1">branch if not [CURSOR UP]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E836"></span>E836</td>
+<td class="bytes">A6 D6</td>
+<td class="instruction">LDX $D6</td>
+<td class="comment-1" rowspan="1">get the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E838"></span>E838</td>
+<td class="bytes">F0 37</td>
+<td class="instruction">BEQ <a href="E716.html#E871">$E871</a></td>
+<td class="comment-1" rowspan="1">if on the top line go restore the registers, set the quote flag and exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E83A"></span>E83A</td>
+<td class="bytes">C6 D6</td>
+<td class="instruction">DEC $D6</td>
+<td class="comment-1" rowspan="1">decrement the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E83C"></span>E83C</td>
+<td class="bytes">A5 D3</td>
+<td class="instruction">LDA $D3</td>
+<td class="comment-1" rowspan="1">get the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E83E"></span>E83E</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E83F"></span>E83F</td>
+<td class="bytes">E9 28</td>
+<td class="instruction">SBC #$28</td>
+<td class="comment-1" rowspan="1">subtract one line length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E841"></span>E841</td>
+<td class="bytes">90 04</td>
+<td class="instruction">BCC <a href="E716.html#E847">$E847</a></td>
+<td class="comment-1" rowspan="1">branch if stepped back to previous line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E843"></span>E843</td>
+<td class="bytes">85 D3</td>
+<td class="instruction">STA $D3</td>
+<td class="comment-1" rowspan="1">else save the cursor column ..</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E845"></span>E845</td>
+<td class="bytes">10 2A</td>
+<td class="instruction">BPL <a href="E716.html#E871">$E871</a></td>
+<td class="comment-1" rowspan="1">.. and exit, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E847"></span>E847</td>
+<td class="bytes">20 6C E5</td>
+<td class="instruction">JSR <a href="E56C.html">$E56C</a></td>
+<td class="comment-1" rowspan="1">set the screen pointers for cursor row, column ..</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E84A"></span>E84A</td>
+<td class="bytes">D0 25</td>
+<td class="instruction">BNE <a href="E716.html#E871">$E871</a></td>
+<td class="comment-1" rowspan="1">.. and exit, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E84C"></span>E84C</td>
+<td class="bytes">C9 12</td>
+<td class="instruction">CMP #$12</td>
+<td class="comment-1" rowspan="1">compare with [RVS OFF]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E84E"></span>E84E</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="E716.html#E854">$E854</a></td>
+<td class="comment-1" rowspan="1">if not [RVS OFF] continue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E850"></span>E850</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">else clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E852"></span>E852</td>
+<td class="bytes">85 C7</td>
+<td class="instruction">STA $C7</td>
+<td class="comment-1" rowspan="1">clear the reverse flag</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E854"></span>E854</td>
+<td class="bytes">C9 1D</td>
+<td class="instruction">CMP #$1D</td>
+<td class="comment-1" rowspan="1">compare with [CURSOR LEFT]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E856"></span>E856</td>
+<td class="bytes">D0 12</td>
+<td class="instruction">BNE <a href="E716.html#E86A">$E86A</a></td>
+<td class="comment-1" rowspan="1">if not [CURSOR LEFT] go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E858"></span>E858</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E859"></span>E859</td>
+<td class="bytes">F0 09</td>
+<td class="instruction">BEQ <a href="E716.html#E864">$E864</a></td>
+<td class="comment-1" rowspan="1">if at start of line go back onto the previous line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E85B"></span>E85B</td>
+<td class="bytes">20 A1 E8</td>
+<td class="instruction">JSR <a href="E8A1.html">$E8A1</a></td>
+<td class="comment-1" rowspan="1">test for line decrement</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E85E"></span>E85E</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E85F"></span>E85F</td>
+<td class="bytes">84 D3</td>
+<td class="instruction">STY $D3</td>
+<td class="comment-1" rowspan="1">save the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E861"></span>E861</td>
+<td class="bytes">4C A8 E6</td>
+<td class="instruction">JMP <a href="E691.html#E6A8">$E6A8</a></td>
+<td class="comment-1" rowspan="1">restore the registers, set the quote flag and exit</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E864"></span>E864</td>
+<td class="bytes">20 01 E7</td>
+<td class="instruction">JSR <a href="E701.html">$E701</a></td>
+<td class="comment-1" rowspan="1">back onto the previous line if possible</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E867"></span>E867</td>
+<td class="bytes">4C A8 E6</td>
+<td class="instruction">JMP <a href="E691.html#E6A8">$E6A8</a></td>
+<td class="comment-1" rowspan="1">restore the registers, set the quote flag and exit</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E86A"></span>E86A</td>
+<td class="bytes">C9 13</td>
+<td class="instruction">CMP #$13</td>
+<td class="comment-1" rowspan="1">compare with [CLR]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E86C"></span>E86C</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="E716.html#E874">$E874</a></td>
+<td class="comment-1" rowspan="1">if not [CLR] continue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E86E"></span>E86E</td>
+<td class="bytes">20 44 E5</td>
+<td class="instruction">JSR <a href="E544.html">$E544</a></td>
+<td class="comment-1" rowspan="1">clear the screen</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E871"></span>E871</td>
+<td class="bytes">4C A8 E6</td>
+<td class="instruction">JMP <a href="E691.html#E6A8">$E6A8</a></td>
+<td class="comment-1" rowspan="1">restore the registers, set the quote flag and exit</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E874"></span>E874</td>
+<td class="bytes">09 80</td>
+<td class="instruction">ORA #%10000000</td>
+<td class="comment-1" rowspan="1">restore b7, colour can only be black, cyan, magenta or yellow</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E876"></span>E876</td>
+<td class="bytes">20 CB E8</td>
+<td class="instruction">JSR <a href="E8CB.html">$E8CB</a></td>
+<td class="comment-1" rowspan="1">set the colour code</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E879"></span>E879</td>
+<td class="bytes">4C 4F EC</td>
+<td class="instruction">JMP <a href="EC44.html#EC4F">$EC4F</a></td>
+<td class="comment-1" rowspan="1">go check for special character codes except for switch to lower case</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E701.html">E701</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E716">Map</a></td>
+<td class="next">
+Next: <a href="E87C.html">E87C</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

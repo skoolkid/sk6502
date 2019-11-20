@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B737</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B72C.html">B72C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B737">Map</a></td>
+<td class="next">
+Next: <a href="B761.html">B761</a>
+</td>
+</tr>
+</table>
+<div class="description">B737: perform MID$()</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B737"></span>B737</td>
+<td class="bytes">A9 FF</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="1">set default length = 255</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B739"></span>B739</td>
+<td class="bytes">85 65</td>
+<td class="instruction">STA $65</td>
+<td class="comment-1" rowspan="1">save default length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B73B"></span>B73B</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B73E"></span>B73E</td>
+<td class="bytes">C9 29</td>
+<td class="instruction">CMP #")"</td>
+<td class="comment-1" rowspan="1">compare with ")"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B740"></span>B740</td>
+<td class="bytes">F0 06</td>
+<td class="instruction">BEQ <a href="B737.html#B748">$B748</a></td>
+<td class="comment-1" rowspan="1">branch if = ")" (skip second byte get)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B742"></span>B742</td>
+<td class="bytes">20 FD AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEFD">$AEFD</a></td>
+<td class="comment-1" rowspan="1">scan for ",", else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B745"></span>B745</td>
+<td class="bytes">20 9E B7</td>
+<td class="instruction">JSR <a href="B79E.html">$B79E</a></td>
+<td class="comment-1" rowspan="1">get byte parameter</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B748"></span>B748</td>
+<td class="bytes">20 61 B7</td>
+<td class="instruction">JSR <a href="B761.html">$B761</a></td>
+<td class="comment-1" rowspan="1">pull string data and byte parameter from stack. return pointer in descriptor, byte in <span class="register">A</span> (and <span class="register">X</span>), <span class="register">Y</span>=0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B74B"></span>B74B</td>
+<td class="bytes">F0 4B</td>
+<td class="instruction">BEQ <a href="B798.html">$B798</a></td>
+<td class="comment-1" rowspan="1">if null do illegal quantity error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B74D"></span>B74D</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement start index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B74E"></span>B74E</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B74F"></span>B74F</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save string start offset</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B750"></span>B750</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for sub-1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B751"></span>B751</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">clear output string length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B753"></span>B753</td>
+<td class="bytes">F1 50</td>
+<td class="instruction">SBC ($50),Y</td>
+<td class="comment-1" rowspan="1">subtract string length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B755"></span>B755</td>
+<td class="bytes">B0 B6</td>
+<td class="instruction">BCS <a href="B700.html#B70D">$B70D</a></td>
+<td class="comment-1" rowspan="1">if start&gt;string length go do null string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B757"></span>B757</td>
+<td class="bytes">49 FF</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">complement -length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B759"></span>B759</td>
+<td class="bytes">C5 65</td>
+<td class="instruction">CMP $65</td>
+<td class="comment-1" rowspan="1">compare byte parameter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B75B"></span>B75B</td>
+<td class="bytes">90 B1</td>
+<td class="instruction">BCC <a href="B700.html#B70E">$B70E</a></td>
+<td class="comment-1" rowspan="1">if length&gt;remaining string go do RIGHT$</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B75D"></span>B75D</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get length byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B75F"></span>B75F</td>
+<td class="bytes">B0 AD</td>
+<td class="instruction">BCS <a href="B700.html#B70E">$B70E</a></td>
+<td class="comment-1" rowspan="1">go do string copy, branch always</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B72C.html">B72C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B737">Map</a></td>
+<td class="next">
+Next: <a href="B761.html">B761</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FFAE</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFAB.html">FFAB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFAE">Map</a></td>
+<td class="next">
+Next: <a href="FFB1.html">FFB1</a>
+</td>
+</tr>
+</table>
+<div class="description">FFAE: command serial bus to UNLISTEN</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+this routine commands all devices on the serial bus to stop receiving data from the computer. Calling this routine results in an UNLISTEN command being transmitted on the serial bus. Only devices previously commanded to listen will be affected. This routine is normally used after the computer is finished sending data to external devices. Sending the UNLISTEN will command the listening devices to get off the serial bus so it can be used for other purposes.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FFAE"></span>FFAE</td>
+<td class="bytes">4C FE ED</td>
+<td class="instruction">JMP <a href="EDFE.html">$EDFE</a></td>
+<td class="comment-1" rowspan="1">command serial bus to UNLISTEN</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFAB.html">FFAB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFAE">Map</a></td>
+<td class="next">
+Next: <a href="FFB1.html">FFB1</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FC6A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FBCD.html">FBCD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FC6A">Map</a></td>
+<td class="next">
+Next: <a href="FC93.html">FC93</a>
+</td>
+</tr>
+</table>
+<div class="description">FC6A: write tape leader IRQ routine</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FC6A"></span>FC6A</td>
+<td class="bytes">A9 78</td>
+<td class="instruction">LDA #$78</td>
+<td class="comment-1" rowspan="1">set time constant low byte for bit = leader</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC6C"></span>FC6C</td>
+<td class="bytes">20 AF FB</td>
+<td class="instruction">JSR <a href="FBA6.html#FBAF">$FBAF</a></td>
+<td class="comment-1" rowspan="1">write time constant and toggle tape</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC6F"></span>FC6F</td>
+<td class="bytes">D0 E3</td>
+<td class="instruction">BNE <a href="FBCD.html#FC54">$FC54</a></td>
+<td class="comment-1" rowspan="1">if tape bit high restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC71"></span>FC71</td>
+<td class="bytes">C6 A7</td>
+<td class="instruction">DEC $A7</td>
+<td class="comment-1" rowspan="1">decrement cycle count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC73"></span>FC73</td>
+<td class="bytes">D0 DF</td>
+<td class="instruction">BNE <a href="FBCD.html#FC54">$FC54</a></td>
+<td class="comment-1" rowspan="1">if not all done restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC75"></span>FC75</td>
+<td class="bytes">20 97 FB</td>
+<td class="instruction">JSR <a href="FB97.html">$FB97</a></td>
+<td class="comment-1" rowspan="1">new tape byte setup</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC78"></span>FC78</td>
+<td class="bytes">C6 AB</td>
+<td class="instruction">DEC $AB</td>
+<td class="comment-1" rowspan="1">decrement cassette leader count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC7A"></span>FC7A</td>
+<td class="bytes">10 D8</td>
+<td class="instruction">BPL <a href="FBCD.html#FC54">$FC54</a></td>
+<td class="comment-1" rowspan="1">if not all done restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC7C"></span>FC7C</td>
+<td class="bytes">A2 0A</td>
+<td class="instruction">LDX #$0A</td>
+<td class="comment-1" rowspan="1">set index for tape write vector</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC7E"></span>FC7E</td>
+<td class="bytes">20 BD FC</td>
+<td class="instruction">JSR <a href="FCBD.html">$FCBD</a></td>
+<td class="comment-1" rowspan="1">set the tape vector</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC81"></span>FC81</td>
+<td class="bytes">58</td>
+<td class="instruction">CLI</td>
+<td class="comment-1" rowspan="1">enable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC82"></span>FC82</td>
+<td class="bytes">E6 AB</td>
+<td class="instruction">INC $AB</td>
+<td class="comment-1" rowspan="1">clear cassette leader counter, was $FF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC84"></span>FC84</td>
+<td class="bytes">A5 BE</td>
+<td class="instruction">LDA $BE</td>
+<td class="comment-1" rowspan="1">get cassette block count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC86"></span>FC86</td>
+<td class="bytes">F0 30</td>
+<td class="instruction">BEQ <a href="FCB8.html">$FCB8</a></td>
+<td class="comment-1" rowspan="1">if all done restore everything for STOP and exit the interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC88"></span>FC88</td>
+<td class="bytes">20 8E FB</td>
+<td class="instruction">JSR <a href="FB8E.html">$FB8E</a></td>
+<td class="comment-1" rowspan="1">copy I/O start address to buffer address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC8B"></span>FC8B</td>
+<td class="bytes">A2 09</td>
+<td class="instruction">LDX #$09</td>
+<td class="comment-1" rowspan="1">set nine synchronisation bytes</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC8D"></span>FC8D</td>
+<td class="bytes">86 A5</td>
+<td class="instruction">STX $A5</td>
+<td class="comment-1" rowspan="1">save cassette synchronization byte count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC8F"></span>FC8F</td>
+<td class="bytes">86 B6</td>
+<td class="instruction">STX $B6</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC91"></span>FC91</td>
+<td class="bytes">D0 83</td>
+<td class="instruction">BNE <a href="FBCD.html#FC16">$FC16</a></td>
+<td class="comment-1" rowspan="1">go do the next tape byte, branch always</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FBCD.html">FBCD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FC6A">Map</a></td>
+<td class="next">
+Next: <a href="FC93.html">FC93</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

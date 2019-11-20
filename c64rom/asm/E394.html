@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E394</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E37B.html">E37B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E394">Map</a></td>
+<td class="next">
+Next: <a href="E3A2.html">E3A2</a>
+</td>
+</tr>
+</table>
+<div class="description">E394: BASIC cold start entry point</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E394"></span>E394</td>
+<td class="bytes">20 53 E4</td>
+<td class="instruction">JSR <a href="E453.html">$E453</a></td>
+<td class="comment-1" rowspan="1">initialise the BASIC vector table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E397"></span>E397</td>
+<td class="bytes">20 BF E3</td>
+<td class="instruction">JSR <a href="E3BF.html">$E3BF</a></td>
+<td class="comment-1" rowspan="1">initialise the BASIC RAM locations</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E39A"></span>E39A</td>
+<td class="bytes">20 22 E4</td>
+<td class="instruction">JSR <a href="E422.html">$E422</a></td>
+<td class="comment-1" rowspan="1">print the start up message and initialise the memory pointers</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E39D"></span>
+<div class="comments">
+<div class="paragraph">
+not ok ??
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E39D"></span>E39D</td>
+<td class="bytes">A2 FB</td>
+<td class="instruction">LDX #$FB</td>
+<td class="comment-1" rowspan="1">value for start stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E39F"></span>E39F</td>
+<td class="bytes">9A</td>
+<td class="instruction">TXS</td>
+<td class="comment-1" rowspan="1">set stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E3A0"></span>E3A0</td>
+<td class="bytes">D0 E4</td>
+<td class="instruction">BNE <a href="E37B.html#E386">$E386</a></td>
+<td class="comment-1" rowspan="1">do "READY." warm start, branch always</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E37B.html">E37B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E394">Map</a></td>
+<td class="next">
+Next: <a href="E3A2.html">E3A2</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

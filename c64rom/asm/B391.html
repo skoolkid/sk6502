@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B391</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B37D.html">B37D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B391">Map</a></td>
+<td class="next">
+Next: <a href="B39E.html">B39E</a>
+</td>
+</tr>
+</table>
+<div class="description">B391: convert fixed integer <span class="register">AY</span> to float FAC1</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="AE86.html">AE86</a>, <a href="AF28.html">AF28</a>, <a href="AFE9.html">AFE9</a> and <a href="B39E.html">B39E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B391"></span>B391</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">set type = numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B393"></span>B393</td>
+<td class="bytes">86 0D</td>
+<td class="instruction">STX $0D</td>
+<td class="comment-1" rowspan="1">clear data type flag, $FF = string, $00 = numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B395"></span>B395</td>
+<td class="bytes">85 62</td>
+<td class="instruction">STA $62</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B397"></span>B397</td>
+<td class="bytes">84 63</td>
+<td class="instruction">STY $63</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B399"></span>B399</td>
+<td class="bytes">A2 90</td>
+<td class="instruction">LDX #$90</td>
+<td class="comment-1" rowspan="1">set exponent=2^16 (integer)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B39B"></span>B39B</td>
+<td class="bytes">4C 44 BC</td>
+<td class="instruction">JMP <a href="BC3C.html#BC44">$BC44</a></td>
+<td class="comment-1" rowspan="1">set exp = <span class="register">X</span>, clear FAC1 3 and 4, normalise and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B37D.html">B37D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B391">Map</a></td>
+<td class="next">
+Next: <a href="B39E.html">B39E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

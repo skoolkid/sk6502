@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E691</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E684.html">E684</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E691">Map</a></td>
+<td class="next">
+Next: <a href="E6B6.html">E6B6</a>
+</td>
+</tr>
+</table>
+<div class="description">E691: insert uppercase/graphic character</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E716.html">E716</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E691"></span>E691</td>
+<td class="bytes">09 40</td>
+<td class="instruction">ORA #$40</td>
+<td class="comment-1" rowspan="1">change to uppercase/graphic</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E693"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E716.html">E716</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E693"></span>E693</td>
+<td class="bytes">A6 C7</td>
+<td class="instruction">LDX $C7</td>
+<td class="comment-1" rowspan="1">get the reverse flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E695"></span>E695</td>
+<td class="bytes">F0 02</td>
+<td class="instruction">BEQ <a href="E691.html#E699">$E699</a></td>
+<td class="comment-1" rowspan="1">branch if not reverse</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E697"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E716.html">E716</a>.
+</div>
+<div class="paragraph">
+else ... insert reversed character
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E697"></span>E697</td>
+<td class="bytes">09 80</td>
+<td class="instruction">ORA #$80</td>
+<td class="comment-1" rowspan="1">reverse character</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E699"></span>E699</td>
+<td class="bytes">A6 D8</td>
+<td class="instruction">LDX $D8</td>
+<td class="comment-1" rowspan="1">get the insert count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E69B"></span>E69B</td>
+<td class="bytes">F0 02</td>
+<td class="instruction">BEQ <a href="E691.html#E69F">$E69F</a></td>
+<td class="comment-1" rowspan="1">branch if none</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E69D"></span>E69D</td>
+<td class="bytes">C6 D8</td>
+<td class="instruction">DEC $D8</td>
+<td class="comment-1" rowspan="1">else decrement the insert count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E69F"></span>E69F</td>
+<td class="bytes">AE 86 02</td>
+<td class="instruction">LDX $0286</td>
+<td class="comment-1" rowspan="1">get the current colour code</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6A2"></span>E6A2</td>
+<td class="bytes">20 13 EA</td>
+<td class="instruction">JSR <a href="EA13.html">$EA13</a></td>
+<td class="comment-1" rowspan="1">print character <span class="register">A</span> and colour <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6A5"></span>E6A5</td>
+<td class="bytes">20 B6 E6</td>
+<td class="instruction">JSR <a href="E6B6.html">$E6B6</a></td>
+<td class="comment-1" rowspan="1">advance the cursor</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E6A8"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="E701.html">E701</a>, <a href="E716.html">E716</a>, <a href="E891.html">E891</a> and <a href="EC44.html">EC44</a>.
+</div>
+<div class="paragraph">
+restore the registers, set the quote flag and exit
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E6A8"></span>E6A8</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6A9"></span>E6A9</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">restore <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6AA"></span>E6AA</td>
+<td class="bytes">A5 D8</td>
+<td class="instruction">LDA $D8</td>
+<td class="comment-1" rowspan="1">get the insert count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6AC"></span>E6AC</td>
+<td class="bytes">F0 02</td>
+<td class="instruction">BEQ <a href="E691.html#E6B0">$E6B0</a></td>
+<td class="comment-1" rowspan="1">skip quote flag clear if inserts to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6AE"></span>E6AE</td>
+<td class="bytes">46 D4</td>
+<td class="instruction">LSR $D4</td>
+<td class="comment-1" rowspan="1">clear cursor quote flag, $xx = quote, $00 = no quote</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E6B0"></span>E6B0</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6B1"></span>E6B1</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">restore <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6B2"></span>E6B2</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6B3"></span>E6B3</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6B4"></span>E6B4</td>
+<td class="bytes">58</td>
+<td class="instruction">CLI</td>
+<td class="comment-1" rowspan="1">enable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6B5"></span>E6B5</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E684.html">E684</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E691">Map</a></td>
+<td class="next">
+Next: <a href="E6B6.html">E6B6</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A96B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A94B.html">A94B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A96B">Map</a></td>
+<td class="next">
+Next: <a href="A9A5.html">A9A5</a>
+</td>
+</tr>
+</table>
+<div class="description">A96B: get fixed-point number into temporary integer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A49C.html">A49C</a>, <a href="A69C.html">A69C</a>, <a href="A8A0.html">A8A0</a> and <a href="A94B.html">A94B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A96B"></span>A96B</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A96D"></span>A96D</td>
+<td class="bytes">86 14</td>
+<td class="instruction">STX $14</td>
+<td class="comment-1" rowspan="1">clear temporary integer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A96F"></span>A96F</td>
+<td class="bytes">86 15</td>
+<td class="instruction">STX $15</td>
+<td class="comment-1" rowspan="1">clear temporary integer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A971"></span>A971</td>
+<td class="bytes">B0 F7</td>
+<td class="instruction">BCS <a href="A94B.html#A96A">$A96A</a></td>
+<td class="comment-1" rowspan="1">return if carry set, end of scan, character was not 0-9</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A973"></span>A973</td>
+<td class="bytes">E9 2F</td>
+<td class="instruction">SBC #$2F</td>
+<td class="comment-1" rowspan="1">subtract $30, $2F+carry, from byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A975"></span>A975</td>
+<td class="bytes">85 07</td>
+<td class="instruction">STA $07</td>
+<td class="comment-1" rowspan="1">store #</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A977"></span>A977</td>
+<td class="bytes">A5 15</td>
+<td class="instruction">LDA $15</td>
+<td class="comment-1" rowspan="1">get temporary integer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A979"></span>A979</td>
+<td class="bytes">85 22</td>
+<td class="instruction">STA $22</td>
+<td class="comment-1" rowspan="1">save it for now</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A97B"></span>A97B</td>
+<td class="bytes">C9 19</td>
+<td class="instruction">CMP #$19</td>
+<td class="comment-1" rowspan="1">compare with $19</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A97D"></span>A97D</td>
+<td class="bytes">B0 D4</td>
+<td class="instruction">BCS <a href="A94B.html#A953">$A953</a></td>
+<td class="comment-1" rowspan="1">branch if &gt;=</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A97F"></span>
+<div class="comments">
+<div class="paragraph">
+this makes the maximum line number 63999 because the next bit does $1900 * $0A = $FA00 = 64000 decimal. the branch target is really the SYNTAX error at $A8E8 but that is too far so an intermediate compare and branch to that location is used. the problem with this is that line number that gives a partial result from $8900 to $89FF, 35072x to 35327x, will pass the new target compare and will try to execute the remainder of the ON n GOTO/GOSUB. a solution to this is to copy the byte in <span class="register">A</span> before the branch to <span class="register">X</span> and then branch to $A955 skipping the second compare
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A97F"></span>A97F</td>
+<td class="bytes">A5 14</td>
+<td class="instruction">LDA $14</td>
+<td class="comment-1" rowspan="1">get temporary integer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A981"></span>A981</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">*2 low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A982"></span>A982</td>
+<td class="bytes">26 22</td>
+<td class="instruction">ROL $22</td>
+<td class="comment-1" rowspan="1">*2 high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A984"></span>A984</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">*2 low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A985"></span>A985</td>
+<td class="bytes">26 22</td>
+<td class="instruction">ROL $22</td>
+<td class="comment-1" rowspan="1">*2 high byte (*4)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A987"></span>A987</td>
+<td class="bytes">65 14</td>
+<td class="instruction">ADC $14</td>
+<td class="comment-1" rowspan="1">+ low byte (*5)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A989"></span>A989</td>
+<td class="bytes">85 14</td>
+<td class="instruction">STA $14</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A98B"></span>A98B</td>
+<td class="bytes">A5 22</td>
+<td class="instruction">LDA $22</td>
+<td class="comment-1" rowspan="1">get high byte temp</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A98D"></span>A98D</td>
+<td class="bytes">65 15</td>
+<td class="instruction">ADC $15</td>
+<td class="comment-1" rowspan="1">+ high byte (*5)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A98F"></span>A98F</td>
+<td class="bytes">85 15</td>
+<td class="instruction">STA $15</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A991"></span>A991</td>
+<td class="bytes">06 14</td>
+<td class="instruction">ASL $14</td>
+<td class="comment-1" rowspan="1">*2 low byte (*10d)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A993"></span>A993</td>
+<td class="bytes">26 15</td>
+<td class="instruction">ROL $15</td>
+<td class="comment-1" rowspan="1">*2 high byte (*10d)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A995"></span>A995</td>
+<td class="bytes">A5 14</td>
+<td class="instruction">LDA $14</td>
+<td class="comment-1" rowspan="1">get low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A997"></span>A997</td>
+<td class="bytes">65 07</td>
+<td class="instruction">ADC $07</td>
+<td class="comment-1" rowspan="1">add #</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A999"></span>A999</td>
+<td class="bytes">85 14</td>
+<td class="instruction">STA $14</td>
+<td class="comment-1" rowspan="1">save low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A99B"></span>A99B</td>
+<td class="bytes">90 02</td>
+<td class="instruction">BCC <a href="A96B.html#A99F">$A99F</a></td>
+<td class="comment-1" rowspan="1">branch if no overflow to high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A99D"></span>A99D</td>
+<td class="bytes">E6 15</td>
+<td class="instruction">INC $15</td>
+<td class="comment-1" rowspan="1">else increment high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A99F"></span>A99F</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A9A2"></span>A9A2</td>
+<td class="bytes">4C 71 A9</td>
+<td class="instruction">JMP <a href="A96B.html#A971">$A971</a></td>
+<td class="comment-1" rowspan="1">loop for next character</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A94B.html">A94B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A96B">Map</a></td>
+<td class="next">
+Next: <a href="A9A5.html">A9A5</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E6B6</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E691.html">E691</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E6B6">Map</a></td>
+<td class="next">
+Next: <a href="E701.html">E701</a>
+</td>
+</tr>
+</table>
+<div class="description">E6B6: advance the cursor</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E691.html">E691</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E6B6"></span>E6B6</td>
+<td class="bytes">20 B3 E8</td>
+<td class="instruction">JSR <a href="E8B3.html">$E8B3</a></td>
+<td class="comment-1" rowspan="1">test for line increment</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6B9"></span>E6B9</td>
+<td class="bytes">E6 D3</td>
+<td class="instruction">INC $D3</td>
+<td class="comment-1" rowspan="1">increment the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6BB"></span>E6BB</td>
+<td class="bytes">A5 D5</td>
+<td class="instruction">LDA $D5</td>
+<td class="comment-1" rowspan="1">get current screen line length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6BD"></span>E6BD</td>
+<td class="bytes">C5 D3</td>
+<td class="instruction">CMP $D3</td>
+<td class="comment-1" rowspan="1">compare ?? with the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6BF"></span>E6BF</td>
+<td class="bytes">B0 3F</td>
+<td class="instruction">BCS <a href="E6B6.html#E700">$E700</a></td>
+<td class="comment-1" rowspan="1">exit if line length &gt;= cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6C1"></span>E6C1</td>
+<td class="bytes">C9 4F</td>
+<td class="instruction">CMP #$4F</td>
+<td class="comment-1" rowspan="1">compare with max length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6C3"></span>E6C3</td>
+<td class="bytes">F0 32</td>
+<td class="instruction">BEQ <a href="E6B6.html#E6F7">$E6F7</a></td>
+<td class="comment-1" rowspan="1">if at max clear column, back cursor up and do newline</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6C5"></span>E6C5</td>
+<td class="bytes">AD 92 02</td>
+<td class="instruction">LDA $0292</td>
+<td class="comment-1" rowspan="1">get the autoscroll flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6C8"></span>E6C8</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="E6B6.html#E6CD">$E6CD</a></td>
+<td class="comment-1" rowspan="1">branch if autoscroll on</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6CA"></span>E6CA</td>
+<td class="bytes">4C 67 E9</td>
+<td class="instruction">JMP <a href="E965.html#E967">$E967</a></td>
+<td class="comment-1" rowspan="1">else open space on screen</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E6CD"></span>E6CD</td>
+<td class="bytes">A6 D6</td>
+<td class="instruction">LDX $D6</td>
+<td class="comment-1" rowspan="1">get the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6CF"></span>E6CF</td>
+<td class="bytes">E0 19</td>
+<td class="instruction">CPX #$19</td>
+<td class="comment-1" rowspan="1">compare with max + 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6D1"></span>E6D1</td>
+<td class="bytes">90 07</td>
+<td class="instruction">BCC <a href="E6B6.html#E6DA">$E6DA</a></td>
+<td class="comment-1" rowspan="1">if less than max + 1 go add this row to the current logical line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6D3"></span>E6D3</td>
+<td class="bytes">20 EA E8</td>
+<td class="instruction">JSR <a href="E8EA.html">$E8EA</a></td>
+<td class="comment-1" rowspan="1">else scroll the screen</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6D6"></span>E6D6</td>
+<td class="bytes">C6 D6</td>
+<td class="instruction">DEC $D6</td>
+<td class="comment-1" rowspan="1">decrement the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6D8"></span>E6D8</td>
+<td class="bytes">A6 D6</td>
+<td class="instruction">LDX $D6</td>
+<td class="comment-1" rowspan="1">get the cursor row</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E6DA"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E965.html">E965</a>.
+</div>
+<div class="paragraph">
+add this row to the current logical line
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E6DA"></span>E6DA</td>
+<td class="bytes">16 D9</td>
+<td class="instruction">ASL $D9,X</td>
+<td class="comment-1" rowspan="1">shift start of line <span class="register">X</span> pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6DC"></span>E6DC</td>
+<td class="bytes">56 D9</td>
+<td class="instruction">LSR $D9,X</td>
+<td class="comment-1" rowspan="1">shift start of line <span class="register">X</span> pointer high byte back,</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E6DE"></span>
+<div class="comments">
+<div class="paragraph">
+make next screen line start of logical line, increment line length and set pointers. clear b7, start of logical line
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6DE"></span>E6DE</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment screen row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6DF"></span>E6DF</td>
+<td class="bytes">B5 D9</td>
+<td class="instruction">LDA $D9,X</td>
+<td class="comment-1" rowspan="1">get start of line <span class="register">X</span> pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6E1"></span>E6E1</td>
+<td class="bytes">09 80</td>
+<td class="instruction">ORA #%10000000</td>
+<td class="comment-1" rowspan="1">mark as start of logical line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6E3"></span>E6E3</td>
+<td class="bytes">95 D9</td>
+<td class="instruction">STA $D9,X</td>
+<td class="comment-1" rowspan="1">set start of line <span class="register">X</span> pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6E5"></span>E6E5</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">restore screen row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6E6"></span>E6E6</td>
+<td class="bytes">A5 D5</td>
+<td class="instruction">LDA $D5</td>
+<td class="comment-1" rowspan="1">get current screen line length</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E6E8"></span>
+<div class="comments">
+<div class="paragraph">
+add one line length and set the pointers for the start of the line
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6E8"></span>E6E8</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6E9"></span>E6E9</td>
+<td class="bytes">69 28</td>
+<td class="instruction">ADC #$28</td>
+<td class="comment-1" rowspan="1">add one line length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6EB"></span>E6EB</td>
+<td class="bytes">85 D5</td>
+<td class="instruction">STA $D5</td>
+<td class="comment-1" rowspan="1">save current screen line length</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E6ED"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E591.html">E591</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E6ED"></span>E6ED</td>
+<td class="bytes">B5 D9</td>
+<td class="instruction">LDA $D9,X</td>
+<td class="comment-1" rowspan="1">get start of line <span class="register">X</span> pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6EF"></span>E6EF</td>
+<td class="bytes">30 03</td>
+<td class="instruction">BMI <a href="E6B6.html#E6F4">$E6F4</a></td>
+<td class="comment-1" rowspan="1">exit loop if start of logical line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6F1"></span>E6F1</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">else back up one line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6F2"></span>E6F2</td>
+<td class="bytes">D0 F9</td>
+<td class="instruction">BNE <a href="E6B6.html#E6ED">$E6ED</a></td>
+<td class="comment-1" rowspan="1">loop if not on first line</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E6F4"></span>E6F4</td>
+<td class="bytes">4C F0 E9</td>
+<td class="instruction">JMP <a href="E9F0.html">$E9F0</a></td>
+<td class="comment-1" rowspan="1">fetch a screen address</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E6F7"></span>E6F7</td>
+<td class="bytes">C6 D6</td>
+<td class="instruction">DEC $D6</td>
+<td class="comment-1" rowspan="1">decrement the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6F9"></span>E6F9</td>
+<td class="bytes">20 7C E8</td>
+<td class="instruction">JSR <a href="E87C.html">$E87C</a></td>
+<td class="comment-1" rowspan="1">do newline</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6FC"></span>E6FC</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E6FE"></span>E6FE</td>
+<td class="bytes">85 D3</td>
+<td class="instruction">STA $D3</td>
+<td class="comment-1" rowspan="1">clear the cursor column</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E700"></span>E700</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E691.html">E691</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E6B6">Map</a></td>
+<td class="next">
+Next: <a href="E701.html">E701</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

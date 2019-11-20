@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B1B2</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B1AA.html">B1AA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B1B2">Map</a></td>
+<td class="next">
+Next: <a href="B1D1.html">B1D1</a>
+</td>
+</tr>
+</table>
+<div class="description">B1B2: evaluate integer expression</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="B1D1.html">B1D1</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B1B2"></span>B1B2</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1B5"></span>B1B5</td>
+<td class="bytes">20 9E AD</td>
+<td class="instruction">JSR <a href="AD9E.html">$AD9E</a></td>
+<td class="comment-1" rowspan="1">evaluate expression</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B1B8"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="B7A1.html">B7A1</a>.
+</div>
+<div class="paragraph">
+evaluate integer expression, sign check
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B1B8"></span>B1B8</td>
+<td class="bytes">20 8D AD</td>
+<td class="instruction">JSR <a href="AD8A.html#AD8D">$AD8D</a></td>
+<td class="comment-1" rowspan="1">check if source is numeric, else do type mismatch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1BB"></span>B1BB</td>
+<td class="bytes">A5 66</td>
+<td class="instruction">LDA $66</td>
+<td class="comment-1" rowspan="1">get FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1BD"></span>B1BD</td>
+<td class="bytes">30 0D</td>
+<td class="instruction">BMI <a href="B1B2.html#B1CC">$B1CC</a></td>
+<td class="comment-1" rowspan="1">do illegal quantity error if -ve</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B1BF"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="A9A5.html">A9A5</a>, <a href="AE86.html">AE86</a>, <a href="AFE9.html">AFE9</a> and <a href="B1AA.html">B1AA</a>.
+</div>
+<div class="paragraph">
+evaluate integer expression, no sign check
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B1BF"></span>B1BF</td>
+<td class="bytes">A5 61</td>
+<td class="instruction">LDA $61</td>
+<td class="comment-1" rowspan="1">get FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1C1"></span>B1C1</td>
+<td class="bytes">C9 90</td>
+<td class="instruction">CMP #$90</td>
+<td class="comment-1" rowspan="1">compare with exponent = 2^16 (n&gt;2^15)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1C3"></span>B1C3</td>
+<td class="bytes">90 09</td>
+<td class="instruction">BCC <a href="B1B2.html#B1CE">$B1CE</a></td>
+<td class="comment-1" rowspan="1">if n&lt;2^16 go convert FAC1 floating to fixed and return</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1C5"></span>B1C5</td>
+<td class="bytes">A9 A5</td>
+<td class="instruction">LDA #$A5</td>
+<td class="comment-1" rowspan="1">set pointer low byte to -32768</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1C7"></span>B1C7</td>
+<td class="bytes">A0 B1</td>
+<td class="instruction">LDY #$B1</td>
+<td class="comment-1" rowspan="1">set pointer high byte to -32768</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1C9"></span>B1C9</td>
+<td class="bytes">20 5B BC</td>
+<td class="instruction">JSR <a href="BC5B.html">$BC5B</a></td>
+<td class="comment-1" rowspan="1">compare FAC1 with (<span class="register">AY</span>)</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B1CC"></span>B1CC</td>
+<td class="bytes">D0 7A</td>
+<td class="instruction">BNE <a href="B1D1.html#B248">$B248</a></td>
+<td class="comment-1" rowspan="1">if &lt;&gt; do illegal quantity error then warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B1CE"></span>B1CE</td>
+<td class="bytes">4C 9B BC</td>
+<td class="instruction">JMP <a href="BC9B.html">$BC9B</a></td>
+<td class="comment-1" rowspan="1">convert FAC1 floating to fixed and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B1AA.html">B1AA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B1B2">Map</a></td>
+<td class="next">
+Next: <a href="B1D1.html">B1D1</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

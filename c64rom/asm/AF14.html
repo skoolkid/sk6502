@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AF14</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AE86.html">AE86</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AF14">Map</a></td>
+<td class="next">
+Next: <a href="AF28.html">AF28</a>
+</td>
+</tr>
+</table>
+<div class="description">AF14: check address range</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="AF28.html">AF28</a>.
+</div>
+<div class="paragraph">
+return Cb = 1 if address in BASIC ROM
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AF14"></span>AF14</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF15"></span>AF15</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get variable address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF17"></span>AF17</td>
+<td class="bytes">E9 00</td>
+<td class="instruction">SBC #$00</td>
+<td class="comment-1" rowspan="1">subtract $A000 low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF19"></span>AF19</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get variable address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF1B"></span>AF1B</td>
+<td class="bytes">E9 A0</td>
+<td class="instruction">SBC #$A0</td>
+<td class="comment-1" rowspan="1">subtract $A000 high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF1D"></span>AF1D</td>
+<td class="bytes">90 08</td>
+<td class="instruction">BCC <a href="AF14.html#AF27">$AF27</a></td>
+<td class="comment-1" rowspan="1">exit if address &lt; $A000</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF1F"></span>AF1F</td>
+<td class="bytes">A9 A2</td>
+<td class="instruction">LDA #$A2</td>
+<td class="comment-1" rowspan="1">get end of BASIC marker low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF21"></span>AF21</td>
+<td class="bytes">E5 64</td>
+<td class="instruction">SBC $64</td>
+<td class="comment-1" rowspan="1">subtract variable address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF23"></span>AF23</td>
+<td class="bytes">A9 E3</td>
+<td class="instruction">LDA #$E3</td>
+<td class="comment-1" rowspan="1">get end of BASIC marker high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF25"></span>AF25</td>
+<td class="bytes">E5 65</td>
+<td class="instruction">SBC $65</td>
+<td class="comment-1" rowspan="1">subtract variable address high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AF27"></span>AF27</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AE86.html">AE86</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AF14">Map</a></td>
+<td class="next">
+Next: <a href="AF28.html">AF28</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

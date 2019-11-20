@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B700</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B6EC.html">B6EC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B700">Map</a></td>
+<td class="next">
+Next: <a href="B72C.html">B72C</a>
+</td>
+</tr>
+</table>
+<div class="description">B700: perform LEFT$()</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B700"></span>B700</td>
+<td class="bytes">20 61 B7</td>
+<td class="instruction">JSR <a href="B761.html">$B761</a></td>
+<td class="comment-1" rowspan="1">pull string data and byte parameter from stack. return pointer in descriptor, byte in <span class="register">A</span> (and <span class="register">X</span>), <span class="register">Y</span>=0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B703"></span>B703</td>
+<td class="bytes">D1 50</td>
+<td class="instruction">CMP ($50),Y</td>
+<td class="comment-1" rowspan="1">compare byte parameter with string length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B705"></span>B705</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B706"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="B72C.html">B72C</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B706"></span>B706</td>
+<td class="bytes">90 04</td>
+<td class="instruction">BCC <a href="B700.html#B70C">$B70C</a></td>
+<td class="comment-1" rowspan="1">branch if string length &gt; byte parameter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B708"></span>B708</td>
+<td class="bytes">B1 50</td>
+<td class="instruction">LDA ($50),Y</td>
+<td class="comment-1" rowspan="1">else make parameter = length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B70A"></span>B70A</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy to byte parameter copy</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B70B"></span>B70B</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">clear string start offset</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B70C"></span>B70C</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save string start offset</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B70D"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="B737.html">B737</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B70D"></span>B70D</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy byte parameter (or string length if &lt;)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B70E"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="B737.html">B737</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B70E"></span>B70E</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save string length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B70F"></span>B70F</td>
+<td class="bytes">20 7D B4</td>
+<td class="instruction">JSR <a href="B47D.html">$B47D</a></td>
+<td class="comment-1" rowspan="1">make string space <span class="register">A</span> bytes long</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B712"></span>B712</td>
+<td class="bytes">A5 50</td>
+<td class="instruction">LDA $50</td>
+<td class="comment-1" rowspan="1">get descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B714"></span>B714</td>
+<td class="bytes">A4 51</td>
+<td class="instruction">LDY $51</td>
+<td class="comment-1" rowspan="1">get descriptor pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B716"></span>B716</td>
+<td class="bytes">20 AA B6</td>
+<td class="instruction">JSR <a href="B6A3.html#B6AA">$B6AA</a></td>
+<td class="comment-1" rowspan="1">pop (<span class="register">YA</span>) descriptor off stack or from top of string space. returns with <span class="register">A</span> = length, <span class="register">X</span> = pointer low byte, <span class="register">Y</span> = pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B719"></span>B719</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">get string length back</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B71A"></span>B71A</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy length to <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B71B"></span>B71B</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">get string start offset back</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B71C"></span>B71C</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B71D"></span>B71D</td>
+<td class="bytes">65 22</td>
+<td class="instruction">ADC $22</td>
+<td class="comment-1" rowspan="1">add start offset to string start pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B71F"></span>B71F</td>
+<td class="bytes">85 22</td>
+<td class="instruction">STA $22</td>
+<td class="comment-1" rowspan="1">save string start pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B721"></span>B721</td>
+<td class="bytes">90 02</td>
+<td class="instruction">BCC <a href="B700.html#B725">$B725</a></td>
+<td class="comment-1" rowspan="1">branch if no overflow</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B723"></span>B723</td>
+<td class="bytes">E6 23</td>
+<td class="instruction">INC $23</td>
+<td class="comment-1" rowspan="1">else increment string start pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B725"></span>B725</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy length to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B726"></span>B726</td>
+<td class="bytes">20 8C B6</td>
+<td class="instruction">JSR <a href="B67A.html#B68C">$B68C</a></td>
+<td class="comment-1" rowspan="1">store string from pointer to utility pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B729"></span>B729</td>
+<td class="bytes">4C CA B4</td>
+<td class="instruction">JMP <a href="B487.html#B4CA">$B4CA</a></td>
+<td class="comment-1" rowspan="1">check space on descriptor stack then put string address and length on descriptor stack and update stack pointers</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B6EC.html">B6EC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B700">Map</a></td>
+<td class="next">
+Next: <a href="B72C.html">B72C</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

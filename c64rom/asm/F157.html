@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F157</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F13E.html">F13E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F157">Map</a></td>
+<td class="next">
+Next: <a href="F199.html">F199</a>
+</td>
+</tr>
+</table>
+<div class="description">F157: input a character from channel</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F157"></span>F157</td>
+<td class="bytes">A5 99</td>
+<td class="instruction">LDA $99</td>
+<td class="comment-1" rowspan="1">get the input device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F159"></span>F159</td>
+<td class="bytes">D0 0B</td>
+<td class="instruction">BNE <a href="F157.html#F166">$F166</a></td>
+<td class="comment-1" rowspan="1">if not the keyboard continue</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F15B"></span>
+<div class="comments">
+<div class="paragraph">
+the input device was the keyboard
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F15B"></span>F15B</td>
+<td class="bytes">A5 D3</td>
+<td class="instruction">LDA $D3</td>
+<td class="comment-1" rowspan="1">get the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F15D"></span>F15D</td>
+<td class="bytes">85 CA</td>
+<td class="instruction">STA $CA</td>
+<td class="comment-1" rowspan="1">set the input cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F15F"></span>F15F</td>
+<td class="bytes">A5 D6</td>
+<td class="instruction">LDA $D6</td>
+<td class="comment-1" rowspan="1">get the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F161"></span>F161</td>
+<td class="bytes">85 C9</td>
+<td class="instruction">STA $C9</td>
+<td class="comment-1" rowspan="1">set the input cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F163"></span>F163</td>
+<td class="bytes">4C 32 E6</td>
+<td class="instruction">JMP <a href="E632.html">$E632</a></td>
+<td class="comment-1" rowspan="1">input from screen or keyboard</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F166"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F13E.html">F13E</a>.
+</div>
+<div class="paragraph">
+the input device was not the keyboard
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F166"></span>F166</td>
+<td class="bytes">C9 03</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">compare device number with screen</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F168"></span>F168</td>
+<td class="bytes">D0 09</td>
+<td class="instruction">BNE <a href="F157.html#F173">$F173</a></td>
+<td class="comment-1" rowspan="1">if not screen continue</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F16A"></span>
+<div class="comments">
+<div class="paragraph">
+the input device was the screen
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F16A"></span>F16A</td>
+<td class="bytes">85 D0</td>
+<td class="instruction">STA $D0</td>
+<td class="comment-1" rowspan="1">input from keyboard or screen, $xx = screen, $00 = keyboard</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F16C"></span>F16C</td>
+<td class="bytes">A5 D5</td>
+<td class="instruction">LDA $D5</td>
+<td class="comment-1" rowspan="1">get current screen line length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F16E"></span>F16E</td>
+<td class="bytes">85 C8</td>
+<td class="instruction">STA $C8</td>
+<td class="comment-1" rowspan="1">save input [EOL] pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F170"></span>F170</td>
+<td class="bytes">4C 32 E6</td>
+<td class="instruction">JMP <a href="E632.html">$E632</a></td>
+<td class="comment-1" rowspan="1">input from screen or keyboard</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F173"></span>
+<div class="comments">
+<div class="paragraph">
+the input device was not the screen
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F173"></span>F173</td>
+<td class="bytes">B0 38</td>
+<td class="instruction">BCS <a href="F1AD.html">$F1AD</a></td>
+<td class="comment-1" rowspan="1">if input device &gt; screen go do IEC devices</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F175"></span>
+<div class="comments">
+<div class="paragraph">
+the input device was &lt; screen
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F175"></span>F175</td>
+<td class="bytes">C9 02</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">compare the device with the RS232 device</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F177"></span>F177</td>
+<td class="bytes">F0 3F</td>
+<td class="instruction">BEQ <a href="F1B8.html">$F1B8</a></td>
+<td class="comment-1" rowspan="1">if RS232 device go get a byte from the RS232 device</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F179"></span>
+<div class="comments">
+<div class="paragraph">
+only the tape device left ..
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F179"></span>F179</td>
+<td class="bytes">86 97</td>
+<td class="instruction">STX $97</td>
+<td class="comment-1" rowspan="1">save <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F17B"></span>F17B</td>
+<td class="bytes">20 99 F1</td>
+<td class="instruction">JSR <a href="F199.html">$F199</a></td>
+<td class="comment-1" rowspan="1">get a byte from tape</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F17E"></span>F17E</td>
+<td class="bytes">B0 16</td>
+<td class="instruction">BCS <a href="F157.html#F196">$F196</a></td>
+<td class="comment-1" rowspan="1">if error just exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F180"></span>F180</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save the byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F181"></span>F181</td>
+<td class="bytes">20 99 F1</td>
+<td class="instruction">JSR <a href="F199.html">$F199</a></td>
+<td class="comment-1" rowspan="1">get the next byte from tape</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F184"></span>F184</td>
+<td class="bytes">B0 0D</td>
+<td class="instruction">BCS <a href="F157.html#F193">$F193</a></td>
+<td class="comment-1" rowspan="1">if error just exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F186"></span>F186</td>
+<td class="bytes">D0 05</td>
+<td class="instruction">BNE <a href="F157.html#F18D">$F18D</a></td>
+<td class="comment-1" rowspan="1">if end reached ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F188"></span>F188</td>
+<td class="bytes">A9 40</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="1">set EOI</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F18A"></span>F18A</td>
+<td class="bytes">20 1C FE</td>
+<td class="instruction">JSR <a href="FE1C.html">$FE1C</a></td>
+<td class="comment-1" rowspan="1">OR into the serial status byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F18D"></span>F18D</td>
+<td class="bytes">C6 A6</td>
+<td class="instruction">DEC $A6</td>
+<td class="comment-1" rowspan="1">decrement tape buffer index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F18F"></span>F18F</td>
+<td class="bytes">A6 97</td>
+<td class="instruction">LDX $97</td>
+<td class="comment-1" rowspan="1">restore <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F191"></span>F191</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore the saved byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F192"></span>F192</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F193"></span>F193</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy the error byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F194"></span>F194</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump the saved byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F195"></span>F195</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">restore error byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F196"></span>F196</td>
+<td class="bytes">A6 97</td>
+<td class="instruction">LDX $97</td>
+<td class="comment-1" rowspan="1">restore <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F198"></span>F198</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F13E.html">F13E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F157">Map</a></td>
+<td class="next">
+Next: <a href="F199.html">F199</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

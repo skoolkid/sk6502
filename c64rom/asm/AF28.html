@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AF28</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AF14.html">AF14</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AF28">Map</a></td>
+<td class="next">
+Next: <a href="AFA7.html">AFA7</a>
+</td>
+</tr>
+</table>
+<div class="description">AF28: variable name set-up</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="AE86.html">AE86</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AF28"></span>AF28</td>
+<td class="bytes">20 8B B0</td>
+<td class="instruction">JSR <a href="B08B.html">$B08B</a></td>
+<td class="comment-1" rowspan="1">get variable address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF2B"></span>AF2B</td>
+<td class="bytes">85 64</td>
+<td class="instruction">STA $64</td>
+<td class="comment-1" rowspan="1">save variable pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF2D"></span>AF2D</td>
+<td class="bytes">84 65</td>
+<td class="instruction">STY $65</td>
+<td class="comment-1" rowspan="1">save variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF2F"></span>AF2F</td>
+<td class="bytes">A6 45</td>
+<td class="instruction">LDX $45</td>
+<td class="comment-1" rowspan="1">get current variable name first character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF31"></span>AF31</td>
+<td class="bytes">A4 46</td>
+<td class="instruction">LDY $46</td>
+<td class="comment-1" rowspan="1">get current variable name second character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF33"></span>AF33</td>
+<td class="bytes">A5 0D</td>
+<td class="instruction">LDA $0D</td>
+<td class="comment-1" rowspan="1">get data type flag, $FF = string, $00 = numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF35"></span>AF35</td>
+<td class="bytes">F0 26</td>
+<td class="instruction">BEQ <a href="AF28.html#AF5D">$AF5D</a></td>
+<td class="comment-1" rowspan="1">branch if numeric</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AF37"></span>
+<div class="comments">
+<div class="paragraph">
+variable is string
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF37"></span>AF37</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">else clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF39"></span>AF39</td>
+<td class="bytes">85 70</td>
+<td class="instruction">STA $70</td>
+<td class="comment-1" rowspan="1">clear FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF3B"></span>AF3B</td>
+<td class="bytes">20 14 AF</td>
+<td class="instruction">JSR <a href="AF14.html">$AF14</a></td>
+<td class="comment-1" rowspan="1">check address range</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF3E"></span>AF3E</td>
+<td class="bytes">90 1C</td>
+<td class="instruction">BCC <a href="AF28.html#AF5C">$AF5C</a></td>
+<td class="comment-1" rowspan="1">exit if not in BASIC ROM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF40"></span>AF40</td>
+<td class="bytes">E0 54</td>
+<td class="instruction">CPX #"T"</td>
+<td class="comment-1" rowspan="1">compare variable name first character with "T"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF42"></span>AF42</td>
+<td class="bytes">D0 18</td>
+<td class="instruction">BNE <a href="AF28.html#AF5C">$AF5C</a></td>
+<td class="comment-1" rowspan="1">exit if not "T"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF44"></span>AF44</td>
+<td class="bytes">C0 C9</td>
+<td class="instruction">CPY #"I"+$80</td>
+<td class="comment-1" rowspan="1">compare variable name second character with "I$"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF46"></span>AF46</td>
+<td class="bytes">D0 14</td>
+<td class="instruction">BNE <a href="AF28.html#AF5C">$AF5C</a></td>
+<td class="comment-1" rowspan="1">exit if not "I$"</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AF48"></span>
+<div class="comments">
+<div class="paragraph">
+variable name was "TI$"
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF48"></span>AF48</td>
+<td class="bytes">20 84 AF</td>
+<td class="instruction">JSR <a href="AF28.html#AF84">$AF84</a></td>
+<td class="comment-1" rowspan="1">read real time clock into FAC1 mantissa, 0HML</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF4B"></span>AF4B</td>
+<td class="bytes">84 5E</td>
+<td class="instruction">STY $5E</td>
+<td class="comment-1" rowspan="1">clear exponent count adjust</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF4D"></span>AF4D</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span> = $FF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF4E"></span>AF4E</td>
+<td class="bytes">84 71</td>
+<td class="instruction">STY $71</td>
+<td class="comment-1" rowspan="1">set output string index, -1 to allow for pre increment</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF50"></span>AF50</td>
+<td class="bytes">A0 06</td>
+<td class="instruction">LDY #$06</td>
+<td class="comment-1" rowspan="1">HH:MM:SS is six digits</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF52"></span>AF52</td>
+<td class="bytes">84 5D</td>
+<td class="instruction">STY $5D</td>
+<td class="comment-1" rowspan="1">set number of characters before the decimal point</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF54"></span>AF54</td>
+<td class="bytes">A0 24</td>
+<td class="instruction">LDY #$24</td>
+<td class="comment-1" rowspan="1">index to jiffy conversion table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF56"></span>AF56</td>
+<td class="bytes">20 68 BE</td>
+<td class="instruction">JSR <a href="BDDD.html#BE68">$BE68</a></td>
+<td class="comment-1" rowspan="1">convert jiffy count to string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF59"></span>AF59</td>
+<td class="bytes">4C 6F B4</td>
+<td class="instruction">JMP <a href="B465.html#B46F">$B46F</a></td>
+<td class="comment-1" rowspan="1">exit via STR$() code tail</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AF5C"></span>AF5C</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AF5D"></span>
+<div class="comments">
+<div class="paragraph">
+variable name set-up, variable is numeric
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AF5D"></span>AF5D</td>
+<td class="bytes">24 0E</td>
+<td class="instruction">BIT $0E</td>
+<td class="comment-1" rowspan="1">test data type flag, $80 = integer, $00 = float</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF5F"></span>AF5F</td>
+<td class="bytes">10 0D</td>
+<td class="instruction">BPL <a href="AF28.html#AF6E">$AF6E</a></td>
+<td class="comment-1" rowspan="1">branch if float</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF61"></span>AF61</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF63"></span>AF63</td>
+<td class="bytes">B1 64</td>
+<td class="instruction">LDA ($64),Y</td>
+<td class="comment-1" rowspan="1">get integer variable low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF65"></span>AF65</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF66"></span>AF66</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF67"></span>AF67</td>
+<td class="bytes">B1 64</td>
+<td class="instruction">LDA ($64),Y</td>
+<td class="comment-1" rowspan="1">get integer variable high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF69"></span>AF69</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy to <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF6A"></span>AF6A</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy loa byte to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF6B"></span>AF6B</td>
+<td class="bytes">4C 91 B3</td>
+<td class="instruction">JMP <a href="B391.html">$B391</a></td>
+<td class="comment-1" rowspan="1">convert fixed integer <span class="register">AY</span> to float FAC1 and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AF6E"></span>
+<div class="comments">
+<div class="paragraph">
+variable name set-up, variable is float
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AF6E"></span>AF6E</td>
+<td class="bytes">20 14 AF</td>
+<td class="instruction">JSR <a href="AF14.html">$AF14</a></td>
+<td class="comment-1" rowspan="1">check address range</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF71"></span>AF71</td>
+<td class="bytes">90 2D</td>
+<td class="instruction">BCC <a href="AF28.html#AFA0">$AFA0</a></td>
+<td class="comment-1" rowspan="1">if not in BASIC ROM get pointer and unpack into FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF73"></span>AF73</td>
+<td class="bytes">E0 54</td>
+<td class="instruction">CPX #"T"</td>
+<td class="comment-1" rowspan="1">compare variable name first character with "T"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF75"></span>AF75</td>
+<td class="bytes">D0 1B</td>
+<td class="instruction">BNE <a href="AF28.html#AF92">$AF92</a></td>
+<td class="comment-1" rowspan="1">branch if not "T"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF77"></span>AF77</td>
+<td class="bytes">C0 49</td>
+<td class="instruction">CPY #"I"</td>
+<td class="comment-1" rowspan="1">compare variable name second character with "I"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF79"></span>AF79</td>
+<td class="bytes">D0 25</td>
+<td class="instruction">BNE <a href="AF28.html#AFA0">$AFA0</a></td>
+<td class="comment-1" rowspan="1">branch if not "I"</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AF7B"></span>
+<div class="comments">
+<div class="paragraph">
+variable name was "TI"
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF7B"></span>AF7B</td>
+<td class="bytes">20 84 AF</td>
+<td class="instruction">JSR <a href="AF28.html#AF84">$AF84</a></td>
+<td class="comment-1" rowspan="1">read real time clock into FAC1 mantissa, 0HML</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF7E"></span>AF7E</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF7F"></span>AF7F</td>
+<td class="bytes">A2 A0</td>
+<td class="instruction">LDX #$A0</td>
+<td class="comment-1" rowspan="1">set exponent to 32 bit value</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF81"></span>AF81</td>
+<td class="bytes">4C 4F BC</td>
+<td class="instruction">JMP <a href="BC3C.html#BC4F">$BC4F</a></td>
+<td class="comment-1" rowspan="1">set exponent = <span class="register">X</span> and normalise FAC1</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AF84"></span>
+<div class="comments">
+<div class="paragraph">
+read real time clock into FAC1 mantissa, 0HML
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AF84"></span>AF84</td>
+<td class="bytes">20 DE FF</td>
+<td class="instruction">JSR <a href="FFDE.html">$FFDE</a></td>
+<td class="comment-1" rowspan="1">read real time clock</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF87"></span>AF87</td>
+<td class="bytes">86 64</td>
+<td class="instruction">STX $64</td>
+<td class="comment-1" rowspan="1">save jiffy clock mid byte as FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF89"></span>AF89</td>
+<td class="bytes">84 63</td>
+<td class="instruction">STY $63</td>
+<td class="comment-1" rowspan="1">save jiffy clock high byte as FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF8B"></span>AF8B</td>
+<td class="bytes">85 65</td>
+<td class="instruction">STA $65</td>
+<td class="comment-1" rowspan="1">save jiffy clock low byte as FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF8D"></span>AF8D</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF8F"></span>AF8F</td>
+<td class="bytes">84 62</td>
+<td class="instruction">STY $62</td>
+<td class="comment-1" rowspan="1">clear FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF91"></span>AF91</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AF92"></span>
+<div class="comments">
+<div class="paragraph">
+variable name set-up, variable is float and not "Tx"
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AF92"></span>AF92</td>
+<td class="bytes">E0 53</td>
+<td class="instruction">CPX #"S"</td>
+<td class="comment-1" rowspan="1">compare variable name first character with "S"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF94"></span>AF94</td>
+<td class="bytes">D0 0A</td>
+<td class="instruction">BNE <a href="AF28.html#AFA0">$AFA0</a></td>
+<td class="comment-1" rowspan="1">if not "S" go do normal floating variable</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF96"></span>AF96</td>
+<td class="bytes">C0 54</td>
+<td class="instruction">CPY #"T"</td>
+<td class="comment-1" rowspan="1">compare variable name second character with "T"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF98"></span>AF98</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="AF28.html#AFA0">$AFA0</a></td>
+<td class="comment-1" rowspan="1">if not "T" go do normal floating variable</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AF9A"></span>
+<div class="comments">
+<div class="paragraph">
+variable name was "ST"
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF9A"></span>AF9A</td>
+<td class="bytes">20 B7 FF</td>
+<td class="instruction">JSR <a href="FFB7.html">$FFB7</a></td>
+<td class="comment-1" rowspan="1">read I/O status word</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AF9D"></span>AF9D</td>
+<td class="bytes">4C 3C BC</td>
+<td class="instruction">JMP <a href="BC3C.html">$BC3C</a></td>
+<td class="comment-1" rowspan="1">save <span class="register">A</span> as integer byte and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AFA0"></span>
+<div class="comments">
+<div class="paragraph">
+variable is float
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AFA0"></span>AFA0</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get variable pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFA2"></span>AFA2</td>
+<td class="bytes">A4 65</td>
+<td class="instruction">LDY $65</td>
+<td class="comment-1" rowspan="1">get variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AFA4"></span>AFA4</td>
+<td class="bytes">4C A2 BB</td>
+<td class="instruction">JMP <a href="BBA2.html">$BBA2</a></td>
+<td class="comment-1" rowspan="1">unpack memory (<span class="register">AY</span>) into FAC1</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AF14.html">AF14</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AF28">Map</a></td>
+<td class="next">
+Next: <a href="AFA7.html">AFA7</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

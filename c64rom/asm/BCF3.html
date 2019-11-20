@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BCF3</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BCE9.html">BCE9</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BCF3">Map</a></td>
+<td class="next">
+Next: <a href="BD67.html">BD67</a>
+</td>
+</tr>
+</table>
+<div class="description">BCF3: get FAC1 from string</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="AC0F.html">AC0F</a>, <a href="AE86.html">AE86</a> and <a href="B7AD.html">B7AD</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BCF3"></span>BCF3</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCF5"></span>BCF5</td>
+<td class="bytes">A2 0A</td>
+<td class="instruction">LDX #$0A</td>
+<td class="comment-1" rowspan="1">set index</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BCF7"></span>BCF7</td>
+<td class="bytes">94 5D</td>
+<td class="instruction">STY $5D,X</td>
+<td class="comment-1" rowspan="1">clear byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCF9"></span>BCF9</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCFA"></span>BCFA</td>
+<td class="bytes">10 FB</td>
+<td class="instruction">BPL <a href="BCF3.html#BCF7">$BCF7</a></td>
+<td class="comment-1" rowspan="1">loop until numexp to negnum (and FAC1) = $00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCFC"></span>BCFC</td>
+<td class="bytes">90 0F</td>
+<td class="instruction">BCC <a href="BCF3.html#BD0D">$BD0D</a></td>
+<td class="comment-1" rowspan="1">branch if first character is numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCFE"></span>BCFE</td>
+<td class="bytes">C9 2D</td>
+<td class="instruction">CMP #"-"</td>
+<td class="comment-1" rowspan="1">else compare with "-"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD00"></span>BD00</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="BCF3.html#BD06">$BD06</a></td>
+<td class="comment-1" rowspan="1">branch if not "-"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD02"></span>BD02</td>
+<td class="bytes">86 67</td>
+<td class="instruction">STX $67</td>
+<td class="comment-1" rowspan="1">set flag for -ve n (negnum = $FF)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD04"></span>BD04</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="BCF3.html#BD0A">$BD0A</a></td>
+<td class="comment-1" rowspan="1">branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD06"></span>BD06</td>
+<td class="bytes">C9 2B</td>
+<td class="instruction">CMP #"+"</td>
+<td class="comment-1" rowspan="1">else compare with "+"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD08"></span>BD08</td>
+<td class="bytes">D0 05</td>
+<td class="instruction">BNE <a href="BCF3.html#BD0F">$BD0F</a></td>
+<td class="comment-1" rowspan="1">branch if not "+"</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BD0A"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="BD6A.html">BD6A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD0A"></span>BD0A</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD0D"></span>BD0D</td>
+<td class="bytes">90 5B</td>
+<td class="instruction">BCC <a href="BD6A.html">$BD6A</a></td>
+<td class="comment-1" rowspan="1">branch if numeric character</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD0F"></span>BD0F</td>
+<td class="bytes">C9 2E</td>
+<td class="instruction">CMP #"."</td>
+<td class="comment-1" rowspan="1">else compare with "."</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD11"></span>BD11</td>
+<td class="bytes">F0 2E</td>
+<td class="instruction">BEQ <a href="BCF3.html#BD41">$BD41</a></td>
+<td class="comment-1" rowspan="1">branch if "."</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD13"></span>BD13</td>
+<td class="bytes">C9 45</td>
+<td class="instruction">CMP #"E"</td>
+<td class="comment-1" rowspan="1">else compare with "E"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD15"></span>BD15</td>
+<td class="bytes">D0 30</td>
+<td class="instruction">BNE <a href="BCF3.html#BD47">$BD47</a></td>
+<td class="comment-1" rowspan="1">branch if not "E"</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BD17"></span>
+<div class="comments">
+<div class="paragraph">
+was "E" so evaluate exponential part
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD17"></span>BD17</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD1A"></span>BD1A</td>
+<td class="bytes">90 17</td>
+<td class="instruction">BCC <a href="BCF3.html#BD33">$BD33</a></td>
+<td class="comment-1" rowspan="1">branch if numeric character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD1C"></span>BD1C</td>
+<td class="bytes">C9 AB</td>
+<td class="instruction">CMP #$AB</td>
+<td class="comment-1" rowspan="1">else compare with token for -</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD1E"></span>BD1E</td>
+<td class="bytes">F0 0E</td>
+<td class="instruction">BEQ <a href="BCF3.html#BD2E">$BD2E</a></td>
+<td class="comment-1" rowspan="1">branch if token for -</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD20"></span>BD20</td>
+<td class="bytes">C9 2D</td>
+<td class="instruction">CMP #"-"</td>
+<td class="comment-1" rowspan="1">else compare with "-"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD22"></span>BD22</td>
+<td class="bytes">F0 0A</td>
+<td class="instruction">BEQ <a href="BCF3.html#BD2E">$BD2E</a></td>
+<td class="comment-1" rowspan="1">branch if "-"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD24"></span>BD24</td>
+<td class="bytes">C9 AA</td>
+<td class="instruction">CMP #$AA</td>
+<td class="comment-1" rowspan="1">else compare with token for +</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD26"></span>BD26</td>
+<td class="bytes">F0 08</td>
+<td class="instruction">BEQ <a href="BCF3.html#BD30">$BD30</a></td>
+<td class="comment-1" rowspan="1">branch if token for +</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD28"></span>BD28</td>
+<td class="bytes">C9 2B</td>
+<td class="instruction">CMP #"+"</td>
+<td class="comment-1" rowspan="1">else compare with "+"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD2A"></span>BD2A</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="BCF3.html#BD30">$BD30</a></td>
+<td class="comment-1" rowspan="1">branch if "+"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD2C"></span>BD2C</td>
+<td class="bytes">D0 07</td>
+<td class="instruction">BNE <a href="BCF3.html#BD35">$BD35</a></td>
+<td class="comment-1" rowspan="1">branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD2E"></span>BD2E</td>
+<td class="bytes">66 60</td>
+<td class="instruction">ROR $60</td>
+<td class="comment-1" rowspan="1">set exponent -ve flag (C, which=1, into b7)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BD30"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="BD91.html">BD91</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD30"></span>BD30</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD33"></span>BD33</td>
+<td class="bytes">90 5C</td>
+<td class="instruction">BCC <a href="BD91.html">$BD91</a></td>
+<td class="comment-1" rowspan="1">branch if numeric character</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD35"></span>BD35</td>
+<td class="bytes">24 60</td>
+<td class="instruction">BIT $60</td>
+<td class="comment-1" rowspan="1">test exponent -ve flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD37"></span>BD37</td>
+<td class="bytes">10 0E</td>
+<td class="instruction">BPL <a href="BCF3.html#BD47">$BD47</a></td>
+<td class="comment-1" rowspan="1">if +ve go evaluate exponent</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BD39"></span>
+<div class="comments">
+<div class="paragraph">
+else do exponent = -exponent
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD39"></span>BD39</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear result</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD3B"></span>BD3B</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD3C"></span>BD3C</td>
+<td class="bytes">E5 5E</td>
+<td class="instruction">SBC $5E</td>
+<td class="comment-1" rowspan="1">subtract exponent byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD3E"></span>BD3E</td>
+<td class="bytes">4C 49 BD</td>
+<td class="instruction">JMP <a href="BCF3.html#BD49">$BD49</a></td>
+<td class="comment-1" rowspan="1">go evaluate exponent</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD41"></span>BD41</td>
+<td class="bytes">66 5F</td>
+<td class="instruction">ROR $5F</td>
+<td class="comment-1" rowspan="1">set decimal point flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD43"></span>BD43</td>
+<td class="bytes">24 5F</td>
+<td class="instruction">BIT $5F</td>
+<td class="comment-1" rowspan="1">test decimal point flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD45"></span>BD45</td>
+<td class="bytes">50 C3</td>
+<td class="instruction">BVC <a href="BCF3.html#BD0A">$BD0A</a></td>
+<td class="comment-1" rowspan="1">branch if only one decimal point so far</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BD47"></span>
+<div class="comments">
+<div class="paragraph">
+evaluate exponent
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD47"></span>BD47</td>
+<td class="bytes">A5 5E</td>
+<td class="instruction">LDA $5E</td>
+<td class="comment-1" rowspan="1">get exponent count byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD49"></span>BD49</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD4A"></span>BD4A</td>
+<td class="bytes">E5 5D</td>
+<td class="instruction">SBC $5D</td>
+<td class="comment-1" rowspan="1">subtract numerator exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD4C"></span>BD4C</td>
+<td class="bytes">85 5E</td>
+<td class="instruction">STA $5E</td>
+<td class="comment-1" rowspan="1">save exponent count byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD4E"></span>BD4E</td>
+<td class="bytes">F0 12</td>
+<td class="instruction">BEQ <a href="BCF3.html#BD62">$BD62</a></td>
+<td class="comment-1" rowspan="1">branch if no adjustment</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD50"></span>BD50</td>
+<td class="bytes">10 09</td>
+<td class="instruction">BPL <a href="BCF3.html#BD5B">$BD5B</a></td>
+<td class="comment-1" rowspan="1">else if +ve go do FAC1*10^expcnt</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BD52"></span>
+<div class="comments">
+<div class="paragraph">
+else go do FAC1/10^(0-expcnt)
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD52"></span>BD52</td>
+<td class="bytes">20 FE BA</td>
+<td class="instruction">JSR <a href="BAFE.html">$BAFE</a></td>
+<td class="comment-1" rowspan="1">divide FAC1 by 10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD55"></span>BD55</td>
+<td class="bytes">E6 5E</td>
+<td class="instruction">INC $5E</td>
+<td class="comment-1" rowspan="1">increment exponent count byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD57"></span>BD57</td>
+<td class="bytes">D0 F9</td>
+<td class="instruction">BNE <a href="BCF3.html#BD52">$BD52</a></td>
+<td class="comment-1" rowspan="1">loop until all done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD59"></span>BD59</td>
+<td class="bytes">F0 07</td>
+<td class="instruction">BEQ <a href="BCF3.html#BD62">$BD62</a></td>
+<td class="comment-1" rowspan="1">branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD5B"></span>BD5B</td>
+<td class="bytes">20 E2 BA</td>
+<td class="instruction">JSR <a href="BAE2.html">$BAE2</a></td>
+<td class="comment-1" rowspan="1">multiply FAC1 by 10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD5E"></span>BD5E</td>
+<td class="bytes">C6 5E</td>
+<td class="instruction">DEC $5E</td>
+<td class="comment-1" rowspan="1">decrement exponent count byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD60"></span>BD60</td>
+<td class="bytes">D0 F9</td>
+<td class="instruction">BNE <a href="BCF3.html#BD5B">$BD5B</a></td>
+<td class="comment-1" rowspan="1">loop until all done</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD62"></span>BD62</td>
+<td class="bytes">A5 67</td>
+<td class="instruction">LDA $67</td>
+<td class="comment-1" rowspan="1">get -ve flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD64"></span>BD64</td>
+<td class="bytes">30 01</td>
+<td class="instruction">BMI <a href="BD67.html">$BD67</a></td>
+<td class="comment-1" rowspan="1">if -ve do - FAC1 and return</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD66"></span>BD66</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BCE9.html">BCE9</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BCF3">Map</a></td>
+<td class="next">
+Next: <a href="BD67.html">BD67</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

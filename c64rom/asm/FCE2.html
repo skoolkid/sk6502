@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FCE2</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FCDB.html">FCDB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FCE2">Map</a></td>
+<td class="next">
+Next: <a href="FD02.html">FD02</a>
+</td>
+</tr>
+</table>
+<div class="description">FCE2: RESET, hardware reset starts here</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FCE2"></span>FCE2</td>
+<td class="bytes">A2 FF</td>
+<td class="instruction">LDX #$FF</td>
+<td class="comment-1" rowspan="1">set <span class="register">X</span> for stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCE4"></span>FCE4</td>
+<td class="bytes">78</td>
+<td class="instruction">SEI</td>
+<td class="comment-1" rowspan="1">disable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCE5"></span>FCE5</td>
+<td class="bytes">9A</td>
+<td class="instruction">TXS</td>
+<td class="comment-1" rowspan="1">clear stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCE6"></span>FCE6</td>
+<td class="bytes">D8</td>
+<td class="instruction">CLD</td>
+<td class="comment-1" rowspan="1">clear decimal mode</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCE7"></span>FCE7</td>
+<td class="bytes">20 02 FD</td>
+<td class="instruction">JSR <a href="FD02.html">$FD02</a></td>
+<td class="comment-1" rowspan="1">scan for autostart ROM at $8000</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCEA"></span>FCEA</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="FCE2.html#FCEF">$FCEF</a></td>
+<td class="comment-1" rowspan="1">if not there continue startup</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCEC"></span>FCEC</td>
+<td class="bytes">6C 00 80</td>
+<td class="instruction">JMP ($8000)</td>
+<td class="comment-1" rowspan="1">else call ROM start code</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FCEF"></span>FCEF</td>
+<td class="bytes">8E 16 D0</td>
+<td class="instruction">STX $D016</td>
+<td class="comment-1" rowspan="1">read the horizontal fine scroll and control register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCF2"></span>FCF2</td>
+<td class="bytes">20 A3 FD</td>
+<td class="instruction">JSR <a href="FDA3.html">$FDA3</a></td>
+<td class="comment-1" rowspan="1">initialise SID, CIA and IRQ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCF5"></span>FCF5</td>
+<td class="bytes">20 50 FD</td>
+<td class="instruction">JSR <a href="FD50.html">$FD50</a></td>
+<td class="comment-1" rowspan="1">RAM test and find RAM end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCF8"></span>FCF8</td>
+<td class="bytes">20 15 FD</td>
+<td class="instruction">JSR <a href="FD15.html">$FD15</a></td>
+<td class="comment-1" rowspan="1">restore default I/O vectors</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCFB"></span>FCFB</td>
+<td class="bytes">20 5B FF</td>
+<td class="instruction">JSR <a href="FF5B.html">$FF5B</a></td>
+<td class="comment-1" rowspan="1">initialise VIC and screen editor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCFE"></span>FCFE</td>
+<td class="bytes">58</td>
+<td class="instruction">CLI</td>
+<td class="comment-1" rowspan="1">enable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FCFF"></span>FCFF</td>
+<td class="bytes">6C 00 A0</td>
+<td class="instruction">JMP (<a href="A000.html">$A000</a>)</td>
+<td class="comment-1" rowspan="1">execute BASIC</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FCDB.html">FCDB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FCE2">Map</a></td>
+<td class="next">
+Next: <a href="FD02.html">FD02</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

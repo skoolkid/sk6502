@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AB21</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AB1E.html">AB1E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AB21">Map</a></td>
+<td class="next">
+Next: <a href="AB3B.html">AB3B</a>
+</td>
+</tr>
+</table>
+<div class="description">AB21: print string from utility pointer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="AA9A.html">AA9A</a>, <a href="AAA0.html">AAA0</a> and <a href="ABBF.html">ABBF</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB21"></span>AB21</td>
+<td class="bytes">20 A6 B6</td>
+<td class="instruction">JSR <a href="B6A3.html#B6A6">$B6A6</a></td>
+<td class="comment-1" rowspan="1">pop string off descriptor stack, or from top of string space; returns with <span class="register">A</span> = length, <span class="register">X</span> = pointer low byte, <span class="register">Y</span> = pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB24"></span>AB24</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB25"></span>AB25</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB27"></span>AB27</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment length, for pre decrement loop</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB28"></span>AB28</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB29"></span>AB29</td>
+<td class="bytes">F0 BC</td>
+<td class="instruction">BEQ <a href="AAD7.html#AAE7">$AAE7</a></td>
+<td class="comment-1" rowspan="1">exit if done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB2B"></span>AB2B</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get byte from string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB2D"></span>AB2D</td>
+<td class="bytes">20 47 AB</td>
+<td class="instruction">JSR <a href="AB47.html">$AB47</a></td>
+<td class="comment-1" rowspan="1">print the character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB30"></span>AB30</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB31"></span>AB31</td>
+<td class="bytes">C9 0D</td>
+<td class="instruction">CMP #$0D</td>
+<td class="comment-1" rowspan="1">compare byte with [CR]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB33"></span>AB33</td>
+<td class="bytes">D0 F3</td>
+<td class="instruction">BNE <a href="AB21.html#AB28">$AB28</a></td>
+<td class="comment-1" rowspan="1">loop if not [CR]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB35"></span>AB35</td>
+<td class="bytes">20 E5 AA</td>
+<td class="instruction">JSR <a href="AAD7.html#AAE5">$AAE5</a></td>
+<td class="comment-1" rowspan="1">toggle <span class="register">A</span>, EOR #$FF. what is the point of this ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB38"></span>AB38</td>
+<td class="bytes">4C 28 AB</td>
+<td class="instruction">JMP <a href="AB21.html#AB28">$AB28</a></td>
+<td class="comment-1" rowspan="1">loop</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AB1E.html">AB1E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AB21">Map</a></td>
+<td class="next">
+Next: <a href="AB3B.html">AB3B</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

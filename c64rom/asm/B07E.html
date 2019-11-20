@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B07E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B016.html">B016</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B07E">Map</a></td>
+<td class="next">
+Next: <a href="B08B.html">B08B</a>
+</td>
+</tr>
+</table>
+<div class="description">B07E: perform DIM</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B07E"></span>B07E</td>
+<td class="bytes">20 FD AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEFD">$AEFD</a></td>
+<td class="comment-1" rowspan="1">scan for ",", else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B081"></span>
+<div class="comments">
+<div class="paragraph">
+This is the main entry point of the routine.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B081"></span>B081</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy "DIM" flag to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B082"></span>B082</td>
+<td class="bytes">20 90 B0</td>
+<td class="instruction">JSR <a href="B08B.html#B090">$B090</a></td>
+<td class="comment-1" rowspan="1">search for variable</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B085"></span>B085</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B088"></span>B088</td>
+<td class="bytes">D0 F4</td>
+<td class="instruction">BNE <a href="B07E.html#B07E">$B07E</a></td>
+<td class="comment-1" rowspan="1">scan for "," and loop if not null</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B08A"></span>B08A</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B016.html">B016</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B07E">Map</a></td>
+<td class="next">
+Next: <a href="B08B.html">B08B</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EA13</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EA12.html">EA12</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EA13">Map</a></td>
+<td class="next">
+Next: <a href="EA1C.html">EA1C</a>
+</td>
+</tr>
+</table>
+<div class="description">EA13: print character <span class="register">A</span> and colour <span class="register">X</span></div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="E5CD.html">E5CD</a> and <a href="E691.html">E691</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EA13"></span>EA13</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy the character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA14"></span>EA14</td>
+<td class="bytes">A9 02</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="1">set the count to $02, usually $14 ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA16"></span>EA16</td>
+<td class="bytes">85 CD</td>
+<td class="instruction">STA $CD</td>
+<td class="comment-1" rowspan="1">save the cursor countdown</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA18"></span>EA18</td>
+<td class="bytes">20 24 EA</td>
+<td class="instruction">JSR <a href="EA24.html">$EA24</a></td>
+<td class="comment-1" rowspan="1">calculate the pointer to colour RAM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA1B"></span>EA1B</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">get the character back</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EA12.html">EA12</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EA13">Map</a></td>
+<td class="next">
+Next: <a href="EA1C.html">EA1C</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

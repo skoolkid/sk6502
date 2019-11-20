@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AA2C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AA1D.html">AA1D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AA2C">Map</a></td>
+<td class="next">
+Next: <a href="AA80.html">AA80</a>
+</td>
+</tr>
+</table>
+<div class="description">AA2C: assign value to numeric variable, but not TI$</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="A9A5.html">A9A5</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AA2C"></span>AA2C</td>
+<td class="bytes">A0 02</td>
+<td class="instruction">LDY #$02</td>
+<td class="comment-1" rowspan="1">index to string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA2E"></span>AA2E</td>
+<td class="bytes">B1 64</td>
+<td class="instruction">LDA ($64),Y</td>
+<td class="comment-1" rowspan="1">get string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA30"></span>AA30</td>
+<td class="bytes">C5 34</td>
+<td class="instruction">CMP $34</td>
+<td class="comment-1" rowspan="1">compare with bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA32"></span>AA32</td>
+<td class="bytes">90 17</td>
+<td class="instruction">BCC <a href="AA2C.html#AA4B">$AA4B</a></td>
+<td class="comment-1" rowspan="1">branch if string pointer high byte is less than bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA34"></span>AA34</td>
+<td class="bytes">D0 07</td>
+<td class="instruction">BNE <a href="AA2C.html#AA3D">$AA3D</a></td>
+<td class="comment-1" rowspan="1">branch if string pointer high byte is greater than bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AA36"></span>
+<div class="comments">
+<div class="paragraph">
+else high bytes were equal
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA36"></span>AA36</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index to string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA37"></span>AA37</td>
+<td class="bytes">B1 64</td>
+<td class="instruction">LDA ($64),Y</td>
+<td class="comment-1" rowspan="1">get string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA39"></span>AA39</td>
+<td class="bytes">C5 33</td>
+<td class="instruction">CMP $33</td>
+<td class="comment-1" rowspan="1">compare with bottom of string space low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA3B"></span>AA3B</td>
+<td class="bytes">90 0E</td>
+<td class="instruction">BCC <a href="AA2C.html#AA4B">$AA4B</a></td>
+<td class="comment-1" rowspan="1">branch if string pointer low byte is less than bottom of string space low byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AA3D"></span>AA3D</td>
+<td class="bytes">A4 65</td>
+<td class="instruction">LDY $65</td>
+<td class="comment-1" rowspan="1">get descriptor pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA3F"></span>AA3F</td>
+<td class="bytes">C4 2E</td>
+<td class="instruction">CPY $2E</td>
+<td class="comment-1" rowspan="1">compare with start of variables high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA41"></span>AA41</td>
+<td class="bytes">90 08</td>
+<td class="instruction">BCC <a href="AA2C.html#AA4B">$AA4B</a></td>
+<td class="comment-1" rowspan="1">branch if less, is on string stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA43"></span>AA43</td>
+<td class="bytes">D0 0D</td>
+<td class="instruction">BNE <a href="AA2C.html#AA52">$AA52</a></td>
+<td class="comment-1" rowspan="1">if greater make space and copy string</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AA45"></span>
+<div class="comments">
+<div class="paragraph">
+else high bytes were equal
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA45"></span>AA45</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA47"></span>AA47</td>
+<td class="bytes">C5 2D</td>
+<td class="instruction">CMP $2D</td>
+<td class="comment-1" rowspan="1">compare with start of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA49"></span>AA49</td>
+<td class="bytes">B0 07</td>
+<td class="instruction">BCS <a href="AA2C.html#AA52">$AA52</a></td>
+<td class="comment-1" rowspan="1">if greater or equal make space and copy string</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AA4B"></span>AA4B</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA4D"></span>AA4D</td>
+<td class="bytes">A4 65</td>
+<td class="instruction">LDY $65</td>
+<td class="comment-1" rowspan="1">get descriptor pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA4F"></span>AA4F</td>
+<td class="bytes">4C 68 AA</td>
+<td class="instruction">JMP <a href="AA2C.html#AA68">$AA68</a></td>
+<td class="comment-1" rowspan="1">go copy descriptor to variable</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AA52"></span>AA52</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA54"></span>AA54</td>
+<td class="bytes">B1 64</td>
+<td class="instruction">LDA ($64),Y</td>
+<td class="comment-1" rowspan="1">get string length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA56"></span>AA56</td>
+<td class="bytes">20 75 B4</td>
+<td class="instruction">JSR <a href="B475.html">$B475</a></td>
+<td class="comment-1" rowspan="1">copy descriptor pointer and make string space <span class="register">A</span> bytes long</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA59"></span>AA59</td>
+<td class="bytes">A5 50</td>
+<td class="instruction">LDA $50</td>
+<td class="comment-1" rowspan="1">copy old descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA5B"></span>AA5B</td>
+<td class="bytes">A4 51</td>
+<td class="instruction">LDY $51</td>
+<td class="comment-1" rowspan="1">copy old descriptor pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA5D"></span>AA5D</td>
+<td class="bytes">85 6F</td>
+<td class="instruction">STA $6F</td>
+<td class="comment-1" rowspan="1">save old descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA5F"></span>AA5F</td>
+<td class="bytes">84 70</td>
+<td class="instruction">STY $70</td>
+<td class="comment-1" rowspan="1">save old descriptor pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA61"></span>AA61</td>
+<td class="bytes">20 7A B6</td>
+<td class="instruction">JSR <a href="B67A.html">$B67A</a></td>
+<td class="comment-1" rowspan="1">copy string from descriptor to utility pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA64"></span>AA64</td>
+<td class="bytes">A9 61</td>
+<td class="instruction">LDA #$61</td>
+<td class="comment-1" rowspan="1">get descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA66"></span>AA66</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">get descriptor pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AA68"></span>AA68</td>
+<td class="bytes">85 50</td>
+<td class="instruction">STA $50</td>
+<td class="comment-1" rowspan="1">save descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA6A"></span>AA6A</td>
+<td class="bytes">84 51</td>
+<td class="instruction">STY $51</td>
+<td class="comment-1" rowspan="1">save descriptor pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA6C"></span>AA6C</td>
+<td class="bytes">20 DB B6</td>
+<td class="instruction">JSR <a href="B6DB.html">$B6DB</a></td>
+<td class="comment-1" rowspan="1">clean descriptor stack, <span class="register">YA</span> = pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA6F"></span>AA6F</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA71"></span>AA71</td>
+<td class="bytes">B1 50</td>
+<td class="instruction">LDA ($50),Y</td>
+<td class="comment-1" rowspan="1">get string length from new descriptor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA73"></span>AA73</td>
+<td class="bytes">91 49</td>
+<td class="instruction">STA ($49),Y</td>
+<td class="comment-1" rowspan="1">copy string length to variable</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA75"></span>AA75</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA76"></span>AA76</td>
+<td class="bytes">B1 50</td>
+<td class="instruction">LDA ($50),Y</td>
+<td class="comment-1" rowspan="1">get string pointer low byte from new descriptor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA78"></span>AA78</td>
+<td class="bytes">91 49</td>
+<td class="instruction">STA ($49),Y</td>
+<td class="comment-1" rowspan="1">copy string pointer low byte to variable</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA7A"></span>AA7A</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA7B"></span>AA7B</td>
+<td class="bytes">B1 50</td>
+<td class="instruction">LDA ($50),Y</td>
+<td class="comment-1" rowspan="1">get string pointer high byte from new descriptor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA7D"></span>AA7D</td>
+<td class="bytes">91 49</td>
+<td class="instruction">STA ($49),Y</td>
+<td class="comment-1" rowspan="1">copy string pointer high byte to variable</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AA7F"></span>AA7F</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AA1D.html">AA1D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AA2C">Map</a></td>
+<td class="next">
+Next: <a href="AA80.html">AA80</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

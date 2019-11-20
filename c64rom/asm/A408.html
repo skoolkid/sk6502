@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A408</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A3FB.html">A3FB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A408">Map</a></td>
+<td class="next">
+Next: <a href="A435.html">A435</a>
+</td>
+</tr>
+</table>
+<div class="description">A408: check available memory, do out of memory error if no room</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A3B8.html">A3B8</a>, <a href="B1D1.html">B1D1</a> and <a href="E422.html">E422</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A408"></span>A408</td>
+<td class="bytes">C4 34</td>
+<td class="instruction">CPY $34</td>
+<td class="comment-1" rowspan="1">compare with bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A40A"></span>A40A</td>
+<td class="bytes">90 28</td>
+<td class="instruction">BCC <a href="A408.html#A434">$A434</a></td>
+<td class="comment-1" rowspan="1">if less then exit (is ok)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A40C"></span>A40C</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="A408.html#A412">$A412</a></td>
+<td class="comment-1" rowspan="1">skip next test if greater (tested &lt;)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A40E"></span>
+<div class="comments">
+<div class="paragraph">
+high byte was =, now do low byte
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A40E"></span>A40E</td>
+<td class="bytes">C5 33</td>
+<td class="instruction">CMP $33</td>
+<td class="comment-1" rowspan="1">compare with bottom of string space low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A410"></span>A410</td>
+<td class="bytes">90 22</td>
+<td class="instruction">BCC <a href="A408.html#A434">$A434</a></td>
+<td class="comment-1" rowspan="1">if less then exit (is ok)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A412"></span>
+<div class="comments">
+<div class="paragraph">
+address is &gt; string storage ptr (oops!)
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A412"></span>A412</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A413"></span>A413</td>
+<td class="bytes">A2 09</td>
+<td class="instruction">LDX #$09</td>
+<td class="comment-1" rowspan="1">set index to save $57 to $60 inclusive</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A415"></span>A415</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy address high byte (to push on stack)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A416"></span>
+<div class="comments">
+<div class="paragraph">
+save misc numeric work area
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A416"></span>A416</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A417"></span>A417</td>
+<td class="bytes">B5 57</td>
+<td class="instruction">LDA $57,X</td>
+<td class="comment-1" rowspan="1">get byte from $57 to $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A419"></span>A419</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A41A"></span>A41A</td>
+<td class="bytes">10 FA</td>
+<td class="instruction">BPL <a href="A408.html#A416">$A416</a></td>
+<td class="comment-1" rowspan="1">loop until all done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A41C"></span>A41C</td>
+<td class="bytes">20 26 B5</td>
+<td class="instruction">JSR <a href="B526.html">$B526</a></td>
+<td class="comment-1" rowspan="1">do garbage collection routine</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A41F"></span>
+<div class="comments">
+<div class="paragraph">
+restore misc numeric work area
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A41F"></span>A41F</td>
+<td class="bytes">A2 F7</td>
+<td class="instruction">LDX #$F7</td>
+<td class="comment-1" rowspan="1">set index to restore bytes</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A421"></span>A421</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A422"></span>A422</td>
+<td class="bytes">95 61</td>
+<td class="instruction">STA $61,X</td>
+<td class="comment-1" rowspan="1">save byte to $57 to $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A424"></span>A424</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A425"></span>A425</td>
+<td class="bytes">30 FA</td>
+<td class="instruction">BMI <a href="A408.html#A421">$A421</a></td>
+<td class="comment-1" rowspan="1">loop while -ve</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A427"></span>A427</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A428"></span>A428</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy back to <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A429"></span>A429</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A42A"></span>A42A</td>
+<td class="bytes">C4 34</td>
+<td class="instruction">CPY $34</td>
+<td class="comment-1" rowspan="1">compare with bottom of string space high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A42C"></span>A42C</td>
+<td class="bytes">90 06</td>
+<td class="instruction">BCC <a href="A408.html#A434">$A434</a></td>
+<td class="comment-1" rowspan="1">if less then exit (is ok)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A42E"></span>A42E</td>
+<td class="bytes">D0 05</td>
+<td class="instruction">BNE <a href="A435.html">$A435</a></td>
+<td class="comment-1" rowspan="1">if greater do out of memory error then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A430"></span>
+<div class="comments">
+<div class="paragraph">
+high byte was =, now do low byte
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A430"></span>A430</td>
+<td class="bytes">C5 33</td>
+<td class="instruction">CMP $33</td>
+<td class="comment-1" rowspan="1">compare with bottom of string space low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A432"></span>A432</td>
+<td class="bytes">B0 01</td>
+<td class="instruction">BCS <a href="A435.html">$A435</a></td>
+<td class="comment-1" rowspan="1">if &gt;= do out of memory error then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A434"></span>
+<div class="comments">
+<div class="paragraph">
+ok exit, carry clear
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A434"></span>A434</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A3FB.html">A3FB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A408">Map</a></td>
+<td class="next">
+Next: <a href="A435.html">A435</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

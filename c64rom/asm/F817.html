@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F817</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F80D.html">F80D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F817">Map</a></td>
+<td class="next">
+Next: <a href="F82E.html">F82E</a>
+</td>
+</tr>
+</table>
+<div class="description">F817: wait for PLAY</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="F34A.html">F34A</a>, <a href="F533.html">F533</a> and <a href="F841.html">F841</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F817"></span>F817</td>
+<td class="bytes">20 2E F8</td>
+<td class="instruction">JSR <a href="F82E.html">$F82E</a></td>
+<td class="comment-1" rowspan="1">return cassette sense in Zb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F81A"></span>F81A</td>
+<td class="bytes">F0 1A</td>
+<td class="instruction">BEQ <a href="F82E.html#F836">$F836</a></td>
+<td class="comment-1" rowspan="1">if switch closed just exit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F81C"></span>
+<div class="comments">
+<div class="paragraph">
+cassette switch was open
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F81C"></span>F81C</td>
+<td class="bytes">A0 1B</td>
+<td class="instruction">LDY #$1B</td>
+<td class="comment-1" rowspan="1">index to "PRESS PLAY ON TAPE"</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F81E"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F838.html">F838</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F81E"></span>F81E</td>
+<td class="bytes">20 2F F1</td>
+<td class="instruction">JSR <a href="F12B.html#F12F">$F12F</a></td>
+<td class="comment-1" rowspan="1">display kernel I/O message</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F821"></span>F821</td>
+<td class="bytes">20 D0 F8</td>
+<td class="instruction">JSR <a href="F8D0.html">$F8D0</a></td>
+<td class="comment-1" rowspan="1">scan stop key and flag abort if pressed</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F824"></span>
+<div class="comments">
+<div class="paragraph">
+note if STOP was pressed the return is to the routine that called this one and not here
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F824"></span>F824</td>
+<td class="bytes">20 2E F8</td>
+<td class="instruction">JSR <a href="F82E.html">$F82E</a></td>
+<td class="comment-1" rowspan="1">return cassette sense in Zb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F827"></span>F827</td>
+<td class="bytes">D0 F8</td>
+<td class="instruction">BNE <a href="F817.html#F821">$F821</a></td>
+<td class="comment-1" rowspan="1">loop if the cassette switch is open</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F829"></span>F829</td>
+<td class="bytes">A0 6A</td>
+<td class="instruction">LDY #$6A</td>
+<td class="comment-1" rowspan="1">index to "OK"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F82B"></span>F82B</td>
+<td class="bytes">4C 2F F1</td>
+<td class="instruction">JMP <a href="F12B.html#F12F">$F12F</a></td>
+<td class="comment-1" rowspan="1">display kernel I/O message and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F80D.html">F80D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F817">Map</a></td>
+<td class="next">
+Next: <a href="F82E.html">F82E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

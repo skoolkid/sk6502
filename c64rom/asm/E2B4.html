@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E2B4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E26B.html">E26B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E2B4">Map</a></td>
+<td class="next">
+Next: <a href="E2DC.html">E2DC</a>
+</td>
+</tr>
+</table>
+<div class="description">E2B4: perform TAN()</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E2B4"></span>E2B4</td>
+<td class="bytes">20 CA BB</td>
+<td class="instruction">JSR <a href="BBCA.html">$BBCA</a></td>
+<td class="comment-1" rowspan="1">pack FAC1 into $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2B7"></span>E2B7</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2B9"></span>E2B9</td>
+<td class="bytes">85 12</td>
+<td class="instruction">STA $12</td>
+<td class="comment-1" rowspan="1">clear the comparison evaluation flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2BB"></span>E2BB</td>
+<td class="bytes">20 6B E2</td>
+<td class="instruction">JSR <a href="E26B.html">$E26B</a></td>
+<td class="comment-1" rowspan="1">perform SIN()</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2BE"></span>E2BE</td>
+<td class="bytes">A2 4E</td>
+<td class="instruction">LDX #$4E</td>
+<td class="comment-1" rowspan="1">set sin(n) pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2C0"></span>E2C0</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set sin(n) pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2C2"></span>E2C2</td>
+<td class="bytes">20 F6 E0</td>
+<td class="instruction">JSR <a href="E0F6.html">$E0F6</a></td>
+<td class="comment-1" rowspan="1">pack FAC1 into (<span class="register">XY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2C5"></span>E2C5</td>
+<td class="bytes">A9 57</td>
+<td class="instruction">LDA #$57</td>
+<td class="comment-1" rowspan="1">set n pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2C7"></span>E2C7</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set n pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2C9"></span>E2C9</td>
+<td class="bytes">20 A2 BB</td>
+<td class="instruction">JSR <a href="BBA2.html">$BBA2</a></td>
+<td class="comment-1" rowspan="1">unpack memory (<span class="register">AY</span>) into FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2CC"></span>E2CC</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2CE"></span>E2CE</td>
+<td class="bytes">85 66</td>
+<td class="instruction">STA $66</td>
+<td class="comment-1" rowspan="1">clear FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2D0"></span>E2D0</td>
+<td class="bytes">A5 12</td>
+<td class="instruction">LDA $12</td>
+<td class="comment-1" rowspan="1">get the comparison evaluation flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2D2"></span>E2D2</td>
+<td class="bytes">20 DC E2</td>
+<td class="instruction">JSR <a href="E2DC.html">$E2DC</a></td>
+<td class="comment-1" rowspan="1">save flag and go do series evaluation</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2D5"></span>E2D5</td>
+<td class="bytes">A9 4E</td>
+<td class="instruction">LDA #$4E</td>
+<td class="comment-1" rowspan="1">set sin(n) pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2D7"></span>E2D7</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set sin(n) pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E2D9"></span>E2D9</td>
+<td class="bytes">4C 0F BB</td>
+<td class="instruction">JMP <a href="BB0F.html">$BB0F</a></td>
+<td class="comment-1" rowspan="1">convert <span class="register">AY</span> and do (<span class="register">AY</span>)/FAC1</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E26B.html">E26B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E2B4">Map</a></td>
+<td class="next">
+Next: <a href="E2DC.html">E2DC</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

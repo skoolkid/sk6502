@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BCCC</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BCBB.html">BCBB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BCCC">Map</a></td>
+<td class="next">
+Next: <a href="BCE9.html">BCE9</a>
+</td>
+</tr>
+</table>
+<div class="description">BCCC: perform INT()</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="BF7B.html">BF7B</a>, <a href="E000.html">E000</a> and <a href="E26B.html">E26B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BCCC"></span>BCCC</td>
+<td class="bytes">A5 61</td>
+<td class="instruction">LDA $61</td>
+<td class="comment-1" rowspan="1">get FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCCE"></span>BCCE</td>
+<td class="bytes">C9 A0</td>
+<td class="instruction">CMP #$A0</td>
+<td class="comment-1" rowspan="1">compare with max int</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCD0"></span>BCD0</td>
+<td class="bytes">B0 20</td>
+<td class="instruction">BCS <a href="BCE9.html#BCF2">$BCF2</a></td>
+<td class="comment-1" rowspan="1">exit if &gt;= (allready int, too big for fractional part!)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCD2"></span>BCD2</td>
+<td class="bytes">20 9B BC</td>
+<td class="instruction">JSR <a href="BC9B.html">$BC9B</a></td>
+<td class="comment-1" rowspan="1">convert FAC1 floating to fixed</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCD5"></span>BCD5</td>
+<td class="bytes">84 70</td>
+<td class="instruction">STY $70</td>
+<td class="comment-1" rowspan="1">save FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCD7"></span>BCD7</td>
+<td class="bytes">A5 66</td>
+<td class="instruction">LDA $66</td>
+<td class="comment-1" rowspan="1">get FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCD9"></span>BCD9</td>
+<td class="bytes">84 66</td>
+<td class="instruction">STY $66</td>
+<td class="comment-1" rowspan="1">save FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCDB"></span>BCDB</td>
+<td class="bytes">49 80</td>
+<td class="instruction">EOR #%10000000</td>
+<td class="comment-1" rowspan="1">toggle FAC1 sign</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCDD"></span>BCDD</td>
+<td class="bytes">2A</td>
+<td class="instruction">ROL A</td>
+<td class="comment-1" rowspan="1">shift into carry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCDE"></span>BCDE</td>
+<td class="bytes">A9 A0</td>
+<td class="instruction">LDA #$A0</td>
+<td class="comment-1" rowspan="1">set new exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCE0"></span>BCE0</td>
+<td class="bytes">85 61</td>
+<td class="instruction">STA $61</td>
+<td class="comment-1" rowspan="1">save FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCE2"></span>BCE2</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCE4"></span>BCE4</td>
+<td class="bytes">85 07</td>
+<td class="instruction">STA $07</td>
+<td class="comment-1" rowspan="1">save FAC1 mantissa 4 for power function</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BCE6"></span>BCE6</td>
+<td class="bytes">4C D2 B8</td>
+<td class="instruction">JMP <a href="B8D2.html">$B8D2</a></td>
+<td class="comment-1" rowspan="1">do ABS and normalise FAC1</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BCBB.html">BCBB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BCCC">Map</a></td>
+<td class="next">
+Next: <a href="BCE9.html">BCE9</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

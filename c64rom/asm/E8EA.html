@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E8EA</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E8DA.html">E8DA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E8EA">Map</a></td>
+<td class="next">
+Next: <a href="E965.html">E965</a>
+</td>
+</tr>
+</table>
+<div class="description">E8EA: scroll the screen</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="E6B6.html">E6B6</a>, <a href="E87C.html">E87C</a> and <a href="E965.html">E965</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E8EA"></span>E8EA</td>
+<td class="bytes">A5 AC</td>
+<td class="instruction">LDA $AC</td>
+<td class="comment-1" rowspan="1">copy the tape buffer start pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8EC"></span>E8EC</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8ED"></span>E8ED</td>
+<td class="bytes">A5 AD</td>
+<td class="instruction">LDA $AD</td>
+<td class="comment-1" rowspan="1">copy the tape buffer start pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8EF"></span>E8EF</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8F0"></span>E8F0</td>
+<td class="bytes">A5 AE</td>
+<td class="instruction">LDA $AE</td>
+<td class="comment-1" rowspan="1">copy the tape buffer end pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8F2"></span>E8F2</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8F3"></span>E8F3</td>
+<td class="bytes">A5 AF</td>
+<td class="instruction">LDA $AF</td>
+<td class="comment-1" rowspan="1">copy the tape buffer end pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8F5"></span>E8F5</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E8F6"></span>E8F6</td>
+<td class="bytes">A2 FF</td>
+<td class="instruction">LDX #$FF</td>
+<td class="comment-1" rowspan="1">set to -1 for pre increment loop</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8F8"></span>E8F8</td>
+<td class="bytes">C6 D6</td>
+<td class="instruction">DEC $D6</td>
+<td class="comment-1" rowspan="1">decrement the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8FA"></span>E8FA</td>
+<td class="bytes">C6 C9</td>
+<td class="instruction">DEC $C9</td>
+<td class="comment-1" rowspan="1">decrement the input cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8FC"></span>E8FC</td>
+<td class="bytes">CE A5 02</td>
+<td class="instruction">DEC $02A5</td>
+<td class="comment-1" rowspan="1">decrement the screen row marker</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E8FF"></span>E8FF</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment the line number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E900"></span>E900</td>
+<td class="bytes">20 F0 E9</td>
+<td class="instruction">JSR <a href="E9F0.html">$E9F0</a></td>
+<td class="comment-1" rowspan="1">fetch a screen address, set the start of line <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E903"></span>E903</td>
+<td class="bytes">E0 18</td>
+<td class="instruction">CPX #$18</td>
+<td class="comment-1" rowspan="1">compare with last line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E905"></span>E905</td>
+<td class="bytes">B0 0C</td>
+<td class="instruction">BCS <a href="E8EA.html#E913">$E913</a></td>
+<td class="comment-1" rowspan="1">branch if &gt;= $16</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E907"></span>E907</td>
+<td class="bytes">BD F1 EC</td>
+<td class="instruction">LDA $ECF1,X</td>
+<td class="comment-1" rowspan="1">get the start of the next line pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E90A"></span>E90A</td>
+<td class="bytes">85 AC</td>
+<td class="instruction">STA $AC</td>
+<td class="comment-1" rowspan="1">save the next line pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E90C"></span>E90C</td>
+<td class="bytes">B5 DA</td>
+<td class="instruction">LDA $DA,X</td>
+<td class="comment-1" rowspan="1">get the start of the next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E90E"></span>E90E</td>
+<td class="bytes">20 C8 E9</td>
+<td class="instruction">JSR <a href="E9C8.html">$E9C8</a></td>
+<td class="comment-1" rowspan="1">shift the screen line up</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E911"></span>E911</td>
+<td class="bytes">30 EC</td>
+<td class="instruction">BMI <a href="E8EA.html#E8FF">$E8FF</a></td>
+<td class="comment-1" rowspan="1">loop, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E913"></span>E913</td>
+<td class="bytes">20 FF E9</td>
+<td class="instruction">JSR <a href="E9FF.html">$E9FF</a></td>
+<td class="comment-1" rowspan="1">clear screen line <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E916"></span>
+<div class="comments">
+<div class="paragraph">
+now shift up the start of logical line bits
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E916"></span>E916</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E918"></span>E918</td>
+<td class="bytes">B5 D9</td>
+<td class="instruction">LDA $D9,X</td>
+<td class="comment-1" rowspan="1">get the start of line <span class="register">X</span> pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E91A"></span>E91A</td>
+<td class="bytes">29 7F</td>
+<td class="instruction">AND #$7F</td>
+<td class="comment-1" rowspan="1">clear the line <span class="register">X</span> start of logical line bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E91C"></span>E91C</td>
+<td class="bytes">B4 DA</td>
+<td class="instruction">LDY $DA,X</td>
+<td class="comment-1" rowspan="1">get the start of the next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E91E"></span>E91E</td>
+<td class="bytes">10 02</td>
+<td class="instruction">BPL <a href="E8EA.html#E922">$E922</a></td>
+<td class="comment-1" rowspan="1">if next line is not a start of line skip the start set</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E920"></span>E920</td>
+<td class="bytes">09 80</td>
+<td class="instruction">ORA #$80</td>
+<td class="comment-1" rowspan="1">set line <span class="register">X</span> start of logical line bit</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E922"></span>E922</td>
+<td class="bytes">95 D9</td>
+<td class="instruction">STA $D9,X</td>
+<td class="comment-1" rowspan="1">set start of line <span class="register">X</span> pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E924"></span>E924</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment line number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E925"></span>E925</td>
+<td class="bytes">E0 18</td>
+<td class="instruction">CPX #$18</td>
+<td class="comment-1" rowspan="1">compare with last line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E927"></span>E927</td>
+<td class="bytes">D0 EF</td>
+<td class="instruction">BNE <a href="E8EA.html#E918">$E918</a></td>
+<td class="comment-1" rowspan="1">loop if not last line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E929"></span>E929</td>
+<td class="bytes">A5 F1</td>
+<td class="instruction">LDA $F1</td>
+<td class="comment-1" rowspan="1">get start of last line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E92B"></span>E92B</td>
+<td class="bytes">09 80</td>
+<td class="instruction">ORA #$80</td>
+<td class="comment-1" rowspan="1">mark as start of logical line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E92D"></span>E92D</td>
+<td class="bytes">85 F1</td>
+<td class="instruction">STA $F1</td>
+<td class="comment-1" rowspan="1">set start of last line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E92F"></span>E92F</td>
+<td class="bytes">A5 D9</td>
+<td class="instruction">LDA $D9</td>
+<td class="comment-1" rowspan="1">get start of first line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E931"></span>E931</td>
+<td class="bytes">10 C3</td>
+<td class="instruction">BPL <a href="E8EA.html#E8F6">$E8F6</a></td>
+<td class="comment-1" rowspan="1">if not start of logical line loop back and scroll the screen up another line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E933"></span>E933</td>
+<td class="bytes">E6 D6</td>
+<td class="instruction">INC $D6</td>
+<td class="comment-1" rowspan="1">increment the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E935"></span>E935</td>
+<td class="bytes">EE A5 02</td>
+<td class="instruction">INC $02A5</td>
+<td class="comment-1" rowspan="1">increment screen row marker</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E938"></span>E938</td>
+<td class="bytes">A9 7F</td>
+<td class="instruction">LDA #$7F</td>
+<td class="comment-1" rowspan="1">set keyboard column c7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E93A"></span>E93A</td>
+<td class="bytes">8D 00 DC</td>
+<td class="instruction">STA $DC00</td>
+<td class="comment-1" rowspan="1">save VIA 1 DRA, keyboard column drive</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E93D"></span>E93D</td>
+<td class="bytes">AD 01 DC</td>
+<td class="instruction">LDA $DC01</td>
+<td class="comment-1" rowspan="1">read VIA 1 DRB, keyboard row port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E940"></span>E940</td>
+<td class="bytes">C9 FB</td>
+<td class="instruction">CMP #$FB</td>
+<td class="comment-1" rowspan="1">compare with row r2 active, [CTL]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E942"></span>E942</td>
+<td class="bytes">08</td>
+<td class="instruction">PHP</td>
+<td class="comment-1" rowspan="1">save status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E943"></span>E943</td>
+<td class="bytes">A9 7F</td>
+<td class="instruction">LDA #$7F</td>
+<td class="comment-1" rowspan="1">set keyboard column c7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E945"></span>E945</td>
+<td class="bytes">8D 00 DC</td>
+<td class="instruction">STA $DC00</td>
+<td class="comment-1" rowspan="1">save VIA 1 DRA, keyboard column drive</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E948"></span>E948</td>
+<td class="bytes">28</td>
+<td class="instruction">PLP</td>
+<td class="comment-1" rowspan="1">restore status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E949"></span>E949</td>
+<td class="bytes">D0 0B</td>
+<td class="instruction">BNE <a href="E8EA.html#E956">$E956</a></td>
+<td class="comment-1" rowspan="1">skip delay if ??</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E94B"></span>
+<div class="comments">
+<div class="paragraph">
+first time round the inner loop <span class="register">X</span> will be $16
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E94B"></span>E94B</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear delay outer loop count, do this 256 times</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E94D"></span>E94D</td>
+<td class="bytes">EA</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1">waste cycles</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E94E"></span>E94E</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement inner loop count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E94F"></span>E94F</td>
+<td class="bytes">D0 FC</td>
+<td class="instruction">BNE <a href="E8EA.html#E94D">$E94D</a></td>
+<td class="comment-1" rowspan="1">loop if not all done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E951"></span>E951</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement outer loop count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E952"></span>E952</td>
+<td class="bytes">D0 F9</td>
+<td class="instruction">BNE <a href="E8EA.html#E94D">$E94D</a></td>
+<td class="comment-1" rowspan="1">loop if not all done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E954"></span>E954</td>
+<td class="bytes">84 C6</td>
+<td class="instruction">STY $C6</td>
+<td class="comment-1" rowspan="1">clear the keyboard buffer index</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E956"></span>E956</td>
+<td class="bytes">A6 D6</td>
+<td class="instruction">LDX $D6</td>
+<td class="comment-1" rowspan="1">get the cursor row</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E958"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E965.html">E965</a>.
+</div>
+<div class="paragraph">
+restore the tape buffer pointers and exit
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E958"></span>E958</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull tape buffer end pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E959"></span>E959</td>
+<td class="bytes">85 AF</td>
+<td class="instruction">STA $AF</td>
+<td class="comment-1" rowspan="1">restore it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E95B"></span>E95B</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull tape buffer end pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E95C"></span>E95C</td>
+<td class="bytes">85 AE</td>
+<td class="instruction">STA $AE</td>
+<td class="comment-1" rowspan="1">restore it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E95E"></span>E95E</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull tape buffer pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E95F"></span>E95F</td>
+<td class="bytes">85 AD</td>
+<td class="instruction">STA $AD</td>
+<td class="comment-1" rowspan="1">restore it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E961"></span>E961</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull tape buffer pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E962"></span>E962</td>
+<td class="bytes">85 AC</td>
+<td class="instruction">STA $AC</td>
+<td class="comment-1" rowspan="1">restore it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E964"></span>E964</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E8DA.html">E8DA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E8EA">Map</a></td>
+<td class="next">
+Next: <a href="E965.html">E965</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

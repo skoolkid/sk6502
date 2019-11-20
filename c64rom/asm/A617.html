@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A617</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A613.html">A613</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A617">Map</a></td>
+<td class="next">
+Next: <a href="A642.html">A642</a>
+</td>
+</tr>
+</table>
+<div class="description">A617: search Basic for temp integer line number from <span class="register">AX</span></div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="A8C0.html">A8C0</a>.
+</div>
+<div class="paragraph">
+returns carry set if found
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A617"></span>A617</td>
+<td class="bytes">A0 01</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="1">set index to next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A619"></span>A619</td>
+<td class="bytes">85 5F</td>
+<td class="instruction">STA $5F</td>
+<td class="comment-1" rowspan="1">save low byte as current</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A61B"></span>A61B</td>
+<td class="bytes">86 60</td>
+<td class="instruction">STX $60</td>
+<td class="comment-1" rowspan="1">save high byte as current</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A61D"></span>A61D</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get next line pointer high byte from address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A61F"></span>A61F</td>
+<td class="bytes">F0 1F</td>
+<td class="instruction">BEQ <a href="A617.html#A640">$A640</a></td>
+<td class="comment-1" rowspan="1">pointer was zero so done, exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A621"></span>A621</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index ...</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A622"></span>A622</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">... to line # high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A623"></span>A623</td>
+<td class="bytes">A5 15</td>
+<td class="instruction">LDA $15</td>
+<td class="comment-1" rowspan="1">get temporary integer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A625"></span>A625</td>
+<td class="bytes">D1 5F</td>
+<td class="instruction">CMP ($5F),Y</td>
+<td class="comment-1" rowspan="1">compare with line # high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A627"></span>A627</td>
+<td class="bytes">90 18</td>
+<td class="instruction">BCC <a href="A617.html#A641">$A641</a></td>
+<td class="comment-1" rowspan="1">exit if temp &lt; this line, target line passed</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A629"></span>A629</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="A617.html#A62E">$A62E</a></td>
+<td class="comment-1" rowspan="1">go check low byte if =</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A62B"></span>A62B</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">else decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A62C"></span>A62C</td>
+<td class="bytes">D0 09</td>
+<td class="instruction">BNE <a href="A617.html#A637">$A637</a></td>
+<td class="comment-1" rowspan="1">branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A62E"></span>A62E</td>
+<td class="bytes">A5 14</td>
+<td class="instruction">LDA $14</td>
+<td class="comment-1" rowspan="1">get temporary integer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A630"></span>A630</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index to line # low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A631"></span>A631</td>
+<td class="bytes">D1 5F</td>
+<td class="instruction">CMP ($5F),Y</td>
+<td class="comment-1" rowspan="1">compare with line # low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A633"></span>A633</td>
+<td class="bytes">90 0C</td>
+<td class="instruction">BCC <a href="A617.html#A641">$A641</a></td>
+<td class="comment-1" rowspan="1">exit if temp &lt; this line, target line passed</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A635"></span>A635</td>
+<td class="bytes">F0 0A</td>
+<td class="instruction">BEQ <a href="A617.html#A641">$A641</a></td>
+<td class="comment-1" rowspan="1">exit if temp = (found line#)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A637"></span>
+<div class="comments">
+<div class="paragraph">
+not quite there yet
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A637"></span>A637</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index to next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A638"></span>A638</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A63A"></span>A63A</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A63B"></span>A63B</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index to next line pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A63C"></span>A63C</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get next line pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A63E"></span>A63E</td>
+<td class="bytes">B0 D7</td>
+<td class="instruction">BCS <a href="A617.html#A617">$A617</a></td>
+<td class="comment-1" rowspan="1">go search for line # in temporary integer from <span class="register">AX</span>, carry always set</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A640"></span>A640</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear found flag</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A641"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="A642.html">A642</a> and <a href="A69C.html">A69C</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A641"></span>A641</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A613.html">A613</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A617">Map</a></td>
+<td class="next">
+Next: <a href="A642.html">A642</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

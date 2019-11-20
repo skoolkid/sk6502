@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A69C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A68E.html">A68E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A69C">Map</a></td>
+<td class="next">
+Next: <a href="A71A.html">A71A</a>
+</td>
+</tr>
+</table>
+<div class="description">A69C: perform LIST</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A69C"></span>A69C</td>
+<td class="bytes">90 06</td>
+<td class="instruction">BCC <a href="A69C.html#A6A4">$A6A4</a></td>
+<td class="comment-1" rowspan="1">branch if next character not token (LIST n...)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A69E"></span>A69E</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="A69C.html#A6A4">$A6A4</a></td>
+<td class="comment-1" rowspan="1">branch if next character [NULL] (LIST)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6A0"></span>A6A0</td>
+<td class="bytes">C9 AB</td>
+<td class="instruction">CMP #$AB</td>
+<td class="comment-1" rowspan="1">compare with token for -</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6A2"></span>A6A2</td>
+<td class="bytes">D0 E9</td>
+<td class="instruction">BNE <a href="A67A.html#A68D">$A68D</a></td>
+<td class="comment-1" rowspan="1">exit if not - (LIST -m)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A6A4"></span>
+<div class="comments">
+<div class="paragraph">
+LIST [[n][-m]]; this bit sets the n, if present, as the start and end
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A6A4"></span>A6A4</td>
+<td class="bytes">20 6B A9</td>
+<td class="instruction">JSR <a href="A96B.html">$A96B</a></td>
+<td class="comment-1" rowspan="1">get fixed-point number into temporary integer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6A7"></span>A6A7</td>
+<td class="bytes">20 13 A6</td>
+<td class="instruction">JSR <a href="A613.html">$A613</a></td>
+<td class="comment-1" rowspan="1">search BASIC for temporary integer line number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6AA"></span>A6AA</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6AD"></span>A6AD</td>
+<td class="bytes">F0 0C</td>
+<td class="instruction">BEQ <a href="A69C.html#A6BB">$A6BB</a></td>
+<td class="comment-1" rowspan="1">branch if no more chrs</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A6AF"></span>
+<div class="comments">
+<div class="paragraph">
+this bit checks the - is present
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6AF"></span>A6AF</td>
+<td class="bytes">C9 AB</td>
+<td class="instruction">CMP #$AB</td>
+<td class="comment-1" rowspan="1">compare with token for -</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6B1"></span>A6B1</td>
+<td class="bytes">D0 8E</td>
+<td class="instruction">BNE <a href="A617.html#A641">$A641</a></td>
+<td class="comment-1" rowspan="1">return if not "-" (will be SN error)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A6B3"></span>
+<div class="comments">
+<div class="paragraph">
+LIST [n]-m; the - was there so set m as the end value
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6B3"></span>A6B3</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6B6"></span>A6B6</td>
+<td class="bytes">20 6B A9</td>
+<td class="instruction">JSR <a href="A96B.html">$A96B</a></td>
+<td class="comment-1" rowspan="1">get fixed-point number into temporary integer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6B9"></span>A6B9</td>
+<td class="bytes">D0 86</td>
+<td class="instruction">BNE <a href="A617.html#A641">$A641</a></td>
+<td class="comment-1" rowspan="1">exit if not ok</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A6BB"></span>A6BB</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump return address low byte, exit via warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6BC"></span>A6BC</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump return address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6BD"></span>A6BD</td>
+<td class="bytes">A5 14</td>
+<td class="instruction">LDA $14</td>
+<td class="comment-1" rowspan="1">get temporary integer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6BF"></span>A6BF</td>
+<td class="bytes">05 15</td>
+<td class="instruction">ORA $15</td>
+<td class="comment-1" rowspan="1">OR temporary integer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6C1"></span>A6C1</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="A69C.html#A6C9">$A6C9</a></td>
+<td class="comment-1" rowspan="1">branch if start set</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6C3"></span>A6C3</td>
+<td class="bytes">A9 FF</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="1">set for -1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6C5"></span>A6C5</td>
+<td class="bytes">85 14</td>
+<td class="instruction">STA $14</td>
+<td class="comment-1" rowspan="1">set temporary integer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6C7"></span>A6C7</td>
+<td class="bytes">85 15</td>
+<td class="instruction">STA $15</td>
+<td class="comment-1" rowspan="1">set temporary integer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A6C9"></span>A6C9</td>
+<td class="bytes">A0 01</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="1">set index for line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6CB"></span>A6CB</td>
+<td class="bytes">84 0F</td>
+<td class="instruction">STY $0F</td>
+<td class="comment-1" rowspan="1">clear open quote flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6CD"></span>A6CD</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6CF"></span>A6CF</td>
+<td class="bytes">F0 43</td>
+<td class="instruction">BEQ <a href="A69C.html#A714">$A714</a></td>
+<td class="comment-1" rowspan="1">if null all done so exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6D1"></span>A6D1</td>
+<td class="bytes">20 2C A8</td>
+<td class="instruction">JSR <a href="A82C.html">$A82C</a></td>
+<td class="comment-1" rowspan="1">do CRTL-C check vector</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6D4"></span>A6D4</td>
+<td class="bytes">20 D7 AA</td>
+<td class="instruction">JSR <a href="AAD7.html">$AAD7</a></td>
+<td class="comment-1" rowspan="1">print CR/LF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6D7"></span>A6D7</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index for line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6D8"></span>A6D8</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get line number low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6DA"></span>A6DA</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6DB"></span>A6DB</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6DC"></span>A6DC</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get line number high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6DE"></span>A6DE</td>
+<td class="bytes">C5 15</td>
+<td class="instruction">CMP $15</td>
+<td class="comment-1" rowspan="1">compare with temporary integer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6E0"></span>A6E0</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="A69C.html#A6E6">$A6E6</a></td>
+<td class="comment-1" rowspan="1">branch if no high byte match</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6E2"></span>A6E2</td>
+<td class="bytes">E4 14</td>
+<td class="instruction">CPX $14</td>
+<td class="comment-1" rowspan="1">compare with temporary integer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6E4"></span>A6E4</td>
+<td class="bytes">F0 02</td>
+<td class="instruction">BEQ <a href="A69C.html#A6E8">$A6E8</a></td>
+<td class="comment-1" rowspan="1">branch if = last line to do, &lt; will pass next branch</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A6E6"></span>
+<div class="comments">
+<div class="paragraph">
+else ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A6E6"></span>A6E6</td>
+<td class="bytes">B0 2C</td>
+<td class="instruction">BCS <a href="A69C.html#A714">$A714</a></td>
+<td class="comment-1" rowspan="1">if greater all done so exit</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A6E8"></span>A6E8</td>
+<td class="bytes">84 49</td>
+<td class="instruction">STY $49</td>
+<td class="comment-1" rowspan="1">save index for line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6EA"></span>A6EA</td>
+<td class="bytes">20 CD BD</td>
+<td class="instruction">JSR <a href="BDCD.html">$BDCD</a></td>
+<td class="comment-1" rowspan="1">print <span class="register">XA</span> as unsigned integer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6ED"></span>A6ED</td>
+<td class="bytes">A9 20</td>
+<td class="instruction">LDA #" "</td>
+<td class="comment-1" rowspan="1">space is the next character</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A6EF"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="A71A.html">A71A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A6EF"></span>A6EF</td>
+<td class="bytes">A4 49</td>
+<td class="instruction">LDY $49</td>
+<td class="comment-1" rowspan="1">get index for line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6F1"></span>A6F1</td>
+<td class="bytes">29 7F</td>
+<td class="instruction">AND #%01111111</td>
+<td class="comment-1" rowspan="1">mask out top bit of character</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A6F3"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="A71A.html">A71A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A6F3"></span>A6F3</td>
+<td class="bytes">20 47 AB</td>
+<td class="instruction">JSR <a href="AB47.html">$AB47</a></td>
+<td class="comment-1" rowspan="1">go print the character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6F6"></span>A6F6</td>
+<td class="bytes">C9 22</td>
+<td class="instruction">CMP #$22</td>
+<td class="comment-1" rowspan="1">was it " character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6F8"></span>A6F8</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="A69C.html#A700">$A700</a></td>
+<td class="comment-1" rowspan="1">if not skip the quote handle</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A6FA"></span>
+<div class="comments">
+<div class="paragraph">
+we are either entering or leaving a pair of quotes
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6FA"></span>A6FA</td>
+<td class="bytes">A5 0F</td>
+<td class="instruction">LDA $0F</td>
+<td class="comment-1" rowspan="1">get open quote flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6FC"></span>A6FC</td>
+<td class="bytes">49 FF</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">toggle it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A6FE"></span>A6FE</td>
+<td class="bytes">85 0F</td>
+<td class="instruction">STA $0F</td>
+<td class="comment-1" rowspan="1">save it back</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A700"></span>A700</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A701"></span>A701</td>
+<td class="bytes">F0 11</td>
+<td class="instruction">BEQ <a href="A69C.html#A714">$A714</a></td>
+<td class="comment-1" rowspan="1">line too long so just bail out and do a warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A703"></span>A703</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get next byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A705"></span>A705</td>
+<td class="bytes">D0 10</td>
+<td class="instruction">BNE <a href="A69C.html#A717">$A717</a></td>
+<td class="comment-1" rowspan="1">if not [EOL] (go print character)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A707"></span>
+<div class="comments">
+<div class="paragraph">
+was [EOL]
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A707"></span>A707</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">else clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A708"></span>A708</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get next line pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A70A"></span>A70A</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A70B"></span>A70B</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A70C"></span>A70C</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A70E"></span>A70E</td>
+<td class="bytes">86 5F</td>
+<td class="instruction">STX $5F</td>
+<td class="comment-1" rowspan="1">set pointer to line low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A710"></span>A710</td>
+<td class="bytes">85 60</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">set pointer to line high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A712"></span>A712</td>
+<td class="bytes">D0 B5</td>
+<td class="instruction">BNE <a href="A69C.html#A6C9">$A6C9</a></td>
+<td class="comment-1" rowspan="1">go do next line if not [EOT]</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A714"></span>
+<div class="comments">
+<div class="paragraph">
+else ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A714"></span>A714</td>
+<td class="bytes">4C 86 E3</td>
+<td class="instruction">JMP <a href="E37B.html#E386">$E386</a></td>
+<td class="comment-1" rowspan="1">do warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A717"></span>A717</td>
+<td class="bytes">6C 06 03</td>
+<td class="instruction">JMP ($0306)</td>
+<td class="comment-1" rowspan="1">do uncrunch BASIC tokens</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A68E.html">A68E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A69C">Map</a></td>
+<td class="next">
+Next: <a href="A71A.html">A71A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

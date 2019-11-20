@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BBD4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BBD0.html">BBD0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BBD4">Map</a></td>
+<td class="next">
+Next: <a href="BBFC.html">BBFC</a>
+</td>
+</tr>
+</table>
+<div class="description">BBD4: pack FAC1 into (<span class="register">XY</span>)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="B3F4.html">B3F4</a>, <a href="BBCA.html">BBCA</a>, <a href="BF7B.html">BF7B</a> and <a href="E0F6.html">E0F6</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BBD4"></span>BBD4</td>
+<td class="bytes">20 1B BC</td>
+<td class="instruction">JSR <a href="BC1B.html">$BC1B</a></td>
+<td class="comment-1" rowspan="1">round FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBD7"></span>BBD7</td>
+<td class="bytes">86 22</td>
+<td class="instruction">STX $22</td>
+<td class="comment-1" rowspan="1">save pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBD9"></span>BBD9</td>
+<td class="bytes">84 23</td>
+<td class="instruction">STY $23</td>
+<td class="comment-1" rowspan="1">save pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBDB"></span>BBDB</td>
+<td class="bytes">A0 04</td>
+<td class="instruction">LDY #$04</td>
+<td class="comment-1" rowspan="1">set index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBDD"></span>BBDD</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBDF"></span>BBDF</td>
+<td class="bytes">91 22</td>
+<td class="instruction">STA ($22),Y</td>
+<td class="comment-1" rowspan="1">store in destination</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBE1"></span>BBE1</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBE2"></span>BBE2</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBE4"></span>BBE4</td>
+<td class="bytes">91 22</td>
+<td class="instruction">STA ($22),Y</td>
+<td class="comment-1" rowspan="1">store in destination</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBE6"></span>BBE6</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBE7"></span>BBE7</td>
+<td class="bytes">A5 63</td>
+<td class="instruction">LDA $63</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBE9"></span>BBE9</td>
+<td class="bytes">91 22</td>
+<td class="instruction">STA ($22),Y</td>
+<td class="comment-1" rowspan="1">store in destination</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBEB"></span>BBEB</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBEC"></span>BBEC</td>
+<td class="bytes">A5 66</td>
+<td class="instruction">LDA $66</td>
+<td class="comment-1" rowspan="1">get FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBEE"></span>BBEE</td>
+<td class="bytes">09 7F</td>
+<td class="instruction">ORA #$7F</td>
+<td class="comment-1" rowspan="1">set bits x111 1111</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBF0"></span>BBF0</td>
+<td class="bytes">25 62</td>
+<td class="instruction">AND $62</td>
+<td class="comment-1" rowspan="1">AND in FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBF2"></span>BBF2</td>
+<td class="bytes">91 22</td>
+<td class="instruction">STA ($22),Y</td>
+<td class="comment-1" rowspan="1">store in destination</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBF4"></span>BBF4</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBF5"></span>BBF5</td>
+<td class="bytes">A5 61</td>
+<td class="instruction">LDA $61</td>
+<td class="comment-1" rowspan="1">get FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBF7"></span>BBF7</td>
+<td class="bytes">91 22</td>
+<td class="instruction">STA ($22),Y</td>
+<td class="comment-1" rowspan="1">store in destination</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBF9"></span>BBF9</td>
+<td class="bytes">84 70</td>
+<td class="instruction">STY $70</td>
+<td class="comment-1" rowspan="1">clear FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBFB"></span>BBFB</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BBD0.html">BBD0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BBD4">Map</a></td>
+<td class="next">
+Next: <a href="BBFC.html">BBFC</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

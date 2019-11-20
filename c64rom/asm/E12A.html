@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E12A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E124.html">E124</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E12A">Map</a></td>
+<td class="next">
+Next: <a href="E156.html">E156</a>
+</td>
+</tr>
+</table>
+<div class="description">E12A: perform SYS</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E12A"></span>E12A</td>
+<td class="bytes">20 8A AD</td>
+<td class="instruction">JSR <a href="AD8A.html">$AD8A</a></td>
+<td class="comment-1" rowspan="1">evaluate expression and check is numeric, else do type mismatch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E12D"></span>E12D</td>
+<td class="bytes">20 F7 B7</td>
+<td class="instruction">JSR <a href="B7F7.html">$B7F7</a></td>
+<td class="comment-1" rowspan="1">convert FAC_1 to integer in temporary integer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E130"></span>E130</td>
+<td class="bytes">A9 E1</td>
+<td class="instruction">LDA #$E1</td>
+<td class="comment-1" rowspan="1">get return address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E132"></span>E132</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push as return address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E133"></span>E133</td>
+<td class="bytes">A9 46</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="1">get return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E135"></span>E135</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push as return address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E136"></span>E136</td>
+<td class="bytes">AD 0F 03</td>
+<td class="instruction">LDA $030F</td>
+<td class="comment-1" rowspan="1">get saved status register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E139"></span>E139</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">put on stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E13A"></span>E13A</td>
+<td class="bytes">AD 0C 03</td>
+<td class="instruction">LDA $030C</td>
+<td class="comment-1" rowspan="1">get saved <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E13D"></span>E13D</td>
+<td class="bytes">AE 0D 03</td>
+<td class="instruction">LDX $030D</td>
+<td class="comment-1" rowspan="1">get saved <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E140"></span>E140</td>
+<td class="bytes">AC 0E 03</td>
+<td class="instruction">LDY $030E</td>
+<td class="comment-1" rowspan="1">get saved <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E143"></span>E143</td>
+<td class="bytes">28</td>
+<td class="instruction">PLP</td>
+<td class="comment-1" rowspan="1">pull processor status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E144"></span>E144</td>
+<td class="bytes">6C 14 00</td>
+<td class="instruction">JMP ($0014)</td>
+<td class="comment-1" rowspan="1">call SYS address</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E147"></span>
+<div class="comments">
+<div class="paragraph">
+tail end of SYS code
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E147"></span>E147</td>
+<td class="bytes">08</td>
+<td class="instruction">PHP</td>
+<td class="comment-1" rowspan="1">save status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E148"></span>E148</td>
+<td class="bytes">8D 0C 03</td>
+<td class="instruction">STA $030C</td>
+<td class="comment-1" rowspan="1">save returned <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E14B"></span>E14B</td>
+<td class="bytes">8E 0D 03</td>
+<td class="instruction">STX $030D</td>
+<td class="comment-1" rowspan="1">save returned <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E14E"></span>E14E</td>
+<td class="bytes">8C 0E 03</td>
+<td class="instruction">STY $030E</td>
+<td class="comment-1" rowspan="1">save returned <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E151"></span>E151</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore saved status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E152"></span>E152</td>
+<td class="bytes">8D 0F 03</td>
+<td class="instruction">STA $030F</td>
+<td class="comment-1" rowspan="1">save status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E155"></span>E155</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E124.html">E124</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E12A">Map</a></td>
+<td class="next">
+Next: <a href="E156.html">E156</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

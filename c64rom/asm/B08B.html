@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B08B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B07E.html">B07E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B08B">Map</a></td>
+<td class="next">
+Next: <a href="B194.html">B194</a>
+</td>
+</tr>
+</table>
+<div class="description">B08B: search for variable</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A9A5.html">A9A5</a>, <a href="AC0F.html">AC0F</a>, <a href="AD1E.html">AD1E</a>, <a href="AF28.html">AF28</a> and <a href="B3B3.html">B3B3</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B08B"></span>B08B</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">set DIM flag = $00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B08D"></span>B08D</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory, 1st character</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B090"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="B07E.html">B07E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B090"></span>B090</td>
+<td class="bytes">86 0C</td>
+<td class="instruction">STX $0C</td>
+<td class="comment-1" rowspan="1">save DIM flag</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B092"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="B3E1.html">B3E1</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B092"></span>B092</td>
+<td class="bytes">85 45</td>
+<td class="instruction">STA $45</td>
+<td class="comment-1" rowspan="1">save 1st character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B094"></span>B094</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B097"></span>B097</td>
+<td class="bytes">20 13 B1</td>
+<td class="instruction">JSR <a href="B08B.html#B113">$B113</a></td>
+<td class="comment-1" rowspan="1">check byte, return Cb = 0 if&lt;"A" or &gt;"Z"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B09A"></span>B09A</td>
+<td class="bytes">B0 03</td>
+<td class="instruction">BCS <a href="B08B.html#B09F">$B09F</a></td>
+<td class="comment-1" rowspan="1">branch if ok</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B09C"></span>B09C</td>
+<td class="bytes">4C 08 AF</td>
+<td class="instruction">JMP <a href="AE86.html#AF08">$AF08</a></td>
+<td class="comment-1" rowspan="1">else syntax error then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B09F"></span>
+<div class="comments">
+<div class="paragraph">
+was variable name so ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B09F"></span>B09F</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">clear 2nd character temp</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0A1"></span>B0A1</td>
+<td class="bytes">86 0D</td>
+<td class="instruction">STX $0D</td>
+<td class="comment-1" rowspan="1">clear data type flag, $FF = string, $00 = numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0A3"></span>B0A3</td>
+<td class="bytes">86 0E</td>
+<td class="instruction">STX $0E</td>
+<td class="comment-1" rowspan="1">clear data type flag, $80 = integer, $00 = float</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0A5"></span>B0A5</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory, 2nd character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0A8"></span>B0A8</td>
+<td class="bytes">90 05</td>
+<td class="instruction">BCC <a href="B08B.html#B0AF">$B0AF</a></td>
+<td class="comment-1" rowspan="1">if character = "0"-"9" (ok) go save 2nd character</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B0AA"></span>
+<div class="comments">
+<div class="paragraph">
+2nd character wasn't "0" to "9" so ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0AA"></span>B0AA</td>
+<td class="bytes">20 13 B1</td>
+<td class="instruction">JSR <a href="B08B.html#B113">$B113</a></td>
+<td class="comment-1" rowspan="1">check byte, return Cb = 0 if&lt;"A" or &gt;"Z"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0AD"></span>B0AD</td>
+<td class="bytes">90 0B</td>
+<td class="instruction">BCC <a href="B08B.html#B0BA">$B0BA</a></td>
+<td class="comment-1" rowspan="1">branch if &lt;"A" or &gt;"Z" (go check if string)</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B0AF"></span>B0AF</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy 2nd character</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B0B0"></span>
+<div class="comments">
+<div class="paragraph">
+ignore further (valid) characters in the variable name
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B0B0"></span>B0B0</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory, 3rd character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0B3"></span>B0B3</td>
+<td class="bytes">90 FB</td>
+<td class="instruction">BCC <a href="B08B.html#B0B0">$B0B0</a></td>
+<td class="comment-1" rowspan="1">loop if character = "0"-"9" (ignore)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0B5"></span>B0B5</td>
+<td class="bytes">20 13 B1</td>
+<td class="instruction">JSR <a href="B08B.html#B113">$B113</a></td>
+<td class="comment-1" rowspan="1">check byte, return Cb = 0 if&lt;"A" or &gt;"Z"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0B8"></span>B0B8</td>
+<td class="bytes">B0 F6</td>
+<td class="instruction">BCS <a href="B08B.html#B0B0">$B0B0</a></td>
+<td class="comment-1" rowspan="1">loop if character = "A"-"Z" (ignore)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B0BA"></span>
+<div class="comments">
+<div class="paragraph">
+check if string variable
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B0BA"></span>B0BA</td>
+<td class="bytes">C9 24</td>
+<td class="instruction">CMP #"$"</td>
+<td class="comment-1" rowspan="1">compare with "$"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0BC"></span>B0BC</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="B08B.html#B0C4">$B0C4</a></td>
+<td class="comment-1" rowspan="1">branch if not string</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B0BE"></span>
+<div class="comments">
+<div class="paragraph">
+type is string
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0BE"></span>B0BE</td>
+<td class="bytes">A9 FF</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="1">set data type = string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0C0"></span>B0C0</td>
+<td class="bytes">85 0D</td>
+<td class="instruction">STA $0D</td>
+<td class="comment-1" rowspan="1">set data type flag, $FF = string, $00 = numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0C2"></span>B0C2</td>
+<td class="bytes">D0 10</td>
+<td class="instruction">BNE <a href="B08B.html#B0D4">$B0D4</a></td>
+<td class="comment-1" rowspan="1">branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B0C4"></span>B0C4</td>
+<td class="bytes">C9 25</td>
+<td class="instruction">CMP #"%"</td>
+<td class="comment-1" rowspan="1">compare with "%"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0C6"></span>B0C6</td>
+<td class="bytes">D0 13</td>
+<td class="instruction">BNE <a href="B08B.html#B0DB">$B0DB</a></td>
+<td class="comment-1" rowspan="1">branch if not integer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0C8"></span>B0C8</td>
+<td class="bytes">A5 10</td>
+<td class="instruction">LDA $10</td>
+<td class="comment-1" rowspan="1">get subscript/FNX flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0CA"></span>B0CA</td>
+<td class="bytes">D0 D0</td>
+<td class="instruction">BNE <a href="B08B.html#B09C">$B09C</a></td>
+<td class="comment-1" rowspan="1">if ?? do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0CC"></span>B0CC</td>
+<td class="bytes">A9 80</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1">set integer type</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0CE"></span>B0CE</td>
+<td class="bytes">85 0E</td>
+<td class="instruction">STA $0E</td>
+<td class="comment-1" rowspan="1">set data type = integer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0D0"></span>B0D0</td>
+<td class="bytes">05 45</td>
+<td class="instruction">ORA $45</td>
+<td class="comment-1" rowspan="1">OR current variable name first byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0D2"></span>B0D2</td>
+<td class="bytes">85 45</td>
+<td class="instruction">STA $45</td>
+<td class="comment-1" rowspan="1">save current variable name first byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B0D4"></span>B0D4</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">get 2nd character back</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0D5"></span>B0D5</td>
+<td class="bytes">09 80</td>
+<td class="instruction">ORA #$80</td>
+<td class="comment-1" rowspan="1">set top bit, indicate string or integer variable</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0D7"></span>B0D7</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy back to 2nd character temp</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0D8"></span>B0D8</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B0DB"></span>B0DB</td>
+<td class="bytes">86 46</td>
+<td class="instruction">STX $46</td>
+<td class="comment-1" rowspan="1">save 2nd character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0DD"></span>B0DD</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0DE"></span>B0DE</td>
+<td class="bytes">05 10</td>
+<td class="instruction">ORA $10</td>
+<td class="comment-1" rowspan="1">or with subscript/FNX flag - or FN name</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0E0"></span>B0E0</td>
+<td class="bytes">E9 28</td>
+<td class="instruction">SBC #"("</td>
+<td class="comment-1" rowspan="1">subtract "("</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0E2"></span>B0E2</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="B08B.html#B0E7">$B0E7</a></td>
+<td class="comment-1" rowspan="1">branch if not "("</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0E4"></span>B0E4</td>
+<td class="bytes">4C D1 B1</td>
+<td class="instruction">JMP <a href="B1D1.html">$B1D1</a></td>
+<td class="comment-1" rowspan="1">go find, or make, array</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B0E7"></span>
+<div class="comments">
+<div class="paragraph">
+either find or create variable
+</div>
+<div class="paragraph">
+variable name wasn't xx(.... so look for plain variable
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B0E7"></span>B0E7</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0E9"></span>B0E9</td>
+<td class="bytes">84 10</td>
+<td class="instruction">STY $10</td>
+<td class="comment-1" rowspan="1">clear subscript/FNX flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0EB"></span>B0EB</td>
+<td class="bytes">A5 2D</td>
+<td class="instruction">LDA $2D</td>
+<td class="comment-1" rowspan="1">get start of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0ED"></span>B0ED</td>
+<td class="bytes">A6 2E</td>
+<td class="instruction">LDX $2E</td>
+<td class="comment-1" rowspan="1">get start of variables high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B0EF"></span>B0EF</td>
+<td class="bytes">86 60</td>
+<td class="instruction">STX $60</td>
+<td class="comment-1" rowspan="1">save search address high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B0F1"></span>B0F1</td>
+<td class="bytes">85 5F</td>
+<td class="instruction">STA $5F</td>
+<td class="comment-1" rowspan="1">save search address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0F3"></span>B0F3</td>
+<td class="bytes">E4 30</td>
+<td class="instruction">CPX $30</td>
+<td class="comment-1" rowspan="1">compare with end of variables high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0F5"></span>B0F5</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="B08B.html#B0FB">$B0FB</a></td>
+<td class="comment-1" rowspan="1">skip next compare if &lt;&gt;</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B0F7"></span>
+<div class="comments">
+<div class="paragraph">
+high addresses were = so compare low addresses
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0F7"></span>B0F7</td>
+<td class="bytes">C5 2F</td>
+<td class="instruction">CMP $2F</td>
+<td class="comment-1" rowspan="1">compare low address with end of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0F9"></span>B0F9</td>
+<td class="bytes">F0 22</td>
+<td class="instruction">BEQ <a href="B08B.html#B11D">$B11D</a></td>
+<td class="comment-1" rowspan="1">if not found go make new variable</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B0FB"></span>B0FB</td>
+<td class="bytes">A5 45</td>
+<td class="instruction">LDA $45</td>
+<td class="comment-1" rowspan="1">get 1st character of variable to find</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0FD"></span>B0FD</td>
+<td class="bytes">D1 5F</td>
+<td class="instruction">CMP ($5F),Y</td>
+<td class="comment-1" rowspan="1">compare with variable name 1st character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B0FF"></span>B0FF</td>
+<td class="bytes">D0 08</td>
+<td class="instruction">BNE <a href="B08B.html#B109">$B109</a></td>
+<td class="comment-1" rowspan="1">branch if no match</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B101"></span>
+<div class="comments">
+<div class="paragraph">
+1st characters match so compare 2nd character
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B101"></span>B101</td>
+<td class="bytes">A5 46</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">get 2nd character of variable to find</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B103"></span>B103</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">index to point to variable name 2nd character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B104"></span>B104</td>
+<td class="bytes">D1 5F</td>
+<td class="instruction">CMP ($5F),Y</td>
+<td class="comment-1" rowspan="1">compare with variable name 2nd character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B106"></span>B106</td>
+<td class="bytes">F0 7D</td>
+<td class="instruction">BEQ <a href="B08B.html#B185">$B185</a></td>
+<td class="comment-1" rowspan="1">branch if match (found variable)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B108"></span>B108</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">else decrement index (now = $00)</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B109"></span>B109</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B10A"></span>B10A</td>
+<td class="bytes">A5 5F</td>
+<td class="instruction">LDA $5F</td>
+<td class="comment-1" rowspan="1">get search address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B10C"></span>B10C</td>
+<td class="bytes">69 07</td>
+<td class="instruction">ADC #$07</td>
+<td class="comment-1" rowspan="1">+7, offset to next variable name</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B10E"></span>B10E</td>
+<td class="bytes">90 E1</td>
+<td class="instruction">BCC <a href="B08B.html#B0F1">$B0F1</a></td>
+<td class="comment-1" rowspan="1">loop if no overflow to high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B110"></span>B110</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">else increment high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B111"></span>B111</td>
+<td class="bytes">D0 DC</td>
+<td class="instruction">BNE <a href="B08B.html#B0EF">$B0EF</a></td>
+<td class="comment-1" rowspan="1">loop always, RAM doesn't extend to $FFFF</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B113"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AE86.html">AE86</a>.
+</div>
+<div class="paragraph">
+check byte, return Cb = 0 if&lt;"A" or &gt;"Z"
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B113"></span>B113</td>
+<td class="bytes">C9 41</td>
+<td class="instruction">CMP #"A"</td>
+<td class="comment-1" rowspan="1">compare with "A"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B115"></span>B115</td>
+<td class="bytes">90 05</td>
+<td class="instruction">BCC <a href="B08B.html#B11C">$B11C</a></td>
+<td class="comment-1" rowspan="1">exit if less</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B117"></span>
+<div class="comments">
+<div class="paragraph">
+carry is set
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B117"></span>B117</td>
+<td class="bytes">E9 5B</td>
+<td class="instruction">SBC #$5B</td>
+<td class="comment-1" rowspan="1">subtract "Z"+1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B119"></span>B119</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B11A"></span>B11A</td>
+<td class="bytes">E9 A5</td>
+<td class="instruction">SBC #$A5</td>
+<td class="comment-1" rowspan="1">subtract $A5 (restore byte)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B11C"></span>
+<div class="comments">
+<div class="paragraph">
+carry clear if byte &gt; $5A
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B11C"></span>B11C</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B11D"></span>
+<div class="comments">
+<div class="paragraph">
+reached end of variable memory without match ... so create new variable
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B11D"></span>B11D</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B11E"></span>B11E</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push return address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B11F"></span>B11F</td>
+<td class="bytes">C9 2A</td>
+<td class="instruction">CMP #$2A</td>
+<td class="comment-1" rowspan="1">compare with expected calling routine return low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B121"></span>B121</td>
+<td class="bytes">D0 05</td>
+<td class="instruction">BNE <a href="B08B.html#B128">$B128</a></td>
+<td class="comment-1" rowspan="1">if not get variable go create new variable</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B123"></span>
+<div class="comments">
+<div class="paragraph">
+this will only drop through if the call was from <a href="AF28.html">AF28</a> and is only called from there if it is searching for a variable from the right hand side of a LET a=b statement, it prevents the creation of variables not assigned a value.
+</div>
+<div class="paragraph">
+value returned by this is either numeric zero, exponent byte is $00, or null string, descriptor length byte is $00. in fact a pointer to any $00 byte would have done. else return dummy null value
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B123"></span>B123</td>
+<td class="bytes">A9 13</td>
+<td class="instruction">LDA #$13</td>
+<td class="comment-1" rowspan="1">set result pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B125"></span>B125</td>
+<td class="bytes">A0 BF</td>
+<td class="instruction">LDY #$BF</td>
+<td class="comment-1" rowspan="1">set result pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B127"></span>B127</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B128"></span>
+<div class="comments">
+<div class="paragraph">
+create new numeric variable
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B128"></span>B128</td>
+<td class="bytes">A5 45</td>
+<td class="instruction">LDA $45</td>
+<td class="comment-1" rowspan="1">get variable name first character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B12A"></span>B12A</td>
+<td class="bytes">A4 46</td>
+<td class="instruction">LDY $46</td>
+<td class="comment-1" rowspan="1">get variable name second character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B12C"></span>B12C</td>
+<td class="bytes">C9 54</td>
+<td class="instruction">CMP #"T"</td>
+<td class="comment-1" rowspan="1">compare first character with "T"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B12E"></span>B12E</td>
+<td class="bytes">D0 0B</td>
+<td class="instruction">BNE <a href="B08B.html#B13B">$B13B</a></td>
+<td class="comment-1" rowspan="1">branch if not "T"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B130"></span>B130</td>
+<td class="bytes">C0 C9</td>
+<td class="instruction">CPY #"I"+$80</td>
+<td class="comment-1" rowspan="1">compare second character with "I$"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B132"></span>B132</td>
+<td class="bytes">F0 EF</td>
+<td class="instruction">BEQ <a href="B08B.html#B123">$B123</a></td>
+<td class="comment-1" rowspan="1">if "I$" return null value</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B134"></span>B134</td>
+<td class="bytes">C0 49</td>
+<td class="instruction">CPY #"I"</td>
+<td class="comment-1" rowspan="1">compare second character with "I"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B136"></span>B136</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="B08B.html#B13B">$B13B</a></td>
+<td class="comment-1" rowspan="1">branch if not "I"</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B138"></span>
+<div class="comments">
+<div class="paragraph">
+if name is "TI" do syntax error
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B138"></span>B138</td>
+<td class="bytes">4C 08 AF</td>
+<td class="instruction">JMP <a href="AE86.html#AF08">$AF08</a></td>
+<td class="comment-1" rowspan="1">do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B13B"></span>B13B</td>
+<td class="bytes">C9 53</td>
+<td class="instruction">CMP #"S"</td>
+<td class="comment-1" rowspan="1">compare first character with "S"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B13D"></span>B13D</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="B08B.html#B143">$B143</a></td>
+<td class="comment-1" rowspan="1">branch if not "S"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B13F"></span>B13F</td>
+<td class="bytes">C0 54</td>
+<td class="instruction">CPY #"T"</td>
+<td class="comment-1" rowspan="1">compare second character with "T"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B141"></span>B141</td>
+<td class="bytes">F0 F5</td>
+<td class="instruction">BEQ <a href="B08B.html#B138">$B138</a></td>
+<td class="comment-1" rowspan="1">if name is "ST" do syntax error</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B143"></span>B143</td>
+<td class="bytes">A5 2F</td>
+<td class="instruction">LDA $2F</td>
+<td class="comment-1" rowspan="1">get end of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B145"></span>B145</td>
+<td class="bytes">A4 30</td>
+<td class="instruction">LDY $30</td>
+<td class="comment-1" rowspan="1">get end of variables high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B147"></span>B147</td>
+<td class="bytes">85 5F</td>
+<td class="instruction">STA $5F</td>
+<td class="comment-1" rowspan="1">save old block start low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B149"></span>B149</td>
+<td class="bytes">84 60</td>
+<td class="instruction">STY $60</td>
+<td class="comment-1" rowspan="1">save old block start high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B14B"></span>B14B</td>
+<td class="bytes">A5 31</td>
+<td class="instruction">LDA $31</td>
+<td class="comment-1" rowspan="1">get end of arrays low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B14D"></span>B14D</td>
+<td class="bytes">A4 32</td>
+<td class="instruction">LDY $32</td>
+<td class="comment-1" rowspan="1">get end of arrays high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B14F"></span>B14F</td>
+<td class="bytes">85 5A</td>
+<td class="instruction">STA $5A</td>
+<td class="comment-1" rowspan="1">save old block end low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B151"></span>B151</td>
+<td class="bytes">84 5B</td>
+<td class="instruction">STY $5B</td>
+<td class="comment-1" rowspan="1">save old block end high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B153"></span>B153</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B154"></span>B154</td>
+<td class="bytes">69 07</td>
+<td class="instruction">ADC #$07</td>
+<td class="comment-1" rowspan="1">+7, space for one variable</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B156"></span>B156</td>
+<td class="bytes">90 01</td>
+<td class="instruction">BCC <a href="B08B.html#B159">$B159</a></td>
+<td class="comment-1" rowspan="1">branch if no overflow to high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B158"></span>B158</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">else increment high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B159"></span>B159</td>
+<td class="bytes">85 58</td>
+<td class="instruction">STA $58</td>
+<td class="comment-1" rowspan="1">set new block end low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B15B"></span>B15B</td>
+<td class="bytes">84 59</td>
+<td class="instruction">STY $59</td>
+<td class="comment-1" rowspan="1">set new block end high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B15D"></span>B15D</td>
+<td class="bytes">20 B8 A3</td>
+<td class="instruction">JSR <a href="A3B8.html">$A3B8</a></td>
+<td class="comment-1" rowspan="1">open up space in memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B160"></span>B160</td>
+<td class="bytes">A5 58</td>
+<td class="instruction">LDA $58</td>
+<td class="comment-1" rowspan="1">get new start low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B162"></span>B162</td>
+<td class="bytes">A4 59</td>
+<td class="instruction">LDY $59</td>
+<td class="comment-1" rowspan="1">get new start high byte (-$100)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B164"></span>B164</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">correct high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B165"></span>B165</td>
+<td class="bytes">85 2F</td>
+<td class="instruction">STA $2F</td>
+<td class="comment-1" rowspan="1">set end of variables low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B167"></span>B167</td>
+<td class="bytes">84 30</td>
+<td class="instruction">STY $30</td>
+<td class="comment-1" rowspan="1">set end of variables high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B169"></span>B169</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B16B"></span>B16B</td>
+<td class="bytes">A5 45</td>
+<td class="instruction">LDA $45</td>
+<td class="comment-1" rowspan="1">get variable name 1st character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B16D"></span>B16D</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">save variable name 1st character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B16F"></span>B16F</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B170"></span>B170</td>
+<td class="bytes">A5 46</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">get variable name 2nd character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B172"></span>B172</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">save variable name 2nd character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B174"></span>B174</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B176"></span>B176</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B177"></span>B177</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">initialise variable byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B179"></span>B179</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B17A"></span>B17A</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">initialise variable byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B17C"></span>B17C</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B17D"></span>B17D</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">initialise variable byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B17F"></span>B17F</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B180"></span>B180</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">initialise variable byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B182"></span>B182</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B183"></span>B183</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">initialise variable byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B185"></span>
+<div class="comments">
+<div class="paragraph">
+found a match for variable
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B185"></span>B185</td>
+<td class="bytes">A5 5F</td>
+<td class="instruction">LDA $5F</td>
+<td class="comment-1" rowspan="1">get variable address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B187"></span>B187</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B188"></span>B188</td>
+<td class="bytes">69 02</td>
+<td class="instruction">ADC #$02</td>
+<td class="comment-1" rowspan="1">+2, offset past variable name bytes</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B18A"></span>B18A</td>
+<td class="bytes">A4 60</td>
+<td class="instruction">LDY $60</td>
+<td class="comment-1" rowspan="1">get variable address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B18C"></span>B18C</td>
+<td class="bytes">90 01</td>
+<td class="instruction">BCC <a href="B08B.html#B18F">$B18F</a></td>
+<td class="comment-1" rowspan="1">branch if no overflow from add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B18E"></span>B18E</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">else increment high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B18F"></span>B18F</td>
+<td class="bytes">85 47</td>
+<td class="instruction">STA $47</td>
+<td class="comment-1" rowspan="1">save current variable pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B191"></span>B191</td>
+<td class="bytes">84 48</td>
+<td class="instruction">STY $48</td>
+<td class="comment-1" rowspan="1">save current variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B193"></span>B193</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B07E.html">B07E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B08B">Map</a></td>
+<td class="next">
+Next: <a href="B194.html">B194</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AE58</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AE43.html">AE43</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AE58">Map</a></td>
+<td class="next">
+Next: <a href="AE83.html">AE83</a>
+</td>
+</tr>
+</table>
+<div class="description">AE58: do functions</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="AD9E.html">AD9E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE58"></span>AE58</td>
+<td class="bytes">A0 FF</td>
+<td class="instruction">LDY #$FF</td>
+<td class="comment-1" rowspan="1">flag function</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE5A"></span>AE5A</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull precedence byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AE5B"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AD9E.html">AD9E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE5B"></span>AE5B</td>
+<td class="bytes">F0 23</td>
+<td class="instruction">BEQ <a href="AE58.html#AE80">$AE80</a></td>
+<td class="comment-1" rowspan="1">exit if done</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AE5D"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AD9E.html">AD9E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE5D"></span>AE5D</td>
+<td class="bytes">C9 64</td>
+<td class="instruction">CMP #$64</td>
+<td class="comment-1" rowspan="1">compare previous precedence with $64</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE5F"></span>AE5F</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="AE58.html#AE64">$AE64</a></td>
+<td class="comment-1" rowspan="1">branch if was $64 (&lt; function)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE61"></span>AE61</td>
+<td class="bytes">20 8D AD</td>
+<td class="instruction">JSR <a href="AD8A.html#AD8D">$AD8D</a></td>
+<td class="comment-1" rowspan="1">check if source is numeric, else do type mismatch</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE64"></span>AE64</td>
+<td class="bytes">84 4B</td>
+<td class="instruction">STY $4B</td>
+<td class="comment-1" rowspan="1">save precedence stacked flag</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AE66"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AD9E.html">AD9E</a>.
+</div>
+<div class="paragraph">
+pop FAC2 and return
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE66"></span>AE66</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE67"></span>AE67</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">shift out comparison evaluation lowest bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE68"></span>AE68</td>
+<td class="bytes">85 12</td>
+<td class="instruction">STA $12</td>
+<td class="comment-1" rowspan="1">save the comparison evaluation flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE6A"></span>AE6A</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE6B"></span>AE6B</td>
+<td class="bytes">85 69</td>
+<td class="instruction">STA $69</td>
+<td class="comment-1" rowspan="1">save FAC2 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE6D"></span>AE6D</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE6E"></span>AE6E</td>
+<td class="bytes">85 6A</td>
+<td class="instruction">STA $6A</td>
+<td class="comment-1" rowspan="1">save FAC2 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE70"></span>AE70</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE71"></span>AE71</td>
+<td class="bytes">85 6B</td>
+<td class="instruction">STA $6B</td>
+<td class="comment-1" rowspan="1">save FAC2 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE73"></span>AE73</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE74"></span>AE74</td>
+<td class="bytes">85 6C</td>
+<td class="instruction">STA $6C</td>
+<td class="comment-1" rowspan="1">save FAC2 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE76"></span>AE76</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE77"></span>AE77</td>
+<td class="bytes">85 6D</td>
+<td class="instruction">STA $6D</td>
+<td class="comment-1" rowspan="1">save FAC2 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE79"></span>AE79</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pop sign</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE7A"></span>AE7A</td>
+<td class="bytes">85 6E</td>
+<td class="instruction">STA $6E</td>
+<td class="comment-1" rowspan="1">save FAC2 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE7C"></span>AE7C</td>
+<td class="bytes">45 66</td>
+<td class="instruction">EOR $66</td>
+<td class="comment-1" rowspan="1">EOR FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE7E"></span>AE7E</td>
+<td class="bytes">85 6F</td>
+<td class="instruction">STA $6F</td>
+<td class="comment-1" rowspan="1">save sign compare (FAC1 EOR FAC2)</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE80"></span>AE80</td>
+<td class="bytes">A5 61</td>
+<td class="instruction">LDA $61</td>
+<td class="comment-1" rowspan="1">get FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE82"></span>AE82</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AE43.html">AE43</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AE58">Map</a></td>
+<td class="next">
+Next: <a href="AE83.html">AE83</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

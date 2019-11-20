@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Data at A080</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A052.html">A052</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A080">Map</a></td>
+<td class="next">
+Next: <a href="A09E.html">A09E</a>
+</td>
+</tr>
+</table>
+<div class="description">A080: precedence byte and action addresses for operators</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+like the <a href="A00C.html">primary commands</a> these are called by pushing the address onto the stack and doing an RTS, so again the actual address -1 needs to be pushed
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A080"></span>A080</td>
+<td class="instruction">.BYTE $79</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A081"></span>A081</td>
+<td class="instruction">.WORD $B869</td>
+<td class="comment-1" rowspan="1"><a href="B86A.html">+</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A083"></span>A083</td>
+<td class="instruction">.BYTE $79</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A084"></span>A084</td>
+<td class="instruction">.WORD $B852</td>
+<td class="comment-1" rowspan="1"><a href="B853.html">-</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A086"></span>A086</td>
+<td class="instruction">.BYTE $7B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A087"></span>A087</td>
+<td class="instruction">.WORD $BA2A</td>
+<td class="comment-1" rowspan="1"><a href="BA28.html#BA2B">*</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A089"></span>A089</td>
+<td class="instruction">.BYTE $7B</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A08A"></span>A08A</td>
+<td class="instruction">.WORD $BB11</td>
+<td class="comment-1" rowspan="1"><a href="BB0F.html#BB12">/</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A08C"></span>A08C</td>
+<td class="instruction">.BYTE $7F</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A08D"></span>A08D</td>
+<td class="instruction">.WORD $BF7A</td>
+<td class="comment-1" rowspan="1"><a href="BF7B.html">^</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A08F"></span>A08F</td>
+<td class="instruction">.BYTE $50</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A090"></span>A090</td>
+<td class="instruction">.WORD $AFE8</td>
+<td class="comment-1" rowspan="1"><a href="AFE9.html">AND</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A092"></span>A092</td>
+<td class="instruction">.BYTE $46</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A093"></span>A093</td>
+<td class="instruction">.WORD $AFE5</td>
+<td class="comment-1" rowspan="1"><a href="AFE6.html">OR</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A095"></span>A095</td>
+<td class="instruction">.BYTE $7D</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A096"></span>A096</td>
+<td class="instruction">.WORD $BFB3</td>
+<td class="comment-1" rowspan="1"><a href="BF7B.html#BFB4">&gt;</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A098"></span>A098</td>
+<td class="instruction">.BYTE $5A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A099"></span>A099</td>
+<td class="instruction">.WORD $AED3</td>
+<td class="comment-1" rowspan="1"><a href="AE86.html#AED4">=</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A09B"></span>A09B</td>
+<td class="instruction">.BYTE $64</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A09C"></span>A09C</td>
+<td class="instruction">.WORD $B015</td>
+<td class="comment-1" rowspan="1"><a href="B016.html">&lt;</a></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A052.html">A052</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A080">Map</a></td>
+<td class="next">
+Next: <a href="A09E.html">A09E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

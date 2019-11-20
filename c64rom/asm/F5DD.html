@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F5DD</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F5D2.html">F5D2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F5DD">Map</a></td>
+<td class="next">
+Next: <a href="F5ED.html">F5ED</a>
+</td>
+</tr>
+</table>
+<div class="description">F5DD: save RAM to device</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="FFD8.html">FFD8</a>.
+</div>
+<div class="paragraph">
+<span class="register">A</span> = index to start address, <span class="register">XY</span> = end address low/high
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F5DD"></span>F5DD</td>
+<td class="bytes">86 AE</td>
+<td class="instruction">STX $AE</td>
+<td class="comment-1" rowspan="1">save end address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5DF"></span>F5DF</td>
+<td class="bytes">84 AF</td>
+<td class="instruction">STY $AF</td>
+<td class="comment-1" rowspan="1">save end address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5E1"></span>F5E1</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy index to start pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5E2"></span>F5E2</td>
+<td class="bytes">B5 00</td>
+<td class="instruction">LDA $00,X</td>
+<td class="comment-1" rowspan="1">get start address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5E4"></span>F5E4</td>
+<td class="bytes">85 C1</td>
+<td class="instruction">STA $C1</td>
+<td class="comment-1" rowspan="1">set I/O start addresses low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5E6"></span>F5E6</td>
+<td class="bytes">B5 01</td>
+<td class="instruction">LDA $01,X</td>
+<td class="comment-1" rowspan="1">get start address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5E8"></span>F5E8</td>
+<td class="bytes">85 C2</td>
+<td class="instruction">STA $C2</td>
+<td class="comment-1" rowspan="1">set I/O start addresses high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F5EA"></span>F5EA</td>
+<td class="bytes">6C 32 03</td>
+<td class="instruction">JMP ($0332)</td>
+<td class="comment-1" rowspan="1">go save, usually points to <a href="F5ED.html">F5ED</a></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F5D2.html">F5D2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F5DD">Map</a></td>
+<td class="next">
+Next: <a href="F5ED.html">F5ED</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B67A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B63D.html">B63D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B67A">Map</a></td>
+<td class="next">
+Next: <a href="B6A3.html">B6A3</a>
+</td>
+</tr>
+</table>
+<div class="description">B67A: copy string from descriptor to utility pointer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="AA2C.html">AA2C</a> and <a href="B63D.html">B63D</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B67A"></span>B67A</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B67C"></span>B67C</td>
+<td class="bytes">B1 6F</td>
+<td class="instruction">LDA ($6F),Y</td>
+<td class="comment-1" rowspan="1">get string length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B67E"></span>B67E</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B67F"></span>B67F</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B680"></span>B680</td>
+<td class="bytes">B1 6F</td>
+<td class="instruction">LDA ($6F),Y</td>
+<td class="comment-1" rowspan="1">get string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B682"></span>B682</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B683"></span>B683</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B684"></span>B684</td>
+<td class="bytes">B1 6F</td>
+<td class="instruction">LDA ($6F),Y</td>
+<td class="comment-1" rowspan="1">get string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B686"></span>B686</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy to <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B687"></span>B687</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">get length back</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B688"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="B487.html">B487</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B688"></span>B688</td>
+<td class="bytes">86 22</td>
+<td class="instruction">STX $22</td>
+<td class="comment-1" rowspan="1">save string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B68A"></span>B68A</td>
+<td class="bytes">84 23</td>
+<td class="instruction">STY $23</td>
+<td class="comment-1" rowspan="1">save string pointer high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B68C"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="B63D.html">B63D</a> and <a href="B700.html">B700</a>.
+</div>
+<div class="paragraph">
+store string from pointer to utility pointer
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B68C"></span>B68C</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy length as index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B68D"></span>B68D</td>
+<td class="bytes">F0 0A</td>
+<td class="instruction">BEQ <a href="B67A.html#B699">$B699</a></td>
+<td class="comment-1" rowspan="1">branch if null string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B68F"></span>B68F</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save length</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B690"></span>B690</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement length/index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B691"></span>B691</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get byte from string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B693"></span>B693</td>
+<td class="bytes">91 35</td>
+<td class="instruction">STA ($35),Y</td>
+<td class="comment-1" rowspan="1">save byte to destination</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B695"></span>B695</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy length/index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B696"></span>B696</td>
+<td class="bytes">D0 F8</td>
+<td class="instruction">BNE <a href="B67A.html#B690">$B690</a></td>
+<td class="comment-1" rowspan="1">loop if not all done yet</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B698"></span>B698</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore length</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B699"></span>B699</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B69A"></span>B69A</td>
+<td class="bytes">65 35</td>
+<td class="instruction">ADC $35</td>
+<td class="comment-1" rowspan="1">add string utility ptr low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B69C"></span>B69C</td>
+<td class="bytes">85 35</td>
+<td class="instruction">STA $35</td>
+<td class="comment-1" rowspan="1">save string utility ptr low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B69E"></span>B69E</td>
+<td class="bytes">90 02</td>
+<td class="instruction">BCC <a href="B67A.html#B6A2">$B6A2</a></td>
+<td class="comment-1" rowspan="1">branch if no rollover</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B6A0"></span>B6A0</td>
+<td class="bytes">E6 36</td>
+<td class="instruction">INC $36</td>
+<td class="comment-1" rowspan="1">increment string utility ptr high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B6A2"></span>B6A2</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B63D.html">B63D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B67A">Map</a></td>
+<td class="next">
+Next: <a href="B6A3.html">B6A3</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

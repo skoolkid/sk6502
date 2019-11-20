@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F34A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F333.html">F333</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F34A">Map</a></td>
+<td class="next">
+Next: <a href="F3D5.html">F3D5</a>
+</td>
+</tr>
+</table>
+<div class="description">F34A: open a logical file</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F34A"></span>F34A</td>
+<td class="bytes">A6 B8</td>
+<td class="instruction">LDX $B8</td>
+<td class="comment-1" rowspan="1">get the logical file</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F34C"></span>F34C</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="F34A.html#F351">$F351</a></td>
+<td class="comment-1" rowspan="1">if there is a file continue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F34E"></span>F34E</td>
+<td class="bytes">4C 0A F7</td>
+<td class="instruction">JMP <a href="F6FB.html#F70A">$F70A</a></td>
+<td class="comment-1" rowspan="1">else do 'not input file error' and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F351"></span>F351</td>
+<td class="bytes">20 0F F3</td>
+<td class="instruction">JSR <a href="F30F.html">$F30F</a></td>
+<td class="comment-1" rowspan="1">find a file</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F354"></span>F354</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="F34A.html#F359">$F359</a></td>
+<td class="comment-1" rowspan="1">if file not found continue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F356"></span>F356</td>
+<td class="bytes">4C FE F6</td>
+<td class="instruction">JMP <a href="F6FB.html#F6FE">$F6FE</a></td>
+<td class="comment-1" rowspan="1">else do 'file already open' error and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F359"></span>F359</td>
+<td class="bytes">A6 98</td>
+<td class="instruction">LDX $98</td>
+<td class="comment-1" rowspan="1">get the open file count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F35B"></span>F35B</td>
+<td class="bytes">E0 0A</td>
+<td class="instruction">CPX #$0A</td>
+<td class="comment-1" rowspan="1">compare it with the maximum + 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F35D"></span>F35D</td>
+<td class="bytes">90 03</td>
+<td class="instruction">BCC <a href="F34A.html#F362">$F362</a></td>
+<td class="comment-1" rowspan="1">if less than maximum + 1 go open the file</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F35F"></span>F35F</td>
+<td class="bytes">4C FB F6</td>
+<td class="instruction">JMP <a href="F6FB.html">$F6FB</a></td>
+<td class="comment-1" rowspan="1">else do 'too many files error' and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F362"></span>F362</td>
+<td class="bytes">E6 98</td>
+<td class="instruction">INC $98</td>
+<td class="comment-1" rowspan="1">increment the open file count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F364"></span>F364</td>
+<td class="bytes">A5 B8</td>
+<td class="instruction">LDA $B8</td>
+<td class="comment-1" rowspan="1">get the logical file</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F366"></span>F366</td>
+<td class="bytes">9D 59 02</td>
+<td class="instruction">STA $0259,X</td>
+<td class="comment-1" rowspan="1">save it to the logical file table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F369"></span>F369</td>
+<td class="bytes">A5 B9</td>
+<td class="instruction">LDA $B9</td>
+<td class="comment-1" rowspan="1">get the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F36B"></span>F36B</td>
+<td class="bytes">09 60</td>
+<td class="instruction">ORA #$60</td>
+<td class="comment-1" rowspan="1">OR with the OPEN CHANNEL command</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F36D"></span>F36D</td>
+<td class="bytes">85 B9</td>
+<td class="instruction">STA $B9</td>
+<td class="comment-1" rowspan="1">save the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F36F"></span>F36F</td>
+<td class="bytes">9D 6D 02</td>
+<td class="instruction">STA $026D,X</td>
+<td class="comment-1" rowspan="1">save it to the secondary address table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F372"></span>F372</td>
+<td class="bytes">A5 BA</td>
+<td class="instruction">LDA $BA</td>
+<td class="comment-1" rowspan="1">get the device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F374"></span>F374</td>
+<td class="bytes">9D 63 02</td>
+<td class="instruction">STA $0263,X</td>
+<td class="comment-1" rowspan="1">save it to the device number table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F377"></span>F377</td>
+<td class="bytes">F0 5A</td>
+<td class="instruction">BEQ <a href="F34A.html#F3D3">$F3D3</a></td>
+<td class="comment-1" rowspan="1">if it is the keyboard go do the ok exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F379"></span>F379</td>
+<td class="bytes">C9 03</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">compare the device number with the screen</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F37B"></span>F37B</td>
+<td class="bytes">F0 56</td>
+<td class="instruction">BEQ <a href="F34A.html#F3D3">$F3D3</a></td>
+<td class="comment-1" rowspan="1">if it is the screen go do the ok exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F37D"></span>F37D</td>
+<td class="bytes">90 05</td>
+<td class="instruction">BCC <a href="F34A.html#F384">$F384</a></td>
+<td class="comment-1" rowspan="1">if tape or RS232 device go ??</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F37F"></span>
+<div class="comments">
+<div class="paragraph">
+else it is a serial bus device
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F37F"></span>F37F</td>
+<td class="bytes">20 D5 F3</td>
+<td class="instruction">JSR <a href="F3D5.html">$F3D5</a></td>
+<td class="comment-1" rowspan="1">send the secondary address and filename</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F382"></span>F382</td>
+<td class="bytes">90 4F</td>
+<td class="instruction">BCC <a href="F34A.html#F3D3">$F3D3</a></td>
+<td class="comment-1" rowspan="1">go do ok exit, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F384"></span>F384</td>
+<td class="bytes">C9 02</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F386"></span>F386</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="F34A.html#F38B">$F38B</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F388"></span>F388</td>
+<td class="bytes">4C 09 F4</td>
+<td class="instruction">JMP <a href="F409.html">$F409</a></td>
+<td class="comment-1" rowspan="1">go open RS232 device and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F38B"></span>F38B</td>
+<td class="bytes">20 D0 F7</td>
+<td class="instruction">JSR <a href="F7D0.html">$F7D0</a></td>
+<td class="comment-1" rowspan="1">get tape buffer start pointer in <span class="register">XY</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F38E"></span>F38E</td>
+<td class="bytes">B0 03</td>
+<td class="instruction">BCS <a href="F34A.html#F393">$F393</a></td>
+<td class="comment-1" rowspan="1">if &gt;= $0200 go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F390"></span>F390</td>
+<td class="bytes">4C 13 F7</td>
+<td class="instruction">JMP <a href="F6FB.html#F713">$F713</a></td>
+<td class="comment-1" rowspan="1">else do 'illegal device number' and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F393"></span>F393</td>
+<td class="bytes">A5 B9</td>
+<td class="instruction">LDA $B9</td>
+<td class="comment-1" rowspan="1">get the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F395"></span>F395</td>
+<td class="bytes">29 0F</td>
+<td class="instruction">AND #$0F</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F397"></span>F397</td>
+<td class="bytes">D0 1F</td>
+<td class="instruction">BNE <a href="F34A.html#F3B8">$F3B8</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F399"></span>F399</td>
+<td class="bytes">20 17 F8</td>
+<td class="instruction">JSR <a href="F817.html">$F817</a></td>
+<td class="comment-1" rowspan="1">wait for PLAY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F39C"></span>F39C</td>
+<td class="bytes">B0 36</td>
+<td class="instruction">BCS <a href="F34A.html#F3D4">$F3D4</a></td>
+<td class="comment-1" rowspan="1">exit if STOP was pressed</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F39E"></span>F39E</td>
+<td class="bytes">20 AF F5</td>
+<td class="instruction">JSR <a href="F5AF.html">$F5AF</a></td>
+<td class="comment-1" rowspan="1">print "Searching..."</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3A1"></span>F3A1</td>
+<td class="bytes">A5 B7</td>
+<td class="instruction">LDA $B7</td>
+<td class="comment-1" rowspan="1">get file name length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3A3"></span>F3A3</td>
+<td class="bytes">F0 0A</td>
+<td class="instruction">BEQ <a href="F34A.html#F3AF">$F3AF</a></td>
+<td class="comment-1" rowspan="1">if null file name just go find header</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3A5"></span>F3A5</td>
+<td class="bytes">20 EA F7</td>
+<td class="instruction">JSR <a href="F7EA.html">$F7EA</a></td>
+<td class="comment-1" rowspan="1">find specific tape header</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3A8"></span>F3A8</td>
+<td class="bytes">90 18</td>
+<td class="instruction">BCC <a href="F34A.html#F3C2">$F3C2</a></td>
+<td class="comment-1" rowspan="1">branch if no error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3AA"></span>F3AA</td>
+<td class="bytes">F0 28</td>
+<td class="instruction">BEQ <a href="F34A.html#F3D4">$F3D4</a></td>
+<td class="comment-1" rowspan="1">exit if ??</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F3AC"></span>F3AC</td>
+<td class="bytes">4C 04 F7</td>
+<td class="instruction">JMP <a href="F6FB.html#F704">$F704</a></td>
+<td class="comment-1" rowspan="1">do file not found error and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F3AF"></span>F3AF</td>
+<td class="bytes">20 2C F7</td>
+<td class="instruction">JSR <a href="F72C.html">$F72C</a></td>
+<td class="comment-1" rowspan="1">find tape header, exit with header in buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3B2"></span>F3B2</td>
+<td class="bytes">F0 20</td>
+<td class="instruction">BEQ <a href="F34A.html#F3D4">$F3D4</a></td>
+<td class="comment-1" rowspan="1">exit if end of tape found</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3B4"></span>F3B4</td>
+<td class="bytes">90 0C</td>
+<td class="instruction">BCC <a href="F34A.html#F3C2">$F3C2</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3B6"></span>F3B6</td>
+<td class="bytes">B0 F4</td>
+<td class="instruction">BCS <a href="F34A.html#F3AC">$F3AC</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F3B8"></span>F3B8</td>
+<td class="bytes">20 38 F8</td>
+<td class="instruction">JSR <a href="F838.html">$F838</a></td>
+<td class="comment-1" rowspan="1">wait for PLAY/RECORD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3BB"></span>F3BB</td>
+<td class="bytes">B0 17</td>
+<td class="instruction">BCS <a href="F34A.html#F3D4">$F3D4</a></td>
+<td class="comment-1" rowspan="1">exit if STOP was pressed</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3BD"></span>F3BD</td>
+<td class="bytes">A9 04</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="1">set data file header</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3BF"></span>F3BF</td>
+<td class="bytes">20 6A F7</td>
+<td class="instruction">JSR <a href="F76A.html">$F76A</a></td>
+<td class="comment-1" rowspan="1">write tape header</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F3C2"></span>F3C2</td>
+<td class="bytes">A9 BF</td>
+<td class="instruction">LDA #$BF</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3C4"></span>F3C4</td>
+<td class="bytes">A4 B9</td>
+<td class="instruction">LDY $B9</td>
+<td class="comment-1" rowspan="1">get the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3C6"></span>F3C6</td>
+<td class="bytes">C0 60</td>
+<td class="instruction">CPY #$60</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3C8"></span>F3C8</td>
+<td class="bytes">F0 07</td>
+<td class="instruction">BEQ <a href="F34A.html#F3D1">$F3D1</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3CA"></span>F3CA</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3CC"></span>F3CC</td>
+<td class="bytes">A9 02</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3CE"></span>F3CE</td>
+<td class="bytes">91 B2</td>
+<td class="instruction">STA ($B2),Y</td>
+<td class="comment-1" rowspan="1">save to tape buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3D0"></span>F3D0</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F3D1"></span>F3D1</td>
+<td class="bytes">85 A6</td>
+<td class="instruction">STA $A6</td>
+<td class="comment-1" rowspan="1">save tape buffer index</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F3D3"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F3D5.html">F3D5</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F3D3"></span>F3D3</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">flag ok</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F3D4"></span>F3D4</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F333.html">F333</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F34A">Map</a></td>
+<td class="next">
+Next: <a href="F3D5.html">F3D5</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

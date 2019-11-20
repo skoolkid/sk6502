@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F409</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F3D5.html">F3D5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F409">Map</a></td>
+<td class="next">
+Next: <a href="F47D.html">F47D</a>
+</td>
+</tr>
+</table>
+<div class="description">F409: open RS232 device</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F34A.html">F34A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F409"></span>F409</td>
+<td class="bytes">20 83 F4</td>
+<td class="instruction">JSR <a href="F483.html">$F483</a></td>
+<td class="comment-1" rowspan="1">initialise RS232 output</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F40C"></span>F40C</td>
+<td class="bytes">8C 97 02</td>
+<td class="instruction">STY $0297</td>
+<td class="comment-1" rowspan="1">save the RS232 status register</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F40F"></span>F40F</td>
+<td class="bytes">C4 B7</td>
+<td class="instruction">CPY $B7</td>
+<td class="comment-1" rowspan="1">compare with file name length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F411"></span>F411</td>
+<td class="bytes">F0 0A</td>
+<td class="instruction">BEQ <a href="F409.html#F41D">$F41D</a></td>
+<td class="comment-1" rowspan="1">exit loop if done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F413"></span>F413</td>
+<td class="bytes">B1 BB</td>
+<td class="instruction">LDA ($BB),Y</td>
+<td class="comment-1" rowspan="1">get file name byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F415"></span>F415</td>
+<td class="bytes">99 93 02</td>
+<td class="instruction">STA $0293,Y</td>
+<td class="comment-1" rowspan="1">copy to 6551 register set</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F418"></span>F418</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F419"></span>F419</td>
+<td class="bytes">C0 04</td>
+<td class="instruction">CPY #$04</td>
+<td class="comment-1" rowspan="1">compare with $04</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F41B"></span>F41B</td>
+<td class="bytes">D0 F2</td>
+<td class="instruction">BNE <a href="F409.html#F40F">$F40F</a></td>
+<td class="comment-1" rowspan="1">loop if not to 4 yet</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F41D"></span>F41D</td>
+<td class="bytes">20 4A EF</td>
+<td class="instruction">JSR <a href="EF4A.html">$EF4A</a></td>
+<td class="comment-1" rowspan="1">compute bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F420"></span>F420</td>
+<td class="bytes">8E 98 02</td>
+<td class="instruction">STX $0298</td>
+<td class="comment-1" rowspan="1">save bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F423"></span>F423</td>
+<td class="bytes">AD 93 02</td>
+<td class="instruction">LDA $0293</td>
+<td class="comment-1" rowspan="1">get pseudo 6551 control register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F426"></span>F426</td>
+<td class="bytes">29 0F</td>
+<td class="instruction">AND #%00001111</td>
+<td class="comment-1" rowspan="1">mask 0000 xxxx, baud rate</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F428"></span>F428</td>
+<td class="bytes">F0 1C</td>
+<td class="instruction">BEQ <a href="F409.html#F446">$F446</a></td>
+<td class="comment-1" rowspan="1">if zero skip the baud rate setup</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F42A"></span>F42A</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">* 2 bytes per entry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F42B"></span>F42B</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy to the index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F42C"></span>F42C</td>
+<td class="bytes">AD A6 02</td>
+<td class="instruction">LDA $02A6</td>
+<td class="comment-1" rowspan="1">get the PAL/NTSC flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F42F"></span>F42F</td>
+<td class="bytes">D0 09</td>
+<td class="instruction">BNE <a href="F409.html#F43A">$F43A</a></td>
+<td class="comment-1" rowspan="1">if PAL go set PAL timing</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F431"></span>F431</td>
+<td class="bytes">BC C1 FE</td>
+<td class="instruction">LDY $FEC1,X</td>
+<td class="comment-1" rowspan="1">get the NTSC baud rate value high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F434"></span>F434</td>
+<td class="bytes">BD C0 FE</td>
+<td class="instruction">LDA $FEC0,X</td>
+<td class="comment-1" rowspan="1">get the NTSC baud rate value low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F437"></span>F437</td>
+<td class="bytes">4C 40 F4</td>
+<td class="instruction">JMP <a href="F409.html#F440">$F440</a></td>
+<td class="comment-1" rowspan="1">go save the baud rate values</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F43A"></span>F43A</td>
+<td class="bytes">BC EB E4</td>
+<td class="instruction">LDY $E4EB,X</td>
+<td class="comment-1" rowspan="1">get the PAL baud rate value high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F43D"></span>F43D</td>
+<td class="bytes">BD EA E4</td>
+<td class="instruction">LDA $E4EA,X</td>
+<td class="comment-1" rowspan="1">get the PAL baud rate value low byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F440"></span>F440</td>
+<td class="bytes">8C 96 02</td>
+<td class="instruction">STY $0296</td>
+<td class="comment-1" rowspan="1">save the nonstandard bit timing high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F443"></span>F443</td>
+<td class="bytes">8D 95 02</td>
+<td class="instruction">STA $0295</td>
+<td class="comment-1" rowspan="1">save the nonstandard bit timing low byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F446"></span>F446</td>
+<td class="bytes">AD 95 02</td>
+<td class="instruction">LDA $0295</td>
+<td class="comment-1" rowspan="1">get the nonstandard bit timing low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F449"></span>F449</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">* 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F44A"></span>F44A</td>
+<td class="bytes">20 2E FF</td>
+<td class="instruction">JSR <a href="FF2E.html">$FF2E</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F44D"></span>F44D</td>
+<td class="bytes">AD 94 02</td>
+<td class="instruction">LDA $0294</td>
+<td class="comment-1" rowspan="1">read the pseudo 6551 command register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F450"></span>F450</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">shift the <span class="register">X</span> line/3 line bit into Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F451"></span>F451</td>
+<td class="bytes">90 09</td>
+<td class="instruction">BCC <a href="F409.html#F45C">$F45C</a></td>
+<td class="comment-1" rowspan="1">if 3 line skip the DRS test</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F453"></span>F453</td>
+<td class="bytes">AD 01 DD</td>
+<td class="instruction">LDA $DD01</td>
+<td class="comment-1" rowspan="1">read VIA 2 DRB, RS232 port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F456"></span>F456</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">shift DSR in into Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F457"></span>F457</td>
+<td class="bytes">B0 03</td>
+<td class="instruction">BCS <a href="F409.html#F45C">$F45C</a></td>
+<td class="comment-1" rowspan="1">if DSR present skip the error set</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F459"></span>F459</td>
+<td class="bytes">20 0D F0</td>
+<td class="instruction">JSR <a href="EFE1.html#F00D">$F00D</a></td>
+<td class="comment-1" rowspan="1">set no DSR</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F45C"></span>F45C</td>
+<td class="bytes">AD 9B 02</td>
+<td class="instruction">LDA $029B</td>
+<td class="comment-1" rowspan="1">get index to Rx buffer end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F45F"></span>F45F</td>
+<td class="bytes">8D 9C 02</td>
+<td class="instruction">STA $029C</td>
+<td class="comment-1" rowspan="1">set index to Rx buffer start, clear Rx buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F462"></span>F462</td>
+<td class="bytes">AD 9E 02</td>
+<td class="instruction">LDA $029E</td>
+<td class="comment-1" rowspan="1">get index to Tx buffer end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F465"></span>F465</td>
+<td class="bytes">8D 9D 02</td>
+<td class="instruction">STA $029D</td>
+<td class="comment-1" rowspan="1">set index to Tx buffer start, clear Tx buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F468"></span>F468</td>
+<td class="bytes">20 27 FE</td>
+<td class="instruction">JSR <a href="FE27.html">$FE27</a></td>
+<td class="comment-1" rowspan="1">read the top of memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F46B"></span>F46B</td>
+<td class="bytes">A5 F8</td>
+<td class="instruction">LDA $F8</td>
+<td class="comment-1" rowspan="1">get the RS232 input buffer pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F46D"></span>F46D</td>
+<td class="bytes">D0 05</td>
+<td class="instruction">BNE <a href="F409.html#F474">$F474</a></td>
+<td class="comment-1" rowspan="1">if buffer already set skip the save</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F46F"></span>F46F</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement top of memory high byte, 256 byte buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F470"></span>F470</td>
+<td class="bytes">84 F8</td>
+<td class="instruction">STY $F8</td>
+<td class="comment-1" rowspan="1">save the RS232 input buffer pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F472"></span>F472</td>
+<td class="bytes">86 F7</td>
+<td class="instruction">STX $F7</td>
+<td class="comment-1" rowspan="1">save the RS232 input buffer pointer low byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F474"></span>F474</td>
+<td class="bytes">A5 FA</td>
+<td class="instruction">LDA $FA</td>
+<td class="comment-1" rowspan="1">get the RS232 output buffer pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F476"></span>F476</td>
+<td class="bytes">D0 05</td>
+<td class="instruction">BNE <a href="F47D.html">$F47D</a></td>
+<td class="comment-1" rowspan="1">if ?? go set the top of memory to F0xx</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F478"></span>F478</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F479"></span>F479</td>
+<td class="bytes">84 FA</td>
+<td class="instruction">STY $FA</td>
+<td class="comment-1" rowspan="1">save the RS232 output buffer pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F47B"></span>F47B</td>
+<td class="bytes">86 F9</td>
+<td class="instruction">STX $F9</td>
+<td class="comment-1" rowspan="1">save the RS232 output buffer pointer low byte</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F3D5.html">F3D5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F409">Map</a></td>
+<td class="next">
+Next: <a href="F47D.html">F47D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

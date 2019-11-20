@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E5CD</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E5CA.html">E5CA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E5CD">Map</a></td>
+<td class="next">
+Next: <a href="E632.html">E632</a>
+</td>
+</tr>
+</table>
+<div class="description">E5CD: wait for a key from the keyboard</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E632.html">E632</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E5CD"></span>E5CD</td>
+<td class="bytes">A5 C6</td>
+<td class="instruction">LDA $C6</td>
+<td class="comment-1" rowspan="1">get the keyboard buffer index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5CF"></span>E5CF</td>
+<td class="bytes">85 CC</td>
+<td class="instruction">STA $CC</td>
+<td class="comment-1" rowspan="1">cursor enable, $00 = flash cursor, $xx = no flash</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5D1"></span>E5D1</td>
+<td class="bytes">8D 92 02</td>
+<td class="instruction">STA $0292</td>
+<td class="comment-1" rowspan="1">screen scrolling flag, $00 = scroll, $xx = no scroll. this disables both the cursor flash and the screen scroll while there are characters in the keyboard buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5D4"></span>E5D4</td>
+<td class="bytes">F0 F7</td>
+<td class="instruction">BEQ <a href="E5CD.html#E5CD">$E5CD</a></td>
+<td class="comment-1" rowspan="1">loop if the buffer is empty</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5D6"></span>E5D6</td>
+<td class="bytes">78</td>
+<td class="instruction">SEI</td>
+<td class="comment-1" rowspan="1">disable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5D7"></span>E5D7</td>
+<td class="bytes">A5 CF</td>
+<td class="instruction">LDA $CF</td>
+<td class="comment-1" rowspan="1">get the cursor blink phase</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5D9"></span>E5D9</td>
+<td class="bytes">F0 0C</td>
+<td class="instruction">BEQ <a href="E5CD.html#E5E7">$E5E7</a></td>
+<td class="comment-1" rowspan="1">if cursor phase skip the overwrite</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E5DB"></span>
+<div class="comments">
+<div class="paragraph">
+else it is the character phase
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5DB"></span>E5DB</td>
+<td class="bytes">A5 CE</td>
+<td class="instruction">LDA $CE</td>
+<td class="comment-1" rowspan="1">get the character under the cursor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5DD"></span>E5DD</td>
+<td class="bytes">AE 87 02</td>
+<td class="instruction">LDX $0287</td>
+<td class="comment-1" rowspan="1">get the colour under the cursor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5E0"></span>E5E0</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5E2"></span>E5E2</td>
+<td class="bytes">84 CF</td>
+<td class="instruction">STY $CF</td>
+<td class="comment-1" rowspan="1">clear the cursor blink phase</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5E4"></span>E5E4</td>
+<td class="bytes">20 13 EA</td>
+<td class="instruction">JSR <a href="EA13.html">$EA13</a></td>
+<td class="comment-1" rowspan="1">print character <span class="register">A</span> and colour <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-2"><span id="E5E7"></span>E5E7</td>
+<td class="bytes">20 B4 E5</td>
+<td class="instruction">JSR <a href="E5B4.html">$E5B4</a></td>
+<td class="comment-1" rowspan="1">input from the keyboard buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5EA"></span>E5EA</td>
+<td class="bytes">C9 83</td>
+<td class="instruction">CMP #$83</td>
+<td class="comment-1" rowspan="1">compare with [SHIFT][RUN]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5EC"></span>E5EC</td>
+<td class="bytes">D0 10</td>
+<td class="instruction">BNE <a href="E5CD.html#E5FE">$E5FE</a></td>
+<td class="comment-1" rowspan="1">if not [SHIFT][RUN] skip the buffer fill</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E5EE"></span>
+<div class="comments">
+<div class="paragraph">
+keys are [SHIFT][RUN] so put "LOAD",$0D,"RUN",$0D into the buffer
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5EE"></span>E5EE</td>
+<td class="bytes">A2 09</td>
+<td class="instruction">LDX #$09</td>
+<td class="comment-1" rowspan="1">set the byte count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5F0"></span>E5F0</td>
+<td class="bytes">78</td>
+<td class="instruction">SEI</td>
+<td class="comment-1" rowspan="1">disable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5F1"></span>E5F1</td>
+<td class="bytes">86 C6</td>
+<td class="instruction">STX $C6</td>
+<td class="comment-1" rowspan="1">set the keyboard buffer index</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E5F3"></span>E5F3</td>
+<td class="bytes">BD E6 EC</td>
+<td class="instruction">LDA $ECE6,X</td>
+<td class="comment-1" rowspan="1">get byte from the auto load/run table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5F6"></span>E5F6</td>
+<td class="bytes">9D 76 02</td>
+<td class="instruction">STA $0276,X</td>
+<td class="comment-1" rowspan="1">save it to the keyboard buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5F9"></span>E5F9</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement the count/index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5FA"></span>E5FA</td>
+<td class="bytes">D0 F7</td>
+<td class="instruction">BNE <a href="E5CD.html#E5F3">$E5F3</a></td>
+<td class="comment-1" rowspan="1">loop while more to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E5FC"></span>E5FC</td>
+<td class="bytes">F0 CF</td>
+<td class="instruction">BEQ <a href="E5CD.html#E5CD">$E5CD</a></td>
+<td class="comment-1" rowspan="1">loop for the next key, branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E5FE"></span>
+<div class="comments">
+<div class="paragraph">
+was not [SHIFT][RUN]
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E5FE"></span>E5FE</td>
+<td class="bytes">C9 0D</td>
+<td class="instruction">CMP #$0D</td>
+<td class="comment-1" rowspan="1">compare the key with [CR]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E600"></span>E600</td>
+<td class="bytes">D0 C8</td>
+<td class="instruction">BNE <a href="E5CA.html">$E5CA</a></td>
+<td class="comment-1" rowspan="1">if not [CR] print the character and get the next key</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E602"></span>
+<div class="comments">
+<div class="paragraph">
+else it was [CR]
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E602"></span>E602</td>
+<td class="bytes">A4 D5</td>
+<td class="instruction">LDY $D5</td>
+<td class="comment-1" rowspan="1">get the current screen line length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E604"></span>E604</td>
+<td class="bytes">84 D0</td>
+<td class="instruction">STY $D0</td>
+<td class="comment-1" rowspan="1">input from keyboard or screen, $xx = screen, $00 = keyboard</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E606"></span>E606</td>
+<td class="bytes">B1 D1</td>
+<td class="instruction">LDA ($D1),Y</td>
+<td class="comment-1" rowspan="1">get the character from the current screen line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E608"></span>E608</td>
+<td class="bytes">C9 20</td>
+<td class="instruction">CMP #" "</td>
+<td class="comment-1" rowspan="1">compare it with [SPACE]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E60A"></span>E60A</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="E5CD.html#E60F">$E60F</a></td>
+<td class="comment-1" rowspan="1">if not [SPACE] continue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E60C"></span>E60C</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">else eliminate the space, decrement end of input line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E60D"></span>E60D</td>
+<td class="bytes">D0 F7</td>
+<td class="instruction">BNE <a href="E5CD.html#E606">$E606</a></td>
+<td class="comment-1" rowspan="1">loop, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E60F"></span>E60F</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment past the last non space character on line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E610"></span>E610</td>
+<td class="bytes">84 C8</td>
+<td class="instruction">STY $C8</td>
+<td class="comment-1" rowspan="1">save the input [EOL] pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E612"></span>E612</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E614"></span>E614</td>
+<td class="bytes">8C 92 02</td>
+<td class="instruction">STY $0292</td>
+<td class="comment-1" rowspan="1">clear the screen scrolling flag, $00 = scroll</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E617"></span>E617</td>
+<td class="bytes">84 D3</td>
+<td class="instruction">STY $D3</td>
+<td class="comment-1" rowspan="1">clear the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E619"></span>E619</td>
+<td class="bytes">84 D4</td>
+<td class="instruction">STY $D4</td>
+<td class="comment-1" rowspan="1">clear the cursor quote flag, $xx = quote, $00 = no quote</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E61B"></span>E61B</td>
+<td class="bytes">A5 C9</td>
+<td class="instruction">LDA $C9</td>
+<td class="comment-1" rowspan="1">get the input cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E61D"></span>E61D</td>
+<td class="bytes">30 1B</td>
+<td class="instruction">BMI <a href="E632.html#E63A">$E63A</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E61F"></span>E61F</td>
+<td class="bytes">A6 D6</td>
+<td class="instruction">LDX $D6</td>
+<td class="comment-1" rowspan="1">get the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E621"></span>E621</td>
+<td class="bytes">20 91 E5</td>
+<td class="instruction">JSR <a href="E591.html">$E591</a></td>
+<td class="comment-1" rowspan="1">find and set the pointers for the start of logical line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E624"></span>E624</td>
+<td class="bytes">E4 C9</td>
+<td class="instruction">CPX $C9</td>
+<td class="comment-1" rowspan="1">compare with input cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E626"></span>E626</td>
+<td class="bytes">D0 12</td>
+<td class="instruction">BNE <a href="E632.html#E63A">$E63A</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E628"></span>E628</td>
+<td class="bytes">A5 CA</td>
+<td class="instruction">LDA $CA</td>
+<td class="comment-1" rowspan="1">get the input cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E62A"></span>E62A</td>
+<td class="bytes">85 D3</td>
+<td class="instruction">STA $D3</td>
+<td class="comment-1" rowspan="1">save the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E62C"></span>E62C</td>
+<td class="bytes">C5 C8</td>
+<td class="instruction">CMP $C8</td>
+<td class="comment-1" rowspan="1">compare the cursor column with input [EOL] pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E62E"></span>E62E</td>
+<td class="bytes">90 0A</td>
+<td class="instruction">BCC <a href="E632.html#E63A">$E63A</a></td>
+<td class="comment-1" rowspan="1">if less, cursor is in line, go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E630"></span>E630</td>
+<td class="bytes">B0 2B</td>
+<td class="instruction">BCS <a href="E632.html#E65D">$E65D</a></td>
+<td class="comment-1" rowspan="1">else the cursor is beyond the line end, branch always</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E5CA.html">E5CA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E5CD">Map</a></td>
+<td class="next">
+Next: <a href="E632.html">E632</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

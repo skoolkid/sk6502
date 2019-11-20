@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F875</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F864.html">F864</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F875">Map</a></td>
+<td class="next">
+Next: <a href="F8D0.html">F8D0</a>
+</td>
+</tr>
+</table>
+<div class="description">F875: tape read/write</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F841.html">F841</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F875"></span>F875</td>
+<td class="bytes">A0 7F</td>
+<td class="instruction">LDY #$7F</td>
+<td class="comment-1" rowspan="1">disable all interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F877"></span>F877</td>
+<td class="bytes">8C 0D DC</td>
+<td class="instruction">STY $DC0D</td>
+<td class="comment-1" rowspan="1">save VIA 1 ICR, disable all interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F87A"></span>F87A</td>
+<td class="bytes">8D 0D DC</td>
+<td class="instruction">STA $DC0D</td>
+<td class="comment-1" rowspan="1">save VIA 1 ICR, enable interrupts according to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F87D"></span>
+<div class="comments">
+<div class="paragraph">
+check RS232 bus idle
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F87D"></span>F87D</td>
+<td class="bytes">AD 0E DC</td>
+<td class="instruction">LDA $DC0E</td>
+<td class="comment-1" rowspan="1">read VIA 1 CRA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F880"></span>F880</td>
+<td class="bytes">09 19</td>
+<td class="instruction">ORA #$19</td>
+<td class="comment-1" rowspan="1">load timer B, timer B single shot, start timer B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F882"></span>F882</td>
+<td class="bytes">8D 0F DC</td>
+<td class="instruction">STA $DC0F</td>
+<td class="comment-1" rowspan="1">save VIA 1 CRB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F885"></span>F885</td>
+<td class="bytes">29 91</td>
+<td class="instruction">AND #%10010001</td>
+<td class="comment-1" rowspan="1">mask x00x 000x, TOD clock, load timer <span class="register">A</span>, start timer <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F887"></span>F887</td>
+<td class="bytes">8D A2 02</td>
+<td class="instruction">STA $02A2</td>
+<td class="comment-1" rowspan="1">save VIA 1 CRB shadow copy</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F88A"></span>F88A</td>
+<td class="bytes">20 A4 F0</td>
+<td class="instruction">JSR <a href="F0A4.html">$F0A4</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F88D"></span>F88D</td>
+<td class="bytes">AD 11 D0</td>
+<td class="instruction">LDA $D011</td>
+<td class="comment-1" rowspan="1">read the vertical fine scroll and control register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F890"></span>F890</td>
+<td class="bytes">29 EF</td>
+<td class="instruction">AND #%11101111</td>
+<td class="comment-1" rowspan="1">mask xxx0 xxxx, blank the screen</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F892"></span>F892</td>
+<td class="bytes">8D 11 D0</td>
+<td class="instruction">STA $D011</td>
+<td class="comment-1" rowspan="1">save the vertical fine scroll and control register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F895"></span>F895</td>
+<td class="bytes">AD 14 03</td>
+<td class="instruction">LDA $0314</td>
+<td class="comment-1" rowspan="1">get IRQ vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F898"></span>F898</td>
+<td class="bytes">8D 9F 02</td>
+<td class="instruction">STA $029F</td>
+<td class="comment-1" rowspan="1">save IRQ vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F89B"></span>F89B</td>
+<td class="bytes">AD 15 03</td>
+<td class="instruction">LDA $0315</td>
+<td class="comment-1" rowspan="1">get IRQ vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F89E"></span>F89E</td>
+<td class="bytes">8D A0 02</td>
+<td class="instruction">STA $02A0</td>
+<td class="comment-1" rowspan="1">save IRQ vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8A1"></span>F8A1</td>
+<td class="bytes">20 BD FC</td>
+<td class="instruction">JSR <a href="FCBD.html">$FCBD</a></td>
+<td class="comment-1" rowspan="1">set the tape vector</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8A4"></span>F8A4</td>
+<td class="bytes">A9 02</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="1">set copies count. the first copy is the load copy, the</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F8A6"></span>
+<div class="comments">
+<div class="paragraph">
+second copy is the verify copy
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8A6"></span>F8A6</td>
+<td class="bytes">85 BE</td>
+<td class="instruction">STA $BE</td>
+<td class="comment-1" rowspan="1">save copies count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8A8"></span>F8A8</td>
+<td class="bytes">20 97 FB</td>
+<td class="instruction">JSR <a href="FB97.html">$FB97</a></td>
+<td class="comment-1" rowspan="1">new tape byte setup</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8AB"></span>F8AB</td>
+<td class="bytes">A5 01</td>
+<td class="instruction">LDA $01</td>
+<td class="comment-1" rowspan="1">read the 6510 I/O port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8AD"></span>F8AD</td>
+<td class="bytes">29 1F</td>
+<td class="instruction">AND #%00011111</td>
+<td class="comment-1" rowspan="1">mask 000x xxxx, cassette motor on ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8AF"></span>F8AF</td>
+<td class="bytes">85 01</td>
+<td class="instruction">STA $01</td>
+<td class="comment-1" rowspan="1">save the 6510 I/O port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8B1"></span>F8B1</td>
+<td class="bytes">85 C0</td>
+<td class="instruction">STA $C0</td>
+<td class="comment-1" rowspan="1">set the tape motor interlock</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F8B3"></span>
+<div class="comments">
+<div class="paragraph">
+326656 cycle delay, allow tape motor speed to stabilise
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8B3"></span>F8B3</td>
+<td class="bytes">A2 FF</td>
+<td class="instruction">LDX #$FF</td>
+<td class="comment-1" rowspan="1">outer loop count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F8B5"></span>F8B5</td>
+<td class="bytes">A0 FF</td>
+<td class="instruction">LDY #$FF</td>
+<td class="comment-1" rowspan="1">inner loop count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F8B7"></span>F8B7</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement inner loop count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8B8"></span>F8B8</td>
+<td class="bytes">D0 FD</td>
+<td class="instruction">BNE <a href="F875.html#F8B7">$F8B7</a></td>
+<td class="comment-1" rowspan="1">loop if more to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8BA"></span>F8BA</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement outer loop count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8BB"></span>F8BB</td>
+<td class="bytes">D0 F8</td>
+<td class="instruction">BNE <a href="F875.html#F8B5">$F8B5</a></td>
+<td class="comment-1" rowspan="1">loop if more to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8BD"></span>F8BD</td>
+<td class="bytes">58</td>
+<td class="instruction">CLI</td>
+<td class="comment-1" rowspan="1">enable tape interrupts</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F8BE"></span>F8BE</td>
+<td class="bytes">AD A0 02</td>
+<td class="instruction">LDA $02A0</td>
+<td class="comment-1" rowspan="1">get saved IRQ high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8C1"></span>F8C1</td>
+<td class="bytes">CD 15 03</td>
+<td class="instruction">CMP $0315</td>
+<td class="comment-1" rowspan="1">compare with the current IRQ high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8C4"></span>F8C4</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">flag ok</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8C5"></span>F8C5</td>
+<td class="bytes">F0 15</td>
+<td class="instruction">BEQ <a href="F8DC.html">$F8DC</a></td>
+<td class="comment-1" rowspan="1">if tape write done go clear saved IRQ address and exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8C7"></span>F8C7</td>
+<td class="bytes">20 D0 F8</td>
+<td class="instruction">JSR <a href="F8D0.html">$F8D0</a></td>
+<td class="comment-1" rowspan="1">scan stop key and flag abort if pressed</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F8CA"></span>
+<div class="comments">
+<div class="paragraph">
+note if STOP was pressed the return is to the routine that called this one and not here
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8CA"></span>F8CA</td>
+<td class="bytes">20 BC F6</td>
+<td class="instruction">JSR <a href="F69B.html#F6BC">$F6BC</a></td>
+<td class="comment-1" rowspan="1">increment real time clock</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F8CD"></span>F8CD</td>
+<td class="bytes">4C BE F8</td>
+<td class="instruction">JMP <a href="F875.html#F8BE">$F8BE</a></td>
+<td class="comment-1" rowspan="1">loop</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F864.html">F864</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F875">Map</a></td>
+<td class="next">
+Next: <a href="F8D0.html">F8D0</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

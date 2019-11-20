@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F20E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F1DD.html">F1DD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F20E">Map</a></td>
+<td class="next">
+Next: <a href="F250.html">F250</a>
+</td>
+</tr>
+</table>
+<div class="description">F20E: open channel for input</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F20E"></span>F20E</td>
+<td class="bytes">20 0F F3</td>
+<td class="instruction">JSR <a href="F30F.html">$F30F</a></td>
+<td class="comment-1" rowspan="1">find a file</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F211"></span>F211</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="F20E.html#F216">$F216</a></td>
+<td class="comment-1" rowspan="1">if the file is open continue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F213"></span>F213</td>
+<td class="bytes">4C 01 F7</td>
+<td class="instruction">JMP <a href="F6FB.html#F701">$F701</a></td>
+<td class="comment-1" rowspan="1">else do 'file not open' error and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F216"></span>F216</td>
+<td class="bytes">20 1F F3</td>
+<td class="instruction">JSR <a href="F31F.html">$F31F</a></td>
+<td class="comment-1" rowspan="1">set file details from table,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F219"></span>F219</td>
+<td class="bytes">A5 BA</td>
+<td class="instruction">LDA $BA</td>
+<td class="comment-1" rowspan="1">get the device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F21B"></span>F21B</td>
+<td class="bytes">F0 16</td>
+<td class="instruction">BEQ <a href="F20E.html#F233">$F233</a></td>
+<td class="comment-1" rowspan="1">if the device was the keyboard save the device #, flag ok and exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F21D"></span>F21D</td>
+<td class="bytes">C9 03</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">compare the device number with the screen</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F21F"></span>F21F</td>
+<td class="bytes">F0 12</td>
+<td class="instruction">BEQ <a href="F20E.html#F233">$F233</a></td>
+<td class="comment-1" rowspan="1">if the device was the screen save the device #, flag ok and exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F221"></span>F221</td>
+<td class="bytes">B0 14</td>
+<td class="instruction">BCS <a href="F20E.html#F237">$F237</a></td>
+<td class="comment-1" rowspan="1">if the device was a serial bus device go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F223"></span>F223</td>
+<td class="bytes">C9 02</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">else compare the device with the RS232 device</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F225"></span>F225</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="F20E.html#F22A">$F22A</a></td>
+<td class="comment-1" rowspan="1">if not the RS232 device continue</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F227"></span>F227</td>
+<td class="bytes">4C 4D F0</td>
+<td class="instruction">JMP <a href="F04D.html">$F04D</a></td>
+<td class="comment-1" rowspan="1">else go get input from the RS232 buffer and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F22A"></span>F22A</td>
+<td class="bytes">A6 B9</td>
+<td class="instruction">LDX $B9</td>
+<td class="comment-1" rowspan="1">get the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F22C"></span>F22C</td>
+<td class="bytes">E0 60</td>
+<td class="instruction">CPX #$60</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F22E"></span>F22E</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="F20E.html#F233">$F233</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F230"></span>F230</td>
+<td class="bytes">4C 0A F7</td>
+<td class="instruction">JMP <a href="F6FB.html#F70A">$F70A</a></td>
+<td class="comment-1" rowspan="1">go do 'not input file' error and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F233"></span>F233</td>
+<td class="bytes">85 99</td>
+<td class="instruction">STA $99</td>
+<td class="comment-1" rowspan="1">save the input device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F235"></span>F235</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">flag ok</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F236"></span>F236</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F237"></span>
+<div class="comments">
+<div class="paragraph">
+the device was a serial bus device
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F237"></span>F237</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy device number to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F238"></span>F238</td>
+<td class="bytes">20 09 ED</td>
+<td class="instruction">JSR <a href="ED09.html">$ED09</a></td>
+<td class="comment-1" rowspan="1">command serial bus device to TALK</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F23B"></span>F23B</td>
+<td class="bytes">A5 B9</td>
+<td class="instruction">LDA $B9</td>
+<td class="comment-1" rowspan="1">get the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F23D"></span>F23D</td>
+<td class="bytes">10 06</td>
+<td class="instruction">BPL <a href="F20E.html#F245">$F245</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F23F"></span>F23F</td>
+<td class="bytes">20 CC ED</td>
+<td class="instruction">JSR <a href="EDCC.html">$EDCC</a></td>
+<td class="comment-1" rowspan="1">wait for the serial bus end after send</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F242"></span>F242</td>
+<td class="bytes">4C 48 F2</td>
+<td class="instruction">JMP <a href="F20E.html#F248">$F248</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F245"></span>F245</td>
+<td class="bytes">20 C7 ED</td>
+<td class="instruction">JSR <a href="EDC7.html">$EDC7</a></td>
+<td class="comment-1" rowspan="1">send secondary address after TALK</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F248"></span>F248</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy device back to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F249"></span>F249</td>
+<td class="bytes">24 90</td>
+<td class="instruction">BIT $90</td>
+<td class="comment-1" rowspan="1">test the serial status byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F24B"></span>F24B</td>
+<td class="bytes">10 E6</td>
+<td class="instruction">BPL <a href="F20E.html#F233">$F233</a></td>
+<td class="comment-1" rowspan="1">if device present save device number and exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F24D"></span>F24D</td>
+<td class="bytes">4C 07 F7</td>
+<td class="instruction">JMP <a href="F6FB.html#F707">$F707</a></td>
+<td class="comment-1" rowspan="1">do 'device not present' error and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F1DD.html">F1DD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F20E">Map</a></td>
+<td class="next">
+Next: <a href="F250.html">F250</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EED7</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EEBB.html">EEBB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EED7">Map</a></td>
+<td class="next">
+Next: <a href="EF06.html">EF06</a>
+</td>
+</tr>
+</table>
+<div class="description">EED7: do RS232 parity bit</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="EEBB.html">EEBB</a>.
+</div>
+<div class="paragraph">
+enters with RS232 bit count = 0
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EED7"></span>EED7</td>
+<td class="bytes">A9 20</td>
+<td class="instruction">LDA #%00100000</td>
+<td class="comment-1" rowspan="1">mask 00x0 0000, parity enable bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EED9"></span>EED9</td>
+<td class="bytes">2C 94 02</td>
+<td class="instruction">BIT $0294</td>
+<td class="comment-1" rowspan="1">test the pseudo 6551 command register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEDC"></span>EEDC</td>
+<td class="bytes">F0 14</td>
+<td class="instruction">BEQ <a href="EED7.html#EEF2">$EEF2</a></td>
+<td class="comment-1" rowspan="1">if parity disabled go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEDE"></span>EEDE</td>
+<td class="bytes">30 1C</td>
+<td class="instruction">BMI <a href="EED7.html#EEFC">$EEFC</a></td>
+<td class="comment-1" rowspan="1">if fixed mark or space parity go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEE0"></span>EEE0</td>
+<td class="bytes">70 14</td>
+<td class="instruction">BVS <a href="EED7.html#EEF6">$EEF6</a></td>
+<td class="comment-1" rowspan="1">if even parity go ??</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EEE2"></span>
+<div class="comments">
+<div class="paragraph">
+else odd parity
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEE2"></span>EEE2</td>
+<td class="bytes">A5 BD</td>
+<td class="instruction">LDA $BD</td>
+<td class="comment-1" rowspan="1">get RS232 parity byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEE4"></span>EEE4</td>
+<td class="bytes">D0 01</td>
+<td class="instruction">BNE <a href="EED7.html#EEE7">$EEE7</a></td>
+<td class="comment-1" rowspan="1">if parity not zero leave parity bit = 0</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EEE6"></span>EEE6</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">make parity bit = 1</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EEE7"></span>EEE7</td>
+<td class="bytes">C6 B4</td>
+<td class="instruction">DEC $B4</td>
+<td class="comment-1" rowspan="1">decrement RS232 bit count, 1 stop bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEE9"></span>EEE9</td>
+<td class="bytes">AD 93 02</td>
+<td class="instruction">LDA $0293</td>
+<td class="comment-1" rowspan="1">get pseudo 6551 control register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEEC"></span>EEEC</td>
+<td class="bytes">10 E3</td>
+<td class="instruction">BPL <a href="EEBB.html#EED1">$EED1</a></td>
+<td class="comment-1" rowspan="1">if 1 stop bit save parity bit and exit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EEEE"></span>
+<div class="comments">
+<div class="paragraph">
+else two stop bits ..
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEEE"></span>EEEE</td>
+<td class="bytes">C6 B4</td>
+<td class="instruction">DEC $B4</td>
+<td class="comment-1" rowspan="1">decrement RS232 bit count, 2 stop bits</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEF0"></span>EEF0</td>
+<td class="bytes">D0 DF</td>
+<td class="instruction">BNE <a href="EEBB.html#EED1">$EED1</a></td>
+<td class="comment-1" rowspan="1">save bit and exit, branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EEF2"></span>
+<div class="comments">
+<div class="paragraph">
+parity is disabled so the parity bit becomes the first, and possibly only, stop bit. to do this increment the bit count which effectively decrements the stop bit count.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EEF2"></span>EEF2</td>
+<td class="bytes">E6 B4</td>
+<td class="instruction">INC $B4</td>
+<td class="comment-1" rowspan="1">increment RS232 bit count, = -1 stop bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEF4"></span>EEF4</td>
+<td class="bytes">D0 F0</td>
+<td class="instruction">BNE <a href="EED7.html#EEE6">$EEE6</a></td>
+<td class="comment-1" rowspan="1">set stop bit = 1 and exit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EEF6"></span>
+<div class="comments">
+<div class="paragraph">
+do even parity
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EEF6"></span>EEF6</td>
+<td class="bytes">A5 BD</td>
+<td class="instruction">LDA $BD</td>
+<td class="comment-1" rowspan="1">get RS232 parity byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEF8"></span>EEF8</td>
+<td class="bytes">F0 ED</td>
+<td class="instruction">BEQ <a href="EED7.html#EEE7">$EEE7</a></td>
+<td class="comment-1" rowspan="1">if parity zero leave parity bit = 0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEFA"></span>EEFA</td>
+<td class="bytes">D0 EA</td>
+<td class="instruction">BNE <a href="EED7.html#EEE6">$EEE6</a></td>
+<td class="comment-1" rowspan="1">else make parity bit = 1, branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EEFC"></span>
+<div class="comments">
+<div class="paragraph">
+fixed mark or space parity
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EEFC"></span>EEFC</td>
+<td class="bytes">70 E9</td>
+<td class="instruction">BVS <a href="EED7.html#EEE7">$EEE7</a></td>
+<td class="comment-1" rowspan="1">if fixed space parity leave parity bit = 0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEFE"></span>EEFE</td>
+<td class="bytes">50 E6</td>
+<td class="instruction">BVC <a href="EED7.html#EEE6">$EEE6</a></td>
+<td class="comment-1" rowspan="1">else fixed mark parity make parity bit = 1, branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EF00"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="EEBB.html">EEBB</a>.
+</div>
+<div class="paragraph">
+decrement stop bit count, set stop bit = 1 and exit. $FF is one stop bit, $FE is two stop bits
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EF00"></span>EF00</td>
+<td class="bytes">E6 B4</td>
+<td class="instruction">INC $B4</td>
+<td class="comment-1" rowspan="1">decrement RS232 bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF02"></span>EF02</td>
+<td class="bytes">A2 FF</td>
+<td class="instruction">LDX #$FF</td>
+<td class="comment-1" rowspan="1">set stop bit = 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EF04"></span>EF04</td>
+<td class="bytes">D0 CB</td>
+<td class="instruction">BNE <a href="EEBB.html#EED1">$EED1</a></td>
+<td class="comment-1" rowspan="1">save stop bit and exit, branch always</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EEBB.html">EEBB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EED7">Map</a></td>
+<td class="next">
+Next: <a href="EF06.html">EF06</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

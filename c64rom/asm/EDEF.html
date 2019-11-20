@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EDEF</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EDDD.html">EDDD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EDEF">Map</a></td>
+<td class="next">
+Next: <a href="EDFE.html">EDFE</a>
+</td>
+</tr>
+</table>
+<div class="description">EDEF: command serial bus to UNTALK</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="F333.html">F333</a>, <a href="F4A5.html">F4A5</a> and <a href="FFAB.html">FFAB</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EDEF"></span>EDEF</td>
+<td class="bytes">78</td>
+<td class="instruction">SEI</td>
+<td class="comment-1" rowspan="1">disable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDF0"></span>EDF0</td>
+<td class="bytes">20 8E EE</td>
+<td class="instruction">JSR <a href="EE8E.html">$EE8E</a></td>
+<td class="comment-1" rowspan="1">set the serial clock out low</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDF3"></span>EDF3</td>
+<td class="bytes">AD 00 DD</td>
+<td class="instruction">LDA $DD00</td>
+<td class="comment-1" rowspan="1">read VIA 2 DRA, serial port and video address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDF6"></span>EDF6</td>
+<td class="bytes">09 08</td>
+<td class="instruction">ORA #%00001000</td>
+<td class="comment-1" rowspan="1">mask xxxx 1xxx, set the serial ATN low</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDF8"></span>EDF8</td>
+<td class="bytes">8D 00 DD</td>
+<td class="instruction">STA $DD00</td>
+<td class="comment-1" rowspan="1">save VIA 2 DRA, serial port and video address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDFB"></span>EDFB</td>
+<td class="bytes">A9 5F</td>
+<td class="instruction">LDA #$5F</td>
+<td class="comment-1" rowspan="1">set the UNTALK command</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDFD"></span>EDFD</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $3FA9</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EDDD.html">EDDD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EDEF">Map</a></td>
+<td class="next">
+Next: <a href="EDFE.html">EDFE</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

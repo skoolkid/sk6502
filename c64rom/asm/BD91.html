@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BD91</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BD7E.html">BD7E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BD91">Map</a></td>
+<td class="next">
+Next: <a href="BDB3.html">BDB3</a>
+</td>
+</tr>
+</table>
+<div class="description">BD91: evaluate next character of exponential part of number</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="BCF3.html">BCF3</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD91"></span>BD91</td>
+<td class="bytes">A5 5E</td>
+<td class="instruction">LDA $5E</td>
+<td class="comment-1" rowspan="1">get exponent count byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD93"></span>BD93</td>
+<td class="bytes">C9 0A</td>
+<td class="instruction">CMP #$0A</td>
+<td class="comment-1" rowspan="1">compare with 10 decimal</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD95"></span>BD95</td>
+<td class="bytes">90 09</td>
+<td class="instruction">BCC <a href="BD91.html#BDA0">$BDA0</a></td>
+<td class="comment-1" rowspan="1">branch if less</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD97"></span>BD97</td>
+<td class="bytes">A9 64</td>
+<td class="instruction">LDA #$64</td>
+<td class="comment-1" rowspan="1">make all -ve exponents = -100 decimal (causes underflow)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD99"></span>BD99</td>
+<td class="bytes">24 60</td>
+<td class="instruction">BIT $60</td>
+<td class="comment-1" rowspan="1">test exponent -ve flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD9B"></span>BD9B</td>
+<td class="bytes">30 11</td>
+<td class="instruction">BMI <a href="BD91.html#BDAE">$BDAE</a></td>
+<td class="comment-1" rowspan="1">branch if -ve</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD9D"></span>BD9D</td>
+<td class="bytes">4C 7E B9</td>
+<td class="instruction">JMP <a href="B97E.html">$B97E</a></td>
+<td class="comment-1" rowspan="1">else do overflow error then warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BDA0"></span>BDA0</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">*2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDA1"></span>BDA1</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">*4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDA2"></span>BDA2</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDA3"></span>BDA3</td>
+<td class="bytes">65 5E</td>
+<td class="instruction">ADC $5E</td>
+<td class="comment-1" rowspan="1">*5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDA5"></span>BDA5</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">*10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDA6"></span>BDA6</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDA7"></span>BDA7</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDA9"></span>BDA9</td>
+<td class="bytes">71 7A</td>
+<td class="instruction">ADC ($7A),Y</td>
+<td class="comment-1" rowspan="1">add character (will be $30 too much!)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDAB"></span>BDAB</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDAC"></span>BDAC</td>
+<td class="bytes">E9 30</td>
+<td class="instruction">SBC #"0"</td>
+<td class="comment-1" rowspan="1">convert character to binary</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BDAE"></span>BDAE</td>
+<td class="bytes">85 5E</td>
+<td class="instruction">STA $5E</td>
+<td class="comment-1" rowspan="1">save exponent count byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDB0"></span>BDB0</td>
+<td class="bytes">4C 30 BD</td>
+<td class="instruction">JMP <a href="BCF3.html#BD30">$BD30</a></td>
+<td class="comment-1" rowspan="1">go get next character</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BD7E.html">BD7E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BD91">Map</a></td>
+<td class="next">
+Next: <a href="BDB3.html">BDB3</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

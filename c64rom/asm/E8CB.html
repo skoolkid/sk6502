@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E8CB</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E8B3.html">E8B3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E8CB">Map</a></td>
+<td class="next">
+Next: <a href="E8DA.html">E8DA</a>
+</td>
+</tr>
+</table>
+<div class="description">E8CB: set the colour code</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E716.html">E716</a>.
+</div>
+<div class="paragraph">
+enter with the colour character in <span class="register">A</span>. if <span class="register">A</span> does not contain a colour character this routine exits without changing the colour
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E8CB"></span>E8CB</td>
+<td class="bytes">A2 0F</td>
+<td class="instruction">LDX #$0F</td>
+<td class="comment-1" rowspan="1">set the colour code count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E8CD"></span>E8CD</td>
+<td class="bytes">DD DA E8</td>
+<td class="instruction">CMP $E8DA,X</td>
+<td class="comment-1" rowspan="1">compare the character with a table code</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8D0"></span>E8D0</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="E8CB.html#E8D6">$E8D6</a></td>
+<td class="comment-1" rowspan="1">if a match go save the colour and exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8D2"></span>E8D2</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">else decrement the index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8D3"></span>E8D3</td>
+<td class="bytes">10 F8</td>
+<td class="instruction">BPL <a href="E8CB.html#E8CD">$E8CD</a></td>
+<td class="comment-1" rowspan="1">loop if more to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8D5"></span>E8D5</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="E8D6"></span>E8D6</td>
+<td class="bytes">8E 86 02</td>
+<td class="instruction">STX $0286</td>
+<td class="comment-1" rowspan="1">save the current colour code</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E8D9"></span>E8D9</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E8B3.html">E8B3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E8CB">Map</a></td>
+<td class="next">
+Next: <a href="E8DA.html">E8DA</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

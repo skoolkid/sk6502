@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EDFE</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EDEF.html">EDEF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EDFE">Map</a></td>
+<td class="next">
+Next: <a href="EE13.html">EE13</a>
+</td>
+</tr>
+</table>
+<div class="description">EDFE: command serial bus to UNLISTEN</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="F333.html">F333</a>, <a href="F5ED.html">F5ED</a> and <a href="FFAE.html">FFAE</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EDFE"></span>EDFE</td>
+<td class="bytes">A9 3F</td>
+<td class="instruction">LDA #$3F</td>
+<td class="comment-1" rowspan="1">set the UNLISTEN command</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EE00"></span>EE00</td>
+<td class="bytes">20 11 ED</td>
+<td class="instruction">JSR <a href="ED11.html">$ED11</a></td>
+<td class="comment-1" rowspan="1">send a control character</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EE03"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="ED40.html">ED40</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EE03"></span>EE03</td>
+<td class="bytes">20 BE ED</td>
+<td class="instruction">JSR <a href="EDBE.html">$EDBE</a></td>
+<td class="comment-1" rowspan="1">set serial ATN high</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EE06"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="EE13.html">EE13</a>.
+</div>
+<div class="paragraph">
+1ms delay, clock high then data high
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EE06"></span>EE06</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">save the device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EE07"></span>EE07</td>
+<td class="bytes">A2 0A</td>
+<td class="instruction">LDX #$0A</td>
+<td class="comment-1" rowspan="1">short delay</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EE09"></span>EE09</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement the count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EE0A"></span>EE0A</td>
+<td class="bytes">D0 FD</td>
+<td class="instruction">BNE <a href="EDFE.html#EE09">$EE09</a></td>
+<td class="comment-1" rowspan="1">loop if not all done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EE0C"></span>EE0C</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">restore the device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EE0D"></span>EE0D</td>
+<td class="bytes">20 85 EE</td>
+<td class="instruction">JSR <a href="EE85.html">$EE85</a></td>
+<td class="comment-1" rowspan="1">set the serial clock out high</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EE10"></span>EE10</td>
+<td class="bytes">4C 97 EE</td>
+<td class="instruction">JMP <a href="EE97.html">$EE97</a></td>
+<td class="comment-1" rowspan="1">set the serial data out high and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EDEF.html">EDEF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EDFE">Map</a></td>
+<td class="next">
+Next: <a href="EE13.html">EE13</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

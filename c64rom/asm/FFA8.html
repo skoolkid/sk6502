@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FFA8</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFA5.html">FFA5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFA8">Map</a></td>
+<td class="next">
+Next: <a href="FFAB.html">FFAB</a>
+</td>
+</tr>
+</table>
+<div class="description">FFA8: output a byte to serial bus</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+this routine is used to send information to devices on the serial bus. A call to this routine will put a data byte onto the serial bus using full handshaking. Before this routine is called the LISTEN routine, <a href="FFB1.html">FFB1</a>, must be used to command a device on the serial bus to get ready to receive data. the accumulator is loaded with a byte to output as data on the serial bus. A device must be listening or the status word will return a timeout. This routine always buffers one character. So when a call to the UNLISTEN routine, <a href="FFAE.html">FFAE</a>, is made to end the data transmission, the buffered character is sent with EOI set. Then the UNLISTEN command is sent to the device.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FFA8"></span>FFA8</td>
+<td class="bytes">4C DD ED</td>
+<td class="instruction">JMP <a href="EDDD.html">$EDDD</a></td>
+<td class="comment-1" rowspan="1">output byte to serial bus</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFA5.html">FFA5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFA8">Map</a></td>
+<td class="next">
+Next: <a href="FFAB.html">FFAB</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

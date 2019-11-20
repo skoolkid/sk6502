@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F1CA</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F1B8.html">F1B8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F1CA">Map</a></td>
+<td class="next">
+Next: <a href="F1DD.html">F1DD</a>
+</td>
+</tr>
+</table>
+<div class="description">F1CA: output character to channel</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F1CA"></span>F1CA</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save the character to output</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F1CB"></span>F1CB</td>
+<td class="bytes">A5 9A</td>
+<td class="instruction">LDA $9A</td>
+<td class="comment-1" rowspan="1">get the output device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F1CD"></span>F1CD</td>
+<td class="bytes">C9 03</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">compare the output device with the screen</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F1CF"></span>F1CF</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="F1CA.html#F1D5">$F1D5</a></td>
+<td class="comment-1" rowspan="1">if not the screen go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F1D1"></span>F1D1</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">else restore the output character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F1D2"></span>F1D2</td>
+<td class="bytes">4C 16 E7</td>
+<td class="instruction">JMP <a href="E716.html">$E716</a></td>
+<td class="comment-1" rowspan="1">go output the character to the screen</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F1D5"></span>F1D5</td>
+<td class="bytes">90 04</td>
+<td class="instruction">BCC <a href="F1CA.html#F1DB">$F1DB</a></td>
+<td class="comment-1" rowspan="1">if &lt; screen go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F1D7"></span>F1D7</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">else restore the output character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F1D8"></span>F1D8</td>
+<td class="bytes">4C DD ED</td>
+<td class="instruction">JMP <a href="EDDD.html">$EDDD</a></td>
+<td class="comment-1" rowspan="1">go output the character to the serial bus</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F1DB"></span>F1DB</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">shift b0 of the device into Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F1DC"></span>F1DC</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore the output character</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F1B8.html">F1B8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F1CA">Map</a></td>
+<td class="next">
+Next: <a href="F1DD.html">F1DD</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AAE8</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AAD7.html">AAD7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AAE8">Map</a></td>
+<td class="next">
+Next: <a href="AB1E.html">AB1E</a>
+</td>
+</tr>
+</table>
+<div class="description">AAE8: skip to the next TAB position</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="AAA0.html">AAA0</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AAE8"></span>AAE8</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set Cb for read cursor position</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAE9"></span>AAE9</td>
+<td class="bytes">20 F0 FF</td>
+<td class="instruction">JSR <a href="FFF0.html">$FFF0</a></td>
+<td class="comment-1" rowspan="1">read/set X,Y cursor position</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAEC"></span>AAEC</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy cursor Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAED"></span>AAED</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AAEE"></span>AAEE</td>
+<td class="bytes">E9 0A</td>
+<td class="instruction">SBC #$0A</td>
+<td class="comment-1" rowspan="1">subtract one TAB length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAF0"></span>AAF0</td>
+<td class="bytes">B0 FC</td>
+<td class="instruction">BCS <a href="AAE8.html#AAEE">$AAEE</a></td>
+<td class="comment-1" rowspan="1">loop if result was +ve</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAF2"></span>AAF2</td>
+<td class="bytes">49 FF</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">complement it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAF4"></span>AAF4</td>
+<td class="bytes">69 01</td>
+<td class="instruction">ADC #$01</td>
+<td class="comment-1" rowspan="1">+1, twos complement</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAF6"></span>AAF6</td>
+<td class="bytes">D0 16</td>
+<td class="instruction">BNE <a href="AAE8.html#AB0E">$AB0E</a></td>
+<td class="comment-1" rowspan="1">always print <span class="register">A</span> spaces, result is never $00</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AAF8"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AAA0.html">AAA0</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AAF8"></span>AAF8</td>
+<td class="bytes">08</td>
+<td class="instruction">PHP</td>
+<td class="comment-1" rowspan="1">save TAB( or SPC( status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAF9"></span>AAF9</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set Cb for read cursor position</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAFA"></span>AAFA</td>
+<td class="bytes">20 F0 FF</td>
+<td class="instruction">JSR <a href="FFF0.html">$FFF0</a></td>
+<td class="comment-1" rowspan="1">read/set X,Y cursor position</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAFD"></span>AAFD</td>
+<td class="bytes">84 09</td>
+<td class="instruction">STY $09</td>
+<td class="comment-1" rowspan="1">save current cursor position</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAFF"></span>AAFF</td>
+<td class="bytes">20 9B B7</td>
+<td class="instruction">JSR <a href="B79B.html">$B79B</a></td>
+<td class="comment-1" rowspan="1">scan and get byte parameter</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB02"></span>AB02</td>
+<td class="bytes">C9 29</td>
+<td class="instruction">CMP #")"</td>
+<td class="comment-1" rowspan="1">compare with ")"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB04"></span>AB04</td>
+<td class="bytes">D0 59</td>
+<td class="instruction">BNE <a href="AB4D.html#AB5F">$AB5F</a></td>
+<td class="comment-1" rowspan="1">if not ")" do syntax error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB06"></span>AB06</td>
+<td class="bytes">28</td>
+<td class="instruction">PLP</td>
+<td class="comment-1" rowspan="1">restore TAB( or SPC( status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB07"></span>AB07</td>
+<td class="bytes">90 06</td>
+<td class="instruction">BCC <a href="AAE8.html#AB0F">$AB0F</a></td>
+<td class="comment-1" rowspan="1">branch if was SPC(</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AB09"></span>
+<div class="comments">
+<div class="paragraph">
+else was TAB(
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB09"></span>AB09</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy TAB() byte to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB0A"></span>AB0A</td>
+<td class="bytes">E5 09</td>
+<td class="instruction">SBC $09</td>
+<td class="comment-1" rowspan="1">subtract current cursor position</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB0C"></span>AB0C</td>
+<td class="bytes">90 05</td>
+<td class="instruction">BCC <a href="AAE8.html#AB13">$AB13</a></td>
+<td class="comment-1" rowspan="1">go loop for next if already past requited position</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB0E"></span>AB0E</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy [SPACE] count to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB0F"></span>AB0F</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB10"></span>AB10</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB11"></span>AB11</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="AAE8.html#AB19">$AB19</a></td>
+<td class="comment-1" rowspan="1">branch if count was not zero</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AB13"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AAA0.html">AAA0</a>.
+</div>
+<div class="paragraph">
+was ";" or [SPACES] printed
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB13"></span>AB13</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB16"></span>AB16</td>
+<td class="bytes">4C A2 AA</td>
+<td class="instruction">JMP <a href="AAA0.html#AAA2">$AAA2</a></td>
+<td class="comment-1" rowspan="1">continue print loop</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AB19"></span>AB19</td>
+<td class="bytes">20 3B AB</td>
+<td class="instruction">JSR <a href="AB3B.html">$AB3B</a></td>
+<td class="comment-1" rowspan="1">print [SPACE] or [CURSOR RIGHT]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AB1C"></span>AB1C</td>
+<td class="bytes">D0 F2</td>
+<td class="instruction">BNE <a href="AAE8.html#AB10">$AB10</a></td>
+<td class="comment-1" rowspan="1">loop, branch always</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AAD7.html">AAD7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AAE8">Map</a></td>
+<td class="next">
+Next: <a href="AB1E.html">AB1E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

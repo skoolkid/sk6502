@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at ED40</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="ED21.html">ED21</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#ED40">Map</a></td>
+<td class="next">
+Next: <a href="EDB9.html">EDB9</a>
+</td>
+</tr>
+</table>
+<div class="description">ED40: Tx byte on serial bus</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="ED11.html">ED11</a> and <a href="EDDD.html">EDDD</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ED40"></span>ED40</td>
+<td class="bytes">78</td>
+<td class="instruction">SEI</td>
+<td class="comment-1" rowspan="1">disable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED41"></span>ED41</td>
+<td class="bytes">20 97 EE</td>
+<td class="instruction">JSR <a href="EE97.html">$EE97</a></td>
+<td class="comment-1" rowspan="1">set the serial data out high</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED44"></span>ED44</td>
+<td class="bytes">20 A9 EE</td>
+<td class="instruction">JSR <a href="EEA9.html">$EEA9</a></td>
+<td class="comment-1" rowspan="1">get the serial data status in Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED47"></span>ED47</td>
+<td class="bytes">B0 64</td>
+<td class="instruction">BCS <a href="ED40.html#EDAD">$EDAD</a></td>
+<td class="comment-1" rowspan="1">if the serial data is high go do 'device not present'</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED49"></span>ED49</td>
+<td class="bytes">20 85 EE</td>
+<td class="instruction">JSR <a href="EE85.html">$EE85</a></td>
+<td class="comment-1" rowspan="1">set the serial clock out high</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED4C"></span>ED4C</td>
+<td class="bytes">24 A3</td>
+<td class="instruction">BIT $A3</td>
+<td class="comment-1" rowspan="1">test the EOI flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED4E"></span>ED4E</td>
+<td class="bytes">10 0A</td>
+<td class="instruction">BPL <a href="ED40.html#ED5A">$ED5A</a></td>
+<td class="comment-1" rowspan="1">if not EOI go ??</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ED50"></span>
+<div class="comments">
+<div class="paragraph">
+I think this is the EOI sequence so the serial clock has been released and the serial data is being held low by the peripheral. first up wait for the serial data to rise
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ED50"></span>ED50</td>
+<td class="bytes">20 A9 EE</td>
+<td class="instruction">JSR <a href="EEA9.html">$EEA9</a></td>
+<td class="comment-1" rowspan="1">get the serial data status in Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED53"></span>ED53</td>
+<td class="bytes">90 FB</td>
+<td class="instruction">BCC <a href="ED40.html#ED50">$ED50</a></td>
+<td class="comment-1" rowspan="1">loop if the data is low</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ED55"></span>
+<div class="comments">
+<div class="paragraph">
+now the data is high, EOI is signalled by waiting for at least 200&#956;s without pulling the serial clock line low again. the listener should respond by pulling the serial data line low
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ED55"></span>ED55</td>
+<td class="bytes">20 A9 EE</td>
+<td class="instruction">JSR <a href="EEA9.html">$EEA9</a></td>
+<td class="comment-1" rowspan="1">get the serial data status in Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED58"></span>ED58</td>
+<td class="bytes">B0 FB</td>
+<td class="instruction">BCS <a href="ED40.html#ED55">$ED55</a></td>
+<td class="comment-1" rowspan="1">loop if the data is high</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ED5A"></span>
+<div class="comments">
+<div class="paragraph">
+the serial data has gone low ending the EOI sequence, now just wait for the serial data line to go high again or, if this isn't an EOI sequence, just wait for the serial data to go high the first time
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ED5A"></span>ED5A</td>
+<td class="bytes">20 A9 EE</td>
+<td class="instruction">JSR <a href="EEA9.html">$EEA9</a></td>
+<td class="comment-1" rowspan="1">get the serial data status in Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED5D"></span>ED5D</td>
+<td class="bytes">90 FB</td>
+<td class="instruction">BCC <a href="ED40.html#ED5A">$ED5A</a></td>
+<td class="comment-1" rowspan="1">loop if the data is low</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ED5F"></span>
+<div class="comments">
+<div class="paragraph">
+serial data is high now pull the clock low, preferably within 60&#956;s
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED5F"></span>ED5F</td>
+<td class="bytes">20 8E EE</td>
+<td class="instruction">JSR <a href="EE8E.html">$EE8E</a></td>
+<td class="comment-1" rowspan="1">set the serial clock out low</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ED62"></span>
+<div class="comments">
+<div class="paragraph">
+now the C64 has to send the eight bits, LSB first. first it sets the serial data line to reflect the bit in the byte, then it sets the serial clock to high. The serial clock is left high for 26 cycles, 23&#956;s on a PAL Vic, before it is again pulled low and the serial data is allowed high again
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED62"></span>ED62</td>
+<td class="bytes">A9 08</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="1">eight bits to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED64"></span>ED64</td>
+<td class="bytes">85 A5</td>
+<td class="instruction">STA $A5</td>
+<td class="comment-1" rowspan="1">set serial bus bit count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ED66"></span>ED66</td>
+<td class="bytes">AD 00 DD</td>
+<td class="instruction">LDA $DD00</td>
+<td class="comment-1" rowspan="1">read VIA 2 DRA, serial port and video address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED69"></span>ED69</td>
+<td class="bytes">CD 00 DD</td>
+<td class="instruction">CMP $DD00</td>
+<td class="comment-1" rowspan="1">compare it with itself</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED6C"></span>ED6C</td>
+<td class="bytes">D0 F8</td>
+<td class="instruction">BNE <a href="ED40.html#ED66">$ED66</a></td>
+<td class="comment-1" rowspan="1">if changed go try again</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED6E"></span>ED6E</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">shift the serial data into Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED6F"></span>ED6F</td>
+<td class="bytes">90 3F</td>
+<td class="instruction">BCC <a href="ED40.html#EDB0">$EDB0</a></td>
+<td class="comment-1" rowspan="1">if the serial data is low go do serial bus timeout</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED71"></span>ED71</td>
+<td class="bytes">66 95</td>
+<td class="instruction">ROR $95</td>
+<td class="comment-1" rowspan="1">rotate the transmit byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED73"></span>ED73</td>
+<td class="bytes">B0 05</td>
+<td class="instruction">BCS <a href="ED40.html#ED7A">$ED7A</a></td>
+<td class="comment-1" rowspan="1">if the bit = 1 go set the serial data out high</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED75"></span>ED75</td>
+<td class="bytes">20 A0 EE</td>
+<td class="instruction">JSR <a href="EEA0.html">$EEA0</a></td>
+<td class="comment-1" rowspan="1">else set the serial data out low</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED78"></span>ED78</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="ED40.html#ED7D">$ED7D</a></td>
+<td class="comment-1" rowspan="1">continue, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ED7A"></span>ED7A</td>
+<td class="bytes">20 97 EE</td>
+<td class="instruction">JSR <a href="EE97.html">$EE97</a></td>
+<td class="comment-1" rowspan="1">set the serial data out high</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ED7D"></span>ED7D</td>
+<td class="bytes">20 85 EE</td>
+<td class="instruction">JSR <a href="EE85.html">$EE85</a></td>
+<td class="comment-1" rowspan="1">set the serial clock out high</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED80"></span>ED80</td>
+<td class="bytes">EA</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1">waste ..</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED81"></span>ED81</td>
+<td class="bytes">EA</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1">.. a ..</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED82"></span>ED82</td>
+<td class="bytes">EA</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1">.. cycle ..</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED83"></span>ED83</td>
+<td class="bytes">EA</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1">.. or two</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED84"></span>ED84</td>
+<td class="bytes">AD 00 DD</td>
+<td class="instruction">LDA $DD00</td>
+<td class="comment-1" rowspan="1">read VIA 2 DRA, serial port and video address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED87"></span>ED87</td>
+<td class="bytes">29 DF</td>
+<td class="instruction">AND #%11011111</td>
+<td class="comment-1" rowspan="1">mask xx0x xxxx, set the serial data out high</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED89"></span>ED89</td>
+<td class="bytes">09 10</td>
+<td class="instruction">ORA #%00010000</td>
+<td class="comment-1" rowspan="1">mask xxx1 xxxx, set the serial clock out low</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED8B"></span>ED8B</td>
+<td class="bytes">8D 00 DD</td>
+<td class="instruction">STA $DD00</td>
+<td class="comment-1" rowspan="1">save VIA 2 DRA, serial port and video address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED8E"></span>ED8E</td>
+<td class="bytes">C6 A5</td>
+<td class="instruction">DEC $A5</td>
+<td class="comment-1" rowspan="1">decrement the serial bus bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED90"></span>ED90</td>
+<td class="bytes">D0 D4</td>
+<td class="instruction">BNE <a href="ED40.html#ED66">$ED66</a></td>
+<td class="comment-1" rowspan="1">loop if not all done</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ED92"></span>
+<div class="comments">
+<div class="paragraph">
+now all eight bits have been sent it's up to the peripheral to signal the byte was received by pulling the serial data low. this should be done within one milisecond
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED92"></span>ED92</td>
+<td class="bytes">A9 04</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="1">wait for up to about 1ms</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED94"></span>ED94</td>
+<td class="bytes">8D 07 DC</td>
+<td class="instruction">STA $DC07</td>
+<td class="comment-1" rowspan="1">save VIA 1 timer B high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED97"></span>ED97</td>
+<td class="bytes">A9 19</td>
+<td class="instruction">LDA #$19</td>
+<td class="comment-1" rowspan="1">load timer B, timer B single shot, start timer B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED99"></span>ED99</td>
+<td class="bytes">8D 0F DC</td>
+<td class="instruction">STA $DC0F</td>
+<td class="comment-1" rowspan="1">save VIA 1 CRB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ED9C"></span>ED9C</td>
+<td class="bytes">AD 0D DC</td>
+<td class="instruction">LDA $DC0D</td>
+<td class="comment-1" rowspan="1">read VIA 1 ICR</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ED9F"></span>ED9F</td>
+<td class="bytes">AD 0D DC</td>
+<td class="instruction">LDA $DC0D</td>
+<td class="comment-1" rowspan="1">read VIA 1 ICR</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDA2"></span>EDA2</td>
+<td class="bytes">29 02</td>
+<td class="instruction">AND #%00000010</td>
+<td class="comment-1" rowspan="1">mask 0000 00x0, timer A interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDA4"></span>EDA4</td>
+<td class="bytes">D0 0A</td>
+<td class="instruction">BNE <a href="ED40.html#EDB0">$EDB0</a></td>
+<td class="comment-1" rowspan="1">if timer A interrupt go do serial bus timeout</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDA6"></span>EDA6</td>
+<td class="bytes">20 A9 EE</td>
+<td class="instruction">JSR <a href="EEA9.html">$EEA9</a></td>
+<td class="comment-1" rowspan="1">get the serial data status in Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDA9"></span>EDA9</td>
+<td class="bytes">B0 F4</td>
+<td class="instruction">BCS <a href="ED40.html#ED9F">$ED9F</a></td>
+<td class="comment-1" rowspan="1">if the serial data is high go wait some more</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDAB"></span>EDAB</td>
+<td class="bytes">58</td>
+<td class="instruction">CLI</td>
+<td class="comment-1" rowspan="1">enable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDAC"></span>EDAC</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EDAD"></span>
+<div class="comments">
+<div class="paragraph">
+device not present
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EDAD"></span>EDAD</td>
+<td class="bytes">A9 80</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1">error $80, device not present</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDAF"></span>EDAF</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $03A9</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EDB0"></span>
+<div class="comments">
+<div class="paragraph">
+timeout on serial bus
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EDB0"></span>EDB0</td>
+<td class="bytes">A9 03</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="1">error $03, read timeout, write timeout</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EDB2"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="EE13.html">EE13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EDB2"></span>EDB2</td>
+<td class="bytes">20 1C FE</td>
+<td class="instruction">JSR <a href="FE1C.html">$FE1C</a></td>
+<td class="comment-1" rowspan="1">OR into the serial status byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDB5"></span>EDB5</td>
+<td class="bytes">58</td>
+<td class="instruction">CLI</td>
+<td class="comment-1" rowspan="1">enable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDB6"></span>EDB6</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear for branch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EDB7"></span>EDB7</td>
+<td class="bytes">90 4A</td>
+<td class="instruction">BCC <a href="EDFE.html#EE03">$EE03</a></td>
+<td class="comment-1" rowspan="1">ATN high, delay, clock high then data high, branch always</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="ED21.html">ED21</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#ED40">Map</a></td>
+<td class="next">
+Next: <a href="EDB9.html">EDB9</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

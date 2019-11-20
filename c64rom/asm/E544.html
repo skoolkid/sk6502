@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E544</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E518.html">E518</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E544">Map</a></td>
+<td class="next">
+Next: <a href="E566.html">E566</a>
+</td>
+</tr>
+</table>
+<div class="description">E544: clear the screen</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E716.html">E716</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E544"></span>E544</td>
+<td class="bytes">AD 88 02</td>
+<td class="instruction">LDA $0288</td>
+<td class="comment-1" rowspan="1">get the screen memory page</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E547"></span>E547</td>
+<td class="bytes">09 80</td>
+<td class="instruction">ORA #$80</td>
+<td class="comment-1" rowspan="1">set the high bit, flag every line is a logical line start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E549"></span>E549</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy to <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E54A"></span>E54A</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear the line start low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E54C"></span>E54C</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">clear the index</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E54D"></span>E54D</td>
+<td class="bytes">94 D9</td>
+<td class="instruction">STY $D9,X</td>
+<td class="comment-1" rowspan="1">save the start of line <span class="register">X</span> pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E54F"></span>E54F</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E550"></span>E550</td>
+<td class="bytes">69 28</td>
+<td class="instruction">ADC #$28</td>
+<td class="comment-1" rowspan="1">add the line length to the low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E552"></span>E552</td>
+<td class="bytes">90 01</td>
+<td class="instruction">BCC <a href="E544.html#E555">$E555</a></td>
+<td class="comment-1" rowspan="1">if no rollover skip the high byte increment</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E554"></span>E554</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">else increment the high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E555"></span>E555</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment the line index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E556"></span>E556</td>
+<td class="bytes">E0 1A</td>
+<td class="instruction">CPX #$1A</td>
+<td class="comment-1" rowspan="1">compare it with the number of lines + 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E558"></span>E558</td>
+<td class="bytes">D0 F3</td>
+<td class="instruction">BNE <a href="E544.html#E54D">$E54D</a></td>
+<td class="comment-1" rowspan="1">loop if not all done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E55A"></span>E55A</td>
+<td class="bytes">A9 FF</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="1">set the end of table marker</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E55C"></span>E55C</td>
+<td class="bytes">95 D9</td>
+<td class="instruction">STA $D9,X</td>
+<td class="comment-1" rowspan="1">mark the end of the table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E55E"></span>E55E</td>
+<td class="bytes">A2 18</td>
+<td class="instruction">LDX #$18</td>
+<td class="comment-1" rowspan="1">set the line count, 25 lines to do, 0 to 24</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E560"></span>E560</td>
+<td class="bytes">20 FF E9</td>
+<td class="instruction">JSR <a href="E9FF.html">$E9FF</a></td>
+<td class="comment-1" rowspan="1">clear screen line <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E563"></span>E563</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement the count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E564"></span>E564</td>
+<td class="bytes">10 FA</td>
+<td class="instruction">BPL <a href="E544.html#E560">$E560</a></td>
+<td class="comment-1" rowspan="1">loop if more to do</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E518.html">E518</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E544">Map</a></td>
+<td class="next">
+Next: <a href="E566.html">E566</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

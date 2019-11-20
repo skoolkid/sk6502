@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AE43</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AE38.html">AE38</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AE43">Map</a></td>
+<td class="next">
+Next: <a href="AE58.html">AE58</a>
+</td>
+</tr>
+</table>
+<div class="description">AE43: round FAC1 and put on stack</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="A742.html">A742</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AE43"></span>AE43</td>
+<td class="bytes">20 1B BC</td>
+<td class="instruction">JSR <a href="BC1B.html">$BC1B</a></td>
+<td class="comment-1" rowspan="1">round FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE46"></span>AE46</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE48"></span>AE48</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE49"></span>AE49</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE4B"></span>AE4B</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE4C"></span>AE4C</td>
+<td class="bytes">A5 63</td>
+<td class="instruction">LDA $63</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE4E"></span>AE4E</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE4F"></span>AE4F</td>
+<td class="bytes">A5 62</td>
+<td class="instruction">LDA $62</td>
+<td class="comment-1" rowspan="1">get FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE51"></span>AE51</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE52"></span>AE52</td>
+<td class="bytes">A5 61</td>
+<td class="instruction">LDA $61</td>
+<td class="comment-1" rowspan="1">get FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE54"></span>AE54</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AE55"></span>AE55</td>
+<td class="bytes">6C 22 00</td>
+<td class="instruction">JMP ($0022)</td>
+<td class="comment-1" rowspan="1">return, sort of</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AE38.html">AE38</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AE43">Map</a></td>
+<td class="next">
+Next: <a href="AE58.html">AE58</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

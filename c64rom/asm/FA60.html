@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FA60</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F92C.html">F92C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FA60">Map</a></td>
+<td class="next">
+Next: <a href="FB8E.html">FB8E</a>
+</td>
+</tr>
+</table>
+<div class="description">FA60: store character</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F92C.html">F92C</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FA60"></span>FA60</td>
+<td class="bytes">20 97 FB</td>
+<td class="instruction">JSR <a href="FB97.html">$FB97</a></td>
+<td class="comment-1" rowspan="1">new tape byte setup</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA63"></span>FA63</td>
+<td class="bytes">85 9C</td>
+<td class="instruction">STA $9C</td>
+<td class="comment-1" rowspan="1">clear byte received flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA65"></span>FA65</td>
+<td class="bytes">A2 DA</td>
+<td class="instruction">LDX #$DA</td>
+<td class="comment-1" rowspan="1">set timimg max byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA67"></span>FA67</td>
+<td class="bytes">20 E2 F8</td>
+<td class="instruction">JSR <a href="F8E2.html">$F8E2</a></td>
+<td class="comment-1" rowspan="1">set timing</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA6A"></span>FA6A</td>
+<td class="bytes">A5 BE</td>
+<td class="instruction">LDA $BE</td>
+<td class="comment-1" rowspan="1">get copies count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA6C"></span>FA6C</td>
+<td class="bytes">F0 02</td>
+<td class="instruction">BEQ <a href="FA60.html#FA70">$FA70</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA6E"></span>FA6E</td>
+<td class="bytes">85 A7</td>
+<td class="instruction">STA $A7</td>
+<td class="comment-1" rowspan="1">save receiver input bit temporary storage</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FA70"></span>FA70</td>
+<td class="bytes">A9 0F</td>
+<td class="instruction">LDA #$0F</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA72"></span>FA72</td>
+<td class="bytes">24 AA</td>
+<td class="instruction">BIT $AA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA74"></span>FA74</td>
+<td class="bytes">10 17</td>
+<td class="instruction">BPL <a href="FA60.html#FA8D">$FA8D</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA76"></span>FA76</td>
+<td class="bytes">A5 B5</td>
+<td class="instruction">LDA $B5</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA78"></span>FA78</td>
+<td class="bytes">D0 0C</td>
+<td class="instruction">BNE <a href="FA60.html#FA86">$FA86</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA7A"></span>FA7A</td>
+<td class="bytes">A6 BE</td>
+<td class="instruction">LDX $BE</td>
+<td class="comment-1" rowspan="1">get copies count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA7C"></span>FA7C</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA7D"></span>FA7D</td>
+<td class="bytes">D0 0B</td>
+<td class="instruction">BNE <a href="FA60.html#FA8A">$FA8A</a></td>
+<td class="comment-1" rowspan="1">if ?? restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA7F"></span>FA7F</td>
+<td class="bytes">A9 08</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="1">set short block</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA81"></span>FA81</td>
+<td class="bytes">20 1C FE</td>
+<td class="instruction">JSR <a href="FE1C.html">$FE1C</a></td>
+<td class="comment-1" rowspan="1">OR into serial status byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA84"></span>FA84</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="FA60.html#FA8A">$FA8A</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FA86"></span>FA86</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA88"></span>FA88</td>
+<td class="bytes">85 AA</td>
+<td class="instruction">STA $AA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FA8A"></span>FA8A</td>
+<td class="bytes">4C BC FE</td>
+<td class="instruction">JMP <a href="FE72.html#FEBC">$FEBC</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FA8D"></span>FA8D</td>
+<td class="bytes">70 31</td>
+<td class="instruction">BVS <a href="FA60.html#FAC0">$FAC0</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA8F"></span>FA8F</td>
+<td class="bytes">D0 18</td>
+<td class="instruction">BNE <a href="FA60.html#FAA9">$FAA9</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA91"></span>FA91</td>
+<td class="bytes">A5 B5</td>
+<td class="instruction">LDA $B5</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA93"></span>FA93</td>
+<td class="bytes">D0 F5</td>
+<td class="instruction">BNE <a href="FA60.html#FA8A">$FA8A</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA95"></span>FA95</td>
+<td class="bytes">A5 B6</td>
+<td class="instruction">LDA $B6</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA97"></span>FA97</td>
+<td class="bytes">D0 F1</td>
+<td class="instruction">BNE <a href="FA60.html#FA8A">$FA8A</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA99"></span>FA99</td>
+<td class="bytes">A5 A7</td>
+<td class="instruction">LDA $A7</td>
+<td class="comment-1" rowspan="1">get receiver input bit temporary storage</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA9B"></span>FA9B</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA9C"></span>FA9C</td>
+<td class="bytes">A5 BD</td>
+<td class="instruction">LDA $BD</td>
+<td class="comment-1" rowspan="1">get RS232 parity byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FA9E"></span>FA9E</td>
+<td class="bytes">30 03</td>
+<td class="instruction">BMI <a href="FA60.html#FAA3">$FAA3</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAA0"></span>FAA0</td>
+<td class="bytes">90 18</td>
+<td class="instruction">BCC <a href="FA60.html#FABA">$FABA</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAA2"></span>FAA2</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FAA3"></span>FAA3</td>
+<td class="bytes">B0 15</td>
+<td class="instruction">BCS <a href="FA60.html#FABA">$FABA</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAA5"></span>FAA5</td>
+<td class="bytes">29 0F</td>
+<td class="instruction">AND #$0F</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAA7"></span>FAA7</td>
+<td class="bytes">85 AA</td>
+<td class="instruction">STA $AA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FAA9"></span>FAA9</td>
+<td class="bytes">C6 AA</td>
+<td class="instruction">DEC $AA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAAB"></span>FAAB</td>
+<td class="bytes">D0 DD</td>
+<td class="instruction">BNE <a href="FA60.html#FA8A">$FA8A</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAAD"></span>FAAD</td>
+<td class="bytes">A9 40</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAAF"></span>FAAF</td>
+<td class="bytes">85 AA</td>
+<td class="instruction">STA $AA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAB1"></span>FAB1</td>
+<td class="bytes">20 8E FB</td>
+<td class="instruction">JSR <a href="FB8E.html">$FB8E</a></td>
+<td class="comment-1" rowspan="1">copy I/O start address to buffer address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAB4"></span>FAB4</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAB6"></span>FAB6</td>
+<td class="bytes">85 AB</td>
+<td class="instruction">STA $AB</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAB8"></span>FAB8</td>
+<td class="bytes">F0 D0</td>
+<td class="instruction">BEQ <a href="FA60.html#FA8A">$FA8A</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FABA"></span>FABA</td>
+<td class="bytes">A9 80</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FABC"></span>FABC</td>
+<td class="bytes">85 AA</td>
+<td class="instruction">STA $AA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FABE"></span>FABE</td>
+<td class="bytes">D0 CA</td>
+<td class="instruction">BNE <a href="FA60.html#FA8A">$FA8A</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FAC0"></span>FAC0</td>
+<td class="bytes">A5 B5</td>
+<td class="instruction">LDA $B5</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAC2"></span>FAC2</td>
+<td class="bytes">F0 0A</td>
+<td class="instruction">BEQ <a href="FA60.html#FACE">$FACE</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAC4"></span>FAC4</td>
+<td class="bytes">A9 04</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAC6"></span>FAC6</td>
+<td class="bytes">20 1C FE</td>
+<td class="instruction">JSR <a href="FE1C.html">$FE1C</a></td>
+<td class="comment-1" rowspan="1">OR into serial status byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAC9"></span>FAC9</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FACB"></span>FACB</td>
+<td class="bytes">4C 4A FB</td>
+<td class="instruction">JMP <a href="FA60.html#FB4A">$FB4A</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FACE"></span>FACE</td>
+<td class="bytes">20 D1 FC</td>
+<td class="instruction">JSR <a href="FCD1.html">$FCD1</a></td>
+<td class="comment-1" rowspan="1">check read/write pointer, return Cb = 1 if pointer &gt;= end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAD1"></span>FAD1</td>
+<td class="bytes">90 03</td>
+<td class="instruction">BCC <a href="FA60.html#FAD6">$FAD6</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAD3"></span>FAD3</td>
+<td class="bytes">4C 48 FB</td>
+<td class="instruction">JMP <a href="FA60.html#FB48">$FB48</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FAD6"></span>FAD6</td>
+<td class="bytes">A6 A7</td>
+<td class="instruction">LDX $A7</td>
+<td class="comment-1" rowspan="1">get receiver input bit temporary storage</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAD8"></span>FAD8</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAD9"></span>FAD9</td>
+<td class="bytes">F0 2D</td>
+<td class="instruction">BEQ <a href="FA60.html#FB08">$FB08</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FADB"></span>FADB</td>
+<td class="bytes">A5 93</td>
+<td class="instruction">LDA $93</td>
+<td class="comment-1" rowspan="1">get load/verify flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FADD"></span>FADD</td>
+<td class="bytes">F0 0C</td>
+<td class="instruction">BEQ <a href="FA60.html#FAEB">$FAEB</a></td>
+<td class="comment-1" rowspan="1">if load go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FADF"></span>FADF</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAE1"></span>FAE1</td>
+<td class="bytes">A5 BD</td>
+<td class="instruction">LDA $BD</td>
+<td class="comment-1" rowspan="1">get RS232 parity byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAE3"></span>FAE3</td>
+<td class="bytes">D1 AC</td>
+<td class="instruction">CMP ($AC),Y</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAE5"></span>FAE5</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="FA60.html#FAEB">$FAEB</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAE7"></span>FAE7</td>
+<td class="bytes">A9 01</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAE9"></span>FAE9</td>
+<td class="bytes">85 B6</td>
+<td class="instruction">STA $B6</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FAEB"></span>FAEB</td>
+<td class="bytes">A5 B6</td>
+<td class="instruction">LDA $B6</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAED"></span>FAED</td>
+<td class="bytes">F0 4B</td>
+<td class="instruction">BEQ <a href="FA60.html#FB3A">$FB3A</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAEF"></span>FAEF</td>
+<td class="bytes">A2 3D</td>
+<td class="instruction">LDX #$3D</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAF1"></span>FAF1</td>
+<td class="bytes">E4 9E</td>
+<td class="instruction">CPX $9E</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAF3"></span>FAF3</td>
+<td class="bytes">90 3E</td>
+<td class="instruction">BCC <a href="FA60.html#FB33">$FB33</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAF5"></span>FAF5</td>
+<td class="bytes">A6 9E</td>
+<td class="instruction">LDX $9E</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAF7"></span>FAF7</td>
+<td class="bytes">A5 AD</td>
+<td class="instruction">LDA $AD</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAF9"></span>FAF9</td>
+<td class="bytes">9D 01 01</td>
+<td class="instruction">STA $0101,X</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAFC"></span>FAFC</td>
+<td class="bytes">A5 AC</td>
+<td class="instruction">LDA $AC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FAFE"></span>FAFE</td>
+<td class="bytes">9D 00 01</td>
+<td class="instruction">STA $0100,X</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB01"></span>FB01</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB02"></span>FB02</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB03"></span>FB03</td>
+<td class="bytes">86 9E</td>
+<td class="instruction">STX $9E</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB05"></span>FB05</td>
+<td class="bytes">4C 3A FB</td>
+<td class="instruction">JMP <a href="FA60.html#FB3A">$FB3A</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FB08"></span>FB08</td>
+<td class="bytes">A6 9F</td>
+<td class="instruction">LDX $9F</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB0A"></span>FB0A</td>
+<td class="bytes">E4 9E</td>
+<td class="instruction">CPX $9E</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB0C"></span>FB0C</td>
+<td class="bytes">F0 35</td>
+<td class="instruction">BEQ <a href="FA60.html#FB43">$FB43</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB0E"></span>FB0E</td>
+<td class="bytes">A5 AC</td>
+<td class="instruction">LDA $AC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB10"></span>FB10</td>
+<td class="bytes">DD 00 01</td>
+<td class="instruction">CMP $0100,X</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB13"></span>FB13</td>
+<td class="bytes">D0 2E</td>
+<td class="instruction">BNE <a href="FA60.html#FB43">$FB43</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB15"></span>FB15</td>
+<td class="bytes">A5 AD</td>
+<td class="instruction">LDA $AD</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB17"></span>FB17</td>
+<td class="bytes">DD 01 01</td>
+<td class="instruction">CMP $0101,X</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB1A"></span>FB1A</td>
+<td class="bytes">D0 27</td>
+<td class="instruction">BNE <a href="FA60.html#FB43">$FB43</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB1C"></span>FB1C</td>
+<td class="bytes">E6 9F</td>
+<td class="instruction">INC $9F</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB1E"></span>FB1E</td>
+<td class="bytes">E6 9F</td>
+<td class="instruction">INC $9F</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB20"></span>FB20</td>
+<td class="bytes">A5 93</td>
+<td class="instruction">LDA $93</td>
+<td class="comment-1" rowspan="1">get load/verify flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB22"></span>FB22</td>
+<td class="bytes">F0 0B</td>
+<td class="instruction">BEQ <a href="FA60.html#FB2F">$FB2F</a></td>
+<td class="comment-1" rowspan="1">if load ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB24"></span>FB24</td>
+<td class="bytes">A5 BD</td>
+<td class="instruction">LDA $BD</td>
+<td class="comment-1" rowspan="1">get RS232 parity byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB26"></span>FB26</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB28"></span>FB28</td>
+<td class="bytes">D1 AC</td>
+<td class="instruction">CMP ($AC),Y</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB2A"></span>FB2A</td>
+<td class="bytes">F0 17</td>
+<td class="instruction">BEQ <a href="FA60.html#FB43">$FB43</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB2C"></span>FB2C</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB2D"></span>FB2D</td>
+<td class="bytes">84 B6</td>
+<td class="instruction">STY $B6</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FB2F"></span>FB2F</td>
+<td class="bytes">A5 B6</td>
+<td class="instruction">LDA $B6</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB31"></span>FB31</td>
+<td class="bytes">F0 07</td>
+<td class="instruction">BEQ <a href="FA60.html#FB3A">$FB3A</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FB33"></span>FB33</td>
+<td class="bytes">A9 10</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB35"></span>FB35</td>
+<td class="bytes">20 1C FE</td>
+<td class="instruction">JSR <a href="FE1C.html">$FE1C</a></td>
+<td class="comment-1" rowspan="1">OR into serial status byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB38"></span>FB38</td>
+<td class="bytes">D0 09</td>
+<td class="instruction">BNE <a href="FA60.html#FB43">$FB43</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FB3A"></span>FB3A</td>
+<td class="bytes">A5 93</td>
+<td class="instruction">LDA $93</td>
+<td class="comment-1" rowspan="1">get load/verify flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB3C"></span>FB3C</td>
+<td class="bytes">D0 05</td>
+<td class="instruction">BNE <a href="FA60.html#FB43">$FB43</a></td>
+<td class="comment-1" rowspan="1">if verify go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB3E"></span>FB3E</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB3F"></span>FB3F</td>
+<td class="bytes">A5 BD</td>
+<td class="instruction">LDA $BD</td>
+<td class="comment-1" rowspan="1">get RS232 parity byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB41"></span>FB41</td>
+<td class="bytes">91 AC</td>
+<td class="instruction">STA ($AC),Y</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FB43"></span>FB43</td>
+<td class="bytes">20 DB FC</td>
+<td class="instruction">JSR <a href="FCDB.html">$FCDB</a></td>
+<td class="comment-1" rowspan="1">increment read/write pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB46"></span>FB46</td>
+<td class="bytes">D0 43</td>
+<td class="instruction">BNE <a href="FA60.html#FB8B">$FB8B</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FB48"></span>FB48</td>
+<td class="bytes">A9 80</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FB4A"></span>FB4A</td>
+<td class="bytes">85 AA</td>
+<td class="instruction">STA $AA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB4C"></span>FB4C</td>
+<td class="bytes">78</td>
+<td class="instruction">SEI</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB4D"></span>FB4D</td>
+<td class="bytes">A2 01</td>
+<td class="instruction">LDX #$01</td>
+<td class="comment-1" rowspan="1">disable timer A interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB4F"></span>FB4F</td>
+<td class="bytes">8E 0D DC</td>
+<td class="instruction">STX $DC0D</td>
+<td class="comment-1" rowspan="1">save VIA 1 ICR</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB52"></span>FB52</td>
+<td class="bytes">AE 0D DC</td>
+<td class="instruction">LDX $DC0D</td>
+<td class="comment-1" rowspan="1">read VIA 1 ICR</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB55"></span>FB55</td>
+<td class="bytes">A6 BE</td>
+<td class="instruction">LDX $BE</td>
+<td class="comment-1" rowspan="1">get copies count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB57"></span>FB57</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB58"></span>FB58</td>
+<td class="bytes">30 02</td>
+<td class="instruction">BMI <a href="FA60.html#FB5C">$FB5C</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB5A"></span>FB5A</td>
+<td class="bytes">86 BE</td>
+<td class="instruction">STX $BE</td>
+<td class="comment-1" rowspan="1">save copies count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FB5C"></span>FB5C</td>
+<td class="bytes">C6 A7</td>
+<td class="instruction">DEC $A7</td>
+<td class="comment-1" rowspan="1">decrement receiver input bit temporary storage</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB5E"></span>FB5E</td>
+<td class="bytes">F0 08</td>
+<td class="instruction">BEQ <a href="FA60.html#FB68">$FB68</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB60"></span>FB60</td>
+<td class="bytes">A5 9E</td>
+<td class="instruction">LDA $9E</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB62"></span>FB62</td>
+<td class="bytes">D0 27</td>
+<td class="instruction">BNE <a href="FA60.html#FB8B">$FB8B</a></td>
+<td class="comment-1" rowspan="1">if ?? restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB64"></span>FB64</td>
+<td class="bytes">85 BE</td>
+<td class="instruction">STA $BE</td>
+<td class="comment-1" rowspan="1">save copies count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB66"></span>FB66</td>
+<td class="bytes">F0 23</td>
+<td class="instruction">BEQ <a href="FA60.html#FB8B">$FB8B</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FB68"></span>FB68</td>
+<td class="bytes">20 93 FC</td>
+<td class="instruction">JSR <a href="FC93.html">$FC93</a></td>
+<td class="comment-1" rowspan="1">restore everything for STOP</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB6B"></span>FB6B</td>
+<td class="bytes">20 8E FB</td>
+<td class="instruction">JSR <a href="FB8E.html">$FB8E</a></td>
+<td class="comment-1" rowspan="1">copy I/O start address to buffer address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB6E"></span>FB6E</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB70"></span>FB70</td>
+<td class="bytes">84 AB</td>
+<td class="instruction">STY $AB</td>
+<td class="comment-1" rowspan="1">clear checksum</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FB72"></span>FB72</td>
+<td class="bytes">B1 AC</td>
+<td class="instruction">LDA ($AC),Y</td>
+<td class="comment-1" rowspan="1">get byte from buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB74"></span>FB74</td>
+<td class="bytes">45 AB</td>
+<td class="instruction">EOR $AB</td>
+<td class="comment-1" rowspan="1">XOR with checksum</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB76"></span>FB76</td>
+<td class="bytes">85 AB</td>
+<td class="instruction">STA $AB</td>
+<td class="comment-1" rowspan="1">save new checksum</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB78"></span>FB78</td>
+<td class="bytes">20 DB FC</td>
+<td class="instruction">JSR <a href="FCDB.html">$FCDB</a></td>
+<td class="comment-1" rowspan="1">increment read/write pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB7B"></span>FB7B</td>
+<td class="bytes">20 D1 FC</td>
+<td class="instruction">JSR <a href="FCD1.html">$FCD1</a></td>
+<td class="comment-1" rowspan="1">check read/write pointer, return Cb = 1 if pointer &gt;= end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB7E"></span>FB7E</td>
+<td class="bytes">90 F2</td>
+<td class="instruction">BCC <a href="FA60.html#FB72">$FB72</a></td>
+<td class="comment-1" rowspan="1">loop if not at end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB80"></span>FB80</td>
+<td class="bytes">A5 AB</td>
+<td class="instruction">LDA $AB</td>
+<td class="comment-1" rowspan="1">get computed checksum</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB82"></span>FB82</td>
+<td class="bytes">45 BD</td>
+<td class="instruction">EOR $BD</td>
+<td class="comment-1" rowspan="1">compare with stored checksum ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB84"></span>FB84</td>
+<td class="bytes">F0 05</td>
+<td class="instruction">BEQ <a href="FA60.html#FB8B">$FB8B</a></td>
+<td class="comment-1" rowspan="1">if checksum ok restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB86"></span>FB86</td>
+<td class="bytes">A9 20</td>
+<td class="instruction">LDA #$20</td>
+<td class="comment-1" rowspan="1">else set checksum error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FB88"></span>FB88</td>
+<td class="bytes">20 1C FE</td>
+<td class="instruction">JSR <a href="FE1C.html">$FE1C</a></td>
+<td class="comment-1" rowspan="1">OR into the serial status byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FB8B"></span>FB8B</td>
+<td class="bytes">4C BC FE</td>
+<td class="instruction">JMP <a href="FE72.html#FEBC">$FEBC</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F92C.html">F92C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FA60">Map</a></td>
+<td class="next">
+Next: <a href="FB8E.html">FB8E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

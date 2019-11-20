@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FE34</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FE2D.html">FE2D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FE34">Map</a></td>
+<td class="next">
+Next: <a href="FE43.html">FE43</a>
+</td>
+</tr>
+</table>
+<div class="description">FE34: read/set the bottom of memory</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="FF9C.html">FF9C</a>.
+</div>
+<div class="paragraph">
+Cb = 1 to read, Cb = 0 to set
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FE34"></span>FE34</td>
+<td class="bytes">90 06</td>
+<td class="instruction">BCC <a href="FE34.html#FE3C">$FE3C</a></td>
+<td class="comment-1" rowspan="1">if Cb clear go set the bottom of memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE36"></span>FE36</td>
+<td class="bytes">AE 81 02</td>
+<td class="instruction">LDX $0281</td>
+<td class="comment-1" rowspan="1">get the OS start of memory low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE39"></span>FE39</td>
+<td class="bytes">AC 82 02</td>
+<td class="instruction">LDY $0282</td>
+<td class="comment-1" rowspan="1">get the OS start of memory high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FE3C"></span>FE3C</td>
+<td class="bytes">8E 81 02</td>
+<td class="instruction">STX $0281</td>
+<td class="comment-1" rowspan="1">save the OS start of memory low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE3F"></span>FE3F</td>
+<td class="bytes">8C 82 02</td>
+<td class="instruction">STY $0282</td>
+<td class="comment-1" rowspan="1">save the OS start of memory high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE42"></span>FE42</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FE2D.html">FE2D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FE34">Map</a></td>
+<td class="next">
+Next: <a href="FE43.html">FE43</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

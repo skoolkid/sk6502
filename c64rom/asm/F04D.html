@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F04D</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F028.html">F028</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F04D">Map</a></td>
+<td class="next">
+Next: <a href="F086.html">F086</a>
+</td>
+</tr>
+</table>
+<div class="description">F04D: input from RS232 buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F20E.html">F20E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F04D"></span>F04D</td>
+<td class="bytes">85 99</td>
+<td class="instruction">STA $99</td>
+<td class="comment-1" rowspan="1">save the input device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F04F"></span>F04F</td>
+<td class="bytes">AD 94 02</td>
+<td class="instruction">LDA $0294</td>
+<td class="comment-1" rowspan="1">get pseudo 6551 command register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F052"></span>F052</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">shift the handshake bit to Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F053"></span>F053</td>
+<td class="bytes">90 28</td>
+<td class="instruction">BCC <a href="F04D.html#F07D">$F07D</a></td>
+<td class="comment-1" rowspan="1">if 3 line interface go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F055"></span>F055</td>
+<td class="bytes">29 08</td>
+<td class="instruction">AND #%00001000</td>
+<td class="comment-1" rowspan="1">mask the duplex bit, pseudo 6551 command is &gt;&gt; 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F057"></span>F057</td>
+<td class="bytes">F0 24</td>
+<td class="instruction">BEQ <a href="F04D.html#F07D">$F07D</a></td>
+<td class="comment-1" rowspan="1">if full duplex go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F059"></span>F059</td>
+<td class="bytes">A9 02</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="1">mask 0000 00x0, RTS out</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F05B"></span>F05B</td>
+<td class="bytes">2C 01 DD</td>
+<td class="instruction">BIT $DD01</td>
+<td class="comment-1" rowspan="1">test VIA 2 DRB, RS232 port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F05E"></span>F05E</td>
+<td class="bytes">10 AD</td>
+<td class="instruction">BPL <a href="EFE1.html#F00D">$F00D</a></td>
+<td class="comment-1" rowspan="1">if DSR = 0 set no DSR and exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F060"></span>F060</td>
+<td class="bytes">F0 22</td>
+<td class="instruction">BEQ <a href="F04D.html#F084">$F084</a></td>
+<td class="comment-1" rowspan="1">if RTS = 0 just exit</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F062"></span>F062</td>
+<td class="bytes">AD A1 02</td>
+<td class="instruction">LDA $02A1</td>
+<td class="comment-1" rowspan="1">get the RS-232 interrupt enable byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F065"></span>F065</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">shift the timer A interrupt enable bit to Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F066"></span>F066</td>
+<td class="bytes">B0 FA</td>
+<td class="instruction">BCS <a href="F04D.html#F062">$F062</a></td>
+<td class="comment-1" rowspan="1">loop while the timer A interrupt is enabled</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F068"></span>F068</td>
+<td class="bytes">AD 01 DD</td>
+<td class="instruction">LDA $DD01</td>
+<td class="comment-1" rowspan="1">read VIA 2 DRB, RS232 port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F06B"></span>F06B</td>
+<td class="bytes">29 FD</td>
+<td class="instruction">AND #%11111101</td>
+<td class="comment-1" rowspan="1">mask xxxx xx0x, clear RTS out</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F06D"></span>F06D</td>
+<td class="bytes">8D 01 DD</td>
+<td class="instruction">STA $DD01</td>
+<td class="comment-1" rowspan="1">save VIA 2 DRB, RS232 port</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F070"></span>F070</td>
+<td class="bytes">AD 01 DD</td>
+<td class="instruction">LDA $DD01</td>
+<td class="comment-1" rowspan="1">read VIA 2 DRB, RS232 port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F073"></span>F073</td>
+<td class="bytes">29 04</td>
+<td class="instruction">AND #%00000100</td>
+<td class="comment-1" rowspan="1">mask xxxx x1xx, DTR in</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F075"></span>F075</td>
+<td class="bytes">F0 F9</td>
+<td class="instruction">BEQ <a href="F04D.html#F070">$F070</a></td>
+<td class="comment-1" rowspan="1">loop while DTR low</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F077"></span>F077</td>
+<td class="bytes">A9 90</td>
+<td class="instruction">LDA #$90</td>
+<td class="comment-1" rowspan="1">enable the FLAG interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F079"></span>F079</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">flag ok</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F07A"></span>F07A</td>
+<td class="bytes">4C 3B EF</td>
+<td class="instruction">JMP <a href="EF3B.html">$EF3B</a></td>
+<td class="comment-1" rowspan="1">set VIA 2 ICR from <span class="register">A</span> and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F07D"></span>F07D</td>
+<td class="bytes">AD A1 02</td>
+<td class="instruction">LDA $02A1</td>
+<td class="comment-1" rowspan="1">get the RS-232 interrupt enable byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F080"></span>F080</td>
+<td class="bytes">29 12</td>
+<td class="instruction">AND #%00010010</td>
+<td class="comment-1" rowspan="1">mask 000x 00x0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F082"></span>F082</td>
+<td class="bytes">F0 F3</td>
+<td class="instruction">BEQ <a href="F04D.html#F077">$F077</a></td>
+<td class="comment-1" rowspan="1">if FLAG or timer B bits set go enable the FLAG interrupt</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F084"></span>F084</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">flag ok</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F085"></span>F085</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F028.html">F028</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F04D">Map</a></td>
+<td class="next">
+Next: <a href="F086.html">F086</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FE66</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FE47.html">FE47</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FE66">Map</a></td>
+<td class="next">
+Next: <a href="FE72.html">FE72</a>
+</td>
+</tr>
+</table>
+<div class="description">FE66: user function default vector</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+BRK handler
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FE66"></span>FE66</td>
+<td class="bytes">20 15 FD</td>
+<td class="instruction">JSR <a href="FD15.html">$FD15</a></td>
+<td class="comment-1" rowspan="1">restore default I/O vectors</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE69"></span>FE69</td>
+<td class="bytes">20 A3 FD</td>
+<td class="instruction">JSR <a href="FDA3.html">$FDA3</a></td>
+<td class="comment-1" rowspan="1">initialise SID, CIA and IRQ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE6C"></span>FE6C</td>
+<td class="bytes">20 18 E5</td>
+<td class="instruction">JSR <a href="E518.html">$E518</a></td>
+<td class="comment-1" rowspan="1">initialise the screen and keyboard</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE6F"></span>FE6F</td>
+<td class="bytes">6C 02 A0</td>
+<td class="instruction">JMP (<a href="A000.html#A002">$A002</a>)</td>
+<td class="comment-1" rowspan="1">do BASIC break entry</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FE47.html">FE47</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FE66">Map</a></td>
+<td class="next">
+Next: <a href="FE72.html">FE72</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

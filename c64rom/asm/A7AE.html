@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A7AE</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A742.html">A742</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A7AE">Map</a></td>
+<td class="next">
+Next: <a href="A81D.html">A81D</a>
+</td>
+</tr>
+</table>
+<div class="description">A7AE: interpreter inner loop</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A883.html">A883</a> and <a href="AD1E.html">AD1E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A7AE"></span>A7AE</td>
+<td class="bytes">20 2C A8</td>
+<td class="instruction">JSR <a href="A82C.html">$A82C</a></td>
+<td class="comment-1" rowspan="1">do CRTL-C check vector</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7B1"></span>A7B1</td>
+<td class="bytes">A5 7A</td>
+<td class="instruction">LDA $7A</td>
+<td class="comment-1" rowspan="1">get the BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7B3"></span>A7B3</td>
+<td class="bytes">A4 7B</td>
+<td class="instruction">LDY $7B</td>
+<td class="comment-1" rowspan="1">get the BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7B5"></span>A7B5</td>
+<td class="bytes">C0 02</td>
+<td class="instruction">CPY #$02</td>
+<td class="comment-1" rowspan="1">compare the high byte with $02xx</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7B7"></span>A7B7</td>
+<td class="bytes">EA</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1">unused byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7B8"></span>A7B8</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="A7AE.html#A7BE">$A7BE</a></td>
+<td class="comment-1" rowspan="1">if immediate mode skip the continue pointer save</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7BA"></span>A7BA</td>
+<td class="bytes">85 3D</td>
+<td class="instruction">STA $3D</td>
+<td class="comment-1" rowspan="1">save the continue pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7BC"></span>A7BC</td>
+<td class="bytes">84 3E</td>
+<td class="instruction">STY $3E</td>
+<td class="comment-1" rowspan="1">save the continue pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A7BE"></span>A7BE</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear the index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7C0"></span>A7C0</td>
+<td class="bytes">B1 7A</td>
+<td class="instruction">LDA ($7A),Y</td>
+<td class="comment-1" rowspan="1">get a BASIC byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7C2"></span>A7C2</td>
+<td class="bytes">D0 43</td>
+<td class="instruction">BNE <a href="A7AE.html#A807">$A807</a></td>
+<td class="comment-1" rowspan="1">if not [EOL] go test for ":"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7C4"></span>A7C4</td>
+<td class="bytes">A0 02</td>
+<td class="instruction">LDY #$02</td>
+<td class="comment-1" rowspan="1">else set the index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7C6"></span>A7C6</td>
+<td class="bytes">B1 7A</td>
+<td class="instruction">LDA ($7A),Y</td>
+<td class="comment-1" rowspan="1">get next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7C8"></span>A7C8</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for no "BREAK" message</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7C9"></span>A7C9</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="A7AE.html#A7CE">$A7CE</a></td>
+<td class="comment-1" rowspan="1">branch if not end of program</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7CB"></span>A7CB</td>
+<td class="bytes">4C 4B A8</td>
+<td class="instruction">JMP <a href="A831.html#A84B">$A84B</a></td>
+<td class="comment-1" rowspan="1">else go to immediate mode,was immediate or [EOT] marker</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A7CE"></span>A7CE</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7CF"></span>A7CF</td>
+<td class="bytes">B1 7A</td>
+<td class="instruction">LDA ($7A),Y</td>
+<td class="comment-1" rowspan="1">get line number low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7D1"></span>A7D1</td>
+<td class="bytes">85 39</td>
+<td class="instruction">STA $39</td>
+<td class="comment-1" rowspan="1">save current line number low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7D3"></span>A7D3</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7D4"></span>A7D4</td>
+<td class="bytes">B1 7A</td>
+<td class="instruction">LDA ($7A),Y</td>
+<td class="comment-1" rowspan="1">get line # high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7D6"></span>A7D6</td>
+<td class="bytes">85 3A</td>
+<td class="instruction">STA $3A</td>
+<td class="comment-1" rowspan="1">save current line number high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7D8"></span>A7D8</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span> now = 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7D9"></span>A7D9</td>
+<td class="bytes">65 7A</td>
+<td class="instruction">ADC $7A</td>
+<td class="comment-1" rowspan="1">add BASIC execute pointer low byte, now points to code</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7DB"></span>A7DB</td>
+<td class="bytes">85 7A</td>
+<td class="instruction">STA $7A</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7DD"></span>A7DD</td>
+<td class="bytes">90 02</td>
+<td class="instruction">BCC <a href="A7AE.html#A7E1">$A7E1</a></td>
+<td class="comment-1" rowspan="1">branch if no overflow</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7DF"></span>A7DF</td>
+<td class="bytes">E6 7B</td>
+<td class="instruction">INC $7B</td>
+<td class="comment-1" rowspan="1">else increment BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A7E1"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="A483.html">A483</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A7E1"></span>A7E1</td>
+<td class="bytes">6C 08 03</td>
+<td class="instruction">JMP ($0308)</td>
+<td class="comment-1" rowspan="1">do start new BASIC code</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A7E4"></span>
+<div class="comments">
+<div class="paragraph">
+the start new BASIC code vector is initialised to point here
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7E4"></span>A7E4</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7E7"></span>A7E7</td>
+<td class="bytes">20 ED A7</td>
+<td class="instruction">JSR <a href="A7AE.html#A7ED">$A7ED</a></td>
+<td class="comment-1" rowspan="1">go interpret BASIC code from BASIC execute pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7EA"></span>A7EA</td>
+<td class="bytes">4C AE A7</td>
+<td class="instruction">JMP <a href="A7AE.html#A7AE">$A7AE</a></td>
+<td class="comment-1" rowspan="1">loop</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A7ED"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="A93B.html">A93B</a>.
+</div>
+<div class="paragraph">
+interpret BASIC code from BASIC execute pointer
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A7ED"></span>A7ED</td>
+<td class="bytes">F0 3C</td>
+<td class="instruction">BEQ <a href="A81D.html#A82B">$A82B</a></td>
+<td class="comment-1" rowspan="1">if the first byte is null just exit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A7EF"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="A94B.html">A94B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A7EF"></span>A7EF</td>
+<td class="bytes">E9 80</td>
+<td class="instruction">SBC #$80</td>
+<td class="comment-1" rowspan="1">normalise the token</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7F1"></span>A7F1</td>
+<td class="bytes">90 11</td>
+<td class="instruction">BCC <a href="A7AE.html#A804">$A804</a></td>
+<td class="comment-1" rowspan="1">if wasn't token go do LET</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7F3"></span>A7F3</td>
+<td class="bytes">C9 23</td>
+<td class="instruction">CMP #$23</td>
+<td class="comment-1" rowspan="1">compare with token for TAB(-$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7F5"></span>A7F5</td>
+<td class="bytes">B0 17</td>
+<td class="instruction">BCS <a href="A7AE.html#A80E">$A80E</a></td>
+<td class="comment-1" rowspan="1">branch if &gt;= TAB(</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7F7"></span>A7F7</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">*2 bytes per vector</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7F8"></span>A7F8</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy to index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7F9"></span>A7F9</td>
+<td class="bytes">B9 0D A0</td>
+<td class="instruction">LDA $A00D,Y</td>
+<td class="comment-1" rowspan="1">get vector high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7FC"></span>A7FC</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push on stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A7FD"></span>A7FD</td>
+<td class="bytes">B9 0C A0</td>
+<td class="instruction">LDA $A00C,Y</td>
+<td class="comment-1" rowspan="1">get vector low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A800"></span>A800</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push on stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A801"></span>A801</td>
+<td class="bytes">4C 73 00</td>
+<td class="instruction">JMP $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory and return. the return in this case calls the command code, the return from that will eventually return to the interpreter inner loop above</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A804"></span>A804</td>
+<td class="bytes">4C A5 A9</td>
+<td class="instruction">JMP <a href="A9A5.html">$A9A5</a></td>
+<td class="comment-1" rowspan="1">perform LET</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A807"></span>
+<div class="comments">
+<div class="paragraph">
+was not [EOL]
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A807"></span>A807</td>
+<td class="bytes">C9 3A</td>
+<td class="instruction">CMP #":"</td>
+<td class="comment-1" rowspan="1">compare with ":"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A809"></span>A809</td>
+<td class="bytes">F0 D6</td>
+<td class="instruction">BEQ <a href="A7AE.html#A7E1">$A7E1</a></td>
+<td class="comment-1" rowspan="1">if ":" go execute new code</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A80B"></span>
+<div class="comments">
+<div class="paragraph">
+else ...
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A80B"></span>A80B</td>
+<td class="bytes">4C 08 AF</td>
+<td class="instruction">JMP <a href="AE86.html#AF08">$AF08</a></td>
+<td class="comment-1" rowspan="1">do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A80E"></span>
+<div class="comments">
+<div class="paragraph">
+token was &gt;= TAB(
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A80E"></span>A80E</td>
+<td class="bytes">C9 4B</td>
+<td class="instruction">CMP #$4B</td>
+<td class="comment-1" rowspan="1">compare with the token for GO</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A810"></span>A810</td>
+<td class="bytes">D0 F9</td>
+<td class="instruction">BNE <a href="A7AE.html#A80B">$A80B</a></td>
+<td class="comment-1" rowspan="1">if not "GO" do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A812"></span>
+<div class="comments">
+<div class="paragraph">
+else was "GO"
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A812"></span>A812</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A815"></span>A815</td>
+<td class="bytes">A9 A4</td>
+<td class="instruction">LDA #$A4</td>
+<td class="comment-1" rowspan="1">set "TO" token</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A817"></span>A817</td>
+<td class="bytes">20 FF AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEFF">$AEFF</a></td>
+<td class="comment-1" rowspan="1">scan for CHR$(<span class="register">A</span>), else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A81A"></span>A81A</td>
+<td class="bytes">4C A0 A8</td>
+<td class="instruction">JMP <a href="A8A0.html">$A8A0</a></td>
+<td class="comment-1" rowspan="1">perform GOTO</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A742.html">A742</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A7AE">Map</a></td>
+<td class="next">
+Next: <a href="A81D.html">A81D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

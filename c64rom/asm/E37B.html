@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E37B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E33E.html">E33E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E37B">Map</a></td>
+<td class="next">
+Next: <a href="E394.html">E394</a>
+</td>
+</tr>
+</table>
+<div class="description">E37B: BASIC warm start entry point</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E37B"></span>E37B</td>
+<td class="bytes">20 CC FF</td>
+<td class="instruction">JSR <a href="FFCC.html">$FFCC</a></td>
+<td class="comment-1" rowspan="1">close input and output channels</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E37E"></span>E37E</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E380"></span>E380</td>
+<td class="bytes">85 13</td>
+<td class="instruction">STA $13</td>
+<td class="comment-1" rowspan="1">set current I/O channel, flag default</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E382"></span>E382</td>
+<td class="bytes">20 7A A6</td>
+<td class="instruction">JSR <a href="A67A.html">$A67A</a></td>
+<td class="comment-1" rowspan="1">flush BASIC stack and clear continue pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E385"></span>E385</td>
+<td class="bytes">58</td>
+<td class="instruction">CLI</td>
+<td class="comment-1" rowspan="1">enable the interrupts</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E386"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="A69C.html">A69C</a>, <a href="A831.html">A831</a> and <a href="E394.html">E394</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E386"></span>E386</td>
+<td class="bytes">A2 80</td>
+<td class="instruction">LDX #$80</td>
+<td class="comment-1" rowspan="1">set -ve error, just do warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E388"></span>E388</td>
+<td class="bytes">6C 00 03</td>
+<td class="instruction">JMP ($0300)</td>
+<td class="comment-1" rowspan="1">go handle error message, normally $E38B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E38B"></span>E38B</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy the error number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E38C"></span>E38C</td>
+<td class="bytes">30 03</td>
+<td class="instruction">BMI <a href="E37B.html#E391">$E391</a></td>
+<td class="comment-1" rowspan="1">if -ve go do warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E38E"></span>E38E</td>
+<td class="bytes">4C 3A A4</td>
+<td class="instruction">JMP <a href="A43A.html">$A43A</a></td>
+<td class="comment-1" rowspan="1">else do error #<span class="register">X</span> then warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E391"></span>E391</td>
+<td class="bytes">4C 74 A4</td>
+<td class="instruction">JMP <a href="A474.html">$A474</a></td>
+<td class="comment-1" rowspan="1">do warm start</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E33E.html">E33E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E37B">Map</a></td>
+<td class="next">
+Next: <a href="E394.html">E394</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

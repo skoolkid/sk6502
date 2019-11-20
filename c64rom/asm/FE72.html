@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FE72</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FE66.html">FE66</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FE72">Map</a></td>
+<td class="next">
+Next: <a href="FEC2.html">FEC2</a>
+</td>
+</tr>
+</table>
+<div class="description">FE72: RS232 NMI routine</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="FE47.html">FE47</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FE72"></span>FE72</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE73"></span>FE73</td>
+<td class="bytes">2D A1 02</td>
+<td class="instruction">AND $02A1</td>
+<td class="comment-1" rowspan="1">AND with the RS-232 interrupt enable byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE76"></span>FE76</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE77"></span>FE77</td>
+<td class="bytes">29 01</td>
+<td class="instruction">AND #$01</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE79"></span>FE79</td>
+<td class="bytes">F0 28</td>
+<td class="instruction">BEQ <a href="FE72.html#FEA3">$FEA3</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE7B"></span>FE7B</td>
+<td class="bytes">AD 00 DD</td>
+<td class="instruction">LDA $DD00</td>
+<td class="comment-1" rowspan="1">read VIA 2 DRA, serial port and video address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE7E"></span>FE7E</td>
+<td class="bytes">29 FB</td>
+<td class="instruction">AND #%11111011</td>
+<td class="comment-1" rowspan="1">mask xxxx x0xx, clear RS232 Tx DATA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE80"></span>FE80</td>
+<td class="bytes">05 B5</td>
+<td class="instruction">ORA $B5</td>
+<td class="comment-1" rowspan="1">OR in the RS232 transmit data bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE82"></span>FE82</td>
+<td class="bytes">8D 00 DD</td>
+<td class="instruction">STA $DD00</td>
+<td class="comment-1" rowspan="1">save VIA 2 DRA, serial port and video address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE85"></span>FE85</td>
+<td class="bytes">AD A1 02</td>
+<td class="instruction">LDA $02A1</td>
+<td class="comment-1" rowspan="1">get the RS-232 interrupt enable byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE88"></span>FE88</td>
+<td class="bytes">8D 0D DD</td>
+<td class="instruction">STA $DD0D</td>
+<td class="comment-1" rowspan="1">save VIA 2 ICR</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE8B"></span>FE8B</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE8C"></span>FE8C</td>
+<td class="bytes">29 12</td>
+<td class="instruction">AND #$12</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE8E"></span>FE8E</td>
+<td class="bytes">F0 0D</td>
+<td class="instruction">BEQ <a href="FE72.html#FE9D">$FE9D</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE90"></span>FE90</td>
+<td class="bytes">29 02</td>
+<td class="instruction">AND #$02</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE92"></span>FE92</td>
+<td class="bytes">F0 06</td>
+<td class="instruction">BEQ <a href="FE72.html#FE9A">$FE9A</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE94"></span>FE94</td>
+<td class="bytes">20 D6 FE</td>
+<td class="instruction">JSR <a href="FED6.html">$FED6</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FE97"></span>FE97</td>
+<td class="bytes">4C 9D FE</td>
+<td class="instruction">JMP <a href="FE72.html#FE9D">$FE9D</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FE9A"></span>FE9A</td>
+<td class="bytes">20 07 FF</td>
+<td class="instruction">JSR <a href="FF07.html">$FF07</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FE9D"></span>FE9D</td>
+<td class="bytes">20 BB EE</td>
+<td class="instruction">JSR <a href="EEBB.html">$EEBB</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEA0"></span>FEA0</td>
+<td class="bytes">4C B6 FE</td>
+<td class="instruction">JMP <a href="FE72.html#FEB6">$FEB6</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FEA3"></span>FEA3</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">get active interrupts back</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEA4"></span>FEA4</td>
+<td class="bytes">29 02</td>
+<td class="instruction">AND #%00000010</td>
+<td class="comment-1" rowspan="1">mask ?? interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEA6"></span>FEA6</td>
+<td class="bytes">F0 06</td>
+<td class="instruction">BEQ <a href="FE72.html#FEAE">$FEAE</a></td>
+<td class="comment-1" rowspan="1">branch if not ?? interrupt</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FEA8"></span>
+<div class="comments">
+<div class="paragraph">
+was ?? interrupt
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEA8"></span>FEA8</td>
+<td class="bytes">20 D6 FE</td>
+<td class="instruction">JSR <a href="FED6.html">$FED6</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEAB"></span>FEAB</td>
+<td class="bytes">4C B6 FE</td>
+<td class="instruction">JMP <a href="FE72.html#FEB6">$FEB6</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FEAE"></span>FEAE</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">get active interrupts back</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEAF"></span>FEAF</td>
+<td class="bytes">29 10</td>
+<td class="instruction">AND #%00010000</td>
+<td class="comment-1" rowspan="1">mask CB1 interrupt, Rx data bit transition</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEB1"></span>FEB1</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="FE72.html#FEB6">$FEB6</a></td>
+<td class="comment-1" rowspan="1">if no bit restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEB3"></span>FEB3</td>
+<td class="bytes">20 07 FF</td>
+<td class="instruction">JSR <a href="FF07.html">$FF07</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FEB6"></span>FEB6</td>
+<td class="bytes">AD A1 02</td>
+<td class="instruction">LDA $02A1</td>
+<td class="comment-1" rowspan="1">get the RS-232 interrupt enable byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEB9"></span>FEB9</td>
+<td class="bytes">8D 0D DD</td>
+<td class="instruction">STA $DD0D</td>
+<td class="comment-1" rowspan="1">save VIA 2 ICR</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FEBC"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="F92C.html">F92C</a>, <a href="FA60.html">FA60</a> and <a href="FBCD.html">FBCD</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FEBC"></span>FEBC</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEBD"></span>FEBD</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">restore <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEBE"></span>FEBE</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEBF"></span>FEBF</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">restore <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEC0"></span>FEC0</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FEC1"></span>FEC1</td>
+<td class="bytes">40</td>
+<td class="instruction">RTI</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FE66.html">FE66</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FE72">Map</a></td>
+<td class="next">
+Next: <a href="FEC2.html">FEC2</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

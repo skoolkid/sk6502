@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B3B3</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B39E.html">B39E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B3B3">Map</a></td>
+<td class="next">
+Next: <a href="B3E1.html">B3E1</a>
+</td>
+</tr>
+</table>
+<div class="description">B3B3: perform DEF</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B3B3"></span>B3B3</td>
+<td class="bytes">20 E1 B3</td>
+<td class="instruction">JSR <a href="B3E1.html">$B3E1</a></td>
+<td class="comment-1" rowspan="1">check FNx syntax</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3B6"></span>B3B6</td>
+<td class="bytes">20 A6 B3</td>
+<td class="instruction">JSR <a href="B39E.html#B3A6">$B3A6</a></td>
+<td class="comment-1" rowspan="1">check not direct, back here if ok</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3B9"></span>B3B9</td>
+<td class="bytes">20 FA AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEFA">$AEFA</a></td>
+<td class="comment-1" rowspan="1">scan for "(", else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3BC"></span>B3BC</td>
+<td class="bytes">A9 80</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1">set flag for FNx</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3BE"></span>B3BE</td>
+<td class="bytes">85 10</td>
+<td class="instruction">STA $10</td>
+<td class="comment-1" rowspan="1">save subscript/FNx flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3C0"></span>B3C0</td>
+<td class="bytes">20 8B B0</td>
+<td class="instruction">JSR <a href="B08B.html">$B08B</a></td>
+<td class="comment-1" rowspan="1">get variable address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3C3"></span>B3C3</td>
+<td class="bytes">20 8D AD</td>
+<td class="instruction">JSR <a href="AD8A.html#AD8D">$AD8D</a></td>
+<td class="comment-1" rowspan="1">check if source is numeric, else do type mismatch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3C6"></span>B3C6</td>
+<td class="bytes">20 F7 AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEF7">$AEF7</a></td>
+<td class="comment-1" rowspan="1">scan for ")", else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3C9"></span>B3C9</td>
+<td class="bytes">A9 B2</td>
+<td class="instruction">LDA #$B2</td>
+<td class="comment-1" rowspan="1">get = token</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3CB"></span>B3CB</td>
+<td class="bytes">20 FF AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEFF">$AEFF</a></td>
+<td class="comment-1" rowspan="1">scan for CHR$(<span class="register">A</span>), else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3CE"></span>B3CE</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push next character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3CF"></span>B3CF</td>
+<td class="bytes">A5 48</td>
+<td class="instruction">LDA $48</td>
+<td class="comment-1" rowspan="1">get current variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3D1"></span>B3D1</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3D2"></span>B3D2</td>
+<td class="bytes">A5 47</td>
+<td class="instruction">LDA $47</td>
+<td class="comment-1" rowspan="1">get current variable pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3D4"></span>B3D4</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3D5"></span>B3D5</td>
+<td class="bytes">A5 7B</td>
+<td class="instruction">LDA $7B</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3D7"></span>B3D7</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3D8"></span>B3D8</td>
+<td class="bytes">A5 7A</td>
+<td class="instruction">LDA $7A</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3DA"></span>B3DA</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3DB"></span>B3DB</td>
+<td class="bytes">20 F8 A8</td>
+<td class="instruction">JSR <a href="A8F8.html">$A8F8</a></td>
+<td class="comment-1" rowspan="1">perform DATA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B3DE"></span>B3DE</td>
+<td class="bytes">4C 4F B4</td>
+<td class="instruction">JMP <a href="B449.html#B44F">$B44F</a></td>
+<td class="comment-1" rowspan="1">put execute pointer and variable pointer into function and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B39E.html">B39E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B3B3">Map</a></td>
+<td class="next">
+Next: <a href="B3E1.html">B3E1</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

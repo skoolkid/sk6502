@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F3D5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F34A.html">F34A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F3D5">Map</a></td>
+<td class="next">
+Next: <a href="F409.html">F409</a>
+</td>
+</tr>
+</table>
+<div class="description">F3D5: send secondary address and filename</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="F34A.html">F34A</a>, <a href="F4A5.html">F4A5</a> and <a href="F5ED.html">F5ED</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F3D5"></span>F3D5</td>
+<td class="bytes">A5 B9</td>
+<td class="instruction">LDA $B9</td>
+<td class="comment-1" rowspan="1">get the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3D7"></span>F3D7</td>
+<td class="bytes">30 FA</td>
+<td class="instruction">BMI <a href="F34A.html#F3D3">$F3D3</a></td>
+<td class="comment-1" rowspan="1">ok exit if -ve</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3D9"></span>F3D9</td>
+<td class="bytes">A4 B7</td>
+<td class="instruction">LDY $B7</td>
+<td class="comment-1" rowspan="1">get file name length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3DB"></span>F3DB</td>
+<td class="bytes">F0 F6</td>
+<td class="instruction">BEQ <a href="F34A.html#F3D3">$F3D3</a></td>
+<td class="comment-1" rowspan="1">ok exit if null</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3DD"></span>F3DD</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3DF"></span>F3DF</td>
+<td class="bytes">85 90</td>
+<td class="instruction">STA $90</td>
+<td class="comment-1" rowspan="1">clear the serial status byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3E1"></span>F3E1</td>
+<td class="bytes">A5 BA</td>
+<td class="instruction">LDA $BA</td>
+<td class="comment-1" rowspan="1">get the device number</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3E3"></span>F3E3</td>
+<td class="bytes">20 0C ED</td>
+<td class="instruction">JSR <a href="ED0C.html">$ED0C</a></td>
+<td class="comment-1" rowspan="1">command devices on the serial bus to LISTEN</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3E6"></span>F3E6</td>
+<td class="bytes">A5 B9</td>
+<td class="instruction">LDA $B9</td>
+<td class="comment-1" rowspan="1">get the secondary address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3E8"></span>F3E8</td>
+<td class="bytes">09 F0</td>
+<td class="instruction">ORA #$F0</td>
+<td class="comment-1" rowspan="1">OR with the OPEN command</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3EA"></span>F3EA</td>
+<td class="bytes">20 B9 ED</td>
+<td class="instruction">JSR <a href="EDB9.html">$EDB9</a></td>
+<td class="comment-1" rowspan="1">send secondary address after LISTEN</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3ED"></span>F3ED</td>
+<td class="bytes">A5 90</td>
+<td class="instruction">LDA $90</td>
+<td class="comment-1" rowspan="1">get the serial status byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3EF"></span>F3EF</td>
+<td class="bytes">10 05</td>
+<td class="instruction">BPL <a href="F3D5.html#F3F6">$F3F6</a></td>
+<td class="comment-1" rowspan="1">if device present skip the 'device not present' error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3F1"></span>F3F1</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">else dump calling address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3F2"></span>F3F2</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">dump calling address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3F3"></span>F3F3</td>
+<td class="bytes">4C 07 F7</td>
+<td class="instruction">JMP <a href="F6FB.html#F707">$F707</a></td>
+<td class="comment-1" rowspan="1">do 'device not present' error and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F3F6"></span>F3F6</td>
+<td class="bytes">A5 B7</td>
+<td class="instruction">LDA $B7</td>
+<td class="comment-1" rowspan="1">get file name length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3F8"></span>F3F8</td>
+<td class="bytes">F0 0C</td>
+<td class="instruction">BEQ <a href="F3D5.html#F406">$F406</a></td>
+<td class="comment-1" rowspan="1">branch if null name</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3FA"></span>F3FA</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F3FC"></span>F3FC</td>
+<td class="bytes">B1 BB</td>
+<td class="instruction">LDA ($BB),Y</td>
+<td class="comment-1" rowspan="1">get file name byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F3FE"></span>F3FE</td>
+<td class="bytes">20 DD ED</td>
+<td class="instruction">JSR <a href="EDDD.html">$EDDD</a></td>
+<td class="comment-1" rowspan="1">output byte to serial bus</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F401"></span>F401</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F402"></span>F402</td>
+<td class="bytes">C4 B7</td>
+<td class="instruction">CPY $B7</td>
+<td class="comment-1" rowspan="1">compare with file name length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F404"></span>F404</td>
+<td class="bytes">D0 F6</td>
+<td class="instruction">BNE <a href="F3D5.html#F3FC">$F3FC</a></td>
+<td class="comment-1" rowspan="1">loop if not all done</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F406"></span>F406</td>
+<td class="bytes">4C 54 F6</td>
+<td class="instruction">JMP <a href="F5ED.html#F654">$F654</a></td>
+<td class="comment-1" rowspan="1">command serial bus to UNLISTEN and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F34A.html">F34A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F3D5">Map</a></td>
+<td class="next">
+Next: <a href="F409.html">F409</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

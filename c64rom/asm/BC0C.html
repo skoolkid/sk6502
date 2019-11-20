@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BC0C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BBFC.html">BBFC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BC0C">Map</a></td>
+<td class="next">
+Next: <a href="BC1B.html">BC1B</a>
+</td>
+</tr>
+</table>
+<div class="description">BC0C: round and copy FAC1 to FAC2</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A9A5.html">A9A5</a>, <a href="BAE2.html">BAE2</a>, <a href="BAFE.html">BAFE</a>, <a href="BD7E.html">BD7E</a>, <a href="BF71.html">BF71</a> and <a href="E26B.html">E26B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BC0C"></span>BC0C</td>
+<td class="bytes">20 1B BC</td>
+<td class="instruction">JSR <a href="BC1B.html">$BC1B</a></td>
+<td class="comment-1" rowspan="1">round FAC1</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BC0F"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E000.html">E000</a>.
+</div>
+<div class="paragraph">
+copy FAC1 to FAC2
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BC0F"></span>BC0F</td>
+<td class="bytes">A2 06</td>
+<td class="instruction">LDX #$06</td>
+<td class="comment-1" rowspan="1">6 bytes to copy</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BC11"></span>BC11</td>
+<td class="bytes">B5 60</td>
+<td class="instruction">LDA $60,X</td>
+<td class="comment-1" rowspan="1">get byte from FAC1,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC13"></span>BC13</td>
+<td class="bytes">95 68</td>
+<td class="instruction">STA $68,X</td>
+<td class="comment-1" rowspan="1">save byte at FAC2,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC15"></span>BC15</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC16"></span>BC16</td>
+<td class="bytes">D0 F9</td>
+<td class="instruction">BNE <a href="BC0C.html#BC11">$BC11</a></td>
+<td class="comment-1" rowspan="1">loop if not all done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC18"></span>BC18</td>
+<td class="bytes">86 70</td>
+<td class="instruction">STX $70</td>
+<td class="comment-1" rowspan="1">clear FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BC1A"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="BC1B.html">BC1B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BC1A"></span>BC1A</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BBFC.html">BBFC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BC0C">Map</a></td>
+<td class="next">
+Next: <a href="BC1B.html">BC1B</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

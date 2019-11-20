@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E059</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E043.html">E043</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E059">Map</a></td>
+<td class="next">
+Next: <a href="E08D.html">E08D</a>
+</td>
+</tr>
+</table>
+<div class="description">E059: do series evaluation</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E000.html">E000</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E059"></span>E059</td>
+<td class="bytes">85 71</td>
+<td class="instruction">STA $71</td>
+<td class="comment-1" rowspan="1">save count pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E05B"></span>E05B</td>
+<td class="bytes">84 72</td>
+<td class="instruction">STY $72</td>
+<td class="comment-1" rowspan="1">save count pointer high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E05D"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="E043.html">E043</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E05D"></span>E05D</td>
+<td class="bytes">20 C7 BB</td>
+<td class="instruction">JSR <a href="BBC7.html">$BBC7</a></td>
+<td class="comment-1" rowspan="1">pack FAC1 into $5C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E060"></span>E060</td>
+<td class="bytes">B1 71</td>
+<td class="instruction">LDA ($71),Y</td>
+<td class="comment-1" rowspan="1">get constants count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E062"></span>E062</td>
+<td class="bytes">85 67</td>
+<td class="instruction">STA $67</td>
+<td class="comment-1" rowspan="1">save constants count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E064"></span>E064</td>
+<td class="bytes">A4 71</td>
+<td class="instruction">LDY $71</td>
+<td class="comment-1" rowspan="1">get count pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E066"></span>E066</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment it (now constants pointer)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E067"></span>E067</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E068"></span>E068</td>
+<td class="bytes">D0 02</td>
+<td class="instruction">BNE <a href="E059.html#E06C">$E06C</a></td>
+<td class="comment-1" rowspan="1">skip next if no overflow</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E06A"></span>E06A</td>
+<td class="bytes">E6 72</td>
+<td class="instruction">INC $72</td>
+<td class="comment-1" rowspan="1">else increment high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E06C"></span>E06C</td>
+<td class="bytes">85 71</td>
+<td class="instruction">STA $71</td>
+<td class="comment-1" rowspan="1">save low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E06E"></span>E06E</td>
+<td class="bytes">A4 72</td>
+<td class="instruction">LDY $72</td>
+<td class="comment-1" rowspan="1">get high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E070"></span>E070</td>
+<td class="bytes">20 28 BA</td>
+<td class="instruction">JSR <a href="BA28.html">$BA28</a></td>
+<td class="comment-1" rowspan="1">do convert <span class="register">AY</span>, FCA1*(<span class="register">AY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E073"></span>E073</td>
+<td class="bytes">A5 71</td>
+<td class="instruction">LDA $71</td>
+<td class="comment-1" rowspan="1">get constants pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E075"></span>E075</td>
+<td class="bytes">A4 72</td>
+<td class="instruction">LDY $72</td>
+<td class="comment-1" rowspan="1">get constants pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E077"></span>E077</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E078"></span>E078</td>
+<td class="bytes">69 05</td>
+<td class="instruction">ADC #$05</td>
+<td class="comment-1" rowspan="1">+5 to low pointer (5 bytes per constant)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E07A"></span>E07A</td>
+<td class="bytes">90 01</td>
+<td class="instruction">BCC <a href="E059.html#E07D">$E07D</a></td>
+<td class="comment-1" rowspan="1">skip next if no overflow</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E07C"></span>E07C</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E07D"></span>E07D</td>
+<td class="bytes">85 71</td>
+<td class="instruction">STA $71</td>
+<td class="comment-1" rowspan="1">save pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E07F"></span>E07F</td>
+<td class="bytes">84 72</td>
+<td class="instruction">STY $72</td>
+<td class="comment-1" rowspan="1">save pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E081"></span>E081</td>
+<td class="bytes">20 67 B8</td>
+<td class="instruction">JSR <a href="B862.html#B867">$B867</a></td>
+<td class="comment-1" rowspan="1">add (<span class="register">AY</span>) to FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E084"></span>E084</td>
+<td class="bytes">A9 5C</td>
+<td class="instruction">LDA #$5C</td>
+<td class="comment-1" rowspan="1">set pointer low byte to partial</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E086"></span>E086</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">set pointer high byte to partial</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E088"></span>E088</td>
+<td class="bytes">C6 67</td>
+<td class="instruction">DEC $67</td>
+<td class="comment-1" rowspan="1">decrement constants count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E08A"></span>E08A</td>
+<td class="bytes">D0 E4</td>
+<td class="instruction">BNE <a href="E059.html#E070">$E070</a></td>
+<td class="comment-1" rowspan="1">loop until all done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E08C"></span>E08C</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E043.html">E043</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E059">Map</a></td>
+<td class="next">
+Next: <a href="E08D.html">E08D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AAA0</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AA9A.html">AA9A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AAA0">Map</a></td>
+<td class="next">
+Next: <a href="AACA.html">AACA</a>
+</td>
+</tr>
+</table>
+<div class="description">AAA0: perform PRINT</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="AA86.html">AA86</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AAA0"></span>AAA0</td>
+<td class="bytes">F0 35</td>
+<td class="instruction">BEQ <a href="AAD7.html">$AAD7</a></td>
+<td class="comment-1" rowspan="1">if nothing following just print CR/LF</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AAA2"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AAE8.html">AAE8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AAA2"></span>AAA2</td>
+<td class="bytes">F0 43</td>
+<td class="instruction">BEQ <a href="AAD7.html#AAE7">$AAE7</a></td>
+<td class="comment-1" rowspan="1">exit if nothing following, end of PRINT branch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAA4"></span>AAA4</td>
+<td class="bytes">C9 A3</td>
+<td class="instruction">CMP #$A3</td>
+<td class="comment-1" rowspan="1">compare with token for TAB(</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAA6"></span>AAA6</td>
+<td class="bytes">F0 50</td>
+<td class="instruction">BEQ <a href="AAE8.html#AAF8">$AAF8</a></td>
+<td class="comment-1" rowspan="1">if TAB( go handle it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAA8"></span>AAA8</td>
+<td class="bytes">C9 A6</td>
+<td class="instruction">CMP #$A6</td>
+<td class="comment-1" rowspan="1">compare with token for SPC(</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAAA"></span>AAAA</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">flag SPC(</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAAB"></span>AAAB</td>
+<td class="bytes">F0 4B</td>
+<td class="instruction">BEQ <a href="AAE8.html#AAF8">$AAF8</a></td>
+<td class="comment-1" rowspan="1">if SPC( go handle it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAAD"></span>AAAD</td>
+<td class="bytes">C9 2C</td>
+<td class="instruction">CMP #","</td>
+<td class="comment-1" rowspan="1">compare with ","</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAAF"></span>AAAF</td>
+<td class="bytes">F0 37</td>
+<td class="instruction">BEQ <a href="AAE8.html">$AAE8</a></td>
+<td class="comment-1" rowspan="1">if "," go skip to the next TAB position</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAB1"></span>AAB1</td>
+<td class="bytes">C9 3B</td>
+<td class="instruction">CMP #";"</td>
+<td class="comment-1" rowspan="1">compare with ";"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAB3"></span>AAB3</td>
+<td class="bytes">F0 5E</td>
+<td class="instruction">BEQ <a href="AAE8.html#AB13">$AB13</a></td>
+<td class="comment-1" rowspan="1">if ";" go continue the print loop</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAB5"></span>AAB5</td>
+<td class="bytes">20 9E AD</td>
+<td class="instruction">JSR <a href="AD9E.html">$AD9E</a></td>
+<td class="comment-1" rowspan="1">evaluate expression</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAB8"></span>AAB8</td>
+<td class="bytes">24 0D</td>
+<td class="instruction">BIT $0D</td>
+<td class="comment-1" rowspan="1">test data type flag, $FF = string, $00 = numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AABA"></span>AABA</td>
+<td class="bytes">30 DE</td>
+<td class="instruction">BMI <a href="AA9A.html">$AA9A</a></td>
+<td class="comment-1" rowspan="1">if string go print string, scan memory and continue PRINT</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AABC"></span>AABC</td>
+<td class="bytes">20 DD BD</td>
+<td class="instruction">JSR <a href="BDDD.html">$BDDD</a></td>
+<td class="comment-1" rowspan="1">convert FAC1 to ASCII string result in (<span class="register">AY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AABF"></span>AABF</td>
+<td class="bytes">20 87 B4</td>
+<td class="instruction">JSR <a href="B487.html">$B487</a></td>
+<td class="comment-1" rowspan="1">print " terminated string to utility pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAC2"></span>AAC2</td>
+<td class="bytes">20 21 AB</td>
+<td class="instruction">JSR <a href="AB21.html">$AB21</a></td>
+<td class="comment-1" rowspan="1">print string from utility pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAC5"></span>AAC5</td>
+<td class="bytes">20 3B AB</td>
+<td class="instruction">JSR <a href="AB3B.html">$AB3B</a></td>
+<td class="comment-1" rowspan="1">print [SPACE] or [CURSOR RIGHT]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAC8"></span>AAC8</td>
+<td class="bytes">D0 D3</td>
+<td class="instruction">BNE <a href="AA9A.html#AA9D">$AA9D</a></td>
+<td class="comment-1" rowspan="1">go scan memory and continue PRINT, branch always</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AA9A.html">AA9A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AAA0">Map</a></td>
+<td class="next">
+Next: <a href="AACA.html">AACA</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E0F9</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E0F6.html">E0F6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E0F9">Map</a></td>
+<td class="next">
+Next: <a href="E10C.html">E10C</a>
+</td>
+</tr>
+</table>
+<div class="description">E0F9: handle BASIC I/O error</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="E10C.html">E10C</a>, <a href="E112.html">E112</a>, <a href="E118.html">E118</a>, <a href="E11E.html">E11E</a>, <a href="E124.html">E124</a>, <a href="E156.html">E156</a> and <a href="E1C7.html">E1C7</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E0F9"></span>E0F9</td>
+<td class="bytes">C9 F0</td>
+<td class="instruction">CMP #$F0</td>
+<td class="comment-1" rowspan="1">compare error with $F0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0FB"></span>E0FB</td>
+<td class="bytes">D0 07</td>
+<td class="instruction">BNE <a href="E0F9.html#E104">$E104</a></td>
+<td class="comment-1" rowspan="1">branch if not $F0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0FD"></span>E0FD</td>
+<td class="bytes">84 38</td>
+<td class="instruction">STY $38</td>
+<td class="comment-1" rowspan="1">set end of memory high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E0FF"></span>E0FF</td>
+<td class="bytes">86 37</td>
+<td class="instruction">STX $37</td>
+<td class="comment-1" rowspan="1">set end of memory low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E101"></span>E101</td>
+<td class="bytes">4C 63 A6</td>
+<td class="instruction">JMP <a href="A65E.html#A663">$A663</a></td>
+<td class="comment-1" rowspan="1">clear from start to end and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E104"></span>
+<div class="comments">
+<div class="paragraph">
+error was not $F0
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E104"></span>E104</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy error #</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E105"></span>E105</td>
+<td class="bytes">D0 02</td>
+<td class="instruction">BNE <a href="E0F9.html#E109">$E109</a></td>
+<td class="comment-1" rowspan="1">branch if not $00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E107"></span>E107</td>
+<td class="bytes">A2 1E</td>
+<td class="instruction">LDX #$1E</td>
+<td class="comment-1" rowspan="1">else error $1E, break error</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E109"></span>E109</td>
+<td class="bytes">4C 37 A4</td>
+<td class="instruction">JMP <a href="A435.html#A437">$A437</a></td>
+<td class="comment-1" rowspan="1">do error #<span class="register">X</span> then warm start</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E0F6.html">E0F6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E0F9">Map</a></td>
+<td class="next">
+Next: <a href="E10C.html">E10C</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

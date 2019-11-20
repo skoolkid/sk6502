@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EEA9</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EEA0.html">EEA0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EEA9">Map</a></td>
+<td class="next">
+Next: <a href="EEB3.html">EEB3</a>
+</td>
+</tr>
+</table>
+<div class="description">EEA9: get the serial data status in Cb</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="ED40.html">ED40</a>, <a href="EDCC.html">EDCC</a> and <a href="EE13.html">EE13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EEA9"></span>EEA9</td>
+<td class="bytes">AD 00 DD</td>
+<td class="instruction">LDA $DD00</td>
+<td class="comment-1" rowspan="1">read VIA 2 DRA, serial port and video address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEAC"></span>EEAC</td>
+<td class="bytes">CD 00 DD</td>
+<td class="instruction">CMP $DD00</td>
+<td class="comment-1" rowspan="1">compare it with itself</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEAF"></span>EEAF</td>
+<td class="bytes">D0 F8</td>
+<td class="instruction">BNE <a href="EEA9.html#EEA9">$EEA9</a></td>
+<td class="comment-1" rowspan="1">if changing got try again</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEB1"></span>EEB1</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">shift the serial data into Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EEB2"></span>EEB2</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EEA0.html">EEA0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EEA9">Map</a></td>
+<td class="next">
+Next: <a href="EEB3.html">EEB3</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

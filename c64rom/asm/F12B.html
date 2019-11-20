@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F12B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F0BD.html">F0BD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F12B">Map</a></td>
+<td class="next">
+Next: <a href="F13E.html">F13E</a>
+</td>
+</tr>
+</table>
+<div class="description">F12B: display control I/O message if in direct mode</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F5D2.html">F5D2</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F12B"></span>F12B</td>
+<td class="bytes">24 9D</td>
+<td class="instruction">BIT $9D</td>
+<td class="comment-1" rowspan="1">test message mode flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F12D"></span>F12D</td>
+<td class="bytes">10 0D</td>
+<td class="instruction">BPL <a href="F12B.html#F13C">$F13C</a></td>
+<td class="comment-1" rowspan="1">exit if control messages off</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F12F"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="F5AF.html">F5AF</a>, <a href="F68F.html">F68F</a>, <a href="F6FB.html">F6FB</a>, <a href="F72C.html">F72C</a> and <a href="F817.html">F817</a>.
+</div>
+<div class="paragraph">
+display kernel I/O message
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F12F"></span>F12F</td>
+<td class="bytes">B9 BD F0</td>
+<td class="instruction">LDA $F0BD,Y</td>
+<td class="comment-1" rowspan="1">get byte from message table</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F132"></span>F132</td>
+<td class="bytes">08</td>
+<td class="instruction">PHP</td>
+<td class="comment-1" rowspan="1">save status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F133"></span>F133</td>
+<td class="bytes">29 7F</td>
+<td class="instruction">AND #%01111111</td>
+<td class="comment-1" rowspan="1">clear b7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F135"></span>F135</td>
+<td class="bytes">20 D2 FF</td>
+<td class="instruction">JSR <a href="FFD2.html">$FFD2</a></td>
+<td class="comment-1" rowspan="1">output character to channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F138"></span>F138</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F139"></span>F139</td>
+<td class="bytes">28</td>
+<td class="instruction">PLP</td>
+<td class="comment-1" rowspan="1">restore status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F13A"></span>F13A</td>
+<td class="bytes">10 F3</td>
+<td class="instruction">BPL <a href="F12B.html#F12F">$F12F</a></td>
+<td class="comment-1" rowspan="1">loop if not end of message</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F13C"></span>F13C</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F13D"></span>F13D</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F0BD.html">F0BD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F12B">Map</a></td>
+<td class="next">
+Next: <a href="F13E.html">F13E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

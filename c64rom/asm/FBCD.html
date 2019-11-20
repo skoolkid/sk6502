@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FBCD</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FBC8.html">FBC8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FBCD">Map</a></td>
+<td class="next">
+Next: <a href="FC6A.html">FC6A</a>
+</td>
+</tr>
+</table>
+<div class="description">FBCD: tape write IRQ routine</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+this is the routine that writes the bits to the tape. it is called each time VIA 2 T2 times out and checks if the start bit is done, if so checks if the data bits are done, if so it checks if the byte is done, if so it checks if the synchronisation bytes are done, if so it checks if the data bytes are done, if so it checks if the checksum byte is done, if so it checks if both the load and verify copies have been done, if so it stops the tape
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FBCD"></span>FBCD</td>
+<td class="bytes">A5 A8</td>
+<td class="instruction">LDA $A8</td>
+<td class="comment-1" rowspan="1">get start bit first cycle done flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBCF"></span>FBCF</td>
+<td class="bytes">D0 12</td>
+<td class="instruction">BNE <a href="FBCD.html#FBE3">$FBE3</a></td>
+<td class="comment-1" rowspan="1">if first cycle done go do rest of byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FBD1"></span>
+<div class="comments">
+<div class="paragraph">
+each byte sent starts with two half cycles of $0110 system clocks and the whole block ends with two more such half cycles
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBD1"></span>FBD1</td>
+<td class="bytes">A9 10</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="1">set first start cycle time constant low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBD3"></span>FBD3</td>
+<td class="bytes">A2 01</td>
+<td class="instruction">LDX #$01</td>
+<td class="comment-1" rowspan="1">set first start cycle time constant high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBD5"></span>FBD5</td>
+<td class="bytes">20 B1 FB</td>
+<td class="instruction">JSR <a href="FBA6.html#FBB1">$FBB1</a></td>
+<td class="comment-1" rowspan="1">write time constant and toggle tape</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBD8"></span>FBD8</td>
+<td class="bytes">D0 2F</td>
+<td class="instruction">BNE <a href="FBCD.html#FC09">$FC09</a></td>
+<td class="comment-1" rowspan="1">if first half cycle go restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBDA"></span>FBDA</td>
+<td class="bytes">E6 A8</td>
+<td class="instruction">INC $A8</td>
+<td class="comment-1" rowspan="1">set start bit first start cycle done flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBDC"></span>FBDC</td>
+<td class="bytes">A5 B6</td>
+<td class="instruction">LDA $B6</td>
+<td class="comment-1" rowspan="1">get buffer address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBDE"></span>FBDE</td>
+<td class="bytes">10 29</td>
+<td class="instruction">BPL <a href="FBCD.html#FC09">$FC09</a></td>
+<td class="comment-1" rowspan="1">if block not complete go restore registers and exit interrupt. the end of a block is indicated by the tape buffer high byte b7 being set to 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBE0"></span>FBE0</td>
+<td class="bytes">4C 57 FC</td>
+<td class="instruction">JMP <a href="FBCD.html#FC57">$FC57</a></td>
+<td class="comment-1" rowspan="1">else do tape routine, block complete exit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FBE3"></span>
+<div class="comments">
+<div class="paragraph">
+continue tape byte write. the first start cycle, both half cycles of it, is complete so the routine drops straight through to here
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FBE3"></span>FBE3</td>
+<td class="bytes">A5 A9</td>
+<td class="instruction">LDA $A9</td>
+<td class="comment-1" rowspan="1">get start bit check flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBE5"></span>FBE5</td>
+<td class="bytes">D0 09</td>
+<td class="instruction">BNE <a href="FBCD.html#FBF0">$FBF0</a></td>
+<td class="comment-1" rowspan="1">if the start bit is complete go send the byte bits</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FBE7"></span>
+<div class="comments">
+<div class="paragraph">
+after the two half cycles of $0110 ststem clocks the start bit is completed with two half cycles of $00B0 system clocks. this is the same as the first part of a 1 bit
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBE7"></span>FBE7</td>
+<td class="bytes">20 AD FB</td>
+<td class="instruction">JSR <a href="FBA6.html#FBAD">$FBAD</a></td>
+<td class="comment-1" rowspan="1">set time constant for bit = 1 and toggle tape</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBEA"></span>FBEA</td>
+<td class="bytes">D0 1D</td>
+<td class="instruction">BNE <a href="FBCD.html#FC09">$FC09</a></td>
+<td class="comment-1" rowspan="1">if first half cycle go restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBEC"></span>FBEC</td>
+<td class="bytes">E6 A9</td>
+<td class="instruction">INC $A9</td>
+<td class="comment-1" rowspan="1">set start bit check flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBEE"></span>FBEE</td>
+<td class="bytes">D0 19</td>
+<td class="instruction">BNE <a href="FBCD.html#FC09">$FC09</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt, branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FBF0"></span>
+<div class="comments">
+<div class="paragraph">
+continue tape byte write. the start bit, both cycles of it, is complete so the routine drops straight through to here. now the cycle pairs for each bit, and the parity bit, are sent
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FBF0"></span>FBF0</td>
+<td class="bytes">20 A6 FB</td>
+<td class="instruction">JSR <a href="FBA6.html">$FBA6</a></td>
+<td class="comment-1" rowspan="1">send lsb from tape write byte to tape</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBF3"></span>FBF3</td>
+<td class="bytes">D0 14</td>
+<td class="instruction">BNE <a href="FBCD.html#FC09">$FC09</a></td>
+<td class="comment-1" rowspan="1">if first half cycle go restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FBF5"></span>
+<div class="comments">
+<div class="paragraph">
+else two half cycles have been done
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBF5"></span>FBF5</td>
+<td class="bytes">A5 A4</td>
+<td class="instruction">LDA $A4</td>
+<td class="comment-1" rowspan="1">get tape bit cycle phase</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBF7"></span>FBF7</td>
+<td class="bytes">49 01</td>
+<td class="instruction">EOR #%00000001</td>
+<td class="comment-1" rowspan="1">toggle b0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBF9"></span>FBF9</td>
+<td class="bytes">85 A4</td>
+<td class="instruction">STA $A4</td>
+<td class="comment-1" rowspan="1">save tape bit cycle phase</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBFB"></span>FBFB</td>
+<td class="bytes">F0 0F</td>
+<td class="instruction">BEQ <a href="FBCD.html#FC0C">$FC0C</a></td>
+<td class="comment-1" rowspan="1">if bit cycle phase complete go setup for next bit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FBFD"></span>
+<div class="comments">
+<div class="paragraph">
+each bit is written as two full cycles. a 1 is sent as a full cycle of $0160 system clocks then a full cycle of $00C0 system clocks. a 0 is sent as a full cycle of $00C0 system clocks then a full cycle of $0160 system clocks. to do this each bit from the write byte is inverted during the second bit cycle phase. as the bit is inverted it is also added to the, one bit, parity count for this byte
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBFD"></span>FBFD</td>
+<td class="bytes">A5 BD</td>
+<td class="instruction">LDA $BD</td>
+<td class="comment-1" rowspan="1">get tape write byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FBFF"></span>FBFF</td>
+<td class="bytes">49 01</td>
+<td class="instruction">EOR #%00000001</td>
+<td class="comment-1" rowspan="1">invert bit being sent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC01"></span>FC01</td>
+<td class="bytes">85 BD</td>
+<td class="instruction">STA $BD</td>
+<td class="comment-1" rowspan="1">save tape write byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC03"></span>FC03</td>
+<td class="bytes">29 01</td>
+<td class="instruction">AND #%00000001</td>
+<td class="comment-1" rowspan="1">mask b0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC05"></span>FC05</td>
+<td class="bytes">45 9B</td>
+<td class="instruction">EOR $9B</td>
+<td class="comment-1" rowspan="1">EOR with tape write byte parity bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC07"></span>FC07</td>
+<td class="bytes">85 9B</td>
+<td class="instruction">STA $9B</td>
+<td class="comment-1" rowspan="1">save tape write byte parity bit</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FC09"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="FBC8.html">FBC8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FC09"></span>FC09</td>
+<td class="bytes">4C BC FE</td>
+<td class="instruction">JMP <a href="FE72.html#FEBC">$FEBC</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FC0C"></span>
+<div class="comments">
+<div class="paragraph">
+the bit cycle phase is complete so shift out the just written bit and test for byte end
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FC0C"></span>FC0C</td>
+<td class="bytes">46 BD</td>
+<td class="instruction">LSR $BD</td>
+<td class="comment-1" rowspan="1">shift bit out of tape write byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC0E"></span>FC0E</td>
+<td class="bytes">C6 A3</td>
+<td class="instruction">DEC $A3</td>
+<td class="comment-1" rowspan="1">decrement tape write bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC10"></span>FC10</td>
+<td class="bytes">A5 A3</td>
+<td class="instruction">LDA $A3</td>
+<td class="comment-1" rowspan="1">get tape write bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC12"></span>FC12</td>
+<td class="bytes">F0 3A</td>
+<td class="instruction">BEQ <a href="FBCD.html#FC4E">$FC4E</a></td>
+<td class="comment-1" rowspan="1">if all the data bits have been written go setup for sending the parity bit next and exit the interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC14"></span>FC14</td>
+<td class="bytes">10 F3</td>
+<td class="instruction">BPL <a href="FBCD.html#FC09">$FC09</a></td>
+<td class="comment-1" rowspan="1">if all the data bits are not yet sent just restore the registers and exit the interrupt</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FC16"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="FC6A.html">FC6A</a>.
+</div>
+<div class="paragraph">
+do next tape byte
+</div>
+<div class="paragraph">
+the byte is complete. the start bit, data bits and parity bit have been written to the tape so setup for the next byte
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FC16"></span>FC16</td>
+<td class="bytes">20 97 FB</td>
+<td class="instruction">JSR <a href="FB97.html">$FB97</a></td>
+<td class="comment-1" rowspan="1">new tape byte setup</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC19"></span>FC19</td>
+<td class="bytes">58</td>
+<td class="instruction">CLI</td>
+<td class="comment-1" rowspan="1">enable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC1A"></span>FC1A</td>
+<td class="bytes">A5 A5</td>
+<td class="instruction">LDA $A5</td>
+<td class="comment-1" rowspan="1">get cassette synchronization character count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC1C"></span>FC1C</td>
+<td class="bytes">F0 12</td>
+<td class="instruction">BEQ <a href="FBCD.html#FC30">$FC30</a></td>
+<td class="comment-1" rowspan="1">if synchronisation characters done go do block data</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FC1E"></span>
+<div class="comments">
+<div class="paragraph">
+at the start of each block sent to tape there are a number of synchronisation bytes that count down to the actual data. the commodore tape system saves two copies of all the tape data, the first is loaded and is indicated by the synchronisation bytes having b7 set, and the second copy is indicated by the synchronisation bytes having b7 clear. the sequence goes $09, $08, ..... $02, $01, data bytes
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC1E"></span>FC1E</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC20"></span>FC20</td>
+<td class="bytes">86 D7</td>
+<td class="instruction">STX $D7</td>
+<td class="comment-1" rowspan="1">clear checksum byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC22"></span>FC22</td>
+<td class="bytes">C6 A5</td>
+<td class="instruction">DEC $A5</td>
+<td class="comment-1" rowspan="1">decrement cassette synchronization byte count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC24"></span>FC24</td>
+<td class="bytes">A6 BE</td>
+<td class="instruction">LDX $BE</td>
+<td class="comment-1" rowspan="1">get cassette copies count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC26"></span>FC26</td>
+<td class="bytes">E0 02</td>
+<td class="instruction">CPX #$02</td>
+<td class="comment-1" rowspan="1">compare with load block indicator</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC28"></span>FC28</td>
+<td class="bytes">D0 02</td>
+<td class="instruction">BNE <a href="FBCD.html#FC2C">$FC2C</a></td>
+<td class="comment-1" rowspan="1">branch if not the load block</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC2A"></span>FC2A</td>
+<td class="bytes">09 80</td>
+<td class="instruction">ORA #$80</td>
+<td class="comment-1" rowspan="1">this is the load block so make the synchronisation count go $89, $88, ..... $82, $81</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FC2C"></span>FC2C</td>
+<td class="bytes">85 BD</td>
+<td class="instruction">STA $BD</td>
+<td class="comment-1" rowspan="1">save the synchronisation byte as the tape write byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC2E"></span>FC2E</td>
+<td class="bytes">D0 D9</td>
+<td class="instruction">BNE <a href="FBCD.html#FC09">$FC09</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt, branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FC30"></span>
+<div class="comments">
+<div class="paragraph">
+the synchronization bytes have been done so now check and do the actual block data
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FC30"></span>FC30</td>
+<td class="bytes">20 D1 FC</td>
+<td class="instruction">JSR <a href="FCD1.html">$FCD1</a></td>
+<td class="comment-1" rowspan="1">check read/write pointer, return Cb = 1 if pointer &gt;= end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC33"></span>FC33</td>
+<td class="bytes">90 0A</td>
+<td class="instruction">BCC <a href="FBCD.html#FC3F">$FC3F</a></td>
+<td class="comment-1" rowspan="1">if not all done yet go get the byte to send</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC35"></span>FC35</td>
+<td class="bytes">D0 91</td>
+<td class="instruction">BNE <a href="FBC8.html">$FBC8</a></td>
+<td class="comment-1" rowspan="1">if pointer &gt; end go flag block done and exit interrupt</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FC37"></span>
+<div class="comments">
+<div class="paragraph">
+else the block is complete, it only remains to write the checksum byte to the tape so setup for that
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC37"></span>FC37</td>
+<td class="bytes">E6 AD</td>
+<td class="instruction">INC $AD</td>
+<td class="comment-1" rowspan="1">increment buffer pointer high byte, this means the block done branch will always be taken next time without having to worry about the low byte wrapping to zero</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC39"></span>FC39</td>
+<td class="bytes">A5 D7</td>
+<td class="instruction">LDA $D7</td>
+<td class="comment-1" rowspan="1">get checksum byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC3B"></span>FC3B</td>
+<td class="bytes">85 BD</td>
+<td class="instruction">STA $BD</td>
+<td class="comment-1" rowspan="1">save checksum as tape write byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC3D"></span>FC3D</td>
+<td class="bytes">B0 CA</td>
+<td class="instruction">BCS <a href="FBCD.html#FC09">$FC09</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt, branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FC3F"></span>
+<div class="comments">
+<div class="paragraph">
+the block isn't finished so get the next byte to write to tape
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FC3F"></span>FC3F</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC41"></span>FC41</td>
+<td class="bytes">B1 AC</td>
+<td class="instruction">LDA ($AC),Y</td>
+<td class="comment-1" rowspan="1">get byte from buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC43"></span>FC43</td>
+<td class="bytes">85 BD</td>
+<td class="instruction">STA $BD</td>
+<td class="comment-1" rowspan="1">save as tape write byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC45"></span>FC45</td>
+<td class="bytes">45 D7</td>
+<td class="instruction">EOR $D7</td>
+<td class="comment-1" rowspan="1">XOR with checksum byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC47"></span>FC47</td>
+<td class="bytes">85 D7</td>
+<td class="instruction">STA $D7</td>
+<td class="comment-1" rowspan="1">save new checksum byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC49"></span>FC49</td>
+<td class="bytes">20 DB FC</td>
+<td class="instruction">JSR <a href="FCDB.html">$FCDB</a></td>
+<td class="comment-1" rowspan="1">increment read/write pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC4C"></span>FC4C</td>
+<td class="bytes">D0 BB</td>
+<td class="instruction">BNE <a href="FBCD.html#FC09">$FC09</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt, branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FC4E"></span>
+<div class="comments">
+<div class="paragraph">
+set parity as next bit and exit interrupt
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FC4E"></span>FC4E</td>
+<td class="bytes">A5 9B</td>
+<td class="instruction">LDA $9B</td>
+<td class="comment-1" rowspan="1">get parity bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC50"></span>FC50</td>
+<td class="bytes">49 01</td>
+<td class="instruction">EOR #%00000001</td>
+<td class="comment-1" rowspan="1">toggle it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC52"></span>FC52</td>
+<td class="bytes">85 BD</td>
+<td class="instruction">STA $BD</td>
+<td class="comment-1" rowspan="1">save as tape write byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FC54"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="FC6A.html">FC6A</a> and <a href="FCB8.html">FCB8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FC54"></span>FC54</td>
+<td class="bytes">4C BC FE</td>
+<td class="instruction">JMP <a href="FE72.html#FEBC">$FEBC</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FC57"></span>
+<div class="comments">
+<div class="paragraph">
+tape routine, block complete exit
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FC57"></span>FC57</td>
+<td class="bytes">C6 BE</td>
+<td class="instruction">DEC $BE</td>
+<td class="comment-1" rowspan="1">decrement copies remaining to read/write</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC59"></span>FC59</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="FBCD.html#FC5E">$FC5E</a></td>
+<td class="comment-1" rowspan="1">branch if more to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC5B"></span>FC5B</td>
+<td class="bytes">20 CA FC</td>
+<td class="instruction">JSR <a href="FCCA.html">$FCCA</a></td>
+<td class="comment-1" rowspan="1">stop the cassette motor</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FC5E"></span>FC5E</td>
+<td class="bytes">A9 50</td>
+<td class="instruction">LDA #$50</td>
+<td class="comment-1" rowspan="1">set tape write leader count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC60"></span>FC60</td>
+<td class="bytes">85 A7</td>
+<td class="instruction">STA $A7</td>
+<td class="comment-1" rowspan="1">save tape write leader count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC62"></span>FC62</td>
+<td class="bytes">A2 08</td>
+<td class="instruction">LDX #$08</td>
+<td class="comment-1" rowspan="1">set index for write tape leader vector</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC64"></span>FC64</td>
+<td class="bytes">78</td>
+<td class="instruction">SEI</td>
+<td class="comment-1" rowspan="1">disable the interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC65"></span>FC65</td>
+<td class="bytes">20 BD FC</td>
+<td class="instruction">JSR <a href="FCBD.html">$FCBD</a></td>
+<td class="comment-1" rowspan="1">set the tape vector</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FC68"></span>FC68</td>
+<td class="bytes">D0 EA</td>
+<td class="instruction">BNE <a href="FBCD.html#FC54">$FC54</a></td>
+<td class="comment-1" rowspan="1">restore registers and exit interrupt, branch always</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FBC8.html">FBC8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FBCD">Map</a></td>
+<td class="next">
+Next: <a href="FC6A.html">FC6A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E87C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E716.html">E716</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E87C">Map</a></td>
+<td class="next">
+Next: <a href="E891.html">E891</a>
+</td>
+</tr>
+</table>
+<div class="description">E87C: do newline</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="E6B6.html">E6B6</a>, <a href="E716.html">E716</a> and <a href="E891.html">E891</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E87C"></span>E87C</td>
+<td class="bytes">46 C9</td>
+<td class="instruction">LSR $C9</td>
+<td class="comment-1" rowspan="1">shift &gt;&gt; input cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E87E"></span>E87E</td>
+<td class="bytes">A6 D6</td>
+<td class="instruction">LDX $D6</td>
+<td class="comment-1" rowspan="1">get the cursor row</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E880"></span>E880</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">increment the row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E881"></span>E881</td>
+<td class="bytes">E0 19</td>
+<td class="instruction">CPX #$19</td>
+<td class="comment-1" rowspan="1">compare it with last row + 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E883"></span>E883</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="E87C.html#E888">$E888</a></td>
+<td class="comment-1" rowspan="1">if not last row + 1 skip the screen scroll</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E885"></span>E885</td>
+<td class="bytes">20 EA E8</td>
+<td class="instruction">JSR <a href="E8EA.html">$E8EA</a></td>
+<td class="comment-1" rowspan="1">else scroll the screen</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E888"></span>E888</td>
+<td class="bytes">B5 D9</td>
+<td class="instruction">LDA $D9,X</td>
+<td class="comment-1" rowspan="1">get start of line <span class="register">X</span> pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E88A"></span>E88A</td>
+<td class="bytes">10 F4</td>
+<td class="instruction">BPL <a href="E87C.html#E880">$E880</a></td>
+<td class="comment-1" rowspan="1">loop if not start of logical line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E88C"></span>E88C</td>
+<td class="bytes">86 D6</td>
+<td class="instruction">STX $D6</td>
+<td class="comment-1" rowspan="1">save the cursor row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E88E"></span>E88E</td>
+<td class="bytes">4C 6C E5</td>
+<td class="instruction">JMP <a href="E56C.html">$E56C</a></td>
+<td class="comment-1" rowspan="1">set the screen pointers for cursor row, column and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E716.html">E716</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E87C">Map</a></td>
+<td class="next">
+Next: <a href="E891.html">E891</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

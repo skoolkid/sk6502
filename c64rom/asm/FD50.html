@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FD50</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FD30.html">FD30</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FD50">Map</a></td>
+<td class="next">
+Next: <a href="FD9B.html">FD9B</a>
+</td>
+</tr>
+</table>
+<div class="description">FD50: test RAM and find RAM end</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="FCE2.html">FCE2</a> and <a href="FF87.html">FF87</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FD50"></span>FD50</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD52"></span>FD52</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FD53"></span>FD53</td>
+<td class="bytes">99 02 00</td>
+<td class="instruction">STA $0002,Y</td>
+<td class="comment-1" rowspan="1">clear page 0, don't do $0000 or $0001</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD56"></span>FD56</td>
+<td class="bytes">99 00 02</td>
+<td class="instruction">STA $0200,Y</td>
+<td class="comment-1" rowspan="1">clear page 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD59"></span>FD59</td>
+<td class="bytes">99 00 03</td>
+<td class="instruction">STA $0300,Y</td>
+<td class="comment-1" rowspan="1">clear page 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD5C"></span>FD5C</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD5D"></span>FD5D</td>
+<td class="bytes">D0 F4</td>
+<td class="instruction">BNE <a href="FD50.html#FD53">$FD53</a></td>
+<td class="comment-1" rowspan="1">loop if more to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD5F"></span>FD5F</td>
+<td class="bytes">A2 3C</td>
+<td class="instruction">LDX #$3C</td>
+<td class="comment-1" rowspan="1">set cassette buffer pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD61"></span>FD61</td>
+<td class="bytes">A0 03</td>
+<td class="instruction">LDY #$03</td>
+<td class="comment-1" rowspan="1">set cassette buffer pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD63"></span>FD63</td>
+<td class="bytes">86 B2</td>
+<td class="instruction">STX $B2</td>
+<td class="comment-1" rowspan="1">save tape buffer start pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD65"></span>FD65</td>
+<td class="bytes">84 B3</td>
+<td class="instruction">STY $B3</td>
+<td class="comment-1" rowspan="1">save tape buffer start pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD67"></span>FD67</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">clear <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD68"></span>FD68</td>
+<td class="bytes">A9 03</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="1">set RAM test pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD6A"></span>FD6A</td>
+<td class="bytes">85 C2</td>
+<td class="instruction">STA $C2</td>
+<td class="comment-1" rowspan="1">save RAM test pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FD6C"></span>FD6C</td>
+<td class="bytes">E6 C2</td>
+<td class="instruction">INC $C2</td>
+<td class="comment-1" rowspan="1">increment RAM test pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FD6E"></span>FD6E</td>
+<td class="bytes">B1 C1</td>
+<td class="instruction">LDA ($C1),Y</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD70"></span>FD70</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD71"></span>FD71</td>
+<td class="bytes">A9 55</td>
+<td class="instruction">LDA #$55</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD73"></span>FD73</td>
+<td class="bytes">91 C1</td>
+<td class="instruction">STA ($C1),Y</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD75"></span>FD75</td>
+<td class="bytes">D1 C1</td>
+<td class="instruction">CMP ($C1),Y</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD77"></span>FD77</td>
+<td class="bytes">D0 0F</td>
+<td class="instruction">BNE <a href="FD50.html#FD88">$FD88</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD79"></span>FD79</td>
+<td class="bytes">2A</td>
+<td class="instruction">ROL A</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD7A"></span>FD7A</td>
+<td class="bytes">91 C1</td>
+<td class="instruction">STA ($C1),Y</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD7C"></span>FD7C</td>
+<td class="bytes">D1 C1</td>
+<td class="instruction">CMP ($C1),Y</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD7E"></span>FD7E</td>
+<td class="bytes">D0 08</td>
+<td class="instruction">BNE <a href="FD50.html#FD88">$FD88</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD80"></span>FD80</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD81"></span>FD81</td>
+<td class="bytes">91 C1</td>
+<td class="instruction">STA ($C1),Y</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD83"></span>FD83</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD84"></span>FD84</td>
+<td class="bytes">D0 E8</td>
+<td class="instruction">BNE <a href="FD50.html#FD6E">$FD6E</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD86"></span>FD86</td>
+<td class="bytes">F0 E4</td>
+<td class="instruction">BEQ <a href="FD50.html#FD6C">$FD6C</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FD88"></span>FD88</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD89"></span>FD89</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD8A"></span>FD8A</td>
+<td class="bytes">A4 C2</td>
+<td class="instruction">LDY $C2</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD8C"></span>FD8C</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD8D"></span>FD8D</td>
+<td class="bytes">20 2D FE</td>
+<td class="instruction">JSR <a href="FE2D.html">$FE2D</a></td>
+<td class="comment-1" rowspan="1">set the top of memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD90"></span>FD90</td>
+<td class="bytes">A9 08</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD92"></span>FD92</td>
+<td class="bytes">8D 82 02</td>
+<td class="instruction">STA $0282</td>
+<td class="comment-1" rowspan="1">save the OS start of memory high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD95"></span>FD95</td>
+<td class="bytes">A9 04</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD97"></span>FD97</td>
+<td class="bytes">8D 88 02</td>
+<td class="instruction">STA $0288</td>
+<td class="comment-1" rowspan="1">save the screen memory page</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FD9A"></span>FD9A</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FD30.html">FD30</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FD50">Map</a></td>
+<td class="next">
+Next: <a href="FD9B.html">FD9B</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

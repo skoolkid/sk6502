@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FDA3</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FD9B.html">FD9B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FDA3">Map</a></td>
+<td class="next">
+Next: <a href="FDF9.html">FDF9</a>
+</td>
+</tr>
+</table>
+<div class="description">FDA3: initialise SID, CIA and IRQ</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="FCE2.html">FCE2</a>, <a href="FE66.html">FE66</a> and <a href="FF84.html">FF84</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FDA3"></span>FDA3</td>
+<td class="bytes">A9 7F</td>
+<td class="instruction">LDA #$7F</td>
+<td class="comment-1" rowspan="1">disable all interrupts</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDA5"></span>FDA5</td>
+<td class="bytes">8D 0D DC</td>
+<td class="instruction">STA $DC0D</td>
+<td class="comment-1" rowspan="1">save VIA 1 ICR</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDA8"></span>FDA8</td>
+<td class="bytes">8D 0D DD</td>
+<td class="instruction">STA $DD0D</td>
+<td class="comment-1" rowspan="1">save VIA 2 ICR</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDAB"></span>FDAB</td>
+<td class="bytes">8D 00 DC</td>
+<td class="instruction">STA $DC00</td>
+<td class="comment-1" rowspan="1">save VIA 1 DRA, keyboard column drive</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDAE"></span>FDAE</td>
+<td class="bytes">A9 08</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="1">set timer single shot</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDB0"></span>FDB0</td>
+<td class="bytes">8D 0E DC</td>
+<td class="instruction">STA $DC0E</td>
+<td class="comment-1" rowspan="1">save VIA 1 CRA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDB3"></span>FDB3</td>
+<td class="bytes">8D 0E DD</td>
+<td class="instruction">STA $DD0E</td>
+<td class="comment-1" rowspan="1">save VIA 2 CRA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDB6"></span>FDB6</td>
+<td class="bytes">8D 0F DC</td>
+<td class="instruction">STA $DC0F</td>
+<td class="comment-1" rowspan="1">save VIA 1 CRB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDB9"></span>FDB9</td>
+<td class="bytes">8D 0F DD</td>
+<td class="instruction">STA $DD0F</td>
+<td class="comment-1" rowspan="1">save VIA 2 CRB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDBC"></span>FDBC</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">set all inputs</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDBE"></span>FDBE</td>
+<td class="bytes">8E 03 DC</td>
+<td class="instruction">STX $DC03</td>
+<td class="comment-1" rowspan="1">save VIA 1 DDRB, keyboard row</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDC1"></span>FDC1</td>
+<td class="bytes">8E 03 DD</td>
+<td class="instruction">STX $DD03</td>
+<td class="comment-1" rowspan="1">save VIA 2 DDRB, RS232 port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDC4"></span>FDC4</td>
+<td class="bytes">8E 18 D4</td>
+<td class="instruction">STX $D418</td>
+<td class="comment-1" rowspan="1">clear the volume and filter select register</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDC7"></span>FDC7</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">set <span class="register">X</span> = $FF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDC8"></span>FDC8</td>
+<td class="bytes">8E 02 DC</td>
+<td class="instruction">STX $DC02</td>
+<td class="comment-1" rowspan="1">save VIA 1 DDRA, keyboard column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDCB"></span>FDCB</td>
+<td class="bytes">A9 07</td>
+<td class="instruction">LDA #$07</td>
+<td class="comment-1" rowspan="1">DATA out high, CLK out high, ATN out high, RE232 Tx DATA high, video address 15 = 1, video address 14 = 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDCD"></span>FDCD</td>
+<td class="bytes">8D 00 DD</td>
+<td class="instruction">STA $DD00</td>
+<td class="comment-1" rowspan="1">save VIA 2 DRA, serial port and video address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDD0"></span>FDD0</td>
+<td class="bytes">A9 3F</td>
+<td class="instruction">LDA #$3F</td>
+<td class="comment-1" rowspan="1">set serial DATA input, serial CLK input</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDD2"></span>FDD2</td>
+<td class="bytes">8D 02 DD</td>
+<td class="instruction">STA $DD02</td>
+<td class="comment-1" rowspan="1">save VIA 2 DDRA, serial port and video address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDD5"></span>FDD5</td>
+<td class="bytes">A9 E7</td>
+<td class="instruction">LDA #$E7</td>
+<td class="comment-1" rowspan="1">set 1110 0111, motor off, enable I/O, enable KERNAL, enable BASIC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDD7"></span>FDD7</td>
+<td class="bytes">85 01</td>
+<td class="instruction">STA $01</td>
+<td class="comment-1" rowspan="1">save the 6510 I/O port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDD9"></span>FDD9</td>
+<td class="bytes">A9 2F</td>
+<td class="instruction">LDA #$2F</td>
+<td class="comment-1" rowspan="1">set 0010 1111, 0 = input, 1 = output</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDDB"></span>FDDB</td>
+<td class="bytes">85 00</td>
+<td class="instruction">STA $00</td>
+<td class="comment-1" rowspan="1">save the 6510 I/O port direction register</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FDDD"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="FC93.html">FC93</a> and <a href="FF5B.html">FF5B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FDDD"></span>FDDD</td>
+<td class="bytes">AD A6 02</td>
+<td class="instruction">LDA $02A6</td>
+<td class="comment-1" rowspan="1">get the PAL/NTSC flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDE0"></span>FDE0</td>
+<td class="bytes">F0 0A</td>
+<td class="instruction">BEQ <a href="FDA3.html#FDEC">$FDEC</a></td>
+<td class="comment-1" rowspan="1">if NTSC go set NTSC timing</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="FDE2"></span>
+<div class="comments">
+<div class="paragraph">
+else set PAL timing
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDE2"></span>FDE2</td>
+<td class="bytes">A9 25</td>
+<td class="instruction">LDA #$25</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDE4"></span>FDE4</td>
+<td class="bytes">8D 04 DC</td>
+<td class="instruction">STA $DC04</td>
+<td class="comment-1" rowspan="1">save VIA 1 timer A low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDE7"></span>FDE7</td>
+<td class="bytes">A9 40</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDE9"></span>FDE9</td>
+<td class="bytes">4C F3 FD</td>
+<td class="instruction">JMP <a href="FDA3.html#FDF3">$FDF3</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FDEC"></span>FDEC</td>
+<td class="bytes">A9 95</td>
+<td class="instruction">LDA #$95</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDEE"></span>FDEE</td>
+<td class="bytes">8D 04 DC</td>
+<td class="instruction">STA $DC04</td>
+<td class="comment-1" rowspan="1">save VIA 1 timer A low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDF1"></span>FDF1</td>
+<td class="bytes">A9 42</td>
+<td class="instruction">LDA #$42</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="FDF3"></span>FDF3</td>
+<td class="bytes">8D 05 DC</td>
+<td class="instruction">STA $DC05</td>
+<td class="comment-1" rowspan="1">save VIA 1 timer A high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="FDF6"></span>FDF6</td>
+<td class="bytes">4C 6E FF</td>
+<td class="instruction">JMP <a href="FF6E.html">$FF6E</a></td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FD9B.html">FD9B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FDA3">Map</a></td>
+<td class="next">
+Next: <a href="FDF9.html">FDF9</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

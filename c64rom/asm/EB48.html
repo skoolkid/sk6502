@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EB48</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EA87.html">EA87</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EB48">Map</a></td>
+<td class="next">
+Next: <a href="EB79.html">EB79</a>
+</td>
+</tr>
+</table>
+<div class="description">EB48: evaluate the SHIFT/CTRL/C= keys</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EB48"></span>EB48</td>
+<td class="bytes">AD 8D 02</td>
+<td class="instruction">LDA $028D</td>
+<td class="comment-1" rowspan="1">get the keyboard shift/control/c= flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB4B"></span>EB4B</td>
+<td class="bytes">C9 03</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">compare with [SHIFT][C=]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB4D"></span>EB4D</td>
+<td class="bytes">D0 15</td>
+<td class="instruction">BNE <a href="EB48.html#EB64">$EB64</a></td>
+<td class="comment-1" rowspan="1">if not [SHIFT][C=] go ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB4F"></span>EB4F</td>
+<td class="bytes">CD 8E 02</td>
+<td class="instruction">CMP $028E</td>
+<td class="comment-1" rowspan="1">compare with last</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB52"></span>EB52</td>
+<td class="bytes">F0 EE</td>
+<td class="instruction">BEQ <a href="EA87.html#EB42">$EB42</a></td>
+<td class="comment-1" rowspan="1">exit if still the same</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB54"></span>EB54</td>
+<td class="bytes">AD 91 02</td>
+<td class="instruction">LDA $0291</td>
+<td class="comment-1" rowspan="1">get the shift mode switch $00 = enabled, $80 = locked</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB57"></span>EB57</td>
+<td class="bytes">30 1D</td>
+<td class="instruction">BMI <a href="EB48.html#EB76">$EB76</a></td>
+<td class="comment-1" rowspan="1">if locked continue keyboard decode</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EB59"></span>
+<div class="comments">
+<div class="paragraph">
+toggle text mode
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB59"></span>EB59</td>
+<td class="bytes">AD 18 D0</td>
+<td class="instruction">LDA $D018</td>
+<td class="comment-1" rowspan="1">get the start of character memory address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB5C"></span>EB5C</td>
+<td class="bytes">49 02</td>
+<td class="instruction">EOR #%00000010</td>
+<td class="comment-1" rowspan="1">toggle address b1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB5E"></span>EB5E</td>
+<td class="bytes">8D 18 D0</td>
+<td class="instruction">STA $D018</td>
+<td class="comment-1" rowspan="1">save the start of character memory address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB61"></span>EB61</td>
+<td class="bytes">4C 76 EB</td>
+<td class="instruction">JMP <a href="EB48.html#EB76">$EB76</a></td>
+<td class="comment-1" rowspan="1">continue the keyboard decode</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EB64"></span>
+<div class="comments">
+<div class="paragraph">
+select keyboard table
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EB64"></span>EB64</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">&lt;&lt; 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB65"></span>EB65</td>
+<td class="bytes">C9 08</td>
+<td class="instruction">CMP #$08</td>
+<td class="comment-1" rowspan="1">compare with [CTRL]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB67"></span>EB67</td>
+<td class="bytes">90 02</td>
+<td class="instruction">BCC <a href="EB48.html#EB6B">$EB6B</a></td>
+<td class="comment-1" rowspan="1">if [CTRL] is not pressed skip the index change</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB69"></span>EB69</td>
+<td class="bytes">A9 06</td>
+<td class="instruction">LDA #$06</td>
+<td class="comment-1" rowspan="1">else [CTRL] was pressed so make the index = $06</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EB6B"></span>EB6B</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy the index to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB6C"></span>EB6C</td>
+<td class="bytes">BD 79 EB</td>
+<td class="instruction">LDA $EB79,X</td>
+<td class="comment-1" rowspan="1">get the decode table pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB6F"></span>EB6F</td>
+<td class="bytes">85 F5</td>
+<td class="instruction">STA $F5</td>
+<td class="comment-1" rowspan="1">save the decode table pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB71"></span>EB71</td>
+<td class="bytes">BD 7A EB</td>
+<td class="instruction">LDA $EB7A,X</td>
+<td class="comment-1" rowspan="1">get the decode table pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EB74"></span>EB74</td>
+<td class="bytes">85 F6</td>
+<td class="instruction">STA $F6</td>
+<td class="comment-1" rowspan="1">save the decode table pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EB76"></span>EB76</td>
+<td class="bytes">4C E0 EA</td>
+<td class="instruction">JMP <a href="EA87.html#EAE0">$EAE0</a></td>
+<td class="comment-1" rowspan="1">continue the keyboard decode</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EA87.html">EA87</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EB48">Map</a></td>
+<td class="next">
+Next: <a href="EB79.html">EB79</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

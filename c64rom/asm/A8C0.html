@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A8C0</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A8BC.html">A8BC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A8C0">Map</a></td>
+<td class="next">
+Next: <a href="A8D2.html">A8D2</a>
+</td>
+</tr>
+</table>
+<div class="description">A8C0: search for line # in temporary integer from (<span class="register">AX</span>)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="A8A0.html">A8A0</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A8C0"></span>A8C0</td>
+<td class="bytes">20 17 A6</td>
+<td class="instruction">JSR <a href="A617.html">$A617</a></td>
+<td class="comment-1" rowspan="1">search Basic for temp integer line number from <span class="register">AX</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A8C3"></span>A8C3</td>
+<td class="bytes">90 1E</td>
+<td class="instruction">BCC <a href="A8D2.html#A8E3">$A8E3</a></td>
+<td class="comment-1" rowspan="1">if carry clear go do undefined statement error</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A8C5"></span>
+<div class="comments">
+<div class="paragraph">
+carry already set for subtract
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A8C5"></span>A8C5</td>
+<td class="bytes">A5 5F</td>
+<td class="instruction">LDA $5F</td>
+<td class="comment-1" rowspan="1">get pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A8C7"></span>A8C7</td>
+<td class="bytes">E9 01</td>
+<td class="instruction">SBC #$01</td>
+<td class="comment-1" rowspan="1">-1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A8C9"></span>A8C9</td>
+<td class="bytes">85 7A</td>
+<td class="instruction">STA $7A</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A8CB"></span>A8CB</td>
+<td class="bytes">A5 60</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">get pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A8CD"></span>A8CD</td>
+<td class="bytes">E9 00</td>
+<td class="instruction">SBC #$00</td>
+<td class="comment-1" rowspan="1">subtract carry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A8CF"></span>A8CF</td>
+<td class="bytes">85 7B</td>
+<td class="instruction">STA $7B</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A8D1"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="A8D2.html">A8D2</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A8D1"></span>A8D1</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A8BC.html">A8BC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A8C0">Map</a></td>
+<td class="next">
+Next: <a href="A8D2.html">A8D2</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

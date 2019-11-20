@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B1D1</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B1B2.html">B1B2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B1D1">Map</a></td>
+<td class="next">
+Next: <a href="B37D.html">B37D</a>
+</td>
+</tr>
+</table>
+<div class="description">B1D1: find or make array</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="B08B.html">B08B</a>.
+</div>
+<div class="paragraph">
+an array is stored as follows
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<td class="" colspan="1" rowspan="5">array name</td>
+<td class="" colspan="4" rowspan="1">two bytes with the following patterns for different types</td>
+</tr>
+<tr>
+<th colspan="1" rowspan="1">1st char b7</th>
+<th colspan="1" rowspan="1">2nd char b7</th>
+<th colspan="1" rowspan="1">type</th>
+<th colspan="1" rowspan="1">element size</th>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">floating point</td>
+<td class="" colspan="1" rowspan="1">5</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">string</td>
+<td class="" colspan="1" rowspan="1">3</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">integer</td>
+<td class="" colspan="1" rowspan="1">2</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">offset to next array</td>
+<td class="" colspan="4" rowspan="1">word</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">dimension count</td>
+<td class="" colspan="4" rowspan="1">byte</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">1st dimension size</td>
+<td class="" colspan="4" rowspan="1">word, this is the number of elements including 0</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">2nd dimension size</td>
+<td class="" colspan="4" rowspan="1">word, only here if the array has a second dimension</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">3rd dimension size</td>
+<td class="" colspan="4" rowspan="1">word, only here if the array has a third dimension</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+note: the dimension size word is in high byte low byte format, not like most 6502 words then for each element the required number of bytes given as the element size above
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B1D1"></span>
+<div class="comments">
+<div class="paragraph">
+find or make array
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B1D1"></span>B1D1</td>
+<td class="bytes">A5 0C</td>
+<td class="instruction">LDA $0C</td>
+<td class="comment-1" rowspan="1">get DIM flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1D3"></span>B1D3</td>
+<td class="bytes">05 0E</td>
+<td class="instruction">ORA $0E</td>
+<td class="comment-1" rowspan="1">OR with data type flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1D5"></span>B1D5</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1D6"></span>B1D6</td>
+<td class="bytes">A5 0D</td>
+<td class="instruction">LDA $0D</td>
+<td class="comment-1" rowspan="1">get data type flag, $FF = string, $00 = numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1D8"></span>B1D8</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1D9"></span>B1D9</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear dimensions count</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B1DB"></span>
+<div class="comments">
+<div class="paragraph">
+now get the array dimension(s) and stack it (them) before the data type and DIM flag
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B1DB"></span>B1DB</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy dimensions count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1DC"></span>B1DC</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1DD"></span>B1DD</td>
+<td class="bytes">A5 46</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">get array name 2nd byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1DF"></span>B1DF</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1E0"></span>B1E0</td>
+<td class="bytes">A5 45</td>
+<td class="instruction">LDA $45</td>
+<td class="comment-1" rowspan="1">get array name 1st byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1E2"></span>B1E2</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1E3"></span>B1E3</td>
+<td class="bytes">20 B2 B1</td>
+<td class="instruction">JSR <a href="B1B2.html">$B1B2</a></td>
+<td class="comment-1" rowspan="1">evaluate integer expression</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1E6"></span>B1E6</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull array name 1st byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1E7"></span>B1E7</td>
+<td class="bytes">85 45</td>
+<td class="instruction">STA $45</td>
+<td class="comment-1" rowspan="1">restore array name 1st byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1E9"></span>B1E9</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull array name 2nd byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1EA"></span>B1EA</td>
+<td class="bytes">85 46</td>
+<td class="instruction">STA $46</td>
+<td class="comment-1" rowspan="1">restore array name 2nd byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1EC"></span>B1EC</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull dimensions count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1ED"></span>B1ED</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">restore it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1EE"></span>B1EE</td>
+<td class="bytes">BA</td>
+<td class="instruction">TSX</td>
+<td class="comment-1" rowspan="1">copy stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1EF"></span>B1EF</td>
+<td class="bytes">BD 02 01</td>
+<td class="instruction">LDA $0102,X</td>
+<td class="comment-1" rowspan="1">get DIM flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1F2"></span>B1F2</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1F3"></span>B1F3</td>
+<td class="bytes">BD 01 01</td>
+<td class="instruction">LDA $0101,X</td>
+<td class="comment-1" rowspan="1">get data type flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1F6"></span>B1F6</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">push it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1F7"></span>B1F7</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get this dimension size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1F9"></span>B1F9</td>
+<td class="bytes">9D 02 01</td>
+<td class="instruction">STA $0102,X</td>
+<td class="comment-1" rowspan="1">stack before flag bytes</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1FC"></span>B1FC</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get this dimension size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B1FE"></span>B1FE</td>
+<td class="bytes">9D 01 01</td>
+<td class="instruction">STA $0101,X</td>
+<td class="comment-1" rowspan="1">stack before flag bytes</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B201"></span>B201</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment dimensions count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B202"></span>B202</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B205"></span>B205</td>
+<td class="bytes">C9 2C</td>
+<td class="instruction">CMP #","</td>
+<td class="comment-1" rowspan="1">compare with ","</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B207"></span>B207</td>
+<td class="bytes">F0 D2</td>
+<td class="instruction">BEQ <a href="B1D1.html#B1DB">$B1DB</a></td>
+<td class="comment-1" rowspan="1">if found go do next dimension</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B209"></span>B209</td>
+<td class="bytes">84 0B</td>
+<td class="instruction">STY $0B</td>
+<td class="comment-1" rowspan="1">store dimensions count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B20B"></span>B20B</td>
+<td class="bytes">20 F7 AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEF7">$AEF7</a></td>
+<td class="comment-1" rowspan="1">scan for ")", else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B20E"></span>B20E</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull data type flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B20F"></span>B20F</td>
+<td class="bytes">85 0D</td>
+<td class="instruction">STA $0D</td>
+<td class="comment-1" rowspan="1">restore data type flag, $FF = string, $00 = numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B211"></span>B211</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull data type flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B212"></span>B212</td>
+<td class="bytes">85 0E</td>
+<td class="instruction">STA $0E</td>
+<td class="comment-1" rowspan="1">restore data type flag, $80 = integer, $00 = float</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B214"></span>B214</td>
+<td class="bytes">29 7F</td>
+<td class="instruction">AND #%01111111</td>
+<td class="comment-1" rowspan="1">mask dim flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B216"></span>B216</td>
+<td class="bytes">85 0C</td>
+<td class="instruction">STA $0C</td>
+<td class="comment-1" rowspan="1">restore DIM flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B218"></span>B218</td>
+<td class="bytes">A6 2F</td>
+<td class="instruction">LDX $2F</td>
+<td class="comment-1" rowspan="1">set end of variables low byte (array memory start low byte)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B21A"></span>B21A</td>
+<td class="bytes">A5 30</td>
+<td class="instruction">LDA $30</td>
+<td class="comment-1" rowspan="1">set end of variables high byte (array memory start high byte)</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B21C"></span>
+<div class="comments">
+<div class="paragraph">
+now check to see if we are at the end of array memory, we would be if there were no arrays.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B21C"></span>B21C</td>
+<td class="bytes">86 5F</td>
+<td class="instruction">STX $5F</td>
+<td class="comment-1" rowspan="1">save as array start pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B21E"></span>B21E</td>
+<td class="bytes">85 60</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">save as array start pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B220"></span>B220</td>
+<td class="bytes">C5 32</td>
+<td class="instruction">CMP $32</td>
+<td class="comment-1" rowspan="1">compare with end of arrays high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B222"></span>B222</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="B1D1.html#B228">$B228</a></td>
+<td class="comment-1" rowspan="1">branch if not reached array memory end</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B224"></span>B224</td>
+<td class="bytes">E4 31</td>
+<td class="instruction">CPX $31</td>
+<td class="comment-1" rowspan="1">else compare with end of arrays low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B226"></span>B226</td>
+<td class="bytes">F0 39</td>
+<td class="instruction">BEQ <a href="B1D1.html#B261">$B261</a></td>
+<td class="comment-1" rowspan="1">go build array if not found</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B228"></span>
+<div class="comments">
+<div class="paragraph">
+search for array
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B228"></span>B228</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B22A"></span>B22A</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get array name first byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B22C"></span>B22C</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index to second name byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B22D"></span>B22D</td>
+<td class="bytes">C5 45</td>
+<td class="instruction">CMP $45</td>
+<td class="comment-1" rowspan="1">compare with this array name first byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B22F"></span>B22F</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="B1D1.html#B237">$B237</a></td>
+<td class="comment-1" rowspan="1">branch if no match</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B231"></span>B231</td>
+<td class="bytes">A5 46</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">else get this array name second byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B233"></span>B233</td>
+<td class="bytes">D1 5F</td>
+<td class="instruction">CMP ($5F),Y</td>
+<td class="comment-1" rowspan="1">compare with array name second byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B235"></span>B235</td>
+<td class="bytes">F0 16</td>
+<td class="instruction">BEQ <a href="B1D1.html#B24D">$B24D</a></td>
+<td class="comment-1" rowspan="1">array found so branch</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B237"></span>
+<div class="comments">
+<div class="paragraph">
+no match
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B237"></span>B237</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B238"></span>B238</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get array size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B23A"></span>B23A</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B23B"></span>B23B</td>
+<td class="bytes">65 5F</td>
+<td class="instruction">ADC $5F</td>
+<td class="comment-1" rowspan="1">add array start pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B23D"></span>B23D</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy low byte to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B23E"></span>B23E</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B23F"></span>B23F</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get array size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B241"></span>B241</td>
+<td class="bytes">65 60</td>
+<td class="instruction">ADC $60</td>
+<td class="comment-1" rowspan="1">add array memory pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B243"></span>B243</td>
+<td class="bytes">90 D7</td>
+<td class="instruction">BCC <a href="B1D1.html#B21C">$B21C</a></td>
+<td class="comment-1" rowspan="1">if no overflow go check next array</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B245"></span>
+<div class="comments">
+<div class="paragraph">
+do bad subscript error
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B245"></span>B245</td>
+<td class="bytes">A2 12</td>
+<td class="instruction">LDX #$12</td>
+<td class="comment-1" rowspan="1">error $12, bad subscript error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B247"></span>B247</td>
+<td class="bytes"></td>
+<td class="instruction">.BYTE $2C</td>
+<td class="comment-1" rowspan="1">makes next line BIT $0EA2</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B248"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="AA1D.html">AA1D</a>, <a href="B1B2.html">B1B2</a>, <a href="B798.html">B798</a> and <a href="B9EA.html">B9EA</a>.
+</div>
+<div class="paragraph">
+do illegal quantity error
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B248"></span>B248</td>
+<td class="bytes">A2 0E</td>
+<td class="instruction">LDX #$0E</td>
+<td class="comment-1" rowspan="1">error $0E, illegal quantity error</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B24A"></span>B24A</td>
+<td class="bytes">4C 37 A4</td>
+<td class="instruction">JMP <a href="A435.html#A437">$A437</a></td>
+<td class="comment-1" rowspan="1">do error #<span class="register">X</span> then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B24D"></span>
+<div class="comments">
+<div class="paragraph">
+found the array
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B24D"></span>B24D</td>
+<td class="bytes">A2 13</td>
+<td class="instruction">LDX #$13</td>
+<td class="comment-1" rowspan="1">set error $13, double dimension error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B24F"></span>B24F</td>
+<td class="bytes">A5 0C</td>
+<td class="instruction">LDA $0C</td>
+<td class="comment-1" rowspan="1">get DIM flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B251"></span>B251</td>
+<td class="bytes">D0 F7</td>
+<td class="instruction">BNE <a href="B1D1.html#B24A">$B24A</a></td>
+<td class="comment-1" rowspan="1">if we are trying to dimension it do error #<span class="register">X</span> then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B253"></span>
+<div class="comments">
+<div class="paragraph">
+found the array and we're not dimensioning it so we must find an element in it
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B253"></span>B253</td>
+<td class="bytes">20 94 B1</td>
+<td class="instruction">JSR <a href="B194.html">$B194</a></td>
+<td class="comment-1" rowspan="1">set-up array pointer to first element in array</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B256"></span>B256</td>
+<td class="bytes">A5 0B</td>
+<td class="instruction">LDA $0B</td>
+<td class="comment-1" rowspan="1">get dimensions count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B258"></span>B258</td>
+<td class="bytes">A0 04</td>
+<td class="instruction">LDY #$04</td>
+<td class="comment-1" rowspan="1">set index to array's # of dimensions</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B25A"></span>B25A</td>
+<td class="bytes">D1 5F</td>
+<td class="instruction">CMP ($5F),Y</td>
+<td class="comment-1" rowspan="1">compare with no of dimensions</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B25C"></span>B25C</td>
+<td class="bytes">D0 E7</td>
+<td class="instruction">BNE <a href="B1D1.html#B245">$B245</a></td>
+<td class="comment-1" rowspan="1">if wrong do bad subscript error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B25E"></span>B25E</td>
+<td class="bytes">4C EA B2</td>
+<td class="instruction">JMP <a href="B1D1.html#B2EA">$B2EA</a></td>
+<td class="comment-1" rowspan="1">found array so go get element</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B261"></span>
+<div class="comments">
+<div class="paragraph">
+array not found, so build it
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B261"></span>B261</td>
+<td class="bytes">20 94 B1</td>
+<td class="instruction">JSR <a href="B194.html">$B194</a></td>
+<td class="comment-1" rowspan="1">set-up array pointer to first element in array</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B264"></span>B264</td>
+<td class="bytes">20 08 A4</td>
+<td class="instruction">JSR <a href="A408.html">$A408</a></td>
+<td class="comment-1" rowspan="1">check available memory, do out of memory error if no room</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B267"></span>B267</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B269"></span>B269</td>
+<td class="bytes">84 72</td>
+<td class="instruction">STY $72</td>
+<td class="comment-1" rowspan="1">clear array data size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B26B"></span>B26B</td>
+<td class="bytes">A2 05</td>
+<td class="instruction">LDX #$05</td>
+<td class="comment-1" rowspan="1">set default element size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B26D"></span>B26D</td>
+<td class="bytes">A5 45</td>
+<td class="instruction">LDA $45</td>
+<td class="comment-1" rowspan="1">get variable name 1st byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B26F"></span>B26F</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">save array name 1st byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B271"></span>B271</td>
+<td class="bytes">10 01</td>
+<td class="instruction">BPL <a href="B1D1.html#B274">$B274</a></td>
+<td class="comment-1" rowspan="1">branch if not string or floating point array</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B273"></span>B273</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement element size, $04</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B274"></span>B274</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B275"></span>B275</td>
+<td class="bytes">A5 46</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">get variable name 2nd byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B277"></span>B277</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">save array name 2nd byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B279"></span>B279</td>
+<td class="bytes">10 02</td>
+<td class="instruction">BPL <a href="B1D1.html#B27D">$B27D</a></td>
+<td class="comment-1" rowspan="1">branch if not integer or string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B27B"></span>B27B</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement element size, $03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B27C"></span>B27C</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement element size, $02</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B27D"></span>B27D</td>
+<td class="bytes">86 71</td>
+<td class="instruction">STX $71</td>
+<td class="comment-1" rowspan="1">save element size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B27F"></span>B27F</td>
+<td class="bytes">A5 0B</td>
+<td class="instruction">LDA $0B</td>
+<td class="comment-1" rowspan="1">get dimensions count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B281"></span>B281</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index ..</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B282"></span>B282</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">.. to array ..</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B283"></span>B283</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">.. dimension count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B284"></span>B284</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">save array dimension count</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B286"></span>B286</td>
+<td class="bytes">A2 0B</td>
+<td class="instruction">LDX #$0B</td>
+<td class="comment-1" rowspan="1">set default dimension size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B288"></span>B288</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">set default dimension size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B28A"></span>B28A</td>
+<td class="bytes">24 0C</td>
+<td class="instruction">BIT $0C</td>
+<td class="comment-1" rowspan="1">test DIM flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B28C"></span>B28C</td>
+<td class="bytes">50 08</td>
+<td class="instruction">BVC <a href="B1D1.html#B296">$B296</a></td>
+<td class="comment-1" rowspan="1">branch if default to be used</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B28E"></span>B28E</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull dimension size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B28F"></span>B28F</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B290"></span>B290</td>
+<td class="bytes">69 01</td>
+<td class="instruction">ADC #$01</td>
+<td class="comment-1" rowspan="1">add 1, allow for zeroeth element</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B292"></span>B292</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy low byte to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B293"></span>B293</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull dimension size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B294"></span>B294</td>
+<td class="bytes">69 00</td>
+<td class="instruction">ADC #$00</td>
+<td class="comment-1" rowspan="1">add carry to high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B296"></span>B296</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">incement index to dimension size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B297"></span>B297</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">save dimension size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B299"></span>B299</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">incement index to dimension size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B29A"></span>B29A</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy dimension size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B29B"></span>B29B</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">save dimension size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B29D"></span>B29D</td>
+<td class="bytes">20 4C B3</td>
+<td class="instruction">JSR <a href="B1D1.html#B34C">$B34C</a></td>
+<td class="comment-1" rowspan="1">compute array size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2A0"></span>B2A0</td>
+<td class="bytes">86 71</td>
+<td class="instruction">STX $71</td>
+<td class="comment-1" rowspan="1">save result low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2A2"></span>B2A2</td>
+<td class="bytes">85 72</td>
+<td class="instruction">STA $72</td>
+<td class="comment-1" rowspan="1">save result high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2A4"></span>B2A4</td>
+<td class="bytes">A4 22</td>
+<td class="instruction">LDY $22</td>
+<td class="comment-1" rowspan="1">restore index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2A6"></span>B2A6</td>
+<td class="bytes">C6 0B</td>
+<td class="instruction">DEC $0B</td>
+<td class="comment-1" rowspan="1">decrement dimensions count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2A8"></span>B2A8</td>
+<td class="bytes">D0 DC</td>
+<td class="instruction">BNE <a href="B1D1.html#B286">$B286</a></td>
+<td class="comment-1" rowspan="1">loop if not all done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2AA"></span>B2AA</td>
+<td class="bytes">65 59</td>
+<td class="instruction">ADC $59</td>
+<td class="comment-1" rowspan="1">add array data pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2AC"></span>B2AC</td>
+<td class="bytes">B0 5D</td>
+<td class="instruction">BCS <a href="B1D1.html#B30B">$B30B</a></td>
+<td class="comment-1" rowspan="1">if overflow do out of memory error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2AE"></span>B2AE</td>
+<td class="bytes">85 59</td>
+<td class="instruction">STA $59</td>
+<td class="comment-1" rowspan="1">save array data pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2B0"></span>B2B0</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy array data pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2B1"></span>B2B1</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy array size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2B2"></span>B2B2</td>
+<td class="bytes">65 58</td>
+<td class="instruction">ADC $58</td>
+<td class="comment-1" rowspan="1">add array data pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2B4"></span>B2B4</td>
+<td class="bytes">90 03</td>
+<td class="instruction">BCC <a href="B1D1.html#B2B9">$B2B9</a></td>
+<td class="comment-1" rowspan="1">branch if no rollover</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2B6"></span>B2B6</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">else increment next array pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2B7"></span>B2B7</td>
+<td class="bytes">F0 52</td>
+<td class="instruction">BEQ <a href="B1D1.html#B30B">$B30B</a></td>
+<td class="comment-1" rowspan="1">if rolled over do out of memory error then warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B2B9"></span>B2B9</td>
+<td class="bytes">20 08 A4</td>
+<td class="instruction">JSR <a href="A408.html">$A408</a></td>
+<td class="comment-1" rowspan="1">check available memory, do out of memory error if no room</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2BC"></span>B2BC</td>
+<td class="bytes">85 31</td>
+<td class="instruction">STA $31</td>
+<td class="comment-1" rowspan="1">set end of arrays low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2BE"></span>B2BE</td>
+<td class="bytes">84 32</td>
+<td class="instruction">STY $32</td>
+<td class="comment-1" rowspan="1">set end of arrays high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B2C0"></span>
+<div class="comments">
+<div class="paragraph">
+now the aray is created we need to zero all the elements in it
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2C0"></span>B2C0</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span> for array clear</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2C2"></span>B2C2</td>
+<td class="bytes">E6 72</td>
+<td class="instruction">INC $72</td>
+<td class="comment-1" rowspan="1">increment array size high byte, now block count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2C4"></span>B2C4</td>
+<td class="bytes">A4 71</td>
+<td class="instruction">LDY $71</td>
+<td class="comment-1" rowspan="1">get array size low byte, now index to block</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2C6"></span>B2C6</td>
+<td class="bytes">F0 05</td>
+<td class="instruction">BEQ <a href="B1D1.html#B2CD">$B2CD</a></td>
+<td class="comment-1" rowspan="1">branch if $00</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B2C8"></span>B2C8</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index, do 0 to n-1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2C9"></span>B2C9</td>
+<td class="bytes">91 58</td>
+<td class="instruction">STA ($58),Y</td>
+<td class="comment-1" rowspan="1">clear array element byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2CB"></span>B2CB</td>
+<td class="bytes">D0 FB</td>
+<td class="instruction">BNE <a href="B1D1.html#B2C8">$B2C8</a></td>
+<td class="comment-1" rowspan="1">loop until this block done</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B2CD"></span>B2CD</td>
+<td class="bytes">C6 59</td>
+<td class="instruction">DEC $59</td>
+<td class="comment-1" rowspan="1">decrement array pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2CF"></span>B2CF</td>
+<td class="bytes">C6 72</td>
+<td class="instruction">DEC $72</td>
+<td class="comment-1" rowspan="1">decrement block count high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2D1"></span>B2D1</td>
+<td class="bytes">D0 F5</td>
+<td class="instruction">BNE <a href="B1D1.html#B2C8">$B2C8</a></td>
+<td class="comment-1" rowspan="1">loop until all blocks done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2D3"></span>B2D3</td>
+<td class="bytes">E6 59</td>
+<td class="instruction">INC $59</td>
+<td class="comment-1" rowspan="1">correct for last loop</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2D5"></span>B2D5</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2D6"></span>B2D6</td>
+<td class="bytes">A5 31</td>
+<td class="instruction">LDA $31</td>
+<td class="comment-1" rowspan="1">get end of arrays low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2D8"></span>B2D8</td>
+<td class="bytes">E5 5F</td>
+<td class="instruction">SBC $5F</td>
+<td class="comment-1" rowspan="1">subtract array start low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2DA"></span>B2DA</td>
+<td class="bytes">A0 02</td>
+<td class="instruction">LDY #$02</td>
+<td class="comment-1" rowspan="1">index to array size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2DC"></span>B2DC</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">save array size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2DE"></span>B2DE</td>
+<td class="bytes">A5 32</td>
+<td class="instruction">LDA $32</td>
+<td class="comment-1" rowspan="1">get end of arrays high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2E0"></span>B2E0</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">index to array size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2E1"></span>B2E1</td>
+<td class="bytes">E5 60</td>
+<td class="instruction">SBC $60</td>
+<td class="comment-1" rowspan="1">subtract array start high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2E3"></span>B2E3</td>
+<td class="bytes">91 5F</td>
+<td class="instruction">STA ($5F),Y</td>
+<td class="comment-1" rowspan="1">save array size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2E5"></span>B2E5</td>
+<td class="bytes">A5 0C</td>
+<td class="instruction">LDA $0C</td>
+<td class="comment-1" rowspan="1">get default DIM flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2E7"></span>B2E7</td>
+<td class="bytes">D0 62</td>
+<td class="instruction">BNE <a href="B1D1.html#B34B">$B34B</a></td>
+<td class="comment-1" rowspan="1">exit if this was a DIM command</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B2E9"></span>
+<div class="comments">
+<div class="paragraph">
+else, find element
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2E9"></span>B2E9</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">set index to # of dimensions, the dimension indices are on the stack and will be removed as the position of the array element is calculated</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B2EA"></span>B2EA</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get array's dimension count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2EC"></span>B2EC</td>
+<td class="bytes">85 0B</td>
+<td class="instruction">STA $0B</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2EE"></span>B2EE</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2F0"></span>B2F0</td>
+<td class="bytes">85 71</td>
+<td class="instruction">STA $71</td>
+<td class="comment-1" rowspan="1">clear array data pointer low byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B2F2"></span>B2F2</td>
+<td class="bytes">85 72</td>
+<td class="instruction">STA $72</td>
+<td class="comment-1" rowspan="1">save array data pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2F4"></span>B2F4</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index, point to array bound high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2F5"></span>B2F5</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull array index low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2F6"></span>B2F6</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2F7"></span>B2F7</td>
+<td class="bytes">85 64</td>
+<td class="instruction">STA $64</td>
+<td class="comment-1" rowspan="1">save index low byte to FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2F9"></span>B2F9</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull array index high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2FA"></span>B2FA</td>
+<td class="bytes">85 65</td>
+<td class="instruction">STA $65</td>
+<td class="comment-1" rowspan="1">save index high byte to FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2FC"></span>B2FC</td>
+<td class="bytes">D1 5F</td>
+<td class="instruction">CMP ($5F),Y</td>
+<td class="comment-1" rowspan="1">compare with array bound high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B2FE"></span>B2FE</td>
+<td class="bytes">90 0E</td>
+<td class="instruction">BCC <a href="B1D1.html#B30E">$B30E</a></td>
+<td class="comment-1" rowspan="1">branch if within bounds</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B300"></span>B300</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="B1D1.html#B308">$B308</a></td>
+<td class="comment-1" rowspan="1">if outside bounds do bad subscript error</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B302"></span>
+<div class="comments">
+<div class="paragraph">
+else high byte was = so test low bytes
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B302"></span>B302</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">index to array bound low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B303"></span>B303</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">get array index low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B304"></span>B304</td>
+<td class="bytes">D1 5F</td>
+<td class="instruction">CMP ($5F),Y</td>
+<td class="comment-1" rowspan="1">compare with array bound low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B306"></span>B306</td>
+<td class="bytes">90 07</td>
+<td class="instruction">BCC <a href="B1D1.html#B30F">$B30F</a></td>
+<td class="comment-1" rowspan="1">branch if within bounds</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B308"></span>B308</td>
+<td class="bytes">4C 45 B2</td>
+<td class="instruction">JMP <a href="B1D1.html#B245">$B245</a></td>
+<td class="comment-1" rowspan="1">do bad subscript error</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B30B"></span>B30B</td>
+<td class="bytes">4C 35 A4</td>
+<td class="instruction">JMP <a href="A435.html">$A435</a></td>
+<td class="comment-1" rowspan="1">do out of memory error then warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B30E"></span>B30E</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">index to array bound low byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B30F"></span>B30F</td>
+<td class="bytes">A5 72</td>
+<td class="instruction">LDA $72</td>
+<td class="comment-1" rowspan="1">get array data pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B311"></span>B311</td>
+<td class="bytes">05 71</td>
+<td class="instruction">ORA $71</td>
+<td class="comment-1" rowspan="1">OR with array data pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B313"></span>B313</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for either add, carry always clear here ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B314"></span>B314</td>
+<td class="bytes">F0 0A</td>
+<td class="instruction">BEQ <a href="B1D1.html#B320">$B320</a></td>
+<td class="comment-1" rowspan="1">branch if array data pointer = null, skip multiply</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B316"></span>B316</td>
+<td class="bytes">20 4C B3</td>
+<td class="instruction">JSR <a href="B1D1.html#B34C">$B34C</a></td>
+<td class="comment-1" rowspan="1">compute array size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B319"></span>B319</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">get result low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B31A"></span>B31A</td>
+<td class="bytes">65 64</td>
+<td class="instruction">ADC $64</td>
+<td class="comment-1" rowspan="1">add index low byte from FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B31C"></span>B31C</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">save result low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B31D"></span>B31D</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">get result high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B31E"></span>B31E</td>
+<td class="bytes">A4 22</td>
+<td class="instruction">LDY $22</td>
+<td class="comment-1" rowspan="1">restore index</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B320"></span>B320</td>
+<td class="bytes">65 65</td>
+<td class="instruction">ADC $65</td>
+<td class="comment-1" rowspan="1">add index high byte from FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B322"></span>B322</td>
+<td class="bytes">86 71</td>
+<td class="instruction">STX $71</td>
+<td class="comment-1" rowspan="1">save array data pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B324"></span>B324</td>
+<td class="bytes">C6 0B</td>
+<td class="instruction">DEC $0B</td>
+<td class="comment-1" rowspan="1">decrement dimensions count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B326"></span>B326</td>
+<td class="bytes">D0 CA</td>
+<td class="instruction">BNE <a href="B1D1.html#B2F2">$B2F2</a></td>
+<td class="comment-1" rowspan="1">loop if dimensions still to do</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B328"></span>B328</td>
+<td class="bytes">85 72</td>
+<td class="instruction">STA $72</td>
+<td class="comment-1" rowspan="1">save array data pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B32A"></span>B32A</td>
+<td class="bytes">A2 05</td>
+<td class="instruction">LDX #$05</td>
+<td class="comment-1" rowspan="1">set default element size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B32C"></span>B32C</td>
+<td class="bytes">A5 45</td>
+<td class="instruction">LDA $45</td>
+<td class="comment-1" rowspan="1">get variable name 1st byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B32E"></span>B32E</td>
+<td class="bytes">10 01</td>
+<td class="instruction">BPL <a href="B1D1.html#B331">$B331</a></td>
+<td class="comment-1" rowspan="1">branch if not string or floating point array</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B330"></span>B330</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement element size, $04</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B331"></span>B331</td>
+<td class="bytes">A5 46</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">get variable name 2nd byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B333"></span>B333</td>
+<td class="bytes">10 02</td>
+<td class="instruction">BPL <a href="B1D1.html#B337">$B337</a></td>
+<td class="comment-1" rowspan="1">branch if not integer or string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B335"></span>B335</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement element size, $03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B336"></span>B336</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement element size, $02</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B337"></span>B337</td>
+<td class="bytes">86 28</td>
+<td class="instruction">STX $28</td>
+<td class="comment-1" rowspan="1">save dimension size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B339"></span>B339</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear dimension size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B33B"></span>B33B</td>
+<td class="bytes">20 55 B3</td>
+<td class="instruction">JSR <a href="B1D1.html#B355">$B355</a></td>
+<td class="comment-1" rowspan="1">compute array size</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B33E"></span>B33E</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy array size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B33F"></span>B33F</td>
+<td class="bytes">65 58</td>
+<td class="instruction">ADC $58</td>
+<td class="comment-1" rowspan="1">add array data start pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B341"></span>B341</td>
+<td class="bytes">85 47</td>
+<td class="instruction">STA $47</td>
+<td class="comment-1" rowspan="1">save as current variable pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B343"></span>B343</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy array size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B344"></span>B344</td>
+<td class="bytes">65 59</td>
+<td class="instruction">ADC $59</td>
+<td class="comment-1" rowspan="1">add array data start pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B346"></span>B346</td>
+<td class="bytes">85 48</td>
+<td class="instruction">STA $48</td>
+<td class="comment-1" rowspan="1">save as current variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B348"></span>B348</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">copy high byte to <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B349"></span>B349</td>
+<td class="bytes">A5 47</td>
+<td class="instruction">LDA $47</td>
+<td class="comment-1" rowspan="1">get current variable pointer low byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B34B"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="B39E.html">B39E</a>.
+</div>
+<div class="paragraph">
+pointer to element is now in <span class="register">AY</span>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B34B"></span>B34B</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B34C"></span>
+<div class="comments">
+<div class="paragraph">
+compute array size, result in <span class="register">XY</span>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B34C"></span>B34C</td>
+<td class="bytes">84 22</td>
+<td class="instruction">STY $22</td>
+<td class="comment-1" rowspan="1">save index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B34E"></span>B34E</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get dimension size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B350"></span>B350</td>
+<td class="bytes">85 28</td>
+<td class="instruction">STA $28</td>
+<td class="comment-1" rowspan="1">save dimension size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B352"></span>B352</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">decrement index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B353"></span>B353</td>
+<td class="bytes">B1 5F</td>
+<td class="instruction">LDA ($5F),Y</td>
+<td class="comment-1" rowspan="1">get dimension size high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B355"></span>B355</td>
+<td class="bytes">85 29</td>
+<td class="instruction">STA $29</td>
+<td class="comment-1" rowspan="1">save dimension size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B357"></span>B357</td>
+<td class="bytes">A9 10</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="1">count = $10 (16 bit multiply)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B359"></span>B359</td>
+<td class="bytes">85 5D</td>
+<td class="instruction">STA $5D</td>
+<td class="comment-1" rowspan="1">save bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B35B"></span>B35B</td>
+<td class="bytes">A2 00</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">clear result low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B35D"></span>B35D</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear result high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B35F"></span>B35F</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">get result low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B360"></span>B360</td>
+<td class="bytes">0A</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">*2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B361"></span>B361</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">save result low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B362"></span>B362</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">get result high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B363"></span>B363</td>
+<td class="bytes">2A</td>
+<td class="instruction">ROL A</td>
+<td class="comment-1" rowspan="1">*2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B364"></span>B364</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">save result high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B365"></span>B365</td>
+<td class="bytes">B0 A4</td>
+<td class="instruction">BCS <a href="B1D1.html#B30B">$B30B</a></td>
+<td class="comment-1" rowspan="1">if overflow go do "Out of memory" error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B367"></span>B367</td>
+<td class="bytes">06 71</td>
+<td class="instruction">ASL $71</td>
+<td class="comment-1" rowspan="1">shift element size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B369"></span>B369</td>
+<td class="bytes">26 72</td>
+<td class="instruction">ROL $72</td>
+<td class="comment-1" rowspan="1">shift element size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B36B"></span>B36B</td>
+<td class="bytes">90 0B</td>
+<td class="instruction">BCC <a href="B1D1.html#B378">$B378</a></td>
+<td class="comment-1" rowspan="1">skip add if no carry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B36D"></span>B36D</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">else clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B36E"></span>B36E</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">get result low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B36F"></span>B36F</td>
+<td class="bytes">65 28</td>
+<td class="instruction">ADC $28</td>
+<td class="comment-1" rowspan="1">add dimension size low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B371"></span>B371</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">save result low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B372"></span>B372</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">get result high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B373"></span>B373</td>
+<td class="bytes">65 29</td>
+<td class="instruction">ADC $29</td>
+<td class="comment-1" rowspan="1">add dimension size high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B375"></span>B375</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">save result high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B376"></span>B376</td>
+<td class="bytes">B0 93</td>
+<td class="instruction">BCS <a href="B1D1.html#B30B">$B30B</a></td>
+<td class="comment-1" rowspan="1">if overflow go do "Out of memory" error</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B378"></span>B378</td>
+<td class="bytes">C6 5D</td>
+<td class="instruction">DEC $5D</td>
+<td class="comment-1" rowspan="1">decrement bit count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B37A"></span>B37A</td>
+<td class="bytes">D0 E3</td>
+<td class="instruction">BNE <a href="B1D1.html#B35F">$B35F</a></td>
+<td class="comment-1" rowspan="1">loop until all done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B37C"></span>B37C</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B1B2.html">B1B2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B1D1">Map</a></td>
+<td class="next">
+Next: <a href="B37D.html">B37D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

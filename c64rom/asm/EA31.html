@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at EA31</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EA24.html">EA24</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EA31">Map</a></td>
+<td class="next">
+Next: <a href="EA87.html">EA87</a>
+</td>
+</tr>
+</table>
+<div class="description">EA31: IRQ vector</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EA31"></span>EA31</td>
+<td class="bytes">20 EA FF</td>
+<td class="instruction">JSR <a href="FFEA.html">$FFEA</a></td>
+<td class="comment-1" rowspan="1">increment the real time clock</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA34"></span>EA34</td>
+<td class="bytes">A5 CC</td>
+<td class="instruction">LDA $CC</td>
+<td class="comment-1" rowspan="1">get the cursor enable, $00 = flash cursor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA36"></span>EA36</td>
+<td class="bytes">D0 29</td>
+<td class="instruction">BNE <a href="EA31.html#EA61">$EA61</a></td>
+<td class="comment-1" rowspan="1">if flash not enabled skip the flash</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA38"></span>EA38</td>
+<td class="bytes">C6 CD</td>
+<td class="instruction">DEC $CD</td>
+<td class="comment-1" rowspan="1">decrement the cursor timing countdown</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA3A"></span>EA3A</td>
+<td class="bytes">D0 25</td>
+<td class="instruction">BNE <a href="EA31.html#EA61">$EA61</a></td>
+<td class="comment-1" rowspan="1">if not counted out skip the flash</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA3C"></span>EA3C</td>
+<td class="bytes">A9 14</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="1">set the flash count</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA3E"></span>EA3E</td>
+<td class="bytes">85 CD</td>
+<td class="instruction">STA $CD</td>
+<td class="comment-1" rowspan="1">save the cursor timing countdown</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA40"></span>EA40</td>
+<td class="bytes">A4 D3</td>
+<td class="instruction">LDY $D3</td>
+<td class="comment-1" rowspan="1">get the cursor column</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA42"></span>EA42</td>
+<td class="bytes">46 CF</td>
+<td class="instruction">LSR $CF</td>
+<td class="comment-1" rowspan="1">shift b0 cursor blink phase into carry</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA44"></span>EA44</td>
+<td class="bytes">AE 87 02</td>
+<td class="instruction">LDX $0287</td>
+<td class="comment-1" rowspan="1">get the colour under the cursor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA47"></span>EA47</td>
+<td class="bytes">B1 D1</td>
+<td class="instruction">LDA ($D1),Y</td>
+<td class="comment-1" rowspan="1">get the character from current screen line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA49"></span>EA49</td>
+<td class="bytes">B0 11</td>
+<td class="instruction">BCS <a href="EA31.html#EA5C">$EA5C</a></td>
+<td class="comment-1" rowspan="1">branch if cursor phase b0 was 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA4B"></span>EA4B</td>
+<td class="bytes">E6 CF</td>
+<td class="instruction">INC $CF</td>
+<td class="comment-1" rowspan="1">set the cursor blink phase to 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA4D"></span>EA4D</td>
+<td class="bytes">85 CE</td>
+<td class="instruction">STA $CE</td>
+<td class="comment-1" rowspan="1">save the character under the cursor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA4F"></span>EA4F</td>
+<td class="bytes">20 24 EA</td>
+<td class="instruction">JSR <a href="EA24.html">$EA24</a></td>
+<td class="comment-1" rowspan="1">calculate the pointer to colour RAM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA52"></span>EA52</td>
+<td class="bytes">B1 F3</td>
+<td class="instruction">LDA ($F3),Y</td>
+<td class="comment-1" rowspan="1">get the colour RAM byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA54"></span>EA54</td>
+<td class="bytes">8D 87 02</td>
+<td class="instruction">STA $0287</td>
+<td class="comment-1" rowspan="1">save the colour under the cursor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA57"></span>EA57</td>
+<td class="bytes">AE 86 02</td>
+<td class="instruction">LDX $0286</td>
+<td class="comment-1" rowspan="1">get the current colour code</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA5A"></span>EA5A</td>
+<td class="bytes">A5 CE</td>
+<td class="instruction">LDA $CE</td>
+<td class="comment-1" rowspan="1">get the character under the cursor</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EA5C"></span>EA5C</td>
+<td class="bytes">49 80</td>
+<td class="instruction">EOR #%10000000</td>
+<td class="comment-1" rowspan="1">toggle b7 of character under cursor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA5E"></span>EA5E</td>
+<td class="bytes">20 1C EA</td>
+<td class="instruction">JSR <a href="EA1C.html">$EA1C</a></td>
+<td class="comment-1" rowspan="1">save the character and colour to the screen @ the cursor</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EA61"></span>EA61</td>
+<td class="bytes">A5 01</td>
+<td class="instruction">LDA $01</td>
+<td class="comment-1" rowspan="1">read the 6510 I/O port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA63"></span>EA63</td>
+<td class="bytes">29 10</td>
+<td class="instruction">AND #%00010000</td>
+<td class="comment-1" rowspan="1">mask 000x 0000, the cassette switch sense</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA65"></span>EA65</td>
+<td class="bytes">F0 0A</td>
+<td class="instruction">BEQ <a href="EA31.html#EA71">$EA71</a></td>
+<td class="comment-1" rowspan="1">if the cassette sense is low skip the motor stop</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EA67"></span>
+<div class="comments">
+<div class="paragraph">
+the cassette sense was high, the switch was open, so turn off the motor and clear the interlock
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA67"></span>EA67</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA69"></span>EA69</td>
+<td class="bytes">84 C0</td>
+<td class="instruction">STY $C0</td>
+<td class="comment-1" rowspan="1">clear the tape motor interlock</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA6B"></span>EA6B</td>
+<td class="bytes">A5 01</td>
+<td class="instruction">LDA $01</td>
+<td class="comment-1" rowspan="1">read the 6510 I/O port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA6D"></span>EA6D</td>
+<td class="bytes">09 20</td>
+<td class="instruction">ORA #%00100000</td>
+<td class="comment-1" rowspan="1">mask xx1x xxxx, turn off the motor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA6F"></span>EA6F</td>
+<td class="bytes">D0 08</td>
+<td class="instruction">BNE <a href="EA31.html#EA79">$EA79</a></td>
+<td class="comment-1" rowspan="1">go save the port value, branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="EA71"></span>
+<div class="comments">
+<div class="paragraph">
+the cassette sense was low so turn the motor on, perhaps
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EA71"></span>EA71</td>
+<td class="bytes">A5 C0</td>
+<td class="instruction">LDA $C0</td>
+<td class="comment-1" rowspan="1">get the tape motor interlock</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA73"></span>EA73</td>
+<td class="bytes">D0 06</td>
+<td class="instruction">BNE <a href="EA31.html#EA7B">$EA7B</a></td>
+<td class="comment-1" rowspan="1">if the cassette interlock &lt;&gt; 0 don't turn on motor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA75"></span>EA75</td>
+<td class="bytes">A5 01</td>
+<td class="instruction">LDA $01</td>
+<td class="comment-1" rowspan="1">read the 6510 I/O port</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA77"></span>EA77</td>
+<td class="bytes">29 1F</td>
+<td class="instruction">AND #%00011111</td>
+<td class="comment-1" rowspan="1">mask xx0x xxxx, turn on the motor</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EA79"></span>EA79</td>
+<td class="bytes">85 01</td>
+<td class="instruction">STA $01</td>
+<td class="comment-1" rowspan="1">save the 6510 I/O port</td>
+</tr>
+<tr>
+<td class="address-2"><span id="EA7B"></span>EA7B</td>
+<td class="bytes">20 87 EA</td>
+<td class="instruction">JSR <a href="EA87.html">$EA87</a></td>
+<td class="comment-1" rowspan="1">scan the keyboard</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA7E"></span>EA7E</td>
+<td class="bytes">AD 0D DC</td>
+<td class="instruction">LDA $DC0D</td>
+<td class="comment-1" rowspan="1">read VIA 1 ICR, clear the timer interrupt flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA81"></span>EA81</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA82"></span>EA82</td>
+<td class="bytes">A8</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">restore <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA83"></span>EA83</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">pull <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA84"></span>EA84</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">restore <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA85"></span>EA85</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="EA86"></span>EA86</td>
+<td class="bytes">40</td>
+<td class="instruction">RTI</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="EA24.html">EA24</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#EA31">Map</a></td>
+<td class="next">
+Next: <a href="EA87.html">EA87</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

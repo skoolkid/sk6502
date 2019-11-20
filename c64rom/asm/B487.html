@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B487</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B47D.html">B47D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B487">Map</a></td>
+<td class="next">
+Next: <a href="B4F4.html">B4F4</a>
+</td>
+</tr>
+</table>
+<div class="description">B487: scan, set up string</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="AAA0.html">AAA0</a>, <a href="AB1E.html">AB1E</a>, <a href="AE86.html">AE86</a> and <a href="B465.html">B465</a>.
+</div>
+<div class="paragraph">
+print " terminated string to utility pointer
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B487"></span>B487</td>
+<td class="bytes">A2 22</td>
+<td class="instruction">LDX #$22</td>
+<td class="comment-1" rowspan="1">set terminator to "</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B489"></span>B489</td>
+<td class="bytes">86 07</td>
+<td class="instruction">STX $07</td>
+<td class="comment-1" rowspan="1">set search character, terminator 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B48B"></span>B48B</td>
+<td class="bytes">86 08</td>
+<td class="instruction">STX $08</td>
+<td class="comment-1" rowspan="1">set terminator 2</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B48D"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AC0F.html">AC0F</a>.
+</div>
+<div class="paragraph">
+print search or alternate terminated string to utility pointer source is <span class="register">AY</span>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B48D"></span>B48D</td>
+<td class="bytes">85 6F</td>
+<td class="instruction">STA $6F</td>
+<td class="comment-1" rowspan="1">store string start low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B48F"></span>B48F</td>
+<td class="bytes">84 70</td>
+<td class="instruction">STY $70</td>
+<td class="comment-1" rowspan="1">store string start high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B491"></span>B491</td>
+<td class="bytes">85 62</td>
+<td class="instruction">STA $62</td>
+<td class="comment-1" rowspan="1">save string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B493"></span>B493</td>
+<td class="bytes">84 63</td>
+<td class="instruction">STY $63</td>
+<td class="comment-1" rowspan="1">save string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B495"></span>B495</td>
+<td class="bytes">A0 FF</td>
+<td class="instruction">LDY #$FF</td>
+<td class="comment-1" rowspan="1">set length to -1</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B497"></span>B497</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B498"></span>B498</td>
+<td class="bytes">B1 6F</td>
+<td class="instruction">LDA ($6F),Y</td>
+<td class="comment-1" rowspan="1">get byte from string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B49A"></span>B49A</td>
+<td class="bytes">F0 0C</td>
+<td class="instruction">BEQ <a href="B487.html#B4A8">$B4A8</a></td>
+<td class="comment-1" rowspan="1">exit loop if null byte [EOS]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B49C"></span>B49C</td>
+<td class="bytes">C5 07</td>
+<td class="instruction">CMP $07</td>
+<td class="comment-1" rowspan="1">compare with search character, terminator 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B49E"></span>B49E</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="B487.html#B4A4">$B4A4</a></td>
+<td class="comment-1" rowspan="1">branch if terminator</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4A0"></span>B4A0</td>
+<td class="bytes">C5 08</td>
+<td class="instruction">CMP $08</td>
+<td class="comment-1" rowspan="1">compare with terminator 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4A2"></span>B4A2</td>
+<td class="bytes">D0 F3</td>
+<td class="instruction">BNE <a href="B487.html#B497">$B497</a></td>
+<td class="comment-1" rowspan="1">loop if not terminator 2</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B4A4"></span>B4A4</td>
+<td class="bytes">C9 22</td>
+<td class="instruction">CMP #$22</td>
+<td class="comment-1" rowspan="1">compare with "</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4A6"></span>B4A6</td>
+<td class="bytes">F0 01</td>
+<td class="instruction">BEQ <a href="B487.html#B4A9">$B4A9</a></td>
+<td class="comment-1" rowspan="1">branch if " (carry set if = !)</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B4A8"></span>B4A8</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add (only if [EOL] terminated string)</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B4A9"></span>B4A9</td>
+<td class="bytes">84 61</td>
+<td class="instruction">STY $61</td>
+<td class="comment-1" rowspan="1">save length in FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4AB"></span>B4AB</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy length to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4AC"></span>B4AC</td>
+<td class="bytes">65 6F</td>
+<td class="instruction">ADC $6F</td>
+<td class="comment-1" rowspan="1">add string start low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4AE"></span>B4AE</td>
+<td class="bytes">85 71</td>
+<td class="instruction">STA $71</td>
+<td class="comment-1" rowspan="1">save string end low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4B0"></span>B4B0</td>
+<td class="bytes">A6 70</td>
+<td class="instruction">LDX $70</td>
+<td class="comment-1" rowspan="1">get string start high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4B2"></span>B4B2</td>
+<td class="bytes">90 01</td>
+<td class="instruction">BCC <a href="B487.html#B4B5">$B4B5</a></td>
+<td class="comment-1" rowspan="1">branch if no low byte overflow</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4B4"></span>B4B4</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">else increment high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B4B5"></span>B4B5</td>
+<td class="bytes">86 72</td>
+<td class="instruction">STX $72</td>
+<td class="comment-1" rowspan="1">save string end high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4B7"></span>B4B7</td>
+<td class="bytes">A5 70</td>
+<td class="instruction">LDA $70</td>
+<td class="comment-1" rowspan="1">get string start high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4B9"></span>B4B9</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="B487.html#B4BF">$B4BF</a></td>
+<td class="comment-1" rowspan="1">branch if in utility area</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4BB"></span>B4BB</td>
+<td class="bytes">C9 02</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">compare with input buffer memory high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4BD"></span>B4BD</td>
+<td class="bytes">D0 0B</td>
+<td class="instruction">BNE <a href="B487.html#B4CA">$B4CA</a></td>
+<td class="comment-1" rowspan="1">branch if not in input buffer memory</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B4BF"></span>
+<div class="comments">
+<div class="paragraph">
+string in input buffer or utility area, move to string memory
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B4BF"></span>B4BF</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy length to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4C0"></span>B4C0</td>
+<td class="bytes">20 75 B4</td>
+<td class="instruction">JSR <a href="B475.html">$B475</a></td>
+<td class="comment-1" rowspan="1">copy descriptor pointer and make string space <span class="register">A</span> bytes long</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4C3"></span>B4C3</td>
+<td class="bytes">A6 6F</td>
+<td class="instruction">LDX $6F</td>
+<td class="comment-1" rowspan="1">get string start low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4C5"></span>B4C5</td>
+<td class="bytes">A4 70</td>
+<td class="instruction">LDY $70</td>
+<td class="comment-1" rowspan="1">get string start high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4C7"></span>B4C7</td>
+<td class="bytes">20 88 B6</td>
+<td class="instruction">JSR <a href="B67A.html#B688">$B688</a></td>
+<td class="comment-1" rowspan="1">store string <span class="register">A</span> bytes long from <span class="register">XY</span> to utility pointer</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B4CA"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="B63D.html">B63D</a>, <a href="B6EC.html">B6EC</a> and <a href="B700.html">B700</a>.
+</div>
+<div class="paragraph">
+check for space on descriptor stack then ... put string address and length on descriptor stack and update stack pointers
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B4CA"></span>B4CA</td>
+<td class="bytes">A6 16</td>
+<td class="instruction">LDX $16</td>
+<td class="comment-1" rowspan="1">get the descriptor stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4CC"></span>B4CC</td>
+<td class="bytes">E0 22</td>
+<td class="instruction">CPX #$22</td>
+<td class="comment-1" rowspan="1">compare it with the maximum + 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4CE"></span>B4CE</td>
+<td class="bytes">D0 05</td>
+<td class="instruction">BNE <a href="B487.html#B4D5">$B4D5</a></td>
+<td class="comment-1" rowspan="1">if there is space on the string stack continue</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B4D0"></span>
+<div class="comments">
+<div class="paragraph">
+else do string too complex error
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4D0"></span>B4D0</td>
+<td class="bytes">A2 19</td>
+<td class="instruction">LDX #$19</td>
+<td class="comment-1" rowspan="1">error $19, string too complex error</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B4D2"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="B4F4.html">B4F4</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B4D2"></span>B4D2</td>
+<td class="bytes">4C 37 A4</td>
+<td class="instruction">JMP <a href="A435.html#A437">$A437</a></td>
+<td class="comment-1" rowspan="1">do error #<span class="register">X</span> then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B4D5"></span>
+<div class="comments">
+<div class="paragraph">
+put string address and length on descriptor stack and update stack pointers
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B4D5"></span>B4D5</td>
+<td class="bytes">A5 61</td>
+<td class="instruction">LDA $61</td>
+<td class="comment-1" rowspan="1">get the string length</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4D7"></span>B4D7</td>
+<td class="bytes">95 00</td>
+<td class="instruction">STA $00,X</td>
+<td class="comment-1" rowspan="1">put it on the string stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4D9"></span>B4D9</td>
+<td class="bytes">A5 62</td>
+<td class="instruction">LDA $62</td>
+<td class="comment-1" rowspan="1">get the string pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4DB"></span>B4DB</td>
+<td class="bytes">95 01</td>
+<td class="instruction">STA $01,X</td>
+<td class="comment-1" rowspan="1">put it on the string stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4DD"></span>B4DD</td>
+<td class="bytes">A5 63</td>
+<td class="instruction">LDA $63</td>
+<td class="comment-1" rowspan="1">get the string pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4DF"></span>B4DF</td>
+<td class="bytes">95 02</td>
+<td class="instruction">STA $02,X</td>
+<td class="comment-1" rowspan="1">put it on the string stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4E1"></span>B4E1</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4E3"></span>B4E3</td>
+<td class="bytes">86 64</td>
+<td class="instruction">STX $64</td>
+<td class="comment-1" rowspan="1">save the string descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4E5"></span>B4E5</td>
+<td class="bytes">84 65</td>
+<td class="instruction">STY $65</td>
+<td class="comment-1" rowspan="1">save the string descriptor pointer high byte, always $00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4E7"></span>B4E7</td>
+<td class="bytes">84 70</td>
+<td class="instruction">STY $70</td>
+<td class="comment-1" rowspan="1">clear FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4E9"></span>B4E9</td>
+<td class="bytes">88</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span> = $FF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4EA"></span>B4EA</td>
+<td class="bytes">84 0D</td>
+<td class="instruction">STY $0D</td>
+<td class="comment-1" rowspan="1">save the data type flag, $FF = string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4EC"></span>B4EC</td>
+<td class="bytes">86 17</td>
+<td class="instruction">STX $17</td>
+<td class="comment-1" rowspan="1">save the current descriptor stack item pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4EE"></span>B4EE</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">update the stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4EF"></span>B4EF</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">update the stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4F0"></span>B4F0</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">update the stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4F1"></span>B4F1</td>
+<td class="bytes">86 16</td>
+<td class="instruction">STX $16</td>
+<td class="comment-1" rowspan="1">save the new descriptor stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B4F3"></span>B4F3</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B47D.html">B47D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B487">Map</a></td>
+<td class="next">
+Next: <a href="B4F4.html">B4F4</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

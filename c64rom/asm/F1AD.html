@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F1AD</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F199.html">F199</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F1AD">Map</a></td>
+<td class="next">
+Next: <a href="F1B8.html">F1B8</a>
+</td>
+</tr>
+</table>
+<div class="description">F1AD: input device was serial bus</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F157.html">F157</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F1AD"></span>F1AD</td>
+<td class="bytes">A5 90</td>
+<td class="instruction">LDA $90</td>
+<td class="comment-1" rowspan="1">get the serial status byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F1AF"></span>F1AF</td>
+<td class="bytes">F0 04</td>
+<td class="instruction">BEQ <a href="F1AD.html#F1B5">$F1B5</a></td>
+<td class="comment-1" rowspan="1">if no errors flagged go input byte and return</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F1B1"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F1B8.html">F1B8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F1B1"></span>F1B1</td>
+<td class="bytes">A9 0D</td>
+<td class="instruction">LDA #$0D</td>
+<td class="comment-1" rowspan="1">else return [EOL]</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F1B3"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="F1B8.html">F1B8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F1B3"></span>F1B3</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">flag no error</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="F1B4"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="F199.html">F199</a> and <a href="F1B8.html">F1B8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F1B4"></span>F1B4</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="F1B5"></span>F1B5</td>
+<td class="bytes">4C 13 EE</td>
+<td class="instruction">JMP <a href="EE13.html">$EE13</a></td>
+<td class="comment-1" rowspan="1">input byte from serial bus and return</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F199.html">F199</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F1AD">Map</a></td>
+<td class="next">
+Next: <a href="F1B8.html">F1B8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

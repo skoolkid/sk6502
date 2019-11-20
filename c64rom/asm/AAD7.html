@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AAD7</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AACA.html">AACA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AAD7">Map</a></td>
+<td class="next">
+Next: <a href="AAE8.html">AAE8</a>
+</td>
+</tr>
+</table>
+<div class="description">AAD7: print CR/LF</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A43A.html">A43A</a>, <a href="A69C.html">A69C</a> and <a href="AAA0.html">AAA0</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AAD7"></span>AAD7</td>
+<td class="bytes">A9 0D</td>
+<td class="instruction">LDA #$0D</td>
+<td class="comment-1" rowspan="1">set [CR]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAD9"></span>AAD9</td>
+<td class="bytes">20 47 AB</td>
+<td class="instruction">JSR <a href="AB47.html">$AB47</a></td>
+<td class="comment-1" rowspan="1">print the character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AADC"></span>AADC</td>
+<td class="bytes">24 13</td>
+<td class="instruction">BIT $13</td>
+<td class="comment-1" rowspan="1">test current I/O channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AADE"></span>AADE</td>
+<td class="bytes">10 05</td>
+<td class="instruction">BPL <a href="AAD7.html#AAE5">$AAE5</a></td>
+<td class="comment-1" rowspan="1">if ?? toggle <span class="register">A</span>, EOR #$FF and return</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAE0"></span>AAE0</td>
+<td class="bytes">A9 0A</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="1">set [LF]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AAE2"></span>AAE2</td>
+<td class="bytes">20 47 AB</td>
+<td class="instruction">JSR <a href="AB47.html">$AB47</a></td>
+<td class="comment-1" rowspan="1">print the character</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AAE5"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AB21.html">AB21</a>.
+</div>
+<div class="paragraph">
+toggle <span class="register">A</span>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AAE5"></span>AAE5</td>
+<td class="bytes">49 FF</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">invert <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AAE7"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="AAA0.html">AAA0</a>, <a href="AACA.html">AACA</a> and <a href="AB21.html">AB21</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AAE7"></span>AAE7</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AACA.html">AACA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AAD7">Map</a></td>
+<td class="next">
+Next: <a href="AAE8.html">AAE8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BD6A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BD67.html">BD67</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BD6A">Map</a></td>
+<td class="next">
+Next: <a href="BD7E.html">BD7E</a>
+</td>
+</tr>
+</table>
+<div class="description">BD6A: do unsigned FAC1*10+number</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="BCF3.html">BCF3</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD6A"></span>BD6A</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD6B"></span>BD6B</td>
+<td class="bytes">24 5F</td>
+<td class="instruction">BIT $5F</td>
+<td class="comment-1" rowspan="1">test decimal point flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD6D"></span>BD6D</td>
+<td class="bytes">10 02</td>
+<td class="instruction">BPL <a href="BD6A.html#BD71">$BD71</a></td>
+<td class="comment-1" rowspan="1">skip exponent increment if not set</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD6F"></span>BD6F</td>
+<td class="bytes">E6 5D</td>
+<td class="instruction">INC $5D</td>
+<td class="comment-1" rowspan="1">else increment number exponent</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD71"></span>BD71</td>
+<td class="bytes">20 E2 BA</td>
+<td class="instruction">JSR <a href="BAE2.html">$BAE2</a></td>
+<td class="comment-1" rowspan="1">multiply FAC1 by 10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD74"></span>BD74</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD75"></span>BD75</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD76"></span>BD76</td>
+<td class="bytes">E9 30</td>
+<td class="instruction">SBC #"0"</td>
+<td class="comment-1" rowspan="1">convert to binary</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD78"></span>BD78</td>
+<td class="bytes">20 7E BD</td>
+<td class="instruction">JSR <a href="BD7E.html">$BD7E</a></td>
+<td class="comment-1" rowspan="1">evaluate new ASCII digit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD7B"></span>BD7B</td>
+<td class="bytes">4C 0A BD</td>
+<td class="instruction">JMP <a href="BCF3.html#BD0A">$BD0A</a></td>
+<td class="comment-1" rowspan="1">go do next character</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BD67.html">BD67</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BD6A">Map</a></td>
+<td class="next">
+Next: <a href="BD7E.html">BD7E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

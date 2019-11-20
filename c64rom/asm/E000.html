@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at E000</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BFED.html">BFED</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E000">Map</a></td>
+<td class="next">
+Next: <a href="E043.html">E043</a>
+</td>
+</tr>
+</table>
+<div class="description">E000: start of the kernal ROM</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="BFED.html">BFED</a>.
+</div>
+<div class="paragraph">
+EXP() continued
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E000"></span>E000</td>
+<td class="bytes">85 56</td>
+<td class="instruction">STA $56</td>
+<td class="comment-1" rowspan="1">save FAC2 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E002"></span>E002</td>
+<td class="bytes">20 0F BC</td>
+<td class="instruction">JSR <a href="BC0C.html#BC0F">$BC0F</a></td>
+<td class="comment-1" rowspan="1">copy FAC1 to FAC2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E005"></span>E005</td>
+<td class="bytes">A5 61</td>
+<td class="instruction">LDA $61</td>
+<td class="comment-1" rowspan="1">get FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E007"></span>E007</td>
+<td class="bytes">C9 88</td>
+<td class="instruction">CMP #$88</td>
+<td class="comment-1" rowspan="1">compare with EXP limit (256d)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E009"></span>E009</td>
+<td class="bytes">90 03</td>
+<td class="instruction">BCC <a href="E000.html#E00E">$E00E</a></td>
+<td class="comment-1" rowspan="1">branch if less</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E00B"></span>E00B</td>
+<td class="bytes">20 D4 BA</td>
+<td class="instruction">JSR <a href="BAD4.html">$BAD4</a></td>
+<td class="comment-1" rowspan="1">handle overflow and underflow</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E00E"></span>E00E</td>
+<td class="bytes">20 CC BC</td>
+<td class="instruction">JSR <a href="BCCC.html">$BCCC</a></td>
+<td class="comment-1" rowspan="1">perform INT()</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E011"></span>E011</td>
+<td class="bytes">A5 07</td>
+<td class="instruction">LDA $07</td>
+<td class="comment-1" rowspan="1">get mantissa 4 from INT()</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E013"></span>E013</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E014"></span>E014</td>
+<td class="bytes">69 81</td>
+<td class="instruction">ADC #$81</td>
+<td class="comment-1" rowspan="1">normalise +1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E016"></span>E016</td>
+<td class="bytes">F0 F3</td>
+<td class="instruction">BEQ <a href="E000.html#E00B">$E00B</a></td>
+<td class="comment-1" rowspan="1">if $00 result has overflowed so go handle it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E018"></span>E018</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E019"></span>E019</td>
+<td class="bytes">E9 01</td>
+<td class="instruction">SBC #$01</td>
+<td class="comment-1" rowspan="1">exponent now correct</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E01B"></span>E01B</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save FAC2 exponent</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="E01C"></span>
+<div class="comments">
+<div class="paragraph">
+swap FAC1 and FAC2
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E01C"></span>E01C</td>
+<td class="bytes">A2 05</td>
+<td class="instruction">LDX #$05</td>
+<td class="comment-1" rowspan="1">4 bytes to do</td>
+</tr>
+<tr>
+<td class="address-2"><span id="E01E"></span>E01E</td>
+<td class="bytes">B5 69</td>
+<td class="instruction">LDA $69,X</td>
+<td class="comment-1" rowspan="1">get FAC2,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E020"></span>E020</td>
+<td class="bytes">B4 61</td>
+<td class="instruction">LDY $61,X</td>
+<td class="comment-1" rowspan="1">get FAC1,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E022"></span>E022</td>
+<td class="bytes">95 61</td>
+<td class="instruction">STA $61,X</td>
+<td class="comment-1" rowspan="1">save FAC1,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E024"></span>E024</td>
+<td class="bytes">94 69</td>
+<td class="instruction">STY $69,X</td>
+<td class="comment-1" rowspan="1">save FAC2,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E026"></span>E026</td>
+<td class="bytes">CA</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">decrement count/index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E027"></span>E027</td>
+<td class="bytes">10 F5</td>
+<td class="instruction">BPL <a href="E000.html#E01E">$E01E</a></td>
+<td class="comment-1" rowspan="1">loop if not all done</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E029"></span>E029</td>
+<td class="bytes">A5 56</td>
+<td class="instruction">LDA $56</td>
+<td class="comment-1" rowspan="1">get FAC2 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E02B"></span>E02B</td>
+<td class="bytes">85 70</td>
+<td class="instruction">STA $70</td>
+<td class="comment-1" rowspan="1">save as FAC1 rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E02D"></span>E02D</td>
+<td class="bytes">20 53 B8</td>
+<td class="instruction">JSR <a href="B853.html">$B853</a></td>
+<td class="comment-1" rowspan="1">perform subtraction, FAC2 from FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E030"></span>E030</td>
+<td class="bytes">20 B4 BF</td>
+<td class="instruction">JSR <a href="BF7B.html#BFB4">$BFB4</a></td>
+<td class="comment-1" rowspan="1">do - FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E033"></span>E033</td>
+<td class="bytes">A9 C4</td>
+<td class="instruction">LDA #$C4</td>
+<td class="comment-1" rowspan="1">set counter pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E035"></span>E035</td>
+<td class="bytes">A0 BF</td>
+<td class="instruction">LDY #$BF</td>
+<td class="comment-1" rowspan="1">set counter pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E037"></span>E037</td>
+<td class="bytes">20 59 E0</td>
+<td class="instruction">JSR <a href="E059.html">$E059</a></td>
+<td class="comment-1" rowspan="1">go do series evaluation</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E03A"></span>E03A</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="E03C"></span>E03C</td>
+<td class="bytes">85 6F</td>
+<td class="instruction">STA $6F</td>
+<td class="comment-1" rowspan="1">clear sign compare (FAC1 EOR FAC2)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E03E"></span>E03E</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">get saved FAC2 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E03F"></span>E03F</td>
+<td class="bytes">20 B9 BA</td>
+<td class="instruction">JSR <a href="BAB7.html#BAB9">$BAB9</a></td>
+<td class="comment-1" rowspan="1">test and adjust accumulators</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E042"></span>E042</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BFED.html">BFED</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E000">Map</a></td>
+<td class="next">
+Next: <a href="E043.html">E043</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

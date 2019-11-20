@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AD1E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="ACFC.html">ACFC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AD1E">Map</a></td>
+<td class="next">
+Next: <a href="AD8A.html">AD8A</a>
+</td>
+</tr>
+</table>
+<div class="description">AD1E: perform NEXT</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD1E"></span>AD1E</td>
+<td class="bytes">D0 04</td>
+<td class="instruction">BNE <a href="AD1E.html#AD24">$AD24</a></td>
+<td class="comment-1" rowspan="1">branch if NEXT variable</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD20"></span>AD20</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">else clear <span class="register">Y</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD22"></span>AD22</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="AD1E.html#AD27">$AD27</a></td>
+<td class="comment-1" rowspan="1">branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AD24"></span>
+<div class="comments">
+<div class="paragraph">
+NEXT variable
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD24"></span>AD24</td>
+<td class="bytes">20 8B B0</td>
+<td class="instruction">JSR <a href="B08B.html">$B08B</a></td>
+<td class="comment-1" rowspan="1">get variable address</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD27"></span>AD27</td>
+<td class="bytes">85 49</td>
+<td class="instruction">STA $49</td>
+<td class="comment-1" rowspan="1">save FOR/NEXT variable pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD29"></span>AD29</td>
+<td class="bytes">84 4A</td>
+<td class="instruction">STY $4A</td>
+<td class="comment-1" rowspan="1">save FOR/NEXT variable pointer high byte (high byte cleared if no variable defined)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD2B"></span>AD2B</td>
+<td class="bytes">20 8A A3</td>
+<td class="instruction">JSR <a href="A38A.html">$A38A</a></td>
+<td class="comment-1" rowspan="1">search the stack for FOR or GOSUB activity</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD2E"></span>AD2E</td>
+<td class="bytes">F0 05</td>
+<td class="instruction">BEQ <a href="AD1E.html#AD35">$AD35</a></td>
+<td class="comment-1" rowspan="1">branch if FOR, this variable, found</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD30"></span>AD30</td>
+<td class="bytes">A2 0A</td>
+<td class="instruction">LDX #$0A</td>
+<td class="comment-1" rowspan="1">else set error $0A, next without for error</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AD32"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AC0F.html">AC0F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD32"></span>AD32</td>
+<td class="bytes">4C 37 A4</td>
+<td class="instruction">JMP <a href="A435.html#A437">$A437</a></td>
+<td class="comment-1" rowspan="1">do error #<span class="register">X</span> then warm start</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AD35"></span>
+<div class="comments">
+<div class="paragraph">
+found this FOR variable
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD35"></span>AD35</td>
+<td class="bytes">9A</td>
+<td class="instruction">TXS</td>
+<td class="comment-1" rowspan="1">update stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD36"></span>AD36</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">copy stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD37"></span>AD37</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD38"></span>AD38</td>
+<td class="bytes">69 04</td>
+<td class="instruction">ADC #$04</td>
+<td class="comment-1" rowspan="1">point to STEP value</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD3A"></span>AD3A</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD3B"></span>AD3B</td>
+<td class="bytes">69 06</td>
+<td class="instruction">ADC #$06</td>
+<td class="comment-1" rowspan="1">point to TO value</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD3D"></span>AD3D</td>
+<td class="bytes">85 24</td>
+<td class="instruction">STA $24</td>
+<td class="comment-1" rowspan="1">save pointer to TO variable for compare</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD3F"></span>AD3F</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">restore pointer to STEP value</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD40"></span>AD40</td>
+<td class="bytes">A0 01</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="1">point to stack page</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD42"></span>AD42</td>
+<td class="bytes">20 A2 BB</td>
+<td class="instruction">JSR <a href="BBA2.html">$BBA2</a></td>
+<td class="comment-1" rowspan="1">unpack memory (<span class="register">AY</span>) into FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD45"></span>AD45</td>
+<td class="bytes">BA</td>
+<td class="instruction">TSX</td>
+<td class="comment-1" rowspan="1">get stack pointer back</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD46"></span>AD46</td>
+<td class="bytes">BD 09 01</td>
+<td class="instruction">LDA $0109,X</td>
+<td class="comment-1" rowspan="1">get step sign</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD49"></span>AD49</td>
+<td class="bytes">85 66</td>
+<td class="instruction">STA $66</td>
+<td class="comment-1" rowspan="1">save FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD4B"></span>AD4B</td>
+<td class="bytes">A5 49</td>
+<td class="instruction">LDA $49</td>
+<td class="comment-1" rowspan="1">get FOR/NEXT variable pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD4D"></span>AD4D</td>
+<td class="bytes">A4 4A</td>
+<td class="instruction">LDY $4A</td>
+<td class="comment-1" rowspan="1">get FOR/NEXT variable pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD4F"></span>AD4F</td>
+<td class="bytes">20 67 B8</td>
+<td class="instruction">JSR <a href="B862.html#B867">$B867</a></td>
+<td class="comment-1" rowspan="1">add FOR variable to FAC1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD52"></span>AD52</td>
+<td class="bytes">20 D0 BB</td>
+<td class="instruction">JSR <a href="BBD0.html">$BBD0</a></td>
+<td class="comment-1" rowspan="1">pack FAC1 into FOR variable</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD55"></span>AD55</td>
+<td class="bytes">A0 01</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="1">point to stack page</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD57"></span>AD57</td>
+<td class="bytes">20 5D BC</td>
+<td class="instruction">JSR <a href="BC5B.html#BC5D">$BC5D</a></td>
+<td class="comment-1" rowspan="1">compare FAC1 with TO value</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD5A"></span>AD5A</td>
+<td class="bytes">BA</td>
+<td class="instruction">TSX</td>
+<td class="comment-1" rowspan="1">get stack pointer back</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD5B"></span>AD5B</td>
+<td class="bytes">38</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">set carry for subtract</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD5C"></span>AD5C</td>
+<td class="bytes">FD 09 01</td>
+<td class="instruction">SBC $0109,X</td>
+<td class="comment-1" rowspan="1">subtract step sign</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD5F"></span>AD5F</td>
+<td class="bytes">F0 17</td>
+<td class="instruction">BEQ <a href="AD1E.html#AD78">$AD78</a></td>
+<td class="comment-1" rowspan="1">branch if =, loop complete</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AD61"></span>
+<div class="comments">
+<div class="paragraph">
+loop back and do it all again
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD61"></span>AD61</td>
+<td class="bytes">BD 0F 01</td>
+<td class="instruction">LDA $010F,X</td>
+<td class="comment-1" rowspan="1">get FOR line low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD64"></span>AD64</td>
+<td class="bytes">85 39</td>
+<td class="instruction">STA $39</td>
+<td class="comment-1" rowspan="1">save current line number low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD66"></span>AD66</td>
+<td class="bytes">BD 10 01</td>
+<td class="instruction">LDA $0110,X</td>
+<td class="comment-1" rowspan="1">get FOR line high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD69"></span>AD69</td>
+<td class="bytes">85 3A</td>
+<td class="instruction">STA $3A</td>
+<td class="comment-1" rowspan="1">save current line number high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD6B"></span>AD6B</td>
+<td class="bytes">BD 12 01</td>
+<td class="instruction">LDA $0112,X</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD6E"></span>AD6E</td>
+<td class="bytes">85 7A</td>
+<td class="instruction">STA $7A</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD70"></span>AD70</td>
+<td class="bytes">BD 11 01</td>
+<td class="instruction">LDA $0111,X</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD73"></span>AD73</td>
+<td class="bytes">85 7B</td>
+<td class="instruction">STA $7B</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD75"></span>AD75</td>
+<td class="bytes">4C AE A7</td>
+<td class="instruction">JMP <a href="A7AE.html">$A7AE</a></td>
+<td class="comment-1" rowspan="1">go do interpreter inner loop</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AD78"></span>
+<div class="comments">
+<div class="paragraph">
+NEXT loop comlete
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AD78"></span>AD78</td>
+<td class="bytes">8A</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">stack copy to <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD79"></span>AD79</td>
+<td class="bytes">69 11</td>
+<td class="instruction">ADC #$11</td>
+<td class="comment-1" rowspan="1">add $12, $11 + carry, to dump FOR structure</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD7B"></span>AD7B</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy back to index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD7C"></span>AD7C</td>
+<td class="bytes">9A</td>
+<td class="instruction">TXS</td>
+<td class="comment-1" rowspan="1">copy to stack pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD7D"></span>AD7D</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD80"></span>AD80</td>
+<td class="bytes">C9 2C</td>
+<td class="instruction">CMP #","</td>
+<td class="comment-1" rowspan="1">compare with ","</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD82"></span>AD82</td>
+<td class="bytes">D0 F1</td>
+<td class="instruction">BNE <a href="AD1E.html#AD75">$AD75</a></td>
+<td class="comment-1" rowspan="1">if not "," go do interpreter inner loop</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AD84"></span>
+<div class="comments">
+<div class="paragraph">
+was "," so another NEXT variable to do
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD84"></span>AD84</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AD87"></span>AD87</td>
+<td class="bytes">20 24 AD</td>
+<td class="instruction">JSR <a href="AD1E.html#AD24">$AD24</a></td>
+<td class="comment-1" rowspan="1">do NEXT variable</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="ACFC.html">ACFC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AD1E">Map</a></td>
+<td class="next">
+Next: <a href="AD8A.html">AD8A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

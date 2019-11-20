@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A533</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A49C.html">A49C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A533">Map</a></td>
+<td class="next">
+Next: <a href="A560.html">A560</a>
+</td>
+</tr>
+</table>
+<div class="description">A533: rebuild BASIC line chaining</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="A49C.html">A49C</a> and <a href="E195.html">E195</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A533"></span>A533</td>
+<td class="bytes">A5 2B</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="1">get start of memory low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A535"></span>A535</td>
+<td class="bytes">A4 2C</td>
+<td class="instruction">LDY $2C</td>
+<td class="comment-1" rowspan="1">get start of memory high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A537"></span>A537</td>
+<td class="bytes">85 22</td>
+<td class="instruction">STA $22</td>
+<td class="comment-1" rowspan="1">set line start pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A539"></span>A539</td>
+<td class="bytes">84 23</td>
+<td class="instruction">STY $23</td>
+<td class="comment-1" rowspan="1">set line start pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A53B"></span>A53B</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A53C"></span>A53C</td>
+<td class="bytes">A0 01</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="1">set index to pointer to next line high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A53E"></span>A53E</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get pointer to next line high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A540"></span>A540</td>
+<td class="bytes">F0 1D</td>
+<td class="instruction">BEQ <a href="A533.html#A55F">$A55F</a></td>
+<td class="comment-1" rowspan="1">exit if null, [EOT]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A542"></span>A542</td>
+<td class="bytes">A0 04</td>
+<td class="instruction">LDY #$04</td>
+<td class="comment-1" rowspan="1">point to first code byte of line</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A544"></span>
+<div class="comments">
+<div class="paragraph">
+there is always 1 byte + [EOL] as null entries are deleted
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A544"></span>A544</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">next code byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A545"></span>A545</td>
+<td class="bytes">B1 22</td>
+<td class="instruction">LDA ($22),Y</td>
+<td class="comment-1" rowspan="1">get byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A547"></span>A547</td>
+<td class="bytes">D0 FB</td>
+<td class="instruction">BNE <a href="A533.html#A544">$A544</a></td>
+<td class="comment-1" rowspan="1">loop if not [EOL]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A549"></span>A549</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">point to byte past [EOL], start of next line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A54A"></span>A54A</td>
+<td class="bytes">98</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">copy it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A54B"></span>A54B</td>
+<td class="bytes">65 22</td>
+<td class="instruction">ADC $22</td>
+<td class="comment-1" rowspan="1">add line start pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A54D"></span>A54D</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A54E"></span>A54E</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index, point to this line's next line pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A550"></span>A550</td>
+<td class="bytes">91 22</td>
+<td class="instruction">STA ($22),Y</td>
+<td class="comment-1" rowspan="1">set next line pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A552"></span>A552</td>
+<td class="bytes">A5 23</td>
+<td class="instruction">LDA $23</td>
+<td class="comment-1" rowspan="1">get line start pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A554"></span>A554</td>
+<td class="bytes">69 00</td>
+<td class="instruction">ADC #$00</td>
+<td class="comment-1" rowspan="1">add any overflow</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A556"></span>A556</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index to high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A557"></span>A557</td>
+<td class="bytes">91 22</td>
+<td class="instruction">STA ($22),Y</td>
+<td class="comment-1" rowspan="1">set next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A559"></span>A559</td>
+<td class="bytes">86 22</td>
+<td class="instruction">STX $22</td>
+<td class="comment-1" rowspan="1">set line start pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A55B"></span>A55B</td>
+<td class="bytes">85 23</td>
+<td class="instruction">STA $23</td>
+<td class="comment-1" rowspan="1">set line start pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A55D"></span>A55D</td>
+<td class="bytes">90 DD</td>
+<td class="instruction">BCC <a href="A533.html#A53C">$A53C</a></td>
+<td class="comment-1" rowspan="1">go do next line, branch always</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A55F"></span>A55F</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A49C.html">A49C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A533">Map</a></td>
+<td class="next">
+Next: <a href="A560.html">A560</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

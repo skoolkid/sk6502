@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A883</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A871.html">A871</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A883">Map</a></td>
+<td class="next">
+Next: <a href="A8A0.html">A8A0</a>
+</td>
+</tr>
+</table>
+<div class="description">A883: perform GOSUB</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A883"></span>A883</td>
+<td class="bytes">A9 03</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="1">need 6 bytes for GOSUB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A885"></span>A885</td>
+<td class="bytes">20 FB A3</td>
+<td class="instruction">JSR <a href="A3FB.html">$A3FB</a></td>
+<td class="comment-1" rowspan="1">check room on stack for 2*A bytes</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A888"></span>A888</td>
+<td class="bytes">A5 7B</td>
+<td class="instruction">LDA $7B</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A88A"></span>A88A</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A88B"></span>A88B</td>
+<td class="bytes">A5 7A</td>
+<td class="instruction">LDA $7A</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A88D"></span>A88D</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A88E"></span>A88E</td>
+<td class="bytes">A5 3A</td>
+<td class="instruction">LDA $3A</td>
+<td class="comment-1" rowspan="1">get current line number high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A890"></span>A890</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A891"></span>A891</td>
+<td class="bytes">A5 39</td>
+<td class="instruction">LDA $39</td>
+<td class="comment-1" rowspan="1">get current line number low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A893"></span>A893</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A894"></span>A894</td>
+<td class="bytes">A9 8D</td>
+<td class="instruction">LDA #$8D</td>
+<td class="comment-1" rowspan="1">token for GOSUB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A896"></span>A896</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">save it</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="A897"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="A871.html">A871</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A897"></span>A897</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A89A"></span>A89A</td>
+<td class="bytes">20 A0 A8</td>
+<td class="instruction">JSR <a href="A8A0.html">$A8A0</a></td>
+<td class="comment-1" rowspan="1">perform GOTO</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A89D"></span>A89D</td>
+<td class="bytes">4C AE A7</td>
+<td class="instruction">JMP <a href="A7AE.html">$A7AE</a></td>
+<td class="comment-1" rowspan="1">go do interpreter inner loop</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A871.html">A871</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A883">Map</a></td>
+<td class="next">
+Next: <a href="A8A0.html">A8A0</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

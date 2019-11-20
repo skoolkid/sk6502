@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at B63D</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B526.html">B526</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B63D">Map</a></td>
+<td class="next">
+Next: <a href="B67A.html">B67A</a>
+</td>
+</tr>
+</table>
+<div class="description">B63D: concatenate</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="AD9E.html">AD9E</a>.
+</div>
+<div class="paragraph">
+add strings, the first string is in the descriptor, the second string is in line
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B63D"></span>B63D</td>
+<td class="bytes">A5 65</td>
+<td class="instruction">LDA $65</td>
+<td class="comment-1" rowspan="1">get descriptor pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B63F"></span>B63F</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">put on stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B640"></span>B640</td>
+<td class="bytes">A5 64</td>
+<td class="instruction">LDA $64</td>
+<td class="comment-1" rowspan="1">get descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B642"></span>B642</td>
+<td class="bytes">48</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">put on stack</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B643"></span>B643</td>
+<td class="bytes">20 83 AE</td>
+<td class="instruction">JSR <a href="AE83.html">$AE83</a></td>
+<td class="comment-1" rowspan="1">get value from line</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B646"></span>B646</td>
+<td class="bytes">20 8F AD</td>
+<td class="instruction">JSR <a href="AD8A.html#AD8F">$AD8F</a></td>
+<td class="comment-1" rowspan="1">check if source is string, else do type mismatch</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B649"></span>B649</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">get descriptor pointer low byte back</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B64A"></span>B64A</td>
+<td class="bytes">85 6F</td>
+<td class="instruction">STA $6F</td>
+<td class="comment-1" rowspan="1">set pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B64C"></span>B64C</td>
+<td class="bytes">68</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">get descriptor pointer high byte back</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B64D"></span>B64D</td>
+<td class="bytes">85 70</td>
+<td class="instruction">STA $70</td>
+<td class="comment-1" rowspan="1">set pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B64F"></span>B64F</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B651"></span>B651</td>
+<td class="bytes">B1 6F</td>
+<td class="instruction">LDA ($6F),Y</td>
+<td class="comment-1" rowspan="1">get length of first string from descriptor</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B653"></span>B653</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B654"></span>B654</td>
+<td class="bytes">71 64</td>
+<td class="instruction">ADC ($64),Y</td>
+<td class="comment-1" rowspan="1">add length of second string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B656"></span>B656</td>
+<td class="bytes">90 05</td>
+<td class="instruction">BCC <a href="B63D.html#B65D">$B65D</a></td>
+<td class="comment-1" rowspan="1">branch if no overflow</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B658"></span>B658</td>
+<td class="bytes">A2 17</td>
+<td class="instruction">LDX #$17</td>
+<td class="comment-1" rowspan="1">else error $17, string too long error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B65A"></span>B65A</td>
+<td class="bytes">4C 37 A4</td>
+<td class="instruction">JMP <a href="A435.html#A437">$A437</a></td>
+<td class="comment-1" rowspan="1">do error #<span class="register">X</span> then warm start</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B65D"></span>B65D</td>
+<td class="bytes">20 75 B4</td>
+<td class="instruction">JSR <a href="B475.html">$B475</a></td>
+<td class="comment-1" rowspan="1">copy descriptor pointer and make string space <span class="register">A</span> bytes long</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B660"></span>B660</td>
+<td class="bytes">20 7A B6</td>
+<td class="instruction">JSR <a href="B67A.html">$B67A</a></td>
+<td class="comment-1" rowspan="1">copy string from descriptor to utility pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B663"></span>B663</td>
+<td class="bytes">A5 50</td>
+<td class="instruction">LDA $50</td>
+<td class="comment-1" rowspan="1">get descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B665"></span>B665</td>
+<td class="bytes">A4 51</td>
+<td class="instruction">LDY $51</td>
+<td class="comment-1" rowspan="1">get descriptor pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B667"></span>B667</td>
+<td class="bytes">20 AA B6</td>
+<td class="instruction">JSR <a href="B6A3.html#B6AA">$B6AA</a></td>
+<td class="comment-1" rowspan="1">pop (<span class="register">YA</span>) descriptor off stack or from top of string space</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B66A"></span>
+<div class="comments">
+<div class="paragraph">
+returns with <span class="register">A</span> = length, <span class="register">X</span> = pointer low byte, <span class="register">Y</span> = pointer high byte
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B66A"></span>B66A</td>
+<td class="bytes">20 8C B6</td>
+<td class="instruction">JSR <a href="B67A.html#B68C">$B68C</a></td>
+<td class="comment-1" rowspan="1">store string from pointer to utility pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B66D"></span>B66D</td>
+<td class="bytes">A5 6F</td>
+<td class="instruction">LDA $6F</td>
+<td class="comment-1" rowspan="1">get descriptor pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B66F"></span>B66F</td>
+<td class="bytes">A4 70</td>
+<td class="instruction">LDY $70</td>
+<td class="comment-1" rowspan="1">get descriptor pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B671"></span>B671</td>
+<td class="bytes">20 AA B6</td>
+<td class="instruction">JSR <a href="B6A3.html#B6AA">$B6AA</a></td>
+<td class="comment-1" rowspan="1">pop (<span class="register">YA</span>) descriptor off stack or from top of string space</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="B674"></span>
+<div class="comments">
+<div class="paragraph">
+returns with <span class="register">A</span> = length, <span class="register">X</span> = pointer low byte, <span class="register">Y</span> = pointer high byte
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B674"></span>B674</td>
+<td class="bytes">20 CA B4</td>
+<td class="instruction">JSR <a href="B487.html#B4CA">$B4CA</a></td>
+<td class="comment-1" rowspan="1">check space on descriptor stack then put string address and length on descriptor stack and update stack pointers</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B677"></span>B677</td>
+<td class="bytes">4C B8 AD</td>
+<td class="instruction">JMP <a href="AD9E.html#ADB8">$ADB8</a></td>
+<td class="comment-1" rowspan="1">continue evaluation</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B526.html">B526</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B63D">Map</a></td>
+<td class="next">
+Next: <a href="B67A.html">B67A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

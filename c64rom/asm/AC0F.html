@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at AC0F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AC06.html">AC06</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AC0F">Map</a></td>
+<td class="next">
+Next: <a href="ACFC.html">ACFC</a>
+</td>
+</tr>
+</table>
+<div class="description">AC0F: perform GET</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="AB7B.html">AB7B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC0F"></span>AC0F</td>
+<td class="bytes">85 11</td>
+<td class="instruction">STA $11</td>
+<td class="comment-1" rowspan="1">set input mode flag, $00 = INPUT, $40 = GET, $98 = READ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC11"></span>AC11</td>
+<td class="bytes">86 43</td>
+<td class="instruction">STX $43</td>
+<td class="comment-1" rowspan="1">save READ pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC13"></span>AC13</td>
+<td class="bytes">84 44</td>
+<td class="instruction">STY $44</td>
+<td class="comment-1" rowspan="1">save READ pointer high byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AC15"></span>
+<div class="comments">
+<div class="paragraph">
+READ, GET or INPUT next variable from list
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC15"></span>AC15</td>
+<td class="bytes">20 8B B0</td>
+<td class="instruction">JSR <a href="B08B.html">$B08B</a></td>
+<td class="comment-1" rowspan="1">get variable address</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC18"></span>AC18</td>
+<td class="bytes">85 49</td>
+<td class="instruction">STA $49</td>
+<td class="comment-1" rowspan="1">save address low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC1A"></span>AC1A</td>
+<td class="bytes">84 4A</td>
+<td class="instruction">STY $4A</td>
+<td class="comment-1" rowspan="1">save address high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC1C"></span>AC1C</td>
+<td class="bytes">A5 7A</td>
+<td class="instruction">LDA $7A</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC1E"></span>AC1E</td>
+<td class="bytes">A4 7B</td>
+<td class="instruction">LDY $7B</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC20"></span>AC20</td>
+<td class="bytes">85 4B</td>
+<td class="instruction">STA $4B</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC22"></span>AC22</td>
+<td class="bytes">84 4C</td>
+<td class="instruction">STY $4C</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC24"></span>AC24</td>
+<td class="bytes">A6 43</td>
+<td class="instruction">LDX $43</td>
+<td class="comment-1" rowspan="1">get READ pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC26"></span>AC26</td>
+<td class="bytes">A4 44</td>
+<td class="instruction">LDY $44</td>
+<td class="comment-1" rowspan="1">get READ pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC28"></span>AC28</td>
+<td class="bytes">86 7A</td>
+<td class="instruction">STX $7A</td>
+<td class="comment-1" rowspan="1">save as BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC2A"></span>AC2A</td>
+<td class="bytes">84 7B</td>
+<td class="instruction">STY $7B</td>
+<td class="comment-1" rowspan="1">save as BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC2C"></span>AC2C</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC2F"></span>AC2F</td>
+<td class="bytes">D0 20</td>
+<td class="instruction">BNE <a href="AC0F.html#AC51">$AC51</a></td>
+<td class="comment-1" rowspan="1">branch if not null</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AC31"></span>
+<div class="comments">
+<div class="paragraph">
+pointer was to null entry
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC31"></span>AC31</td>
+<td class="bytes">24 11</td>
+<td class="instruction">BIT $11</td>
+<td class="comment-1" rowspan="1">test input mode flag, $00 = INPUT, $40 = GET, $98 = READ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC33"></span>AC33</td>
+<td class="bytes">50 0C</td>
+<td class="instruction">BVC <a href="AC0F.html#AC41">$AC41</a></td>
+<td class="comment-1" rowspan="1">branch if not GET</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AC35"></span>
+<div class="comments">
+<div class="paragraph">
+else was GET
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC35"></span>AC35</td>
+<td class="bytes">20 24 E1</td>
+<td class="instruction">JSR <a href="E124.html">$E124</a></td>
+<td class="comment-1" rowspan="1">get character from input device with error check</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC38"></span>AC38</td>
+<td class="bytes">8D 00 02</td>
+<td class="instruction">STA $0200</td>
+<td class="comment-1" rowspan="1">save to buffer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC3B"></span>AC3B</td>
+<td class="bytes">A2 FF</td>
+<td class="instruction">LDX #$FF</td>
+<td class="comment-1" rowspan="1">set pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC3D"></span>AC3D</td>
+<td class="bytes">A0 01</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="1">set pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC3F"></span>AC3F</td>
+<td class="bytes">D0 0C</td>
+<td class="instruction">BNE <a href="AC0F.html#AC4D">$AC4D</a></td>
+<td class="comment-1" rowspan="1">go interpret single character</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC41"></span>AC41</td>
+<td class="bytes">30 75</td>
+<td class="instruction">BMI <a href="AC0F.html#ACB8">$ACB8</a></td>
+<td class="comment-1" rowspan="1">branch if READ</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AC43"></span>
+<div class="comments">
+<div class="paragraph">
+else was INPUT
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC43"></span>AC43</td>
+<td class="bytes">A5 13</td>
+<td class="instruction">LDA $13</td>
+<td class="comment-1" rowspan="1">get current I/O channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC45"></span>AC45</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="AC0F.html#AC4A">$AC4A</a></td>
+<td class="comment-1" rowspan="1">skip "?" prompt if not default channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC47"></span>AC47</td>
+<td class="bytes">20 45 AB</td>
+<td class="instruction">JSR <a href="AB45.html">$AB45</a></td>
+<td class="comment-1" rowspan="1">print "?"</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC4A"></span>AC4A</td>
+<td class="bytes">20 F9 AB</td>
+<td class="instruction">JSR <a href="ABF9.html">$ABF9</a></td>
+<td class="comment-1" rowspan="1">print "? " and get BASIC input</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC4D"></span>AC4D</td>
+<td class="bytes">86 7A</td>
+<td class="instruction">STX $7A</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC4F"></span>AC4F</td>
+<td class="bytes">84 7B</td>
+<td class="instruction">STY $7B</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC51"></span>AC51</td>
+<td class="bytes">20 73 00</td>
+<td class="instruction">JSR $0073</td>
+<td class="comment-1" rowspan="1">increment and scan memory, execute pointer now points to start of next data or null terminator</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC54"></span>AC54</td>
+<td class="bytes">24 0D</td>
+<td class="instruction">BIT $0D</td>
+<td class="comment-1" rowspan="1">test data type flag, $FF = string, $00 = numeric</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC56"></span>AC56</td>
+<td class="bytes">10 31</td>
+<td class="instruction">BPL <a href="AC0F.html#AC89">$AC89</a></td>
+<td class="comment-1" rowspan="1">branch if numeric type is string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC58"></span>AC58</td>
+<td class="bytes">24 11</td>
+<td class="instruction">BIT $11</td>
+<td class="comment-1" rowspan="1">test INPUT mode flag, $00 = INPUT, $40 = GET, $98 = READ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC5A"></span>AC5A</td>
+<td class="bytes">50 09</td>
+<td class="instruction">BVC <a href="AC0F.html#AC65">$AC65</a></td>
+<td class="comment-1" rowspan="1">branch if not GET</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AC5C"></span>
+<div class="comments">
+<div class="paragraph">
+else do string GET
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC5C"></span>AC5C</td>
+<td class="bytes">E8</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">clear <span class="register">X</span> ??</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC5D"></span>AC5D</td>
+<td class="bytes">86 7A</td>
+<td class="instruction">STX $7A</td>
+<td class="comment-1" rowspan="1">save BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC5F"></span>AC5F</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">clear <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC61"></span>AC61</td>
+<td class="bytes">85 07</td>
+<td class="instruction">STA $07</td>
+<td class="comment-1" rowspan="1">clear search character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC63"></span>AC63</td>
+<td class="bytes">F0 0C</td>
+<td class="instruction">BEQ <a href="AC0F.html#AC71">$AC71</a></td>
+<td class="comment-1" rowspan="1">branch always</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AC65"></span>
+<div class="comments">
+<div class="paragraph">
+is string INPUT or string READ
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC65"></span>AC65</td>
+<td class="bytes">85 07</td>
+<td class="instruction">STA $07</td>
+<td class="comment-1" rowspan="1">save search character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC67"></span>AC67</td>
+<td class="bytes">C9 22</td>
+<td class="instruction">CMP #$22</td>
+<td class="comment-1" rowspan="1">compare with "</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC69"></span>AC69</td>
+<td class="bytes">F0 07</td>
+<td class="instruction">BEQ <a href="AC0F.html#AC72">$AC72</a></td>
+<td class="comment-1" rowspan="1">branch if quote</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AC6B"></span>
+<div class="comments">
+<div class="paragraph">
+string is not in quotes so ":", "," or $00 are the termination characters
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC6B"></span>AC6B</td>
+<td class="bytes">A9 3A</td>
+<td class="instruction">LDA #":"</td>
+<td class="comment-1" rowspan="1">set ":"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC6D"></span>AC6D</td>
+<td class="bytes">85 07</td>
+<td class="instruction">STA $07</td>
+<td class="comment-1" rowspan="1">set search character</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC6F"></span>AC6F</td>
+<td class="bytes">A9 2C</td>
+<td class="instruction">LDA #","</td>
+<td class="comment-1" rowspan="1">set ","</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC71"></span>AC71</td>
+<td class="bytes">18</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">clear carry for add</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC72"></span>AC72</td>
+<td class="bytes">85 08</td>
+<td class="instruction">STA $08</td>
+<td class="comment-1" rowspan="1">set scan quotes flag</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC74"></span>AC74</td>
+<td class="bytes">A5 7A</td>
+<td class="instruction">LDA $7A</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC76"></span>AC76</td>
+<td class="bytes">A4 7B</td>
+<td class="instruction">LDY $7B</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC78"></span>AC78</td>
+<td class="bytes">69 00</td>
+<td class="instruction">ADC #$00</td>
+<td class="comment-1" rowspan="1">add to pointer low byte. this add increments the pointer</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AC7A"></span>
+<div class="comments">
+<div class="paragraph">
+if the mode is INPUT or READ and the data is a "..." string
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC7A"></span>AC7A</td>
+<td class="bytes">90 01</td>
+<td class="instruction">BCC <a href="AC0F.html#AC7D">$AC7D</a></td>
+<td class="comment-1" rowspan="1">branch if no rollover</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC7C"></span>AC7C</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">else increment pointer high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC7D"></span>AC7D</td>
+<td class="bytes">20 8D B4</td>
+<td class="instruction">JSR <a href="B487.html#B48D">$B48D</a></td>
+<td class="comment-1" rowspan="1">print string to utility pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC80"></span>AC80</td>
+<td class="bytes">20 E2 B7</td>
+<td class="instruction">JSR <a href="B7E2.html">$B7E2</a></td>
+<td class="comment-1" rowspan="1">restore BASIC execute pointer from temp</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC83"></span>AC83</td>
+<td class="bytes">20 DA A9</td>
+<td class="instruction">JSR <a href="A9A5.html#A9DA">$A9DA</a></td>
+<td class="comment-1" rowspan="1">perform string LET</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC86"></span>AC86</td>
+<td class="bytes">4C 91 AC</td>
+<td class="instruction">JMP <a href="AC0F.html#AC91">$AC91</a></td>
+<td class="comment-1" rowspan="1">continue processing command</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AC89"></span>
+<div class="comments">
+<div class="paragraph">
+GET, INPUT or READ is numeric
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC89"></span>AC89</td>
+<td class="bytes">20 F3 BC</td>
+<td class="instruction">JSR <a href="BCF3.html">$BCF3</a></td>
+<td class="comment-1" rowspan="1">get FAC1 from string</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC8C"></span>AC8C</td>
+<td class="bytes">A5 0E</td>
+<td class="instruction">LDA $0E</td>
+<td class="comment-1" rowspan="1">get data type flag, $80 = integer, $00 = float</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC8E"></span>AC8E</td>
+<td class="bytes">20 C2 A9</td>
+<td class="instruction">JSR <a href="A9A5.html#A9C2">$A9C2</a></td>
+<td class="comment-1" rowspan="1">assign value to numeric variable</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC91"></span>AC91</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC94"></span>AC94</td>
+<td class="bytes">F0 07</td>
+<td class="instruction">BEQ <a href="AC0F.html#AC9D">$AC9D</a></td>
+<td class="comment-1" rowspan="1">branch if ":" or [EOL]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC96"></span>AC96</td>
+<td class="bytes">C9 2C</td>
+<td class="instruction">CMP #","</td>
+<td class="comment-1" rowspan="1">compare with ","</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC98"></span>AC98</td>
+<td class="bytes">F0 03</td>
+<td class="instruction">BEQ <a href="AC0F.html#AC9D">$AC9D</a></td>
+<td class="comment-1" rowspan="1">branch if ","</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC9A"></span>AC9A</td>
+<td class="bytes">4C 4D AB</td>
+<td class="instruction">JMP <a href="AB4D.html">$AB4D</a></td>
+<td class="comment-1" rowspan="1">else go do bad input routine</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="AC9D"></span>
+<div class="comments">
+<div class="paragraph">
+string terminated with ":", "," or $00
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="AC9D"></span>AC9D</td>
+<td class="bytes">A5 7A</td>
+<td class="instruction">LDA $7A</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="AC9F"></span>AC9F</td>
+<td class="bytes">A4 7B</td>
+<td class="instruction">LDY $7B</td>
+<td class="comment-1" rowspan="1">get BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACA1"></span>ACA1</td>
+<td class="bytes">85 43</td>
+<td class="instruction">STA $43</td>
+<td class="comment-1" rowspan="1">save READ pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACA3"></span>ACA3</td>
+<td class="bytes">84 44</td>
+<td class="instruction">STY $44</td>
+<td class="comment-1" rowspan="1">save READ pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACA5"></span>ACA5</td>
+<td class="bytes">A5 4B</td>
+<td class="instruction">LDA $4B</td>
+<td class="comment-1" rowspan="1">get saved BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACA7"></span>ACA7</td>
+<td class="bytes">A4 4C</td>
+<td class="instruction">LDY $4C</td>
+<td class="comment-1" rowspan="1">get saved BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACA9"></span>ACA9</td>
+<td class="bytes">85 7A</td>
+<td class="instruction">STA $7A</td>
+<td class="comment-1" rowspan="1">restore BASIC execute pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACAB"></span>ACAB</td>
+<td class="bytes">84 7B</td>
+<td class="instruction">STY $7B</td>
+<td class="comment-1" rowspan="1">restore BASIC execute pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACAD"></span>ACAD</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACB0"></span>ACB0</td>
+<td class="bytes">F0 2D</td>
+<td class="instruction">BEQ <a href="AC0F.html#ACDF">$ACDF</a></td>
+<td class="comment-1" rowspan="1">branch if ":" or [EOL]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACB2"></span>ACB2</td>
+<td class="bytes">20 FD AE</td>
+<td class="instruction">JSR <a href="AE86.html#AEFD">$AEFD</a></td>
+<td class="comment-1" rowspan="1">scan for ",", else do syntax error then warm start</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACB5"></span>ACB5</td>
+<td class="bytes">4C 15 AC</td>
+<td class="instruction">JMP <a href="AC0F.html#AC15">$AC15</a></td>
+<td class="comment-1" rowspan="1">go READ or INPUT next variable from list</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="ACB8"></span>
+<div class="comments">
+<div class="paragraph">
+was READ
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ACB8"></span>ACB8</td>
+<td class="bytes">20 06 A9</td>
+<td class="instruction">JSR <a href="A906.html">$A906</a></td>
+<td class="comment-1" rowspan="1">scan for next BASIC statement ([:] or [EOL])</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACBB"></span>ACBB</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index to next byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACBC"></span>ACBC</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy byte to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACBD"></span>ACBD</td>
+<td class="bytes">D0 12</td>
+<td class="instruction">BNE <a href="AC0F.html#ACD1">$ACD1</a></td>
+<td class="comment-1" rowspan="1">branch if ":"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACBF"></span>ACBF</td>
+<td class="bytes">A2 0D</td>
+<td class="instruction">LDX #$0D</td>
+<td class="comment-1" rowspan="1">else set error $0D, out of data error</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACC1"></span>ACC1</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index to next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACC2"></span>ACC2</td>
+<td class="bytes">B1 7A</td>
+<td class="instruction">LDA ($7A),Y</td>
+<td class="comment-1" rowspan="1">get next line pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACC4"></span>ACC4</td>
+<td class="bytes">F0 6C</td>
+<td class="instruction">BEQ <a href="AD1E.html#AD32">$AD32</a></td>
+<td class="comment-1" rowspan="1">branch if program end, eventually does error <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACC6"></span>ACC6</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACC7"></span>ACC7</td>
+<td class="bytes">B1 7A</td>
+<td class="instruction">LDA ($7A),Y</td>
+<td class="comment-1" rowspan="1">get next line # low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACC9"></span>ACC9</td>
+<td class="bytes">85 3F</td>
+<td class="instruction">STA $3F</td>
+<td class="comment-1" rowspan="1">save current DATA line low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACCB"></span>ACCB</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACCC"></span>ACCC</td>
+<td class="bytes">B1 7A</td>
+<td class="instruction">LDA ($7A),Y</td>
+<td class="comment-1" rowspan="1">get next line # high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACCE"></span>ACCE</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACCF"></span>ACCF</td>
+<td class="bytes">85 40</td>
+<td class="instruction">STA $40</td>
+<td class="comment-1" rowspan="1">save current DATA line high byte</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ACD1"></span>ACD1</td>
+<td class="bytes">20 FB A8</td>
+<td class="instruction">JSR <a href="A8FB.html">$A8FB</a></td>
+<td class="comment-1" rowspan="1">add <span class="register">Y</span> to the BASIC execute pointer</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACD4"></span>ACD4</td>
+<td class="bytes">20 79 00</td>
+<td class="instruction">JSR $0079</td>
+<td class="comment-1" rowspan="1">scan memory</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACD7"></span>ACD7</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy the byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACD8"></span>ACD8</td>
+<td class="bytes">E0 83</td>
+<td class="instruction">CPX #$83</td>
+<td class="comment-1" rowspan="1">compare it with token for DATA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACDA"></span>ACDA</td>
+<td class="bytes">D0 DC</td>
+<td class="instruction">BNE <a href="AC0F.html#ACB8">$ACB8</a></td>
+<td class="comment-1" rowspan="1">loop if not DATA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACDC"></span>ACDC</td>
+<td class="bytes">4C 51 AC</td>
+<td class="instruction">JMP <a href="AC0F.html#AC51">$AC51</a></td>
+<td class="comment-1" rowspan="1">continue evaluating READ</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ACDF"></span>ACDF</td>
+<td class="bytes">A5 43</td>
+<td class="instruction">LDA $43</td>
+<td class="comment-1" rowspan="1">get READ pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACE1"></span>ACE1</td>
+<td class="bytes">A4 44</td>
+<td class="instruction">LDY $44</td>
+<td class="comment-1" rowspan="1">get READ pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACE3"></span>ACE3</td>
+<td class="bytes">A6 11</td>
+<td class="instruction">LDX $11</td>
+<td class="comment-1" rowspan="1">get INPUT mode flag, $00 = INPUT, $40 = GET, $98 = READ</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACE5"></span>ACE5</td>
+<td class="bytes">10 03</td>
+<td class="instruction">BPL <a href="AC0F.html#ACEA">$ACEA</a></td>
+<td class="comment-1" rowspan="1">branch if INPUT or GET</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACE7"></span>ACE7</td>
+<td class="bytes">4C 27 A8</td>
+<td class="instruction">JMP <a href="A81D.html#A827">$A827</a></td>
+<td class="comment-1" rowspan="1">else set data pointer and exit</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ACEA"></span>ACEA</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACEC"></span>ACEC</td>
+<td class="bytes">B1 43</td>
+<td class="instruction">LDA ($43),Y</td>
+<td class="comment-1" rowspan="1">get READ byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACEE"></span>ACEE</td>
+<td class="bytes">F0 0B</td>
+<td class="instruction">BEQ <a href="AC0F.html#ACFB">$ACFB</a></td>
+<td class="comment-1" rowspan="1">exit if [EOL]</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACF0"></span>ACF0</td>
+<td class="bytes">A5 13</td>
+<td class="instruction">LDA $13</td>
+<td class="comment-1" rowspan="1">get current I/O channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACF2"></span>ACF2</td>
+<td class="bytes">D0 07</td>
+<td class="instruction">BNE <a href="AC0F.html#ACFB">$ACFB</a></td>
+<td class="comment-1" rowspan="1">exit if not default channel</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACF4"></span>ACF4</td>
+<td class="bytes">A9 FC</td>
+<td class="instruction">LDA #$FC</td>
+<td class="comment-1" rowspan="1">set "?EXTRA IGNORED" pointer low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACF6"></span>ACF6</td>
+<td class="bytes">A0 AC</td>
+<td class="instruction">LDY #$AC</td>
+<td class="comment-1" rowspan="1">set "?EXTRA IGNORED" pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="ACF8"></span>ACF8</td>
+<td class="bytes">4C 1E AB</td>
+<td class="instruction">JMP <a href="AB1E.html">$AB1E</a></td>
+<td class="comment-1" rowspan="1">print null terminated string</td>
+</tr>
+<tr>
+<td class="address-2"><span id="ACFB"></span>ACFB</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="AC06.html">AC06</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#AC0F">Map</a></td>
+<td class="next">
+Next: <a href="ACFC.html">ACFC</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

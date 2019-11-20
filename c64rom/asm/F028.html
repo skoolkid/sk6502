@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at F028</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F014.html">F014</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F028">Map</a></td>
+<td class="next">
+Next: <a href="F04D.html">F04D</a>
+</td>
+</tr>
+</table>
+<div class="description">F028: setup for RS232 transmit</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="F014.html">F014</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F028"></span>F028</td>
+<td class="bytes">AD A1 02</td>
+<td class="instruction">LDA $02A1</td>
+<td class="comment-1" rowspan="1">get the RS-232 interrupt enable byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F02B"></span>F02B</td>
+<td class="bytes">4A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">shift the enable bit to Cb</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F02C"></span>F02C</td>
+<td class="bytes">B0 1E</td>
+<td class="instruction">BCS <a href="F028.html#F04C">$F04C</a></td>
+<td class="comment-1" rowspan="1">if interrupts are enabled just exit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F02E"></span>F02E</td>
+<td class="bytes">A9 10</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="1">start timer A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F030"></span>F030</td>
+<td class="bytes">8D 0E DD</td>
+<td class="instruction">STA $DD0E</td>
+<td class="comment-1" rowspan="1">save VIA 2 CRA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F033"></span>F033</td>
+<td class="bytes">AD 99 02</td>
+<td class="instruction">LDA $0299</td>
+<td class="comment-1" rowspan="1">get the baud rate bit time low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F036"></span>F036</td>
+<td class="bytes">8D 04 DD</td>
+<td class="instruction">STA $DD04</td>
+<td class="comment-1" rowspan="1">save VIA 2 timer A low byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F039"></span>F039</td>
+<td class="bytes">AD 9A 02</td>
+<td class="instruction">LDA $029A</td>
+<td class="comment-1" rowspan="1">get the baud rate bit time high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F03C"></span>F03C</td>
+<td class="bytes">8D 05 DD</td>
+<td class="instruction">STA $DD05</td>
+<td class="comment-1" rowspan="1">save VIA 2 timer A high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F03F"></span>F03F</td>
+<td class="bytes">A9 81</td>
+<td class="instruction">LDA #$81</td>
+<td class="comment-1" rowspan="1">enable timer A interrupt</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F041"></span>F041</td>
+<td class="bytes">20 3B EF</td>
+<td class="instruction">JSR <a href="EF3B.html">$EF3B</a></td>
+<td class="comment-1" rowspan="1">set VIA 2 ICR from <span class="register">A</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="F044"></span>F044</td>
+<td class="bytes">20 06 EF</td>
+<td class="instruction">JSR <a href="EF06.html">$EF06</a></td>
+<td class="comment-1" rowspan="1">setup next RS232 Tx byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F047"></span>F047</td>
+<td class="bytes">A9 11</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="1">load timer A, start timer A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="F049"></span>F049</td>
+<td class="bytes">8D 0E DD</td>
+<td class="instruction">STA $DD0E</td>
+<td class="comment-1" rowspan="1">save VIA 2 CRA</td>
+</tr>
+<tr>
+<td class="address-2"><span id="F04C"></span>F04C</td>
+<td class="bytes">60</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="F014.html">F014</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#F028">Map</a></td>
+<td class="next">
+Next: <a href="F04D.html">F04D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

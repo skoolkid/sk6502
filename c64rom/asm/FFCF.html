@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at FFCF</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFCC.html">FFCC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFCF">Map</a></td>
+<td class="next">
+Next: <a href="FFD2.html">FFD2</a>
+</td>
+</tr>
+</table>
+<div class="description">FFCF: input character from channel</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="E112.html">E112</a>.
+</div>
+<div class="paragraph">
+this routine will get a byte of data from the channel already set up as the input channel by the CHKIN routine, <a href="FFC6.html">FFC6</a>.
+</div>
+<div class="paragraph">
+If CHKIN, <a href="FFC6.html">FFC6</a>, has not been used to define another input channel the data is expected to be from the keyboard. the data byte is returned in the accumulator. the channel remains open after the call.
+</div>
+<div class="paragraph">
+input from the keyboard is handled in a special way. first, the cursor is turned on and it will blink until a carriage return is typed on the keyboard. all characters on the logical line, up to 80 characters, will be stored in the BASIC input buffer. then the characters can be returned one at a time by calling this routine once for each character. when the carriage return is returned the entire line has been processed. the next time this routine is called the whole process begins again.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="FFCF"></span>FFCF</td>
+<td class="bytes">6C 24 03</td>
+<td class="instruction">JMP ($0324)</td>
+<td class="comment-1" rowspan="1">do input character from channel</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="FFCC.html">FFCC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#FFCF">Map</a></td>
+<td class="next">
+Next: <a href="FFD2.html">FFD2</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

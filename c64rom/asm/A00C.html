@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Data at A00C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-w">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A000.html">A000</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A00C">Map</a></td>
+<td class="next">
+Next: <a href="A052.html">A052</a>
+</td>
+</tr>
+</table>
+<div class="description">A00C: action addresses for primary commands</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+these are called by pushing the address onto the stack and doing an RTS so the actual address -1 needs to be pushed
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A00C"></span>A00C</td>
+<td class="instruction">.WORD $A830</td>
+<td class="comment-1" rowspan="1">$80: perform <a href="A831.html">END</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A00E"></span>A00E</td>
+<td class="instruction">.WORD $A741</td>
+<td class="comment-1" rowspan="1">$81: perform <a href="A742.html">FOR</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A010"></span>A010</td>
+<td class="instruction">.WORD $AD1D</td>
+<td class="comment-1" rowspan="1">$82: perform <a href="AD1E.html">NEXT</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A012"></span>A012</td>
+<td class="instruction">.WORD $A8F7</td>
+<td class="comment-1" rowspan="1">$83: perform <a href="A8F8.html">DATA</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A014"></span>A014</td>
+<td class="instruction">.WORD $ABA4</td>
+<td class="comment-1" rowspan="1">$84: perform <a href="ABA5.html">INPUT#</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A016"></span>A016</td>
+<td class="instruction">.WORD $ABBE</td>
+<td class="comment-1" rowspan="1">$85: perform <a href="ABBF.html">INPUT</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A018"></span>A018</td>
+<td class="instruction">.WORD $B080</td>
+<td class="comment-1" rowspan="1">$86: perform <a href="B07E.html#B081">DIM</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A01A"></span>A01A</td>
+<td class="instruction">.WORD $AC05</td>
+<td class="comment-1" rowspan="1">$87: perform <a href="AC06.html">READ</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A01C"></span>A01C</td>
+<td class="instruction">.WORD $A9A4</td>
+<td class="comment-1" rowspan="1">$88: perform <a href="A9A5.html">LET</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A01E"></span>A01E</td>
+<td class="instruction">.WORD $A89F</td>
+<td class="comment-1" rowspan="1">$89: perform <a href="A8A0.html">GOTO</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A020"></span>A020</td>
+<td class="instruction">.WORD $A870</td>
+<td class="comment-1" rowspan="1">$8A: perform <a href="A871.html">RUN</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A022"></span>A022</td>
+<td class="instruction">.WORD $A927</td>
+<td class="comment-1" rowspan="1">$8B: perform <a href="A928.html">IF</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A024"></span>A024</td>
+<td class="instruction">.WORD $A81C</td>
+<td class="comment-1" rowspan="1">$8C: perform <a href="A81D.html">RESTORE</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A026"></span>A026</td>
+<td class="instruction">.WORD $A882</td>
+<td class="comment-1" rowspan="1">$8D: perform <a href="A883.html">GOSUB</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A028"></span>A028</td>
+<td class="instruction">.WORD $A8D1</td>
+<td class="comment-1" rowspan="1">$8E: perform <a href="A8D2.html">RETURN</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A02A"></span>A02A</td>
+<td class="instruction">.WORD $A93A</td>
+<td class="comment-1" rowspan="1">$8F: perform <a href="A93B.html">REM</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A02C"></span>A02C</td>
+<td class="instruction">.WORD $A82E</td>
+<td class="comment-1" rowspan="1">$90: perform <a href="A82F.html">STOP</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A02E"></span>A02E</td>
+<td class="instruction">.WORD $A94A</td>
+<td class="comment-1" rowspan="1">$91: perform <a href="A94B.html">ON</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A030"></span>A030</td>
+<td class="instruction">.WORD $B82C</td>
+<td class="comment-1" rowspan="1">$92: perform <a href="B82D.html">WAIT</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A032"></span>A032</td>
+<td class="instruction">.WORD $E167</td>
+<td class="comment-1" rowspan="1">$93: perform <a href="E168.html">LOAD</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A034"></span>A034</td>
+<td class="instruction">.WORD $E155</td>
+<td class="comment-1" rowspan="1">$94: perform <a href="E156.html">SAVE</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A036"></span>A036</td>
+<td class="instruction">.WORD $E164</td>
+<td class="comment-1" rowspan="1">$95: perform <a href="E165.html">VERIFY</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A038"></span>A038</td>
+<td class="instruction">.WORD $B3B2</td>
+<td class="comment-1" rowspan="1">$96: perform <a href="B3B3.html">DEF</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A03A"></span>A03A</td>
+<td class="instruction">.WORD $B823</td>
+<td class="comment-1" rowspan="1">$97: perform <a href="B824.html">POKE</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A03C"></span>A03C</td>
+<td class="instruction">.WORD $AA7F</td>
+<td class="comment-1" rowspan="1">$98: perform <a href="AA80.html">PRINT#</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A03E"></span>A03E</td>
+<td class="instruction">.WORD $AA9F</td>
+<td class="comment-1" rowspan="1">$99: perform <a href="AAA0.html">PRINT</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A040"></span>A040</td>
+<td class="instruction">.WORD $A856</td>
+<td class="comment-1" rowspan="1">$9A: perform <a href="A857.html">CONT</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A042"></span>A042</td>
+<td class="instruction">.WORD $A69B</td>
+<td class="comment-1" rowspan="1">$9B: perform <a href="A69C.html">LIST</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A044"></span>A044</td>
+<td class="instruction">.WORD $A65D</td>
+<td class="comment-1" rowspan="1">$9C: perform <a href="A65E.html">CLR</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A046"></span>A046</td>
+<td class="instruction">.WORD $AA85</td>
+<td class="comment-1" rowspan="1">$9D: perform <a href="AA86.html">CMD</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A048"></span>A048</td>
+<td class="instruction">.WORD $E129</td>
+<td class="comment-1" rowspan="1">$9E: perform <a href="E12A.html">SYS</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A04A"></span>A04A</td>
+<td class="instruction">.WORD $E1BD</td>
+<td class="comment-1" rowspan="1">$9F: perform <a href="E1BE.html">OPEN</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A04C"></span>A04C</td>
+<td class="instruction">.WORD $E1C6</td>
+<td class="comment-1" rowspan="1">$A0: perform <a href="E1C7.html">CLOSE</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A04E"></span>A04E</td>
+<td class="instruction">.WORD $AB7A</td>
+<td class="comment-1" rowspan="1">$A1: perform <a href="AB7B.html">GET</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="A050"></span>A050</td>
+<td class="instruction">.WORD $A641</td>
+<td class="comment-1" rowspan="1">$A2: perform <a href="A642.html">NEW</a></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A000.html">A000</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A00C">Map</a></td>
+<td class="next">
+Next: <a href="A052.html">A052</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

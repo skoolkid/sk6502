@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Data at E4EC</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-w">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E4E0.html">E4E0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E4EC">Map</a></td>
+<td class="next">
+Next: <a href="E500.html">E500</a>
+</td>
+</tr>
+</table>
+<div class="description">E4EC: baud rate tables for PAL C64</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+baud rate word is calculated from ..
+</div>
+<div class="paragraph">
+(system clock / baud rate) / 2 - 100
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="2" rowspan="1">system clock</th>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">PAL</td>
+<td class="" colspan="1" rowspan="1">985248 Hz</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">NTSC</td>
+<td class="" colspan="1" rowspan="1">1022727 Hz</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E4EC"></span>E4EC</td>
+<td class="instruction">.WORD $2619</td>
+<td class="comment-1" rowspan="1">50 baud (985300)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E4EE"></span>E4EE</td>
+<td class="instruction">.WORD $1944</td>
+<td class="comment-1" rowspan="1">75 baud (985200)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E4F0"></span>E4F0</td>
+<td class="instruction">.WORD $111A</td>
+<td class="comment-1" rowspan="1">110 baud (985160)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E4F2"></span>E4F2</td>
+<td class="instruction">.WORD $0DE8</td>
+<td class="comment-1" rowspan="1">134.5 baud (984540)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E4F4"></span>E4F4</td>
+<td class="instruction">.WORD $0C70</td>
+<td class="comment-1" rowspan="1">150 baud (985200)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E4F6"></span>E4F6</td>
+<td class="instruction">.WORD $0606</td>
+<td class="comment-1" rowspan="1">300 baud (985200)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E4F8"></span>E4F8</td>
+<td class="instruction">.WORD $02D1</td>
+<td class="comment-1" rowspan="1">600 baud (985200)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E4FA"></span>E4FA</td>
+<td class="instruction">.WORD $0137</td>
+<td class="comment-1" rowspan="1">1200 baud (986400)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E4FC"></span>E4FC</td>
+<td class="instruction">.WORD $00AE</td>
+<td class="comment-1" rowspan="1">1800 baud (986400)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="E4FE"></span>E4FE</td>
+<td class="instruction">.WORD $0069</td>
+<td class="comment-1" rowspan="1">2400 baud (984000)</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="E4E0.html">E4E0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#E4EC">Map</a></td>
+<td class="next">
+Next: <a href="E500.html">E500</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

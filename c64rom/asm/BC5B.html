@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at BC5B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BC58.html">BC58</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BC5B">Map</a></td>
+<td class="next">
+Next: <a href="BC9B.html">BC9B</a>
+</td>
+</tr>
+</table>
+<div class="description">BC5B: compare FAC1 with (<span class="register">AY</span>)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="B016.html">B016</a>, <a href="B1B2.html">B1B2</a>, <a href="BDDD.html">BDDD</a> and <a href="BF7B.html">BF7B</a>.
+</div>
+<div class="paragraph">
+returns <span class="register">A</span>=$00 if FAC1 = (<span class="register">AY</span>). returns <span class="register">A</span>=$01 if FAC1 &gt; (<span class="register">AY</span>). returns <span class="register">A</span>=$FF if FAC1 &lt; (<span class="register">AY</span>)
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BC5B"></span>BC5B</td>
+<td class="bytes">85 24</td>
+<td class="instruction">STA $24</td>
+<td class="comment-1" rowspan="1">save pointer low byte</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BC5D"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="AD1E.html">AD1E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BC5D"></span>BC5D</td>
+<td class="bytes">84 25</td>
+<td class="instruction">STY $25</td>
+<td class="comment-1" rowspan="1">save pointer high byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC5F"></span>BC5F</td>
+<td class="bytes">A0 00</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">clear index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC61"></span>BC61</td>
+<td class="bytes">B1 24</td>
+<td class="instruction">LDA ($24),Y</td>
+<td class="comment-1" rowspan="1">get exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC63"></span>BC63</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC64"></span>BC64</td>
+<td class="bytes">AA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">copy (<span class="register">AY</span>) exponent to <span class="register">X</span></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC65"></span>BC65</td>
+<td class="bytes">F0 C4</td>
+<td class="instruction">BEQ <a href="BC2B.html">$BC2B</a></td>
+<td class="comment-1" rowspan="1">branch if (<span class="register">AY</span>) exponent=0 and get FAC1 sign</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BC67"></span>
+<div class="comments">
+<div class="paragraph">
+<span class="register">A</span> = $FF, Cb = 1/-ve <span class="register">A</span> = $01, Cb = 0/+ve
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC67"></span>BC67</td>
+<td class="bytes">B1 24</td>
+<td class="instruction">LDA ($24),Y</td>
+<td class="comment-1" rowspan="1">get (<span class="register">AY</span>) mantissa 1, with sign</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC69"></span>BC69</td>
+<td class="bytes">45 66</td>
+<td class="instruction">EOR $66</td>
+<td class="comment-1" rowspan="1">EOR FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC6B"></span>BC6B</td>
+<td class="bytes">30 C2</td>
+<td class="instruction">BMI <a href="BC2B.html#BC2F">$BC2F</a></td>
+<td class="comment-1" rowspan="1">if signs &lt;&gt; do return <span class="register">A</span> = $FF, Cb = 1/-ve</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BC6D"></span>
+<div class="comments">
+<div class="paragraph">
+<span class="register">A</span> = $01, Cb = 0/+ve and return
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC6D"></span>BC6D</td>
+<td class="bytes">E4 61</td>
+<td class="instruction">CPX $61</td>
+<td class="comment-1" rowspan="1">compare (<span class="register">AY</span>) exponent with FAC1 exponent</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC6F"></span>BC6F</td>
+<td class="bytes">D0 21</td>
+<td class="instruction">BNE <a href="BC5B.html#BC92">$BC92</a></td>
+<td class="comment-1" rowspan="1">branch if different</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC71"></span>BC71</td>
+<td class="bytes">B1 24</td>
+<td class="instruction">LDA ($24),Y</td>
+<td class="comment-1" rowspan="1">get (<span class="register">AY</span>) mantissa 1, with sign</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC73"></span>BC73</td>
+<td class="bytes">09 80</td>
+<td class="instruction">ORA #$80</td>
+<td class="comment-1" rowspan="1">normalise top bit</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC75"></span>BC75</td>
+<td class="bytes">C5 62</td>
+<td class="instruction">CMP $62</td>
+<td class="comment-1" rowspan="1">compare with FAC1 mantissa 1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC77"></span>BC77</td>
+<td class="bytes">D0 19</td>
+<td class="instruction">BNE <a href="BC5B.html#BC92">$BC92</a></td>
+<td class="comment-1" rowspan="1">branch if different</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC79"></span>BC79</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC7A"></span>BC7A</td>
+<td class="bytes">B1 24</td>
+<td class="instruction">LDA ($24),Y</td>
+<td class="comment-1" rowspan="1">get mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC7C"></span>BC7C</td>
+<td class="bytes">C5 63</td>
+<td class="instruction">CMP $63</td>
+<td class="comment-1" rowspan="1">compare with FAC1 mantissa 2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC7E"></span>BC7E</td>
+<td class="bytes">D0 12</td>
+<td class="instruction">BNE <a href="BC5B.html#BC92">$BC92</a></td>
+<td class="comment-1" rowspan="1">branch if different</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC80"></span>BC80</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC81"></span>BC81</td>
+<td class="bytes">B1 24</td>
+<td class="instruction">LDA ($24),Y</td>
+<td class="comment-1" rowspan="1">get mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC83"></span>BC83</td>
+<td class="bytes">C5 64</td>
+<td class="instruction">CMP $64</td>
+<td class="comment-1" rowspan="1">compare with FAC1 mantissa 3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC85"></span>BC85</td>
+<td class="bytes">D0 0B</td>
+<td class="instruction">BNE <a href="BC5B.html#BC92">$BC92</a></td>
+<td class="comment-1" rowspan="1">branch if different</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC87"></span>BC87</td>
+<td class="bytes">C8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">increment index</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC88"></span>BC88</td>
+<td class="bytes">A9 7F</td>
+<td class="instruction">LDA #$7F</td>
+<td class="comment-1" rowspan="1">set for 1/2 value rounding byte</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC8A"></span>BC8A</td>
+<td class="bytes">C5 70</td>
+<td class="instruction">CMP $70</td>
+<td class="comment-1" rowspan="1">compare with FAC1 rounding byte (set carry)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC8C"></span>BC8C</td>
+<td class="bytes">B1 24</td>
+<td class="instruction">LDA ($24),Y</td>
+<td class="comment-1" rowspan="1">get mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC8E"></span>BC8E</td>
+<td class="bytes">E5 65</td>
+<td class="instruction">SBC $65</td>
+<td class="comment-1" rowspan="1">subtract FAC1 mantissa 4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC90"></span>BC90</td>
+<td class="bytes">F0 28</td>
+<td class="instruction">BEQ <a href="BC9B.html#BCBA">$BCBA</a></td>
+<td class="comment-1" rowspan="1">exit if mantissa 4 equal</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BC92"></span>
+<div class="comments">
+<div class="paragraph">
+gets here if number &lt;&gt; FAC1
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BC92"></span>BC92</td>
+<td class="bytes">A5 66</td>
+<td class="instruction">LDA $66</td>
+<td class="comment-1" rowspan="1">get FAC1 sign (b7)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC94"></span>BC94</td>
+<td class="bytes">90 02</td>
+<td class="instruction">BCC <a href="BC5B.html#BC98">$BC98</a></td>
+<td class="comment-1" rowspan="1">branch if FAC1 &gt; (<span class="register">AY</span>)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BC96"></span>BC96</td>
+<td class="bytes">49 FF</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">else toggle FAC1 sign</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BC98"></span>BC98</td>
+<td class="bytes">4C 31 BC</td>
+<td class="instruction">JMP <a href="BC2B.html#BC31">$BC31</a></td>
+<td class="comment-1" rowspan="1">return <span class="register">A</span> = $FF, Cb = 1/-ve <span class="register">A</span> = $01, Cb = 0/+ve</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BC58.html">BC58</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BC5B">Map</a></td>
+<td class="next">
+Next: <a href="BC9B.html">BC9B</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

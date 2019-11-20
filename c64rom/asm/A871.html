@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>C64 ROM: Routine at A871</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html">C64 ROM</a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A857.html">A857</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A871">Map</a></td>
+<td class="next">
+Next: <a href="A883.html">A883</a>
+</td>
+</tr>
+</table>
+<div class="description">A871: perform RUN</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A871"></span>A871</td>
+<td class="bytes">08</td>
+<td class="instruction">PHP</td>
+<td class="comment-1" rowspan="1">save status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A872"></span>A872</td>
+<td class="bytes">A9 00</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">no control or kernal messages</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A874"></span>A874</td>
+<td class="bytes">20 90 FF</td>
+<td class="instruction">JSR <a href="FF90.html">$FF90</a></td>
+<td class="comment-1" rowspan="1">control kernal messages</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A877"></span>A877</td>
+<td class="bytes">28</td>
+<td class="instruction">PLP</td>
+<td class="comment-1" rowspan="1">restore status</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A878"></span>A878</td>
+<td class="bytes">D0 03</td>
+<td class="instruction">BNE <a href="A871.html#A87D">$A87D</a></td>
+<td class="comment-1" rowspan="1">branch if RUN n</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A87A"></span>A87A</td>
+<td class="bytes">4C 59 A6</td>
+<td class="instruction">JMP <a href="A659.html">$A659</a></td>
+<td class="comment-1" rowspan="1">reset execution to start, clear variables, flush stack and return</td>
+</tr>
+<tr>
+<td class="address-2"><span id="A87D"></span>A87D</td>
+<td class="bytes">20 60 A6</td>
+<td class="instruction">JSR <a href="A65E.html#A660">$A660</a></td>
+<td class="comment-1" rowspan="1">go do "CLEAR"</td>
+</tr>
+<tr>
+<td class="address-1"><span id="A880"></span>A880</td>
+<td class="bytes">4C 97 A8</td>
+<td class="instruction">JMP <a href="A883.html#A897">$A897</a></td>
+<td class="comment-1" rowspan="1">get n and do GOTO n</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="A857.html">A857</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#A871">Map</a></td>
+<td class="next">
+Next: <a href="A883.html">A883</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 2012 Lee Davison.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.0 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>
