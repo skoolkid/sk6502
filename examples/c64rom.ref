@@ -5,7 +5,7 @@ Game=C64 ROM
 LinkInternalOperands=1
 LinkOperands=BCC,BCS,BEQ,BMI,BNE,BPL,BVC,BVS,JMP,JSR,.WORD
 Created=Created using <a href="https://skoolkit.ca">SkoolKit</a> #VERSION and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.
-Copyright=&copy; 2012 Lee Davison.
+Copyright=&#169; 2012 Lee Davison.
 
 [MemoryMap:MemoryMap]
 PageByteColumns=0
