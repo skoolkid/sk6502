@@ -28,3 +28,7 @@ memory) files, so the lack of a custom snapshot reader is not a showstopper.
 Base conversion (to decimal) might not be worth implementing. 6502 assemblers
 seem to rely on the number of digits in a hexadecimal operand to distinguish
 instructions, e.g. `INC $01` (zeropage) v. `INC $0001` (absolute).
+
+Examples
+--------
+* Lee Davison's almost completely commented [C64 ROM disassembly](https://skoolkid.github.io/sk6502/c64rom/)
