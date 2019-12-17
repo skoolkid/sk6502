@@ -31,4 +31,4 @@ instructions, e.g. `INC $01` (zeropage) v. `INC $0001` (absolute).
 
 Examples
 --------
-* Lee Davison's almost completely commented [C64 ROM disassembly](https://skoolkid.github.io/sk6502/c64rom/)
+* Lee Davison's almost completely commented [C64 ROM disassembly](https://skoolkid.github.io/sk6502/c64rom/) (mirror [here](https://skoolkid.gitlab.io/sk6502/c64rom/))
