@@ -60,9 +60,10 @@ class InstructionUtility:
         is_def = instruction.operation.upper().startswith('.')
         return int(assemble > 1 or (assemble and is_def)) + int(assemble > 1 and not is_def)
 
-    def substitute_labels(self, entries, remote_entries, labels, warn):
+    def substitute_labels(self, entries, remote_entries, labels, mode, warn):
         self.remote_entries = remote_entries
         self.labels = labels
+        self.asm_mode = mode
         self.warn = warn
         self.instructions = {i.address: (i, e, labels.get(i.address)) for e in entries for i in e.instructions if i.address is not None}
         self.remote_instructions = [i.address for e in remote_entries for i in e.instructions]
@@ -80,6 +81,10 @@ class InstructionUtility:
                         instruction.operation = operation[:6] + ','.join(operands)
                     elif not operation.upper().startswith('.FILL'):
                         instruction.operation = self._replace_addresses(entry, instruction, operation)
+
+    def _warn(self, message, instruction, address):
+        if instruction.nowarn is None or (instruction.nowarn and address not in instruction.nowarn):
+            self.warn(message, instruction)
 
     def _replace_addresses(self, entry, instruction, operand):
         rep = ''
@@ -109,11 +114,11 @@ class InstructionUtility:
             if entry.ctl == 'c':
                 # Warn if we cannot find a label to replace the operand of this
                 # routine instruction (will need @nowarn if this is OK)
-                self.warn('Found no label for operand: {address} {operation}', instruction, True)
+                self._warn('No label for address ({})'.format(addr_str), instruction, address)
         elif address in self.labels:
             return self.labels[address]
-        elif address not in self.remote_instructions and self.base_address <= address < self.end_address:
+        elif address not in self.remote_instructions and self.base_address <= address < self.end_address and not instruction.sub and self.asm_mode > 1:
             # Warn if the operand is inside the address range of the
             # disassembly (where code might be) but doesn't refer to the
             # address of an instruction (will need @nowarn if this is OK)
-            self.warn('Unreplaced operand: {address} {operation}', instruction, min_mode=2)
+            self._warn('Unreplaced address ({})'.format(addr_str), instruction, address)

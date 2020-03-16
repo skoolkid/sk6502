@@ -20,10 +20,12 @@ class Entry:
         return "Entry('{}', {})".format(self.ctl, self.instructions)
 
 class Instruction:
-    def __init__(self, address, operation, keep=None):
+    def __init__(self, address, operation, keep=None, nowarn=None, sub=False):
         self.address = address
         self.operation = operation
         self.keep = keep
+        self.nowarn = nowarn
+        self.sub = sub
 
     def __repr__(self):
         return("Instruction(0x{:04X}, '{}', {})".format(self.address, self.operation, self.keep))
@@ -112,19 +114,21 @@ class InstructionUtilityTest(unittest.TestCase):
 
     def test_substitute_labels(self):
         warnings = []
-        def warn(fmt, instruction, subbed=False, min_mode=0):
-            addr_str = '${:04X}'.format(instruction.address)
-            warnings.append(fmt.format(address=addr_str, operation=instruction.operation))
+        def warn(message, instruction):
+            warnings.append((message, instruction.address))
 
         instructions = (
             Instruction(0x0000, 'LDA $1234'),
             Instruction(0x0003, '.WORD $2345'),
-            Instruction(0x0005, 'LDX $3456', [0x3456]),
+            Instruction(0x0005, 'LDX $3456', keep=[0x3456]),
             Instruction(0x0008, 'LDY #$FF'),
             Instruction(0x000A, 'JSR $0005'),
             Instruction(0x000D, 'LDA $0005'),
             Instruction(0x0010, 'JSR $0006'),
-            Instruction(0x0013, 'JSR $0008')
+            Instruction(0x0013, 'JSR $0008'),
+            Instruction(0x0016, 'JSR $0006', nowarn=[]),
+            Instruction(0x0019, 'JSR $0008', nowarn=[0x0008]),
+            Instruction(0x001C, 'JSR $0006', sub=True)
         )
         labels = {
             0x1234: 'LIVES',
@@ -141,15 +145,18 @@ class InstructionUtilityTest(unittest.TestCase):
             'JSR ROUTINE',
             'LDA $0005',
             'JSR $0006',
-            'JSR $0008'
+            'JSR $0008',
+            'JSR $0006',
+            'JSR $0008',
+            'JSR $0006'
         ]
         entries = [Entry(instructions, 'c')]
         iu = InstructionUtility()
-        iu.substitute_labels(entries, (), labels, warn)
+        iu.substitute_labels(entries, (), labels, 2, warn)
         self.assertEqual(exp_operations, [i.operation for i in instructions])
         exp_warnings = [
-            'Unreplaced operand: $0010 JSR $0006',
-            'Found no label for operand: $0013 JSR $0008'
+            ('Unreplaced address ($0006)', 0x0010),
+            ('No label for address ($0008)', 0x0013)
         ]
         self.assertEqual(exp_warnings, warnings)
 

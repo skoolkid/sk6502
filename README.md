@@ -1,7 +1,7 @@
 sk6502
 ======
 [SkoolKit](https://github.com/skoolkid/skoolkit) components for MOS 6502
-disassembly. SkoolKit 8.0+ is required.
+disassembly. SkoolKit 8.1+ is required.
 
 What's done
 -----------
