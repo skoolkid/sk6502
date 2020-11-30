@@ -236,12 +236,19 @@ def _catch_data(ctls, ctl_addr, count, max_count, addr, op_bytes):
         return addr
     return ctl_addr
 
+def _get_operation(operations, snapshot, addr):
+    if addr not in operations:
+        operations[addr] = next(_decode(snapshot, addr, addr + 1))[1::3]
+    return operations[addr]
+
 def _generate_ctls_without_code_map(snapshot, start, end, config):
+    operations = {}
     ctls = []
     ctl_addr = start
     prev_max_count, prev_op_id, prev_op, prev_op_bytes = 0, None, None, ()
     count = 1
     for addr, size, max_count, op_id, operation in _decode(snapshot, start, end):
+        operations[addr] = (size, operation)
         op_bytes = snapshot[addr:addr + size]
         if op_id == END:
             # Catch data-like sequences that precede a terminal instruction
@@ -264,25 +271,49 @@ def _generate_ctls_without_code_map(snapshot, start, end, config):
 
     ctls = dict(ctls)
 
+    # Join two adjacent blocks if the first one is code and branches to the
+    # second
+    edges = sorted(ctls)
+    while 1:
+        done = True
+        while len(edges) > 1:
+            addr, end = edges[0], edges[1]
+            if ctls[addr] == 'c':
+                while addr < end:
+                    size, operation = _get_operation(operations, snapshot, addr)
+                    if operation.startswith(('BC', 'BE', 'BM', 'BN', 'BP', 'BV')):
+                        operand = snapshot[addr + 1]
+                        branch_addr = addr + 2 + (operand if operand < 128 else operand - 256)
+                        if branch_addr == end:
+                            del ctls[end], edges[1]
+                            done = False
+                            break
+                    addr += size
+                if not done:
+                    break
+                del edges[0]
+            else:
+                del edges[0]
+        if done:
+            break
+
     # Look for text
     edges = sorted(ctls)
     for i in range(len(edges) - 1):
         start, end = edges[i], edges[i + 1]
-        if ctls[start] == 'b':
-            for t_start, t_end in _get_text_blocks(snapshot, start, end, config):
+        ctl = ctls[start]
+        text_blocks = _get_text_blocks(snapshot, start, end, config, ctl == 'b')
+        if text_blocks:
+            ctls[start] = 'b'
+            for t_start, t_end in text_blocks:
                 ctls[t_start] = 't'
                 if t_end < end:
                     ctls[t_end] = 'b'
-        elif ctls[start] == 'c':
-            text_blocks = _get_text_blocks(snapshot, start, end, config, False)
-            if text_blocks:
-                ctls[start] = 'b'
-                for t_start, t_end in text_blocks:
-                    ctls[t_start] = 't'
-                    if t_end < end:
-                        ctls[t_end] = 'b'
-                if t_end < end:
-                    ctls[t_end] = 'c'
+            if t_end < end:
+                addr = t_end
+                while addr < end:
+                    addr += _get_operation(operations, snapshot, addr)[0]
+                ctls[t_end] = ctl if addr == end else 'b'
 
     return ctls
 

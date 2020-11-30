@@ -36,6 +36,41 @@ class ControlDirectiveComposerTest(unittest.TestCase):
         }
         self._test_generation(snapshot, exp_ctls)
 
+    def test_code_with_branches(self):
+        snapshot = [
+            0x90, 0x07, # 0000 BCC $0009
+            0xB0, 0x07, # 0002 BCS $000B
+            0XF0, 0x07, # 0004 BEQ $000D
+            0xD0, 0x07, # 0006 BNE $000F
+            0x60,       # 0008 RTS
+            0x18,       # 0009 CLC
+            0x60,       # 000A RTS
+            0x18,       # 000B CLC
+            0x60,       # 000C RTS
+            0x18,       # 000D CLC
+            0x60,       # 000E RTS
+            0x18,       # 000F CLC
+            0x60,       # 0010 RTS
+            0x30, 0x0D, # 0011 BMI $0020
+            0x10, 0x09, # 0013 BPL $001E
+            0X50, 0x05, # 0015 BVC $001C
+            0x70, 0x01, # 0017 BVS $001A
+            0x60,       # 0019 RTS
+            0x18,       # 001A CLC
+            0x60,       # 001B RTS
+            0x18,       # 001C CLC
+            0x60,       # 001D RTS
+            0x18,       # 001E CLC
+            0x60,       # 001F RTS
+            0x18,       # 0020 CLC
+            0x60,       # 0021 RTS
+        ]
+        exp_ctls = {
+            0x0000: 'c',
+            0x0011: 'c'
+        }
+        self._test_generation(snapshot, exp_ctls)
+
     def test_data(self):
         snapshot = [
             0xA9, 0x01, # 0000 LDA #$01
