@@ -42,6 +42,7 @@ OPCODES = {
     0x2D: (3, C_ANY, 0x2D, 'AND nnnn'),
     0x2E: (3, C_SAR, 0x2E, 'ROL nnnn'),
     0x30: (2, C_ONE, 0x30, 'BMI nnnn'),
+    0x31: (2, C_ANY, 0x31, 'AND (nn),Y'),
     0x35: (2, C_ANY, 0x35, 'AND nn,X'),
     0x36: (2, C_SAR, 0x36, 'ROL nn,X'),
     0x38: (1, C_ONE, 0x38, 'SEC'),

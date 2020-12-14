@@ -206,7 +206,7 @@ class Disassembler:
         0x2E: (word_arg, 'ROL {}'),
         0x2F: (defb3, ''),
         0x30: (branch_arg, 'BMI {}'),
-        0x31: (defb2, ''),
+        0x31: (byte_arg, 'AND ({}),Y'),
         0x32: (crash, ''),
         0x33: (defb2, ''),
         0x34: (defb2, ''),
