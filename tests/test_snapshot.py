@@ -25,7 +25,7 @@ class SnapshotReaderTest(unittest.TestCase):
         vsf.extend([0] * (58 - len(vsf)))
         vsf.extend(b'C64MEM')
         vsf.extend([0] * (84 - len(vsf)))
-        ram = bytearray(b & 255 for b in range(65536))
+        ram = [b & 255 for b in range(65536)]
         vsf.extend(ram)
         with open(TMP_FILE, 'wb') as f:
             f.write(vsf)

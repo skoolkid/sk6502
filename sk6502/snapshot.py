@@ -17,7 +17,7 @@ def get_snapshot(fname, page=None):
     i = 58
     while i < len(data):
         if data[i:i + len(C64MEM)] == C64MEM:
-            return data[i + 26:i + 65562]
+            return list(data[i + 26:i + 65562])
         i += data[i + 18] + 256 * data[i + 19] + 65536 * data[i + 20] + 16777216 * data[i + 21]
 
     raise SnapshotError('{}: C64MEM module not found'.format(fname))
