@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $359E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3558.html">$3558</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#359E">Map</a></td>
+<td class="next">
+Next: <a href="35EF.html">$35EF</a>
+</td>
+</tr>
+</table>
+<div class="description">$359E: 'P' pressed - right</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/66AA.html">$66AA</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="0800.html">$0800</a>, <a href="34B5.html">$34B5</a> and <a href="350B.html">$350B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="359E"></span>$359E</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35A0"></span>$35A0</td>
+<td class="instruction">AND #$04</td>
+<td class="comment-1" rowspan="1">Is bit 2 set, indicating that ERIC is sitting or lying down?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35A2"></span>$35A2</td>
+<td class="instruction">BNE <a href="359E.html#35EE">$35EE</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35A4"></span>$35A4</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35A6"></span>$35A6</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is ERIC facing right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35A7"></span>$35A7</td>
+<td class="instruction">BCS <a href="359E.html#35AC">$35AC</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35A9"></span>$35A9</td>
+<td class="instruction">JMP <a href="364E.html">$364E</a></td>
+<td class="comment-1" rowspan="1">Otherwise turn ERIC round.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="35AC"></span>$35AC</td>
+<td class="instruction">JSR <a href="1C8E.html">$1C8E</a></td>
+<td class="comment-1" rowspan="1">Is ERIC on a staircase?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35AF"></span>$35AF</td>
+<td class="instruction">BCC <a href="359E.html#35BD">$35BD</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35B1"></span>$35B1</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35B3"></span>$35B3</td>
+<td class="instruction">CMP #$30</td>
+<td class="comment-1" rowspan="1">Is ERIC on a staircase on the right side of the skool?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35B5"></span>$35B5</td>
+<td class="instruction">BCS <a href="359E.html#35BA">$35BA</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35B7"></span>$35B7</td>
+<td class="instruction">JMP <a href="34B5.html">$34B5</a></td>
+<td class="comment-1" rowspan="1">Move ERIC down a step.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="35BA"></span>$35BA</td>
+<td class="instruction">JMP <a href="350B.html">$350B</a></td>
+<td class="comment-1" rowspan="1">Move ERIC up a step.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="35BD"></span>$35BD</td>
+<td class="instruction">LDA $12</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's location indicator from <a href="0012.html">$12</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35BF"></span>$35BF</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">Is ERIC on the top floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35C1"></span>$35C1</td>
+<td class="instruction">BNE <a href="359E.html#35D0">$35D0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35C3"></span>$35C3</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35C5"></span>$35C5</td>
+<td class="instruction">CMP #$38</td>
+<td class="comment-1" rowspan="1">Is ERIC next to the Reading Room wall?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35C7"></span>$35C7</td>
+<td class="instruction">BEQ <a href="359E.html#35EE">$35EE</a></td>
+<td class="comment-1" rowspan="1">Return if so (ERIC can't walk through walls).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35C9"></span>$35C9</td>
+<td class="instruction">CMP #$5D</td>
+<td class="comment-1" rowspan="1">Is ERIC at the far right of the skool?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35CB"></span>$35CB</td>
+<td class="instruction">BEQ <a href="359E.html#35EE">$35EE</a></td>
+<td class="comment-1" rowspan="1">Return if so (ERIC can't go any further right).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35CD"></span>$35CD</td>
+<td class="instruction">JMP <a href="359E.html#35EB">$35EB</a></td>
+<td class="comment-1" rowspan="1">Otherwise move ERIC midstride.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="35D0"></span>$35D0</td>
+<td class="instruction">CMP #$01</td>
+<td class="comment-1" rowspan="1">Is ERIC on the middle floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35D2"></span>$35D2</td>
+<td class="instruction">BNE <a href="359E.html#35E1">$35E1</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35D4"></span>$35D4</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35D6"></span>$35D6</td>
+<td class="instruction">CMP #$25</td>
+<td class="comment-1" rowspan="1">Is ERIC next to the White Room wall?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35D8"></span>$35D8</td>
+<td class="instruction">BEQ <a href="359E.html#35EE">$35EE</a></td>
+<td class="comment-1" rowspan="1">Return if so (ERIC can't walk through walls).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35DA"></span>$35DA</td>
+<td class="instruction">CMP #$4E</td>
+<td class="comment-1" rowspan="1">Is ERIC next to wall outside the Exam Room door?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35DC"></span>$35DC</td>
+<td class="instruction">BEQ <a href="359E.html#35EE">$35EE</a></td>
+<td class="comment-1" rowspan="1">Return if so (ERIC can't walk through walls).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35DE"></span>$35DE</td>
+<td class="instruction">JMP <a href="359E.html#35EB">$35EB</a></td>
+<td class="comment-1" rowspan="1">Otherwise move ERIC midstride.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="35E1"></span>$35E1</td>
+<td class="instruction">CMP #$00</td>
+<td class="comment-1" rowspan="1">Is ERIC on the bottom floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35E3"></span>$35E3</td>
+<td class="instruction">BNE <a href="359E.html#35EB">$35EB</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35E5"></span>$35E5</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35E7"></span>$35E7</td>
+<td class="instruction">CMP #$5D</td>
+<td class="comment-1" rowspan="1">Is ERIC at the far right of the skool?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35E9"></span>$35E9</td>
+<td class="instruction">BEQ <a href="359E.html#35EE">$35EE</a></td>
+<td class="comment-1" rowspan="1">Return if so (ERIC can't go any further right).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="35EB"></span>$35EB</td>
+<td class="instruction">JMP <a href="3558.html#3594">$3594</a></td>
+<td class="comment-1" rowspan="1">Move ERIC midstride.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="35EE"></span>$35EE</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3558.html">$3558</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#359E">Map</a></td>
+<td class="next">
+Next: <a href="35EF.html">$35EF</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

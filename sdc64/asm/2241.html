@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2241</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="217E.html">$217E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2241">Map</a></td>
+<td class="next">
+Next: <a href="2387.html">$2387</a>
+</td>
+</tr>
+</table>
+<div class="description">$2241: Prepare a question and answer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7A32.html">$7A32</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="0A58.html">$0A58</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2241"></span>$2241</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2243"></span>$2243</td>
+<td class="instruction">CMP #$0B</td>
+<td class="comment-1" rowspan="1">Is it $0B (MR WACKER)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2245"></span>$2245</td>
+<td class="instruction">BEQ <a href="2241.html#224A">$224A</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2247"></span>$2247</td>
+<td class="instruction">JMP <a href="2241.html#22F3">$22F3</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="224A"></span>
+<div class="comments">
+<div class="paragraph">
+MR WACKER is conducting this lesson, so we have to prepare a multiplication question and answer. First, generate two random numbers and store the ASCII codes of their digits in the question message.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="224A"></span>$224A</td>
+<td class="instruction">LDX #$20</td>
+<td class="comment-1" rowspan="5">Generate a random number between 32 and 99 and store it at <a href="00A2.html#00A3">$A3</a> and <a href="00C0.html">$C0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="224C"></span>$224C</td>
+<td class="instruction">LDY #$63</td>
+</tr>
+<tr>
+<td class="address-1"><span id="224E"></span>$224E</td>
+<td class="instruction">JSR <a href="253E.html">$253E</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2251"></span>$2251</td>
+<td class="instruction">STA $A3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2253"></span>$2253</td>
+<td class="instruction">STA $C0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2255"></span>$2255</td>
+<td class="instruction">LDA #$30</td>
+<td class="comment-1" rowspan="2">Store the code for '0' at <a href="0084.html#008B">$8B</a> for no apparent reason.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2257"></span>$2257</td>
+<td class="instruction">STA $8B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2259"></span>$2259</td>
+<td class="instruction">JSR <a href="217E.html#221C">$221C</a></td>
+<td class="comment-1" rowspan="1">Generate the character codes of the digits of this number at <a href="0084.html#008D">$8D</a> and <a href="0084.html#008E">$8E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="225C"></span>$225C</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Store <a href="5A00.html">$5A00</a> (WHAT IS 12 x 34?) at <a href="004D.html#0050">$50</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="225E"></span>$225E</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2260"></span>$2260</td>
+<td class="instruction">LDA #$5A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2262"></span>$2262</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2264"></span>$2264</td>
+<td class="instruction">LDY #$08</td>
+<td class="comment-1" rowspan="6">Replace the '12' in this message with the digits of the number.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2266"></span>$2266</td>
+<td class="instruction">LDA $8D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2268"></span>$2268</td>
+<td class="instruction">STA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="226A"></span>$226A</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="226B"></span>$226B</td>
+<td class="instruction">LDA $8E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="226D"></span>$226D</td>
+<td class="instruction">STA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="226F"></span>$226F</td>
+<td class="instruction">LDX #$20</td>
+<td class="comment-1" rowspan="5">Generate another random number between 32 and 99 and store it at <a href="00A2.html#00A3">$A3</a> and <a href="00C0.html#00C1">$C1</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2271"></span>$2271</td>
+<td class="instruction">LDY #$63</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2273"></span>$2273</td>
+<td class="instruction">JSR <a href="253E.html">$253E</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2276"></span>$2276</td>
+<td class="instruction">STA $A3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2278"></span>$2278</td>
+<td class="instruction">STA $C1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="227A"></span>$227A</td>
+<td class="instruction">LDA #$30</td>
+<td class="comment-1" rowspan="2">Store the code for '0' at <a href="0084.html#008B">$8B</a> for no apparent reason.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="227C"></span>$227C</td>
+<td class="instruction">STA $8B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="227E"></span>$227E</td>
+<td class="instruction">JSR <a href="217E.html#221C">$221C</a></td>
+<td class="comment-1" rowspan="1">Generate the character codes of the digits of this number at <a href="0084.html#008D">$8D</a> and <a href="0084.html#008E">$8E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2281"></span>$2281</td>
+<td class="instruction">LDY #$0D</td>
+<td class="comment-1" rowspan="6">Replace the '34' in the question message with the digits of the number.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2283"></span>$2283</td>
+<td class="instruction">LDA $8D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2285"></span>$2285</td>
+<td class="instruction">STA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2287"></span>$2287</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2288"></span>$2288</td>
+<td class="instruction">LDA $8E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="228A"></span>$228A</td>
+<td class="instruction">STA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="228C"></span>$228C</td>
+<td class="instruction">LDY #$08</td>
+<td class="comment-1" rowspan="14">Multiply the two numbers and store the product at <a href="00A2.html#00A3">$A3</a> and <a href="00A2.html#00A4">$A4</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="228E"></span>$228E</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2290"></span>$2290</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2291"></span>$2291</td>
+<td class="instruction">ROL $C0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2293"></span>$2293</td>
+<td class="instruction">BCC <a href="2241.html#229C">$229C</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2295"></span>$2295</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2296"></span>$2296</td>
+<td class="instruction">ADC $C1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2298"></span>$2298</td>
+<td class="instruction">BCC <a href="2241.html#229C">$229C</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="229A"></span>$229A</td>
+<td class="instruction">INC $C0</td>
+</tr>
+<tr>
+<td class="address-2"><span id="229C"></span>$229C</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="229D"></span>$229D</td>
+<td class="instruction">BNE <a href="2241.html#2290">$2290</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="229F"></span>$229F</td>
+<td class="instruction">STA $A3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22A1"></span>$22A1</td>
+<td class="instruction">LDA $C0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22A3"></span>$22A3</td>
+<td class="instruction">STA $A4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22A5"></span>$22A5</td>
+<td class="instruction">JSR <a href="217E.html">$217E</a></td>
+<td class="comment-1" rowspan="1">Generate the character codes of the digits of this product.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22A8"></span>$22A8</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="4">Store <a href="5A11.html">$5A11</a> (Please Sir I cannot tell a lie . . It's 1234) at <a href="004D.html#0052">$52</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22AA"></span>$22AA</td>
+<td class="instruction">STA $52</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22AC"></span>$22AC</td>
+<td class="instruction">LDA #$5A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22AE"></span>$22AE</td>
+<td class="instruction">STA $53</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22B0"></span>$22B0</td>
+<td class="instruction">LDY #$06</td>
+<td class="comment-1" rowspan="12">Replace the '1234' in this message with the digits of the answer to the multiplication question.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22B2"></span>$22B2</td>
+<td class="instruction">LDA $8B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22B4"></span>$22B4</td>
+<td class="instruction">STA ($52),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22B6"></span>$22B6</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22B7"></span>$22B7</td>
+<td class="instruction">LDA $8C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22B9"></span>$22B9</td>
+<td class="instruction">STA ($52),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22BB"></span>$22BB</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22BC"></span>$22BC</td>
+<td class="instruction">LDA $8D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22BE"></span>$22BE</td>
+<td class="instruction">STA ($52),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22C0"></span>$22C0</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22C1"></span>$22C1</td>
+<td class="instruction">LDA $8E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22C3"></span>$22C3</td>
+<td class="instruction">STA ($52),Y</td>
+</tr>
+<tr>
+<td class="address-2"><span id="22C5"></span>$22C5</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22C7"></span>$22C7</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save it temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22C8"></span>$22C8</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $11 (EINSTEIN).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22CA"></span>$22CA</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22CC"></span>$22CC</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy EINSTEIN's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22CF"></span>$22CF</td>
+<td class="instruction">LDA $52</td>
+<td class="comment-1" rowspan="4">Copy the address of the answer message into EINSTEIN's character buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22D1"></span>$22D1</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22D3"></span>$22D3</td>
+<td class="instruction">LDA $53</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22D5"></span>$22D5</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22D7"></span>$22D7</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore EINSTEIN's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22DA"></span>$22DA</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore the teacher's character number to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22DB"></span>$22DB</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">Update the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22DD"></span>$22DD</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the teacher's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22E0"></span>$22E0</td>
+<td class="instruction">LDA $50</td>
+<td class="comment-1" rowspan="4">Copy the address of the question message into the teacher's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22E2"></span>$22E2</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22E4"></span>$22E4</td>
+<td class="instruction">LDA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22E6"></span>$22E6</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22E8"></span>$22E8</td>
+<td class="instruction">LDA #$87</td>
+<td class="comment-1" rowspan="4">Place the address of the interruptible subcommand routine at <a href="2387.html">$2387</a> into the teacher's buffer to make him ask the question.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22EA"></span>$22EA</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22EC"></span>$22EC</td>
+<td class="instruction">LDA #$23</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22EE"></span>$22EE</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22F0"></span>$22F0</td>
+<td class="instruction">JMP <a href="2241.html#2386">$2386</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="22F3"></span>
+<div class="comments">
+<div class="paragraph">
+Some teacher other than MR WACKER is conducting this lesson. Check whether MR CREAK needs to ask what happened in the year that he was born.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="22F3"></span>$22F3</td>
+<td class="instruction">CMP #$0E</td>
+<td class="comment-1" rowspan="1">Is the current character number $0E (MR CREAK)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22F5"></span>$22F5</td>
+<td class="instruction">BNE <a href="2241.html#2320">$2320</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22F7"></span>$22F7</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="0046.html">$46</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22F9"></span>$22F9</td>
+<td class="instruction">BEQ <a href="2241.html#2320">$2320</a></td>
+<td class="comment-1" rowspan="1">Branch if we're in demo mode.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22FB"></span>$22FB</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Has ERIC already opened the safe?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22FD"></span>$22FD</td>
+<td class="instruction">BCS <a href="2241.html#2320">$2320</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="22FF"></span>$22FF</td>
+<td class="instruction">LDA $C2</td>
+<td class="comment-1" rowspan="1">Has MR CREAK already asked the birth year question in this lesson?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2301"></span>$2301</td>
+<td class="instruction">BNE <a href="2241.html#2320">$2320</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2303"></span>$2303</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Update the birth year question indicator at <a href="00C2.html">$C2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2305"></span>$2305</td>
+<td class="instruction">STA $C2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2307"></span>$2307</td>
+<td class="instruction">LDA #$2D</td>
+<td class="comment-1" rowspan="4">Store <a href="5B2D.html">$5B2D</a> (WHAT HAPPENED IN THE YEAR THAT I WAS BORN) at <a href="004D.html#0050">$50</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2309"></span>$2309</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="230B"></span>$230B</td>
+<td class="instruction">LDA #$5B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="230D"></span>$230D</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="230F"></span>$230F</td>
+<td class="instruction">LDA #$E1</td>
+<td class="comment-1" rowspan="4">Store <a href="5AE1.html">$5AE1</a> (Please Sir I cannot tell a lie . . It was the BATTLE OF Q) at <a href="004D.html#0052">$52</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2311"></span>$2311</td>
+<td class="instruction">STA $52</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2313"></span>$2313</td>
+<td class="instruction">LDA #$5A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2315"></span>$2315</td>
+<td class="instruction">STA $53</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2317"></span>$2317</td>
+<td class="instruction">LDY #$16</td>
+<td class="comment-1" rowspan="3">Replace the 'Q' in this message with the message number of MR CREAK's year of birth.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2319"></span>$2319</td>
+<td class="instruction">LDA $A5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="231B"></span>$231B</td>
+<td class="instruction">STA ($52),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="231D"></span>$231D</td>
+<td class="instruction">JMP <a href="2241.html#22C5">$22C5</a></td>
+<td class="comment-1" rowspan="1">Jump back to prepare MR CREAK and EINSTEIN.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="2320"></span>
+<div class="comments">
+<div class="paragraph">
+Now we randomly select a question-answer pair.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2320"></span>$2320</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="4">Generate a random value between $00 and $29 and store it at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2322"></span>$2322</td>
+<td class="instruction">LDY #$29</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2324"></span>$2324</td>
+<td class="instruction">JSR <a href="253E.html">$253E</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2327"></span>$2327</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2329"></span>$2329</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="232B"></span>$232B</td>
+<td class="instruction">CMP #$0C</td>
+<td class="comment-1" rowspan="1">Is it $0C (MR ROCKITT)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="232D"></span>$232D</td>
+<td class="instruction">BEQ <a href="2241.html#2338">$2338</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="232F"></span>$232F</td>
+<td class="instruction">CMP #$0D</td>
+<td class="comment-1" rowspan="1">Is the current character number $0D (MR WITHIT)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2331"></span>$2331</td>
+<td class="instruction">BEQ <a href="2241.html#233D">$233D</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2333"></span>$2333</td>
+<td class="instruction">LDA #$D4</td>
+<td class="comment-1" rowspan="1">The history message numbers are in the range $D4-$FD.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2335"></span>$2335</td>
+<td class="instruction">JMP <a href="2241.html#233F">$233F</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2338"></span>$2338</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1">The chemistry message numbers are in the range $80-$A9.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="233A"></span>$233A</td>
+<td class="instruction">JMP <a href="2241.html#233F">$233F</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="233D"></span>$233D</td>
+<td class="instruction">LDA #$AA</td>
+<td class="comment-1" rowspan="1">The geography message numbers are in the range $AA-$D3.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="233F"></span>$233F</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="3">Add the random value between $00 and $29 chosen earlier to the base message number, and store the result at <a href="00C3.html">$C3</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2340"></span>$2340</td>
+<td class="instruction">ADC $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2342"></span>$2342</td>
+<td class="instruction">STA $C3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2344"></span>$2344</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's character number ($0C-$0E) from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2346"></span>$2346</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="5">Change it to 0 (MR ROCKITT), 4 (MR WITHIT) or 8 (MR CREAK), and store it at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2347"></span>$2347</td>
+<td class="instruction">SBC #$0C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2349"></span>$2349</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="234A"></span>$234A</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="234B"></span>$234B</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="234D"></span>$234D</td>
+<td class="instruction">LDA $C3</td>
+<td class="comment-1" rowspan="1">Pick up the message number from <a href="00C3.html">$C3</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="234F"></span>$234F</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Is the message number even?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2350"></span>$2350</td>
+<td class="instruction">BCC <a href="2241.html#2359">$2359</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2352"></span>$2352</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="4">Add 12 to the teacher identifier at <a href="004D.html#0057">$57</a>, giving 12 (MR ROCKITT), 16 (MR WITHIT) or 20 (MR CREAK).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2354"></span>$2354</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2355"></span>$2355</td>
+<td class="instruction">ADC #$0C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2357"></span>$2357</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2359"></span>$2359</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="4">Pick up the LSB of the address of the question message from the data table at <a href="46E0.html">$46E0</a> and copy it to <a href="004D.html#0050">$50</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="235B"></span>$235B</td>
+<td class="instruction">TAX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="235C"></span>$235C</td>
+<td class="instruction">LDA $46E0,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="235F"></span>$235F</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2361"></span>$2361</td>
+<td class="instruction">LDA #$5A</td>
+<td class="comment-1" rowspan="2">Set the MSB of the address of the question message to <a href="005A.html">$5A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2363"></span>$2363</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2365"></span>$2365</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="5">Replace the 'Q' in the question message with the randomly chosen message number saved at <a href="00C3.html">$C3</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2366"></span>$2366</td>
+<td class="instruction">LDA $46E0,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2369"></span>$2369</td>
+<td class="instruction">TAY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="236A"></span>$236A</td>
+<td class="instruction">LDA $C3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="236C"></span>$236C</td>
+<td class="instruction">STA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="236E"></span>$236E</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="3">Pick up the LSB of the address of the answer message from the data table at <a href="46E0.html">$46E0</a> and copy it to <a href="004D.html#0052">$52</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="236F"></span>$236F</td>
+<td class="instruction">LDA $46E0,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2372"></span>$2372</td>
+<td class="instruction">STA $52</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2374"></span>$2374</td>
+<td class="instruction">LDA #$5A</td>
+<td class="comment-1" rowspan="2">Set the MSB of the address of the question message to <a href="005A.html">$5A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2376"></span>$2376</td>
+<td class="instruction">STA $53</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2378"></span>$2378</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="6">Replace the 'Q' in the answer message with the appropriate message number.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2379"></span>$2379</td>
+<td class="instruction">LDA $46E0,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="237C"></span>$237C</td>
+<td class="instruction">TAY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="237D"></span>$237D</td>
+<td class="instruction">LDA $C3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="237F"></span>$237F</td>
+<td class="instruction">EOR #$01</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2381"></span>$2381</td>
+<td class="instruction">STA ($52),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2383"></span>$2383</td>
+<td class="instruction">JMP <a href="2241.html#22C5">$22C5</a></td>
+<td class="comment-1" rowspan="1">Jump back to prepare the teacher and EINSTEIN.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2386"></span>$2386</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="217E.html">$217E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2241">Map</a></td>
+<td class="next">
+Next: <a href="2387.html">$2387</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

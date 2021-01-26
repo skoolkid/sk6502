@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2A43</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="29C8.html">$29C8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2A43">Map</a></td>
+<td class="next">
+Next: <a href="2A99.html">$2A99</a>
+</td>
+</tr>
+</table>
+<div class="description">$2A43: Deal with a character who has been knocked over</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6A46.html">$6A46</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this uninterruptible subcommand routine is placed into a character's buffer by the routine at <a href="29C8.html">$29C8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2A43"></span>$2A43</td>
+<td class="instruction">DEC $B2</td>
+<td class="comment-1" rowspan="1">Decrement the knockout delay counter at <a href="00B2.html">$B2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A45"></span>$2A45</td>
+<td class="instruction">BNE <a href="2A43.html#2A4A">$2A4A</a></td>
+<td class="comment-1" rowspan="1">Branch unless the character has already got up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A47"></span>$2A47</td>
+<td class="instruction">JMP <a href="1D32.html">$1D32</a></td>
+<td class="comment-1" rowspan="1">Terminate this uninterruptible subcommand.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2A4A"></span>$2A4A</td>
+<td class="instruction">LDA $B2</td>
+<td class="comment-1" rowspan="1">Pick up the knockout delay counter from <a href="00B2.html">$B2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A4C"></span>$2A4C</td>
+<td class="instruction">CMP #$13</td>
+<td class="comment-1" rowspan="1">Has the character only just been hit?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A4E"></span>$2A4E</td>
+<td class="instruction">BNE <a href="2A43.html#2A66">$2A66</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A50"></span>$2A50</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="2">Pick up the character's pre-knockout animatory state from <a href="0026.html">$26</a> and store it at <a href="00B3.html">$B3</a> for later retrieval.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A52"></span>$2A52</td>
+<td class="instruction">STA $B3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A54"></span>$2A54</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A57"></span>$2A57</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A59"></span>$2A59</td>
+<td class="instruction">AND #$F8</td>
+<td class="comment-1" rowspan="4">Update it to that of the character lying on the floor.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A5B"></span>$2A5B</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A5C"></span>$2A5C</td>
+<td class="instruction">ADC #$07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A5E"></span>$2A5E</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A60"></span>$2A60</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A63"></span>$2A63</td>
+<td class="instruction">JMP <a href="2A43.html#2A98">$2A98</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2A66"></span>$2A66</td>
+<td class="instruction">CMP #$12</td>
+<td class="comment-1" rowspan="1">Is it time to reveal a safe combination letter?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A68"></span>$2A68</td>
+<td class="instruction">BNE <a href="2A43.html#2A76">$2A76</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A6A"></span>$2A6A</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="0046.html">$46</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A6C"></span>$2A6C</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">Are all the shields flashing?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A6E"></span>$2A6E</td>
+<td class="instruction">BNE <a href="2A43.html#2A98">$2A98</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A70"></span>$2A70</td>
+<td class="instruction">JSR <a href="298B.html">$298B</a></td>
+<td class="comment-1" rowspan="1">If the character is a teacher, make him reveal a safe combination letter.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A73"></span>$2A73</td>
+<td class="instruction">JMP <a href="2A43.html#2A98">$2A98</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2A76"></span>$2A76</td>
+<td class="instruction">CMP #$01</td>
+<td class="comment-1" rowspan="1">Is it time for the character to get up?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A78"></span>$2A78</td>
+<td class="instruction">BNE <a href="2A43.html#2A87">$2A87</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A7A"></span>$2A7A</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A7D"></span>$2A7D</td>
+<td class="instruction">LDA $B3</td>
+<td class="comment-1" rowspan="2">Restore the character's pre-knockout animatory state from <a href="00B3.html">$B3</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A7F"></span>$2A7F</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A81"></span>$2A81</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A84"></span>$2A84</td>
+<td class="instruction">JMP <a href="2A43.html#2A98">$2A98</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2A87"></span>$2A87</td>
+<td class="instruction">CMP #$09</td>
+<td class="comment-1" rowspan="1">Is it time to give lines to the nearest main kid?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A89"></span>$2A89</td>
+<td class="instruction">BNE <a href="2A43.html#2A98">$2A98</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A8B"></span>$2A8B</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A8D"></span>$2A8D</td>
+<td class="instruction">CMP #$0B</td>
+<td class="comment-1" rowspan="1">Is it $00-$0A (a little boy)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A8F"></span>$2A8F</td>
+<td class="instruction">BCC <a href="2A43.html#2A98">$2A98</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A91"></span>$2A91</td>
+<td class="instruction">CMP #$0F</td>
+<td class="comment-1" rowspan="1">Is the current character number $0B-$0E (a teacher)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A93"></span>$2A93</td>
+<td class="instruction">BCS <a href="2A43.html#2A98">$2A98</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A95"></span>$2A95</td>
+<td class="instruction">JMP <a href="0ECF.html">$0ECF</a></td>
+<td class="comment-1" rowspan="1">Make the teacher give lines to the closest main kid.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2A98"></span>$2A98</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="29C8.html">$29C8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2A43">Map</a></td>
+<td class="next">
+Next: <a href="2A99.html">$2A99</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

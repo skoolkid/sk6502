@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2CD9</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2CD8.html">$2CD8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2CD9">Map</a></td>
+<td class="next">
+Next: <a href="2D18.html">$2D18</a>
+</td>
+</tr>
+</table>
+<div class="description">$2CD9: Initialise interrupts, screen memory and page 0</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Called once from the main loop at <a href="0800.html">$0800</a> after the game has loaded.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2CD9"></span>$2CD9</td>
+<td class="instruction">CLD</td>
+<td class="comment-1" rowspan="1">Clear the decimal flag to prepare for regular arithmetic.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CDA"></span>$2CDA</td>
+<td class="instruction">SEI</td>
+<td class="comment-1" rowspan="1">Disable interrupts.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CDB"></span>$2CDB</td>
+<td class="instruction">JSR <a href="2D18.html">$2D18</a></td>
+<td class="comment-1" rowspan="1">Page out the KERNAL ROM at $E000-$FFFF.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CDE"></span>$2CDE</td>
+<td class="instruction">LDA #$39</td>
+<td class="comment-1" rowspan="4">Set the address of the interrupt routine at $FFFE to <a href="39C7.html">$39C7</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CE0"></span>$2CE0</td>
+<td class="instruction">STA $FFFF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CE3"></span>$2CE3</td>
+<td class="instruction">LDA #$C7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CE5"></span>$2CE5</td>
+<td class="instruction">STA $FFFE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CE8"></span>$2CE8</td>
+<td class="instruction">LDA #$3A</td>
+<td class="comment-1" rowspan="6">Set the address of the non-maskable interrupt routine at $FFFA and the address of the cold reset routine at $FFFC to that of the RTI instruction at <a href="39C7.html#3A8F">$3A8F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CEA"></span>$2CEA</td>
+<td class="instruction">STA $FFFD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CED"></span>$2CED</td>
+<td class="instruction">STA $FFFB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CF0"></span>$2CF0</td>
+<td class="instruction">LDA #$8F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CF2"></span>$2CF2</td>
+<td class="instruction">STA $FFFC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CF5"></span>$2CF5</td>
+<td class="instruction">STA $FFFA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CF8"></span>$2CF8</td>
+<td class="instruction">CLI</td>
+<td class="comment-1" rowspan="1">Enable interrupts.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CF9"></span>$2CF9</td>
+<td class="instruction">JSR <a href="2DAD.html">$2DAD</a></td>
+<td class="comment-1" rowspan="1">Clear the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CFC"></span>$2CFC</td>
+<td class="instruction">JSR <a href="2DCB.html">$2DCB</a></td>
+<td class="comment-1" rowspan="1">Initialise colour information.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CFF"></span>$2CFF</td>
+<td class="instruction">JSR <a href="2E05.html">$2E05</a></td>
+<td class="comment-1" rowspan="1">Clear page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D02"></span>$2D02</td>
+<td class="instruction">JSR <a href="2D1F.html">$2D1F</a></td>
+<td class="comment-1" rowspan="1">Set pointers to screen bitmap and colour information.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D05"></span>$2D05</td>
+<td class="instruction">JSR <a href="302A.html">$302A</a></td>
+<td class="comment-1" rowspan="1">Initialise voice #3.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D08"></span>$2D08</td>
+<td class="instruction">JSR <a href="2D47.html">$2D47</a></td>
+<td class="comment-1" rowspan="1">Initialise the game status buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D0B"></span>$2D0B</td>
+<td class="instruction">JSR <a href="2D3E.html">$2D3E</a></td>
+<td class="comment-1" rowspan="1">Set standard bitmap mode.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D0E"></span>$2D0E</td>
+<td class="instruction">JSR <a href="3047.html">$3047</a></td>
+<td class="comment-1" rowspan="1">Initialise the speech bubble sprite graphic data at $C800.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D11"></span>$2D11</td>
+<td class="instruction">JSR <a href="2F20.html">$2F20</a></td>
+<td class="comment-1" rowspan="1">Draw the Skool Daze logo.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D14"></span>$2D14</td>
+<td class="instruction">JSR <a href="2F56.html">$2F56</a></td>
+<td class="comment-1" rowspan="1">Draw the score box.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D17"></span>$2D17</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2CD8.html">$2CD8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2CD9">Map</a></td>
+<td class="next">
+Next: <a href="2D18.html">$2D18</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

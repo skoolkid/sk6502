@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2BB0</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2B9F.html">$2B9F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2BB0">Map</a></td>
+<td class="next">
+Next: <a href="2CA5.html">$2CA5</a>
+</td>
+</tr>
+</table>
+<div class="description">$2BB0: Check whether a shield has been hit or jumped up to</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="1042.html">$1042</a> and <a href="176F.html">$176F</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">XY</td>
+<td class="register-desc">Coordinates of ERIC's hand or a catapult pellet</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2BB0"></span>$2BB0</td>
+<td class="instruction">STX $56</td>
+<td class="comment-1" rowspan="2">Store the target x-coordinate at <a href="004D.html#0056">$56</a> and the target y-coordinate at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BB2"></span>$2BB2</td>
+<td class="instruction">STY $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BB4"></span>$2BB4</td>
+<td class="instruction">LDA #$58</td>
+<td class="comment-1" rowspan="4">Prepare to address the shield locations and status table at <a href="58E0.html">$58E0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BB6"></span>$2BB6</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BB8"></span>$2BB8</td>
+<td class="instruction">LDA #$E0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BBA"></span>$2BBA</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BBC"></span>$2BBC</td>
+<td class="instruction">LDY #$2B</td>
+<td class="comment-1" rowspan="1">We start with the last shield and work backwards.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2BBE"></span>$2BBE</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="1">Pick up a shield y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BC0"></span>$2BC0</td>
+<td class="instruction">CMP $57</td>
+<td class="comment-1" rowspan="1">Does it match the target y-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BC2"></span>$2BC2</td>
+<td class="instruction">BEQ <a href="2BB0.html#2BD1">$2BD1</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BC4"></span>$2BC4</td>
+<td class="instruction">CPY #$01</td>
+<td class="comment-1" rowspan="1">Have we checked every shield yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BC6"></span>$2BC6</td>
+<td class="instruction">BEQ <a href="2BB0.html#2BCE">$2BCE</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BC8"></span>$2BC8</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="3">Otherwise point at the next shield in the table.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BC9"></span>$2BC9</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BCA"></span>$2BCA</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BCB"></span>$2BCB</td>
+<td class="instruction">JMP <a href="2BB0.html#2BBE">$2BBE</a></td>
+<td class="comment-1" rowspan="1">Jump back to check it.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2BCE"></span>$2BCE</td>
+<td class="instruction">JMP <a href="2BB0.html#2CA4">$2CA4</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2BD1"></span>$2BD1</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="2">Point at the shield's x-coordinate and pick it up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BD2"></span>$2BD2</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BD4"></span>$2BD4</td>
+<td class="instruction">CMP $56</td>
+<td class="comment-1" rowspan="1">Does it match the target x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BD6"></span>$2BD6</td>
+<td class="instruction">BEQ <a href="2BB0.html#2BE1">$2BE1</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BD8"></span>$2BD8</td>
+<td class="instruction">CPY #$00</td>
+<td class="comment-1" rowspan="1">Have we checked every shield yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BDA"></span>$2BDA</td>
+<td class="instruction">BEQ <a href="2BB0.html#2BCE">$2BCE</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BDC"></span>$2BDC</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="2">Otherwise point at the next shield in the table.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BDD"></span>$2BDD</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BDE"></span>$2BDE</td>
+<td class="instruction">JMP <a href="2BB0.html#2BBE">$2BBE</a></td>
+<td class="comment-1" rowspan="1">Jump back to check it.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="2BE1"></span>
+<div class="comments">
+<div class="paragraph">
+A shield has been hit.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2BE1"></span>$2BE1</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="0046.html">$46</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BE3"></span>$2BE3</td>
+<td class="instruction">CMP #$01</td>
+<td class="comment-1" rowspan="1">Have all the shields been flashed yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BE5"></span>$2BE5</td>
+<td class="instruction">BEQ <a href="2BB0.html#2BFE">$2BFE</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BE7"></span>$2BE7</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Has ERIC opened the safe?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BE9"></span>$2BE9</td>
+<td class="instruction">BEQ <a href="2BB0.html#2BEE">$2BEE</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BEB"></span>$2BEB</td>
+<td class="instruction">JMP <a href="2BB0.html#2CA0">$2CA0</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2BEE"></span>$2BEE</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="3">Point at the shield's status byte and pick it up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BEF"></span>$2BEF</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BF0"></span>$2BF0</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BF2"></span>$2BF2</td>
+<td class="instruction">BNE <a href="2BB0.html#2BF7">$2BF7</a></td>
+<td class="comment-1" rowspan="1">Branch if the shield is flashing.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BF4"></span>$2BF4</td>
+<td class="instruction">JMP <a href="2BB0.html#2CA0">$2CA0</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward to terminate the pellet's flight.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2BF7"></span>$2BF7</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set the shield's status byte to 0: it is no longer flashing.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BF9"></span>$2BF9</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BFB"></span>$2BFB</td>
+<td class="instruction">JMP <a href="2BB0.html#2C0B">$2C0B</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2BFE"></span>$2BFE</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="3">Point at the shield's status byte and pick it up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2BFF"></span>$2BFF</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C00"></span>$2C00</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C02"></span>$2C02</td>
+<td class="instruction">BEQ <a href="2BB0.html#2C07">$2C07</a></td>
+<td class="comment-1" rowspan="1">Branch if the shield is not flashing.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C04"></span>$2C04</td>
+<td class="instruction">JMP <a href="2BB0.html#2CA0">$2CA0</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward to terminate the pellet's flight.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2C07"></span>$2C07</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Set the shield's status byte to 1: it is flashing.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C09"></span>$2C09</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2C0B"></span>$2C0B</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the target y-coordinate from <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C0D"></span>$2C0D</td>
+<td class="instruction">CMP #$07</td>
+<td class="comment-1" rowspan="1">Is the shield on the top floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C0F"></span>$2C0F</td>
+<td class="instruction">BCC <a href="2BB0.html#2C1F">$2C1F</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C11"></span>$2C11</td>
+<td class="instruction">CMP #$0E</td>
+<td class="comment-1" rowspan="1">Is the shield on the middle floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C13"></span>$2C13</td>
+<td class="instruction">BCC <a href="2BB0.html#2C1A">$2C1A</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C15"></span>$2C15</td>
+<td class="instruction">LDA #$28</td>
+<td class="comment-1" rowspan="1">A shield on the bottom floor is worth 400 points.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C17"></span>$2C17</td>
+<td class="instruction">JMP <a href="2BB0.html#2C21">$2C21</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2C1A"></span>$2C1A</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="1">A shield on the middle floor is worth 200 points.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C1C"></span>$2C1C</td>
+<td class="instruction">JMP <a href="2BB0.html#2C21">$2C21</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2C1F"></span>$2C1F</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="1">A shield on the top floor is worth 100 points.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2C21"></span>$2C21</td>
+<td class="instruction">JSR <a href="1D37.html">$1D37</a></td>
+<td class="comment-1" rowspan="1">Add to the score and print it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C24"></span>$2C24</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Set the sound effect identifier at <a href="002C.html">$2C</a> to 1: a shield has been hit.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C26"></span>$2C26</td>
+<td class="instruction">STA $2C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C28"></span>$2C28</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="2">Initialise the sound effect timer at <a href="002D.html">$2D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C2A"></span>$2C2A</td>
+<td class="instruction">STA $2D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C2C"></span>$2C2C</td>
+<td class="instruction">INC $D9</td>
+<td class="comment-1" rowspan="1">Increment the shield counter at <a href="00D9.html">$D9</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C2E"></span>$2C2E</td>
+<td class="instruction">LDA $D9</td>
+<td class="comment-1" rowspan="1">Pick up the new value of the shield counter.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C30"></span>$2C30</td>
+<td class="instruction">CMP #$0F</td>
+<td class="comment-1" rowspan="1">Have all 15 shields been hit?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C32"></span>$2C32</td>
+<td class="instruction">BEQ <a href="2BB0.html#2C37">$2C37</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C34"></span>$2C34</td>
+<td class="instruction">JMP <a href="2BB0.html#2CA0">$2CA0</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward to terminate the pellet's flight.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="2C37"></span>
+<div class="comments">
+<div class="paragraph">
+All 15 shields have been hit. This entry point is used by the routine at <a href="176F.html">$176F</a> when ERIC has opened the safe.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2C37"></span>$2C37</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Reset the shield counter at <a href="00D9.html">$D9</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C39"></span>$2C39</td>
+<td class="instruction">STA $D9</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C3B"></span>$2C3B</td>
+<td class="instruction">INC $46</td>
+<td class="comment-1" rowspan="1">Increment the game mode indicator at <a href="0046.html">$46</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C3D"></span>$2C3D</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">Pick up the new value of the game mode indicator.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C3F"></span>$2C3F</td>
+<td class="instruction">CMP #$04</td>
+<td class="comment-1" rowspan="1">Has the last shield just been unflashed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C41"></span>$2C41</td>
+<td class="instruction">BEQ <a href="2BB0.html#2C57">$2C57</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C43"></span>$2C43</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">Has the last shield just been flashed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C45"></span>$2C45</td>
+<td class="instruction">BEQ <a href="2BB0.html#2C4C">$2C4C</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C47"></span>$2C47</td>
+<td class="instruction">LDA #$C8</td>
+<td class="comment-1" rowspan="1">2000 points will be awarded.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C49"></span>$2C49</td>
+<td class="instruction">JMP <a href="2BB0.html#2C4E">$2C4E</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2C4C"></span>$2C4C</td>
+<td class="instruction">LDA #$64</td>
+<td class="comment-1" rowspan="1">1000 points will be awarded.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2C4E"></span>$2C4E</td>
+<td class="instruction">JSR <a href="1D37.html">$1D37</a></td>
+<td class="comment-1" rowspan="1">Add to the score and print it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C51"></span>$2C51</td>
+<td class="instruction">JSR <a href="BA48.html">$BA48</a></td>
+<td class="comment-1" rowspan="1">Play the 'Got all shields' tune.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C54"></span>$2C54</td>
+<td class="instruction">JMP <a href="2BB0.html#2CA0">$2CA0</a></td>
+<td class="comment-1" rowspan="1">Jump forward to terminate the pellet's flight.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2C57"></span>$2C57</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Reset the game mode indicator to 1: ERIC has gone up a year.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C59"></span>$2C59</td>
+<td class="instruction">STA $46</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C5B"></span>$2C5B</td>
+<td class="instruction">INC $7D</td>
+<td class="comment-1" rowspan="2">5000 points will be awarded.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C5D"></span>$2C5D</td>
+<td class="instruction">LDA #$F4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C5F"></span>$2C5F</td>
+<td class="instruction">JSR <a href="1D37.html">$1D37</a></td>
+<td class="comment-1" rowspan="1">Add to the score and print it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C62"></span>$2C62</td>
+<td class="instruction">JSR <a href="292F.html">$292F</a></td>
+<td class="comment-1" rowspan="1">Generate a new safe combination code.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C65"></span>$2C65</td>
+<td class="instruction">JSR <a href="2AAA.html">$2AAA</a></td>
+<td class="comment-1" rowspan="1">Set MR CREAK's birth year.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C68"></span>$2C68</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="2">Store the width (in character cells) of the area in which the WELL DONE message will be printed at <a href="009A.html#009D">$9D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C6A"></span>$2C6A</td>
+<td class="instruction">STA $9D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C6C"></span>$2C6C</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4">Store <a href="4680.html">$4680</a> (WELL DONE! GO) at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C6E"></span>$2C6E</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C70"></span>$2C70</td>
+<td class="instruction">LDA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C72"></span>$2C72</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C74"></span>$2C74</td>
+<td class="instruction">JSR <a href="2005.html">$2005</a></td>
+<td class="comment-1" rowspan="1">Write this message into the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C77"></span>$2C77</td>
+<td class="instruction">JSR <a href="213B.html">$213B</a></td>
+<td class="comment-1" rowspan="1">Centre the text in the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C7A"></span>$2C7A</td>
+<td class="instruction">LDX #$10</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the first line of text.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C7C"></span>$2C7C</td>
+<td class="instruction">LDY #$15</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C7E"></span>$2C7E</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C81"></span>$2C81</td>
+<td class="instruction">LDA #$90</td>
+<td class="comment-1" rowspan="2">Store <a href="4680.html#4690">$4690</a> (UP A YEAR) at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C83"></span>$2C83</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C85"></span>$2C85</td>
+<td class="instruction">JSR <a href="2005.html">$2005</a></td>
+<td class="comment-1" rowspan="1">Write this message into the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C88"></span>$2C88</td>
+<td class="instruction">JSR <a href="213B.html">$213B</a></td>
+<td class="comment-1" rowspan="1">Centre the text in the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C8B"></span>$2C8B</td>
+<td class="instruction">LDX #$10</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the second line of text.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C8D"></span>$2C8D</td>
+<td class="instruction">LDY #$17</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C8F"></span>$2C8F</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C92"></span>$2C92</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set the safe status indicator at <a href="00D5.html">$D5</a> to $00: the safe is not flashing.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C94"></span>$2C94</td>
+<td class="instruction">STA $D5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C96"></span>$2C96</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="3">Set the LSB and MSB of the lesson clock to 1. The bell will ring soon.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C98"></span>$2C98</td>
+<td class="instruction">STA $40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C9A"></span>$2C9A</td>
+<td class="instruction">STA $FD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C9C"></span>$2C9C</td>
+<td class="instruction">JSR <a href="BA00.html">$BA00</a></td>
+<td class="comment-1" rowspan="1">Play the theme tune.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2C9F"></span>$2C9F</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="2CA0"></span>$2CA0</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Set the remaining distance for the pellet to travel to 1, ensuring that it is terminated on the next pass.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CA2"></span>$2CA2</td>
+<td class="instruction">STA $B2</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2CA4"></span>$2CA4</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2B9F.html">$2B9F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2BB0">Map</a></td>
+<td class="next">
+Next: <a href="2CA5.html">$2CA5</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

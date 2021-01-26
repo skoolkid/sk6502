@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1F77</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1F4D.html">$1F4D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1F77">Map</a></td>
+<td class="next">
+Next: <a href="1F9F.html">$1F9F</a>
+</td>
+</tr>
+</table>
+<div class="description">$1F77: Place an interruptible subcommand routine address into a character's buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="09E9.html">$09E9</a>, <a href="0A58.html">$0A58</a>, <a href="0B3B.html">$0B3B</a>, <a href="0E35.html">$0E35</a>, <a href="1F4D.html">$1F4D</a>, <a href="2757.html">$2757</a>, <a href="277D.html">$277D</a>, <a href="28AB.html">$28AB</a>, <a href="28BC.html">$28BC</a> and <a href="2A99.html">$2A99</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1F77"></span>$1F77</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="4">Pull the return address from the stack and store it at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F78"></span>$1F78</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F7A"></span>$1F7A</td>
+<td class="instruction">PLA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F7B"></span>$1F7B</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F7D"></span>$1F7D</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="2">Pick up the value of the first byte after the JSR instruction that called this routine.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F7F"></span>$1F7F</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F81"></span>$1F81</td>
+<td class="instruction">STA $AA</td>
+<td class="comment-1" rowspan="1">Store this byte at <a href="00AA.html">$AA</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F83"></span>$1F83</td>
+<td class="instruction">INC $4E</td>
+<td class="comment-1" rowspan="3">Increment the address stored at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F85"></span>$1F85</td>
+<td class="instruction">BNE <a href="1F77.html#1F89">$1F89</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F87"></span>$1F87</td>
+<td class="instruction">INC $4F</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1F89"></span>$1F89</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Pick up the value of the second byte after the JSR instruction that called this routine and store it at <a href="00AA.html">$AB</a>. These two bytes form the address of the interruptible subcommand routine to use for the current character.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F8B"></span>$1F8B</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F8D"></span>$1F8D</td>
+<td class="instruction">LDA $4E</td>
+<td class="comment-1" rowspan="5">Add 2 to the address stored at <a href="004D.html#004E">$4E</a>, thus making it point at the first byte after the interruptible subcommand routine address.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F8F"></span>$1F8F</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F90"></span>$1F90</td>
+<td class="instruction">ADC #$02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F92"></span>$1F92</td>
+<td class="instruction">BCC <a href="1F77.html#1F96">$1F96</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F94"></span>$1F94</td>
+<td class="instruction">INC $4F</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1F96"></span>$1F96</td>
+<td class="instruction">STA $29</td>
+<td class="comment-1" rowspan="3">Store this address at <a href="0029.html">$29</a>, effectively making it the address of the character's primary command routine.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F98"></span>$1F98</td>
+<td class="instruction">LDA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F9A"></span>$1F9A</td>
+<td class="instruction">STA $2A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F9C"></span>$1F9C</td>
+<td class="instruction">JMP (<a href="00AA.html">$00AA</a>)</td>
+<td class="comment-1" rowspan="1">Jump to the interruptible subcommand routine.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1F4D.html">$1F4D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1F77">Map</a></td>
+<td class="next">
+Next: <a href="1F9F.html">$1F9F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

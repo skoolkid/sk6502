@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $3A90</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="39C7.html">$39C7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3A90">Map</a></td>
+<td class="next">
+Next: <a href="3AB3.html">$3AB3</a>
+</td>
+</tr>
+</table>
+<div class="description">$3A90: Update colour information for the safe or a flashing shield</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the interrupt routine at <a href="39C7.html">$39C7</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Play area x-coordinate</td>
+</tr>
+<tr>
+<td class="register">(<a href="00F2.html">$F2,$F3</a>)</td>
+<td class="register-desc">Base colour information address for the object's row</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A90"></span>$3A90</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract the x-coordinate of the leftmost column of the skool on screen to obtain the object's screen x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A91"></span>$3A91</td>
+<td class="instruction">SBC $58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A93"></span>$3A93</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="5">Add this screen x-coordinate to the base colour information address at <a href="00F2.html">$F2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A94"></span>$3A94</td>
+<td class="instruction">ADC $F2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A96"></span>$3A96</td>
+<td class="instruction">BCC <a href="3A90.html#3A9A">$3A9A</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A98"></span>$3A98</td>
+<td class="instruction">INC $F3</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A9A"></span>$3A9A</td>
+<td class="instruction">STA $F2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A9C"></span>$3A9C</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">Set the index in <span class="register">Y</span> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A9E"></span>$3A9E</td>
+<td class="instruction">STY $F5</td>
+<td class="comment-1" rowspan="1">Initialise <a href="00F2.html#00F5">$F5</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AA0"></span>$3AA0</td>
+<td class="instruction">LDA ($F2),Y</td>
+<td class="comment-1" rowspan="1">Pick up the current colour information byte for the object.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AA2"></span>$3AA2</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="8">Copy bits 0-3 of the colour information byte into bits 4-7 at <a href="00F2.html#00F5">$F5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AA3"></span>$3AA3</td>
+<td class="instruction">ROR $F5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AA5"></span>$3AA5</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AA6"></span>$3AA6</td>
+<td class="instruction">ROR $F5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AA8"></span>$3AA8</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AA9"></span>$3AA9</td>
+<td class="instruction">ROR $F5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AAB"></span>$3AAB</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AAC"></span>$3AAC</td>
+<td class="instruction">ROR $F5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AAE"></span>$3AAE</td>
+<td class="instruction">ORA $F5</td>
+<td class="comment-1" rowspan="1">Copy bits 4-7 of the colour information byte into bits 0-3 at <a href="00F2.html#00F5">$F5</a>. The background and foreground colours have now been swapped.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AB0"></span>$3AB0</td>
+<td class="instruction">STA ($F2),Y</td>
+<td class="comment-1" rowspan="1">Update the colour information for the object.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AB2"></span>$3AB2</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="39C7.html">$39C7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3A90">Map</a></td>
+<td class="next">
+Next: <a href="3AB3.html">$3AB3</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

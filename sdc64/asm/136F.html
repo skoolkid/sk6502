@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $136F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="136E.html">$136E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#136F">Map</a></td>
+<td class="next">
+Next: <a href="13D5.html">$13D5</a>
+</td>
+</tr>
+</table>
+<div class="description">$136F: Guide a character to an intermediate destination</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/633C.html">$633C</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this interruptible subcommand routine is placed into a character's buffer by the routines at <a href="09E9.html">$09E9</a>, <a href="0A58.html">$0A58</a>, <a href="0E35.html">$0E35</a>, <a href="12B5.html">$12B5</a> and <a href="1A04.html">$1A04</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="136F"></span>$136F</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="2">Initialise the counter at <a href="00AC.html#00AD">$AD</a> that determines how long this interruptible subcommand will have control.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1371"></span>$1371</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1373"></span>$1373</td>
+<td class="instruction">LDA #$13</td>
+<td class="comment-1" rowspan="4">Replace the address of this interruptible subcommand routine in the character's buffer with that of <a href="136F.html#137B">$137B</a> below.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1375"></span>$1375</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1377"></span>$1377</td>
+<td class="instruction">LDA #$7B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1379"></span>$1379</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="137B"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="BE09.html">$BE09</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="137B"></span>$137B</td>
+<td class="instruction">DEC $AD</td>
+<td class="comment-1" rowspan="1">Decrement the counter at <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="137D"></span>$137D</td>
+<td class="instruction">BNE <a href="136F.html#1382">$1382</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's zero now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="137F"></span>$137F</td>
+<td class="instruction">JMP <a href="1D28.html">$1D28</a></td>
+<td class="comment-1" rowspan="1">Otherwise terminate this interruptible subcommand.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1382"></span>$1382</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1384"></span>$1384</td>
+<td class="instruction">CMP $AC</td>
+<td class="comment-1" rowspan="1">Has the character reached the intermediate destination?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1386"></span>$1386</td>
+<td class="instruction">BNE <a href="136F.html#1390">$1390</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1388"></span>$1388</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="138A"></span>$138A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Is the character midstride?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="138B"></span>$138B</td>
+<td class="instruction">BCS <a href="136F.html#1390">$1390</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="138D"></span>$138D</td>
+<td class="instruction">JMP <a href="1D28.html">$1D28</a></td>
+<td class="comment-1" rowspan="1">Otherwise terminate this interruptible subcommand.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1390"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="12B5.html">$12B5</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1390"></span>$1390</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1393"></span>$1393</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1395"></span>$1395</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Is the character midstride?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1396"></span>$1396</td>
+<td class="instruction">BCC <a href="136F.html#13B5">$13B5</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1398"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="13F3.html">$13F3</a> and <a href="1CEC.html">$1CEC</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1398"></span>$1398</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="2">Is the character facing left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1399"></span>$1399</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="139A"></span>$139A</td>
+<td class="instruction">BCC <a href="136F.html#13A1">$13A1</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="139C"></span>$139C</td>
+<td class="instruction">INC $FC</td>
+<td class="comment-1" rowspan="1">Increment the character's x-coordinate at <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="139E"></span>$139E</td>
+<td class="instruction">JMP <a href="136F.html#13A3">$13A3</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="13A1"></span>$13A1</td>
+<td class="instruction">DEC $FC</td>
+<td class="comment-1" rowspan="1">Decrement the character's x-coordinate at <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="13A3"></span>$13A3</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="8">Adjust the character's animatory state at <a href="0026.html">$26</a> depending on whether his x-coordinate is even or odd.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13A5"></span>$13A5</td>
+<td class="instruction">AND #$F8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13A7"></span>$13A7</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13A9"></span>$13A9</td>
+<td class="instruction">LDA $FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13AB"></span>$13AB</td>
+<td class="instruction">AND #$01</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13AD"></span>$13AD</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13AE"></span>$13AE</td>
+<td class="instruction">ADC $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13B0"></span>$13B0</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13B2"></span>$13B2</td>
+<td class="instruction">JMP <a href="136F.html#13D1">$13D1</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="13B5"></span>$13B5</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13B7"></span>$13B7</td>
+<td class="instruction">AND #$80</td>
+<td class="comment-1" rowspan="2">Keep only the direction bit (bit 7) and store it at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13B9"></span>$13B9</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13BB"></span>$13BB</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13BD"></span>$13BD</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="3">Subtract the intermediate destination x-coordinate, and keep only the resulting sign bit (bit 7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13BE"></span>$13BE</td>
+<td class="instruction">SBC $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13C0"></span>$13C0</td>
+<td class="instruction">AND #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13C2"></span>$13C2</td>
+<td class="instruction">CMP $57</td>
+<td class="comment-1" rowspan="1">Is the character facing the right way to get to the intermediate destination?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13C4"></span>$13C4</td>
+<td class="instruction">BEQ <a href="136F.html#13CF">$13CF</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="13C6"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="12B5.html">$12B5</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="13C6"></span>$13C6</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="3">Flip bit 7 of the character's animatory state at <a href="0026.html">$26</a>, thus turning him round.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13C8"></span>$13C8</td>
+<td class="instruction">EOR #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13CA"></span>$13CA</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13CC"></span>$13CC</td>
+<td class="instruction">JMP <a href="136F.html#13D1">$13D1</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="13CF"></span>$13CF</td>
+<td class="instruction">INC $26</td>
+<td class="comment-1" rowspan="1">Increment the character's animatory state at <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="13D1"></span>$13D1</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's new animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13D4"></span>$13D4</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="136E.html">$136E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#136F">Map</a></td>
+<td class="next">
+Next: <a href="13D5.html">$13D5</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

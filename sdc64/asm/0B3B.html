@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $0B3B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0B3A.html">$0B3A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0B3B">Map</a></td>
+<td class="next">
+Next: <a href="0BAC.html">$0BAC</a>
+</td>
+</tr>
+</table>
+<div class="description">$0B3B: Check whether ERIC and EINSTEIN are in class</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7CD0.html">$7CD0</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="0A58.html">$0A58</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0B3B"></span>$0B3B</td>
+<td class="instruction">LDA #$89</td>
+<td class="comment-1" rowspan="4">Store the base address of EINSTEIN's character buffer (<a href="8960.html">$8960</a>) at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B3D"></span>$0B3D</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B3F"></span>$0B3F</td>
+<td class="instruction">LDA #$60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B41"></span>$0B41</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B43"></span>$0B43</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="2">Pick up EINSTEIN's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B45"></span>$0B45</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B47"></span>$0B47</td>
+<td class="instruction">CMP #$15</td>
+<td class="comment-1" rowspan="1">Is EINSTEIN sitting on a chair?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B49"></span>$0B49</td>
+<td class="instruction">BEQ <a href="0B3B.html#0B5F">$0B5F</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B4B"></span>$0B4B</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="4">Pull the return address from the stack and place it at <a href="0029.html">$29</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B4C"></span>$0B4C</td>
+<td class="instruction">STA $29</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B4E"></span>$0B4E</td>
+<td class="instruction">PLA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B4F"></span>$0B4F</td>
+<td class="instruction">STA $2A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B51"></span>$0B51</td>
+<td class="instruction">LDA $29</td>
+<td class="comment-1" rowspan="6">Subtract two from the address, making it point at the JSR instruction that called this routine. This address is now the teacher's primary command routine address.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B53"></span>$0B53</td>
+<td class="instruction">SEC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B54"></span>$0B54</td>
+<td class="instruction">SBC #$02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B56"></span>$0B56</td>
+<td class="instruction">BCS <a href="0B3B.html#0B5A">$0B5A</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B58"></span>$0B58</td>
+<td class="instruction">DEC $2A</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0B5A"></span>$0B5A</td>
+<td class="instruction">STA $29</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B5C"></span>$0B5C</td>
+<td class="instruction">JMP <a href="0B3B.html#0BAB">$0BAB</a></td>
+<td class="comment-1" rowspan="1">Return to the character-moving routine at <a href="3B5E.html">$3B5E</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0B5F"></span>
+<div class="comments">
+<div class="paragraph">
+EINSTEIN is sitting on a chair. Now where's ERIC?
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0B5F"></span>$0B5F</td>
+<td class="instruction">JSR <a href="0D91.html">$0D91</a></td>
+<td class="comment-1" rowspan="1">Is ERIC in class?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B62"></span>$0B62</td>
+<td class="instruction">BEQ <a href="0B3B.html#0BAB">$0BAB</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B64"></span>$0B64</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Drop the return address from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B65"></span>$0B65</td>
+<td class="instruction">PLA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B66"></span>$0B66</td>
+<td class="instruction">LDY #$5B</td>
+<td class="comment-1" rowspan="2"><span class="register">YX</span>=<a href="5B03.html">$5B03</a>: Please Sir I cannot tell a lie . . ERIC is not here.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B68"></span>$0B68</td>
+<td class="instruction">LDX #$03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B6A"></span>$0B6A</td>
+<td class="instruction">JSR <a href="1EE3.html">$1EE3</a></td>
+<td class="comment-1" rowspan="1">Make EINSTEIN tell the teacher that ERIC is not here.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B6D"></span>$0B6D</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="1">Character number $11 is EINSTEIN.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B6F"></span>$0B6F</td>
+<td class="instruction">JSR <a href="2552.html">$2552</a></td>
+<td class="comment-1" rowspan="1">Make the teacher give EINSTEIN lines if he's in the mood.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B72"></span>$0B72</td>
+<td class="instruction">JSR <a href="2500.html">$2500</a></td>
+<td class="comment-1" rowspan="1">Prepare a message telling the kids to go to a certain page in their books.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B75"></span>$0B75</td>
+<td class="instruction">JSR <a href="1F77.html">$1F77</a></td>
+<td class="comment-1" rowspan="2">Place the address of the interruptible subcommand routine at <a href="2387.html">$2387</a> into the teacher's buffer and jump to it. This makes the teacher tell the kids to read their books and then return here.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B78"></span>$0B78</td>
+<td class="instruction">.WORD <a href="2387.html">$2387</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B7A"></span>$0B7A</td>
+<td class="instruction">JSR <a href="0D91.html">$0D91</a></td>
+<td class="comment-1" rowspan="1">Is ERIC in class?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B7D"></span>$0B7D</td>
+<td class="instruction">BEQ <a href="0B3B.html#0B91">$0B91</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B7F"></span>$0B7F</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1">Event <a href="4400.html">$01</a>: ERIC should be in class now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B81"></span>$0B81</td>
+<td class="instruction">JSR <a href="31B6.html">$31B6</a></td>
+<td class="comment-1" rowspan="1">Raise the signal for this event.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0B84"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="0E35.html">$0E35</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0B84"></span>$0B84</td>
+<td class="instruction">LDA #$27</td>
+<td class="comment-1" rowspan="4">Store the address of the routine at <a href="2745.html">$2745</a> at <a href="00AE.html">$AE</a>. This routine handles the teacher when he has found the truant ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B86"></span>$0B86</td>
+<td class="instruction">STA $AF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B88"></span>$0B88</td>
+<td class="instruction">LDA #$45</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B8A"></span>$0B8A</td>
+<td class="instruction">STA $AE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B8C"></span>$0B8C</td>
+<td class="instruction">JSR <a href="1F77.html">$1F77</a></td>
+<td class="comment-1" rowspan="2">Place the address of the interruptible subcommand routine at <a href="0C3F.html">$0C3F</a> into the teacher's buffer and jump to it. This makes the teacher find ERIC and bring him to the classroom, and then restarts the teacher's command list.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B8F"></span>$0B8F</td>
+<td class="instruction">.WORD <a href="0C3F.html">$0C3F</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0B91"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC has shown up in class while the teacher was telling the kids to read their books.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0B91"></span>$0B91</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1">Event <a href="4400.html">$01</a>: ERIC should be in class now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B93"></span>$0B93</td>
+<td class="instruction">JSR <a href="31D2.html">$31D2</a></td>
+<td class="comment-1" rowspan="1">Has the signal already been raised for this event?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B96"></span>$0B96</td>
+<td class="instruction">BCC <a href="0B3B.html#0B9D">$0B9D</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B98"></span>$0B98</td>
+<td class="instruction">LDA #$0B</td>
+<td class="comment-1" rowspan="1">Lines reprimand <a href="4BE0.html">$0B</a>: AND STAY THIS TIME.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0B9A"></span>$0B9A</td>
+<td class="instruction">JMP <a href="0B3B.html#0B9F">$0B9F</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0B9D"></span>$0B9D</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="1">Lines reprimand <a href="4BC0.html">$0A</a>: NEVER BE LATE AGAIN.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0B9F"></span>$0B9F</td>
+<td class="instruction">STA $D8</td>
+<td class="comment-1" rowspan="1">Store this lines reprimand identifier at <a href="00D6.html#00D8">$D8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0BA1"></span>$0BA1</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="1">Character number $14 is ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0BA3"></span>$0BA3</td>
+<td class="instruction">STA $72</td>
+<td class="comment-1" rowspan="1">Store this at <a href="0072.html">$72</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0BA5"></span>$0BA5</td>
+<td class="instruction">JSR <a href="1DB7.html">$1DB7</a></td>
+<td class="comment-1" rowspan="1">Make the teacher give lines to ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0BA8"></span>$0BA8</td>
+<td class="instruction">JMP <a href="0A58.html#0A5B">$0A5B</a></td>
+<td class="comment-1" rowspan="1">Start or resume the lesson now that ERIC is present.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0BAB"></span>$0BAB</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0B3A.html">$0B3A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0B3B">Map</a></td>
+<td class="next">
+Next: <a href="0BAC.html">$0BAC</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

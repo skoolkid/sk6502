@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2043</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2005.html">$2005</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2043">Map</a></td>
+<td class="next">
+Next: <a href="20F5.html">$20F5</a>
+</td>
+</tr>
+</table>
+<div class="description">$2043: Print a lines message or safe combination letter above a teacher's head</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="1DB7.html">$1DB7</a>, <a href="1F3A.html">$1F3A</a> and <a href="298B.html">$298B</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">(<a href="0084.html#0086">$86,$87</a>)</td>
+<td class="register-desc">Address of the first line of the message</td>
+</tr>
+<tr>
+<td class="register">(<a href="0084.html#0088">$88,$89</a>)</td>
+<td class="register-desc">Address of the second line of the message</td>
+</tr>
+<tr>
+<td class="register">(<a href="0084.html">$84</a>)</td>
+<td class="register-desc">Colour information</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="2043"></span>
+<div class="comments">
+<div class="paragraph">
+We start by comparing the teacher's x-coordinate (T) with the x-coordinates of the leftmost columns of the skool that are on screen (S) and off (S'=S+40).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2043"></span>$2043</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2045"></span>$2045</td>
+<td class="instruction">CMP $59</td>
+<td class="comment-1" rowspan="1">Is S'&gt;T (meaning the teacher is not fully off screen to the right)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2047"></span>$2047</td>
+<td class="instruction">BCC <a href="2043.html#204C">$204C</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2049"></span>$2049</td>
+<td class="instruction">JMP <a href="2043.html#20F4">$20F4</a></td>
+<td class="comment-1" rowspan="1">Otherwise return (the teacher is fully off screen to the right).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="204C"></span>$204C</td>
+<td class="instruction">CMP $58</td>
+<td class="comment-1" rowspan="1">Is S&gt;T (meaning the teacher is partially or fully off screen to the left)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="204E"></span>$204E</td>
+<td class="instruction">BCS <a href="2043.html#2053">$2053</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2050"></span>$2050</td>
+<td class="instruction">JMP <a href="2043.html#20F4">$20F4</a></td>
+<td class="comment-1" rowspan="1">Otherwise return (the teacher is partially or fully off screen to the left).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2053"></span>$2053</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2055"></span>$2055</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="3">Is S&gt;T-4 (meaning the teacher is close to the left edge of the screen)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2056"></span>$2056</td>
+<td class="instruction">SBC #$04</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2058"></span>$2058</td>
+<td class="instruction">CMP $58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="205A"></span>$205A</td>
+<td class="instruction">BCC <a href="2043.html#2070">$2070</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="205C"></span>$205C</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="205E"></span>$205E</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="3">Is S'&gt;T+5 (meaning the teacher is a good distance from the right edge of the screen)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="205F"></span>$205F</td>
+<td class="instruction">ADC #$05</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2061"></span>$2061</td>
+<td class="instruction">CMP $59</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2063"></span>$2063</td>
+<td class="instruction">BCS <a href="2043.html#2075">$2075</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2065"></span>$2065</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2067"></span>$2067</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract 3 to get the x-coordinate of the left edge of the message box.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2068"></span>$2068</td>
+<td class="instruction">SBC #$03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="206A"></span>$206A</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract the x-coordinate of the leftmost column of the skool on screen to get the screen x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="206B"></span>$206B</td>
+<td class="instruction">SBC $58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="206D"></span>$206D</td>
+<td class="instruction">JMP <a href="2043.html#2077">$2077</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2070"></span>$2070</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="1">When the teacher is close to the left edge of the screen, set the message box screen x-coordinate to 4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2072"></span>$2072</td>
+<td class="instruction">JMP <a href="2043.html#2077">$2077</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2075"></span>$2075</td>
+<td class="instruction">LDA #$20</td>
+<td class="comment-1" rowspan="1">When the teacher is close to the right edge of the screen, set the message box screen x-coordinate to 32.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2077"></span>$2077</td>
+<td class="instruction">STA $9A</td>
+<td class="comment-1" rowspan="1">Save the screen x-coordinate of the left edge of the message box at <a href="009A.html">$9A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2079"></span>$2079</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="3">Multiply by 8 to get the corresponding pixel x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="207A"></span>$207A</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="207B"></span>$207B</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="207C"></span>$207C</td>
+<td class="instruction">BCC <a href="2043.html#2086">$2086</a></td>
+<td class="comment-1" rowspan="1">Branch unless the pixel x-coordinate is greater than 256.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="207E"></span>$207E</td>
+<td class="instruction">LDX #$FF</td>
+<td class="comment-1" rowspan="2">Set bit 8 of the x-coordinates of sprites #0-#7.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2080"></span>$2080</td>
+<td class="instruction">STX $D010</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2083"></span>$2083</td>
+<td class="instruction">JMP <a href="2043.html#208B">$208B</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2086"></span>$2086</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="2">Reset bit 8 of the x-coordinates of sprites #0-#7.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2088"></span>$2088</td>
+<td class="instruction">STX $D010</td>
+</tr>
+<tr>
+<td class="address-2"><span id="208B"></span>$208B</td>
+<td class="instruction">STA $9B</td>
+<td class="comment-1" rowspan="1">Store bits 0-7 of the pixel x-coordinate at <a href="009A.html#009B">$9B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="208D"></span>$208D</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="208F"></span>$208F</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract 3 to get the y-coordinate of the top edge of the message box.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2090"></span>$2090</td>
+<td class="instruction">SBC #$03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2092"></span>$2092</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="3">Multiply by 8 to get the corresponding pixel y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2093"></span>$2093</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2094"></span>$2094</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2095"></span>$2095</td>
+<td class="instruction">STA $9C</td>
+<td class="comment-1" rowspan="1">Store this pixel y-coordinate at <a href="009A.html#009C">$9C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2097"></span>$2097</td>
+<td class="instruction">LDA $84</td>
+<td class="comment-1" rowspan="3">Set the colour of sprites #4 and #5 using the colour information at <a href="0084.html">$84</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2099"></span>$2099</td>
+<td class="instruction">STA $D02B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="209C"></span>$209C</td>
+<td class="instruction">STA $D02C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="209F"></span>$209F</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Set the background and foreground colours of sprites #1, #2 and #3 to black.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20A1"></span>$20A1</td>
+<td class="instruction">STA $D028</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20A4"></span>$20A4</td>
+<td class="instruction">STA $D029</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20A7"></span>$20A7</td>
+<td class="instruction">STA $D02A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20AA"></span>$20AA</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="1">The message box will be 8 character cells wide.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20AC"></span>$20AC</td>
+<td class="instruction">STA $9D</td>
+<td class="comment-1" rowspan="1">Store this width at <a href="009A.html#009D">$9D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20AE"></span>$20AE</td>
+<td class="instruction">LDA $86</td>
+<td class="comment-1" rowspan="4">Copy the address of the first line of the message from <a href="0084.html#0086">$86</a> to <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20B0"></span>$20B0</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20B2"></span>$20B2</td>
+<td class="instruction">LDA $87</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20B4"></span>$20B4</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20B6"></span>$20B6</td>
+<td class="instruction">JSR <a href="2005.html">$2005</a></td>
+<td class="comment-1" rowspan="1">Write the first line of the lines or safe combination letter message into the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20B9"></span>$20B9</td>
+<td class="instruction">JSR <a href="213B.html">$213B</a></td>
+<td class="comment-1" rowspan="1">Centre the text in the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20BC"></span>$20BC</td>
+<td class="instruction">LDA #$06</td>
+<td class="comment-1" rowspan="2">Indicate to the routine at <a href="0DD4.html">$0DD4</a> that this is the first line of the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20BE"></span>$20BE</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20C0"></span>$20C0</td>
+<td class="instruction">JSR <a href="0DD4.html">$0DD4</a></td>
+<td class="comment-1" rowspan="1">Prepare sprite graphic data from the text graphic buffer for the first line of the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20C3"></span>$20C3</td>
+<td class="instruction">LDA $88</td>
+<td class="comment-1" rowspan="4">Copy the address of the second line of the message from <a href="0084.html#0088">$88</a> to <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20C5"></span>$20C5</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20C7"></span>$20C7</td>
+<td class="instruction">LDA $89</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20C9"></span>$20C9</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20CB"></span>$20CB</td>
+<td class="instruction">JSR <a href="2005.html">$2005</a></td>
+<td class="comment-1" rowspan="1">Write the second line of the lines or safe combination letter message into the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20CE"></span>$20CE</td>
+<td class="instruction">JSR <a href="213B.html">$213B</a></td>
+<td class="comment-1" rowspan="1">Centre the text in the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20D1"></span>$20D1</td>
+<td class="instruction">LDA #$21</td>
+<td class="comment-1" rowspan="2">Indicate to the routine at <a href="0DD4.html">$0DD4</a> that this is the second line of the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20D3"></span>$20D3</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20D5"></span>$20D5</td>
+<td class="instruction">JSR <a href="0DD4.html">$0DD4</a></td>
+<td class="comment-1" rowspan="1">Prepare sprite graphic data from the text graphic buffer for the second line of the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20D8"></span>$20D8</td>
+<td class="instruction">JSR <a href="3724.html">$3724</a></td>
+<td class="comment-1" rowspan="1">Set up sprites #1-#5.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20DB"></span>$20DB</td>
+<td class="instruction">LDA #$3E</td>
+<td class="comment-1" rowspan="2">Enable and draw sprites #1-#5.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20DD"></span>$20DD</td>
+<td class="instruction">STA $D015</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20E0"></span>$20E0</td>
+<td class="instruction">JSR <a href="31DF.html">$31DF</a></td>
+<td class="comment-1" rowspan="5">Pause.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20E3"></span>$20E3</td>
+<td class="instruction">JSR <a href="31DF.html">$31DF</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="20E6"></span>$20E6</td>
+<td class="instruction">JSR <a href="31DF.html">$31DF</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="20E9"></span>$20E9</td>
+<td class="instruction">JSR <a href="31DF.html">$31DF</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="20EC"></span>$20EC</td>
+<td class="instruction">JSR <a href="31DF.html">$31DF</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="20EF"></span>$20EF</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Disable all sprites.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="20F1"></span>$20F1</td>
+<td class="instruction">STA $D015</td>
+</tr>
+<tr>
+<td class="address-2"><span id="20F4"></span>$20F4</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2005.html">$2005</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2043">Map</a></td>
+<td class="next">
+Next: <a href="20F5.html">$20F5</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

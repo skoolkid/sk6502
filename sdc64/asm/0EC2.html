@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $0EC2</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0EC1.html">$0EC1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0EC2">Map</a></td>
+<td class="next">
+Next: <a href="0ECE.html">$0ECE</a>
+</td>
+</tr>
+</table>
+<div class="description">$0EC2: Restart the command list unless it's time to start the lesson</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7C3F.html">$7C3F</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command lists <a href="4080.html">$80</a>, <a href="4095.html">$82</a>, <a href="40AE.html">$84</a>, <a href="40C3.html">$86</a> and <a href="423B.html">$B8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0EC2"></span>$0EC2</td>
+<td class="instruction">LDA $40</td>
+<td class="comment-1" rowspan="1">Pick up the MSB of the lesson clock from <a href="0040.html">$40</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EC4"></span>$0EC4</td>
+<td class="instruction">CMP #$0B</td>
+<td class="comment-1" rowspan="1">Is it still 11 or greater?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EC6"></span>$0EC6</td>
+<td class="instruction">BCS <a href="0EC2.html#0ECB">$0ECB</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EC8"></span>$0EC8</td>
+<td class="instruction">JMP <a href="1D2D.html">$1D2D</a></td>
+<td class="comment-1" rowspan="1">Otherwise terminate this primary command.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0ECB"></span>$0ECB</td>
+<td class="instruction">JMP <a href="0EB4.html">$0EB4</a></td>
+<td class="comment-1" rowspan="1">Restart the command list.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0EC1.html">$0EC1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0EC2">Map</a></td>
+<td class="next">
+Next: <a href="0ECE.html">$0ECE</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

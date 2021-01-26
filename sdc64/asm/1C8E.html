@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1C8E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1C8D.html">$1C8D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1C8E">Map</a></td>
+<td class="next">
+Next: <a href="1CB4.html">$1CB4</a>
+</td>
+</tr>
+</table>
+<div class="description">$1C8E: Check whether a character is on a staircase</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6648.html">$6648</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="0C3F.html">$0C3F</a>, <a href="1468.html">$1468</a>, <a href="16D0.html">$16D0</a>, <a href="1B2E.html">$1B2E</a>, <a href="270D.html">$270D</a>, <a href="2873.html">$2873</a>, <a href="2CA5.html">$2CA5</a>, <a href="34B5.html">$34B5</a>, <a href="350B.html">$350B</a>, <a href="3558.html">$3558</a>, <a href="359E.html">$359E</a> and <a href="365C.html">$365C</a>. Returns with the carry flag set if the character is on a staircase, and with <span class="register">A</span> (and <a href="0012.html">$12</a>) holding one of the following values:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1"><span class="register">A</span></th>
+<th colspan="1" rowspan="1">Meaning</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">$00</td>
+<td class="" colspan="1" rowspan="1">The character is on the bottom floor.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">$01</td>
+<td class="" colspan="1" rowspan="1">The character is on the middle floor.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">$02</td>
+<td class="" colspan="1" rowspan="1">The character is on the top floor.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">$FF</td>
+<td class="" colspan="1" rowspan="1">The character is on a staircase.</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1C8E"></span>$1C8E</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="1">Pick up the character's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C90"></span>$1C90</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Is the character on the top floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C92"></span>$1C92</td>
+<td class="instruction">BNE <a href="1C8E.html#1C9A">$1C9A</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C94"></span>$1C94</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">Clear the carry flag: the character is not on a staircase.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C95"></span>$1C95</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=$02: the character is on the top floor.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C97"></span>$1C97</td>
+<td class="instruction">JMP <a href="1C8E.html#1CB1">$1CB1</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1C9A"></span>$1C9A</td>
+<td class="instruction">CMP #$0A</td>
+<td class="comment-1" rowspan="1">Is the character on the middle floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C9C"></span>$1C9C</td>
+<td class="instruction">BNE <a href="1C8E.html#1CA4">$1CA4</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C9E"></span>$1C9E</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">Clear the carry flag: the character is not on a staircase.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C9F"></span>$1C9F</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=$01: the character is on the middle floor.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CA1"></span>$1CA1</td>
+<td class="instruction">JMP <a href="1C8E.html#1CB1">$1CB1</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1CA4"></span>$1CA4</td>
+<td class="instruction">CMP #$11</td>
+<td class="comment-1" rowspan="1">Is the character on the bottom floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CA6"></span>$1CA6</td>
+<td class="instruction">BNE <a href="1C8E.html#1CAE">$1CAE</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CA8"></span>$1CA8</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">Clear the carry flag: the character is not on a staircase.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CA9"></span>$1CA9</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=$00: the character is on the bottom floor.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CAB"></span>$1CAB</td>
+<td class="instruction">JMP <a href="1C8E.html#1CB1">$1CB1</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1CAE"></span>$1CAE</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">Set the carry flag: the character is on a staircase.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CAF"></span>$1CAF</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=$FF: the character is on a staircase.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1CB1"></span>$1CB1</td>
+<td class="instruction">STA $12</td>
+<td class="comment-1" rowspan="1">Store the location indicator at <a href="0012.html">$12</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CB3"></span>$1CB3</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1C8D.html">$1C8D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1C8E">Map</a></td>
+<td class="next">
+Next: <a href="1CB4.html">$1CB4</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

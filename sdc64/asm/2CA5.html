@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2CA5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2BB0.html">$2BB0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2CA5">Map</a></td>
+<td class="next">
+Next: <a href="2CD8.html">$2CD8</a>
+</td>
+</tr>
+</table>
+<div class="description">$2CA5: Make BOY WONDER fire his catapult now and then</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7000.html">$7000</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this continual subcommand routine is placed into BOY WONDER's buffer by command lists <a href="40E7.html">$8C</a>, <a href="4123.html">$94</a>, <a href="4166.html">$9C</a>, <a href="41A9.html">$A4</a>, <a href="41E8.html">$AC</a>, <a href="420D.html">$B2</a>, <a href="4272.html">$C2</a> and <a href="4334.html">$D8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2CA5"></span>$2CA5</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up BOY WONDER's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CA7"></span>$2CA7</td>
+<td class="instruction">AND #$03</td>
+<td class="comment-1" rowspan="1">Is it a multiple of 4?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CA9"></span>$2CA9</td>
+<td class="instruction">BNE <a href="2CA5.html#2CD7">$2CD7</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CAB"></span>$2CAB</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up BOY WONDER's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CAD"></span>$2CAD</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Is BOY WONDER midstride?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CAE"></span>$2CAE</td>
+<td class="instruction">BCS <a href="2CA5.html#2CD7">$2CD7</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CB0"></span>$2CB0</td>
+<td class="instruction">JSR <a href="1C8E.html">$1C8E</a></td>
+<td class="comment-1" rowspan="1">Is BOY WONDER on a staircase?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CB3"></span>$2CB3</td>
+<td class="instruction">BCS <a href="2CA5.html#2CD7">$2CD7</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CB5"></span>$2CB5</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="1">Generate a random value in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CB8"></span>$2CB8</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Is it odd?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CB9"></span>$2CB9</td>
+<td class="instruction">BCS <a href="2CA5.html#2CD7">$2CD7</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CBB"></span>$2CBB</td>
+<td class="instruction">JSR <a href="0E59.html">$0E59</a></td>
+<td class="comment-1" rowspan="1">Can BOY WONDER be seen by a teacher at this moment?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CBE"></span>$2CBE</td>
+<td class="instruction">BCS <a href="2CA5.html#2CD7">$2CD7</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CC0"></span>$2CC0</td>
+<td class="instruction">LDA #$8A</td>
+<td class="comment-1" rowspan="4">Prepare to address the character buffer for BOY WONDER's pellet at <a href="8A60.html">$8A60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CC2"></span>$2CC2</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CC4"></span>$2CC4</td>
+<td class="instruction">LDA #$60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CC6"></span>$2CC6</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CC8"></span>$2CC8</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="2">Pick up the pellet's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CCA"></span>$2CCA</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CCC"></span>$2CCC</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is the pellet already airborne?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CCD"></span>$2CCD</td>
+<td class="instruction">BCC <a href="2CA5.html#2CD7">$2CD7</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CCF"></span>$2CCF</td>
+<td class="instruction">LDA #$2B</td>
+<td class="comment-1" rowspan="4">Place the address of the uninterruptible subcommand routine at <a href="2B21.html">$2B21</a> into BOY WONDER's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CD1"></span>$2CD1</td>
+<td class="instruction">STA $B1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CD3"></span>$2CD3</td>
+<td class="instruction">LDA #$21</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2CD5"></span>$2CD5</td>
+<td class="instruction">STA $B0</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2CD7"></span>$2CD7</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1">Return to the character-handling routine at <a href="3B5E.html">$3B5E</a>, which then has the opportunity of moving BOY WONDER midstride before he begins firing. This is a <a href="../reference/bugs.html#pairOfJerks">bug</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2BB0.html">$2BB0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2CA5">Map</a></td>
+<td class="next">
+Next: <a href="2CD8.html">$2CD8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

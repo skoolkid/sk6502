@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2E13</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2E05.html">$2E05</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2E13">Map</a></td>
+<td class="next">
+Next: <a href="2EE6.html">$2EE6</a>
+</td>
+</tr>
+</table>
+<div class="description">$2E13: Prepare for a new game or demo mode</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="2757.html">$2757</a> and <a href="BE09.html">$BE09</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2E13"></span>$2E13</td>
+<td class="instruction">LDA #$78</td>
+<td class="comment-1" rowspan="4">Store <a href="7860.html">$7860</a> (the base address of little boy no. 1's character buffer) at <a href="004D.html#0050">$50</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E15"></span>$2E15</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E17"></span>$2E17</td>
+<td class="instruction">LDA #$60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E19"></span>$2E19</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E1B"></span>$2E1B</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1"><span class="register">X</span> will be used to index the table of initial animatory states at <a href="4900.html">$4900</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E1D"></span>$2E1D</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span> will be used to index the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2E1F"></span>$2E1F</td>
+<td class="instruction">LDA $4900,X</td>
+<td class="comment-1" rowspan="1">Pick up the character's initial animatory state from the table at <a href="4900.html">$4900</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E22"></span>$2E22</td>
+<td class="instruction">STA ($50),Y</td>
+<td class="comment-1" rowspan="1">Store it in the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E24"></span>$2E24</td>
+<td class="instruction">INC $51</td>
+<td class="comment-1" rowspan="1">Next character buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E26"></span>$2E26</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">Next initial animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E27"></span>$2E27</td>
+<td class="instruction">CPX #$15</td>
+<td class="comment-1" rowspan="1">Have we initialised every character's animatory state yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E29"></span>$2E29</td>
+<td class="instruction">BNE <a href="2E13.html#2E1F">$2E1F</a></td>
+<td class="comment-1" rowspan="1">Branch back if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E2B"></span>$2E2B</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">Point at the second byte of the character buffers.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E2C"></span>$2E2C</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">Reset <span class="register">X</span> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E2E"></span>$2E2E</td>
+<td class="instruction">LDA #$78</td>
+<td class="comment-1" rowspan="2">Reset the address at <a href="004D.html#0050">$50</a> to that of the little boy no. 1's character buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E30"></span>$2E30</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2E32"></span>$2E32</td>
+<td class="instruction">LDA $4A00,X</td>
+<td class="comment-1" rowspan="1">Pick up the character's initial x-coordinate from the table at <a href="4A00.html">$4A00</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E35"></span>$2E35</td>
+<td class="instruction">STA ($50),Y</td>
+<td class="comment-1" rowspan="1">Store it in the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E37"></span>$2E37</td>
+<td class="instruction">INC $51</td>
+<td class="comment-1" rowspan="1">Next character buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E39"></span>$2E39</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">Next initial x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E3A"></span>$2E3A</td>
+<td class="instruction">CPX #$15</td>
+<td class="comment-1" rowspan="1">Have we initialised every character's x-coordinate yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E3C"></span>$2E3C</td>
+<td class="instruction">BNE <a href="2E13.html#2E32">$2E32</a></td>
+<td class="comment-1" rowspan="1">Branch back if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E3E"></span>$2E3E</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">Reset <span class="register">X</span> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E40"></span>$2E40</td>
+<td class="instruction">LDY #$02</td>
+<td class="comment-1" rowspan="1">Point at the third byte of the character buffers.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E42"></span>$2E42</td>
+<td class="instruction">LDA #$78</td>
+<td class="comment-1" rowspan="2">Reset the address at <a href="004D.html#0050">$50</a> to that of the little boy no. 1's character buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E44"></span>$2E44</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E46"></span>$2E46</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="1">Every character starts at y-coordinate 17 (on the bottom floor).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2E48"></span>$2E48</td>
+<td class="instruction">STA ($50),Y</td>
+<td class="comment-1" rowspan="1">Set the character's y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E4A"></span>$2E4A</td>
+<td class="instruction">INC $51</td>
+<td class="comment-1" rowspan="1">Next character buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E4C"></span>$2E4C</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">Increment the character counter.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E4D"></span>$2E4D</td>
+<td class="instruction">CPX #$15</td>
+<td class="comment-1" rowspan="1">Have we initialised every character's y-coordinate yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E4F"></span>$2E4F</td>
+<td class="instruction">BNE <a href="2E13.html#2E48">$2E48</a></td>
+<td class="comment-1" rowspan="1">Branch back if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E51"></span>$2E51</td>
+<td class="instruction">LDA $7D</td>
+<td class="comment-1" rowspan="1">Pick up the MSB of the score from <a href="007C.html#007D">$7D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E53"></span>$2E53</td>
+<td class="instruction">CMP $F8</td>
+<td class="comment-1" rowspan="1">Compare it with the MSB of the hi-score.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E55"></span>$2E55</td>
+<td class="instruction">BEQ <a href="2E13.html#2E5B">$2E5B</a></td>
+<td class="comment-1" rowspan="1">Branch if they're equal.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E57"></span>$2E57</td>
+<td class="instruction">BCS <a href="2E13.html#2E61">$2E61</a></td>
+<td class="comment-1" rowspan="1">Branch if we have a new hi-score.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E59"></span>$2E59</td>
+<td class="instruction">BNE <a href="2E13.html#2E69">$2E69</a></td>
+<td class="comment-1" rowspan="1">This branch is always made (no new hi-score).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2E5B"></span>$2E5B</td>
+<td class="instruction">LDA $7C</td>
+<td class="comment-1" rowspan="1">Pick up the LSB of the score from <a href="007C.html">$7C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E5D"></span>$2E5D</td>
+<td class="instruction">CMP $F7</td>
+<td class="comment-1" rowspan="1">Compare it with the MSB of the hi-score.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E5F"></span>$2E5F</td>
+<td class="instruction">BCC <a href="2E13.html#2E69">$2E69</a></td>
+<td class="comment-1" rowspan="1">Branch unless we have a new hi-score.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2E61"></span>$2E61</td>
+<td class="instruction">LDA $7D</td>
+<td class="comment-1" rowspan="4">Copy the current score from <a href="007C.html">$7C</a> into the hi-score at at <a href="00F7.html">$F7</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E63"></span>$2E63</td>
+<td class="instruction">STA $F8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E65"></span>$2E65</td>
+<td class="instruction">LDA $7C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E67"></span>$2E67</td>
+<td class="instruction">STA $F7</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2E69"></span>$2E69</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $00 (little boy no. 1).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E6B"></span>$2E6B</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E6D"></span>$2E6D</td>
+<td class="instruction">STA $7C</td>
+<td class="comment-1" rowspan="2">Reset the score to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E6F"></span>$2E6F</td>
+<td class="instruction">STA $7D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E71"></span>$2E71</td>
+<td class="instruction">STA $7E</td>
+<td class="comment-1" rowspan="2">Reset the lines total to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E73"></span>$2E73</td>
+<td class="instruction">STA $7F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E75"></span>$2E75</td>
+<td class="instruction">JSR <a href="2AAA.html">$2AAA</a></td>
+<td class="comment-1" rowspan="1">Set MR CREAK's birth year.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E78"></span>$2E78</td>
+<td class="instruction">JSR <a href="292F.html">$292F</a></td>
+<td class="comment-1" rowspan="1">Generate a safe combination code.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E7B"></span>$2E7B</td>
+<td class="instruction">JSR <a href="2F20.html">$2F20</a></td>
+<td class="comment-1" rowspan="1">Draw the Skool Daze logo.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E7E"></span>$2E7E</td>
+<td class="instruction">JSR <a href="2F56.html">$2F56</a></td>
+<td class="comment-1" rowspan="1">Draw the score box.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E81"></span>$2E81</td>
+<td class="instruction">LDA $F8</td>
+<td class="comment-1" rowspan="1">Pick up the MSB of the hi-score.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E83"></span>$2E83</td>
+<td class="instruction">BNE <a href="2E13.html#2E8C">$2E8C</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E85"></span>$2E85</td>
+<td class="instruction">LDA $F7</td>
+<td class="comment-1" rowspan="1">Pick up the LSB of the hi-score.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E87"></span>$2E87</td>
+<td class="instruction">BNE <a href="2E13.html#2E8C">$2E8C</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E89"></span>$2E89</td>
+<td class="instruction">JMP <a href="2E13.html#2E95">$2E95</a></td>
+<td class="comment-1" rowspan="1">Skip printing the hi-score if it's zero.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2E8C"></span>$2E8C</td>
+<td class="instruction">LDA #$F7</td>
+<td class="comment-1" rowspan="2">Store the LSB of the address of the hi-score at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E8E"></span>$2E8E</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E90"></span>$2E90</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=2, indicating the hi-score.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E92"></span>$2E92</td>
+<td class="instruction">JSR <a href="2620.html">$2620</a></td>
+<td class="comment-1" rowspan="1">Print the hi-score.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2E95"></span>$2E95</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy a character's buffer into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E98"></span>$2E98</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Remove the address of any primary command routine from the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E9A"></span>$2E9A</td>
+<td class="instruction">STA $2A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E9C"></span>$2E9C</td>
+<td class="instruction">STA $B1</td>
+<td class="comment-1" rowspan="1">Remove the address of any uninterruptible subcommand routine from the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E9E"></span>$2E9E</td>
+<td class="instruction">STA $AB</td>
+<td class="comment-1" rowspan="1">Remove the address of any interruptible subcommand routine from the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EA0"></span>$2EA0</td>
+<td class="instruction">STA $3A</td>
+<td class="comment-1" rowspan="1">Remove the address of any continual subcommand routine from the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EA2"></span>$2EA2</td>
+<td class="instruction">STA $3B</td>
+<td class="comment-1" rowspan="2">Remove the address reached in the command list from the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EA4"></span>$2EA4</td>
+<td class="instruction">STA $3C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EA6"></span>$2EA6</td>
+<td class="instruction">STA $3D</td>
+<td class="comment-1" rowspan="2">Remove the address of the command list from the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EA8"></span>$2EA8</td>
+<td class="instruction">STA $3E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EAA"></span>$2EAA</td>
+<td class="instruction">STA $A6</td>
+<td class="comment-1" rowspan="12">Zero out the remainder of the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EAC"></span>$2EAC</td>
+<td class="instruction">STA $A7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EAE"></span>$2EAE</td>
+<td class="instruction">STA $A8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EB0"></span>$2EB0</td>
+<td class="instruction">STA $A9</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EB2"></span>$2EB2</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EB4"></span>$2EB4</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EB6"></span>$2EB6</td>
+<td class="instruction">STA $AE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EB8"></span>$2EB8</td>
+<td class="instruction">STA $AF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EBA"></span>$2EBA</td>
+<td class="instruction">STA $B2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EBC"></span>$2EBC</td>
+<td class="instruction">STA $B3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EBE"></span>$2EBE</td>
+<td class="instruction">STA $B4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EC0"></span>$2EC0</td>
+<td class="instruction">STA $B5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EC2"></span>$2EC2</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore the character's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EC5"></span>$2EC5</td>
+<td class="instruction">INC $60</td>
+<td class="comment-1" rowspan="1">Increment the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EC7"></span>$2EC7</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EC9"></span>$2EC9</td>
+<td class="instruction">CMP #$12</td>
+<td class="comment-1" rowspan="1">Have we initialised the character buffer of every boy (except ERIC) and teacher?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ECB"></span>$2ECB</td>
+<td class="instruction">BNE <a href="2E13.html#2E95">$2E95</a></td>
+<td class="comment-1" rowspan="1">Branch back if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ECD"></span>$2ECD</td>
+<td class="instruction">LDA #$58</td>
+<td class="comment-1" rowspan="4">Prepare to address the shield locations and status table at <a href="58E0.html">$58E0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ECF"></span>$2ECF</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ED1"></span>$2ED1</td>
+<td class="instruction">LDA #$E0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ED3"></span>$2ED3</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ED5"></span>$2ED5</td>
+<td class="instruction">LDY #$02</td>
+<td class="comment-1" rowspan="8">Initialise the shields.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ED7"></span>$2ED7</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2ED9"></span>$2ED9</td>
+<td class="instruction">STA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EDB"></span>$2EDB</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EDC"></span>$2EDC</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EDD"></span>$2EDD</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EDE"></span>$2EDE</td>
+<td class="instruction">CPY #$2D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EE0"></span>$2EE0</td>
+<td class="instruction">BCC <a href="2E13.html#2ED9">$2ED9</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EE2"></span>$2EE2</td>
+<td class="instruction">JSR <a href="2D47.html">$2D47</a></td>
+<td class="comment-1" rowspan="1">Initialise the game status buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EE5"></span>$2EE5</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2E05.html">$2E05</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2E13">Map</a></td>
+<td class="next">
+Next: <a href="2EE6.html">$2EE6</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

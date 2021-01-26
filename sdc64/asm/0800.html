@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $0800</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="00FF.html">$00FF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0800">Map</a></td>
+<td class="next">
+Next: <a href="09E8.html">$09E8</a>
+</td>
+</tr>
+</table>
+<div class="description">$0800: Main loop</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+We start here after the game has loaded.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0800"></span>$0800</td>
+<td class="instruction">JSR <a href="2CD9.html">$2CD9</a></td>
+<td class="comment-1" rowspan="1">Initialise interrupts, screen memory and page 0.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0803"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="2757.html">$2757</a> to enter demo mode after a game has ended.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0803"></span>$0803</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="0046.html">$46</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0805"></span>$0805</td>
+<td class="instruction">BEQ <a href="0800.html#080A">$080A</a></td>
+<td class="comment-1" rowspan="1">Branch if we're in demo mode.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0807"></span>$0807</td>
+<td class="instruction">JSR <a href="BE09.html">$BE09</a></td>
+<td class="comment-1" rowspan="1">Change the characters' names if required.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="080A"></span>$080A</td>
+<td class="instruction">JSR <a href="3AD5.html">$3AD5</a></td>
+<td class="comment-1" rowspan="1">Change the lesson.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="080D"></span>$080D</td>
+<td class="instruction">JSR <a href="BA00.html">$BA00</a></td>
+<td class="comment-1" rowspan="1">Play the theme tune.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0810"></span>$0810</td>
+<td class="instruction">JSR <a href="3012.html">$3012</a></td>
+<td class="comment-1" rowspan="1">Bring the skool into view.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0813"></span>
+<div class="comments">
+<div class="paragraph">
+The main loop proper starts here.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0813"></span>$0813</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Initialise the timing counter at <a href="002E.html">$2E</a> to 1.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0815"></span>$0815</td>
+<td class="instruction">STA $2E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0817"></span>$0817</td>
+<td class="instruction">DEC $FD</td>
+<td class="comment-1" rowspan="1">Decrement the LSB of the lesson clock at <a href="00FD.html">$FD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0819"></span>$0819</td>
+<td class="instruction">BNE <a href="0800.html#0822">$0822</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="081B"></span>$081B</td>
+<td class="instruction">DEC $40</td>
+<td class="comment-1" rowspan="1">Decrement the MSB of the lesson clock at <a href="0040.html">$40</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="081D"></span>$081D</td>
+<td class="instruction">BNE <a href="0800.html#0822">$0822</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="081F"></span>$081F</td>
+<td class="instruction">JSR <a href="3AD5.html">$3AD5</a></td>
+<td class="comment-1" rowspan="1">Change the lesson.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0822"></span>$0822</td>
+<td class="instruction">JSR <a href="149F.html">$149F</a></td>
+<td class="comment-1" rowspan="1">Make any nearby teacher give ERIC lines if necessary.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0825"></span>$0825</td>
+<td class="instruction">JSR <a href="BD00.html">$BD00</a></td>
+<td class="comment-1" rowspan="1">Manage any sound effect that is currently playing.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0828"></span>$0828</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's status flags from <a href="002B.html">$2B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="082A"></span>$082A</td>
+<td class="instruction">BEQ <a href="0800.html#083E">$083E</a></td>
+<td class="comment-1" rowspan="1">Branch if ERIC is walking or standing still.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="082C"></span>$082C</td>
+<td class="instruction">JSR <a href="15B3.html">$15B3</a></td>
+<td class="comment-1" rowspan="1">Deal with ERIC if he's doing something other than walking or standing still.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="082F"></span>$082F</td>
+<td class="instruction">JSR <a href="3AB4.html">$3AB4</a></td>
+<td class="comment-1" rowspan="4">Move four characters.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0832"></span>$0832</td>
+<td class="instruction">JSR <a href="3AB4.html">$3AB4</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="0835"></span>$0835</td>
+<td class="instruction">JSR <a href="3AB4.html">$3AB4</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="0838"></span>$0838</td>
+<td class="instruction">JSR <a href="3AB4.html">$3AB4</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="083B"></span>$083B</td>
+<td class="instruction">JMP <a href="0800.html#0916">$0916</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="083E"></span>$083E</td>
+<td class="instruction">JSR <a href="3AB4.html">$3AB4</a></td>
+<td class="comment-1" rowspan="4">Move four characters.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0841"></span>$0841</td>
+<td class="instruction">JSR <a href="3AB4.html">$3AB4</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="0844"></span>$0844</td>
+<td class="instruction">JSR <a href="3AB4.html">$3AB4</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="0847"></span>$0847</td>
+<td class="instruction">JSR <a href="3AB4.html">$3AB4</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="084A"></span>$084A</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="2">Set voice #3 control register: voice off, noise enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="084C"></span>$084C</td>
+<td class="instruction">STA $D412</td>
+</tr>
+<tr>
+<td class="address-1"><span id="084F"></span>$084F</td>
+<td class="instruction">DEC $E5</td>
+<td class="comment-1" rowspan="1">Decrement ERIC's midstride and input timer at <a href="00E5.html">$E5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0851"></span>$0851</td>
+<td class="instruction">BEQ <a href="0800.html#0856">$0856</a></td>
+<td class="comment-1" rowspan="1">Branch if it's zero now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0853"></span>$0853</td>
+<td class="instruction">JMP <a href="0800.html#0916">$0916</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward to update the display before returning to the start of the main loop.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0856"></span>
+<div class="comments">
+<div class="paragraph">
+The timer at <a href="00E5.html">$E5</a> has reached zero. Time to either move ERIC from the midstride position or check for input from the keyboard or joystick.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0856"></span>$0856</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="0046.html">$46</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0858"></span>$0858</td>
+<td class="instruction">BNE <a href="0800.html#0870">$0870</a></td>
+<td class="comment-1" rowspan="1">Branch unless we're in demo mode.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="085A"></span>$085A</td>
+<td class="instruction">LDA $4C</td>
+<td class="comment-1" rowspan="4">Copy the keyboard/joystick reading from <a href="004C.html">$4C</a> to <a href="00C5.html">$C5</a> and reset <a href="004C.html">$4C</a> to zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="085C"></span>$085C</td>
+<td class="instruction">STA $C5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="085E"></span>$085E</td>
+<td class="instruction">LDY #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0860"></span>$0860</td>
+<td class="instruction">STY $4C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0862"></span>$0862</td>
+<td class="instruction">LDA $C5</td>
+<td class="comment-1" rowspan="1">Pick up the keyboard/joystick reading from <a href="00C5.html">$C5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0864"></span>$0864</td>
+<td class="instruction">BEQ <a href="0800.html#086D">$086D</a></td>
+<td class="comment-1" rowspan="1">Branch if there was no keyboard or joystick input.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0866"></span>$0866</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Set the game mode indicator at <a href="0046.html">$46</a> to 1.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0868"></span>$0868</td>
+<td class="instruction">STA $46</td>
+</tr>
+<tr>
+<td class="address-1"><span id="086A"></span>$086A</td>
+<td class="instruction">JMP <a href="0800.html#0803">$0803</a></td>
+<td class="comment-1" rowspan="1">Jump back to start a new game.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="086D"></span>$086D</td>
+<td class="instruction">JMP <a href="0800.html#0920">$0920</a></td>
+<td class="comment-1" rowspan="1">Jump forward to continue with demo mode.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0870"></span>$0870</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0872"></span>$0872</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save it temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0873"></span>$0873</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="1">Character number $14 is ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0875"></span>$0875</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">Update the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0877"></span>$0877</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy ERIC's character buffer into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="087A"></span>$087A</td>
+<td class="instruction">LDA $4B</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's midstride indicator from <a href="004B.html">$4B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="087C"></span>$087C</td>
+<td class="instruction">BEQ <a href="0800.html#0881">$0881</a></td>
+<td class="comment-1" rowspan="1">Branch if it's zero (ERIC is not midstride).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="087E"></span>$087E</td>
+<td class="instruction">JMP <a href="0800.html#08FF">$08FF</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward to move ERIC from the midstride position.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0881"></span>
+<div class="comments">
+<div class="paragraph">
+Now we check for input from the keyboard or joystick.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0881"></span>$0881</td>
+<td class="instruction">LDA $4C</td>
+<td class="comment-1" rowspan="4">Copy the keyboard/joystick reading from <a href="004C.html">$4C</a> to <a href="00C5.html">$C5</a> and then reset <a href="004C.html">$4C</a> to zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0883"></span>$0883</td>
+<td class="instruction">STA $C5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0885"></span>$0885</td>
+<td class="instruction">LDY #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0887"></span>$0887</td>
+<td class="instruction">STY $4C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0889"></span>$0889</td>
+<td class="instruction">LDA $C5</td>
+<td class="comment-1" rowspan="1">Pick up the keyboard/joystick reading from <a href="00C5.html">$C5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="088B"></span>$088B</td>
+<td class="instruction">BNE <a href="0800.html#0890">$0890</a></td>
+<td class="comment-1" rowspan="1">Branch if there was any input.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="088D"></span>$088D</td>
+<td class="instruction">JMP <a href="0800.html#08FA">$08FA</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0890"></span>$0890</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="2">Reset ERIC's midstride and input timer at <a href="00E5.html">$E5</a> to 4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0892"></span>$0892</td>
+<td class="instruction">STA $E5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0894"></span>$0894</td>
+<td class="instruction">LDA $C5</td>
+<td class="comment-1" rowspan="1">Pick up the keyboard/joystick reading from <a href="00C5.html">$C5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0896"></span>$0896</td>
+<td class="instruction">AND #$7F</td>
+<td class="comment-1" rowspan="1">Clear bit 7 (which is set for joystick input).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0898"></span>$0898</td>
+<td class="instruction">CMP #$4F</td>
+<td class="comment-1" rowspan="1">Was 'O' pressed or the joystick moved left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="089A"></span>$089A</td>
+<td class="instruction">BNE <a href="0800.html#08A2">$08A2</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="089C"></span>$089C</td>
+<td class="instruction">JSR <a href="3558.html">$3558</a></td>
+<td class="comment-1" rowspan="1">Handle this keypress ('O', left).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="089F"></span>$089F</td>
+<td class="instruction">JMP <a href="0800.html#0910">$0910</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08A2"></span>$08A2</td>
+<td class="instruction">CMP #$50</td>
+<td class="comment-1" rowspan="1">Was 'P' pressed or the joystick moved right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08A4"></span>$08A4</td>
+<td class="instruction">BNE <a href="0800.html#08AC">$08AC</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08A6"></span>$08A6</td>
+<td class="instruction">JSR <a href="359E.html">$359E</a></td>
+<td class="comment-1" rowspan="1">Handle this keypress ('P', right).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08A9"></span>$08A9</td>
+<td class="instruction">JMP <a href="0800.html#0910">$0910</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08AC"></span>$08AC</td>
+<td class="instruction">CMP #$51</td>
+<td class="comment-1" rowspan="1">Was 'Q' pressed or the joystick moved up?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08AE"></span>$08AE</td>
+<td class="instruction">BNE <a href="0800.html#08B6">$08B6</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08B0"></span>$08B0</td>
+<td class="instruction">JSR <a href="350B.html">$350B</a></td>
+<td class="comment-1" rowspan="1">Handle this keypress ('Q', up).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08B3"></span>$08B3</td>
+<td class="instruction">JMP <a href="0800.html#0910">$0910</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08B6"></span>$08B6</td>
+<td class="instruction">CMP #$41</td>
+<td class="comment-1" rowspan="1">Was 'A' pressed or the joystick moved down?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08B8"></span>$08B8</td>
+<td class="instruction">BNE <a href="0800.html#08C0">$08C0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08BA"></span>$08BA</td>
+<td class="instruction">JSR <a href="34B5.html">$34B5</a></td>
+<td class="comment-1" rowspan="1">Handle this keypress ('A', down).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08BD"></span>$08BD</td>
+<td class="instruction">JMP <a href="0800.html#0910">$0910</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08C0"></span>$08C0</td>
+<td class="instruction">CMP #$53</td>
+<td class="comment-1" rowspan="1">Was 'S' (sit/stand) pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08C2"></span>$08C2</td>
+<td class="instruction">BNE <a href="0800.html#08CA">$08CA</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08C4"></span>$08C4</td>
+<td class="instruction">JSR <a href="3687.html">$3687</a></td>
+<td class="comment-1" rowspan="1">Handle this keypress ('S', sit/stand).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08C7"></span>$08C7</td>
+<td class="instruction">JMP <a href="0800.html#0910">$0910</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08CA"></span>$08CA</td>
+<td class="instruction">CMP #$48</td>
+<td class="comment-1" rowspan="1">Was 'H' (hit) pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08CC"></span>$08CC</td>
+<td class="instruction">BNE <a href="0800.html#08D4">$08D4</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08CE"></span>$08CE</td>
+<td class="instruction">JSR <a href="16DF.html">$16DF</a></td>
+<td class="comment-1" rowspan="1">Handle this keypress ('H', hit).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08D1"></span>$08D1</td>
+<td class="instruction">JMP <a href="0800.html#0910">$0910</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08D4"></span>$08D4</td>
+<td class="instruction">CMP #$57</td>
+<td class="comment-1" rowspan="1">Was 'W' (write) pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08D6"></span>$08D6</td>
+<td class="instruction">BNE <a href="0800.html#08DE">$08DE</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08D8"></span>$08D8</td>
+<td class="instruction">JSR <a href="19A5.html">$19A5</a></td>
+<td class="comment-1" rowspan="1">Handle this keypress ('W', write).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08DB"></span>$08DB</td>
+<td class="instruction">JMP <a href="0800.html#0910">$0910</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08DE"></span>$08DE</td>
+<td class="instruction">CMP #$4A</td>
+<td class="comment-1" rowspan="1">Was 'J' (jump) pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08E0"></span>$08E0</td>
+<td class="instruction">BEQ <a href="0800.html#08E6">$08E6</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08E2"></span>$08E2</td>
+<td class="instruction">CMP #$4C</td>
+<td class="comment-1" rowspan="1">Was 'L' (jump) pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08E4"></span>$08E4</td>
+<td class="instruction">BNE <a href="0800.html#08EC">$08EC</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08E6"></span>$08E6</td>
+<td class="instruction">JSR <a href="16D0.html">$16D0</a></td>
+<td class="comment-1" rowspan="1">Handle this keypress ('J' or 'L', jump).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08E9"></span>$08E9</td>
+<td class="instruction">JMP <a href="0800.html#0910">$0910</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08EC"></span>$08EC</td>
+<td class="instruction">CMP #$46</td>
+<td class="comment-1" rowspan="1">Was 'F' or the joystick fire button pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08EE"></span>$08EE</td>
+<td class="instruction">BEQ <a href="0800.html#08F4">$08F4</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08F0"></span>$08F0</td>
+<td class="instruction">CMP #$20</td>
+<td class="comment-1" rowspan="1">Was SPACE (fire catapult) pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08F2"></span>$08F2</td>
+<td class="instruction">BNE <a href="0800.html#08F7">$08F7</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08F4"></span>$08F4</td>
+<td class="instruction">JSR <a href="169B.html">$169B</a></td>
+<td class="comment-1" rowspan="1">Handle this keypress ('F' or SPACE, fire).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08F7"></span>$08F7</td>
+<td class="instruction">JMP <a href="0800.html#0910">$0910</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="08FA"></span>
+<div class="comments">
+<div class="paragraph">
+There was no keyboard input or joystick movement.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08FA"></span>$08FA</td>
+<td class="instruction">INC $E5</td>
+<td class="comment-1" rowspan="1">Increment ERIC's midstride and input timer at <a href="00E5.html">$E5</a> to 1.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="08FC"></span>$08FC</td>
+<td class="instruction">JMP <a href="0800.html#0910">$0910</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="08FF"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC is midstride.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="08FF"></span>$08FF</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="2">Reset ERIC's midstride and input timer at <a href="00E5.html">$E5</a> to 4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0901"></span>$0901</td>
+<td class="instruction">STA $E5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0903"></span>$0903</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Clear ERIC's midstride indicator at <a href="004B.html">$4B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0905"></span>$0905</td>
+<td class="instruction">STA $4B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0907"></span>$0907</td>
+<td class="instruction">JSR <a href="35EF.html">$35EF</a></td>
+<td class="comment-1" rowspan="1">Move ERIC from the midstride position.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="090A"></span>$090A</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Restore the current character number to <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="090B"></span>$090B</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="090D"></span>$090D</td>
+<td class="instruction">JMP <a href="0800.html#0919">$0919</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0910"></span>$0910</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore ERIC's character buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0913"></span>$0913</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Restore the current character number to <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0914"></span>$0914</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0916"></span>$0916</td>
+<td class="instruction">JSR <a href="31EA.html">$31EA</a></td>
+<td class="comment-1" rowspan="1">Update the display.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0919"></span>$0919</td>
+<td class="instruction">LDA $2E</td>
+<td class="comment-1" rowspan="2">Wait until the interrupt routine at <a href="39C7.html">$39C7</a> has decremented the timing counter at <a href="002E.html">$2E</a> below 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="091B"></span>$091B</td>
+<td class="instruction">BPL <a href="0800.html#0919">$0919</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="091D"></span>$091D</td>
+<td class="instruction">JMP <a href="0800.html#0813">$0813</a></td>
+<td class="comment-1" rowspan="1">Jump back to the start of the main loop.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0920"></span>
+<div class="comments">
+<div class="paragraph">
+We're in demo mode and there was no keyboard or joystick input.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0920"></span>$0920</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="3">Set the score at <a href="007C.html">$7C</a> to zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0922"></span>$0922</td>
+<td class="instruction">STA $7D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0924"></span>$0924</td>
+<td class="instruction">STA $7C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0926"></span>$0926</td>
+<td class="instruction">STA $7F</td>
+<td class="comment-1" rowspan="2">Set the lines total at <a href="007E.html">$7E</a> to zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0928"></span>$0928</td>
+<td class="instruction">STA $7E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="092A"></span>$092A</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="2">Pick up the current character number from <a href="0060.html">$60</a> and save it temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="092C"></span>$092C</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="092D"></span>$092D</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $14 (ERIC).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="092F"></span>$092F</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0931"></span>$0931</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy ERIC's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0934"></span>$0934</td>
+<td class="instruction">LDA $4B</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's midstride indicator from <a href="004B.html">$4B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0936"></span>$0936</td>
+<td class="instruction">BEQ <a href="0800.html#093A">$093A</a></td>
+<td class="comment-1" rowspan="1">Branch if it's zero (ERIC is not midstride).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0938"></span>$0938</td>
+<td class="instruction">BNE <a href="0800.html#08FF">$08FF</a></td>
+<td class="comment-1" rowspan="1">Otherwise branch back to move ERIC from the midstride position.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="093A"></span>$093A</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="093C"></span>$093C</td>
+<td class="instruction">CMP #$05</td>
+<td class="comment-1" rowspan="1">Is ERIC sitting on a chair?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="093E"></span>$093E</td>
+<td class="instruction">BEQ <a href="0800.html#094C">$094C</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0940"></span>$0940</td>
+<td class="instruction">LDA $14</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's posture indicator from <a href="0014.html">$14</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0942"></span>$0942</td>
+<td class="instruction">BEQ <a href="0800.html#095C">$095C</a></td>
+<td class="comment-1" rowspan="1">Branch if ERIC is not standing up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0944"></span>$0944</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's status flags from <a href="002B.html">$2B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0946"></span>$0946</td>
+<td class="instruction">AND #$10</td>
+<td class="comment-1" rowspan="1">Has ERIC just been knocked down or unseated?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0948"></span>$0948</td>
+<td class="instruction">BNE <a href="0800.html#095C">$095C</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="094A"></span>$094A</td>
+<td class="instruction">BEQ <a href="0800.html#0972">$0972</a></td>
+<td class="comment-1" rowspan="1">Otherwise branch forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="094C"></span>$094C</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $0A (little boy no. 11).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="094E"></span>$094E</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0950"></span>$0950</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy little boy no. 11's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0953"></span>$0953</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up little boy no. 11's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0955"></span>$0955</td>
+<td class="instruction">CMP #$45</td>
+<td class="comment-1" rowspan="1">Is he sitting on a chair?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0957"></span>$0957</td>
+<td class="instruction">BNE <a href="0800.html#095C">$095C</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0959"></span>$0959</td>
+<td class="instruction">JMP <a href="0800.html#09DE">$09DE</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="095C"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC is sitting in a chair, but little boy no. 11 isn't. ERIC should stand up now or soon.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="095C"></span>$095C</td>
+<td class="instruction">LDA $81</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's stand-up delay counter from <a href="0081.html">$81</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="095E"></span>$095E</td>
+<td class="instruction">BNE <a href="0800.html#0967">$0967</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's zero at the moment.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0960"></span>$0960</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="2">Initialise ERIC's stand-up delay counter at <a href="0081.html">$81</a> to $40 (little boy no. 11 has only just stood up).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0962"></span>$0962</td>
+<td class="instruction">STA $81</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0964"></span>$0964</td>
+<td class="instruction">JMP <a href="0800.html#09DE">$09DE</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0967"></span>$0967</td>
+<td class="instruction">DEC $81</td>
+<td class="comment-1" rowspan="1">Decrement ERIC's stand-up delay counter at <a href="0081.html">$81</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0969"></span>$0969</td>
+<td class="instruction">BNE <a href="0800.html#0959">$0959</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's time for ERIC to stand up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="096B"></span>$096B</td>
+<td class="instruction">LDA #$53</td>
+<td class="comment-1" rowspan="2">Store the code for 'S' (sit/stand) at <a href="00C5.html">$C5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="096D"></span>$096D</td>
+<td class="instruction">STA $C5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="096F"></span>$096F</td>
+<td class="instruction">JMP <a href="0800.html#09D4">$09D4</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0972"></span>$0972</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="2">Character number $0A is little boy no. 11. Store this character number at <a href="004D.html">$4D</a> for the following subroutine call.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0974"></span>$0974</td>
+<td class="instruction">STA $4D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0976"></span>$0976</td>
+<td class="instruction">JSR <a href="1B2E.html">$1B2E</a></td>
+<td class="comment-1" rowspan="1">Determine ERIC's next move in his pursuit of little boy no. 11.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0979"></span>$0979</td>
+<td class="instruction">BEQ <a href="0800.html#09AD">$09AD</a></td>
+<td class="comment-1" rowspan="1">Branch if ERIC will stay where he is.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="097B"></span>$097B</td>
+<td class="instruction">CMP #$01</td>
+<td class="comment-1" rowspan="1">Should ERIC go (or continue going) upstairs?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="097D"></span>$097D</td>
+<td class="instruction">BNE <a href="0800.html#0984">$0984</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="097F"></span>$097F</td>
+<td class="instruction">LDA #$51</td>
+<td class="comment-1" rowspan="1">This is the code for 'Q' (up).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0981"></span>$0981</td>
+<td class="instruction">JMP <a href="0800.html#0998">$0998</a></td>
+<td class="comment-1" rowspan="1">Jump forward to store this code at <a href="00C5.html">$C5</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0984"></span>$0984</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">Should ERIC go (or continue going) downstairs?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0986"></span>$0986</td>
+<td class="instruction">BNE <a href="0800.html#098D">$098D</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0988"></span>$0988</td>
+<td class="instruction">LDA #$41</td>
+<td class="comment-1" rowspan="1">This is the code for 'A' (down).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="098A"></span>$098A</td>
+<td class="instruction">JMP <a href="0800.html#0998">$0998</a></td>
+<td class="comment-1" rowspan="1">Jump forward to store this code at <a href="00C5.html">$C5</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="098D"></span>$098D</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Should ERIC go left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="098F"></span>$098F</td>
+<td class="instruction">BNE <a href="0800.html#0996">$0996</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0991"></span>$0991</td>
+<td class="instruction">LDA #$4F</td>
+<td class="comment-1" rowspan="1">This is the code for 'O' (left).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0993"></span>$0993</td>
+<td class="instruction">JMP <a href="0800.html#0998">$0998</a></td>
+<td class="comment-1" rowspan="1">Jump forward to store this code at <a href="00C5.html">$C5</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0996"></span>$0996</td>
+<td class="instruction">LDA #$50</td>
+<td class="comment-1" rowspan="1">This is the code for 'P' (right).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0998"></span>$0998</td>
+<td class="instruction">STA $C5</td>
+<td class="comment-1" rowspan="1">Store the code for the simulated keypress at <a href="00C5.html">$C5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="099A"></span>$099A</td>
+<td class="instruction">LDA $82</td>
+<td class="comment-1" rowspan="1">Pick up the value of the interrupt counter from <a href="0082.html">$82</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="099C"></span>$099C</td>
+<td class="instruction">CMP #$81</td>
+<td class="comment-1" rowspan="1">Is it $81 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="099E"></span>$099E</td>
+<td class="instruction">BCS <a href="0800.html#09A3">$09A3</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09A0"></span>$09A0</td>
+<td class="instruction">JMP <a href="0800.html#09D4">$09D4</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="09A3"></span>$09A3</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="4">Set bit 7 of the simulated keyboard/joystick reading at <a href="00C5.html">$C5</a>. This makes ERIC move faster.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09A5"></span>$09A5</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09A6"></span>$09A6</td>
+<td class="instruction">ADC $C5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09A8"></span>$09A8</td>
+<td class="instruction">STA $C5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09AA"></span>$09AA</td>
+<td class="instruction">JMP <a href="0800.html#09D4">$09D4</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="09AD"></span>$09AD</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $0A (little boy no. 11).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09AF"></span>$09AF</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09B1"></span>$09B1</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy little boy no. 11's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09B4"></span>$09B4</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up little boy no. 11's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09B6"></span>$09B6</td>
+<td class="instruction">CMP #$45</td>
+<td class="comment-1" rowspan="1">Is little boy no. 11 sitting on a chair?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09B8"></span>$09B8</td>
+<td class="instruction">BEQ <a href="0800.html#09BD">$09BD</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09BA"></span>$09BA</td>
+<td class="instruction">JMP <a href="0800.html#09DE">$09DE</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="09BD"></span>$09BD</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $14 (ERIC).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09BF"></span>$09BF</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09C1"></span>$09C1</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy ERIC's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09C4"></span>$09C4</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09C6"></span>$09C6</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is ERIC facing left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09C7"></span>$09C7</td>
+<td class="instruction">BCC <a href="0800.html#09D0">$09D0</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09C9"></span>$09C9</td>
+<td class="instruction">LDA #$4F</td>
+<td class="comment-1" rowspan="2">Store the code for 'O' (left) at <a href="00C5.html">$C5</a>. This will make ERIC turn round and face left.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09CB"></span>$09CB</td>
+<td class="instruction">STA $C5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09CD"></span>$09CD</td>
+<td class="instruction">JMP <a href="0800.html#09D4">$09D4</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="09D0"></span>$09D0</td>
+<td class="instruction">LDA #$53</td>
+<td class="comment-1" rowspan="2">Store the code for 'S' (sit/stand) at <a href="00C5.html">$C5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09D2"></span>$09D2</td>
+<td class="instruction">STA $C5</td>
+</tr>
+<tr>
+<td class="address-2"><span id="09D4"></span>$09D4</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $14 (ERIC).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09D6"></span>$09D6</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09D8"></span>$09D8</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy ERIC's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09DB"></span>$09DB</td>
+<td class="instruction">JMP <a href="0800.html#0890">$0890</a></td>
+<td class="comment-1" rowspan="1">Jump back.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="09DE"></span>$09DE</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $14 (ERIC).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09E0"></span>$09E0</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09E2"></span>$09E2</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy ERIC's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="09E5"></span>$09E5</td>
+<td class="instruction">JMP <a href="0800.html#08FA">$08FA</a></td>
+<td class="comment-1" rowspan="1">Jump back.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="00FF.html">$00FF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0800">Map</a></td>
+<td class="next">
+Next: <a href="09E8.html">$09E8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

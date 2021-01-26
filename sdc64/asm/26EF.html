@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $26EF</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="26E0.html">$26E0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#26EF">Map</a></td>
+<td class="next">
+Next: <a href="270D.html">$270D</a>
+</td>
+</tr>
+</table>
+<div class="description">$26EF: Check whether ANGELFACE is touching ERIC</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+The address of this continual subcommand routine is placed into MR ROCKITT's buffer by command list <a href="4376.html">$DE</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="26EF"></span>$26EF</td>
+<td class="instruction">LDA $877A</td>
+<td class="comment-1" rowspan="3">Set bit 1 of byte $7A of ANGELFACE's character buffer: he is running continuously.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26F2"></span>$26F2</td>
+<td class="instruction">ORA #$02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26F4"></span>$26F4</td>
+<td class="instruction">STA $877A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26F7"></span>$26F7</td>
+<td class="instruction">LDA $8761</td>
+<td class="comment-1" rowspan="1">Pick up ANGELFACE's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26FA"></span>$26FA</td>
+<td class="instruction">CMP $8C61</td>
+<td class="comment-1" rowspan="1">Does it match ERIC's x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26FD"></span>$26FD</td>
+<td class="instruction">BNE <a href="26EF.html#270C">$270C</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26FF"></span>$26FF</td>
+<td class="instruction">LDA $8762</td>
+<td class="comment-1" rowspan="1">Pick up ANGELFACE's y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2702"></span>$2702</td>
+<td class="instruction">CMP $8C62</td>
+<td class="comment-1" rowspan="1">Does it match ERIC's y-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2705"></span>$2705</td>
+<td class="instruction">BNE <a href="26EF.html#270C">$270C</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2707"></span>$2707</td>
+<td class="instruction">LDA #$0C</td>
+<td class="comment-1" rowspan="1">Event <a href="4400.html">$0C</a>: ERIC has mumps.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2709"></span>$2709</td>
+<td class="instruction">JSR <a href="31B6.html">$31B6</a></td>
+<td class="comment-1" rowspan="1">Raise the signal for this event.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="270C"></span>$270C</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="26E0.html">$26E0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#26EF">Map</a></td>
+<td class="next">
+Next: <a href="270D.html">$270D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

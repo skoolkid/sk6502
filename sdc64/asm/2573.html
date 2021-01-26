@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2573</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2552.html">$2552</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2573">Map</a></td>
+<td class="next">
+Next: <a href="2620.html">$2620</a>
+</td>
+</tr>
+</table>
+<div class="description">$2573: Print the lesson</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/F9A5.html">$F9A5</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="3AD5.html">$3AD5</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2573"></span>$2573</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="0046.html">$46</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2575"></span>$2575</td>
+<td class="instruction">BNE <a href="2573.html#25AF">$25AF</a></td>
+<td class="comment-1" rowspan="1">Branch unless we're in demo mode.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="2577"></span>
+<div class="comments">
+<div class="paragraph">
+We're in demo mode.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2577"></span>$2577</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4">Store <a href="4600.html">$4600</a> (DEMO, - PRESS) at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2579"></span>$2579</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="257B"></span>$257B</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="257D"></span>$257D</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="257F"></span>$257F</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="2">Store the width of the lesson box (in character cells) at <a href="009A.html#009D">$9D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2581"></span>$2581</td>
+<td class="instruction">STA $9D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2583"></span>$2583</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="2">Store the number of bytes to copy from the text graphic buffer at <a href="0031.html">$31</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2585"></span>$2585</td>
+<td class="instruction">STA $31</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2587"></span>$2587</td>
+<td class="instruction">JSR <a href="2005.html">$2005</a></td>
+<td class="comment-1" rowspan="1">Write the first line of text ('DEMO, - PRESS') into the text graphic buffer at <a href="4500.html">$4500</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="258A"></span>$258A</td>
+<td class="instruction">JSR <a href="213B.html">$213B</a></td>
+<td class="comment-1" rowspan="1">Centre the text in the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="258D"></span>$258D</td>
+<td class="instruction">LDX #$10</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the first line of text.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="258F"></span>$258F</td>
+<td class="instruction">LDY #$15</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2591"></span>$2591</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2594"></span>$2594</td>
+<td class="instruction">JSR <a href="212A.html">$212A</a></td>
+<td class="comment-1" rowspan="1">Clear the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2597"></span>$2597</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4">Store <a href="4600.html#4610">$4610</a> (A KEY TO PLAY) at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2599"></span>$2599</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="259B"></span>$259B</td>
+<td class="instruction">LDA #$10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="259D"></span>$259D</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="259F"></span>$259F</td>
+<td class="instruction">JSR <a href="2005.html">$2005</a></td>
+<td class="comment-1" rowspan="1">Write the second line of text ('A KEY TO PLAY') into the text graphic buffer at <a href="4500.html">$4500</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25A2"></span>$25A2</td>
+<td class="instruction">JSR <a href="213B.html">$213B</a></td>
+<td class="comment-1" rowspan="1">Centre the text in the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25A5"></span>$25A5</td>
+<td class="instruction">LDX #$10</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the second line of text.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25A7"></span>$25A7</td>
+<td class="instruction">LDY #$17</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25A9"></span>$25A9</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25AC"></span>$25AC</td>
+<td class="instruction">JMP <a href="2573.html#261F">$261F</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="25AF"></span>
+<div class="comments">
+<div class="paragraph">
+A game is in progress.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="25AF"></span>$25AF</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="2">Store the width of the lesson box (in character cells) at <a href="009A.html#009D">$9D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25B1"></span>$25B1</td>
+<td class="instruction">STA $9D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25B3"></span>$25B3</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="2">Store the number of bytes to copy from the text graphic buffer at <a href="0031.html">$31</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25B5"></span>$25B5</td>
+<td class="instruction">STA $31</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25B7"></span>$25B7</td>
+<td class="instruction">JSR <a href="212A.html">$212A</a></td>
+<td class="comment-1" rowspan="1">Clear the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25BA"></span>$25BA</td>
+<td class="instruction">LDA $70</td>
+<td class="comment-1" rowspan="1">Pick up the lesson descriptor from <a href="0070.html">$70</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25BC"></span>$25BC</td>
+<td class="instruction">AND #$07</td>
+<td class="comment-1" rowspan="1">Keep only the room bits (0-2).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25BE"></span>$25BE</td>
+<td class="instruction">CMP #$05</td>
+<td class="comment-1" rowspan="1">Is this lesson in a classroom?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25C0"></span>$25C0</td>
+<td class="instruction">BCS <a href="2573.html#25EA">$25EA</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25C2"></span>$25C2</td>
+<td class="instruction">LDA $70</td>
+<td class="comment-1" rowspan="1">Pick up the lesson descriptor from <a href="0070.html">$70</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25C4"></span>$25C4</td>
+<td class="instruction">AND #$F0</td>
+<td class="comment-1" rowspan="1">Keep only the teacher bits (4-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25C6"></span>$25C6</td>
+<td class="instruction">BNE <a href="2573.html#25CD">$25CD</a></td>
+<td class="comment-1" rowspan="1">Branch unless the teacher is MR WACKER.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25C8"></span>$25C8</td>
+<td class="instruction">LDA #$B8</td>
+<td class="comment-1" rowspan="1">This is the LSB of <a href="47B8.html">$47B8</a> (MR WACKER).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25CA"></span>$25CA</td>
+<td class="instruction">JMP <a href="2573.html#25E1">$25E1</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="25CD"></span>$25CD</td>
+<td class="instruction">CMP #$10</td>
+<td class="comment-1" rowspan="1">Is the teacher MR ROCKITT?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25CF"></span>$25CF</td>
+<td class="instruction">BNE <a href="2573.html#25D6">$25D6</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25D1"></span>$25D1</td>
+<td class="instruction">LDA #$C6</td>
+<td class="comment-1" rowspan="1">This is the LSB of <a href="47C6.html">$47C6</a> (MR ROCKITT).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25D3"></span>$25D3</td>
+<td class="instruction">JMP <a href="2573.html#25E1">$25E1</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="25D6"></span>$25D6</td>
+<td class="instruction">CMP #$20</td>
+<td class="comment-1" rowspan="1">Is the teacher MR WITHIT?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25D8"></span>$25D8</td>
+<td class="instruction">BNE <a href="2573.html#25DF">$25DF</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25DA"></span>$25DA</td>
+<td class="instruction">LDA #$D4</td>
+<td class="comment-1" rowspan="1">This is the LSB of <a href="47D4.html">$47D4</a> (MR WITHIT).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25DC"></span>$25DC</td>
+<td class="instruction">JMP <a href="2573.html#25E1">$25E1</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="25DF"></span>$25DF</td>
+<td class="instruction">LDA #$E2</td>
+<td class="comment-1" rowspan="1">This is the LSB of <a href="47E2.html">$47E2</a> (MR CREAK).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="25E1"></span>$25E1</td>
+<td class="instruction">STA $D6</td>
+<td class="comment-1" rowspan="3">Store the address of the teacher's name at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25E3"></span>$25E3</td>
+<td class="instruction">LDA #$47</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25E5"></span>$25E5</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25E7"></span>$25E7</td>
+<td class="instruction">JMP <a href="2573.html#25F4">$25F4</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="25EA"></span>$25EA</td>
+<td class="instruction">BNE <a href="2573.html#25FA">$25FA</a></td>
+<td class="comment-1" rowspan="1">Branch unless the lesson is REVISION LIBRARY.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25EC"></span>$25EC</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="4">Store <a href="4880.html">$4880</a> (REVISION) at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25EE"></span>$25EE</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25F0"></span>$25F0</td>
+<td class="instruction">LDA #$48</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25F2"></span>$25F2</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-2"><span id="25F4"></span>$25F4</td>
+<td class="instruction">JSR <a href="2005.html">$2005</a></td>
+<td class="comment-1" rowspan="1">Write the first line of text ('REVISION' or the teacher's name) into the text graphic buffer at <a href="4500.html">$4500</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25F7"></span>$25F7</td>
+<td class="instruction">JSR <a href="213B.html">$213B</a></td>
+<td class="comment-1" rowspan="1">Centre the text in the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="25FA"></span>$25FA</td>
+<td class="instruction">LDX #$10</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the first line of text.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25FC"></span>$25FC</td>
+<td class="instruction">LDY #$15</td>
+</tr>
+<tr>
+<td class="address-1"><span id="25FE"></span>$25FE</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2601"></span>$2601</td>
+<td class="instruction">LDA $70</td>
+<td class="comment-1" rowspan="1">Pick up the lesson descriptor from <a href="0070.html">$70</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2603"></span>$2603</td>
+<td class="instruction">AND #$07</td>
+<td class="comment-1" rowspan="1">Keep only the room bits (0-2).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2605"></span>$2605</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="4">Shift the room bits into bits 4-6.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2606"></span>$2606</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2607"></span>$2607</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2608"></span>$2608</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2609"></span>$2609</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="5">Store the address of the room name (or 'LIBRARY', 'DINNER' or 'PLAYTIME') at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="260A"></span>$260A</td>
+<td class="instruction">ADC #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="260C"></span>$260C</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="260E"></span>$260E</td>
+<td class="instruction">LDA #$48</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2610"></span>$2610</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2612"></span>$2612</td>
+<td class="instruction">JSR <a href="2005.html">$2005</a></td>
+<td class="comment-1" rowspan="1">Write the second line of text into the text graphic buffer at <a href="4500.html">$4500</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2615"></span>$2615</td>
+<td class="instruction">JSR <a href="213B.html">$213B</a></td>
+<td class="comment-1" rowspan="1">Centre the text in the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2618"></span>$2618</td>
+<td class="instruction">LDX #$10</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the second line of text.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="261A"></span>$261A</td>
+<td class="instruction">LDY #$17</td>
+</tr>
+<tr>
+<td class="address-1"><span id="261C"></span>$261C</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="261F"></span>$261F</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2552.html">$2552</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2573">Map</a></td>
+<td class="next">
+Next: <a href="2620.html">$2620</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

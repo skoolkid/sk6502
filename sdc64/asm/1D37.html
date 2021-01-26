@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1D37</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1D32.html">$1D32</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1D37">Map</a></td>
+<td class="next">
+Next: <a href="1D49.html">$1D49</a>
+</td>
+</tr>
+</table>
+<div class="description">$1D37: Add to the score and print it</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6AFB.html">$6AFB</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="0FBA.html">$0FBA</a>, <a href="17E5.html">$17E5</a>, <a href="1DB7.html">$1DB7</a> and <a href="2BB0.html">$2BB0</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Amount to add to the score (divided by 10)</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1D37"></span>$1D37</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Add the LSB of the current score at <a href="007C.html">$7C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D38"></span>$1D38</td>
+<td class="instruction">ADC $7C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D3A"></span>$1D3A</td>
+<td class="instruction">BCC <a href="1D37.html#1D3E">$1D3E</a></td>
+<td class="comment-1" rowspan="1">Branch if there was no overflow.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D3C"></span>$1D3C</td>
+<td class="instruction">INC $7D</td>
+<td class="comment-1" rowspan="1">Otherwise increment the MSB of the current score.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1D3E"></span>$1D3E</td>
+<td class="instruction">STA $7C</td>
+<td class="comment-1" rowspan="1">Update the LSB of the score at <a href="007C.html">$7C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D40"></span>$1D40</td>
+<td class="instruction">LDA #$7C</td>
+<td class="comment-1" rowspan="2">Store the LSB of the address of the score at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D42"></span>$1D42</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D44"></span>$1D44</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=0, indicating the score.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D46"></span>$1D46</td>
+<td class="instruction">JMP <a href="2620.html">$2620</a></td>
+<td class="comment-1" rowspan="1">Print the new score.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1D32.html">$1D32</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1D37">Map</a></td>
+<td class="next">
+Next: <a href="1D49.html">$1D49</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

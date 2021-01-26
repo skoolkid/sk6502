@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $3AB4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3AB3.html">$3AB3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3AB4">Map</a></td>
+<td class="next">
+Next: <a href="3AD5.html">$3AD5</a>
+</td>
+</tr>
+</table>
+<div class="description">$3AB4: Move the next character</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Called from the main loop at <a href="0800.html">$0800</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3AB4"></span>$3AB4</td>
+<td class="instruction">INC $60</td>
+<td class="comment-1" rowspan="1">Increment the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AB6"></span>$3AB6</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AB8"></span>$3AB8</td>
+<td class="instruction">CMP #$14</td>
+<td class="comment-1" rowspan="1">Is it $14 (ERIC)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3ABA"></span>$3ABA</td>
+<td class="instruction">BCC <a href="3AB4.html#3AC3">$3AC3</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3ABC"></span>$3ABC</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Reset the character number at <a href="0060.html">$60</a> to $00 (little boy no. 1).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3ABE"></span>$3ABE</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AC0"></span>$3AC0</td>
+<td class="instruction">JMP <a href="3AB4.html#3ACB">$3ACB</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3AC3"></span>$3AC3</td>
+<td class="instruction">CMP #$04</td>
+<td class="comment-1" rowspan="1">Is the current character number $04 (little boy no. 5)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AC5"></span>$3AC5</td>
+<td class="instruction">BNE <a href="3AB4.html#3ACB">$3ACB</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AC7"></span>$3AC7</td>
+<td class="instruction">INC $60</td>
+<td class="comment-1" rowspan="1">Increment the current character number at <a href="0060.html">$60</a> to $05 (little boy no. 6).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AC9"></span>$3AC9</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3ACB"></span>$3ACB</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the current character's buffer into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3ACE"></span>$3ACE</td>
+<td class="instruction">JSR <a href="3B5E.html">$3B5E</a></td>
+<td class="comment-1" rowspan="1">Move the character.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AD1"></span>$3AD1</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore the character's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AD4"></span>$3AD4</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3AB3.html">$3AB3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3AB4">Map</a></td>
+<td class="next">
+Next: <a href="3AD5.html">$3AD5</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

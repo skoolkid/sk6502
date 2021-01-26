@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2F20</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2EE6.html">$2EE6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2F20">Map</a></td>
+<td class="next">
+Next: <a href="2F56.html">$2F56</a>
+</td>
+</tr>
+</table>
+<div class="description">$2F20: Draw the Skool Daze logo</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="2CD9.html">$2CD9</a> and <a href="2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2F20"></span>$2F20</td>
+<td class="instruction">LDA #$59</td>
+<td class="comment-1" rowspan="4">Prepare to address the Skool Daze logo at <a href="5920.html">$5920</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F22"></span>$2F22</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F24"></span>$2F24</td>
+<td class="instruction">LDA #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F26"></span>$2F26</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F28"></span>$2F28</td>
+<td class="instruction">LDA #$FA</td>
+<td class="comment-1" rowspan="4">Store the screen bitmap address $FA60 at <a href="004D.html#0050">$50</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F2A"></span>$2F2A</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F2C"></span>$2F2C</td>
+<td class="instruction">LDA #$60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F2E"></span>$2F2E</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F30"></span>$2F30</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="6">Draw the top row of 8 cells in Skool Daze logo.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2F32"></span>$2F32</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F34"></span>$2F34</td>
+<td class="instruction">STA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F36"></span>$2F36</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F37"></span>$2F37</td>
+<td class="instruction">CPY #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F39"></span>$2F39</td>
+<td class="instruction">BNE <a href="2F20.html#2F32">$2F32</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F3B"></span>$2F3B</td>
+<td class="instruction">LDA #$FB</td>
+<td class="comment-1" rowspan="7">Draw the middle row of 8 cells in Skool Daze logo.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F3D"></span>$2F3D</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2F3F"></span>$2F3F</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F41"></span>$2F41</td>
+<td class="instruction">STA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F43"></span>$2F43</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F44"></span>$2F44</td>
+<td class="instruction">CPY #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F46"></span>$2F46</td>
+<td class="instruction">BNE <a href="2F20.html#2F3F">$2F3F</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F48"></span>$2F48</td>
+<td class="instruction">LDA #$FC</td>
+<td class="comment-1" rowspan="7">Draw the bottom row of 8 cells in Skool Daze logo.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F4A"></span>$2F4A</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2F4C"></span>$2F4C</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F4E"></span>$2F4E</td>
+<td class="instruction">STA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F50"></span>$2F50</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F51"></span>$2F51</td>
+<td class="instruction">CPY #$C0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F53"></span>$2F53</td>
+<td class="instruction">BNE <a href="2F20.html#2F4C">$2F4C</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F55"></span>$2F55</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2EE6.html">$2EE6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2F20">Map</a></td>
+<td class="next">
+Next: <a href="2F56.html">$2F56</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Data at $8CE0</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="8C80.html">$8C80</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#8CE0">Map</a></td>
+<td class="next">
+Next: <a href="8D00.html">$8D00</a>
+</td>
+</tr>
+</table>
+<div class="description">$8CE0: Lesson descriptors</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/ACE0.html">$ACE0</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="3AD5.html">$3AD5</a>.
+</div>
+<div class="paragraph">
+Each entry in this table defines the teacher for the corresponding period (if any), and the room. The teacher is identified by bits 4-7:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Bits</th>
+<th colspan="1" rowspan="1">Teacher</th>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0000</td>
+<td class="" colspan="1" rowspan="1">MR WACKER</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0001</td>
+<td class="" colspan="1" rowspan="1">MR ROCKITT</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0010</td>
+<td class="" colspan="1" rowspan="1">MR WITHIT</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0011</td>
+<td class="" colspan="1" rowspan="1">MR CREAK</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0100</td>
+<td class="" colspan="1" rowspan="1">None</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The room is identified by bits 0-3:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Bits</th>
+<th colspan="1" rowspan="1">Room</th>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0001</td>
+<td class="" colspan="1" rowspan="1">READING ROOM</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0010</td>
+<td class="" colspan="1" rowspan="1">MAP ROOM</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0011</td>
+<td class="" colspan="1" rowspan="1">WHITE ROOM</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0100</td>
+<td class="" colspan="1" rowspan="1">EXAM ROOM</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0101</td>
+<td class="" colspan="1" rowspan="1">REVISION LIBRARY</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0110</td>
+<td class="" colspan="1" rowspan="1">DINNER</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0111</td>
+<td class="" colspan="1" rowspan="1">PLAYTIME</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CE0"></span>$8CE0</td>
+<td class="instruction">.BYTE $26</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/E0.html">$E0</a>: DINNER (MR WITHIT)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CE1"></span>$8CE1</td>
+<td class="instruction">.BYTE $06</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/E1.html">$E1</a>: DINNER (MR WACKER)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CE2"></span>$8CE2</td>
+<td class="instruction">.BYTE $04</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/E2.html">$E2</a>: MR WACKER - EXAM ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CE3"></span>$8CE3</td>
+<td class="instruction">.BYTE $14</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/E3.html">$E3</a>: MR ROCKITT - EXAM ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CE4"></span>$8CE4</td>
+<td class="instruction">.BYTE $45</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/E4.html">$E4</a>: REVISION LIBRARY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CE5"></span>$8CE5</td>
+<td class="instruction">.BYTE $45</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/E5.html">$E5</a>: REVISION LIBRARY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CE6"></span>$8CE6</td>
+<td class="instruction">.BYTE $45</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/E6.html">$E6</a>: REVISION LIBRARY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CE7"></span>$8CE7</td>
+<td class="instruction">.BYTE $22</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/E7.html">$E7</a>: MR WITHIT - MAP ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CE8"></span>$8CE8</td>
+<td class="instruction">.BYTE $01</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/E8.html">$E8</a>: MR WACKER - READING ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CE9"></span>$8CE9</td>
+<td class="instruction">.BYTE $11</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/E9.html">$E9</a>: MR ROCKITT - READING ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CEA"></span>$8CEA</td>
+<td class="instruction">.BYTE $31</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/EA.html">$EA</a>: MR CREAK - READING ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CEB"></span>$8CEB</td>
+<td class="instruction">.BYTE $33</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/EB.html">$EB</a>: MR CREAK - WHITE ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CEC"></span>$8CEC</td>
+<td class="instruction">.BYTE $03</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/EC.html">$EC</a>: MR WACKER - WHITE ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CED"></span>$8CED</td>
+<td class="instruction">.BYTE $23</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/ED.html">$ED</a>: MR WITHIT - WHITE ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CEE"></span>$8CEE</td>
+<td class="instruction">.BYTE $13</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/EE.html">$EE</a>: MR ROCKITT - WHITE ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CEF"></span>$8CEF</td>
+<td class="instruction">.BYTE $02</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/EF.html">$EF</a>: MR WACKER - MAP ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CF0"></span>$8CF0</td>
+<td class="instruction">.BYTE $22</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/F0.html">$F0</a>: MR WITHIT - MAP ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CF1"></span>$8CF1</td>
+<td class="instruction">.BYTE $13</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/F1.html">$F1</a>: MR ROCKITT - WHITE ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CF2"></span>$8CF2</td>
+<td class="instruction">.BYTE $31</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/F2.html">$F2</a>: MR CREAK - READING ROOM</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CF3"></span>$8CF3</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/F3.html">$F3</a>: PLAYTIME (ANGELFACE has mumps)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CF4"></span>$8CF4</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/F4.html">$F4</a>: PLAYTIME (EINSTEIN is going to grass on ERIC)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CF5"></span>$8CF5</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/F5.html">$F5</a>: PLAYTIME (BOY WONDER has hidden a pea-shooter)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CF6"></span>$8CF6</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/F6.html">$F6</a>: PLAYTIME</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CF7"></span>$8CF7</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/F7.html">$F7</a>: PLAYTIME</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CF8"></span>$8CF8</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/F8.html">$F8</a>: PLAYTIME</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CF9"></span>$8CF9</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/F9.html">$F9</a>: PLAYTIME</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CFA"></span>$8CFA</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/FA.html">$FA</a>: PLAYTIME</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CFB"></span>$8CFB</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/FB.html">$FB</a>: PLAYTIME</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CFC"></span>$8CFC</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/FC.html">$FC</a>: PLAYTIME (little boys stampede)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CFD"></span>$8CFD</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/FD.html">$FD</a>: PLAYTIME (little boys stampede)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CFE"></span>$8CFE</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/FE.html">$FE</a>: PLAYTIME</td>
+</tr>
+<tr>
+<td class="address-1"><span id="8CFF"></span>$8CFF</td>
+<td class="instruction">.BYTE $47</td>
+<td class="comment-1" rowspan="1">Lesson <a href="../lessons/FF.html">$FF</a>: PLAYTIME</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="8C80.html">$8C80</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#8CE0">Map</a></td>
+<td class="next">
+Next: <a href="8D00.html">$8D00</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

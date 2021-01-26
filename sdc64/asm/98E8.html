@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $98E8</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="987F.html">$987F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#98E8">Map</a></td>
+<td class="next">
+Next: <a href="98FB.html">$98FB</a>
+</td>
+</tr>
+</table>
+<div class="description">$98E8: Move sprites #0-#6 left by 64 pixels (1)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="3113.html">$3113</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="98E8"></span>$98E8</td>
+<td class="instruction">LDA #$CC</td>
+<td class="comment-1" rowspan="2">Store the MSB of the base address of the colour information area at <a href="005A.html#005D">$5D</a> for no apparent reason.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="98EA"></span>$98EA</td>
+<td class="instruction">STA $5D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="98EC"></span>$98EC</td>
+<td class="instruction">JSR <a href="95E8.html">$95E8</a></td>
+<td class="comment-1" rowspan="1">Is bit 8 of the x-coordinate of sprite #2 (the leftmost section of the speech bubble) set?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="98EF"></span>$98EF</td>
+<td class="instruction">BNE <a href="98E8.html#98F8">$98F8</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="98F1"></span>$98F1</td>
+<td class="instruction">CPY #$40</td>
+<td class="comment-1" rowspan="1">Is the x-coordinate of sprite #2 at least 64?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="98F3"></span>$98F3</td>
+<td class="instruction">BCS <a href="98E8.html#98F8">$98F8</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="98F5"></span>$98F5</td>
+<td class="instruction">JMP <a href="96E8.html">$96E8</a></td>
+<td class="comment-1" rowspan="1">Otherwise make the character who is currently speaking stop speaking, because he's going to be shifted off screen.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="98F8"></span>$98F8</td>
+<td class="instruction">JMP <a href="91E8.html">$91E8</a></td>
+<td class="comment-1" rowspan="1">Move sprites #0-#6 left by 64 pixels.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="987F.html">$987F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#98E8">Map</a></td>
+<td class="next">
+Next: <a href="98FB.html">$98FB</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $95E8</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="957F.html">$957F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#95E8">Map</a></td>
+<td class="next">
+Next: <a href="95FF.html">$95FF</a>
+</td>
+</tr>
+</table>
+<div class="description">$95E8: Check the x-coordinate of the leftmost section of the speech bubble (1)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="9868.html">$9868</a> and <a href="98E8.html">$98E8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="95E8"></span>$95E8</td>
+<td class="instruction">LDA $D015</td>
+<td class="comment-1" rowspan="1">Are any sprites currently enabled?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="95EB"></span>$95EB</td>
+<td class="instruction">BEQ <a href="95E8.html#95FC">$95FC</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="95ED"></span>$95ED</td>
+<td class="instruction">LDY $D004</td>
+<td class="comment-1" rowspan="1">Pick up the x-coordinate of sprite #2 (bits 0-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="95F0"></span>$95F0</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Disable all sprites.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="95F2"></span>$95F2</td>
+<td class="instruction">STA $D015</td>
+</tr>
+<tr>
+<td class="address-1"><span id="95F5"></span>$95F5</td>
+<td class="instruction">LDA $D010</td>
+<td class="comment-1" rowspan="2">Move bit 8 of sprite #2's x-coordinate into bit 3 of <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="95F8"></span>$95F8</td>
+<td class="instruction">ROL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="95F9"></span>$95F9</td>
+<td class="instruction">JMP <a href="98FB.html">$98FB</a></td>
+<td class="comment-1" rowspan="1">Set the zero flag if bit 8 of the x-coordinate of sprite #2 is reset.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="95FC"></span>$95FC</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Drop the return address from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="95FD"></span>$95FD</td>
+<td class="instruction">PLA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="95FE"></span>$95FE</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="957F.html">$957F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#95E8">Map</a></td>
+<td class="next">
+Next: <a href="95FF.html">$95FF</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

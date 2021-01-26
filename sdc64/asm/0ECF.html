@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $0ECF</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0ECE.html">$0ECE</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0ECF">Map</a></td>
+<td class="next">
+Next: <a href="0FBA.html">$0FBA</a>
+</td>
+</tr>
+</table>
+<div class="description">$0ECF: Make a teacher give lines to the closest main kid</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/78AA.html">$78AA</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="2A43.html">$2A43</a>. Makes a teacher who has been knocked over give lines to the closest main kid (if any).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0ECF"></span>$0ECF</td>
+<td class="instruction">JSR <a href="0BAC.html">$0BAC</a></td>
+<td class="comment-1" rowspan="1">Compute the coordinate ranges within which the teacher can see.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0ED2"></span>$0ED2</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="2"><a href="0072.html#0079">$79</a> will hold the distance from the teacher to the closest main kid. Initialise it to $FF.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0ED4"></span>$0ED4</td>
+<td class="instruction">STA $79</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0ED6"></span>
+<div class="comments">
+<div class="paragraph">
+First we check whether ERIC is in range.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0ED6"></span>$0ED6</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="1">Character number $14 is ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0ED8"></span>$0ED8</td>
+<td class="instruction">STA $07</td>
+<td class="comment-1" rowspan="1">Store this potential target character number at <a href="0007.html">$07</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EDA"></span>$0EDA</td>
+<td class="instruction">JSR <a href="0D67.html">$0D67</a></td>
+<td class="comment-1" rowspan="1">Is ERIC close to the teacher?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EDD"></span>$0EDD</td>
+<td class="instruction">BCC <a href="0ECF.html#0F0B">$0F0B</a></td>
+<td class="comment-1" rowspan="1">Branch if not to check EINSTEIN.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EDF"></span>$0EDF</td>
+<td class="instruction">LDA #$78</td>
+<td class="comment-1" rowspan="6">Prepare to address ERIC's character buffer at <a href="8C60.html">$8C60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EE1"></span>$0EE1</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EE2"></span>$0EE2</td>
+<td class="instruction">ADC $07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EE4"></span>$0EE4</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EE6"></span>$0EE6</td>
+<td class="instruction">LDA #$60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EE8"></span>$0EE8</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EEA"></span>$0EEA</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="3">Pick up ERIC's x-coordinate from his character buffer and store it at <a href="0007.html#000B">$0B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EEC"></span>$0EEC</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EEE"></span>$0EEE</td>
+<td class="instruction">STA $0B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EF0"></span>$0EF0</td>
+<td class="instruction">CMP $FC</td>
+<td class="comment-1" rowspan="1">Is it less than the teacher's x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EF2"></span>$0EF2</td>
+<td class="instruction">BCC <a href="0ECF.html#0EFA">$0EFA</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EF4"></span>$0EF4</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Now <span class="register">A</span> holds the difference between the teacher's and ERIC's x-coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EF5"></span>$0EF5</td>
+<td class="instruction">SBC $FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EF7"></span>$0EF7</td>
+<td class="instruction">JMP <a href="0ECF.html#0EFF">$0EFF</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0EFA"></span>$0EFA</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EFC"></span>$0EFC</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Now <span class="register">A</span> holds the difference between the teacher's and ERIC's x-coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EFD"></span>$0EFD</td>
+<td class="instruction">SBC $0B</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0EFF"></span>$0EFF</td>
+<td class="instruction">STA $7A</td>
+<td class="comment-1" rowspan="1">Store this x-coordinate difference at <a href="0072.html#007A">$7A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F01"></span>$0F01</td>
+<td class="instruction">CMP $79</td>
+<td class="comment-1" rowspan="1">Is it greater than any x-coordinate difference already calculated?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F03"></span>$0F03</td>
+<td class="instruction">BCS <a href="0ECF.html#0F0B">$0F0B</a></td>
+<td class="comment-1" rowspan="1">Branch if so (this branch is never made).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F05"></span>$0F05</td>
+<td class="instruction">STA $79</td>
+<td class="comment-1" rowspan="3">Otherwise store this new minimum x-coordinate difference at <a href="0072.html#0079">$79</a>, and ERIC's character number at <a href="0072.html#007B">$7B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F07"></span>$0F07</td>
+<td class="instruction">LDA $07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F09"></span>$0F09</td>
+<td class="instruction">STA $7B</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0F0B"></span>
+<div class="comments">
+<div class="paragraph">
+Next we check whether EINSTEIN is in range.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0F0B"></span>$0F0B</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="2">Character number $11 is EINSTEIN. Store this potential target character number at <a href="0007.html">$07</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F0D"></span>$0F0D</td>
+<td class="instruction">STA $07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F0F"></span>$0F0F</td>
+<td class="instruction">JSR <a href="0D67.html">$0D67</a></td>
+<td class="comment-1" rowspan="1">Is EINSTEIN close to the teacher?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F12"></span>$0F12</td>
+<td class="instruction">BCC <a href="0ECF.html#0F40">$0F40</a></td>
+<td class="comment-1" rowspan="1">Branch if not to check BOY WONDER.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F14"></span>$0F14</td>
+<td class="instruction">LDA #$78</td>
+<td class="comment-1" rowspan="6">Prepare to address EINSTEIN's character buffer at <a href="8960.html">$8960</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F16"></span>$0F16</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F17"></span>$0F17</td>
+<td class="instruction">ADC $07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F19"></span>$0F19</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F1B"></span>$0F1B</td>
+<td class="instruction">LDA #$60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F1D"></span>$0F1D</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F1F"></span>$0F1F</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="3">Pick up EINSTEIN's x-coordinate from his character buffer and store it at <a href="0007.html#000B">$0B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F21"></span>$0F21</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F23"></span>$0F23</td>
+<td class="instruction">STA $0B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F25"></span>$0F25</td>
+<td class="instruction">CMP $FC</td>
+<td class="comment-1" rowspan="1">Is it less than the teacher's x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F27"></span>$0F27</td>
+<td class="instruction">BCC <a href="0ECF.html#0F2F">$0F2F</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F29"></span>$0F29</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Now <span class="register">A</span> holds the difference between the teacher's and EINSTEIN's x-coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F2A"></span>$0F2A</td>
+<td class="instruction">SBC $FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F2C"></span>$0F2C</td>
+<td class="instruction">JMP <a href="0ECF.html#0F34">$0F34</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0F2F"></span>$0F2F</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F31"></span>$0F31</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Now <span class="register">A</span> holds the difference between the teacher's and EINSTEIN's x-coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F32"></span>$0F32</td>
+<td class="instruction">SBC $0B</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0F34"></span>$0F34</td>
+<td class="instruction">STA $7A</td>
+<td class="comment-1" rowspan="1">Store this x-coordinate difference at <a href="0072.html#007A">$7A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F36"></span>$0F36</td>
+<td class="instruction">CMP $79</td>
+<td class="comment-1" rowspan="1">Is it greater than any x-coordinate difference already calculated?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F38"></span>$0F38</td>
+<td class="instruction">BCS <a href="0ECF.html#0F40">$0F40</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F3A"></span>$0F3A</td>
+<td class="instruction">STA $79</td>
+<td class="comment-1" rowspan="3">Otherwise store this new minimum x-coordinate difference at <a href="0072.html#0079">$79</a>, and EINSTEIN's character number at <a href="0072.html#007B">$7B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F3C"></span>$0F3C</td>
+<td class="instruction">LDA $07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F3E"></span>$0F3E</td>
+<td class="instruction">STA $7B</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0F40"></span>
+<div class="comments">
+<div class="paragraph">
+Next we check whether BOY WONDER is in range.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0F40"></span>$0F40</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="2">Character number $11 is BOY WONDER. Store this potential target character number at <a href="0007.html">$07</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F42"></span>$0F42</td>
+<td class="instruction">STA $07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F44"></span>$0F44</td>
+<td class="instruction">JSR <a href="0D67.html">$0D67</a></td>
+<td class="comment-1" rowspan="1">Is BOY WONDER close to the teacher?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F47"></span>$0F47</td>
+<td class="instruction">BCC <a href="0ECF.html#0F75">$0F75</a></td>
+<td class="comment-1" rowspan="1">Branch if not to check ANGELFACE.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F49"></span>$0F49</td>
+<td class="instruction">LDA #$78</td>
+<td class="comment-1" rowspan="6">Prepare to address BOY WONDER's character buffer at <a href="8860.html">$8860</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F4B"></span>$0F4B</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F4C"></span>$0F4C</td>
+<td class="instruction">ADC $07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F4E"></span>$0F4E</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F50"></span>$0F50</td>
+<td class="instruction">LDA #$60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F52"></span>$0F52</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F54"></span>$0F54</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="3">Pick up BOY WONDER's x-coordinate from his character buffer and store it at <a href="0007.html#000B">$0B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F56"></span>$0F56</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F58"></span>$0F58</td>
+<td class="instruction">STA $0B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F5A"></span>$0F5A</td>
+<td class="instruction">CMP $FC</td>
+<td class="comment-1" rowspan="1">Is it less than the teacher's x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F5C"></span>$0F5C</td>
+<td class="instruction">BCC <a href="0ECF.html#0F64">$0F64</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F5E"></span>$0F5E</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Now <span class="register">A</span> holds the difference between the teacher's and BOY WONDER's x-coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F5F"></span>$0F5F</td>
+<td class="instruction">SBC $FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F61"></span>$0F61</td>
+<td class="instruction">JMP <a href="0ECF.html#0F69">$0F69</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0F64"></span>$0F64</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F66"></span>$0F66</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Now <span class="register">A</span> holds the difference between the teacher's and BOY WONDER's x-coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F67"></span>$0F67</td>
+<td class="instruction">SBC $0B</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0F69"></span>$0F69</td>
+<td class="instruction">STA $7A</td>
+<td class="comment-1" rowspan="1">Store this x-coordinate difference at <a href="0072.html#007A">$7A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F6B"></span>$0F6B</td>
+<td class="instruction">CMP $79</td>
+<td class="comment-1" rowspan="1">Is it greater than any x-coordinate difference already calculated?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F6D"></span>$0F6D</td>
+<td class="instruction">BCS <a href="0ECF.html#0F75">$0F75</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F6F"></span>$0F6F</td>
+<td class="instruction">STA $79</td>
+<td class="comment-1" rowspan="3">Otherwise store this new minimum x-coordinate difference at <a href="0072.html#0079">$79</a>, and BOY WONDER's character number at <a href="0072.html#007B">$7B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F71"></span>$0F71</td>
+<td class="instruction">LDA $07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F73"></span>$0F73</td>
+<td class="instruction">STA $7B</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0F75"></span>
+<div class="comments">
+<div class="paragraph">
+Finally we check whether ANGELFACE is in range.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0F75"></span>$0F75</td>
+<td class="instruction">LDA #$0F</td>
+<td class="comment-1" rowspan="2">Character number $0F is ANGELFACE. Store this potential target character number at <a href="0007.html">$07</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F77"></span>$0F77</td>
+<td class="instruction">STA $07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F79"></span>$0F79</td>
+<td class="instruction">JSR <a href="0D67.html">$0D67</a></td>
+<td class="comment-1" rowspan="1">Is ANGELFACE close to the teacher?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F7C"></span>$0F7C</td>
+<td class="instruction">BCC <a href="0ECF.html#0FAA">$0FAA</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F7E"></span>$0F7E</td>
+<td class="instruction">LDA #$78</td>
+<td class="comment-1" rowspan="6">Prepare to address ANGELFACE's character buffer at <a href="8760.html">$8760</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F80"></span>$0F80</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F81"></span>$0F81</td>
+<td class="instruction">ADC $07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F83"></span>$0F83</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F85"></span>$0F85</td>
+<td class="instruction">LDA #$60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F87"></span>$0F87</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F89"></span>$0F89</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="3">Pick up ANGELFACE's x-coordinate from his character buffer and store it at <a href="0007.html#000B">$0B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F8B"></span>$0F8B</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F8D"></span>$0F8D</td>
+<td class="instruction">STA $0B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F8F"></span>$0F8F</td>
+<td class="instruction">CMP $FC</td>
+<td class="comment-1" rowspan="1">Is it less than the teacher's x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F91"></span>$0F91</td>
+<td class="instruction">BCC <a href="0ECF.html#0F99">$0F99</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F93"></span>$0F93</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Now <span class="register">A</span> holds the difference between the teacher's and ANGELFACE's x-coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F94"></span>$0F94</td>
+<td class="instruction">SBC $FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F96"></span>$0F96</td>
+<td class="instruction">JMP <a href="0ECF.html#0F9E">$0F9E</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0F99"></span>$0F99</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F9B"></span>$0F9B</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Now <span class="register">A</span> holds the difference between the teacher's and ANGELFACE's x-coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0F9C"></span>$0F9C</td>
+<td class="instruction">SBC $0B</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0F9E"></span>$0F9E</td>
+<td class="instruction">STA $7A</td>
+<td class="comment-1" rowspan="1">Store this x-coordinate difference at <a href="0072.html#007A">$7A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FA0"></span>$0FA0</td>
+<td class="instruction">CMP $79</td>
+<td class="comment-1" rowspan="1">Is it greater than any x-coordinate difference already calculated?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FA2"></span>$0FA2</td>
+<td class="instruction">BCS <a href="0ECF.html#0FAA">$0FAA</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FA4"></span>$0FA4</td>
+<td class="instruction">STA $79</td>
+<td class="comment-1" rowspan="3">Otherwise store this new minimum x-coordinate difference at <a href="0072.html#0079">$79</a>, and ANGELFACE's character number at <a href="0072.html#007B">$7B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FA6"></span>$0FA6</td>
+<td class="instruction">LDA $07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FA8"></span>$0FA8</td>
+<td class="instruction">STA $7B</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0FAA"></span>
+<div class="comments">
+<div class="paragraph">
+Having checked whether ERIC, EINSTEIN, BOY WONDER and ANGELFACE are in range, we now see which (if any) is closest to the teacher.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0FAA"></span>$0FAA</td>
+<td class="instruction">INC $79</td>
+<td class="comment-1" rowspan="1">Were any of the main kids within lines-receiving range?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FAC"></span>$0FAC</td>
+<td class="instruction">BEQ <a href="0ECF.html#0FB9">$0FB9</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FAE"></span>$0FAE</td>
+<td class="instruction">LDA $7B</td>
+<td class="comment-1" rowspan="2">Pick up the character number of the closest main kid and store it at <a href="0072.html">$72</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FB0"></span>$0FB0</td>
+<td class="instruction">STA $72</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FB2"></span>$0FB2</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="1">Lines reprimand <a href="4B80.html">$08</a>: NOW DON'T DO IT AGAIN.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FB4"></span>$0FB4</td>
+<td class="instruction">STA $D8</td>
+<td class="comment-1" rowspan="1">Store this lines reprimand identifier at <a href="00D6.html#00D8">$D8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FB6"></span>$0FB6</td>
+<td class="instruction">JMP <a href="1DB7.html">$1DB7</a></td>
+<td class="comment-1" rowspan="1">Make the teacher gives lines to the closest main kid.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0FB9"></span>$0FB9</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0ECE.html">$0ECE</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0ECF">Map</a></td>
+<td class="next">
+Next: <a href="0FBA.html">$0FBA</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

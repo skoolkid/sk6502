@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $3868</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3805.html">$3805</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3868">Map</a></td>
+<td class="next">
+Next: <a href="38AC.html">$38AC</a>
+</td>
+</tr>
+</table>
+<div class="description">$3868: Copy the text graphic buffer to the screen</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="2573.html">$2573</a>, <a href="2BB0.html">$2BB0</a> and <a href="BE09.html">$BE09</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">X</td>
+<td class="register-desc">Character cell x-coordinate (0-39)</td>
+</tr>
+<tr>
+<td class="register">Y</td>
+<td class="register-desc">Character cell y-coordinate (0-24)</td>
+</tr>
+<tr>
+<td class="register">(<a href="0031.html">$31</a>)</td>
+<td class="register-desc">Number of bytes to copy (64 or 128)</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3868"></span>$3868</td>
+<td class="instruction">LDA #$E0</td>
+<td class="comment-1" rowspan="4">Prepare to address the screen bitmap at $E000.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="386A"></span>$386A</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="386C"></span>$386C</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="386E"></span>$386E</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3870"></span>$3870</td>
+<td class="instruction">INC $4F</td>
+<td class="comment-1" rowspan="22">Adjust the screen bitmap address at <a href="004D.html#004E">$4E</a> to correspond to the given coordinates in <span class="register">X</span> and <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3872"></span>$3872</td>
+<td class="instruction">LDA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3874"></span>$3874</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3875"></span>$3875</td>
+<td class="instruction">ADC #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3877"></span>$3877</td>
+<td class="instruction">BCC <a href="3868.html#387B">$387B</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3879"></span>$3879</td>
+<td class="instruction">INC $4F</td>
+</tr>
+<tr>
+<td class="address-2"><span id="387B"></span>$387B</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="387D"></span>$387D</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="387E"></span>$387E</td>
+<td class="instruction">BNE <a href="3868.html#3870">$3870</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="3880"></span>$3880</td>
+<td class="instruction">LDA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3882"></span>$3882</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3883"></span>$3883</td>
+<td class="instruction">ADC #$08</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3885"></span>$3885</td>
+<td class="instruction">BCC <a href="3868.html#3889">$3889</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3887"></span>$3887</td>
+<td class="instruction">INC $4F</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3889"></span>$3889</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="388B"></span>$388B</td>
+<td class="instruction">DEX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="388C"></span>$388C</td>
+<td class="instruction">BNE <a href="3868.html#3880">$3880</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="388E"></span>$388E</td>
+<td class="instruction">SEC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="388F"></span>$388F</td>
+<td class="instruction">SBC #$C0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3891"></span>$3891</td>
+<td class="instruction">BCS <a href="3868.html#3895">$3895</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3893"></span>$3893</td>
+<td class="instruction">DEC $4F</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3895"></span>$3895</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3897"></span>$3897</td>
+<td class="instruction">LDA #$45</td>
+<td class="comment-1" rowspan="4">Prepare to address the text graphic buffer at <a href="4500.html">$4500</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3899"></span>$3899</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="389B"></span>$389B</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="389D"></span>$389D</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="389F"></span>$389F</td>
+<td class="instruction">LDY #$FF</td>
+<td class="comment-1" rowspan="7">Copy the specified portion of the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38A1"></span>$38A1</td>
+<td class="instruction">LDX $31</td>
+</tr>
+<tr>
+<td class="address-2"><span id="38A3"></span>$38A3</td>
+<td class="instruction">LDA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38A5"></span>$38A5</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38A7"></span>$38A7</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38A8"></span>$38A8</td>
+<td class="instruction">DEX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38A9"></span>$38A9</td>
+<td class="instruction">BNE <a href="3868.html#38A3">$38A3</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="38AB"></span>$38AB</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3805.html">$3805</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3868">Map</a></td>
+<td class="next">
+Next: <a href="38AC.html">$38AC</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

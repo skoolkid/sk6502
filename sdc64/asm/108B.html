@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $108B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="108A.html">$108A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#108B">Map</a></td>
+<td class="next">
+Next: <a href="1129.html">$1129</a>
+</td>
+</tr>
+</table>
+<div class="description">$108B: Get the next character of a message being spoken or written</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/70D2.html">$70D2</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="1129.html">$1129</a> and <a href="246B.html">$246B</a>.
+</div>
+</div>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Code of the next character</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="108B"></span>$108B</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">Prepare <span class="register">Y</span> for indexed addressing.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="108D"></span>$108D</td>
+<td class="instruction">LDA $AF</td>
+<td class="comment-1" rowspan="1">Is there a submessage address at <a href="00AE.html">$AE</a>?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="108F"></span>$108F</td>
+<td class="instruction">BEQ <a href="108B.html#10A2">$10A2</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1091"></span>$1091</td>
+<td class="instruction">LDA ($AE),Y</td>
+<td class="comment-1" rowspan="1">Pick up the next character from the submessage.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1093"></span>$1093</td>
+<td class="instruction">INC $AE</td>
+<td class="comment-1" rowspan="3">Increment the submessage address at <a href="00AE.html">$AE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1095"></span>$1095</td>
+<td class="instruction">BNE <a href="108B.html#1099">$1099</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1097"></span>$1097</td>
+<td class="instruction">INC $AF</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1099"></span>$1099</td>
+<td class="instruction">CMP #$00</td>
+<td class="comment-1" rowspan="1">Is the submessage finished?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="109B"></span>$109B</td>
+<td class="instruction">BEQ <a href="108B.html#10A0">$10A0</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="109D"></span>$109D</td>
+<td class="instruction">JMP <a href="108B.html#1128">$1128</a></td>
+<td class="comment-1" rowspan="1">Otherwise return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="10A0"></span>$10A0</td>
+<td class="instruction">STY $AF</td>
+<td class="comment-1" rowspan="1">Clear the submessage address from <a href="00AE.html">$AE</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="10A2"></span>$10A2</td>
+<td class="instruction">LDA ($AC),Y</td>
+<td class="comment-1" rowspan="1">Pick up the next character from the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10A4"></span>$10A4</td>
+<td class="instruction">INC $AC</td>
+<td class="comment-1" rowspan="3">Increment the message address at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10A6"></span>$10A6</td>
+<td class="instruction">BNE <a href="108B.html#10AA">$10AA</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="10A8"></span>$10A8</td>
+<td class="instruction">INC $AD</td>
+</tr>
+<tr>
+<td class="address-2"><span id="10AA"></span>$10AA</td>
+<td class="instruction">CMP #$80</td>
+<td class="comment-1" rowspan="1">Is the character code $80 or greater?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10AC"></span>$10AC</td>
+<td class="instruction">BCS <a href="108B.html#10B2">$10B2</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10AE"></span>$10AE</td>
+<td class="instruction">CMP #$20</td>
+<td class="comment-1" rowspan="1">Is the character code between $20 and $7F?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10B0"></span>$10B0</td>
+<td class="instruction">BCS <a href="108B.html#1128">$1128</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="10B2"></span>$10B2</td>
+<td class="instruction">CMP #$10</td>
+<td class="comment-1" rowspan="1">Is the character code less than $10?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10B4"></span>$10B4</td>
+<td class="instruction">BCC <a href="108B.html#1128">$1128</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10B6"></span>$10B6</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save the character code ($11-$1F, $80-$FF) temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10B7"></span>$10B7</td>
+<td class="instruction">CMP #$80</td>
+<td class="comment-1" rowspan="1">Is the character code $80 or greater?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10B9"></span>$10B9</td>
+<td class="instruction">BCS <a href="108B.html#10EE">$10EE</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10BB"></span>$10BB</td>
+<td class="instruction">CMP #$18</td>
+<td class="comment-1" rowspan="1">Is the character code between $18 and $1F?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10BD"></span>$10BD</td>
+<td class="instruction">BCS <a href="108B.html#10CA">$10CA</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10BF"></span>$10BF</td>
+<td class="instruction">LDA #$47</td>
+<td class="comment-1" rowspan="4">The character names are stored at intervals of $0E from <a href="4780.html">$4780</a> onwards. Store this base address at <a href="001B.html#001D">$1D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10C1"></span>$10C1</td>
+<td class="instruction">STA $1E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10C3"></span>$10C3</td>
+<td class="instruction">LDA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10C5"></span>$10C5</td>
+<td class="instruction">STA $1D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10C7"></span>$10C7</td>
+<td class="instruction">JMP <a href="108B.html#10D6">$10D6</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="10CA"></span>$10CA</td>
+<td class="instruction">LDA #$47</td>
+<td class="comment-1" rowspan="4">Store <a href="47F0.html">$47F0</a> (Please Sir - I cannot tell a lie . .) at <a href="001B.html#001D">$1D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10CC"></span>$10CC</td>
+<td class="instruction">STA $1E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10CE"></span>$10CE</td>
+<td class="instruction">LDA #$F0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10D0"></span>$10D0</td>
+<td class="instruction">STA $1D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10D2"></span>$10D2</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore the character code ($18-$1F) to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10D3"></span>$10D3</td>
+<td class="instruction">JMP <a href="108B.html#111D">$111D</a></td>
+<td class="comment-1" rowspan="1">Jump forward with submessage address <a href="47F0.html">$47F0</a> at <a href="001B.html#001D">$1D</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="10D6"></span>$10D6</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore the character code ($11-$17) to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10D7"></span>$10D7</td>
+<td class="instruction">AND #$EF</td>
+<td class="comment-1" rowspan="1">Clear bit 4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10D9"></span>$10D9</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="9">Multiply <span class="register">A</span> by 14.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10DA"></span>$10DA</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10DC"></span>$10DC</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10DD"></span>$10DD</td>
+<td class="instruction">STA $56</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10DF"></span>$10DF</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10E0"></span>$10E0</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10E1"></span>$10E1</td>
+<td class="instruction">ADC $56</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10E3"></span>$10E3</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10E4"></span>$10E4</td>
+<td class="instruction">ADC $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10E6"></span>$10E6</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="3">Add <span class="register">A</span> to the address stored at <a href="001B.html#001D">$1D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10E7"></span>$10E7</td>
+<td class="instruction">ADC $1D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10E9"></span>$10E9</td>
+<td class="instruction">STA $1D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10EB"></span>$10EB</td>
+<td class="instruction">JMP <a href="108B.html#111D">$111D</a></td>
+<td class="comment-1" rowspan="1">Jump forward with this character name submessage address at <a href="001B.html#001D">$1D</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="10EE"></span>$10EE</td>
+<td class="instruction">LDA #$4D</td>
+<td class="comment-1" rowspan="2">Initialise the MSB of the submessage address to $4D.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10F0"></span>$10F0</td>
+<td class="instruction">STA $1E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10F2"></span>$10F2</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore the character code ($80-$FF) to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10F3"></span>$10F3</td>
+<td class="instruction">AND #$7F</td>
+<td class="comment-1" rowspan="1">Clear bit 7.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10F5"></span>$10F5</td>
+<td class="instruction">CMP #$16</td>
+<td class="comment-1" rowspan="1">Is the character code now less than $16?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10F7"></span>$10F7</td>
+<td class="instruction">BCC <a href="108B.html#1113">$1113</a></td>
+<td class="comment-1" rowspan="1">Branch if so with the MSB equal to $4D.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10F9"></span>$10F9</td>
+<td class="instruction">INC $1E</td>
+<td class="comment-1" rowspan="13">Set the MSB of the submessage address to $4E if the character code is between $16 and $2A, $4F if the character code is between $2B and $3F, $50 if the character code is between $40 and $55, $51 if the character code is between $56 and $6A, or $52 if the character code is greater than $6B.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10FB"></span>$10FB</td>
+<td class="instruction">CMP #$2B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="10FD"></span>$10FD</td>
+<td class="instruction">BCC <a href="108B.html#1113">$1113</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="10FF"></span>$10FF</td>
+<td class="instruction">INC $1E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1101"></span>$1101</td>
+<td class="instruction">CMP #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1103"></span>$1103</td>
+<td class="instruction">BCC <a href="108B.html#1113">$1113</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1105"></span>$1105</td>
+<td class="instruction">INC $1E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1107"></span>$1107</td>
+<td class="instruction">CMP #$56</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1109"></span>$1109</td>
+<td class="instruction">BCC <a href="108B.html#1113">$1113</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="110B"></span>$110B</td>
+<td class="instruction">INC $1E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="110D"></span>$110D</td>
+<td class="instruction">CMP #$6B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="110F"></span>$110F</td>
+<td class="instruction">BCC <a href="108B.html#1113">$1113</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1111"></span>$1111</td>
+<td class="instruction">INC $1E</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1113"></span>$1113</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="6">Multiply <span class="register">A</span> by 12. The result is the LSB of the submessage address.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1114"></span>$1114</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1115"></span>$1115</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1117"></span>$1117</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1118"></span>$1118</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1119"></span>$1119</td>
+<td class="instruction">ADC $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="111B"></span>$111B</td>
+<td class="instruction">STA $1D</td>
+<td class="comment-1" rowspan="1">Store the LSB at <a href="001B.html#001D">$1D</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="111D"></span>$111D</td>
+<td class="instruction">LDA $1D</td>
+<td class="comment-1" rowspan="4">Copy the submessage address from <a href="001B.html#001D">$1D</a> to <a href="00AE.html">$AE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="111F"></span>$111F</td>
+<td class="instruction">STA $AE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1121"></span>$1121</td>
+<td class="instruction">LDA $1E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1123"></span>$1123</td>
+<td class="instruction">STA $AF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1125"></span>$1125</td>
+<td class="instruction">JMP <a href="108B.html#1091">$1091</a></td>
+<td class="comment-1" rowspan="1">Jump back to pick up the first character from the submessage.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1128"></span>$1128</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="108A.html">$108A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#108B">Map</a></td>
+<td class="next">
+Next: <a href="1129.html">$1129</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

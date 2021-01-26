@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2500</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="24A7.html">$24A7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2500">Map</a></td>
+<td class="next">
+Next: <a href="253E.html">$253E</a>
+</td>
+</tr>
+</table>
+<div class="description">$2500: Prepare a message telling the kids to go to a certain page in their books</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="09E9.html">$09E9</a>, <a href="0A58.html">$0A58</a> and <a href="0B3B.html">$0B3B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2500"></span>$2500</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="1">Generate a random number in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2503"></span>$2503</td>
+<td class="instruction">ORA #$80</td>
+<td class="comment-1" rowspan="4">Set bit 7 to ensure that the number has three digits and store the result as a two-byte value at <a href="00A2.html#00A3">$A3</a>. This will be the page number.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2505"></span>$2505</td>
+<td class="instruction">STA $A3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2507"></span>$2507</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2509"></span>$2509</td>
+<td class="instruction">STA $A4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="250B"></span>$250B</td>
+<td class="instruction">JSR <a href="217E.html">$217E</a></td>
+<td class="comment-1" rowspan="1">Generate the character codes for the digits of this value.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="250E"></span>$250E</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="1">Generate a random value in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2511"></span>$2511</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is bit 7 set?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2512"></span>$2512</td>
+<td class="instruction">BCS <a href="2500.html#251F">$251F</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2514"></span>$2514</td>
+<td class="instruction">LDA #$9D</td>
+<td class="comment-1" rowspan="2">$9D is the LSB of <a href="5C9D.html">$5C9D</a>: ANSWER THE QUESTIONS ON PAGE 123 OF YOUR LOVELY TEXTBOOK.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2516"></span>$2516</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2518"></span>$2518</td>
+<td class="instruction">LDA #$BA</td>
+<td class="comment-1" rowspan="2">$BA is the LSB of the address of the '1' in this message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="251A"></span>$251A</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="251C"></span>$251C</td>
+<td class="instruction">JMP <a href="2500.html#2527">$2527</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="251F"></span>$251F</td>
+<td class="instruction">LDA #$62</td>
+<td class="comment-1" rowspan="2">$62 is the LSB of <a href="5C62.html">$5C62</a>: TURN TO PAGE 123 OF YOUR BOOKS,BE SILENT AND START READING.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2521"></span>$2521</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2523"></span>$2523</td>
+<td class="instruction">LDA #$6F</td>
+<td class="comment-1" rowspan="2">$6F is the LSB of the address of the '1' in this message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2525"></span>$2525</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2527"></span>$2527</td>
+<td class="instruction">LDA #$5C</td>
+<td class="comment-1" rowspan="2">Set the MSB of the message address at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2529"></span>$2529</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="252B"></span>$252B</td>
+<td class="instruction">STA $4F</td>
+<td class="comment-1" rowspan="1">Set the MSB of the address of the '1' at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="252D"></span>$252D</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="9">Copy the character codes of the digits of the page number from <a href="0084.html#008C">$8C</a>, <a href="0084.html#008D">$8D</a> and <a href="0084.html#008E">$8E</a> into the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="252F"></span>$252F</td>
+<td class="instruction">LDA $8C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2531"></span>$2531</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2533"></span>$2533</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2534"></span>$2534</td>
+<td class="instruction">LDA $8D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2536"></span>$2536</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2538"></span>$2538</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2539"></span>$2539</td>
+<td class="instruction">LDA $8E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="253B"></span>$253B</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="253D"></span>$253D</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="24A7.html">$24A7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2500">Map</a></td>
+<td class="next">
+Next: <a href="253E.html">$253E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

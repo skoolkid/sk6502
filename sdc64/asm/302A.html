@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $302A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3012.html">$3012</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#302A">Map</a></td>
+<td class="next">
+Next: <a href="3047.html">$3047</a>
+</td>
+</tr>
+</table>
+<div class="description">$302A: Initialise voice #3</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="2CD9.html">$2CD9</a>, <a href="BA00.html">$BA00</a> and <a href="BA48.html">$BA48</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="302A"></span>$302A</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="3">Set voice #3 frequency to $8080.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="302C"></span>$302C</td>
+<td class="instruction">STA $D40E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="302F"></span>$302F</td>
+<td class="instruction">STA $D40F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3032"></span>$3032</td>
+<td class="instruction">STA $D412</td>
+<td class="comment-1" rowspan="1">Set voice #3 control register: voice off, noise enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3035"></span>$3035</td>
+<td class="instruction">LDA #$0F</td>
+<td class="comment-1" rowspan="2">Set volume to maximum.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3037"></span>$3037</td>
+<td class="instruction">STA $D418</td>
+</tr>
+<tr>
+<td class="address-1"><span id="303A"></span>$303A</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Set voice #3 attack length to 2ms and delay length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="303C"></span>$303C</td>
+<td class="instruction">STA $D413</td>
+</tr>
+<tr>
+<td class="address-1"><span id="303F"></span>$303F</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set voice #3 sustain volume to 0 and release length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3041"></span>$3041</td>
+<td class="instruction">STA $D414</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3044"></span>$3044</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1">Set <span class="register">A</span> to $80 for no particular reason.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3046"></span>$3046</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3012.html">$3012</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#302A">Map</a></td>
+<td class="next">
+Next: <a href="3047.html">$3047</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

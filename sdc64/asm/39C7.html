@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $39C7</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3940.html">$3940</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#39C7">Map</a></td>
+<td class="next">
+Next: <a href="3A90.html">$3A90</a>
+</td>
+</tr>
+</table>
+<div class="description">$39C7: Interrupt routine</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+The address of this routine is placed at $FFFE by the routines at <a href="2CD9.html">$2CD9</a>, <a href="BA00.html">$BA00</a> and <a href="BA48.html">$BA48</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="39C7"></span>$39C7</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Push <span class="register">A</span> onto the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39C8"></span>$39C8</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="2">Push <span class="register">X</span> onto the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39C9"></span>$39C9</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39CA"></span>$39CA</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="2">Push <span class="register">Y</span> onto the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39CB"></span>$39CB</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="39CC"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="BAB4.html">$BAB4</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="39CC"></span>$39CC</td>
+<td class="instruction">INC $82</td>
+<td class="comment-1" rowspan="1">Increment the interrupt counter at <a href="0082.html">$82</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39CE"></span>$39CE</td>
+<td class="instruction">DEC $2E</td>
+<td class="comment-1" rowspan="1">Decrement the timing counter at <a href="002E.html">$2E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39D0"></span>$39D0</td>
+<td class="instruction">DEC $C9</td>
+<td class="comment-1" rowspan="1">Decrement the shield/safe timing counter at <a href="00C9.html">$C9</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39D2"></span>$39D2</td>
+<td class="instruction">BEQ <a href="39C7.html#39D7">$39D7</a></td>
+<td class="comment-1" rowspan="1">Branch if it's time to adjust the colours of the safe or any shields.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39D4"></span>$39D4</td>
+<td class="instruction">JMP <a href="39C7.html#3A41">$3A41</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="39D7"></span>$39D7</td>
+<td class="instruction">LDA #$19</td>
+<td class="comment-1" rowspan="2">Reset the shield/safe timing counter at <a href="00C9.html">$C9</a> to $19.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39D9"></span>$39D9</td>
+<td class="instruction">STA $C9</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39DB"></span>$39DB</td>
+<td class="instruction">LDX #$0F</td>
+<td class="comment-1" rowspan="5">Prepare to read 15 entries from the shield locations and status table at <a href="58E0.html">$58E0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39DD"></span>$39DD</td>
+<td class="instruction">LDA #$58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39DF"></span>$39DF</td>
+<td class="instruction">STA $EE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39E1"></span>$39E1</td>
+<td class="instruction">LDA #$E0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39E3"></span>$39E3</td>
+<td class="instruction">STA $ED</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39E5"></span>$39E5</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1">Initialise the index.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="39E7"></span>$39E7</td>
+<td class="instruction">LDA ($ED),Y</td>
+<td class="comment-1" rowspan="5">Pick up a shield's coordinates and copy them to <a href="00EC.html#00EF">$EF</a> and <a href="00EC.html#00F0">$F0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39E9"></span>$39E9</td>
+<td class="instruction">STA $EF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39EB"></span>$39EB</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39EC"></span>$39EC</td>
+<td class="instruction">LDA ($ED),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39EE"></span>$39EE</td>
+<td class="instruction">STA $F0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39F0"></span>$39F0</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="2">Pick up the shield's status byte.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39F1"></span>$39F1</td>
+<td class="instruction">LDA ($ED),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39F3"></span>$39F3</td>
+<td class="instruction">BEQ <a href="39C7.html#3A22">$3A22</a></td>
+<td class="comment-1" rowspan="1">Branch if it's zero (the shield is not flashing).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39F5"></span>$39F5</td>
+<td class="instruction">LDA $EF</td>
+<td class="comment-1" rowspan="1">Pick up the shield's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39F7"></span>$39F7</td>
+<td class="instruction">CMP $58</td>
+<td class="comment-1" rowspan="1">Is the shield off screen to the left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39F9"></span>$39F9</td>
+<td class="instruction">BCC <a href="39C7.html#3A22">$3A22</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39FB"></span>$39FB</td>
+<td class="instruction">CMP $59</td>
+<td class="comment-1" rowspan="1">Is the shield off screen to the right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39FD"></span>$39FD</td>
+<td class="instruction">BCS <a href="39C7.html#3A22">$3A22</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39FF"></span>$39FF</td>
+<td class="instruction">STY $F4</td>
+<td class="comment-1" rowspan="1">Store the shield table index at <a href="00F2.html#00F4">$F4</a> temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A01"></span>$3A01</td>
+<td class="instruction">LDA #$CC</td>
+<td class="comment-1" rowspan="4">Store $CC00 (the base address of the colour information) at <a href="00F2.html">$F2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A03"></span>$3A03</td>
+<td class="instruction">STA $F3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A05"></span>$3A05</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A07"></span>$3A07</td>
+<td class="instruction">STA $F2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A09"></span>$3A09</td>
+<td class="instruction">LDY $F0</td>
+<td class="comment-1" rowspan="1">Pick up the shield's y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A0B"></span>$3A0B</td>
+<td class="instruction">BEQ <a href="39C7.html#3A1B">$3A1B</a></td>
+<td class="comment-1" rowspan="1">Branch if the y-coordinate is 0 (this never happens).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A0D"></span>$3A0D</td>
+<td class="instruction">LDA $F2</td>
+<td class="comment-1" rowspan="8">Adjust the colour information address stored at <a href="00F2.html">$F2</a> to the beginning of the row corresponding to the shield's y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A0F"></span>$3A0F</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A10"></span>$3A10</td>
+<td class="instruction">ADC #$28</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A12"></span>$3A12</td>
+<td class="instruction">BCC <a href="39C7.html#3A16">$3A16</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A14"></span>$3A14</td>
+<td class="instruction">INC $F3</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A16"></span>$3A16</td>
+<td class="instruction">STA $F2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A18"></span>$3A18</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A19"></span>$3A19</td>
+<td class="instruction">BNE <a href="39C7.html#3A0D">$3A0D</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A1B"></span>$3A1B</td>
+<td class="instruction">LDA $EF</td>
+<td class="comment-1" rowspan="1">Pick up the shield's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A1D"></span>$3A1D</td>
+<td class="instruction">JSR <a href="3A90.html">$3A90</a></td>
+<td class="comment-1" rowspan="1">Update the colour information for this flashing shield.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A20"></span>$3A20</td>
+<td class="instruction">LDY $F4</td>
+<td class="comment-1" rowspan="1">Restore the shield table index from <a href="00F2.html#00F4">$F4</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A22"></span>$3A22</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">Point at the next entry in the shield table.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A23"></span>$3A23</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">Have we checked every entry yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A24"></span>$3A24</td>
+<td class="instruction">BNE <a href="39C7.html#39E7">$39E7</a></td>
+<td class="comment-1" rowspan="1">Branch back if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A26"></span>$3A26</td>
+<td class="instruction">LDA $D5</td>
+<td class="comment-1" rowspan="1">Pick up the safe status indicator from <a href="00D5.html">$D5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A28"></span>$3A28</td>
+<td class="instruction">BEQ <a href="39C7.html#3A41">$3A41</a></td>
+<td class="comment-1" rowspan="1">Branch unless the safe is flashing.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A2A"></span>$3A2A</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="1">10 is the x-coordinate of the safe.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A2C"></span>$3A2C</td>
+<td class="instruction">CMP $58</td>
+<td class="comment-1" rowspan="1">Is the safe off screen to the left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A2E"></span>$3A2E</td>
+<td class="instruction">BCC <a href="39C7.html#3A41">$3A41</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A30"></span>$3A30</td>
+<td class="instruction">CMP $59</td>
+<td class="comment-1" rowspan="1">Is the safe off screen to the right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A32"></span>$3A32</td>
+<td class="instruction">BCS <a href="39C7.html#3A41">$3A41</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A34"></span>$3A34</td>
+<td class="instruction">LDA #$CD</td>
+<td class="comment-1" rowspan="4">Store $CD68 at <a href="00F2.html">$F2</a>. This colour information address corresponds to the beginning of the row where the safe is.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A36"></span>$3A36</td>
+<td class="instruction">STA $F3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A38"></span>$3A38</td>
+<td class="instruction">LDA #$68</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A3A"></span>$3A3A</td>
+<td class="instruction">STA $F2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A3C"></span>$3A3C</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="1">10 is the x-coordinate of the safe.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A3E"></span>$3A3E</td>
+<td class="instruction">JSR <a href="3A90.html">$3A90</a></td>
+<td class="comment-1" rowspan="1">Update the colour information for the safe.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A41"></span>$3A41</td>
+<td class="instruction">LDA $DC0D</td>
+<td class="comment-1" rowspan="1">Acknowledge the interrupt.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A44"></span>$3A44</td>
+<td class="instruction">JSR <a href="3940.html">$3940</a></td>
+<td class="comment-1" rowspan="1">Read the keyboard and store the result at <a href="004C.html">$4C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A47"></span>$3A47</td>
+<td class="instruction">LDA $4C</td>
+<td class="comment-1" rowspan="1">Was a key pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A49"></span>$3A49</td>
+<td class="instruction">BNE <a href="39C7.html#3A85">$3A85</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A4B"></span>$3A4B</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Prepare to read from data port A.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A4D"></span>$3A4D</td>
+<td class="instruction">STA $DC02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A50"></span>$3A50</td>
+<td class="instruction">LDA $DC00</td>
+<td class="comment-1" rowspan="1">Read from data port A.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A53"></span>$3A53</td>
+<td class="instruction">EOR #$FF</td>
+<td class="comment-1" rowspan="1">Flip every bit.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A55"></span>$3A55</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save the result temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A56"></span>$3A56</td>
+<td class="instruction">AND #$10</td>
+<td class="comment-1" rowspan="1">Keep only bit 4 (joystick fire button).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A58"></span>$3A58</td>
+<td class="instruction">BNE <a href="39C7.html#3A7B">$3A7B</a></td>
+<td class="comment-1" rowspan="1">Branch if the fire button was pressed.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A5A"></span>$3A5A</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore the joystick read result to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A5B"></span>$3A5B</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Was the joystick moved up?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A5C"></span>$3A5C</td>
+<td class="instruction">BCC <a href="39C7.html#3A63">$3A63</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A5E"></span>$3A5E</td>
+<td class="instruction">LDA #$D1</td>
+<td class="comment-1" rowspan="1">Signal: joystick was moved up ('Q' with bit 7 set).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A60"></span>$3A60</td>
+<td class="instruction">JMP <a href="39C7.html#3A83">$3A83</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A63"></span>$3A63</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Was the joystick moved down?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A64"></span>$3A64</td>
+<td class="instruction">BCC <a href="39C7.html#3A6B">$3A6B</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A66"></span>$3A66</td>
+<td class="instruction">LDA #$C1</td>
+<td class="comment-1" rowspan="1">Signal: joystick was moved down ('A' with bit 7 set).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A68"></span>$3A68</td>
+<td class="instruction">JMP <a href="39C7.html#3A83">$3A83</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A6B"></span>$3A6B</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Was the joystick moved left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A6C"></span>$3A6C</td>
+<td class="instruction">BCC <a href="39C7.html#3A73">$3A73</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A6E"></span>$3A6E</td>
+<td class="instruction">LDA #$CF</td>
+<td class="comment-1" rowspan="1">Signal: joystick was moved left ('O' with bit 7 set).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A70"></span>$3A70</td>
+<td class="instruction">JMP <a href="39C7.html#3A83">$3A83</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A73"></span>$3A73</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Was the joystick moved right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A74"></span>$3A74</td>
+<td class="instruction">BCC <a href="39C7.html#3A81">$3A81</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A76"></span>$3A76</td>
+<td class="instruction">LDA #$D0</td>
+<td class="comment-1" rowspan="1">Signal: joystick was moved right ('P' with bit 7 set).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A78"></span>$3A78</td>
+<td class="instruction">JMP <a href="39C7.html#3A83">$3A83</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A7B"></span>$3A7B</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore the joystick read result to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A7C"></span>$3A7C</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="1">Signal: joystick fire button was pressed ('F').</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A7E"></span>$3A7E</td>
+<td class="instruction">JMP <a href="39C7.html#3A83">$3A83</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A81"></span>$3A81</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">Signal: joystick was not moved.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A83"></span>$3A83</td>
+<td class="instruction">STA $4C</td>
+<td class="comment-1" rowspan="1">Store the result of the joystick read at <a href="004C.html">$4C</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3A85"></span>$3A85</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="2">Set all bits in the port A data direction register: every bit of port A can be read and written.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A87"></span>$3A87</td>
+<td class="instruction">STA $DC02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A8A"></span>$3A8A</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Restore <span class="register">Y</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A8B"></span>$3A8B</td>
+<td class="instruction">TAY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A8C"></span>$3A8C</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Restore <span class="register">X</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A8D"></span>$3A8D</td>
+<td class="instruction">TAX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A8E"></span>$3A8E</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">A</span> from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3A8F"></span>$3A8F</td>
+<td class="instruction">RTI</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3940.html">$3940</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#39C7">Map</a></td>
+<td class="next">
+Next: <a href="3A90.html">$3A90</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

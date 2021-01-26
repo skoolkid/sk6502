@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Data at $00AC</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="00AA.html">$00AA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#00AC">Map</a></td>
+<td class="next">
+Next: <a href="00AE.html">$00AE</a>
+</td>
+</tr>
+</table>
+<div class="description">$00AC: Bytes $6B and and $6C of the character's buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Holds one of the following:
+</div>
+<div class="paragraph">
+<ul class="">
+<li>address of the next character in the message being written on a blackboard or spoken</li>
+<li>coordinates of the next location to move to in pursuit of ERIC</li>
+<li>number of movements remaining to navigate a staircase ($AC)</li>
+<li>walkabout or intermediate destination x-coordinate ($AC)</li>
+<li>walkabout or intermediate destination pace counter ($AD)</li>
+<li>number of movements remaining to wipe the blackboard ($AC)</li>
+<li>x-coordinate of the next column of the blackboard to wipe ($AD)</li>
+</ul>
+</div>
+<div class="paragraph">
+Used by the routines at <a href="09E9.html">$09E9</a>, <a href="0A58.html">$0A58</a>, <a href="0C3F.html">$0C3F</a>, <a href="0E35.html">$0E35</a>, <a href="108B.html">$108B</a>, <a href="1129.html">$1129</a>, <a href="12B5.html">$12B5</a>, <a href="136F.html">$136F</a>, <a href="13F3.html">$13F3</a>, <a href="16E9.html">$16E9</a>, <a href="1A04.html">$1A04</a>, <a href="1EE3.html">$1EE3</a>, <a href="1FA0.html">$1FA0</a>, <a href="2241.html">$2241</a>, <a href="246B.html">$246B</a>, <a href="2500.html">$2500</a>, <a href="2757.html">$2757</a>, <a href="277D.html">$277D</a>, <a href="28BC.html">$28BC</a>, <a href="2E13.html">$2E13</a> and <a href="BE09.html">$BE09</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="00AC"></span>$00AC</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="00AD"></span>$00AD</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="00AA.html">$00AA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#00AC">Map</a></td>
+<td class="next">
+Next: <a href="00AE.html">$00AE</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

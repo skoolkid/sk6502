@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $13D5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="136F.html">$136F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#13D5">Map</a></td>
+<td class="next">
+Next: <a href="13F3.html">$13F3</a>
+</td>
+</tr>
+</table>
+<div class="description">$13D5: Determine the address of a blackboard buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="1421.html">$1421</a> and <a href="1445.html">$1445</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">Y</td>
+<td class="register-desc">Blackboard identifier (0, 1, 2)</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register"><a href="0015.html#0017">($17,$18)</a></td>
+<td class="register-desc">Blackboard buffer address</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="13D5"></span>$13D5</td>
+<td class="instruction">LDA #$44</td>
+<td class="comment-1" rowspan="4">Prepare to address the Reading Room blackboard buffer at <a href="4420.html">$4420</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13D7"></span>$13D7</td>
+<td class="instruction">STA $18</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13D9"></span>$13D9</td>
+<td class="instruction">LDA #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13DB"></span>$13DB</td>
+<td class="instruction">STA $17</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13DD"></span>$13DD</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">Transfer the blackboard identifier to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13DE"></span>$13DE</td>
+<td class="instruction">BEQ <a href="13D5.html#13F2">$13F2</a></td>
+<td class="comment-1" rowspan="1">Branch if it's the Reading Room blackboard (0).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13E0"></span>$13E0</td>
+<td class="instruction">LDA $17</td>
+<td class="comment-1" rowspan="4">Prepare to address the White Room blackboard buffer at <a href="4420.html#4426">$4426</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13E2"></span>$13E2</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13E3"></span>$13E3</td>
+<td class="instruction">ADC #$06</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13E5"></span>$13E5</td>
+<td class="instruction">STA $17</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13E7"></span>$13E7</td>
+<td class="instruction">CPY #$02</td>
+<td class="comment-1" rowspan="1">Do we want the Exam Room blackboard (2)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13E9"></span>$13E9</td>
+<td class="instruction">BNE <a href="13D5.html#13F2">$13F2</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13EB"></span>$13EB</td>
+<td class="instruction">LDA $17</td>
+<td class="comment-1" rowspan="4">Prepare to address the Exam Room blackboard buffer at <a href="4420.html#442C">$442C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13ED"></span>$13ED</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13EE"></span>$13EE</td>
+<td class="instruction">ADC #$06</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13F0"></span>$13F0</td>
+<td class="instruction">STA $17</td>
+</tr>
+<tr>
+<td class="address-2"><span id="13F2"></span>$13F2</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="136F.html">$136F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#13D5">Map</a></td>
+<td class="next">
+Next: <a href="13F3.html">$13F3</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

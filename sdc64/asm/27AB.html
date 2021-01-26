@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $27AB</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="27AA.html">$27AA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#27AB">Map</a></td>
+<td class="next">
+Next: <a href="27D1.html">$27D1</a>
+</td>
+</tr>
+</table>
+<div class="description">$27AB: Make a character walk up and down a few times or until a certain time</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6B3D.html">$6B3D</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command lists <a href="422B.html">$B6</a>, <a href="425D.html">$C0</a>, <a href="4272.html">$C2</a>, <a href="4290.html">$C4</a> and <a href="42AD.html">$CC</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="27AB"></span>$27AB</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Reset bit 1 of the flags byte at <a href="003F.html">$3F</a>: the character is not running continuously.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27AD"></span>$27AD</td>
+<td class="instruction">AND #$FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27AF"></span>$27AF</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27B1"></span>$27B1</td>
+<td class="instruction">JSR <a href="3BE7.html">$3BE7</a></td>
+<td class="comment-1" rowspan="2">Collect the next byte (the number of walkabouts) from the command list and store it at <a href="00A8.html">$A8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27B4"></span>$27B4</td>
+<td class="instruction">STA $A8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27B6"></span>$27B6</td>
+<td class="instruction">JSR <a href="3BE7.html">$3BE7</a></td>
+<td class="comment-1" rowspan="2">Collect the next byte (the event identifier, always 0) from the command list and store it at <a href="00A6.html">$A6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27B9"></span>$27B9</td>
+<td class="instruction">STA $A6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27BB"></span>$27BB</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="2">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a> and store it at <a href="00A6.html#00A7">$A7</a>. This will be the walkabout origin.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27BD"></span>$27BD</td>
+<td class="instruction">STA $A7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27BF"></span>$27BF</td>
+<td class="instruction">LDA #$27</td>
+<td class="comment-1" rowspan="4">Replace the address of this primary command routine in the character's buffer with that of <a href="27AB.html#27C7">$27C7</a> below.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27C1"></span>$27C1</td>
+<td class="instruction">STA $2A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27C3"></span>$27C3</td>
+<td class="instruction">LDA #$C7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27C5"></span>$27C5</td>
+<td class="instruction">STA $29</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27C7"></span>$27C7</td>
+<td class="instruction">DEC $A8</td>
+<td class="comment-1" rowspan="1">Decrement the number of mini-walkabouts remaining.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27C9"></span>$27C9</td>
+<td class="instruction">BNE <a href="27AB.html#27CE">$27CE</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's now zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27CB"></span>$27CB</td>
+<td class="instruction">JMP <a href="1D2D.html">$1D2D</a></td>
+<td class="comment-1" rowspan="1">Terminate this primary command.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="27CE"></span>$27CE</td>
+<td class="instruction">JMP <a href="1A04.html#1A1B">$1A1B</a></td>
+<td class="comment-1" rowspan="1">Set the character off on a mini-walkabout.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="27AA.html">$27AA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#27AB">Map</a></td>
+<td class="next">
+Next: <a href="27D1.html">$27D1</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

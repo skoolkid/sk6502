@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $3279</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="322E.html">$322E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3279">Map</a></td>
+<td class="next">
+Next: <a href="3326.html">$3326</a>
+</td>
+</tr>
+</table>
+<div class="description">$3279: Copy a character buffer into page 0</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="0800.html">$0800</a>, <a href="149F.html">$149F</a>, <a href="15B3.html">$15B3</a>, <a href="1640.html">$1640</a>, <a href="17E5.html">$17E5</a>, <a href="191B.html">$191B</a>, <a href="1EE3.html">$1EE3</a>, <a href="2241.html">$2241</a>, <a href="2696.html">$2696</a>, <a href="27D2.html">$27D2</a>, <a href="29C8.html">$29C8</a>, <a href="2B52.html">$2B52</a>, <a href="2E13.html">$2E13</a>, <a href="3AB4.html">$3AB4</a>, <a href="3AD5.html">$3AD5</a> and <a href="BE09.html">$BE09</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3279"></span>$3279</td>
+<td class="instruction">LDA #$60</td>
+<td class="comment-1" rowspan="9">Place the base address of the current character's buffer at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="327B"></span>$327B</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="327D"></span>$327D</td>
+<td class="instruction">LDA #$78</td>
+</tr>
+<tr>
+<td class="address-1"><span id="327F"></span>$327F</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3281"></span>$3281</td>
+<td class="instruction">LDX $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3283"></span>$3283</td>
+<td class="instruction">BEQ <a href="3279.html#328A">$328A</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="3285"></span>$3285</td>
+<td class="instruction">INC $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3287"></span>$3287</td>
+<td class="instruction">DEX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3288"></span>$3288</td>
+<td class="instruction">BNE <a href="3279.html#3285">$3285</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="328A"></span>$328A</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="3">Copy the character's animatory state from byte $60 of his buffer to <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="328C"></span>$328C</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="328E"></span>$328E</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3290"></span>$3290</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$01.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3291"></span>$3291</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy the character's x-coordinate from byte $61 of his buffer to <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3293"></span>$3293</td>
+<td class="instruction">STA $FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3295"></span>$3295</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$02.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3296"></span>$3296</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy the character's y-coordinate from byte $62 of his buffer to <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3298"></span>$3298</td>
+<td class="instruction">STA $FB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="329A"></span>$329A</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$03.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="329B"></span>$329B</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="5">Collect the primary command routine address from bytes $63 and $64 of the character's buffer and place it at <a href="0029.html">$29</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="329D"></span>$329D</td>
+<td class="instruction">STA $29</td>
+</tr>
+<tr>
+<td class="address-1"><span id="329F"></span>$329F</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32A0"></span>$32A0</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32A2"></span>$32A2</td>
+<td class="instruction">STA $2A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32A4"></span>$32A4</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$05.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32A5"></span>$32A5</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $65 of the character's buffer to <a href="00A6.html">$A6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32A7"></span>$32A7</td>
+<td class="instruction">STA $A6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32A9"></span>$32A9</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$06.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32AA"></span>$32AA</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $66 of the character's buffer to <a href="00A6.html#00A7">$A7</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32AC"></span>$32AC</td>
+<td class="instruction">STA $A7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32AE"></span>$32AE</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$07.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32AF"></span>$32AF</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $67 of the character's buffer to <a href="00A8.html">$A8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32B1"></span>$32B1</td>
+<td class="instruction">STA $A8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32B3"></span>$32B3</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$08.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32B4"></span>$32B4</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $68 of the character's buffer to <a href="00A9.html">$A9</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32B6"></span>$32B6</td>
+<td class="instruction">STA $A9</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32B8"></span>$32B8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$09.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32B9"></span>$32B9</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="5">Collect the interruptible subcommand routine address from bytes $69 and $6A of the character's buffer and place it at <a href="00AA.html">$AA</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32BB"></span>$32BB</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32BD"></span>$32BD</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32BE"></span>$32BE</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32C0"></span>$32C0</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32C2"></span>$32C2</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$0B.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32C3"></span>$32C3</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $6B of the character's buffer to <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32C5"></span>$32C5</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32C7"></span>$32C7</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$0C.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32C8"></span>$32C8</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $6C of the character's buffer to <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32CA"></span>$32CA</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32CC"></span>$32CC</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$0D.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32CD"></span>$32CD</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $6D of the character's buffer to <a href="00AE.html">$AE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32CF"></span>$32CF</td>
+<td class="instruction">STA $AE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32D1"></span>$32D1</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$0E.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32D2"></span>$32D2</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $6E of the character's buffer to <a href="00AE.html#00AF">$AF</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32D4"></span>$32D4</td>
+<td class="instruction">STA $AF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32D6"></span>$32D6</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$0F.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32D7"></span>$32D7</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="5">Collect the uninterruptible subcommand routine address from bytes $6F and $70 of the character's buffer and place it at <a href="00B0.html">$B0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32D9"></span>$32D9</td>
+<td class="instruction">STA $B0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32DB"></span>$32DB</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32DC"></span>$32DC</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32DE"></span>$32DE</td>
+<td class="instruction">STA $B1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32E0"></span>$32E0</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$11.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32E1"></span>$32E1</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $71 of the character's buffer to <a href="00B2.html">$B2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32E3"></span>$32E3</td>
+<td class="instruction">STA $B2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32E5"></span>$32E5</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$12.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32E6"></span>$32E6</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $72 of the character's buffer to <a href="00B3.html">$B3</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32E8"></span>$32E8</td>
+<td class="instruction">STA $B3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32EA"></span>$32EA</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$13.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32EB"></span>$32EB</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $73 of the character's buffer to <a href="00B4.html">$B4</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32ED"></span>$32ED</td>
+<td class="instruction">STA $B4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32EF"></span>$32EF</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$14.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32F0"></span>$32F0</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $74 of the character's buffer to <a href="00B5.html">$B5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32F2"></span>$32F2</td>
+<td class="instruction">STA $B5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32F4"></span>$32F4</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$15.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32F5"></span>$32F5</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="5">Collect the address reached in the character's command list from bytes $75 and $76 of the character's buffer and place it at <a href="003B.html">$3B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32F7"></span>$32F7</td>
+<td class="instruction">STA $3B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32F9"></span>$32F9</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32FA"></span>$32FA</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32FC"></span>$32FC</td>
+<td class="instruction">STA $3C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32FE"></span>$32FE</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$17.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="32FF"></span>$32FF</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="5">Collect the start address of the character's command list from bytes $77 and $78 of the character's buffer and place it at <a href="003D.html">$3D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3301"></span>$3301</td>
+<td class="instruction">STA $3D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3303"></span>$3303</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3304"></span>$3304</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3306"></span>$3306</td>
+<td class="instruction">STA $3E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3308"></span>$3308</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$19.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3309"></span>$3309</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $79 of the character's buffer to <a href="00FF.html">$FF</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="330B"></span>$330B</td>
+<td class="instruction">STA $FF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="330D"></span>$330D</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$1A.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="330E"></span>$330E</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy byte $7A of the character's buffer to <a href="003F.html">$3F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3310"></span>$3310</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3312"></span>$3312</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$1B.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3313"></span>$3313</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="5">Collect the continual subcommand routine address from bytes $7B and $7C of the character's buffer and place it at <a href="0039.html">$39</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3315"></span>$3315</td>
+<td class="instruction">STA $39</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3317"></span>$3317</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3318"></span>$3318</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="331A"></span>$331A</td>
+<td class="instruction">STA $3A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="331C"></span>$331C</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$1D.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="331D"></span>$331D</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="1">Pick up byte $7D of the character's buffer and do nothing with it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="331F"></span>$331F</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$1E.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3320"></span>$3320</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="1">Pick up byte $7E of the character's buffer and do nothing with it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3322"></span>$3322</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span>=$1F.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3323"></span>$3323</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="1">Pick up byte $7F of the character's buffer and do nothing with it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3325"></span>$3325</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="322E.html">$322E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3279">Map</a></td>
+<td class="next">
+Next: <a href="3326.html">$3326</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

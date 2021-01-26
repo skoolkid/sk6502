@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $105B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="105A.html">$105A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#105B">Map</a></td>
+<td class="next">
+Next: <a href="108A.html">$108A</a>
+</td>
+</tr>
+</table>
+<div class="description">$105B: Make a character go to a random location</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/69E7.html">$69E7</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command lists <a href="422B.html">$B6</a>, <a href="4255.html">$BE</a>, <a href="4272.html">$C2</a>, <a href="4290.html">$C4</a>, <a href="42AD.html">$CC</a>, <a href="42E3.html">$D0</a>, <a href="42FB.html">$D2</a>, <a href="4309.html">$D4</a>, <a href="4334.html">$D8</a>, <a href="436E.html">$DC</a> and <a href="438A.html">$E0</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="105B"></span>$105B</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="2">Generate a random value between 0 and 3.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="105E"></span>$105E</td>
+<td class="instruction">AND #$03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1060"></span>$1060</td>
+<td class="instruction">BNE <a href="105B.html#1069">$1069</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1062"></span>$1062</td>
+<td class="instruction">LDX #$24</td>
+<td class="comment-1" rowspan="2">These are the coordinates of the bookcase in the Revision Library just outside the Reading Room.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1064"></span>$1064</td>
+<td class="instruction">LDY #$03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1066"></span>$1066</td>
+<td class="instruction">JMP <a href="105B.html#1083">$1083</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1069"></span>$1069</td>
+<td class="instruction">CMP #$01</td>
+<td class="comment-1" rowspan="1">Is the random value equal to 1?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="106B"></span>$106B</td>
+<td class="instruction">BNE <a href="105B.html#1074">$1074</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="106D"></span>$106D</td>
+<td class="instruction">LDX #$5D</td>
+<td class="comment-1" rowspan="2">These are the coordinates of the far end of the fire escape.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="106F"></span>$106F</td>
+<td class="instruction">LDY #$03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1071"></span>$1071</td>
+<td class="instruction">JMP <a href="105B.html#1083">$1083</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1074"></span>$1074</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">Is the random value equal to 2?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1076"></span>$1076</td>
+<td class="instruction">BNE <a href="105B.html#107F">$107F</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1078"></span>$1078</td>
+<td class="instruction">LDX #$08</td>
+<td class="comment-1" rowspan="2">These are the coordinates of a spot between the big window and the stairs leading up to the staff room.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="107A"></span>$107A</td>
+<td class="instruction">LDY #$11</td>
+</tr>
+<tr>
+<td class="address-1"><span id="107C"></span>$107C</td>
+<td class="instruction">JMP <a href="105B.html#1083">$1083</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="107F"></span>$107F</td>
+<td class="instruction">LDX #$5D</td>
+<td class="comment-1" rowspan="2">These are the coordinates of the far end of the gym.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1081"></span>$1081</td>
+<td class="instruction">LDY #$11</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1083"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="2885.html">$2885</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1083"></span>$1083</td>
+<td class="instruction">STX $A6</td>
+<td class="comment-1" rowspan="2">Store the destination coordinates at <a href="00A6.html">$A6</a> in the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1085"></span>$1085</td>
+<td class="instruction">STY $A7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1087"></span>$1087</td>
+<td class="instruction">JMP <a href="12B5.html#12C1">$12C1</a></td>
+<td class="comment-1" rowspan="1">Make the character go to this location.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="105A.html">$105A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#105B">Map</a></td>
+<td class="next">
+Next: <a href="108A.html">$108A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

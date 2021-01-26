@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $16DF</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="16D0.html">$16D0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#16DF">Map</a></td>
+<td class="next">
+Next: <a href="16E8.html">$16E8</a>
+</td>
+</tr>
+</table>
+<div class="description">$16DF: 'H' pressed - hit</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/F492.html">$F492</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Called from the main loop at <a href="0800.html">$0800</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="16DF"></span>$16DF</td>
+<td class="instruction">LDX #$04</td>
+<td class="comment-1" rowspan="1">Bit 2 set: ERIC is hitting.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16E1"></span>$16E1</td>
+<td class="instruction">LDY #$0A</td>
+<td class="comment-1" rowspan="1"><a href="../graphics/as.html#0A">$0A</a> is the animatory state of ERIC raising his fist.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16E3"></span>$16E3</td>
+<td class="instruction">LDA #$12</td>
+<td class="comment-1" rowspan="1">This will initialise ERIC's action timer at <a href="00FE.html">$FE</a> to $12.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16E5"></span>$16E5</td>
+<td class="instruction">JMP <a href="169B.html#16B1">$16B1</a></td>
+<td class="comment-1" rowspan="1">Start the punch.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="16D0.html">$16D0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#16DF">Map</a></td>
+<td class="next">
+Next: <a href="16E8.html">$16E8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2D1F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2D18.html">$2D18</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2D1F">Map</a></td>
+<td class="next">
+Next: <a href="2D3E.html">$2D3E</a>
+</td>
+</tr>
+</table>
+<div class="description">$2D1F: Set pointers to screen bitmap and colour information</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="2CD9.html">$2CD9</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2D1F"></span>$2D1F</td>
+<td class="instruction">LDA $DD02</td>
+<td class="comment-1" rowspan="3">Set bits 0 and 1 at $DD02; this enables bits 0 and 1 in port A to be read and written.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D22"></span>$2D22</td>
+<td class="instruction">ORA #$03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D24"></span>$2D24</td>
+<td class="instruction">STA $DD02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D27"></span>$2D27</td>
+<td class="instruction">LDA $DD00</td>
+<td class="comment-1" rowspan="4">Reset bits 0 and 1 at $DD00; this selects VIC bank 3 at $C000-$FFFF.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D2A"></span>$2D2A</td>
+<td class="instruction">AND #$FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D2C"></span>$2D2C</td>
+<td class="instruction">ORA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D2E"></span>$2D2E</td>
+<td class="instruction">STA $DD00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D31"></span>$2D31</td>
+<td class="instruction">LDA $D018</td>
+<td class="comment-1" rowspan="5">Reset bits 6 and 7 and set bits 3, 4 and 5 at $D018. In bitmap mode, this places colour information at $CC00 and the bitmap at $E000.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D34"></span>$2D34</td>
+<td class="instruction">AND #$0F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D36"></span>$2D36</td>
+<td class="instruction">ORA #$30</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D38"></span>$2D38</td>
+<td class="instruction">ORA #$08</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D3A"></span>$2D3A</td>
+<td class="instruction">STA $D018</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D3D"></span>$2D3D</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2D18.html">$2D18</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2D1F">Map</a></td>
+<td class="next">
+Next: <a href="2D3E.html">$2D3E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

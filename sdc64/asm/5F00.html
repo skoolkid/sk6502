@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Data at $5F00</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="5EFD.html">$5EFD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#5F00">Map</a></td>
+<td class="next">
+Next: <a href="6000.html">$6000</a>
+</td>
+</tr>
+</table>
+<div class="description">$5F00: Keyboard tables</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="3940.html">$3940</a>.
+</div>
+<div class="paragraph">
+The first table represents the standard keyboard with no modifier keys pressed.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F00"></span>$5F00</td>
+<td class="instruction">.BYTE $14,$0D,$1D,$88,$85,$86,$87,$11</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F08"></span>$5F08</td>
+<td class="instruction">.BYTE $33,$57,$41,$34,$5A,$53,$45,$01</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F10"></span>$5F10</td>
+<td class="instruction">.BYTE $35,$52,$44,$36,$43,$46,$54,$58</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F18"></span>$5F18</td>
+<td class="instruction">.BYTE $37,$59,$47,$38,$42,$48,$55,$56</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F20"></span>$5F20</td>
+<td class="instruction">.BYTE $39,$49,$4A,$30,$4D,$4B,$4F,$4E</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F28"></span>$5F28</td>
+<td class="instruction">.BYTE $2B,$50,$4C,$2D,$2E,$3A,$40,$2C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F30"></span>$5F30</td>
+<td class="instruction">.BYTE $5C,$2A,$3B,$13,$01,$3D,$5E,$2F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F38"></span>$5F38</td>
+<td class="instruction">.BYTE $31,$5F,$04,$32,$20,$02,$51,$03</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="5F40"></span>
+<div class="comments">
+<div class="paragraph">
+The next table represents the keyboard with SHIFT pressed.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F40"></span>$5F40</td>
+<td class="instruction">.BYTE $94,$8D,$9D,$8C,$89,$8A,$8B,$91</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F48"></span>$5F48</td>
+<td class="instruction">.BYTE $23,$D7,$C1,$24,$DA,$D3,$C5,$01</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F50"></span>$5F50</td>
+<td class="instruction">.BYTE $25,$D2,$C4,$26,$C3,$C6,$D4,$D8</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F58"></span>$5F58</td>
+<td class="instruction">.BYTE $27,$D9,$C7,$28,$C2,$C8,$D5,$D6</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F60"></span>$5F60</td>
+<td class="instruction">.BYTE $29,$C9,$CA,$30,$CD,$CB,$CF,$CE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F68"></span>$5F68</td>
+<td class="instruction">.BYTE $DB,$D0,$CC,$DD,$3E,$5B,$BA,$3C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F70"></span>$5F70</td>
+<td class="instruction">.BYTE $A9,$C0,$5D,$93,$01,$3D,$DE,$3F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F78"></span>$5F78</td>
+<td class="instruction">.BYTE $21,$5F,$04,$22,$A0,$02,$D1,$83</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="5F80"></span>
+<div class="comments">
+<div class="paragraph">
+The next table represents the keyboard with the CBM key pressed.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F80"></span>$5F80</td>
+<td class="instruction">.BYTE $94,$8D,$9D,$8C,$89,$8A,$8B,$91</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F88"></span>$5F88</td>
+<td class="instruction">.BYTE $96,$B3,$B0,$97,$AD,$AE,$B1,$01</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F90"></span>$5F90</td>
+<td class="instruction">.BYTE $98,$B2,$AC,$99,$BC,$BB,$A3,$BD</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5F98"></span>$5F98</td>
+<td class="instruction">.BYTE $9A,$B7,$A5,$9B,$BF,$B4,$B8,$BE</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5FA0"></span>$5FA0</td>
+<td class="instruction">.BYTE $29,$A2,$B5,$30,$A7,$A1,$B9,$AA</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5FA8"></span>$5FA8</td>
+<td class="instruction">.BYTE $A6,$AF,$B6,$DC,$3E,$5B,$A4,$3C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5FB0"></span>$5FB0</td>
+<td class="instruction">.BYTE $A8,$DF,$5D,$93,$01,$3D,$DE,$3F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5FB8"></span>$5FB8</td>
+<td class="instruction">.BYTE $81,$5F,$04,$95,$A0,$02,$AB,$83</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="5FC0"></span>
+<div class="comments">
+<div class="paragraph">
+The next table represents the keyboard with CTRL pressed.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="5FC0"></span>$5FC0</td>
+<td class="instruction">.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5FC8"></span>$5FC8</td>
+<td class="instruction">.BYTE $1C,$17,$01,$9F,$1A,$13,$05,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5FD0"></span>$5FD0</td>
+<td class="instruction">.BYTE $9C,$12,$04,$1E,$03,$06,$14,$18</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5FD8"></span>$5FD8</td>
+<td class="instruction">.BYTE $1F,$19,$07,$9E,$02,$08,$15,$16</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5FE0"></span>$5FE0</td>
+<td class="instruction">.BYTE $12,$09,$0A,$92,$0D,$0B,$0F,$0E</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5FE8"></span>$5FE8</td>
+<td class="instruction">.BYTE $FF,$10,$0C,$FF,$FF,$1B,$00,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5FF0"></span>$5FF0</td>
+<td class="instruction">.BYTE $1C,$FF,$1D,$FF,$FF,$1F,$1E,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="5FF8"></span>$5FF8</td>
+<td class="instruction">.BYTE $90,$06,$FF,$05,$FF,$FF,$11,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="5EFD.html">$5EFD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#5F00">Map</a></td>
+<td class="next">
+Next: <a href="6000.html">$6000</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

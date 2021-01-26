@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $3AD5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3AB4.html">$3AB4</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3AD5">Map</a></td>
+<td class="next">
+Next: <a href="3B46.html">$3B46</a>
+</td>
+</tr>
+</table>
+<div class="description">$3AD5: Change the lesson</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/66E6.html">$66E6</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Called from the main loop at <a href="0800.html">$0800</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3AD5"></span>$3AD5</td>
+<td class="instruction">LDA #$0F</td>
+<td class="comment-1" rowspan="2">Reset the MSB of the lesson clock at <a href="0040.html">$40</a> to $0F.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AD7"></span>$3AD7</td>
+<td class="instruction">STA $40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AD9"></span>$3AD9</td>
+<td class="instruction">INC $41</td>
+<td class="comment-1" rowspan="2">Increment the current lesson number at <a href="0041.html">$41</a> and pick up the new value.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3ADB"></span>$3ADB</td>
+<td class="instruction">LDA $41</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3ADD"></span>$3ADD</td>
+<td class="instruction">CMP #$40</td>
+<td class="comment-1" rowspan="1">Is it $40?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3ADF"></span>$3ADF</td>
+<td class="instruction">BNE <a href="3AD5.html#3AE5">$3AE5</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AE1"></span>$3AE1</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Otherwise reset the lesson number to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AE3"></span>$3AE3</td>
+<td class="instruction">STA $41</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3AE5"></span>$3AE5</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Prepare to address the main timetable at <a href="5D00.html">$5D00</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AE7"></span>$3AE7</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AE9"></span>$3AE9</td>
+<td class="instruction">LDA #$5D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AEB"></span>$3AEB</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AED"></span>$3AED</td>
+<td class="instruction">LDY $41</td>
+<td class="comment-1" rowspan="3">Pick up the current lesson identifier ($E0-$FF) from the <a href="5D00.html">main timetable</a> and store it at <a href="0042.html">$42</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AEF"></span>$3AEF</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AF1"></span>$3AF1</td>
+<td class="instruction">STA $42</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AF3"></span>$3AF3</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">Transfer the current lesson identifier to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AF4"></span>$3AF4</td>
+<td class="instruction">LDA #$8C</td>
+<td class="comment-1" rowspan="2">The table of <a href="8CE0.html">lesson descriptors</a> is in page $8C.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AF6"></span>$3AF6</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AF8"></span>$3AF8</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="2">Copy the lesson descriptor for the new lesson to <a href="0070.html">$70</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AFA"></span>$3AFA</td>
+<td class="instruction">STA $70</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AFC"></span>$3AFC</td>
+<td class="instruction">JSR <a href="2573.html">$2573</a></td>
+<td class="comment-1" rowspan="1">Print the teacher and room name in the lesson box.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3AFF"></span>$3AFF</td>
+<td class="instruction">JSR <a href="3B46.html">$3B46</a></td>
+<td class="comment-1" rowspan="1">Select a special PLAYTIME occasionally.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B02"></span>$3B02</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="2">Set the sound effect identifier at <a href="002C.html">$2C</a> to 3: the bell is ringing.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B04"></span>$3B04</td>
+<td class="instruction">STA $2C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B06"></span>$3B06</td>
+<td class="instruction">LDA #$21</td>
+<td class="comment-1" rowspan="2">Initialise the sound effect timer at <a href="002D.html">$2D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B08"></span>$3B08</td>
+<td class="instruction">STA $2D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B0A"></span>$3B0A</td>
+<td class="instruction">JSR <a href="392D.html">$392D</a></td>
+<td class="comment-1" rowspan="1">Clear all the signal flags.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B0D"></span>$3B0D</td>
+<td class="instruction">LDX #$12</td>
+<td class="comment-1" rowspan="1">There are 18 characters (11 little boys, 4 teachers and 3 main kids) to prepare for the new lesson.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B0F"></span>$3B0F</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Reset the identifier of the next lines reprimand for the teacher fetching the truant ERIC at <a href="00C8.html">$C8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B11"></span>$3B11</td>
+<td class="instruction">STA $C8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B13"></span>$3B13</td>
+<td class="instruction">STA $C2</td>
+<td class="comment-1" rowspan="1">Reset the birth year question indicator at <a href="00C2.html">$C2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B15"></span>$3B15</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">Set the current character number at <a href="0060.html">$60</a> to $00 (little boy no. 1).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B17"></span>$3B17</td>
+<td class="instruction">STA $50</td>
+<td class="comment-1" rowspan="3">Prepare to address the characters' personal timetables, starting with little boy no. 1's at <a href="78E0.html">$78E0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B19"></span>$3B19</td>
+<td class="instruction">LDA #$78</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B1B"></span>$3B1B</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="3B1D"></span>
+<div class="comments">
+<div class="paragraph">
+Now we enter a loop to update the command list start address for each character.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3B1D"></span>$3B1D</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="2">Save the character counter on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B1E"></span>$3B1E</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B1F"></span>$3B1F</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the current character's buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B22"></span>$3B22</td>
+<td class="instruction">LDY $42</td>
+<td class="comment-1" rowspan="1">Pick up the lesson identifier ($E0-$FF) from <a href="0042.html">$42</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B24"></span>$3B24</td>
+<td class="instruction">LDA ($50),Y</td>
+<td class="comment-1" rowspan="2">Obtain the command list number from the character's personal timetable and store it at <a href="0042.html#0043">$43</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B26"></span>$3B26</td>
+<td class="instruction">STA $43</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B28"></span>$3B28</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="6">Collect the start address of the command list from the table at <a href="4480.html">$4480</a> and store it in the character's buffer at <a href="003D.html">$3D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B2A"></span>$3B2A</td>
+<td class="instruction">LDA ($43),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B2C"></span>$3B2C</td>
+<td class="instruction">STA $3D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B2E"></span>$3B2E</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B2F"></span>$3B2F</td>
+<td class="instruction">LDA ($43),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B31"></span>$3B31</td>
+<td class="instruction">STA $3E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B33"></span>$3B33</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Set bit 7 at <a href="003F.html">$3F</a>, triggering a command list restart at the next available opportunity.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B35"></span>$3B35</td>
+<td class="instruction">ORA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B37"></span>$3B37</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B39"></span>$3B39</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore the current character's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B3C"></span>$3B3C</td>
+<td class="instruction">INC $60</td>
+<td class="comment-1" rowspan="1">Increment the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B3E"></span>$3B3E</td>
+<td class="instruction">INC $51</td>
+<td class="comment-1" rowspan="1">Next character's personal timetable.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B40"></span>$3B40</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Restore the character counter to <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B41"></span>$3B41</td>
+<td class="instruction">TAX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B42"></span>$3B42</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">Have we dealt with every character yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B43"></span>$3B43</td>
+<td class="instruction">BNE <a href="3AD5.html#3B1D">$3B1D</a></td>
+<td class="comment-1" rowspan="1">Branch back if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B45"></span>$3B45</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3AB4.html">$3AB4</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3AD5">Map</a></td>
+<td class="next">
+Next: <a href="3B46.html">$3B46</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

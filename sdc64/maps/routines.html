@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routines</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="RoutinesMap">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<div class="map-intro"></div>
+<table class="map">
+<tr>
+<th>Address</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="map-c"><span id="0800"></span><a href="../asm/0800.html">$0800</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0800.html">Main loop</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="09E9"></span><a href="../asm/09E9.html">$09E9</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/09E9.html">Make a teacher conduct a class</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0A57"></span><a href="../asm/0A57.html">$0A57</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0A57.html">Do nothing</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0A58"></span><a href="../asm/0A58.html">$0A58</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0A58.html">Make a teacher conduct a class with ERIC</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0B3B"></span><a href="../asm/0B3B.html">$0B3B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0B3B.html">Check whether ERIC and EINSTEIN are in class</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0BAC"></span><a href="../asm/0BAC.html">$0BAC</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0BAC.html">Compute the coordinate ranges within which a character can see or be seen</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0C31"></span><a href="../asm/0C31.html">$0C31</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0C31.html">Adjust the lesson length if a character is looking for ERIC</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0C3F"></span><a href="../asm/0C3F.html">$0C3F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0C3F.html">Make a character track down ERIC</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0D67"></span><a href="../asm/0D67.html">$0D67</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0D67.html">Check whether a character is within a coordinate range</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0D91"></span><a href="../asm/0D91.html">$0D91</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0D91.html">Get the identifier for ERIC's location</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0DD4"></span><a href="../asm/0DD4.html">$0DD4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0DD4.html">Prepare message box sprite graphic data from the text graphic buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0E35"></span><a href="../asm/0E35.html">$0E35</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0E35.html">Make a teacher perform dinner duty</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0E59"></span><a href="../asm/0E59.html">$0E59</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0E59.html">Check whether a boy can be seen by a teacher</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0EB4"></span><a href="../asm/0EB4.html">$0EB4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0EB4.html">Restart the command list</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0EC2"></span><a href="../asm/0EC2.html">$0EC2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0EC2.html">Restart the command list unless it's time to start the lesson</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0ECF"></span><a href="../asm/0ECF.html">$0ECF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0ECF.html">Make a teacher give lines to the closest main kid</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="0FBA"></span><a href="../asm/0FBA.html">$0FBA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/0FBA.html">Control the horizontal flight of a catapult pellet</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1042"></span><a href="../asm/1042.html">$1042</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1042.html">Control the vertical flight of a catapult pellet</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="105B"></span><a href="../asm/105B.html">$105B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/105B.html">Make a character go to a random location</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="108B"></span><a href="../asm/108B.html">$108B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/108B.html">Get the next character of a message being spoken or written</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1129"></span><a href="../asm/1129.html">$1129</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1129.html">Make a character write on a blackboard</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="11CF"></span><a href="../asm/11CF.html">$11CF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/11CF.html">Write a single character on a blackboard</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="126D"></span><a href="../asm/126D.html">$126D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/126D.html">Get the play area region identifier for a given location</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1294"></span><a href="../asm/1294.html">$1294</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1294.html">Get the address of a skool tile corresponding to a blackboard character cell</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="12B5"></span><a href="../asm/12B5.html">$12B5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/12B5.html">Make a character go to a location</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="136F"></span><a href="../asm/136F.html">$136F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/136F.html">Guide a character to an intermediate destination</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="13D5"></span><a href="../asm/13D5.html">$13D5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/13D5.html">Determine the address of a blackboard buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="13F3"></span><a href="../asm/13F3.html">$13F3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/13F3.html">Guide a character up or down a staircase</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1421"></span><a href="../asm/1421.html">$1421</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1421.html">Copy a blackboard buffer into page 0</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1445"></span><a href="../asm/1445.html">$1445</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1445.html">Restore a blackboard buffer from page 0</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1468"></span><a href="../asm/1468.html">$1468</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1468.html">Get the identifier and coordinates of the blackboard closest to a character</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="149F"></span><a href="../asm/149F.html">$149F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/149F.html">Make any nearby teacher give ERIC lines if necessary</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="15B3"></span><a href="../asm/15B3.html">$15B3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/15B3.html">Deal with ERIC</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1640"></span><a href="../asm/1640.html">$1640</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1640.html">Check whether ERIC is standing on a boy</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="169B"></span><a href="../asm/169B.html">$169B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/169B.html">'F' or SPACE pressed - fire catapult</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="16D0"></span><a href="../asm/16D0.html">$16D0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/16D0.html">'J' or 'L' pressed - jump</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="16DF"></span><a href="../asm/16DF.html">$16DF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/16DF.html">'H' pressed - hit</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="16E9"></span><a href="../asm/16E9.html">$16E9</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/16E9.html">Make a teacher wipe a blackboard</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="176F"></span><a href="../asm/176F.html">$176F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/176F.html">Check whether ERIC has jumped up to the safe or a shield</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="17E5"></span><a href="../asm/17E5.html">$17E5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/17E5.html">Deal with ERIC when he's hitting</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="184E"></span><a href="../asm/184E.html">$184E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/184E.html">Deal with ERIC when he's writing on a blackboard</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="189D"></span><a href="../asm/189D.html">$189D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/189D.html">Deal with ERIC when he's jumping</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="191B"></span><a href="../asm/191B.html">$191B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/191B.html">Deal with ERIC when he's firing the catapult</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1994"></span><a href="../asm/1994.html">$1994</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1994.html">Wipe a blackboard character cell clean</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="19A5"></span><a href="../asm/19A5.html">$19A5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/19A5.html">'W' pressed - write</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1A04"></span><a href="../asm/1A04.html">$1A04</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1A04.html">Make a character walk up and down until a certain time</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1A51"></span><a href="../asm/1A51.html">$1A51</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1A51.html">Check whether a character is beside a chair</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1B2E"></span><a href="../asm/1B2E.html">$1B2E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1B2E.html">Determine the next move of a character following another character</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1BFA"></span><a href="../asm/1BFA.html">$1BFA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1BFA.html">Check whether a chair is occupied and unseat any occupant</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1C59"></span><a href="../asm/1C59.html">$1C59</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1C59.html">Knock the current occupant (if any) out of a chair</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1C8E"></span><a href="../asm/1C8E.html">$1C8E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1C8E.html">Check whether a character is on a staircase</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1CB4"></span><a href="../asm/1CB4.html">$1CB4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1CB4.html">Deal with a character who's been dethroned (1)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1CCB"></span><a href="../asm/1CCB.html">$1CCB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1CCB.html">Deal with a character who's been dethroned (2)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1CEC"></span><a href="../asm/1CEC.html">$1CEC</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1CEC.html">Deal with a character who is looking for a seat</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1D16"></span><a href="../asm/1D16.html">$1D16</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1D16.html">Make a character find a seat</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1D28"></span><a href="../asm/1D28.html">$1D28</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1D28.html">Terminate an interruptible subcommand</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1D2D"></span><a href="../asm/1D2D.html">$1D2D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1D2D.html">Terminate a primary command</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1D32"></span><a href="../asm/1D32.html">$1D32</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1D32.html">Terminate an uninterruptible subcommand</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1D37"></span><a href="../asm/1D37.html">$1D37</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1D37.html">Add to the score and print it</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1D4A"></span><a href="../asm/1D4A.html">$1D4A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1D4A.html">Add to ERIC's lines total and print it</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1DB7"></span><a href="../asm/1DB7.html">$1DB7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1DB7.html">Make a teacher give lines</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1EC2"></span><a href="../asm/1EC2.html">$1EC2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1EC2.html">Get ERIC's coordinates</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1EE3"></span><a href="../asm/1EE3.html">$1EE3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1EE3.html">Make EINSTEIN speak</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1F29"></span><a href="../asm/1F29.html">$1F29</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1F29.html">Make MR CREAK reveal his safe combination letter</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1F4D"></span><a href="../asm/1F4D.html">$1F4D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1F4D.html">Control EINSTEIN during class</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1F77"></span><a href="../asm/1F77.html">$1F77</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1F77.html">Place an interruptible subcommand routine address into a character's buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="1FA0"></span><a href="../asm/1FA0.html">$1FA0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/1FA0.html">Make a teacher tell the kids to sit down</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2005"></span><a href="../asm/2005.html">$2005</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2005.html">Write a message into the text graphic buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2043"></span><a href="../asm/2043.html">$2043</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2043.html">Print a lines message or safe combination letter above a teacher's head</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="20F5"></span><a href="../asm/20F5.html">$20F5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/20F5.html">Insert a pixel column into the text graphic buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="212A"></span><a href="../asm/212A.html">$212A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/212A.html">Clear the text graphic buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="213B"></span><a href="../asm/213B.html">$213B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/213B.html">Centre the text in the text graphic buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2156"></span><a href="../asm/2156.html">$2156</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2156.html">Insert a font character bitmap into the text graphic buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="217E"></span><a href="../asm/217E.html">$217E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/217E.html">Generate the character codes of the digits of a number</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2241"></span><a href="../asm/2241.html">$2241</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2241.html">Prepare a question and answer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2387"></span><a href="../asm/2387.html">$2387</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2387.html">Make a character speak</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="246B"></span><a href="../asm/246B.html">$246B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/246B.html">Slide a message character into the speech bubble text window</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="24A7"></span><a href="../asm/24A7.html">$24A7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/24A7.html">Insert a pixel column into the speech bubble text window</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2500"></span><a href="../asm/2500.html">$2500</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2500.html">Prepare a message telling the kids to go to a certain page in their books</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="253E"></span><a href="../asm/253E.html">$253E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/253E.html">Generate a random value in a given range</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2552"></span><a href="../asm/2552.html">$2552</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2552.html">Make a teacher give lines to EINSTEIN or the boy he's telling tales on</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2573"></span><a href="../asm/2573.html">$2573</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2573.html">Print the lesson</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2620"></span><a href="../asm/2620.html">$2620</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2620.html">Print the score, lines total or hi-score</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="267A"></span><a href="../asm/267A.html">$267A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/267A.html">Make ANGELFACE throw a punch (1)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2696"></span><a href="../asm/2696.html">$2696</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2696.html">Make ANGELFACE throw a punch (2)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="26E0"></span><a href="../asm/26E0.html">$26E0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/26E0.html">Make ANGELFACE finish punching or BOY WONDER finish firing his catapult</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="26EF"></span><a href="../asm/26EF.html">$26EF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/26EF.html">Check whether ANGELFACE is touching ERIC</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="270D"></span><a href="../asm/270D.html">$270D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/270D.html">Make ANGELFACE hit now and then</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2745"></span><a href="../asm/2745.html">$2745</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2745.html">Deal with a teacher who has found the truant ERIC</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2757"></span><a href="../asm/2757.html">$2757</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2757.html">Make a teacher tell ERIC to go home, and end the game</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="277D"></span><a href="../asm/277D.html">$277D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/277D.html">Make MR WACKER give ERIC 2000 lines</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2797"></span><a href="../asm/2797.html">$2797</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2797.html">Make the stampede leader trip people up on the way to a random location</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="27AB"></span><a href="../asm/27AB.html">$27AB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/27AB.html">Make a character walk up and down a few times or until a certain time</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="27D2"></span><a href="../asm/27D2.html">$27D2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/27D2.html">Check whether anyone was or can be punched by ERIC or ANGELFACE</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="284F"></span><a href="../asm/284F.html">$284F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/284F.html">Make MR WACKER run to a given location</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2865"></span><a href="../asm/2865.html">$2865</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2865.html">Place a continual subcommand routine address into a character's buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2873"></span><a href="../asm/2873.html">$2873</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2873.html">Make a little boy trip people up</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2885"></span><a href="../asm/2885.html">$2885</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2885.html">Make a little boy find and follow little boy no. 1</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="28AB"></span><a href="../asm/28AB.html">$28AB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/28AB.html">Make BOY WONDER write on a blackboard</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="28BC"></span><a href="../asm/28BC.html">$28BC</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/28BC.html">Make little boy no. 10 give ERIC a message</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="290F"></span><a href="../asm/290F.html">$290F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/290F.html">Deal with ERIC if he's being spoken to by little boy no. 10</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="292F"></span><a href="../asm/292F.html">$292F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/292F.html">Generate a safe combination code</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="298B"></span><a href="../asm/298B.html">$298B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/298B.html">Make a stricken teacher reveal his safe combination letter</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="29C8"></span><a href="../asm/29C8.html">$29C8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/29C8.html">Check whether a character has been hit by a pellet or a stampeding boy</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2A43"></span><a href="../asm/2A43.html">$2A43</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2A43.html">Deal with a character who has been knocked over</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2A99"></span><a href="../asm/2A99.html">$2A99</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2A99.html">Make a character find ERIC</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2AAA"></span><a href="../asm/2AAA.html">$2AAA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2AAA.html">Set MR CREAK's birth year</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2AF9"></span><a href="../asm/2AF9.html">$2AF9</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2AF9.html">Raise the signal for a certain event and move to the next command</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2B0D"></span><a href="../asm/2B0D.html">$2B0D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2B0D.html">Lower the signal for a certain event and move to the next command</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2B21"></span><a href="../asm/2B21.html">$2B21</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2B21.html">Make BOY WONDER fire his catapult (1)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2B3F"></span><a href="../asm/2B3F.html">$2B3F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2B3F.html">Make BOY WONDER fire his catapult (2)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2B52"></span><a href="../asm/2B52.html">$2B52</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2B52.html">Make BOY WONDER fire his catapult (3)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2B9F"></span><a href="../asm/2B9F.html">$2B9F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2B9F.html">Make BOY WONDER fire his catapult (4)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2BB0"></span><a href="../asm/2BB0.html">$2BB0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2BB0.html">Check whether a shield has been hit or jumped up to</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2CA5"></span><a href="../asm/2CA5.html">$2CA5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2CA5.html">Make BOY WONDER fire his catapult now and then</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2CD9"></span><a href="../asm/2CD9.html">$2CD9</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2CD9.html">Initialise interrupts, screen memory and page 0</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2D18"></span><a href="../asm/2D18.html">$2D18</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2D18.html">Page out the KERNAL ROM at $E000-$FFFF</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2D1F"></span><a href="../asm/2D1F.html">$2D1F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2D1F.html">Set pointers to screen bitmap and colour information</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2D3E"></span><a href="../asm/2D3E.html">$2D3E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2D3E.html">Set standard bitmap mode</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2D47"></span><a href="../asm/2D47.html">$2D47</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2D47.html">Initialise the game status buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2DAD"></span><a href="../asm/2DAD.html">$2DAD</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2DAD.html">Clear the screen</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2DCB"></span><a href="../asm/2DCB.html">$2DCB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2DCB.html">Initialise colour information</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2E05"></span><a href="../asm/2E05.html">$2E05</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2E05.html">Clear page 0</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2E13"></span><a href="../asm/2E13.html">$2E13</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2E13.html">Prepare for a new game or demo mode</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2EE6"></span><a href="../asm/2EE6.html">$2EE6</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2EE6.html">Get the screen bitmap and colour information addresses for a play area tile</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2F20"></span><a href="../asm/2F20.html">$2F20</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2F20.html">Draw the Skool Daze logo</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2F56"></span><a href="../asm/2F56.html">$2F56</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2F56.html">Draw the score box</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2F8C"></span><a href="../asm/2F8C.html">$2F8C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2F8C.html">Print the play area tiles in a single column of the screen</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="2FB6"></span><a href="../asm/2FB6.html">$2FB6</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/2FB6.html">Move a column of screen tiles left or right</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3012"></span><a href="../asm/3012.html">$3012</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3012.html">Bring the skool (or a blank screen) into view</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="302A"></span><a href="../asm/302A.html">$302A</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/302A.html">Initialise voice #3</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3047"></span><a href="../asm/3047.html">$3047</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3047.html">Initialise speech bubble sprites</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3072"></span><a href="../asm/3072.html">$3072</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3072.html">Shift the play area window left</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3113"></span><a href="../asm/3113.html">$3113</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3113.html">Shift the play area window right</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="31B6"></span><a href="../asm/31B6.html">$31B6</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/31B6.html">Raise the signal for an event</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="31C4"></span><a href="../asm/31C4.html">$31C4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/31C4.html">Lower the signal for an event</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="31D2"></span><a href="../asm/31D2.html">$31D2</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/31D2.html">Check whether a signal has been raised</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="31DF"></span><a href="../asm/31DF.html">$31DF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/31DF.html">Pause briefly</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="31EA"></span><a href="../asm/31EA.html">$31EA</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/31EA.html">Update the display</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="322E"></span><a href="../asm/322E.html">$322E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/322E.html">Update the SRB for a character's current animatory state and location</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3279"></span><a href="../asm/3279.html">$3279</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3279.html">Copy a character buffer into page 0</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3326"></span><a href="../asm/3326.html">$3326</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3326.html">Print a play area tile</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="33BF"></span><a href="../asm/33BF.html">$33BF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/33BF.html">Restore a character buffer from page 0</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="34B5"></span><a href="../asm/34B5.html">$34B5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/34B5.html">'A' pressed - down</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="350B"></span><a href="../asm/350B.html">$350B</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/350B.html">'Q' pressed - up</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3558"></span><a href="../asm/3558.html">$3558</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3558.html">'O' pressed - left</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="359E"></span><a href="../asm/359E.html">$359E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/359E.html">'P' pressed - right</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="35EF"></span><a href="../asm/35EF.html">$35EF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/35EF.html">Move ERIC from the midstride position</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="364E"></span><a href="../asm/364E.html">$364E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/364E.html">Turn ERIC round</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="365C"></span><a href="../asm/365C.html">$365C</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/365C.html">Move ERIC midstride</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3687"></span><a href="../asm/3687.html">$3687</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3687.html">'S' pressed - sit/stand</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="36E3"></span><a href="../asm/36E3.html">$36E3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/36E3.html">Update the SRB for a single character cell</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3724"></span><a href="../asm/3724.html">$3724</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3724.html">Set up sprites #1-#5</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="379F"></span><a href="../asm/379F.html">$379F</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/379F.html">Prepare sprites #0-#6 for the speech bubble with the lip on the left</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3805"></span><a href="../asm/3805.html">$3805</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3805.html">Prepare sprites #0-#6 for the speech bubble with the lip on the right</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3868"></span><a href="../asm/3868.html">$3868</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3868.html">Copy the text graphic buffer to the screen</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="38AC"></span><a href="../asm/38AC.html">$38AC</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/38AC.html">Back up sprite information</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="38EF"></span><a href="../asm/38EF.html">$38EF</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/38EF.html">Restore sprite information</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="392D"></span><a href="../asm/392D.html">$392D</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/392D.html">Clear all the signal flags</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3940"></span><a href="../asm/3940.html">$3940</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3940.html">Read the keyboard</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="39C7"></span><a href="../asm/39C7.html">$39C7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/39C7.html">Interrupt routine</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3A90"></span><a href="../asm/3A90.html">$3A90</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3A90.html">Update colour information for the safe or a flashing shield</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3AB4"></span><a href="../asm/3AB4.html">$3AB4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3AB4.html">Move the next character</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3AD5"></span><a href="../asm/3AD5.html">$3AD5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3AD5.html">Change the lesson</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3B46"></span><a href="../asm/3B46.html">$3B46</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3B46.html">Select a special PLAYTIME occasionally</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3B5E"></span><a href="../asm/3B5E.html">$3B5E</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3B5E.html">Move the current character</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="3BE7"></span><a href="../asm/3BE7.html">$3BE7</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/3BE7.html">Collect the next byte from a command list</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="8FE8"></span><a href="../asm/8FE8.html">$8FE8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/8FE8.html">Wipe a character's name</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="91E8"></span><a href="../asm/91E8.html">$91E8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/91E8.html">Move sprites #0-#6 left by 64 pixels (2)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="92E8"></span><a href="../asm/92E8.html">$92E8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/92E8.html">Move sprites #0-#6 left by 64 pixels (3)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="93E8"></span><a href="../asm/93E8.html">$93E8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/93E8.html">Move sprites #0-#6 right by 64 pixels (2)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="94E8"></span><a href="../asm/94E8.html">$94E8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/94E8.html">Move sprites #0-#6 right by 64 pixels (3)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="95E8"></span><a href="../asm/95E8.html">$95E8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/95E8.html">Check the x-coordinate of the leftmost section of the speech bubble (1)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="96E8"></span><a href="../asm/96E8.html">$96E8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/96E8.html">Make the character who is currently speaking stop speaking (1)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="97E8"></span><a href="../asm/97E8.html">$97E8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/97E8.html">Make the character who is currently speaking stop speaking (2)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="9868"></span><a href="../asm/9868.html">$9868</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/9868.html">Move sprites #0-#6 right by 64 pixels (1)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="9877"></span><a href="../asm/9877.html">$9877</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/9877.html">Enable sprites #0-#6</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="98E8"></span><a href="../asm/98E8.html">$98E8</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/98E8.html">Move sprites #0-#6 left by 64 pixels (1)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="98FB"></span><a href="../asm/98FB.html">$98FB</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/98FB.html">Check the x-coordinate of the leftmost section of the speech bubble (2)</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B940"></span><a href="../asm/B940.html">$B940</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B940.html">Initialise voices #1, #2 and #3 for the theme tune</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="B9A0"></span><a href="../asm/B9A0.html">$B9A0</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/B9A0.html">Initialise voices #1, #2 and #3 for the 'Got all shields' tune</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BA00"></span><a href="../asm/BA00.html">$BA00</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BA00.html">Play the theme tune</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BA48"></span><a href="../asm/BA48.html">$BA48</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BA48.html">Play the 'Got all shields' tune</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BA90"></span><a href="../asm/BA90.html">$BA90</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BA90.html">Initialise the tune buffer</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BAA3"></span><a href="../asm/BAA3.html">$BAA3</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BAA3.html">Collect a byte from a tune data table</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BAB4"></span><a href="../asm/BAB4.html">$BAB4</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BAB4.html">Tune-playing interrupt routine</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BD00"></span><a href="../asm/BD00.html">$BD00</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BD00.html">Manage sound effects</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BE09"></span><a href="../asm/BE09.html">$BE09</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BE09.html">Change the characters' names if required</a></div>
+</td>
+</tr>
+<tr>
+<td class="map-c"><span id="BFF5"></span><a href="../asm/BFF5.html">$BFF5</a></td>
+<td class="map-c-desc">
+<div class="map-entry-title-10"><a class="map-entry-title" href="../asm/BFF5.html">Write a message into the text graphic buffer and centre it</a></div>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

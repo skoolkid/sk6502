@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Blackboard buffer</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="BlackboardBuffer">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Blackboard buffer</td>
+</tr>
+</table>
+<div class="map-intro">Whenever a blackboard's state needs to be examined or updated, its buffer is
+copied to the addresses in page 0 shown below by the routine at <a href="../asm/1421.html">$1421</a>.
+Afterwards, the blackboard's buffer is restored from page 0 by the routine at
+<a href="../asm/1445.html">$1445</a>.</div>
+<table class="map">
+<tr>
+<th>Address</th>
+<th class="map-length">Length</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="map-b"><span id="0019"></span><a href="../asm/0019.html">$0019</a></td>
+<td class="map-length">$01</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0019.html">Blackboard pixel column counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/1129.html">$1129</a>, <a href="../asm/11CF.html">$11CF</a> and <a href="../asm/16E9.html">$16E9</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="001A"></span><a href="../asm/001A.html">$001A</a></td>
+<td class="map-length">$01</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/001A.html">Number of the character who last wrote on the blackboard</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/0A58.html">$0A58</a>, <a href="../asm/1129.html">$1129</a>, <a href="../asm/16E9.html">$16E9</a>, <a href="../asm/176F.html">$176F</a>, <a href="../asm/19A5.html">$19A5</a> and <a href="../asm/1FA0.html">$1FA0</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00DF"></span><a href="../asm/00DF.html">$00DF</a></td>
+<td class="map-length">$04</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00DF.html">Last four bytes of the blackboard's buffer</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/176F.html">$176F</a>, <a href="../asm/184E.html">$184E</a>, <a href="../asm/19A5.html">$19A5</a> and <a href="../asm/1FA0.html">$1FA0</a>.
+</div>
+</div>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

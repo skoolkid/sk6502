@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $16E9</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="16E8.html">$16E8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#16E9">Map</a></td>
+<td class="next">
+Next: <a href="176F.html">$176F</a>
+</td>
+</tr>
+</table>
+<div class="description">$16E9: Make a teacher wipe a blackboard</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/71E8.html">$71E8</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this interruptible subcommand routine is placed into a teacher's buffer by the routines at <a href="09E9.html">$09E9</a> and <a href="0A58.html">$0A58</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="16E9"></span>$16E9</td>
+<td class="instruction">LDA #$17</td>
+<td class="comment-1" rowspan="4">Replace the address of this interruptible subcommand routine in the teacher's buffer with that of <a href="16E9.html#170E">$170E</a> below.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16EB"></span>$16EB</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16ED"></span>$16ED</td>
+<td class="instruction">LDA #$0E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16EF"></span>$16EF</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16F1"></span>$16F1</td>
+<td class="instruction">JSR <a href="1468.html">$1468</a></td>
+<td class="comment-1" rowspan="1">Get the identifier and coordinates of the blackboard closest to the teacher.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16F4"></span>$16F4</td>
+<td class="instruction">LDA #$20</td>
+<td class="comment-1" rowspan="2">Wiping a blackboard requires 32 distinct actions (in 8 groups of 4: two paces forward, arm up, arm down).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16F6"></span>$16F6</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16F8"></span>$16F8</td>
+<td class="instruction">LDA $15</td>
+<td class="comment-1" rowspan="1">Pick up the x-coordinate of the leftmost column of the blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16FA"></span>$16FA</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="3">Add 7 and store the result at <a href="00AC.html#00AD">$AD</a>. This is the x-coordinate of the rightmost column of the blackboard, and the first to be wiped.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16FB"></span>$16FB</td>
+<td class="instruction">ADC #$07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16FD"></span>$16FD</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16FF"></span>$16FF</td>
+<td class="instruction">LDA $16</td>
+<td class="comment-1" rowspan="2">Pick up the y-coordinate of the top row of the blackboard and store it at <a href="00AE.html">$AE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1701"></span>$1701</td>
+<td class="instruction">STA $AE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1703"></span>$1703</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="3">Reset the blackboard pixel column counter at <a href="0019.html">$19</a>, and the number of the character who last wrote on the board at <a href="001A.html">$1A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1705"></span>$1705</td>
+<td class="instruction">STA $19</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1707"></span>$1707</td>
+<td class="instruction">STA $1A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1709"></span>$1709</td>
+<td class="instruction">LDY $DA</td>
+<td class="comment-1" rowspan="1">Pick up the blackboard identifier from <a href="00DA.html">$DA</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="170B"></span>$170B</td>
+<td class="instruction">JSR <a href="1445.html">$1445</a></td>
+<td class="comment-1" rowspan="1">Restore the blackboard's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="170E"></span>
+<div class="comments">
+<div class="paragraph">
+After the initial call to this routine, each subsequent call enters here.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="170E"></span>$170E</td>
+<td class="instruction">LDA $AC</td>
+<td class="comment-1" rowspan="1">Pick up the number of board-wiping actions remaining.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1710"></span>$1710</td>
+<td class="instruction">BNE <a href="16E9.html#1715">$1715</a></td>
+<td class="comment-1" rowspan="1">Branch unless the teacher has finished wiping the board.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1712"></span>$1712</td>
+<td class="instruction">JMP <a href="1D28.html">$1D28</a></td>
+<td class="comment-1" rowspan="1">Terminate this interruptible subcommand.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1715"></span>$1715</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the teacher's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1718"></span>$1718</td>
+<td class="instruction">DEC $AC</td>
+<td class="comment-1" rowspan="2">Decrement the board-wiping action counter at <a href="00AC.html">$AC</a> and pick up its new value.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="171A"></span>$171A</td>
+<td class="instruction">LDA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="171C"></span>$171C</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Is the teacher midstride or does he have his arm raised?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="171D"></span>$171D</td>
+<td class="instruction">BCS <a href="16E9.html#1732">$1732</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="171F"></span>$171F</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save the shifted board-wiping action counter temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1720"></span>$1720</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="3">Clear bits 0-2 of the teacher's animatory state at <a href="0026.html">$26</a>, thus moving him from the midstride position or lowering his arm.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1722"></span>$1722</td>
+<td class="instruction">AND #$F8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1724"></span>$1724</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1726"></span>$1726</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore the shifted board-wiping action counter.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1727"></span>$1727</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Was the teacher midstride?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1728"></span>$1728</td>
+<td class="instruction">BCC <a href="16E9.html#172C">$172C</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="172A"></span>$172A</td>
+<td class="instruction">DEC $FC</td>
+<td class="comment-1" rowspan="1">Decrement the teacher's x-coordinate at <a href="00FB.html#00FC">$FC</a>, moving him forward to the next blackboard column.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="172C"></span>$172C</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the teacher's new animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="172F"></span>$172F</td>
+<td class="instruction">JMP <a href="16E9.html#1769">$1769</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1732"></span>$1732</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Is the teacher ready to raise his arm (and wipe)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1733"></span>$1733</td>
+<td class="instruction">BCC <a href="16E9.html#173A">$173A</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1735"></span>$1735</td>
+<td class="instruction">INC $26</td>
+<td class="comment-1" rowspan="1">Otherwise increment the teacher's animatory state at <a href="0026.html">$26</a>, moving him midstride on his way to the next blackboard column.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1737"></span>$1737</td>
+<td class="instruction">JMP <a href="16E9.html#172C">$172C</a></td>
+<td class="comment-1" rowspan="1">Jump back.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="173A"></span>
+<div class="comments">
+<div class="paragraph">
+The teacher is ready to raise his arm and wipe a column of the board.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="173A"></span>$173A</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="4">Add 5 to the teacher's animatory state at <a href="0026.html">$26</a>, making him raise his arm.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="173C"></span>$173C</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="173D"></span>$173D</td>
+<td class="instruction">ADC #$05</td>
+</tr>
+<tr>
+<td class="address-1"><span id="173F"></span>$173F</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1741"></span>$1741</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the teacher's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1744"></span>$1744</td>
+<td class="instruction">LDA $AD</td>
+<td class="comment-1" rowspan="1">Pick up the x-coordinate of the column of the blackboard to wipe.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1746"></span>$1746</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="3">Subtract the x-coordinate of the leftmost column of the skool on screen; store the resulting screen x-coordinate at <a href="0047.html#0049">$49</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1747"></span>$1747</td>
+<td class="instruction">SBC $58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1749"></span>$1749</td>
+<td class="instruction">STA $49</td>
+</tr>
+<tr>
+<td class="address-1"><span id="174B"></span>$174B</td>
+<td class="instruction">LDA $AE</td>
+<td class="comment-1" rowspan="2">Pick up the y-coordinate of the top row of the blackboard to wipe and copy it to <a href="0047.html#004A">$4A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="174D"></span>$174D</td>
+<td class="instruction">STA $4A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="174F"></span>$174F</td>
+<td class="instruction">JSR <a href="36E3.html">$36E3</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character cell in the top row of the blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1752"></span>$1752</td>
+<td class="instruction">INC $4A</td>
+<td class="comment-1" rowspan="1">Increment the y-coordinate at <a href="0047.html#004A">$4A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1754"></span>$1754</td>
+<td class="instruction">JSR <a href="36E3.html">$36E3</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character cell in the bottom row of the blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1757"></span>$1757</td>
+<td class="instruction">LDX $AD</td>
+<td class="comment-1" rowspan="2">Pick up the x-coordinate of the column of the blackboard to wipe and copy it to <a href="0015.html">$15</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1759"></span>$1759</td>
+<td class="instruction">STX $15</td>
+</tr>
+<tr>
+<td class="address-1"><span id="175B"></span>$175B</td>
+<td class="instruction">LDY $AE</td>
+<td class="comment-1" rowspan="2">Pick up the y-coordinate of the top row of the blackboard to wipe and copy it to <a href="0015.html#0016">$16</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="175D"></span>$175D</td>
+<td class="instruction">STY $16</td>
+</tr>
+<tr>
+<td class="address-1"><span id="175F"></span>$175F</td>
+<td class="instruction">JSR <a href="1994.html">$1994</a></td>
+<td class="comment-1" rowspan="1">Wipe the blackboard character cell in the top row clean.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1762"></span>$1762</td>
+<td class="instruction">INC $16</td>
+<td class="comment-1" rowspan="1">Increment the y-coordinate at <a href="0015.html#0016">$16</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1764"></span>$1764</td>
+<td class="instruction">JSR <a href="1994.html">$1994</a></td>
+<td class="comment-1" rowspan="1">Wipe the blackboard character cell in the bottom row clean.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1767"></span>$1767</td>
+<td class="instruction">DEC $AD</td>
+<td class="comment-1" rowspan="1">Decrement the blackboard column x-coordinate at <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1769"></span>$1769</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="176A"></span>$176A</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="176B"></span>$176B</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="176C"></span>$176C</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="176D"></span>$176D</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="176E"></span>$176E</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="16E8.html">$16E8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#16E9">Map</a></td>
+<td class="next">
+Next: <a href="176F.html">$176F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

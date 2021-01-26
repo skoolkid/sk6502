@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $176F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="16E9.html">$16E9</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#176F">Map</a></td>
+<td class="next">
+Next: <a href="17E5.html">$17E5</a>
+</td>
+</tr>
+</table>
+<div class="description">$176F: Check whether ERIC has jumped up to the safe or a shield</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="189D.html">$189D</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="176F"></span>$176F</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1772"></span>$1772</td>
+<td class="instruction">INC $26</td>
+<td class="comment-1" rowspan="1">Increment ERIC's animatory state at <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1774"></span>$1774</td>
+<td class="instruction">DEC $FB</td>
+<td class="comment-1" rowspan="1">Decrement ERIC's y-coordinate at <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1776"></span>$1776</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's new animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1779"></span>$1779</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="2">Pick up ERIC's x-coordinate from <a href="00FB.html#00FC">$FC</a> and store a copy at <a href="00E9.html">$E9</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="177B"></span>$177B</td>
+<td class="instruction">STA $E9</td>
+</tr>
+<tr>
+<td class="address-1"><span id="177D"></span>$177D</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="2">Pick up ERIC's y-coordinate from <a href="00FB.html">$FB</a> and store a copy at <a href="00E9.html#00EA">$EA</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="177F"></span>$177F</td>
+<td class="instruction">STA $EA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1781"></span>$1781</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1783"></span>$1783</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is ERIC facing left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1784"></span>$1784</td>
+<td class="instruction">BCC <a href="176F.html#178A">$178A</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1786"></span>$1786</td>
+<td class="instruction">INC $E9</td>
+<td class="comment-1" rowspan="2">ERIC is facing right. Adjust <a href="00E9.html">$E9</a> to get the x-coordinate of his hand.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1788"></span>$1788</td>
+<td class="instruction">INC $E9</td>
+</tr>
+<tr>
+<td class="address-2"><span id="178A"></span>$178A</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="2">Is ERIC's hand at x-coordinate 10 (where the safe is)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="178C"></span>$178C</td>
+<td class="instruction">CMP $E9</td>
+</tr>
+<tr>
+<td class="address-1"><span id="178E"></span>$178E</td>
+<td class="instruction">BEQ <a href="176F.html#1797">$1797</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1790"></span>$1790</td>
+<td class="instruction">LDX $E9</td>
+<td class="comment-1" rowspan="2">Pick up the coordinates of ERIC's hand.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1792"></span>$1792</td>
+<td class="instruction">LDY $EA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1794"></span>$1794</td>
+<td class="instruction">JMP <a href="2BB0.html">$2BB0</a></td>
+<td class="comment-1" rowspan="1">Check whether ERIC has jumped up to a shield.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1797"></span>$1797</td>
+<td class="instruction">LDA #$09</td>
+<td class="comment-1" rowspan="2">Is ERIC on the middle floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1799"></span>$1799</td>
+<td class="instruction">CMP $EA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="179B"></span>$179B</td>
+<td class="instruction">BNE <a href="176F.html#1790">$1790</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="179D"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC has just jumped up to the safe.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="179D"></span>$179D</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="0046.html">$46</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="179F"></span>$179F</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">Are all the shields flashing?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17A1"></span>$17A1</td>
+<td class="instruction">BNE <a href="176F.html#17E4">$17E4</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17A3"></span>$17A3</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="1">$02 is the identifier for the Exam Room blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17A5"></span>$17A5</td>
+<td class="instruction">STA $57</td>
+<td class="comment-1" rowspan="1">Store this identifier at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="17A7"></span>$17A7</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">Transfer the blackboard identifier to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17A8"></span>$17A8</td>
+<td class="instruction">JSR <a href="1421.html">$1421</a></td>
+<td class="comment-1" rowspan="1">Copy the blackboard's buffer into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17AB"></span>$17AB</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="1">Character number $14 is ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17AD"></span>$17AD</td>
+<td class="instruction">CMP $1A</td>
+<td class="comment-1" rowspan="1">Was ERIC the last person to write on this blackboard?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17AF"></span>$17AF</td>
+<td class="instruction">BNE <a href="176F.html#17D4">$17D4</a></td>
+<td class="comment-1" rowspan="1">Branch if not to check the next blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17B1"></span>$17B1</td>
+<td class="instruction">LDA $E2</td>
+<td class="comment-1" rowspan="2">Pick up the first character written on the board by ERIC and convert it to upper case.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17B3"></span>$17B3</td>
+<td class="instruction">AND #$5F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17B5"></span>$17B5</td>
+<td class="instruction">CMP $90</td>
+<td class="comment-1" rowspan="1">Does it match the first letter of the safe combination?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17B7"></span>$17B7</td>
+<td class="instruction">BNE <a href="176F.html#17D4">$17D4</a></td>
+<td class="comment-1" rowspan="1">Branch if not to check the next blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17B9"></span>$17B9</td>
+<td class="instruction">LDA $E1</td>
+<td class="comment-1" rowspan="2">Pick up the second character written on the board by ERIC and convert it to upper case.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17BB"></span>$17BB</td>
+<td class="instruction">AND #$5F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17BD"></span>$17BD</td>
+<td class="instruction">CMP $91</td>
+<td class="comment-1" rowspan="1">Does it match the second letter of the safe combination?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17BF"></span>$17BF</td>
+<td class="instruction">BNE <a href="176F.html#17D4">$17D4</a></td>
+<td class="comment-1" rowspan="1">Branch if not to check the next blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17C1"></span>$17C1</td>
+<td class="instruction">LDA $E0</td>
+<td class="comment-1" rowspan="2">Pick up the third character written on the board by ERIC and convert it to upper case.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17C3"></span>$17C3</td>
+<td class="instruction">AND #$5F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17C5"></span>$17C5</td>
+<td class="instruction">CMP $92</td>
+<td class="comment-1" rowspan="1">Does it match the third letter of the safe combination?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17C7"></span>$17C7</td>
+<td class="instruction">BNE <a href="176F.html#17D4">$17D4</a></td>
+<td class="comment-1" rowspan="1">Branch if not to check the next blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17C9"></span>$17C9</td>
+<td class="instruction">LDA $DF</td>
+<td class="comment-1" rowspan="2">Pick up the fourth character written on the board by ERIC and convert it to upper case.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17CB"></span>$17CB</td>
+<td class="instruction">AND #$5F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17CD"></span>$17CD</td>
+<td class="instruction">CMP $93</td>
+<td class="comment-1" rowspan="1">Does it match the fourth letter of the safe combination?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17CF"></span>$17CF</td>
+<td class="instruction">BNE <a href="176F.html#17D4">$17D4</a></td>
+<td class="comment-1" rowspan="1">Branch if not to check the next blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17D1"></span>$17D1</td>
+<td class="instruction">JMP <a href="176F.html#17DD">$17DD</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="17D4"></span>$17D4</td>
+<td class="instruction">DEC $57</td>
+<td class="comment-1" rowspan="1">Move to the next blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17D6"></span>$17D6</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the blackboard identifier from <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17D8"></span>$17D8</td>
+<td class="instruction">BMI <a href="176F.html#17E4">$17E4</a></td>
+<td class="comment-1" rowspan="1">Return if we've checked every blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17DA"></span>$17DA</td>
+<td class="instruction">JMP <a href="176F.html#17A7">$17A7</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump back to check the next blackboard.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="17DD"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC has just opened the safe.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="17DD"></span>$17DD</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="2">Set the safe status indicator at <a href="00D5.html">$D5</a> to $FF: the safe is flashing.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17DF"></span>$17DF</td>
+<td class="instruction">STA $D5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17E1"></span>$17E1</td>
+<td class="instruction">JMP <a href="2BB0.html#2C37">$2C37</a></td>
+<td class="comment-1" rowspan="1">Move to the next phase of the game.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="17E4"></span>$17E4</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="16E9.html">$16E9</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#176F">Map</a></td>
+<td class="next">
+Next: <a href="17E5.html">$17E5</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Game status buffer</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="GameStatusBuffer">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Game status buffer</td>
+</tr>
+</table>
+<div class="map-intro"></div>
+<table class="map">
+<tr>
+<th>Address</th>
+<th class="map-length">Length</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="map-g"><span id="0003"></span><a href="../asm/0003.html">$0003</a></td>
+<td class="map-length">$04</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0003.html">Teachers' safe combination letters</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FA3.html">$7FA3</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/292F.html">$292F</a> and <a href="../asm/298B.html">$298B</a>. The safe combination itself is stored at <a href="../asm/0090.html">$90</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0010"></span><a href="../asm/0010.html">$0010</a></td>
+<td class="map-length">$02</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0010.html">ERIC's midstride and post-midstride y-coordinate increments</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/34B5.html">$34B5</a>, <a href="../asm/350B.html">$350B</a>, <a href="../asm/3558.html">$3558</a>, <a href="../asm/35EF.html">$35EF</a> and <a href="../asm/365C.html">$365C</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0014"></span><a href="../asm/0014.html">$0014</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0014.html">ERIC's posture indicator</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/0800.html">$0800</a>, <a href="../asm/149F.html">$149F</a>, <a href="../asm/15B3.html">$15B3</a>, <a href="../asm/169B.html">$169B</a>, <a href="../asm/19A5.html">$19A5</a>, <a href="../asm/29C8.html">$29C8</a>, <a href="../asm/2D47.html">$2D47</a>, <a href="../asm/3472.html">$3472</a> and <a href="../asm/3687.html">$3687</a>. Holds $FF if ERIC is standing up, or $00 otherwise (meaning he's sitting on a chair, a staircase or the floor, or he's lying on his back).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="002B"></span><a href="../asm/002B.html">$002B</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/002B.html">ERIC's status flags</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FFB.html">$7FFB</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/0800.html">$0800</a>, <a href="../asm/15B3.html">$15B3</a>, <a href="../asm/169B.html">$169B</a>, <a href="../asm/191B.html">$191B</a>, <a href="../asm/1BFA.html">$1BFA</a>, <a href="../asm/1EC2.html">$1EC2</a>, <a href="../asm/2696.html">$2696</a>, <a href="../asm/2757.html">$2757</a>, <a href="../asm/28BC.html">$28BC</a>, <a href="../asm/290F.html">$290F</a>, <a href="../asm/29C8.html">$29C8</a>, <a href="../asm/2D47.html">$2D47</a> and <a href="../asm/3472.html">$3472</a>. If ERIC is doing anything other than walking or standing still, one of the bits here will be set.
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Bit</th>
+<th colspan="1" rowspan="1">Meaning if set</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">ERIC is firing the catapult.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">ERIC is jumping.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">2</td>
+<td class="" colspan="1" rowspan="1">ERIC is hitting.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">ERIC is writing on a blackboard.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">4</td>
+<td class="" colspan="1" rowspan="1">ERIC has just been knocked down or unseated.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">5</td>
+<td class="" colspan="1" rowspan="1">ERIC is being spoken to by little boy no. 10.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">6</td>
+<td class="" colspan="1" rowspan="1">ERIC is immobilised.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">7</td>
+<td class="" colspan="1" rowspan="1">Unused.</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="002C"></span><a href="../asm/002C.html">$002C</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/002C.html">Sound effect identifier</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/189D.html">$189D</a>, <a href="../asm/2BB0.html">$2BB0</a>, <a href="../asm/2D47.html">$2D47</a>, <a href="../asm/3AD5.html">$3AD5</a> and <a href="../asm/BD00.html">$BD00</a>.
+</div>
+<div class="paragraph">
+Holds one of the following values to indicate the sound effect currently being played:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Value</th>
+<th colspan="1" rowspan="1">Sound effect</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">None</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">A shield has been hit</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">2</td>
+<td class="" colspan="1" rowspan="1">ERIC is jumping</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">Bell is ringing</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="002D"></span><a href="../asm/002D.html">$002D</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/002D.html">Sound effect timer</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/189D.html">$189D</a>, <a href="../asm/2BB0.html">$2BB0</a>, <a href="../asm/2D47.html">$2D47</a>, <a href="../asm/3AD5.html">$3AD5</a> and <a href="../asm/BD00.html">$BD00</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="002E"></span><a href="../asm/002E.html">$002E</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/002E.html">Timing counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/0800.html">$0800</a> at <a href="../asm/39C7.html">$39C7</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0030"></span><a href="../asm/0030.html">$0030</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0030.html">ERIC's knockout delay counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FF5.html">$7FF5</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="../asm/15B3.html">$15B3</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0040"></span><a href="../asm/0040.html">$0040</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0040.html">MSB of the lesson clock</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FF7.html">$7FF7</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/0800.html">$0800</a>, <a href="../asm/0C31.html">$0C31</a>, <a href="../asm/0EC2.html">$0EC2</a>, <a href="../asm/149F.html">$149F</a>, <a href="../asm/1D4A.html">$1D4A</a>, <a href="../asm/277D.html">$277D</a>, <a href="../asm/28BC.html">$28BC</a>, <a href="../asm/2BB0.html">$2BB0</a>, <a href="../asm/2D47.html">$2D47</a> and <a href="../asm/3AD5.html">$3AD5</a>. The LSB of the lesson clock is at <a href="../asm/00FD.html">$FD</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0041"></span><a href="../asm/0041.html">$0041</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0041.html">Current lesson number</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FF9.html">$7FF9</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/2D47.html">$2D47</a> and <a href="../asm/3AD5.html">$3AD5</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0046"></span><a href="../asm/0046.html">$0046</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0046.html">Game mode indicator</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FEA.html">$7FEA</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/0800.html">$0800</a>, <a href="../asm/176F.html">$176F</a>, <a href="../asm/1FA0.html">$1FA0</a>, <a href="../asm/2241.html">$2241</a>, <a href="../asm/2573.html">$2573</a>, <a href="../asm/2A43.html">$2A43</a>, <a href="../asm/2BB0.html">$2BB0</a>, <a href="../asm/2D47.html">$2D47</a>, <a href="../asm/3B46.html">$3B46</a> and <a href="../asm/BE09.html">$BE09</a>.
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Value</th>
+<th colspan="1" rowspan="1">Meaning</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">Demo mode.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">Shields need to be flashed.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">2</td>
+<td class="" colspan="1" rowspan="1">All shields flashing; safe not open.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">ERIC has opened the safe; shields need to be unflashed.</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="004B"></span><a href="../asm/004B.html">$004B</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/004B.html">ERIC's midstride indicator</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+The value here is non-zero when ERIC is midstride. Used by the routines at <a href="../asm/0800.html">$0800</a>, <a href="../asm/15B3.html">$15B3</a>, <a href="../asm/2D47.html">$2D47</a>, <a href="../asm/3472.html">$3472</a> and <a href="../asm/365C.html">$365C</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="004C"></span><a href="../asm/004C.html">$004C</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/004C.html">Keyboard/joystick reading</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+The following byte holds the result of reading the keyboard and joystick, as done by the interrupt routine at <a href="../asm/39C7.html">$39C7</a>. It holds $00 if there was no input, the ASCII code of the key pressed (if any), or one of the following values if the joystick was moved:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Value</th>
+<th colspan="1" rowspan="1">Meaning</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">$D1</td>
+<td class="" colspan="1" rowspan="1">Up ('Q' with bit 7 set)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">$C1</td>
+<td class="" colspan="1" rowspan="1">Down ('A' with bit 7 set)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">$CF</td>
+<td class="" colspan="1" rowspan="1">Left ('O' with bit 7 set)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">$D0</td>
+<td class="" colspan="1" rowspan="1">Right ('P' with bit 7 set)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">$46</td>
+<td class="" colspan="1" rowspan="1">Fire ('F')</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/0800.html">$0800</a>, <a href="../asm/184E.html">$184E</a>, <a href="../asm/189D.html">$189D</a>, <a href="../asm/290F.html">$290F</a>, <a href="../asm/2D47.html">$2D47</a>, <a href="../asm/3940.html">$3940</a>, <a href="../asm/39C7.html">$39C7</a> and <a href="../asm/BE09.html">$BE09</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0058"></span><a href="../asm/0058.html">$0058</a></td>
+<td class="map-length">$02</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0058.html">x-coordinates of the leftmost columns of the skool on screen and off</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7F00.html">$7F00</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/11CF.html">$11CF</a>, <a href="../asm/16E9.html">$16E9</a>, <a href="../asm/2043.html">$2043</a>, <a href="../asm/2387.html">$2387</a>, <a href="../asm/2D47.html">$2D47</a>, <a href="../asm/2EE6.html">$2EE6</a>, <a href="../asm/3012.html">$3012</a>, <a href="../asm/3072.html">$3072</a>, <a href="../asm/3113.html">$3113</a>, <a href="../asm/31EA.html">$31EA</a>, <a href="../asm/322E.html">$322E</a>, <a href="../asm/35EF.html">$35EF</a>, <a href="../asm/39C7.html">$39C7</a> and <a href="../asm/3A90.html">$3A90</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0060"></span><a href="../asm/0060.html">$0060</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0060.html">Current character number ($00-$14)</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/0800.html">$0800</a>, <a href="../asm/09E9.html">$09E9</a>, <a href="../asm/1129.html">$1129</a>, <a href="../asm/149F.html">$149F</a>, <a href="../asm/15B3.html">$15B3</a>, <a href="../asm/1640.html">$1640</a>, <a href="../asm/17E5.html">$17E5</a>, <a href="../asm/191B.html">$191B</a>, <a href="../asm/1D4A.html">$1D4A</a>, <a href="../asm/1EE3.html">$1EE3</a>, <a href="../asm/1F29.html">$1F29</a>, <a href="../asm/1FA0.html">$1FA0</a>, <a href="../asm/2241.html">$2241</a>, <a href="../asm/2387.html">$2387</a>, <a href="../asm/2696.html">$2696</a>, <a href="../asm/27D2.html">$27D2</a>, <a href="../asm/298B.html">$298B</a>, <a href="../asm/29C8.html">$29C8</a>, <a href="../asm/2A43.html">$2A43</a>, <a href="../asm/2B52.html">$2B52</a>, <a href="../asm/2D47.html">$2D47</a>, <a href="../asm/2E13.html">$2E13</a>, <a href="../asm/3279.html">$3279</a>, <a href="../asm/33BF.html">$33BF</a>, <a href="../asm/3AB4.html">$3AB4</a>, <a href="../asm/3AD5.html">$3AD5</a>, <a href="../asm/3B5E.html">$3B5E</a> and <a href="../asm/BE09.html">$BE09</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0070"></span><a href="../asm/0070.html">$0070</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0070.html">Lesson descriptor</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FF4.html">$7FF4</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/09E9.html">$09E9</a>, <a href="../asm/0D91.html">$0D91</a>, <a href="../asm/149F.html">$149F</a>, <a href="../asm/2573.html">$2573</a> and <a href="../asm/3AD5.html">$3AD5</a>. See the list of lesson descriptors at <a href="../asm/8CE0.html">$8CE0</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0071"></span><a href="../asm/0071.html">$0071</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0071.html">Character number of the teacher who last gave ERIC lines</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FF3.html">$7FF3</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="../asm/149F.html">$149F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="007C"></span><a href="../asm/007C.html">$007C</a></td>
+<td class="map-length">$02</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/007C.html">Score</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FC4.html">$7FC4</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/0800.html">$0800</a>, <a href="../asm/1D37.html">$1D37</a>, <a href="../asm/2BB0.html">$2BB0</a> and <a href="../asm/2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="007E"></span><a href="../asm/007E.html">$007E</a></td>
+<td class="map-length">$02</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/007E.html">Lines total</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FC6.html">$7FC6</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/0800.html">$0800</a>, <a href="../asm/1D4A.html">$1D4A</a> and <a href="../asm/2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0081"></span><a href="../asm/0081.html">$0081</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0081.html">ERIC's stand-up delay counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FC1.html">$7FC1</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the main loop at <a href="../asm/0800.html">$0800</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0082"></span><a href="../asm/0082.html">$0082</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0082.html">Interrupt counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Incremented on every pass through the interrupt routine at <a href="../asm/39C7.html">$39C7</a>, and used by the main loop at <a href="../asm/0800.html">$0800</a> to adjust ERIC's walking speed in demo mode.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0090"></span><a href="../asm/0090.html">$0090</a></td>
+<td class="map-length">$04</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0090.html">Safe combination code</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7F9F.html">$7F9F</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/176F.html">$176F</a>, <a href="../asm/1F3A.html">$1F3A</a> and <a href="../asm/292F.html">$292F</a>. The teachers' safe combination letters are stored at <a href="../asm/0003.html">$03</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="0094"></span><a href="../asm/0094.html">$0094</a></td>
+<td class="map-length">$04</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0094.html">MR CREAK's year of birth</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7F9B.html">$7F9B</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/1FA0.html">$1FA0</a> and <a href="../asm/2AAA.html">$2AAA</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00A5"></span><a href="../asm/00A5.html">$00A5</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00A5.html">Identifier for MR CREAK's birth year battle</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7F9A.html">$7F9A</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/2241.html">$2241</a> and <a href="../asm/2AAA.html">$2AAA</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00C2"></span><a href="../asm/00C2.html">$00C2</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00C2.html">Birth year question indicator</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/2241.html">$2241</a> and <a href="../asm/3AD5.html">$3AD5</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00C5"></span><a href="../asm/00C5.html">$00C5</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00C5.html">Copy of keyboard/joystick reading</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This byte holds a copy of the keyboard/joystick reading at <a href="../asm/004C.html">$4C</a>. It is copied here by the routine at <a href="../asm/0800.html">$0800</a>. Also used by the routines at <a href="../asm/290F.html">$290F</a> and <a href="../asm/365C.html">$365C</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00C6"></span><a href="../asm/00C6.html">$00C6</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00C6.html">Lines-giving delay counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FF2.html">$7FF2</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="../asm/149F.html">$149F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00C8"></span><a href="../asm/00C8.html">$00C8</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00C8.html">Identifier of next lines reprimand for the teacher fetching the truant ERIC</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/149F.html">$149F</a> and <a href="../asm/3AD5.html">$3AD5</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00C9"></span><a href="../asm/00C9.html">$00C9</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00C9.html">Shield/safe timing counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routine at <a href="../asm/39C7.html">$39C7</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00D2"></span><a href="../asm/00D2.html">$00D2</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00D2.html">ERIC's pre-action animatory state</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Set by the routine at <a href="../asm/169B.html">$169B</a> and then used by the routine at <a href="../asm/191B.html">$191B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00D5"></span><a href="../asm/00D5.html">$00D5</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00D5.html">Safe status indicator</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Holds $FF if the safe is flashing, $00 otherwise. Used by the routines at <a href="../asm/176F.html">$176F</a>, <a href="../asm/2BB0.html">$2BB0</a> and <a href="../asm/39C7.html">$39C7</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00D9"></span><a href="../asm/00D9.html">$00D9</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00D9.html">Shield counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FEB.html">$7FEB</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/2BB0.html">$2BB0</a> and <a href="../asm/2D47.html">$2D47</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00E5"></span><a href="../asm/00E5.html">$00E5</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00E5.html">ERIC's midstride and input timer</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Decremented on each pass through the main loop at <a href="../asm/0800.html">$0800</a>. When the timer reaches zero, either ERIC is moved from the midstride position (if he is midstride), or the keyboard/joystick input is checked, whereupon the timer is reset to 4. It is initialised to 1 by the routine at <a href="../asm/2D47.html">$2D47</a>, and reset to either 2 or 6 by the routine at <a href="../asm/365C.html">$365C</a> after moving ERIC midstride.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00EB"></span><a href="../asm/00EB.html">$00EB</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00EB.html">Keyboard delay counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/2D47.html">$2D47</a> and <a href="../asm/3940.html">$3940</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00F7"></span><a href="../asm/00F7.html">$00F7</a></td>
+<td class="map-length">$02</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00F7.html">Hi-score</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FC2.html">$7FC2</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="../asm/2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00FD"></span><a href="../asm/00FD.html">$00FD</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00FD.html">LSB of the lesson clock</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FF7.html">$7FF7</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/0800.html">$0800</a>, <a href="../asm/270D.html">$270D</a>, <a href="../asm/292F.html">$292F</a>, <a href="../asm/2BB0.html">$2BB0</a> and <a href="../asm/2D47.html">$2D47</a>. The MSB of the lesson clock is at <a href="../asm/0040.html">$40</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-g"><span id="00FE"></span><a href="../asm/00FE.html">$00FE</a></td>
+<td class="map-length">$01</td>
+<td class="map-g-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00FE.html">ERIC's action timer</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7FF6.html">$7FF6</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/169B.html">$169B</a>, <a href="../asm/17E5.html">$17E5</a>, <a href="../asm/184E.html">$184E</a>, <a href="../asm/189D.html">$189D</a>, <a href="../asm/191B.html">$191B</a> and <a href="../asm/2D47.html">$2D47</a>.
+</div>
+</div>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

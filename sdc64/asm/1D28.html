@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1D28</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1D27.html">$1D27</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1D28">Map</a></td>
+<td class="next">
+Next: <a href="1D2D.html">$1D2D</a>
+</td>
+</tr>
+</table>
+<div class="description">$1D28: Terminate an interruptible subcommand</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="0C31.html">$0C31</a>, <a href="1129.html">$1129</a>, <a href="136F.html">$136F</a>, <a href="13F3.html">$13F3</a>, <a href="16E9.html">$16E9</a>, <a href="1EE3.html">$1EE3</a>, <a href="2387.html">$2387</a>, <a href="2387.html#241B">$241B</a> and <a href="2745.html">$2745</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1D28"></span>$1D28</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Remove the interruptible subcommand routine address from the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D2A"></span>$1D2A</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D2C"></span>$1D2C</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1D27.html">$1D27</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1D28">Map</a></td>
+<td class="next">
+Next: <a href="1D2D.html">$1D2D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

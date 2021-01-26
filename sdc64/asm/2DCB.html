@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2DCB</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2DAD.html">$2DAD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2DCB">Map</a></td>
+<td class="next">
+Next: <a href="2E05.html">$2E05</a>
+</td>
+</tr>
+</table>
+<div class="description">$2DCB: Initialise colour information</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="2CD9.html">$2CD9</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2DCB"></span>$2DCB</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Prepare to address the colour information  at $CC00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DCD"></span>$2DCD</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DCF"></span>$2DCF</td>
+<td class="instruction">LDA #$CC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DD1"></span>$2DD1</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DD3"></span>$2DD3</td>
+<td class="instruction">LDA #$06</td>
+<td class="comment-1" rowspan="2">Set the border colour to blue.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DD5"></span>$2DD5</td>
+<td class="instruction">STA $D020</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DD8"></span>$2DD8</td>
+<td class="instruction">LDA #$66</td>
+<td class="comment-1" rowspan="9">Fill addresses $CC00-$CEFF with the value $66 (blue background and blue foreground).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DDA"></span>$2DDA</td>
+<td class="instruction">LDX #$03</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2DDC"></span>$2DDC</td>
+<td class="instruction">LDY #$00</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2DDE"></span>$2DDE</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DE0"></span>$2DE0</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DE1"></span>$2DE1</td>
+<td class="instruction">BNE <a href="2DCB.html#2DDE">$2DDE</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DE3"></span>$2DE3</td>
+<td class="instruction">INC $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DE5"></span>$2DE5</td>
+<td class="instruction">DEX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DE6"></span>$2DE6</td>
+<td class="instruction">BNE <a href="2DCB.html#2DDC">$2DDC</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DE8"></span>$2DE8</td>
+<td class="instruction">STA ($4E),Y</td>
+<td class="comment-1" rowspan="5">Fill addresses $CF00-$CF47 with the value $66 (blue background and blue foreground).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DEA"></span>$2DEA</td>
+<td class="instruction">LDY #$47</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2DEC"></span>$2DEC</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DEE"></span>$2DEE</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DEF"></span>$2DEF</td>
+<td class="instruction">BNE <a href="2DCB.html#2DEC">$2DEC</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DF1"></span>$2DF1</td>
+<td class="instruction">LDA #$5D</td>
+<td class="comment-1" rowspan="4">Prepare to address the initial colour information for the bottom four rows of the screen at <a href="5D48.html">$5D48</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DF3"></span>$2DF3</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DF5"></span>$2DF5</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DF7"></span>$2DF7</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DF9"></span>$2DF9</td>
+<td class="instruction">LDY #$48</td>
+<td class="comment-1" rowspan="6">Fill addresses $CF48-$CFE7 with a copy of the colour information at <a href="5D48.html">$5D48</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2DFB"></span>$2DFB</td>
+<td class="instruction">LDA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DFD"></span>$2DFD</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DFF"></span>$2DFF</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E00"></span>$2E00</td>
+<td class="instruction">CPY #$E8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E02"></span>$2E02</td>
+<td class="instruction">BNE <a href="2DCB.html#2DFB">$2DFB</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2E04"></span>$2E04</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2DAD.html">$2DAD</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2DCB">Map</a></td>
+<td class="next">
+Next: <a href="2E05.html">$2E05</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

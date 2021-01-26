@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $12B5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1294.html">$1294</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#12B5">Map</a></td>
+<td class="next">
+Next: <a href="136E.html">$136E</a>
+</td>
+</tr>
+</table>
+<div class="description">$12B5: Make a character go to a location</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/63BE.html">$63BE</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this primary command routine is found in many <a href="4480.html">command lists</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="12B5"></span>$12B5</td>
+<td class="instruction">JSR <a href="3BE7.html">$3BE7</a></td>
+<td class="comment-1" rowspan="2">Collect the destination x-coordinate from the command list and store it at <a href="00A6.html">$A6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12B8"></span>$12B8</td>
+<td class="instruction">STA $A6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12BA"></span>$12BA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">Transfer the destination x-coordinate to <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12BB"></span>$12BB</td>
+<td class="instruction">JSR <a href="3BE7.html">$3BE7</a></td>
+<td class="comment-1" rowspan="2">Collect the destination y-coordinate from the command list and store it at <a href="00A6.html#00A7">$A7</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12BE"></span>$12BE</td>
+<td class="instruction">STA $A7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12C0"></span>$12C0</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">Transfer the destination y-coordinate to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="12C1"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="105B.html">$105B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="12C1"></span>$12C1</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Reset bit 1 in the flags byte at <a href="003F.html">$3F</a>: the character is not running continuously.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12C3"></span>$12C3</td>
+<td class="instruction">AND #$FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12C5"></span>$12C5</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="12C7"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="284F.html">$284F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="12C7"></span>$12C7</td>
+<td class="instruction">JSR <a href="126D.html">$126D</a></td>
+<td class="comment-1" rowspan="2">Determine the region identifier for the destination coordinates and store it at <a href="00A8.html">$A8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12CA"></span>$12CA</td>
+<td class="instruction">STA $A8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12CC"></span>$12CC</td>
+<td class="instruction">LDA #$12</td>
+<td class="comment-1" rowspan="4">Replace the address of this primary command routine in the character's buffer with that of <a href="12B5.html#12E8">$12E8</a> below.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12CE"></span>$12CE</td>
+<td class="instruction">STA $2A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12D0"></span>$12D0</td>
+<td class="instruction">LDA #$E8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12D2"></span>$12D2</td>
+<td class="instruction">STA $29</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12D4"></span>$12D4</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12D6"></span>$12D6</td>
+<td class="instruction">AND #$07</td>
+<td class="comment-1" rowspan="1">Keep only bits 0-2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12D8"></span>$12D8</td>
+<td class="instruction">CMP #$05</td>
+<td class="comment-1" rowspan="1">Is the character sitting on a chair?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12DA"></span>$12DA</td>
+<td class="instruction">BNE <a href="12B5.html#12E8">$12E8</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12DC"></span>$12DC</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12DF"></span>$12DF</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="3">Clear bits 0-2 of the character's animatory state, making him stand up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12E1"></span>$12E1</td>
+<td class="instruction">AND #$F8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12E3"></span>$12E3</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12E5"></span>$12E5</td>
+<td class="instruction">JMP <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's new animatory state.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="12E8"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used on the second and subsequent passes.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="12E8"></span>$12E8</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12EA"></span>$12EA</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Is the character midstride?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12EB"></span>$12EB</td>
+<td class="instruction">BCC <a href="12B5.html#12F0">$12F0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12ED"></span>$12ED</td>
+<td class="instruction">JMP <a href="136F.html#1390">$1390</a></td>
+<td class="comment-1" rowspan="1">Move the character from the midstride position.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="12F0"></span>
+<div class="comments">
+<div class="paragraph">
+The character is ready to start making his way to the destination.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="12F0"></span>$12F0</td>
+<td class="instruction">LDX $FC</td>
+<td class="comment-1" rowspan="2">Pick up the character's current coordinates from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12F2"></span>$12F2</td>
+<td class="instruction">LDY $FB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12F4"></span>$12F4</td>
+<td class="instruction">JSR <a href="126D.html">$126D</a></td>
+<td class="comment-1" rowspan="2">Determine the region identifier for these coordinates and store it at <a href="0047.html#0048">$48</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12F7"></span>$12F7</td>
+<td class="instruction">STA $48</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12F9"></span>$12F9</td>
+<td class="instruction">CMP $A8</td>
+<td class="comment-1" rowspan="1">Is the character already in the destination region?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12FB"></span>$12FB</td>
+<td class="instruction">BNE <a href="12B5.html#1313">$1313</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="12FD"></span>
+<div class="comments">
+<div class="paragraph">
+The character is in the destination region, so it's just a straight walk left or right from here.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12FD"></span>$12FD</td>
+<td class="instruction">LDA $A6</td>
+<td class="comment-1" rowspan="1">Pick up the destination x-coordinate from <a href="00A6.html">$A6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12FF"></span>$12FF</td>
+<td class="instruction">CMP $FC</td>
+<td class="comment-1" rowspan="1">Does it match the character's x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1301"></span>$1301</td>
+<td class="instruction">BNE <a href="12B5.html#1306">$1306</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1303"></span>$1303</td>
+<td class="instruction">JMP <a href="1D2D.html">$1D2D</a></td>
+<td class="comment-1" rowspan="1">Otherwise terminate this primary command: the character has reached his destination.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1306"></span>$1306</td>
+<td class="instruction">STA $AC</td>
+<td class="comment-1" rowspan="1">Store the destination x-coordinate at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1308"></span>$1308</td>
+<td class="instruction">LDA #$13</td>
+<td class="comment-1" rowspan="4">Place the address of the interruptible subcommand routine at <a href="136F.html">$136F</a> into the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="130A"></span>$130A</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="130C"></span>$130C</td>
+<td class="instruction">LDA #$6F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="130E"></span>$130E</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1310"></span>$1310</td>
+<td class="instruction">JMP (<a href="00AA.html">$00AA</a>)</td>
+<td class="comment-1" rowspan="1">Jump to <a href="136F.html">$136F</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1313"></span>
+<div class="comments">
+<div class="paragraph">
+The character is not in the destination region. One or more staircases need to be navigated.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1313"></span>$1313</td>
+<td class="instruction">BCC <a href="12B5.html#1320">$1320</a></td>
+<td class="comment-1" rowspan="1">Branch if the current region identifier is less than the destination region identifier.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1315"></span>$1315</td>
+<td class="instruction">LDA #$54</td>
+<td class="comment-1" rowspan="4">Prepare to address the staircase endpoint data table at <a href="4454.html">$4454</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1317"></span>$1317</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1319"></span>$1319</td>
+<td class="instruction">LDA #$44</td>
+</tr>
+<tr>
+<td class="address-1"><span id="131B"></span>$131B</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="131D"></span>$131D</td>
+<td class="instruction">JMP <a href="12B5.html#1328">$1328</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1320"></span>$1320</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="4">Prepare to address the staircase endpoint data table at <a href="4440.html">$4440</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1322"></span>$1322</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1324"></span>$1324</td>
+<td class="instruction">LDA #$44</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1326"></span>$1326</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1328"></span>$1328</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="7">Set <span class="register">A</span> equal to 4 multiplied by the region identifier for the character's current location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="132A"></span>$132A</td>
+<td class="instruction">LDX $48</td>
+</tr>
+<tr>
+<td class="address-1"><span id="132C"></span>$132C</td>
+<td class="instruction">BEQ <a href="12B5.html#1334">$1334</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="132E"></span>$132E</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="132F"></span>$132F</td>
+<td class="instruction">ADC #$04</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1331"></span>$1331</td>
+<td class="instruction">DEX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1332"></span>$1332</td>
+<td class="instruction">BNE <a href="12B5.html#132E">$132E</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="1334"></span>$1334</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="2">Pick up a staircase endpoint x-coordinate from the table at <a href="4440.html">$4440</a> or <a href="4454.html">$4454</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1335"></span>$1335</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1337"></span>$1337</td>
+<td class="instruction">CMP $FC</td>
+<td class="comment-1" rowspan="1">Is the character at the top or bottom of the staircase?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1339"></span>$1339</td>
+<td class="instruction">BEQ <a href="12B5.html#1348">$1348</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="133B"></span>$133B</td>
+<td class="instruction">STA $AC</td>
+<td class="comment-1" rowspan="1">Store the staircase endpoint x-coordinate at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="133D"></span>$133D</td>
+<td class="instruction">LDA #$13</td>
+<td class="comment-1" rowspan="4">Place the address of the interruptible subcommand routine at <a href="136F.html">$136F</a> into the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="133F"></span>$133F</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1341"></span>$1341</td>
+<td class="instruction">LDA #$6F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1343"></span>$1343</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1345"></span>$1345</td>
+<td class="instruction">JMP (<a href="00AA.html">$00AA</a>)</td>
+<td class="comment-1" rowspan="1">Jump to <a href="136F.html">$136F</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1348"></span>
+<div class="comments">
+<div class="paragraph">
+The character is at the top or bottom of a staircase that must be navigated.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1348"></span>$1348</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="2">Pick up the staircase direction indicator ($00 or $80) from the table at <a href="4440.html">$4440</a> or <a href="4454.html">$4454</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1349"></span>$1349</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="134B"></span>$134B</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save it temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="134C"></span>$134C</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="134E"></span>$134E</td>
+<td class="instruction">AND #$80</td>
+<td class="comment-1" rowspan="2">Keep only the direction bit (bit 7) and store the result at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1350"></span>$1350</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1352"></span>$1352</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore the staircase direction indicator to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1353"></span>$1353</td>
+<td class="instruction">CMP $57</td>
+<td class="comment-1" rowspan="1">Is the character facing the right way to start climbing or descending the staircase?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1355"></span>$1355</td>
+<td class="instruction">BEQ <a href="12B5.html#135D">$135D</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1357"></span>$1357</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="135A"></span>$135A</td>
+<td class="instruction">JMP <a href="136F.html#13C6">$13C6</a></td>
+<td class="comment-1" rowspan="1">Turn the character round.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="135D"></span>
+<div class="comments">
+<div class="paragraph">
+The character is at the top or bottom of a staircase that must be navigated, and is facing the right way to begin the ascent or descent.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="135D"></span>$135D</td>
+<td class="instruction">LDA #$0F</td>
+<td class="comment-1" rowspan="1">Going up or down a staircase requires 15 movements.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="135F"></span>$135F</td>
+<td class="instruction">STA $AC</td>
+<td class="comment-1" rowspan="1">Store this counter at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1361"></span>$1361</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="6">Collect the interruptible subcommand routine address (<a href="13F3.html">$13F3</a> or <a href="13F3.html#13FA">$13FA</a>) from the table at <a href="4440.html">$4440</a> or <a href="4454.html">$4454</a> and place it into the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1362"></span>$1362</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1364"></span>$1364</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1366"></span>$1366</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1367"></span>$1367</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1369"></span>$1369</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="136B"></span>$136B</td>
+<td class="instruction">JMP (<a href="00AA.html">$00AA</a>)</td>
+<td class="comment-1" rowspan="1">Jump to the interruptible subcommand routine.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1294.html">$1294</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#12B5">Map</a></td>
+<td class="next">
+Next: <a href="136E.html">$136E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

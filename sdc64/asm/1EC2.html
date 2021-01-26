@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1EC2</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1DB7.html">$1DB7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1EC2">Map</a></td>
+<td class="next">
+Next: <a href="1EE3.html">$1EE3</a>
+</td>
+</tr>
+</table>
+<div class="description">$1EC2: Get ERIC's coordinates</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/79FD.html">$79FD</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="0C3F.html">$0C3F</a> and <a href="149F.html">$149F</a>.
+</div>
+</div>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">X</td>
+<td class="register-desc">ERIC's x-coordinate</td>
+</tr>
+<tr>
+<td class="register">Y</td>
+<td class="register-desc">ERIC's y-coordinate (adjusted if he's jumping)</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1EC2"></span>$1EC2</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's status flags from <a href="002B.html">$2B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EC4"></span>$1EC4</td>
+<td class="instruction">LDX $8C61</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate from his character buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EC7"></span>$1EC7</td>
+<td class="instruction">LDY $8C62</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's y-coordinate from his character buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1ECA"></span>$1ECA</td>
+<td class="instruction">AND #$02</td>
+<td class="comment-1" rowspan="1">Is ERIC jumping (bit 1 set)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1ECC"></span>$1ECC</td>
+<td class="instruction">BEQ <a href="1EC2.html#1EE2">$1EE2</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1ECE"></span>$1ECE</td>
+<td class="instruction">CPY #$03</td>
+<td class="comment-1" rowspan="1">Is ERIC's y-coordinate 3 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1ED0"></span>$1ED0</td>
+<td class="instruction">BCS <a href="1EC2.html#1ED7">$1ED7</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1ED2"></span>$1ED2</td>
+<td class="instruction">LDY #$03</td>
+<td class="comment-1" rowspan="2">Return with <span class="register">Y</span>=3 (ERIC is jumping on the top floor).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1ED4"></span>$1ED4</td>
+<td class="instruction">JMP <a href="1EC2.html#1EE2">$1EE2</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="1ED7"></span>$1ED7</td>
+<td class="instruction">CPY #$0A</td>
+<td class="comment-1" rowspan="1">Is ERIC's y-coordinate 10 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1ED9"></span>$1ED9</td>
+<td class="instruction">BCS <a href="1EC2.html#1EE0">$1EE0</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EDB"></span>$1EDB</td>
+<td class="instruction">LDY #$0A</td>
+<td class="comment-1" rowspan="2">Return with <span class="register">Y</span>=10 (ERIC is jumping on the middle floor).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EDD"></span>$1EDD</td>
+<td class="instruction">JMP <a href="1EC2.html#1EE2">$1EE2</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="1EE0"></span>$1EE0</td>
+<td class="instruction">LDY #$11</td>
+<td class="comment-1" rowspan="1">Return with <span class="register">Y</span>=17 (ERIC is jumping on the bottom floor).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1EE2"></span>$1EE2</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1DB7.html">$1DB7</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1EC2">Map</a></td>
+<td class="next">
+Next: <a href="1EE3.html">$1EE3</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

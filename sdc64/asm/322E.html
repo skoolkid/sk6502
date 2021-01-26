@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $322E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="31EA.html">$31EA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#322E">Map</a></td>
+<td class="next">
+Next: <a href="3279.html">$3279</a>
+</td>
+</tr>
+</table>
+<div class="description">$322E: Update the SRB for a character's current animatory state and location</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6214.html">$6214</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="0C3F.html">$0C3F</a>, <a href="0FBA.html">$0FBA</a>, <a href="1042.html">$1042</a>, <a href="1129.html">$1129</a>, <a href="12B5.html">$12B5</a>, <a href="136F.html">$136F</a>, <a href="13F3.html">$13F3</a>, <a href="15B3.html">$15B3</a>, <a href="169B.html">$169B</a>, <a href="16E9.html">$16E9</a>, <a href="176F.html">$176F</a>, <a href="189D.html">$189D</a>, <a href="191B.html">$191B</a>, <a href="1C59.html">$1C59</a>, <a href="1CB4.html">$1CB4</a>, <a href="1CCB.html">$1CCB</a>, <a href="1CEC.html">$1CEC</a>, <a href="267A.html">$267A</a>, <a href="2696.html">$2696</a>, <a href="26E0.html">$26E0</a>, <a href="2A43.html">$2A43</a>, <a href="2B21.html">$2B21</a>, <a href="2B3F.html">$2B3F</a>, <a href="2B9F.html">$2B9F</a>, <a href="3472.html">$3472</a>, <a href="35EF.html">$35EF</a>, <a href="364E.html">$364E</a> and <a href="365C.html">$365C</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="322E"></span>$322E</td>
+<td class="instruction">LDY $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3230"></span>$3230</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Prepare to address the animatory state tile references at <a href="8D00.html">$8D00</a> onwards.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3232"></span>$3232</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3234"></span>$3234</td>
+<td class="instruction">LDA #$8D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3236"></span>$3236</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3238"></span>$3238</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="2">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a> and store it at <a href="004D.html#0057">$57</a>. This is the initial play area x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="323A"></span>$323A</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="323C"></span>
+<div class="comments">
+<div class="paragraph">
+Here we enter a loop to consider each tile of the character's sprite that is currently on screen, working column by column from left to right.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="323C"></span>$323C</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="2">Pick up the character's y-coordinate from <a href="00FB.html">$FB</a> and store it at <a href="0047.html#004A">$4A</a>. This is the initial play area y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="323E"></span>$323E</td>
+<td class="instruction">STA $4A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3240"></span>$3240</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the play area x-coordinate from <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3242"></span>$3242</td>
+<td class="instruction">CMP $58</td>
+<td class="comment-1" rowspan="1">Is it less than the x-coordinate of the leftmost column of the skool on screen?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3244"></span>$3244</td>
+<td class="instruction">BCS <a href="322E.html#3249">$3249</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3246"></span>$3246</td>
+<td class="instruction">JMP <a href="322E.html#3269">$3269</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward to consider the next column of tiles in the character's sprite.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3249"></span>$3249</td>
+<td class="instruction">CMP $59</td>
+<td class="comment-1" rowspan="1">Is the play area x-coordinate less than the x-coordinate of the leftmost column of the skool off screen?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="324B"></span>$324B</td>
+<td class="instruction">BCS <a href="322E.html#3269">$3269</a></td>
+<td class="comment-1" rowspan="1">Branch if not to consider the next column of tiles in the character's sprite (which will also be off screen).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="324D"></span>$324D</td>
+<td class="instruction">LDX #$04</td>
+<td class="comment-1" rowspan="1">There are four rows of tiles in a character's sprite.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="324F"></span>$324F</td>
+<td class="instruction">LDY $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3251"></span>$3251</td>
+<td class="instruction">LDA ($50),Y</td>
+<td class="comment-1" rowspan="1">Pick up an animatory state tile reference.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3253"></span>$3253</td>
+<td class="instruction">BEQ <a href="322E.html#325F">$325F</a></td>
+<td class="comment-1" rowspan="1">Branch if it's zero (i.e. the blank tile).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3255"></span>$3255</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the play area x-coordinate from <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3257"></span>$3257</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="3">Subtract the x-coordinate of the leftmost column of the skool on screen to obtain the screen x-coordinate, and store it at <a href="0047.html#0049">$49</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3258"></span>$3258</td>
+<td class="instruction">SBC $58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="325A"></span>$325A</td>
+<td class="instruction">STA $49</td>
+</tr>
+<tr>
+<td class="address-1"><span id="325C"></span>$325C</td>
+<td class="instruction">JSR <a href="36E3.html">$36E3</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character cell containing this sprite tile.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="325F"></span>$325F</td>
+<td class="instruction">INC $51</td>
+<td class="comment-1" rowspan="1">Point at the animatory state tile references for the next row of tiles in the character's sprite.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3261"></span>$3261</td>
+<td class="instruction">INC $4A</td>
+<td class="comment-1" rowspan="1">Increment the play area y-coordinate at <a href="0047.html#004A">$4A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3263"></span>$3263</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">Decrement the tile row counter.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3264"></span>$3264</td>
+<td class="instruction">BNE <a href="322E.html#324F">$324F</a></td>
+<td class="comment-1" rowspan="1">Branch back until all four tiles in this column have been checked.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3266"></span>$3266</td>
+<td class="instruction">JMP <a href="322E.html#3270">$3270</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3269"></span>$3269</td>
+<td class="instruction">LDA $51</td>
+<td class="comment-1" rowspan="4">Add 4 to the MSB of the animatory state tile reference address at <a href="004D.html#0051">$51</a>. This now points at the first tile in the next column to the right.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="326B"></span>$326B</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="326C"></span>$326C</td>
+<td class="instruction">ADC #$04</td>
+</tr>
+<tr>
+<td class="address-1"><span id="326E"></span>$326E</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3270"></span>$3270</td>
+<td class="instruction">INC $57</td>
+<td class="comment-1" rowspan="1">Increment the play area x-coordinate at <a href="004D.html#0057">$57</a>. This now corresponds to the tiles in the next column to the right.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3272"></span>$3272</td>
+<td class="instruction">LDA $51</td>
+<td class="comment-1" rowspan="1">Pick up the animatory state tile reference address MSB.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3274"></span>$3274</td>
+<td class="instruction">CMP #$99</td>
+<td class="comment-1" rowspan="1">Have we done every tile in the sprite yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3276"></span>$3276</td>
+<td class="instruction">BCC <a href="322E.html#323C">$323C</a></td>
+<td class="comment-1" rowspan="1">Branch back if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3278"></span>$3278</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="31EA.html">$31EA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#322E">Map</a></td>
+<td class="next">
+Next: <a href="3279.html">$3279</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

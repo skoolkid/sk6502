@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1CCB</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1CB4.html">$1CB4</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1CCB">Map</a></td>
+<td class="next">
+Next: <a href="1CEC.html">$1CEC</a>
+</td>
+</tr>
+</table>
+<div class="description">$1CCB: Deal with a character who's been dethroned (2)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6C64.html">$6C64</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this uninterruptible subcommand routine is placed into a character's buffer by the routine at <a href="1CB4.html">$1CB4</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1CCB"></span>$1CCB</td>
+<td class="instruction">DEC $B5</td>
+<td class="comment-1" rowspan="1">Decrement the delay counter at <a href="00B5.html">$B5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CCD"></span>$1CCD</td>
+<td class="instruction">BNE <a href="1CEC.html#1D15">$1D15</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's time to get up off the floor.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CCF"></span>$1CCF</td>
+<td class="instruction">LDA #$1C</td>
+<td class="comment-1" rowspan="4">Replace the address of this uninterruptible subcommand routine in the character's buffer with that of <a href="1CEC.html">$1CEC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CD1"></span>$1CD1</td>
+<td class="instruction">STA $B1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CD3"></span>$1CD3</td>
+<td class="instruction">LDA #$EC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CD5"></span>$1CD5</td>
+<td class="instruction">STA $B0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CD7"></span>$1CD7</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CDA"></span>$1CDA</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="3">Adjust the character's animatory state at <a href="0026.html">$26</a>, making him stand up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CDC"></span>$1CDC</td>
+<td class="instruction">AND #$F8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CDE"></span>$1CDE</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CE0"></span>$1CE0</td>
+<td class="instruction">CMP #$10</td>
+<td class="comment-1" rowspan="1">Is the character EINSTEIN (animatory state <a href="../graphics/as.html#10">$10</a>)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CE2"></span>$1CE2</td>
+<td class="instruction">BEQ <a href="1CCB.html#1CE6">$1CE6</a></td>
+<td class="comment-1" rowspan="1">Branch if so (only EINSTEIN will sit back in the same chair).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CE4"></span>$1CE4</td>
+<td class="instruction">DEC $FC</td>
+<td class="comment-1" rowspan="1">Decrement the character's x-coordinate at <a href="00FB.html#00FC">$FC</a>. This makes him look for another chair.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1CE6"></span>$1CE6</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's new animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1CE9"></span>$1CE9</td>
+<td class="instruction">JMP <a href="1CEC.html#1D15">$1D15</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1CB4.html">$1CB4</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1CCB">Map</a></td>
+<td class="next">
+Next: <a href="1CEC.html">$1CEC</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

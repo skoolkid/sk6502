@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2387</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2241.html">$2241</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2387">Map</a></td>
+<td class="next">
+Next: <a href="246B.html">$246B</a>
+</td>
+</tr>
+</table>
+<div class="description">$2387: Make a character speak</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7986.html">$7986</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this interruptible subcommand routine is placed into a character's buffer by the routines at <a href="09E9.html">$09E9</a>, <a href="0A58.html">$0A58</a>, <a href="0B3B.html">$0B3B</a>, <a href="1F4D.html">$1F4D</a>, <a href="1FA0.html">$1FA0</a>, <a href="2241.html">$2241</a>, <a href="2757.html">$2757</a>, <a href="277D.html">$277D</a> and <a href="28BC.html">$28BC</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2387"></span>$2387</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="3">Remove any submessage address from the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2389"></span>$2389</td>
+<td class="instruction">STA $AE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="238B"></span>$238B</td>
+<td class="instruction">STA $AF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="238D"></span>$238D</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the character's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="238F"></span>$238F</td>
+<td class="instruction">STA $57</td>
+<td class="comment-1" rowspan="2">Store it at <a href="004D.html#0057">$57</a> and increment it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2391"></span>$2391</td>
+<td class="instruction">INC $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2393"></span>$2393</td>
+<td class="instruction">LDA $58</td>
+<td class="comment-1" rowspan="1">Pick up the x-coordinate of the leftmost column of the skool on screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2395"></span>$2395</td>
+<td class="instruction">CMP $57</td>
+<td class="comment-1" rowspan="1">Is the character off-screen to the left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2397"></span>$2397</td>
+<td class="instruction">BCC <a href="2387.html#239C">$239C</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2399"></span>$2399</td>
+<td class="instruction">JMP <a href="1D28.html">$1D28</a></td>
+<td class="comment-1" rowspan="1">Otherwise terminate this interruptible subcommand.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="239C"></span>$239C</td>
+<td class="instruction">LDA $59</td>
+<td class="comment-1" rowspan="1">Pick up the x-coordinate of the leftmost column of the skool that is off screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="239E"></span>$239E</td>
+<td class="instruction">INC $57</td>
+<td class="comment-1" rowspan="2">Is the character off-screen to the right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23A0"></span>$23A0</td>
+<td class="instruction">CMP $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23A2"></span>$23A2</td>
+<td class="instruction">BCS <a href="2387.html#23A7">$23A7</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23A4"></span>$23A4</td>
+<td class="instruction">JMP <a href="1D28.html">$1D28</a></td>
+<td class="comment-1" rowspan="1">Otherwise terminate this interruptible subcommand.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="23A7"></span>$23A7</td>
+<td class="instruction">LDA $D015</td>
+<td class="comment-1" rowspan="1">Are any sprites enabled at the moment?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23AA"></span>$23AA</td>
+<td class="instruction">BEQ <a href="2387.html#23AF">$23AF</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23AC"></span>$23AC</td>
+<td class="instruction">JMP <a href="2387.html#246A">$246A</a></td>
+<td class="comment-1" rowspan="1">Otherwise return (someone else is speaking).</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="23AF"></span>
+<div class="comments">
+<div class="paragraph">
+The character is on-screen and no one else is speaking at the moment.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="23AF"></span>$23AF</td>
+<td class="instruction">LDA #$58</td>
+<td class="comment-1" rowspan="4">Replace the address of this interruptible subcommand routine in the character's buffer with that of <a href="2387.html#2458">$2458</a> (below).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23B1"></span>$23B1</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23B3"></span>$23B3</td>
+<td class="instruction">LDA #$24</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23B5"></span>$23B5</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23B7"></span>$23B7</td>
+<td class="instruction">LDA #$CA</td>
+<td class="comment-1" rowspan="4">Store $CA40 (the address of the sprite for the first middle section of the speech bubble) at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23B9"></span>$23B9</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23BB"></span>$23BB</td>
+<td class="instruction">LDA #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23BD"></span>$23BD</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23BF"></span>$23BF</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="6">Remove any existing text from this sprite.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23C1"></span>$23C1</td>
+<td class="instruction">LDY #$24</td>
+</tr>
+<tr>
+<td class="address-2"><span id="23C3"></span>$23C3</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23C5"></span>$23C5</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23C6"></span>$23C6</td>
+<td class="instruction">CPY #$0B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23C8"></span>$23C8</td>
+<td class="instruction">BNE <a href="2387.html#23C3">$23C3</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="23CA"></span>$23CA</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="2">Store $CA80 (the address of the sprite for the second middle section of the speech bubble) at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23CC"></span>$23CC</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23CE"></span>$23CE</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="6">Remove any existing text from this sprite.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23D0"></span>$23D0</td>
+<td class="instruction">LDY #$24</td>
+</tr>
+<tr>
+<td class="address-2"><span id="23D2"></span>$23D2</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23D4"></span>$23D4</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23D5"></span>$23D5</td>
+<td class="instruction">CPY #$0B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23D7"></span>$23D7</td>
+<td class="instruction">BNE <a href="2387.html#23D2">$23D2</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="23D9"></span>$23D9</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23DB"></span>$23DB</td>
+<td class="instruction">CMP #$0B</td>
+<td class="comment-1" rowspan="1">Is it $00-$0A (one of the little boys)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23DD"></span>$23DD</td>
+<td class="instruction">BCS <a href="2387.html#23E2">$23E2</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23DF"></span>$23DF</td>
+<td class="instruction">JMP <a href="2387.html#23EE">$23EE</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="23E2"></span>$23E2</td>
+<td class="instruction">CMP #$0F</td>
+<td class="comment-1" rowspan="1">Is the current character a teacher ($0B-$0E)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23E4"></span>$23E4</td>
+<td class="instruction">BCS <a href="2387.html#23EE">$23EE</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23E6"></span>$23E6</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23E8"></span>$23E8</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract 3 from the teacher's y-coordinate. This will be the y-coordinate of the speech bubble.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23E9"></span>$23E9</td>
+<td class="instruction">SBC #$03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23EB"></span>$23EB</td>
+<td class="instruction">JMP <a href="2387.html#23F3">$23F3</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="23EE"></span>$23EE</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="1">Pick up the boy's y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23F0"></span>$23F0</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract 2 from the boy's y-coordinate. This will be the y-coordinate of the speech bubble.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23F1"></span>$23F1</td>
+<td class="instruction">SBC #$02</td>
+</tr>
+<tr>
+<td class="address-2"><span id="23F3"></span>$23F3</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="3">Multiply this y-coordinate by 8 to get the screen pixel y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23F4"></span>$23F4</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23F5"></span>$23F5</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23F6"></span>$23F6</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="3">Add 52 to this pixel y-coordinate and store the result at <a href="00CE.html#00D1">$D1</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23F7"></span>$23F7</td>
+<td class="instruction">ADC #$34</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23F9"></span>$23F9</td>
+<td class="instruction">STA $D1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23FB"></span>$23FB</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Reset bit 8 of the x-coordinates of all sprites.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="23FD"></span>$23FD</td>
+<td class="instruction">STA $D010</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2400"></span>$2400</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the character's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2402"></span>$2402</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Add 4 to the character's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2403"></span>$2403</td>
+<td class="instruction">ADC #$04</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2405"></span>$2405</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract the x-coordinate of the leftmost column of the skool on screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2406"></span>$2406</td>
+<td class="instruction">SBC $58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2408"></span>$2408</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="3">Multiply by 8 to get the screen pixel x-coordinate of the lip section of the speech bubble.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2409"></span>$2409</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="240A"></span>$240A</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="240B"></span>$240B</td>
+<td class="instruction">BCC <a href="2387.html#2415">$2415</a></td>
+<td class="comment-1" rowspan="1">Branch unless the multiplication overflowed.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="240D"></span>$240D</td>
+<td class="instruction">LDX #$28</td>
+<td class="comment-1" rowspan="2">Set bit 8 of the x-coordinates of sprites #3 and #5.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="240F"></span>$240F</td>
+<td class="instruction">STX $D010</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2412"></span>$2412</td>
+<td class="instruction">JMP <a href="2387.html#241B">$241B</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2415"></span>$2415</td>
+<td class="instruction">JSR <a href="379F.html">$379F</a></td>
+<td class="comment-1" rowspan="1">Prepare sprites #0-#6 for the speech bubble with the lip on the left.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2418"></span>$2418</td>
+<td class="instruction">JMP <a href="2387.html#241E">$241E</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="241B"></span>$241B</td>
+<td class="instruction">JSR <a href="3805.html">$3805</a></td>
+<td class="comment-1" rowspan="1">Prepare sprites #0-#6 for the speech bubble with the lip on the right.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="241E"></span>$241E</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="2">Stretch sprite #6 (the filled in middle section of the speech bubble) to double width.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2420"></span>$2420</td>
+<td class="instruction">STA $D01D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2423"></span>$2423</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="5">Set the colour of sprites #0-#3 (the outline sections of the speech bubble) to black.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2425"></span>$2425</td>
+<td class="instruction">STA $D027</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2428"></span>$2428</td>
+<td class="instruction">STA $D028</td>
+</tr>
+<tr>
+<td class="address-1"><span id="242B"></span>$242B</td>
+<td class="instruction">STA $D029</td>
+</tr>
+<tr>
+<td class="address-1"><span id="242E"></span>$242E</td>
+<td class="instruction">STA $D02A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2431"></span>$2431</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="4">Set the colour of sprites #4-#6 (the filled in sections of the speech bubble) to white.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2433"></span>$2433</td>
+<td class="instruction">STA $D02B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2436"></span>$2436</td>
+<td class="instruction">STA $D02C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2439"></span>$2439</td>
+<td class="instruction">STA $D02D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="243C"></span>$243C</td>
+<td class="instruction">LDA $D1</td>
+<td class="comment-1" rowspan="8">Set the y-coordinates of sprites #0-#6.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="243E"></span>$243E</td>
+<td class="instruction">STA $D001</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2441"></span>$2441</td>
+<td class="instruction">STA $D003</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2444"></span>$2444</td>
+<td class="instruction">STA $D005</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2447"></span>$2447</td>
+<td class="instruction">STA $D007</td>
+</tr>
+<tr>
+<td class="address-1"><span id="244A"></span>$244A</td>
+<td class="instruction">STA $D009</td>
+</tr>
+<tr>
+<td class="address-1"><span id="244D"></span>$244D</td>
+<td class="instruction">STA $D00B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2450"></span>$2450</td>
+<td class="instruction">STA $D00D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2453"></span>$2453</td>
+<td class="instruction">LDA #$7F</td>
+<td class="comment-1" rowspan="2">Enable sprites #0-#6 and draw them.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2455"></span>$2455</td>
+<td class="instruction">STA $D015</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="2458"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used while the character is speaking.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2458"></span>$2458</td>
+<td class="instruction">JSR <a href="246B.html">$246B</a></td>
+<td class="comment-1" rowspan="1">Slide a message character into the speech bubble text window.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="245B"></span>$245B</td>
+<td class="instruction">BCC <a href="2387.html#2465">$2465</a></td>
+<td class="comment-1" rowspan="1">Branch unless the message has finished.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="245D"></span>$245D</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Disable all sprites, effectively removing the speech bubble.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="245F"></span>$245F</td>
+<td class="instruction">STA $D015</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2462"></span>$2462</td>
+<td class="instruction">JMP <a href="1D28.html">$1D28</a></td>
+<td class="comment-1" rowspan="1">Terminate this interruptible subcommand.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2465"></span>$2465</td>
+<td class="instruction">JSR <a href="246B.html">$246B</a></td>
+<td class="comment-1" rowspan="1">Slide another message character into the speech bubble text window.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2468"></span>$2468</td>
+<td class="instruction">BCS <a href="2387.html#245D">$245D</a></td>
+<td class="comment-1" rowspan="1">Branch if the message has finished.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="246A"></span>$246A</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2241.html">$2241</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2387">Map</a></td>
+<td class="next">
+Next: <a href="246B.html">$246B</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $26E0</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2696.html">$2696</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#26E0">Map</a></td>
+<td class="next">
+Next: <a href="26EF.html">$26EF</a>
+</td>
+</tr>
+</table>
+<div class="description">$26E0: Make ANGELFACE finish punching or BOY WONDER finish firing his catapult</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+The address of this uninterruptible subcommand routine is placed into ANGELFACE's buffer by the routine at <a href="2696.html">$2696</a> and into BOY WONDER's buffer by the routine at <a href="2B9F.html">$2B9F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="26E0"></span>$26E0</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26E3"></span>$26E3</td>
+<td class="instruction">LDA $B3</td>
+<td class="comment-1" rowspan="2">Restore the character's pre-action animatory state from <a href="00B3.html">$B3</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26E5"></span>$26E5</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26E7"></span>$26E7</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Remove the address of this routine from the character's buffer, effectively terminating the subcommand.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26E9"></span>$26E9</td>
+<td class="instruction">STA $B1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26EB"></span>$26EB</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's new animatory state.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="26EE"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="267A.html">$267A</a> and <a href="2696.html">$2696</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="26EE"></span>$26EE</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2696.html">$2696</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#26E0">Map</a></td>
+<td class="next">
+Next: <a href="26EF.html">$26EF</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

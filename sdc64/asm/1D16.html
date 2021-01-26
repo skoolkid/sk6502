@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1D16</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1CEC.html">$1CEC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1D16">Map</a></td>
+<td class="next">
+Next: <a href="1D27.html">$1D27</a>
+</td>
+</tr>
+</table>
+<div class="description">$1D16: Make a character find a seat</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6CA0.html">$6CA0</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command lists <a href="40DC.html">$88</a>, <a href="40E7.html">$8C</a>, <a href="40FA.html">$8E</a>, <a href="410D.html">$90</a>, <a href="4118.html">$92</a>, <a href="4123.html">$94</a>, <a href="413D.html">$96</a>, <a href="4150.html">$98</a>, <a href="415B.html">$9A</a>, <a href="4166.html">$9C</a>, <a href="4180.html">$9E</a>, <a href="4193.html">$A0</a>, <a href="419E.html">$A2</a>, <a href="41A9.html">$A4</a>, <a href="41C3.html">$A6</a> and <a href="41D6.html">$A8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1D16"></span>$1D16</td>
+<td class="instruction">LDA #$1C</td>
+<td class="comment-1" rowspan="4">Place the address of the uninterruptible subcommand routine at <a href="1CEC.html">$1CEC</a> into the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D18"></span>$1D18</td>
+<td class="instruction">STA $B1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D1A"></span>$1D1A</td>
+<td class="instruction">LDA #$EC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D1C"></span>$1D1C</td>
+<td class="instruction">STA $B0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D1E"></span>$1D1E</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="3">Remove the address of this primary command routine from the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D20"></span>$1D20</td>
+<td class="instruction">STA $2A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D22"></span>$1D22</td>
+<td class="instruction">STA $29</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D24"></span>$1D24</td>
+<td class="instruction">JMP <a href="1CEC.html">$1CEC</a></td>
+<td class="comment-1" rowspan="1">Set the character on his way in search of a seat.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1CEC.html">$1CEC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1D16">Map</a></td>
+<td class="next">
+Next: <a href="1D27.html">$1D27</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

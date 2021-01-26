@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $3012</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2FB6.html">$2FB6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3012">Map</a></td>
+<td class="next">
+Next: <a href="302A.html">$302A</a>
+</td>
+</tr>
+</table>
+<div class="description">$3012: Bring the skool (or a blank screen) into view</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="0800.html">$0800</a> and <a href="BE09.html">$BE09</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3012"></span>$3012</td>
+<td class="instruction">LDA #$F8</td>
+<td class="comment-1" rowspan="4">Initialise the x-coordinates of the leftmost columns of the skool on screen and off to -8 and 32.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3014"></span>$3014</td>
+<td class="instruction">STA $58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3016"></span>$3016</td>
+<td class="instruction">LDA #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3018"></span>$3018</td>
+<td class="instruction">STA $59</td>
+</tr>
+<tr>
+<td class="address-1"><span id="301A"></span>$301A</td>
+<td class="instruction">JSR <a href="3113.html">$3113</a></td>
+<td class="comment-1" rowspan="5">Shift the play area window right five times.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="301D"></span>$301D</td>
+<td class="instruction">JSR <a href="3113.html">$3113</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3020"></span>$3020</td>
+<td class="instruction">JSR <a href="3113.html">$3113</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3023"></span>$3023</td>
+<td class="instruction">JSR <a href="3113.html">$3113</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3026"></span>$3026</td>
+<td class="instruction">JSR <a href="3113.html">$3113</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3029"></span>$3029</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2FB6.html">$2FB6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3012">Map</a></td>
+<td class="next">
+Next: <a href="302A.html">$302A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

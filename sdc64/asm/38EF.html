@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $38EF</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="38AC.html">$38AC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#38EF">Map</a></td>
+<td class="next">
+Next: <a href="392D.html">$392D</a>
+</td>
+</tr>
+</table>
+<div class="description">$38EF: Restore sprite information</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="1DB7.html">$1DB7</a> and <a href="298B.html">$298B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="38EF"></span>$38EF</td>
+<td class="instruction">LDY #$10</td>
+<td class="comment-1" rowspan="13">Restore sprite coordinates from <a href="B900.html">$B900-$B910</a> to $D000-$D010.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38F1"></span>$38F1</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38F3"></span>$38F3</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38F5"></span>$38F5</td>
+<td class="instruction">LDA #$D0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38F7"></span>$38F7</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38F9"></span>$38F9</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38FB"></span>$38FB</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38FD"></span>$38FD</td>
+<td class="instruction">LDA #$B9</td>
+</tr>
+<tr>
+<td class="address-1"><span id="38FF"></span>$38FF</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3901"></span>$3901</td>
+<td class="instruction">LDA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3903"></span>$3903</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3905"></span>$3905</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3906"></span>$3906</td>
+<td class="instruction">BPL <a href="38EF.html#3901">$3901</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3908"></span>$3908</td>
+<td class="instruction">LDY #$15</td>
+<td class="comment-1" rowspan="3">Restore the sprite enable register from $B915 to $D015.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="390A"></span>$390A</td>
+<td class="instruction">LDA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="390C"></span>$390C</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="390E"></span>$390E</td>
+<td class="instruction">LDY #$1D</td>
+<td class="comment-1" rowspan="3">Restore the sprite double width register from $B91D to $D01D.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3910"></span>$3910</td>
+<td class="instruction">LDA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3912"></span>$3912</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3914"></span>$3914</td>
+<td class="instruction">LDY #$27</td>
+<td class="comment-1" rowspan="6">Restore the sprite colours from $B927-$B92E to $D027-$D02E.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3916"></span>$3916</td>
+<td class="instruction">LDA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3918"></span>$3918</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="391A"></span>$391A</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="391B"></span>$391B</td>
+<td class="instruction">CPY #$2F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="391D"></span>$391D</td>
+<td class="instruction">BNE <a href="38EF.html#3916">$3916</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="391F"></span>$391F</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="6">Restore the sprite pointers from $B390-$B397 to $CFF8-$CFFF.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3921"></span>$3921</td>
+<td class="instruction">LDA $B930,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3924"></span>$3924</td>
+<td class="instruction">STA $CFF8,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3927"></span>$3927</td>
+<td class="instruction">INX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3928"></span>$3928</td>
+<td class="instruction">CPX #$08</td>
+</tr>
+<tr>
+<td class="address-1"><span id="392A"></span>$392A</td>
+<td class="instruction">BNE <a href="38EF.html#3921">$3921</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="392C"></span>$392C</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="38AC.html">$38AC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#38EF">Map</a></td>
+<td class="next">
+Next: <a href="392D.html">$392D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

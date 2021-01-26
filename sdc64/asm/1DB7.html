@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1DB7</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1DB6.html">$1DB6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1DB7">Map</a></td>
+<td class="next">
+Next: <a href="1EC2.html">$1EC2</a>
+</td>
+</tr>
+</table>
+<div class="description">$1DB7: Make a teacher give lines</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7700.html">$7700</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="0B3B.html">$0B3B</a>, <a href="0ECF.html">$0ECF</a>, <a href="149F.html">$149F</a>, <a href="191B.html">$191B</a> and <a href="2552.html">$2552</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">(<a href="0072.html">$72</a>)</td>
+<td class="register-desc">Character number of the lines recipient ($0F, $10, $11 or $14)</td>
+</tr>
+<tr>
+<td class="register">(<a href="00D6.html#00D8">$D8</a>)</td>
+<td class="register-desc">Lines reprimand identifier ($00-$0F)</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1DB7"></span>$1DB7</td>
+<td class="instruction">LDA $D015</td>
+<td class="comment-1" rowspan="2">Pick up the current value of the sprite enable register and store a copy at <a href="00F2.html#00F6">$F6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DBA"></span>$1DBA</td>
+<td class="instruction">STA $F6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DBC"></span>$1DBC</td>
+<td class="instruction">BEQ <a href="1DB7.html#1DC1">$1DC1</a></td>
+<td class="comment-1" rowspan="1">Branch if no sprites are enabled at the moment.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DBE"></span>$1DBE</td>
+<td class="instruction">JSR <a href="38AC.html">$38AC</a></td>
+<td class="comment-1" rowspan="1">Back up existing sprite information.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1DC1"></span>$1DC1</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4">Store the address of the first line of the lines message (<a href="46C0.html">$46C0</a>) at <a href="0084.html#0086">$86</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DC3"></span>$1DC3</td>
+<td class="instruction">STA $87</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DC5"></span>$1DC5</td>
+<td class="instruction">LDA #$C0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DC7"></span>$1DC7</td>
+<td class="instruction">STA $86</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DC9"></span>$1DC9</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4">Store the address <a href="46C0.html#46D0">$46D0</a> (where the message number of the lines recipient's name will be placed) at <a href="0084.html#0088">$88</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DCB"></span>$1DCB</td>
+<td class="instruction">STA $89</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DCD"></span>$1DCD</td>
+<td class="instruction">LDA #$D0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DCF"></span>$1DCF</td>
+<td class="instruction">STA $88</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DD1"></span>$1DD1</td>
+<td class="instruction">LDA $72</td>
+<td class="comment-1" rowspan="1">Pick up the character number of the lines recipient from <a href="0072.html">$72</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DD3"></span>$1DD3</td>
+<td class="instruction">CMP #$14</td>
+<td class="comment-1" rowspan="1">Is ERIC the lines recipient?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DD5"></span>$1DD5</td>
+<td class="instruction">BNE <a href="1DB7.html#1DDC">$1DDC</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DD7"></span>$1DD7</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="1">The background colour of the lines message box for ERIC is cyan.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DD9"></span>$1DD9</td>
+<td class="instruction">JMP <a href="1DB7.html#1DE7">$1DE7</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1DDC"></span>$1DDC</td>
+<td class="instruction">CMP #$10</td>
+<td class="comment-1" rowspan="1">Is BOY WONDER the lines recipient?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DDE"></span>$1DDE</td>
+<td class="instruction">BNE <a href="1DB7.html#1DE5">$1DE5</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DE0"></span>$1DE0</td>
+<td class="instruction">LDA #$05</td>
+<td class="comment-1" rowspan="1">The background colour of the lines message box for BOY WONDER is green.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DE2"></span>$1DE2</td>
+<td class="instruction">JMP <a href="1DB7.html#1DE7">$1DE7</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1DE5"></span>$1DE5</td>
+<td class="instruction">LDA #$07</td>
+<td class="comment-1" rowspan="1">The background colour of the lines message box for ANGELFACE and EINSTEIN is yellow.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1DE7"></span>$1DE7</td>
+<td class="instruction">STA $84</td>
+<td class="comment-1" rowspan="1">Store the lines message box colour information at <a href="0084.html">$84</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DE9"></span>$1DE9</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="2">Generate a random value between 0 and 15.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DEC"></span>$1DEC</td>
+<td class="instruction">AND #$0F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DEE"></span>$1DEE</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="3">Add 3 to get 3-18 and store the result at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DEF"></span>$1DEF</td>
+<td class="instruction">ADC #$03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DF1"></span>$1DF1</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DF3"></span>$1DF3</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="5">Now multiply by 5 and store the result at <a href="0084.html#0085">$85</a>. This will be the number of lines to give (divided by 10): 15, 20, 25...80, 85 or 90.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DF4"></span>$1DF4</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DF5"></span>$1DF5</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DF6"></span>$1DF6</td>
+<td class="instruction">ADC $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DF8"></span>$1DF8</td>
+<td class="instruction">STA $85</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DFA"></span>$1DFA</td>
+<td class="instruction">LDA $72</td>
+<td class="comment-1" rowspan="1">Pick up the character number of the lines recipient from <a href="0072.html">$72</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DFC"></span>$1DFC</td>
+<td class="instruction">CMP #$14</td>
+<td class="comment-1" rowspan="1">Is ERIC the lines recipient?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DFE"></span>$1DFE</td>
+<td class="instruction">BNE <a href="1DB7.html#1E05">$1E05</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E00"></span>$1E00</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="1">Message number <a href="4780.html">$10</a>: ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E02"></span>$1E02</td>
+<td class="instruction">JMP <a href="1DB7.html#1E19">$1E19</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1E05"></span>$1E05</td>
+<td class="instruction">CMP #$11</td>
+<td class="comment-1" rowspan="1">Is EINSTEIN the lines recipient?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E07"></span>$1E07</td>
+<td class="instruction">BNE <a href="1DB7.html#1E0E">$1E0E</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E09"></span>$1E09</td>
+<td class="instruction">LDA #$13</td>
+<td class="comment-1" rowspan="1">Message number <a href="47AA.html">$13</a>: EINSTEIN.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E0B"></span>$1E0B</td>
+<td class="instruction">JMP <a href="1DB7.html#1E19">$1E19</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1E0E"></span>$1E0E</td>
+<td class="instruction">CMP #$10</td>
+<td class="comment-1" rowspan="1">Is BOY WONDER the lines recipient?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E10"></span>$1E10</td>
+<td class="instruction">BNE <a href="1DB7.html#1E17">$1E17</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E12"></span>$1E12</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="1">Message number <a href="478E.html">$11</a>: BOY WONDER.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E14"></span>$1E14</td>
+<td class="instruction">JMP <a href="1DB7.html#1E19">$1E19</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1E17"></span>$1E17</td>
+<td class="instruction">LDA #$12</td>
+<td class="comment-1" rowspan="1">Message number <a href="479C.html">$12</a>: ANGELFACE.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1E19"></span>$1E19</td>
+<td class="instruction">STA $D0</td>
+<td class="comment-1" rowspan="1">Store the message number of the lines recipient's name at <a href="00CE.html#00D0">$D0</a>, where it will never be used.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E1B"></span>$1E1B</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="2">Place the message number of the lines recipient's name at <a href="46C0.html#46D0">$46D0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E1D"></span>$1E1D</td>
+<td class="instruction">STA ($88),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E1F"></span>$1E1F</td>
+<td class="instruction">LDA $85</td>
+<td class="comment-1" rowspan="2">Copy the number of lines to give (divided by 10) from <a href="0084.html#0085">$85</a> to <a href="00A2.html#00A3">$A3</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E21"></span>$1E21</td>
+<td class="instruction">STA $A3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E23"></span>$1E23</td>
+<td class="instruction">JSR <a href="217E.html#221C">$221C</a></td>
+<td class="comment-1" rowspan="1">Generate the character codes of the first two digits of the lines amount.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E26"></span>$1E26</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="6">Copy the character codes of the first two digits of the lines amount to <a href="46C0.html">$46C0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E28"></span>$1E28</td>
+<td class="instruction">LDA $8D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E2A"></span>$1E2A</td>
+<td class="instruction">STA ($86),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E2C"></span>$1E2C</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E2D"></span>$1E2D</td>
+<td class="instruction">LDA $8E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E2F"></span>$1E2F</td>
+<td class="instruction">STA ($86),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E31"></span>$1E31</td>
+<td class="instruction">LDA $72</td>
+<td class="comment-1" rowspan="1">Pick up the character number of the lines recipient from <a href="0072.html">$72</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E33"></span>$1E33</td>
+<td class="instruction">CMP #$10</td>
+<td class="comment-1" rowspan="1">Is BOY WONDER the lines recipient?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E35"></span>$1E35</td>
+<td class="instruction">BEQ <a href="1DB7.html#1E48">$1E48</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E37"></span>$1E37</td>
+<td class="instruction">CMP #$14</td>
+<td class="comment-1" rowspan="1">Is ERIC the lines recipient?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E39"></span>$1E39</td>
+<td class="instruction">BEQ <a href="1DB7.html#1E43">$1E43</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E3B"></span>$1E3B</td>
+<td class="instruction">LDA $85</td>
+<td class="comment-1" rowspan="1">Pick up the number of lines to give from <a href="0084.html#0085">$85</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E3D"></span>$1E3D</td>
+<td class="instruction">JSR <a href="1D37.html">$1D37</a></td>
+<td class="comment-1" rowspan="1">Add this value to the score and print it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E40"></span>$1E40</td>
+<td class="instruction">JMP <a href="1DB7.html#1E48">$1E48</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1E43"></span>$1E43</td>
+<td class="instruction">LDA $85</td>
+<td class="comment-1" rowspan="1">Pick up the number of lines to give from <a href="0084.html#0085">$85</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E45"></span>$1E45</td>
+<td class="instruction">JSR <a href="1D4A.html">$1D4A</a></td>
+<td class="comment-1" rowspan="1">Add them to ERIC's lines total.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1E48"></span>$1E48</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set voice #1 attack length to 2ms and and decay length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E4A"></span>$1E4A</td>
+<td class="instruction">STA $D405</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E4D"></span>$1E4D</td>
+<td class="instruction">STA $D400</td>
+<td class="comment-1" rowspan="1">Set the LSB of voice #1's frequency to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E50"></span>$1E50</td>
+<td class="instruction">LDA #$F8</td>
+<td class="comment-1" rowspan="2">Set voice #1 sustain volume to $0F and release length to 300ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E52"></span>$1E52</td>
+<td class="instruction">STA $D406</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E55"></span>$1E55</td>
+<td class="instruction">LDA #$31</td>
+<td class="comment-1" rowspan="2">Set voice #1 frequency to $3100.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E57"></span>$1E57</td>
+<td class="instruction">STA $D401</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E5A"></span>$1E5A</td>
+<td class="instruction">LDA #$21</td>
+<td class="comment-1" rowspan="2">Set voice #1 control register: voice on, attack-decay-sustain cycle; saw waveform enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E5C"></span>$1E5C</td>
+<td class="instruction">STA $D404</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E5F"></span>$1E5F</td>
+<td class="instruction">JSR <a href="2043.html">$2043</a></td>
+<td class="comment-1" rowspan="1">Print the lines message above the teacher's head.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E62"></span>$1E62</td>
+<td class="instruction">LDA #$49</td>
+<td class="comment-1" rowspan="7">Change the address at <a href="0084.html#0086">$86</a> to <a href="4980.html">$4980</a> (the address of the first line of the first lines reprimand message) and the address at <a href="0084.html#0088">$88</a> to <a href="4980.html#4990">$4990</a> (the address of the second line of the first lines reprimand message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E64"></span>$1E64</td>
+<td class="instruction">STA $87</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E66"></span>$1E66</td>
+<td class="instruction">STA $89</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E68"></span>$1E68</td>
+<td class="instruction">LDA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E6A"></span>$1E6A</td>
+<td class="instruction">STA $86</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E6C"></span>$1E6C</td>
+<td class="instruction">LDA #$90</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E6E"></span>$1E6E</td>
+<td class="instruction">STA $88</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E70"></span>$1E70</td>
+<td class="instruction">LDA $D8</td>
+<td class="comment-1" rowspan="1">Pick up the lines reprimand identifier from <a href="00D6.html#00D8">$D8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E72"></span>$1E72</td>
+<td class="instruction">AND #$0C</td>
+<td class="comment-1" rowspan="15">Add 0, 1, 2 or 3 to the MSBs of the lines reprimand message addresses at <a href="0084.html#0086">$86</a> and <a href="0084.html#0088">$88</a> depending on whether bits 3 and 2 of <span class="register">A</span> are 00, 01, 10 or 11.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E74"></span>$1E74</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E75"></span>$1E75</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E76"></span>$1E76</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E77"></span>$1E77</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E78"></span>$1E78</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E79"></span>$1E79</td>
+<td class="instruction">BCC <a href="1DB7.html#1E83">$1E83</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E7B"></span>$1E7B</td>
+<td class="instruction">INC $87</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E7D"></span>$1E7D</td>
+<td class="instruction">INC $87</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E7F"></span>$1E7F</td>
+<td class="instruction">INC $89</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E81"></span>$1E81</td>
+<td class="instruction">INC $89</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1E83"></span>$1E83</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E84"></span>$1E84</td>
+<td class="instruction">BCC <a href="1DB7.html#1E8A">$1E8A</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E86"></span>$1E86</td>
+<td class="instruction">INC $87</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E88"></span>$1E88</td>
+<td class="instruction">INC $89</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1E8A"></span>$1E8A</td>
+<td class="instruction">LDA $D8</td>
+<td class="comment-1" rowspan="1">Pick up the lines reprimand identifier from <a href="00D6.html#00D8">$D8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E8C"></span>$1E8C</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="20">Add $00, $20, $40 or $60 to the LSBs of the lines reprimand message addresses at <a href="0084.html#0086">$86</a> and <a href="0084.html#0088">$88</a> depending on whether bits 1 and 0 of <span class="register">A</span> are 00, 01, 10 or 11.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E8D"></span>$1E8D</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E8E"></span>$1E8E</td>
+<td class="instruction">BCC <a href="1DB7.html#1E9C">$1E9C</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E90"></span>$1E90</td>
+<td class="instruction">LDA #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E92"></span>$1E92</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E93"></span>$1E93</td>
+<td class="instruction">ADC $86</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E95"></span>$1E95</td>
+<td class="instruction">STA $86</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E97"></span>$1E97</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E98"></span>$1E98</td>
+<td class="instruction">ADC #$10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E9A"></span>$1E9A</td>
+<td class="instruction">STA $88</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1E9C"></span>$1E9C</td>
+<td class="instruction">LDA $D8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E9E"></span>$1E9E</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1E9F"></span>$1E9F</td>
+<td class="instruction">BCC <a href="1DB7.html#1EAD">$1EAD</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EA1"></span>$1EA1</td>
+<td class="instruction">LDA #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EA3"></span>$1EA3</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EA4"></span>$1EA4</td>
+<td class="instruction">ADC $86</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EA6"></span>$1EA6</td>
+<td class="instruction">STA $86</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EA8"></span>$1EA8</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EA9"></span>$1EA9</td>
+<td class="instruction">ADC #$10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EAB"></span>$1EAB</td>
+<td class="instruction">STA $88</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1EAD"></span>$1EAD</td>
+<td class="instruction">LDA #$29</td>
+<td class="comment-1" rowspan="2">Set voice #1 frequency to $2900.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EAF"></span>$1EAF</td>
+<td class="instruction">STA $D401</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EB2"></span>$1EB2</td>
+<td class="instruction">JSR <a href="2043.html">$2043</a></td>
+<td class="comment-1" rowspan="1">Print the lines reprimand message above the teacher's head.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EB5"></span>$1EB5</td>
+<td class="instruction">LDA #$20</td>
+<td class="comment-1" rowspan="2">Set voice #1 control register: voice off, release cycle; saw waveform enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EB7"></span>$1EB7</td>
+<td class="instruction">STA $D404</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EBA"></span>$1EBA</td>
+<td class="instruction">LDA $F6</td>
+<td class="comment-1" rowspan="1">Were any sprites enabled before this routine was called?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EBC"></span>$1EBC</td>
+<td class="instruction">BEQ <a href="1DB7.html#1EC1">$1EC1</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EBE"></span>$1EBE</td>
+<td class="instruction">JSR <a href="38EF.html">$38EF</a></td>
+<td class="comment-1" rowspan="1">Otherwise restore the previous sprite information.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1EC1"></span>$1EC1</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1DB6.html">$1DB6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1DB7">Map</a></td>
+<td class="next">
+Next: <a href="1EC2.html">$1EC2</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

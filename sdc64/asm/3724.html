@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $3724</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="36E3.html">$36E3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3724">Map</a></td>
+<td class="next">
+Next: <a href="379F.html">$379F</a>
+</td>
+</tr>
+</table>
+<div class="description">$3724: Set up sprites #1-#5</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="2043.html">$2043</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">(<a href="009A.html#009B">$9B</a>)</td>
+<td class="register-desc">Bits 0-7 of the base x-coordinate</td>
+</tr>
+<tr>
+<td class="register">(<a href="009A.html#009C">$9C</a>)</td>
+<td class="register-desc">The sprites' y-coordinate</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3724"></span>$3724</td>
+<td class="instruction">LDA $9C</td>
+<td class="comment-1" rowspan="3">Add 52 to the y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3726"></span>$3726</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3727"></span>$3727</td>
+<td class="instruction">ADC #$34</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3729"></span>$3729</td>
+<td class="instruction">STA $D003</td>
+<td class="comment-1" rowspan="5">Set the y-coordinates of sprites #1-#5.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="372C"></span>$372C</td>
+<td class="instruction">STA $D005</td>
+</tr>
+<tr>
+<td class="address-1"><span id="372F"></span>$372F</td>
+<td class="instruction">STA $D007</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3732"></span>$3732</td>
+<td class="instruction">STA $D009</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3735"></span>$3735</td>
+<td class="instruction">STA $D00B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3738"></span>$3738</td>
+<td class="instruction">LDA $D010</td>
+<td class="comment-1" rowspan="1">Pick up bit 8 of the sprites' x-coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="373B"></span>$373B</td>
+<td class="instruction">BNE <a href="3724.html#3742">$3742</a></td>
+<td class="comment-1" rowspan="1">Branch unless they're all zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="373D"></span>$373D</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Reset bit 8 of every sprite's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="373F"></span>$373F</td>
+<td class="instruction">STA $D010</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3742"></span>$3742</td>
+<td class="instruction">LDA $9B</td>
+<td class="comment-1" rowspan="3">Set the x-coordinates of sprites #1 and #4 (bits 0-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3744"></span>$3744</td>
+<td class="instruction">STA $D002</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3747"></span>$3747</td>
+<td class="instruction">STA $D008</td>
+</tr>
+<tr>
+<td class="address-1"><span id="374A"></span>$374A</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Add 16 to the base x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="374B"></span>$374B</td>
+<td class="instruction">ADC #$10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="374D"></span>$374D</td>
+<td class="instruction">STA $D00A</td>
+<td class="comment-1" rowspan="1">Set the x-coordinate of sprite #5 (bits 0-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3750"></span>$3750</td>
+<td class="instruction">BCC <a href="3724.html#375A">$375A</a></td>
+<td class="comment-1" rowspan="1">Branch unless the x-coordinate is greater than 255.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3752"></span>$3752</td>
+<td class="instruction">LDA #$2C</td>
+<td class="comment-1" rowspan="3">Set bit 8 of the x-coordinates of sprites #2, #3 and #5.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3754"></span>$3754</td>
+<td class="instruction">ORA $D010</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3757"></span>$3757</td>
+<td class="instruction">STA $D010</td>
+</tr>
+<tr>
+<td class="address-2"><span id="375A"></span>$375A</td>
+<td class="instruction">LDA $D00A</td>
+<td class="comment-1" rowspan="3">Pick up bits 0-7 of the x-coordinate of sprite #5 and add 8.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="375D"></span>$375D</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="375E"></span>$375E</td>
+<td class="instruction">ADC #$08</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3760"></span>$3760</td>
+<td class="instruction">STA $D004</td>
+<td class="comment-1" rowspan="1">Set the x-coordinate of sprite #2 (bits 0-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3763"></span>$3763</td>
+<td class="instruction">BCC <a href="3724.html#376D">$376D</a></td>
+<td class="comment-1" rowspan="1">Branch unless this x-coordinate is greater than 255.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3765"></span>$3765</td>
+<td class="instruction">LDA #$0C</td>
+<td class="comment-1" rowspan="3">Set bit 8 of the x-coordinates of sprites #2 and #3.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3767"></span>$3767</td>
+<td class="instruction">ORA $D010</td>
+</tr>
+<tr>
+<td class="address-1"><span id="376A"></span>$376A</td>
+<td class="instruction">STA $D010</td>
+</tr>
+<tr>
+<td class="address-2"><span id="376D"></span>$376D</td>
+<td class="instruction">LDA $D004</td>
+<td class="comment-1" rowspan="3">Pick up the x-coordinate of sprite #2 (bits 0-7) and add 24.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3770"></span>$3770</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3771"></span>$3771</td>
+<td class="instruction">ADC #$18</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3773"></span>$3773</td>
+<td class="instruction">STA $D006</td>
+<td class="comment-1" rowspan="1">Set the x-coordinate of sprite #3 (bits 0-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3776"></span>$3776</td>
+<td class="instruction">BCC <a href="3724.html#3780">$3780</a></td>
+<td class="comment-1" rowspan="1">Branch unless this x-coordinate is greater than 255.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3778"></span>$3778</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="3">Set bit 8 of the x-coordinate of sprite #3.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="377A"></span>$377A</td>
+<td class="instruction">ORA $D010</td>
+</tr>
+<tr>
+<td class="address-1"><span id="377D"></span>$377D</td>
+<td class="instruction">STA $D010</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3780"></span>$3780</td>
+<td class="instruction">LDA #$30</td>
+<td class="comment-1" rowspan="2">Stretch sprites #4 and #5 to double width.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3782"></span>$3782</td>
+<td class="instruction">STA $D01D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3785"></span>$3785</td>
+<td class="instruction">LDA #$2B</td>
+<td class="comment-1" rowspan="2">Set the pointer for sprite #1 to $2B. This points at $CAC0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3787"></span>$3787</td>
+<td class="instruction">STA $CFF9</td>
+</tr>
+<tr>
+<td class="address-1"><span id="378A"></span>$378A</td>
+<td class="instruction">LDA #$2C</td>
+<td class="comment-1" rowspan="2">Set the pointer for sprite #2 to $2C. This points at $CB00.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="378C"></span>$378C</td>
+<td class="instruction">STA $CFFA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="378F"></span>$378F</td>
+<td class="instruction">LDA #$2D</td>
+<td class="comment-1" rowspan="2">Set the pointer for sprite #3 to $2D. This points at $CB40.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3791"></span>$3791</td>
+<td class="instruction">STA $CFFB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3794"></span>$3794</td>
+<td class="instruction">LDA #$2E</td>
+<td class="comment-1" rowspan="2">Set the pointer for sprite #4 to $2E. This points at $CB80.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3796"></span>$3796</td>
+<td class="instruction">STA $CFFC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3799"></span>$3799</td>
+<td class="instruction">LDA #$2F</td>
+<td class="comment-1" rowspan="2">Set the pointer for sprite #5 to $2F. This points at $CBC0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="379B"></span>$379B</td>
+<td class="instruction">STA $CFFD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="379E"></span>$379E</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="36E3.html">$36E3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3724">Map</a></td>
+<td class="next">
+Next: <a href="379F.html">$379F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $16D0</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="169B.html">$169B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#16D0">Map</a></td>
+<td class="next">
+Next: <a href="16DF.html">$16DF</a>
+</td>
+</tr>
+</table>
+<div class="description">$16D0: 'J' or 'L' pressed - jump</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/F499.html">$F499</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Called from the main loop at <a href="0800.html">$0800</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="16D0"></span>$16D0</td>
+<td class="instruction">JSR <a href="1C8E.html">$1C8E</a></td>
+<td class="comment-1" rowspan="1">Is ERIC on a staircase?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16D3"></span>$16D3</td>
+<td class="instruction">BCS <a href="16D0.html#16DE">$16DE</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16D5"></span>$16D5</td>
+<td class="instruction">LDX #$02</td>
+<td class="comment-1" rowspan="1">Bit 1 set: ERIC is jumping.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16D7"></span>$16D7</td>
+<td class="instruction">LDY #$0C</td>
+<td class="comment-1" rowspan="1"><a href="../graphics/as.html#0C">$0C</a> is the animatory state of ERIC with his arm raised.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16D9"></span>$16D9</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="1">This will initialise ERIC's action timer at <a href="00FE.html">$FE</a> to $10.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16DB"></span>$16DB</td>
+<td class="instruction">JMP <a href="169B.html#16B1">$16B1</a></td>
+<td class="comment-1" rowspan="1">Start the jump.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="16DE"></span>$16DE</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="169B.html">$169B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#16D0">Map</a></td>
+<td class="next">
+Next: <a href="16DF.html">$16DF</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

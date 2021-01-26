@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1B2E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1A51.html">$1A51</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1B2E">Map</a></td>
+<td class="next">
+Next: <a href="1BFA.html">$1BFA</a>
+</td>
+</tr>
+</table>
+<div class="description">$1B2E: Determine the next move of a character following another character</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7ADC.html">$7ADC</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Called from the main loop at <a href="0800.html">$0800</a>, and also used by the routine at <a href="0C3F.html">$0C3F</a>. Returns with one of the following values in <span class="register">A</span> depending on the relative locations of the follower and his target:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1"><span class="register">A</span></th>
+<th colspan="1" rowspan="1">Meaning</th>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">Follower is at the same coordinates as the target</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">Follower should go (or continue going) upstairs</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">2</td>
+<td class="" colspan="1" rowspan="1">Follower should go (or continue going) downstairs</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">Follower should go left</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">4</td>
+<td class="" colspan="1" rowspan="1">Follower should go right</td>
+</tr>
+</table>
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">(<a href="004D.html">$4D</a>)</td>
+<td class="register-desc">Number of the target character being followed</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1B2E"></span>$1B2E</td>
+<td class="instruction">LDA #$60</td>
+<td class="comment-1" rowspan="6">Prepare to address the target character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B30"></span>$1B30</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B32"></span>$1B32</td>
+<td class="instruction">LDA #$78</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B34"></span>$1B34</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B35"></span>$1B35</td>
+<td class="instruction">ADC $4D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B37"></span>$1B37</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B39"></span>$1B39</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="4">Pick up the target character's x-coordinate and copy it to <a href="0007.html#0008">$08</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B3B"></span>$1B3B</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B3C"></span>$1B3C</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B3E"></span>$1B3E</td>
+<td class="instruction">STA $08</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B40"></span>$1B40</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="3">Pick up the target character's y-coordinate and copy it to <a href="0007.html#0009">$09</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B41"></span>$1B41</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B43"></span>$1B43</td>
+<td class="instruction">STA $09</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B45"></span>$1B45</td>
+<td class="instruction">JSR <a href="1C8E.html">$1C8E</a></td>
+<td class="comment-1" rowspan="1">Is the follower on a staircase?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B48"></span>$1B48</td>
+<td class="instruction">BCC <a href="1B2E.html#1B6E">$1B6E</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1B4A"></span>
+<div class="comments">
+<div class="paragraph">
+The follower is on a staircase.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B4A"></span>$1B4A</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the follower's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B4C"></span>$1B4C</td>
+<td class="instruction">CMP #$30</td>
+<td class="comment-1" rowspan="1">Is the follower on a staircase on the right side of the skool?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B4E"></span>$1B4E</td>
+<td class="instruction">BCS <a href="1B2E.html#1B5F">$1B5F</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B50"></span>$1B50</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the follower's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B52"></span>$1B52</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is the follower facing right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B53"></span>$1B53</td>
+<td class="instruction">BCS <a href="1B2E.html#1B5A">$1B5A</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B55"></span>$1B55</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Return with <span class="register">A</span>=1: the follower should continue going upstairs.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B57"></span>$1B57</td>
+<td class="instruction">JMP <a href="1B2E.html#1BF9">$1BF9</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="1B5A"></span>$1B5A</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="2">Return with <span class="register">A</span>=2: the follower should continue going downstairs.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B5C"></span>$1B5C</td>
+<td class="instruction">JMP <a href="1B2E.html#1BF9">$1BF9</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="1B5F"></span>$1B5F</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the follower's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B61"></span>$1B61</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is the follower facing right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B62"></span>$1B62</td>
+<td class="instruction">BCS <a href="1B2E.html#1B69">$1B69</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B64"></span>$1B64</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="2">Return with <span class="register">A</span>=2: the follower should continue going downstairs.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B66"></span>$1B66</td>
+<td class="instruction">JMP <a href="1B2E.html#1BF9">$1BF9</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="1B69"></span>$1B69</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Return with <span class="register">A</span>=1: the follower should continue going upstairs.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B6B"></span>$1B6B</td>
+<td class="instruction">JMP <a href="1B2E.html#1BF9">$1BF9</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1B6E"></span>
+<div class="comments">
+<div class="paragraph">
+The follower is not on a staircase.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1B6E"></span>$1B6E</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="1">Pick up the follower's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B70"></span>$1B70</td>
+<td class="instruction">CMP $09</td>
+<td class="comment-1" rowspan="1">Does it match the target's y-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B72"></span>$1B72</td>
+<td class="instruction">BNE <a href="1B2E.html#1B7F">$1B7F</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B74"></span>$1B74</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the follower's x-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B76"></span>$1B76</td>
+<td class="instruction">CMP $08</td>
+<td class="comment-1" rowspan="1">Does it match the target's x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B78"></span>$1B78</td>
+<td class="instruction">BNE <a href="1B2E.html#1B7F">$1B7F</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B7A"></span>$1B7A</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Return with <span class="register">A</span>=0: the follower is at the same coordinates as the target.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B7C"></span>$1B7C</td>
+<td class="instruction">JMP <a href="1B2E.html#1BF9">$1BF9</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="1B7F"></span>$1B7F</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="1">Pick up the follower's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B81"></span>$1B81</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save it temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B82"></span>$1B82</td>
+<td class="instruction">LDA $09</td>
+<td class="comment-1" rowspan="2">Change the follower's y-coordinate to match that of the target.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B84"></span>$1B84</td>
+<td class="instruction">STA $FB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B86"></span>$1B86</td>
+<td class="instruction">JSR <a href="1C8E.html">$1C8E</a></td>
+<td class="comment-1" rowspan="1">Check whether the target is on a staircase.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B89"></span>$1B89</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Restore the follower's y-coordinate at <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B8A"></span>$1B8A</td>
+<td class="instruction">STA $FB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B8C"></span>$1B8C</td>
+<td class="instruction">BCC <a href="1B2E.html#1B9D">$1B9D</a></td>
+<td class="comment-1" rowspan="1">Branch unless the target is on a staircase.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B8E"></span>$1B8E</td>
+<td class="instruction">CMP $09</td>
+<td class="comment-1" rowspan="1">Is the target's y-coordinate less than the follower's?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B90"></span>$1B90</td>
+<td class="instruction">BCS <a href="1B2E.html#1B99">$1B99</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B92"></span>$1B92</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="2">Set the target y-coordinate at <a href="0007.html#0009">$09</a> to 17 (bottom floor).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B94"></span>$1B94</td>
+<td class="instruction">STA $09</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B96"></span>$1B96</td>
+<td class="instruction">JMP <a href="1B2E.html#1B9D">$1B9D</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1B99"></span>$1B99</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="2">Set the target y-coordinate at <a href="0007.html#0009">$09</a> to 3 (top floor).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B9B"></span>$1B9B</td>
+<td class="instruction">STA $09</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1B9D"></span>$1B9D</td>
+<td class="instruction">LDY $FB</td>
+<td class="comment-1" rowspan="2">Pick up the follower's x- and y-coordinates from <a href="00FB.html">$FB</a> and <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1B9F"></span>$1B9F</td>
+<td class="instruction">LDX $FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BA1"></span>$1BA1</td>
+<td class="instruction">JSR <a href="126D.html">$126D</a></td>
+<td class="comment-1" rowspan="2">Get the play area region identifier for the follower's location and store it at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BA4"></span>$1BA4</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BA6"></span>$1BA6</td>
+<td class="instruction">LDY $09</td>
+<td class="comment-1" rowspan="4">Get the play area region identifier for the target location and store it at <a href="004D.html#0056">$56</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BA8"></span>$1BA8</td>
+<td class="instruction">LDX $08</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BAA"></span>$1BAA</td>
+<td class="instruction">JSR <a href="126D.html">$126D</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BAD"></span>$1BAD</td>
+<td class="instruction">STA $56</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BAF"></span>$1BAF</td>
+<td class="instruction">CMP $57</td>
+<td class="comment-1" rowspan="1">Is the follower in the same region as the target?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BB1"></span>$1BB1</td>
+<td class="instruction">BNE <a href="1B2E.html#1BC3">$1BC3</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1BB3"></span>$1BB3</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the follower's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BB5"></span>$1BB5</td>
+<td class="instruction">CMP $08</td>
+<td class="comment-1" rowspan="1">Is it less than the target x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BB7"></span>$1BB7</td>
+<td class="instruction">BCC <a href="1B2E.html#1BBE">$1BBE</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BB9"></span>$1BB9</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="2">Return with <span class="register">A</span>=3: the follower should go left.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BBB"></span>$1BBB</td>
+<td class="instruction">JMP <a href="1B2E.html#1BF9">$1BF9</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="1BBE"></span>$1BBE</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="2">Return with <span class="register">A</span>=4: the follower should go right.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BC0"></span>$1BC0</td>
+<td class="instruction">JMP <a href="1B2E.html#1BF9">$1BF9</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="1BC3"></span>$1BC3</td>
+<td class="instruction">BCC <a href="1B2E.html#1BD5">$1BD5</a></td>
+<td class="comment-1" rowspan="1">Branch if the follower's region ID is greater than the target's.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BC5"></span>$1BC5</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the follower's region ID from <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BC7"></span>$1BC7</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">Is it 2 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BC9"></span>$1BC9</td>
+<td class="instruction">BCS <a href="1B2E.html#1BD0">$1BD0</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BCB"></span>$1BCB</td>
+<td class="instruction">LDA #$0C</td>
+<td class="comment-1" rowspan="1">This is the x-coordinate of the tops of the staircases on the left side of the skool.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BCD"></span>$1BCD</td>
+<td class="instruction">JMP <a href="1B2E.html#1BE2">$1BE2</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1BD0"></span>$1BD0</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="1">This is the x-coordinate of the bottoms of the staircases on the right side of the skool.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BD2"></span>$1BD2</td>
+<td class="instruction">JMP <a href="1B2E.html#1BE2">$1BE2</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1BD5"></span>$1BD5</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the follower's region ID from <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BD7"></span>$1BD7</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Is it 3 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BD9"></span>$1BD9</td>
+<td class="instruction">BCS <a href="1B2E.html#1BE0">$1BE0</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BDB"></span>$1BDB</td>
+<td class="instruction">LDA #$13</td>
+<td class="comment-1" rowspan="1">This is the x-coordinate of the bottoms of the staircases on the left side of the skool.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BDD"></span>$1BDD</td>
+<td class="instruction">JMP <a href="1B2E.html#1BE2">$1BE2</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1BE0"></span>$1BE0</td>
+<td class="instruction">LDA #$4D</td>
+<td class="comment-1" rowspan="1">This is the x-coordinate of the tops of the staircases on the right side of the skool.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1BE2"></span>$1BE2</td>
+<td class="instruction">STA $08</td>
+<td class="comment-1" rowspan="1">Store the staircase endpoint x-coordinate at <a href="0007.html#0008">$08</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BE4"></span>$1BE4</td>
+<td class="instruction">CMP $FC</td>
+<td class="comment-1" rowspan="1">Is the follower at the staircase endpoint?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BE6"></span>$1BE6</td>
+<td class="instruction">BNE <a href="1B2E.html#1BB3">$1BB3</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BE8"></span>$1BE8</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the follower's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BEA"></span>$1BEA</td>
+<td class="instruction">CMP #$13</td>
+<td class="comment-1" rowspan="1">Is the follower at the bottom of a staircase on the left side of the skool?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BEC"></span>$1BEC</td>
+<td class="instruction">BEQ <a href="1B2E.html#1BF7">$1BF7</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BEE"></span>$1BEE</td>
+<td class="instruction">CMP #$46</td>
+<td class="comment-1" rowspan="1">Is the follower at the bottom of a staircase on the right side of the skool?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BF0"></span>$1BF0</td>
+<td class="instruction">BEQ <a href="1B2E.html#1BF7">$1BF7</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BF2"></span>$1BF2</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="2">Return with <span class="register">A</span>=2: the follower should go downstairs.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1BF4"></span>$1BF4</td>
+<td class="instruction">JMP <a href="1B2E.html#1BF9">$1BF9</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="1BF7"></span>$1BF7</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1">Return with <span class="register">A</span>=1: the follower should go upstairs.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1BF9"></span>$1BF9</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1A51.html">$1A51</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1B2E">Map</a></td>
+<td class="next">
+Next: <a href="1BFA.html">$1BFA</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

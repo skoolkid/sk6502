@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2D3E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2D1F.html">$2D1F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2D3E">Map</a></td>
+<td class="next">
+Next: <a href="2D47.html">$2D47</a>
+</td>
+</tr>
+</table>
+<div class="description">$2D3E: Set standard bitmap mode</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="2CD9.html">$2CD9</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2D3E"></span>$2D3E</td>
+<td class="instruction">LDA $D011</td>
+<td class="comment-1" rowspan="3">Set bit 5 of the screen control register at $D011, enabling bitmap mode.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D41"></span>$2D41</td>
+<td class="instruction">ORA #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D43"></span>$2D43</td>
+<td class="instruction">STA $D011</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D46"></span>$2D46</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2D1F.html">$2D1F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2D3E">Map</a></td>
+<td class="next">
+Next: <a href="2D47.html">$2D47</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

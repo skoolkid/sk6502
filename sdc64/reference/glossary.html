@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Glossary</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Glossary">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Glossary</td>
+</tr>
+</table>
+<ul class="contents">
+<li><a href="#animatory_state">Animatory state</a></li>
+<li><a href="#character_buffer">Character buffer</a></li>
+<li><a href="#command_list">Command list</a></li>
+<li><a href="#continual_subcommand">Continual subcommand</a></li>
+<li><a href="#interruptible_subcommand">Interruptible subcommand</a></li>
+<li><a href="#midstride">Midstride</a></li>
+<li><a href="#primary_command">Primary command</a></li>
+<li><a href="#srb">SRB</a></li>
+<li><a href="#uninterruptible_subcommand">Uninterruptible subcommand</a></li>
+</ul>
+<div><span id="animatory_state"></span></div>
+<div class="box box-1">
+<div class="box-title">Animatory state</div>
+<div class="paragraph">
+Number denoting one of the <a href="../graphics/as.html">phases of animation</a> of a
+character's sprite.
+</div>
+</div>
+<div><span id="character_buffer"></span></div>
+<div class="box box-2">
+<div class="box-title">Character buffer</div>
+<div class="paragraph">
+<a href="../buffers/cbuffer.html">Buffer</a> containing data on the current state of a
+character.
+</div>
+</div>
+<div><span id="command_list"></span></div>
+<div class="box box-1">
+<div class="box-title">Command list</div>
+<div class="paragraph">
+<a href="../asm/4480.html">List of commands</a> used to control a character during a lesson.
+</div>
+</div>
+<div><span id="continual_subcommand"></span></div>
+<div class="box box-2">
+<div class="box-title">Continual subcommand</div>
+<div class="paragraph">
+One of various character-controlling command routines whose address is stored
+in a character's buffer. The command is executed each time the character is
+moved - before the interruptible subcommand or primary command - unless the
+character is under the control of an uninterruptible subcommand (see <a href="../asm/3B5E.html">$3B5E</a>).
+</div>
+</div>
+<div><span id="interruptible_subcommand"></span></div>
+<div class="box box-1">
+<div class="box-title">Interruptible subcommand</div>
+<div class="paragraph">
+One of various character-controlling command routines whose address is stored
+in a character's buffer. If present, the command is executed each time the
+character is moved, unless the character is under the control of an
+uninterruptible subcommand (see <a href="../asm/3B5E.html">$3B5E</a>).
+</div>
+</div>
+<div><span id="midstride"></span></div>
+<div class="box box-2">
+<div class="box-title">Midstride</div>
+<div class="paragraph">
+Of a character: in phase 2 or 4 of the walking animation. For example:
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="as81" src="../images/udgs/as81.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="as83" src="../images/udgs/as83.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+<div><span id="primary_command"></span></div>
+<div class="box box-1">
+<div class="box-title">Primary command</div>
+<div class="paragraph">
+One of various character-controlling command routines whose address is stored
+in a character's buffer. If present, the command is executed each time the
+character is moved, unless the character is under the control of an
+uninterruptible or interruptible subcommand (see <a href="../asm/3B5E.html">$3B5E</a>).
+</div>
+</div>
+<div><span id="srb"></span></div>
+<div class="box box-2">
+<div class="box-title">SRB</div>
+<div class="paragraph">
+Screen refresh buffer at <a href="../asm/4008.html#4012">$4012</a>.
+</div>
+</div>
+<div><span id="uninterruptible_subcommand"></span></div>
+<div class="box box-1">
+<div class="box-title">Uninterruptible subcommand</div>
+<div class="paragraph">
+One of various character-controlling command routines whose address is stored
+in a character's buffer. If present, the command is executed each time the
+character is moved, and overrides any other command (see <a href="../asm/3B5E.html">$3B5E</a>).
+</div>
+</div>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

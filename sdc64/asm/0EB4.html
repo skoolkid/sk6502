@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $0EB4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0E59.html">$0E59</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0EB4">Map</a></td>
+<td class="next">
+Next: <a href="0EC1.html">$0EC1</a>
+</td>
+</tr>
+</table>
+<div class="description">$0EB4: Restart the command list</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7C47.html">$7C47</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command lists <a href="422B.html">$B6</a>, <a href="4255.html">$BE</a>, <a href="4272.html">$C2</a>, <a href="4290.html">$C4</a>, <a href="42AD.html">$CC</a>, <a href="42CF.html">$CE</a> and <a href="436E.html">$DC</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0EB4"></span>$0EB4</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Set bit 7 of the flags byte at <a href="003F.html">$3F</a>, signalling to the character-moving routine at <a href="3B5E.html">$3B5E</a> that a command list restart is required.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EB6"></span>$0EB6</td>
+<td class="instruction">ORA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EB8"></span>$0EB8</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EBA"></span>$0EBA</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Remove the address of any interruptible subcommand routine from the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EBC"></span>$0EBC</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EBE"></span>$0EBE</td>
+<td class="instruction">JMP <a href="1D2D.html">$1D2D</a></td>
+<td class="comment-1" rowspan="1">Terminate this primary command.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0E59.html">$0E59</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0EB4">Map</a></td>
+<td class="next">
+Next: <a href="0EC1.html">$0EC1</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

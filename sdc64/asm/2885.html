@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2885</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2873.html">$2873</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2885">Map</a></td>
+<td class="next">
+Next: <a href="28AB.html">$28AB</a>
+</td>
+</tr>
+</table>
+<div class="description">$2885: Make a little boy find and follow little boy no. 1</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6A82.html">$6A82</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command list <a href="42CF.html">$CE</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2885"></span>$2885</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Set bit 1 of the flags byte at <a href="003F.html">$3F</a>: this character is running continuously.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2887"></span>$2887</td>
+<td class="instruction">ORA #$02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2889"></span>$2889</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="288B"></span>$288B</td>
+<td class="instruction">LDA $787C</td>
+<td class="comment-1" rowspan="6">Pick up the address of the continual subcommand routine from bytes $7B and $7C of little boy no. 1's character buffer, and return unless it is <a href="2873.html">$2873</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="288E"></span>$288E</td>
+<td class="instruction">CMP #$28</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2890"></span>$2890</td>
+<td class="instruction">BNE <a href="2885.html#28AA">$28AA</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2892"></span>$2892</td>
+<td class="instruction">LDA $787B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2895"></span>$2895</td>
+<td class="instruction">CMP #$73</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2897"></span>$2897</td>
+<td class="instruction">BNE <a href="2885.html#28AA">$28AA</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2899"></span>$2899</td>
+<td class="instruction">LDA #$28</td>
+<td class="comment-1" rowspan="4">Place the address of the continual subcommand routine at <a href="2873.html">$2873</a> into this little boy's buffer at <a href="0039.html">$39</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="289B"></span>$289B</td>
+<td class="instruction">STA $3A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="289D"></span>$289D</td>
+<td class="instruction">LDA #$73</td>
+</tr>
+<tr>
+<td class="address-1"><span id="289F"></span>$289F</td>
+<td class="instruction">STA $39</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28A1"></span>$28A1</td>
+<td class="instruction">LDX $7865</td>
+<td class="comment-1" rowspan="2">Pick up little boy no. 1's destination coordinates from bytes $65 and $66 of his character buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28A4"></span>$28A4</td>
+<td class="instruction">LDY $7866</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28A7"></span>$28A7</td>
+<td class="instruction">JMP <a href="105B.html#1083">$1083</a></td>
+<td class="comment-1" rowspan="1">Make them this little boy's destination coordinates and set him on his way there.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="28AA"></span>$28AA</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2873.html">$2873</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2885">Map</a></td>
+<td class="next">
+Next: <a href="28AB.html">$28AB</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

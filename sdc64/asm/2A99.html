@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2A99</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2A43.html">$2A43</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2A99">Map</a></td>
+<td class="next">
+Next: <a href="2AA9.html">$2AA9</a>
+</td>
+</tr>
+</table>
+<div class="description">$2A99: Make a character find ERIC</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/F78E.html">$F78E</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command lists <a href="42E3.html">$D0</a>, <a href="42FB.html">$D2</a>, <a href="431F.html">$D6</a>, <a href="4352.html">$DA</a>, <a href="4376.html">$DE</a> and <a href="438A.html">$E0</a>, and also by the command list at <a href="43A2.html">$43A2</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2A99"></span>$2A99</td>
+<td class="instruction">LDA #$0C</td>
+<td class="comment-1" rowspan="4">Store the address of the routine at <a href="0C31.html">$0C31</a> (to be called after the character has found ERIC) at <a href="00AE.html">$AE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A9B"></span>$2A9B</td>
+<td class="instruction">STA $AF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A9D"></span>$2A9D</td>
+<td class="instruction">LDA #$31</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2A9F"></span>$2A9F</td>
+<td class="instruction">STA $AE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AA1"></span>$2AA1</td>
+<td class="instruction">JSR <a href="1F77.html">$1F77</a></td>
+<td class="comment-1" rowspan="2">Place the address of the interruptible subcommand routine at <a href="0C3F.html">$0C3F</a> into the character's buffer and jump to it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AA4"></span>$2AA4</td>
+<td class="instruction">.WORD <a href="0C3F.html">$0C3F</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="2AA6"></span>
+<div class="comments">
+<div class="paragraph">
+Control returns here when the character has found ERIC.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AA6"></span>$2AA6</td>
+<td class="instruction">JMP <a href="1D2D.html">$1D2D</a></td>
+<td class="comment-1" rowspan="1">Terminate this primary command.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2A43.html">$2A43</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2A99">Map</a></td>
+<td class="next">
+Next: <a href="2AA9.html">$2AA9</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

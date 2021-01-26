@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $36E3</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3687.html">$3687</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#36E3">Map</a></td>
+<td class="next">
+Next: <a href="3724.html">$3724</a>
+</td>
+</tr>
+</table>
+<div class="description">$36E3: Update the SRB for a single character cell</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="11CF.html">$11CF</a>, <a href="16E9.html">$16E9</a> and <a href="322E.html">$322E</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">(<a href="0047.html#0049">$49</a>)</td>
+<td class="register-desc">x-coordinate</td>
+</tr>
+<tr>
+<td class="register">(<a href="0047.html#004A">$4A</a>)</td>
+<td class="register-desc">y-coordinate</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="36E3"></span>$36E3</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="4">Prepare to address the screen refresh buffer (SRB) at <a href="4008.html">$4008</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36E5"></span>$36E5</td>
+<td class="instruction">STA $52</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36E7"></span>$36E7</td>
+<td class="instruction">LDA #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36E9"></span>$36E9</td>
+<td class="instruction">STA $53</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36EB"></span>$36EB</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="8">Calculate the index of the SRB byte that corresponds to the leftmost segment of 8 character cells in the row at the given y-coordinate and store it at <a href="004D.html#0055">$55</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36ED"></span>$36ED</td>
+<td class="instruction">LDY $4A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36EF"></span>$36EF</td>
+<td class="instruction">BEQ <a href="36E3.html#36F7">$36F7</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="36F1"></span>$36F1</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36F2"></span>$36F2</td>
+<td class="instruction">ADC #$05</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36F4"></span>$36F4</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36F5"></span>$36F5</td>
+<td class="instruction">BNE <a href="36E3.html#36F1">$36F1</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="36F7"></span>$36F7</td>
+<td class="instruction">STA $55</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36F9"></span>$36F9</td>
+<td class="instruction">LDA $49</td>
+<td class="comment-1" rowspan="5">Pick up the x-coordinate from <a href="0047.html#0049">$49</a>, divide by 8 and store the result at <a href="004D.html#0056">$56</a>. This will be added to the index at <a href="004D.html#0055">$55</a> later to get the index of the target SRB byte.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36FB"></span>$36FB</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36FC"></span>$36FC</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36FD"></span>$36FD</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="36FE"></span>$36FE</td>
+<td class="instruction">STA $56</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3700"></span>$3700</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="4">Store the multiple of 8 closest to but not greater than the x-coordinate at <a href="004D.html#0054">$54</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3701"></span>$3701</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3702"></span>$3702</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3703"></span>$3703</td>
+<td class="instruction">STA $54</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3705"></span>$3705</td>
+<td class="instruction">LDA $49</td>
+<td class="comment-1" rowspan="4">Compute the remainder when the x-coordinate is divided by 8 and transfer it to <span class="register">Y</span>. This indicates the bit of the SRB byte that needs to be set.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3707"></span>$3707</td>
+<td class="instruction">SEC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3708"></span>$3708</td>
+<td class="instruction">SBC $54</td>
+</tr>
+<tr>
+<td class="address-1"><span id="370A"></span>$370A</td>
+<td class="instruction">TAY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="370B"></span>$370B</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="6">Set the bit in <span class="register">A</span> that needs to be set in the SRB byte.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="370D"></span>$370D</td>
+<td class="instruction">CPY #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="370F"></span>$370F</td>
+<td class="instruction">BEQ <a href="36E3.html#3715">$3715</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="3711"></span>$3711</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3712"></span>$3712</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3713"></span>$3713</td>
+<td class="instruction">BNE <a href="36E3.html#3711">$3711</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="3715"></span>$3715</td>
+<td class="instruction">STA $54</td>
+<td class="comment-1" rowspan="1">Store <span class="register">A</span> (with the appropriate bit set) at <a href="004D.html#0054">$54</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3717"></span>$3717</td>
+<td class="instruction">LDA $55</td>
+<td class="comment-1" rowspan="4">Compute the index of the SRB byte that needs updating and transfer it to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3719"></span>$3719</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="371A"></span>$371A</td>
+<td class="instruction">ADC $56</td>
+</tr>
+<tr>
+<td class="address-1"><span id="371C"></span>$371C</td>
+<td class="instruction">TAY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="371D"></span>$371D</td>
+<td class="instruction">LDA ($52),Y</td>
+<td class="comment-1" rowspan="3">Set the appropriate bit in the SRB byte.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="371F"></span>$371F</td>
+<td class="instruction">ORA $54</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3721"></span>$3721</td>
+<td class="instruction">STA ($52),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3723"></span>$3723</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3687.html">$3687</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#36E3">Map</a></td>
+<td class="next">
+Next: <a href="3724.html">$3724</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $31C4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="31B6.html">$31B6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#31C4">Map</a></td>
+<td class="next">
+Next: <a href="31D2.html">$31D2</a>
+</td>
+</tr>
+</table>
+<div class="description">$31C4: Lower the signal for an event</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="1F4D.html">$1F4D</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Event identifier</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="31C4"></span>$31C4</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">Transfer the event identifier to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31C5"></span>$31C5</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Prepare to address the signal flags table at <a href="4400.html">$4400</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31C7"></span>$31C7</td>
+<td class="instruction">STA $56</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31C9"></span>$31C9</td>
+<td class="instruction">LDA #$44</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31CB"></span>$31CB</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31CD"></span>$31CD</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Lower the signal for this event.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31CF"></span>$31CF</td>
+<td class="instruction">STA ($56),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31D1"></span>$31D1</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="31B6.html">$31B6</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#31C4">Map</a></td>
+<td class="next">
+Next: <a href="31D2.html">$31D2</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

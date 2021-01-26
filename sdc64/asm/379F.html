@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $379F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3724.html">$3724</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#379F">Map</a></td>
+<td class="next">
+Next: <a href="3805.html">$3805</a>
+</td>
+</tr>
+</table>
+<div class="description">$379F: Prepare sprites #0-#6 for the speech bubble with the lip on the left</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="2387.html">$2387</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Screen pixel x-coordinate of the lip section</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="379F"></span>$379F</td>
+<td class="instruction">STA $D004</td>
+<td class="comment-1" rowspan="2">Set the x-coordinates of sprites #2 and #4 (bits 0-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37A2"></span>$37A2</td>
+<td class="instruction">STA $D008</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37A5"></span>$37A5</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Add 8 to this x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37A6"></span>$37A6</td>
+<td class="instruction">ADC #$08</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37A8"></span>$37A8</td>
+<td class="instruction">STA $D000</td>
+<td class="comment-1" rowspan="2">Make this the x-coordinate of sprites #0 and #6 (bits 0-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37AB"></span>$37AB</td>
+<td class="instruction">STA $D00C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37AE"></span>$37AE</td>
+<td class="instruction">BCC <a href="379F.html#37B8">$37B8</a></td>
+<td class="comment-1" rowspan="1">Branch unless the x-coordinate is greater than 255.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37B0"></span>$37B0</td>
+<td class="instruction">LDA #$6B</td>
+<td class="comment-1" rowspan="3">Set bit 8 of the x-coordinates of sprites #0, #1, #3, #5 and #6.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37B2"></span>$37B2</td>
+<td class="instruction">ORA $D010</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37B5"></span>$37B5</td>
+<td class="instruction">STA $D010</td>
+</tr>
+<tr>
+<td class="address-2"><span id="37B8"></span>$37B8</td>
+<td class="instruction">LDA $D000</td>
+<td class="comment-1" rowspan="1">Pick up the x-coordinate of sprite #0 (bits 0-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37BB"></span>$37BB</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Add 24 to this x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37BC"></span>$37BC</td>
+<td class="instruction">ADC #$18</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37BE"></span>$37BE</td>
+<td class="instruction">STA $D002</td>
+<td class="comment-1" rowspan="1">Make this the x-coordinate of sprite #1 (bits 0-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37C1"></span>$37C1</td>
+<td class="instruction">BCC <a href="379F.html#37CB">$37CB</a></td>
+<td class="comment-1" rowspan="1">Branch unless the x-coordinate is greater than 255.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37C3"></span>$37C3</td>
+<td class="instruction">LDA #$2A</td>
+<td class="comment-1" rowspan="3">Set bit 8 of the x-coordinates of sprites #1, #3 and #5.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37C5"></span>$37C5</td>
+<td class="instruction">ORA $D010</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37C8"></span>$37C8</td>
+<td class="instruction">STA $D010</td>
+</tr>
+<tr>
+<td class="address-2"><span id="37CB"></span>$37CB</td>
+<td class="instruction">LDA $D002</td>
+<td class="comment-1" rowspan="1">Pick up the x-coordinate of sprite #1 (bits 0-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37CE"></span>$37CE</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Add 24 to this x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37CF"></span>$37CF</td>
+<td class="instruction">ADC #$18</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37D1"></span>$37D1</td>
+<td class="instruction">STA $D006</td>
+<td class="comment-1" rowspan="2">Make this the x-coordinate of sprites #3 and #5 (bits 0-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37D4"></span>$37D4</td>
+<td class="instruction">STA $D00A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37D7"></span>$37D7</td>
+<td class="instruction">BCC <a href="379F.html#37E1">$37E1</a></td>
+<td class="comment-1" rowspan="1">Branch unless the x-coordinate is greater than 255.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37D9"></span>$37D9</td>
+<td class="instruction">LDA #$28</td>
+<td class="comment-1" rowspan="3">Set bit 8 of the x-coordinates of sprites #3 and #5.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37DB"></span>$37DB</td>
+<td class="instruction">ORA $D010</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37DE"></span>$37DE</td>
+<td class="instruction">STA $D010</td>
+</tr>
+<tr>
+<td class="address-2"><span id="37E1"></span>$37E1</td>
+<td class="instruction">LDA #$29</td>
+<td class="comment-1" rowspan="2">Set the pointer for sprite #0 to $29. This points at $CA40 (the first middle outline section of the speech bubble, copied from <a href="3C00.html#3E40">$3E40</a>).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37E3"></span>$37E3</td>
+<td class="instruction">STA $CFF8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37E6"></span>$37E6</td>
+<td class="instruction">LDA #$2A</td>
+<td class="comment-1" rowspan="2">Set the pointer for sprite #1 to $2A. This points at $CA80 (the second middle outline section of the speech bubble, copied from <a href="3C00.html#3E80">$3E80</a>).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37E8"></span>$37E8</td>
+<td class="instruction">STA $CFF9</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37EB"></span>$37EB</td>
+<td class="instruction">LDA #$23</td>
+<td class="comment-1" rowspan="2">Set the pointer for sprite #2 to $23. This points at $C8C0 (the left-hand lip outline section of the speech bubble, copied from <a href="3C00.html#3CC0">$3CC0</a>).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37ED"></span>$37ED</td>
+<td class="instruction">STA $CFFA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37F0"></span>$37F0</td>
+<td class="instruction">LDA #$25</td>
+<td class="comment-1" rowspan="2">Set the pointer for sprite #3 to $25. This points at $C940 (the rightmost outline section of the speech bubble, copied from <a href="3C00.html#3D40">$3D40</a>).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37F2"></span>$37F2</td>
+<td class="instruction">STA $CFFB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37F5"></span>$37F5</td>
+<td class="instruction">LDA #$22</td>
+<td class="comment-1" rowspan="2">Set the pointer for sprite #4 to $22. This points at $C880 (the filled in left-hand lip section of the speech bubble, copied from <a href="3C00.html#3C80">$3C80</a>).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37F7"></span>$37F7</td>
+<td class="instruction">STA $CFFC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37FA"></span>$37FA</td>
+<td class="instruction">LDA #$24</td>
+<td class="comment-1" rowspan="2">Set the pointer for sprite #5 to $24. This points at $C900 (the filled in rightmost section of the speech bubble, copied from <a href="3C00.html#3D00">$3D00</a>).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37FC"></span>$37FC</td>
+<td class="instruction">STA $CFFD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="37FF"></span>$37FF</td>
+<td class="instruction">LDA #$28</td>
+<td class="comment-1" rowspan="2">Set the pointer for sprite #6 to $28. This points at $CA00 (the filled in middle section of the speech bubble, copied from <a href="3C00.html#3E00">$3E00</a>).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3801"></span>$3801</td>
+<td class="instruction">STA $CFFE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3804"></span>$3804</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3724.html">$3724</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#379F">Map</a></td>
+<td class="next">
+Next: <a href="3805.html">$3805</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

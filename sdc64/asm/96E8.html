@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $96E8</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="967F.html">$967F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#96E8">Map</a></td>
+<td class="next">
+Next: <a href="96FF.html">$96FF</a>
+</td>
+</tr>
+</table>
+<div class="description">$96E8: Make the character who is currently speaking stop speaking (1)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="9868.html">$9868</a> and <a href="98E8.html">$98E8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="96E8"></span>$96E8</td>
+<td class="instruction">LDY #$80</td>
+<td class="comment-1" rowspan="1">The character buffer for little boy no. 10 (the only little boy who ever speaks) is in page $81.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="96EA"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="97E8.html">$97E8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="96EA"></span>$96EA</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">Point at the next character.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="96EB"></span>$96EB</td>
+<td class="instruction">CPY #$8A</td>
+<td class="comment-1" rowspan="1">Have we reached character buffer for BOY WONDER's pellet yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="96ED"></span>$96ED</td>
+<td class="instruction">BNE <a href="96E8.html#96F0">$96F0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="96EF"></span>$96EF</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="96F0"></span>$96F0</td>
+<td class="instruction">STY $96FB</td>
+<td class="comment-1" rowspan="1">Modify the MSB of the 'LDA nnnn' instruction at <a href="96E8.html#96F9">$96F9</a> below.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="96F3"></span>$96F3</td>
+<td class="instruction">STY $97EE</td>
+<td class="comment-1" rowspan="1">Modify the MSB of the 'LDA nnnn' instruction at <a href="97E8.html#97EC">$97EC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="96F6"></span>$96F6</td>
+<td class="instruction">STY $97F7</td>
+<td class="comment-1" rowspan="1">Modify the MSB of the 'STA nnnn' instruction at <a href="97E8.html#97F5">$97F5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="96F9"></span>$96F9</td>
+<td class="instruction">LDA $0069</td>
+<td class="comment-1" rowspan="1">Pick up the LSB of a character's interruptible subcommand routine address. The operand of this instruction is modified above.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="96FC"></span>$96FC</td>
+<td class="instruction">JMP <a href="97E8.html">$97E8</a></td>
+<td class="comment-1" rowspan="1">Continue at <a href="97E8.html">$97E8</a>.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="967F.html">$967F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#96E8">Map</a></td>
+<td class="next">
+Next: <a href="96FF.html">$96FF</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

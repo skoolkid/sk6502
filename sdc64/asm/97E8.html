@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $97E8</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="977F.html">$977F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#97E8">Map</a></td>
+<td class="next">
+Next: <a href="97FC.html">$97FC</a>
+</td>
+</tr>
+</table>
+<div class="description">$97E8: Make the character who is currently speaking stop speaking (2)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="96E8.html">$96E8</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">LSB of the character's interruptible subcommand routine address</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="97E8"></span>$97E8</td>
+<td class="instruction">CMP #$58</td>
+<td class="comment-1" rowspan="1">Does the LSB of the character's interruptible subcommand routine address match that of <a href="2387.html#2458">$2458</a>?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="97EA"></span>$97EA</td>
+<td class="instruction">BNE <a href="97E8.html#97F9">$97F9</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="97EC"></span>$97EC</td>
+<td class="instruction">LDA $006A</td>
+<td class="comment-1" rowspan="1">Pick up the MSB of a character's uninterruptible subcommand routine address. The operand of this instruction is modified by the routine at <a href="96E8.html">$96E8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="97EF"></span>$97EF</td>
+<td class="instruction">CMP #$24</td>
+<td class="comment-1" rowspan="1">Does the MSB of the character's interruptible subcommand routine address match that of <a href="2387.html#2458">$2458</a>?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="97F1"></span>$97F1</td>
+<td class="instruction">BNE <a href="97E8.html#97F9">$97F9</a></td>
+<td class="comment-1" rowspan="1">Branch if not (this character is not speaking).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="97F3"></span>$97F3</td>
+<td class="instruction">LDA #$62</td>
+<td class="comment-1" rowspan="2">Replace the address of the interruptible subcommand routine in the character's buffer with that of <a href="2387.html#2462">$2462</a>, effectively terminating the subcommand. The operand of the 'STA nnnn' instruction here is modified by the routine at <a href="96E8.html">$96E8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="97F5"></span>$97F5</td>
+<td class="instruction">STA $0069</td>
+</tr>
+<tr>
+<td class="address-1"><span id="97F8"></span>$97F8</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-2"><span id="97F9"></span>$97F9</td>
+<td class="instruction">JMP <a href="96E8.html#96EA">$96EA</a></td>
+<td class="comment-1" rowspan="1">Jump back to consider the next character.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="977F.html">$977F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#97E8">Map</a></td>
+<td class="next">
+Next: <a href="97FC.html">$97FC</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

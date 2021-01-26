@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2B0D</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2B0C.html">$2B0C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2B0D">Map</a></td>
+<td class="next">
+Next: <a href="2B20.html">$2B20</a>
+</td>
+</tr>
+</table>
+<div class="description">$2B0D: Lower the signal for a certain event and move to the next command</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6B54.html">$6B54</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command lists <a href="42AD.html">$CC</a> and <a href="4334.html">$D8</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2B0D"></span>$2B0D</td>
+<td class="instruction">JSR <a href="3BE7.html">$3BE7</a></td>
+<td class="comment-1" rowspan="2">Collect the event identifier from the command list and transfer it to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B10"></span>$2B10</td>
+<td class="instruction">TAY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B11"></span>$2B11</td>
+<td class="instruction">LDA #$44</td>
+<td class="comment-1" rowspan="4">Prepare to address the signal flags table at <a href="4400.html">$4400</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B13"></span>$2B13</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B15"></span>$2B15</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B17"></span>$2B17</td>
+<td class="instruction">STA $56</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B19"></span>$2B19</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Lower the signal for the given event.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B1B"></span>$2B1B</td>
+<td class="instruction">STA ($56),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B1D"></span>$2B1D</td>
+<td class="instruction">JMP <a href="1D2D.html">$1D2D</a></td>
+<td class="comment-1" rowspan="1">Terminate this primary command.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2B0C.html">$2B0C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2B0D">Map</a></td>
+<td class="next">
+Next: <a href="2B20.html">$2B20</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

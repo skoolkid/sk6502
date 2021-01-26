@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2B52</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2B3F.html">$2B3F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2B52">Map</a></td>
+<td class="next">
+Next: <a href="2B9F.html">$2B9F</a>
+</td>
+</tr>
+</table>
+<div class="description">$2B52: Make BOY WONDER fire his catapult (3)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7048.html">$7048</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this uninterruptible subcommand routine is placed into BOY WONDER's buffer by the routine at <a href="2B3F.html">$2B3F</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2B52"></span>$2B52</td>
+<td class="instruction">LDA #$2B</td>
+<td class="comment-1" rowspan="4">Replace the address of this uninterruptible subcommand routine in BOY WONDER's buffer with that of <a href="2B9F.html">$2B9F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B54"></span>$2B54</td>
+<td class="instruction">STA $B1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B56"></span>$2B56</td>
+<td class="instruction">LDA #$9F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B58"></span>$2B58</td>
+<td class="instruction">STA $B0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B5A"></span>$2B5A</td>
+<td class="instruction">LDA #$12</td>
+<td class="comment-1" rowspan="1">Character number $12 is BOY WONDER's pellet.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B5C"></span>$2B5C</td>
+<td class="instruction">STA $DC</td>
+<td class="comment-1" rowspan="1">Store this character number at <a href="00DA.html#00DC">$DC</a> temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B5E"></span>$2B5E</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="1">Character number $10 is BOY WONDER.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B60"></span>$2B60</td>
+<td class="instruction">STA $DB</td>
+<td class="comment-1" rowspan="1">Store this character number at <a href="00DA.html#00DB">$DB</a> temporarily.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="2B62"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="191B.html">$191B</a> to initialise ERIC's catapult pellet.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2B62"></span>$2B62</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="2">Pick up the character's animatory state from <a href="0026.html">$26</a> and store it at <a href="0007.html#000A">$0A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B64"></span>$2B64</td>
+<td class="instruction">STA $0A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B66"></span>$2B66</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="2">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a> and store it at <a href="0007.html#000B">$0B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B68"></span>$2B68</td>
+<td class="instruction">STA $0B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B6A"></span>$2B6A</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="2">Pick up the character's y-coordinate from <a href="00FB.html">$FB</a> and store it at <a href="0007.html#000C">$0C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B6C"></span>$2B6C</td>
+<td class="instruction">STA $0C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B6E"></span>$2B6E</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore the character's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B71"></span>$2B71</td>
+<td class="instruction">LDA $DC</td>
+<td class="comment-1" rowspan="1">Pick up the pellet's character number from <a href="00DA.html#00DC">$DC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B73"></span>$2B73</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">Update the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B75"></span>$2B75</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the pellet's character buffer into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B78"></span>$2B78</td>
+<td class="instruction">LDA #$0F</td>
+<td class="comment-1" rowspan="4">Place the address of the uninterruptible subcommand routine at <a href="0FBA.html">$0FBA</a> into the pellet's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B7A"></span>$2B7A</td>
+<td class="instruction">STA $B1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B7C"></span>$2B7C</td>
+<td class="instruction">LDA #$BA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B7E"></span>$2B7E</td>
+<td class="instruction">STA $B0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B80"></span>$2B80</td>
+<td class="instruction">LDA #$0D</td>
+<td class="comment-1" rowspan="2">Initialise the distance remaining of the pellet's flight at <a href="00B2.html">$B2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B82"></span>$2B82</td>
+<td class="instruction">STA $B2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B84"></span>$2B84</td>
+<td class="instruction">LDA $0B</td>
+<td class="comment-1" rowspan="2">Initialise the pellet's x-coordinate at <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B86"></span>$2B86</td>
+<td class="instruction">STA $FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B88"></span>$2B88</td>
+<td class="instruction">LDA $0C</td>
+<td class="comment-1" rowspan="2">Initialise the pellet's y-coordinate at <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B8A"></span>$2B8A</td>
+<td class="instruction">STA $FB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B8C"></span>$2B8C</td>
+<td class="instruction">LDA $0A</td>
+<td class="comment-1" rowspan="3">Initialise the pellet's animatory state at <a href="0026.html">$26</a> to <a href="../graphics/as.html#7F">$7F</a> (flying left) or <a href="../graphics/as.html#7F">$FF</a> (flying right).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B8E"></span>$2B8E</td>
+<td class="instruction">ORA #$7F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B90"></span>$2B90</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B92"></span>$2B92</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore the pellet's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B95"></span>$2B95</td>
+<td class="instruction">LDA $DB</td>
+<td class="comment-1" rowspan="2">Restore the original character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B97"></span>$2B97</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B99"></span>$2B99</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the firing character's buffer into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B9C"></span>$2B9C</td>
+<td class="instruction">JMP <a href="2B9F.html#2BAF">$2BAF</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2B3F.html">$2B3F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2B52">Map</a></td>
+<td class="next">
+Next: <a href="2B9F.html">$2B9F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

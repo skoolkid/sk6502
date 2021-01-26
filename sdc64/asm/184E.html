@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $184E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="17E5.html">$17E5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#184E">Map</a></td>
+<td class="next">
+Next: <a href="189D.html">$189D</a>
+</td>
+</tr>
+</table>
+<div class="description">$184E: Deal with ERIC when he's writing on a blackboard</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/F6AA.html">$F6AA</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="15B3.html">$15B3</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="184E"></span>$184E</td>
+<td class="instruction">DEC $FE</td>
+<td class="comment-1" rowspan="2">Decrement ERIC's action timer at <a href="00FE.html">$FE</a> (which is reset to $0A by the routine at <a href="19A5.html">$19A5</a> when ERIC starts writing on the blackboard and each time he writes a character on it) and pick up the new value.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1850"></span>$1850</td>
+<td class="instruction">LDA $FE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1852"></span>$1852</td>
+<td class="instruction">CMP #$04</td>
+<td class="comment-1" rowspan="1">Is it 4 now?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1854"></span>$1854</td>
+<td class="instruction">BNE <a href="184E.html#1859">$1859</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1856"></span>$1856</td>
+<td class="instruction">JMP <a href="191B.html#1928">$1928</a></td>
+<td class="comment-1" rowspan="1">Lower ERIC's arm.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1859"></span>$1859</td>
+<td class="instruction">CMP #$00</td>
+<td class="comment-1" rowspan="1">Is ERIC's action timer zero now?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="185B"></span>$185B</td>
+<td class="instruction">BEQ <a href="184E.html#1860">$1860</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="185D"></span>$185D</td>
+<td class="instruction">JMP <a href="184E.html#189C">$189C</a></td>
+<td class="comment-1" rowspan="1">Otherwise return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1860"></span>$1860</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Reset ERIC's action timer at <a href="00FE.html">$FE</a> to 1.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1862"></span>$1862</td>
+<td class="instruction">STA $FE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1864"></span>$1864</td>
+<td class="instruction">LDA $4C</td>
+<td class="comment-1" rowspan="2">Pick up the keyboard/joystick reading from <a href="004C.html">$4C</a> and copy it to <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1866"></span>$1866</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1868"></span>$1868</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Clear the keyboard/joystick reading at <a href="004C.html">$4C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="186A"></span>$186A</td>
+<td class="instruction">STA $4C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="186C"></span>$186C</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the keyboard/joystick reading from <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="186E"></span>$186E</td>
+<td class="instruction">BEQ <a href="184E.html#189C">$189C</a></td>
+<td class="comment-1" rowspan="1">Return if no key was pressed.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1870"></span>$1870</td>
+<td class="instruction">CMP #$0D</td>
+<td class="comment-1" rowspan="1">Was RETURN pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1872"></span>$1872</td>
+<td class="instruction">BNE <a href="184E.html#1877">$1877</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1874"></span>$1874</td>
+<td class="instruction">JMP <a href="191B.html#191F">$191F</a></td>
+<td class="comment-1" rowspan="1">Make ERIC stop writing on the blackboard.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1877"></span>$1877</td>
+<td class="instruction">CMP #$20</td>
+<td class="comment-1" rowspan="1">Is the character code of the keypress less than $20?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1879"></span>$1879</td>
+<td class="instruction">BCC <a href="184E.html#189C">$189C</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="187B"></span>$187B</td>
+<td class="instruction">CMP #$80</td>
+<td class="comment-1" rowspan="1">Is the character code of the keypress $80 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="187D"></span>$187D</td>
+<td class="instruction">BCS <a href="184E.html#189C">$189C</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="187F"></span>$187F</td>
+<td class="instruction">JSR <a href="1468.html">$1468</a></td>
+<td class="comment-1" rowspan="1">Get the identifier and coordinates of the blackboard closest to ERIC and copy its buffer into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1882"></span>$1882</td>
+<td class="instruction">LDX #$03</td>
+<td class="comment-1" rowspan="1">Prepare <span class="register">X</span> to check the last byte of the blackboard's buffer.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1884"></span>$1884</td>
+<td class="instruction">LDA $DF,X</td>
+<td class="comment-1" rowspan="1">Pick up one of the last four bytes of the blackboard's buffer from <a href="00DF.html">$DF-$E2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1886"></span>$1886</td>
+<td class="instruction">CMP #$80</td>
+<td class="comment-1" rowspan="1">Is a character code stored here?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1888"></span>$1888</td>
+<td class="instruction">BNE <a href="184E.html#1891">$1891</a></td>
+<td class="comment-1" rowspan="1">Branch if so to check the previous byte.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="188A"></span>$188A</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="2">Otherwise store the character code of the last keypress at this location in the blackboard's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="188C"></span>$188C</td>
+<td class="instruction">STA $DF,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="188E"></span>$188E</td>
+<td class="instruction">JMP <a href="184E.html#1894">$1894</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1891"></span>$1891</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">Move to the previous byte in the blackboard's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1892"></span>$1892</td>
+<td class="instruction">BPL <a href="184E.html#1884">$1884</a></td>
+<td class="comment-1" rowspan="1">Branch back to check the character code there.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1894"></span>$1894</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the keyboard/joystick reading from <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1896"></span>$1896</td>
+<td class="instruction">JSR <a href="11CF.html">$11CF</a></td>
+<td class="comment-1" rowspan="1">Write the corresponding character on the blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1899"></span>$1899</td>
+<td class="instruction">JMP <a href="19A5.html#19F5">$19F5</a></td>
+<td class="comment-1" rowspan="1">Raise ERIC's arm.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="189C"></span>$189C</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="17E5.html">$17E5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#184E">Map</a></td>
+<td class="next">
+Next: <a href="189D.html">$189D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

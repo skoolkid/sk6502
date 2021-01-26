@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $364E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="35EF.html">$35EF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#364E">Map</a></td>
+<td class="next">
+Next: <a href="365C.html">$365C</a>
+</td>
+</tr>
+</table>
+<div class="description">$364E: Turn ERIC round</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/656A.html">$656A</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="34B5.html">$34B5</a>, <a href="350B.html">$350B</a>, <a href="3558.html">$3558</a> and <a href="359E.html">$359E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="364E"></span>$364E</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3651"></span>$3651</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="3">Flip bit 7 of ERIC's animatory state at <a href="0026.html">$26</a>, thus turning him round.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3653"></span>$3653</td>
+<td class="instruction">EOR #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3655"></span>$3655</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3657"></span>$3657</td>
+<td class="instruction">LDA #$05</td>
+<td class="comment-1" rowspan="2">Store the value 5 at <a href="0013.html">$13</a>, where it will remain unused.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3659"></span>$3659</td>
+<td class="instruction">STA $13</td>
+</tr>
+<tr>
+<td class="address-1"><span id="365B"></span>$365B</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="35EF.html">$35EF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#364E">Map</a></td>
+<td class="next">
+Next: <a href="365C.html">$365C</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1042</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0FBA.html">$0FBA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1042">Map</a></td>
+<td class="next">
+Next: <a href="105A.html">$105A</a>
+</td>
+</tr>
+</table>
+<div class="description">$1042: Control the vertical flight of a catapult pellet</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6DC6.html">$6DC6</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this uninterruptible subcommand routine is placed into the pellet's buffer by the routine at <a href="0FBA.html">$0FBA</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1042"></span>$1042</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the pellet's current location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1045"></span>$1045</td>
+<td class="instruction">DEC $B2</td>
+<td class="comment-1" rowspan="1">Has the pellet finished its journey upwards yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1047"></span>$1047</td>
+<td class="instruction">BNE <a href="1042.html#104C">$104C</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1049"></span>$1049</td>
+<td class="instruction">JMP <a href="0FBA.html#0FC1">$0FC1</a></td>
+<td class="comment-1" rowspan="1">Otherwise terminate the pellet.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="104C"></span>$104C</td>
+<td class="instruction">DEC $FB</td>
+<td class="comment-1" rowspan="1">Decrement the pellet's y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="104E"></span>$104E</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the pellet's new location.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1051"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="0FBA.html">$0FBA</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1051"></span>$1051</td>
+<td class="instruction">LDX $FC</td>
+<td class="comment-1" rowspan="4">Pick up the coordinates of the pellet's potential target in <span class="register">XY</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1053"></span>$1053</td>
+<td class="instruction">INX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1054"></span>$1054</td>
+<td class="instruction">LDY $FB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1056"></span>$1056</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1057"></span>$1057</td>
+<td class="instruction">JMP <a href="2BB0.html">$2BB0</a></td>
+<td class="comment-1" rowspan="1">Check whether the pellet has hit a shield.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0FBA.html">$0FBA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1042">Map</a></td>
+<td class="next">
+Next: <a href="105A.html">$105A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

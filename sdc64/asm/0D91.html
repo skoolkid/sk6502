@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $0D91</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0D67.html">$0D67</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0D91">Map</a></td>
+<td class="next">
+Next: <a href="0DD4.html">$0DD4</a>
+</td>
+</tr>
+</table>
+<div class="description">$0D91: Get the identifier for ERIC's location</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="0B3B.html">$0B3B</a>, <a href="0E35.html">$0E35</a>, <a href="149F.html">$149F</a> and <a href="2745.html">$2745</a>. Obtains the identifier for ERIC's current location, which has one of the following values:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">ID</th>
+<th colspan="1" rowspan="1">Meaning</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">ERIC should never be here (head's study or staff room)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">Reading Room</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">2</td>
+<td class="" colspan="1" rowspan="1">Map Room</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">White Room</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">4</td>
+<td class="" colspan="1" rowspan="1">Exam Room</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">5</td>
+<td class="" colspan="1" rowspan="1">Revision Library</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">6</td>
+<td class="" colspan="1" rowspan="1">Dinner hall</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">7</td>
+<td class="" colspan="1" rowspan="1">None of the above</td>
+</tr>
+</table>
+</div>
+</div>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">(<a href="00C7.html">$C7</a>)</td>
+<td class="register-desc">ERIC's location identifier (see above)</td>
+</tr>
+<tr>
+<td class="register">P</td>
+<td class="register-desc">Zero flag set if ERIC's in the classroom he should be in</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0D91"></span>$0D91</td>
+<td class="instruction">LDA $8C62</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's y-coordinate from his character buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D94"></span>$0D94</td>
+<td class="instruction">CMP #$07</td>
+<td class="comment-1" rowspan="1">Is ERIC closer to the top floor than any other?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D96"></span>$0D96</td>
+<td class="instruction">BCC <a href="0D91.html#0DB2">$0DB2</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D98"></span>$0D98</td>
+<td class="instruction">CMP #$0E</td>
+<td class="comment-1" rowspan="1">Is ERIC closer to the middle floor than any other?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D9A"></span>$0D9A</td>
+<td class="instruction">BCC <a href="0D91.html#0DA7">$0DA7</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D9C"></span>$0D9C</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4">The skool region data table for the bottom floor is at <a href="46B6.html">$46B6</a>. Store its address at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D9E"></span>$0D9E</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DA0"></span>$0DA0</td>
+<td class="instruction">LDA #$B6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DA2"></span>$0DA2</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DA4"></span>$0DA4</td>
+<td class="instruction">JMP <a href="0D91.html#0DBA">$0DBA</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0DA7"></span>$0DA7</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4">The skool region data table for the middle floor is at <a href="46AC.html">$46AC</a>. Store its address at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DA9"></span>$0DA9</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DAB"></span>$0DAB</td>
+<td class="instruction">LDA #$AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DAD"></span>$0DAD</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DAF"></span>$0DAF</td>
+<td class="instruction">JMP <a href="0D91.html#0DBA">$0DBA</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0DB2"></span>$0DB2</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4">The skool region data table for the top floor is at <a href="46A0.html">$46A0</a>. Store its address at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DB4"></span>$0DB4</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DB6"></span>$0DB6</td>
+<td class="instruction">LDA #$A0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DB8"></span>$0DB8</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0DBA"></span>$0DBA</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span> is the index into the skool region data table.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0DBC"></span>$0DBC</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="1">Pick up an x-coordinate from the data table.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DBE"></span>$0DBE</td>
+<td class="instruction">CMP $8C61</td>
+<td class="comment-1" rowspan="1">Is it less than ERIC's x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DC1"></span>$0DC1</td>
+<td class="instruction">BCS <a href="0D91.html#0DC8">$0DC8</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DC3"></span>$0DC3</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="2">Point at the next entry in the skool region data table.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DC4"></span>$0DC4</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DC5"></span>$0DC5</td>
+<td class="instruction">JMP <a href="0D91.html#0DBC">$0DBC</a></td>
+<td class="comment-1" rowspan="1">Jump back to examine the next entry.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0DC8"></span>$0DC8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="3">Pick up the region identifier from the skool region data table and store it at <a href="00C7.html">$C7</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DC9"></span>$0DC9</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DCB"></span>$0DCB</td>
+<td class="instruction">STA $C7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DCD"></span>$0DCD</td>
+<td class="instruction">LDA $70</td>
+<td class="comment-1" rowspan="1">Pick up the current lesson descriptor from <a href="0070.html">$70</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DCF"></span>$0DCF</td>
+<td class="instruction">AND #$07</td>
+<td class="comment-1" rowspan="2">Set the zero flag if ERIC's in the classroom he should be in.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DD1"></span>$0DD1</td>
+<td class="instruction">CMP $C7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0DD3"></span>$0DD3</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0D67.html">$0D67</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0D91">Map</a></td>
+<td class="next">
+Next: <a href="0DD4.html">$0DD4</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

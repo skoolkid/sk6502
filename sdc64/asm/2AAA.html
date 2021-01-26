@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2AAA</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2AA9.html">$2AA9</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2AAA">Map</a></td>
+<td class="next">
+Next: <a href="2AF9.html">$2AF9</a>
+</td>
+</tr>
+</table>
+<div class="description">$2AAA: Set MR CREAK's birth year</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="2BB0.html">$2BB0</a> and <a href="2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2AAA"></span>$2AAA</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="3">Generate a random value between $00 and $14.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AAD"></span>$2AAD</td>
+<td class="instruction">CMP #$15</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AAF"></span>$2AAF</td>
+<td class="instruction">BCS <a href="2AAA.html#2AAA">$2AAA</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AB1"></span>$2AB1</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="3">Double it and add $D5. Now $D5&lt;=<span class="register">A</span>&lt;=$FD and <span class="register">A</span> is odd.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AB2"></span>$2AB2</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AB3"></span>$2AB3</td>
+<td class="instruction">ADC #$D5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AB5"></span>$2AB5</td>
+<td class="instruction">STA $A5</td>
+<td class="comment-1" rowspan="1">Store this value at <a href="00A5.html">$A5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AB7"></span>$2AB7</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract 1. Now $D4&lt;=<span class="register">A</span>&lt;=$FC and <span class="register">A</span> is even.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AB8"></span>$2AB8</td>
+<td class="instruction">SBC #$01</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ABA"></span>$2ABA</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save this value temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ABB"></span>$2ABB</td>
+<td class="instruction">LDA #$4D</td>
+<td class="comment-1" rowspan="2">Initialise the battle year message address MSB at <a href="001B.html#001E">$1E</a> to $4D.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ABD"></span>$2ABD</td>
+<td class="instruction">STA $1E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ABF"></span>$2ABF</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AC0"></span>$2AC0</td>
+<td class="instruction">AND #$7F</td>
+<td class="comment-1" rowspan="1">Now $54&lt;=<span class="register">A</span>&lt;=$7C and <span class="register">A</span> is even.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AC2"></span>$2AC2</td>
+<td class="instruction">CMP #$16</td>
+<td class="comment-1" rowspan="1">Is <span class="register">A</span> less than $16?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AC4"></span>$2AC4</td>
+<td class="instruction">BCC <a href="2AAA.html#2AE0">$2AE0</a></td>
+<td class="comment-1" rowspan="1">Branch if so (this never happens).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AC6"></span>$2AC6</td>
+<td class="instruction">INC $1E</td>
+<td class="comment-1" rowspan="1">Increment the message address MSB at <a href="001B.html#001E">$1E</a> to $4E.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AC8"></span>$2AC8</td>
+<td class="instruction">CMP #$2B</td>
+<td class="comment-1" rowspan="1">Is <span class="register">A</span> less than $2B?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ACA"></span>$2ACA</td>
+<td class="instruction">BCC <a href="2AAA.html#2AE0">$2AE0</a></td>
+<td class="comment-1" rowspan="1">Branch if so (this never happens).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ACC"></span>$2ACC</td>
+<td class="instruction">INC $1E</td>
+<td class="comment-1" rowspan="1">Increment the message address MSB at <a href="001B.html#001E">$1E</a> to $4F.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ACE"></span>$2ACE</td>
+<td class="instruction">CMP #$40</td>
+<td class="comment-1" rowspan="1">Is <span class="register">A</span> less than $40?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AD0"></span>$2AD0</td>
+<td class="instruction">BCC <a href="2AAA.html#2AE0">$2AE0</a></td>
+<td class="comment-1" rowspan="1">Branch if so (this never happens).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AD2"></span>$2AD2</td>
+<td class="instruction">INC $1E</td>
+<td class="comment-1" rowspan="1">Increment the message address MSB at <a href="001B.html#001E">$1E</a> to $50.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AD4"></span>$2AD4</td>
+<td class="instruction">CMP #$56</td>
+<td class="comment-1" rowspan="1">Is the random value less than $56?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AD6"></span>$2AD6</td>
+<td class="instruction">BCC <a href="2AAA.html#2AE0">$2AE0</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AD8"></span>$2AD8</td>
+<td class="instruction">INC $1E</td>
+<td class="comment-1" rowspan="1">Increment the message address MSB at <a href="001B.html#001E">$1E</a> to $51.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ADA"></span>$2ADA</td>
+<td class="instruction">CMP #$6B</td>
+<td class="comment-1" rowspan="1">Is the random value less than $6B?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ADC"></span>$2ADC</td>
+<td class="instruction">BCC <a href="2AAA.html#2AE0">$2AE0</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2ADE"></span>$2ADE</td>
+<td class="instruction">INC $1E</td>
+<td class="comment-1" rowspan="1">Increment the message address MSB at <a href="001B.html#001E">$1E</a> to $52.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2AE0"></span>$2AE0</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="6">Multiply <span class="register">A</span> by 12.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AE1"></span>$2AE1</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AE2"></span>$2AE2</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AE4"></span>$2AE4</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AE5"></span>$2AE5</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AE6"></span>$2AE6</td>
+<td class="instruction">ADC $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AE8"></span>$2AE8</td>
+<td class="instruction">STA $1D</td>
+<td class="comment-1" rowspan="1">Store this battle year message address LSB at <a href="001B.html#001D">$1D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AEA"></span>$2AEA</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="8">Copy the battle year to <a href="0094.html">$94-$97</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AEC"></span>$2AEC</td>
+<td class="instruction">LDX #$00</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2AEE"></span>$2AEE</td>
+<td class="instruction">LDA ($1D),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AF0"></span>$2AF0</td>
+<td class="instruction">STA $94,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AF2"></span>$2AF2</td>
+<td class="instruction">INX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AF3"></span>$2AF3</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AF4"></span>$2AF4</td>
+<td class="instruction">CPY #$04</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AF6"></span>$2AF6</td>
+<td class="instruction">BNE <a href="2AAA.html#2AEE">$2AEE</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2AF8"></span>$2AF8</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2AA9.html">$2AA9</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2AAA">Map</a></td>
+<td class="next">
+Next: <a href="2AF9.html">$2AF9</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

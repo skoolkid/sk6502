@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $13F3</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="13D5.html">$13D5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#13F3">Map</a></td>
+<td class="next">
+Next: <a href="1421.html">$1421</a>
+</td>
+</tr>
+</table>
+<div class="description">$13F3: Guide a character up or down a staircase</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+The address of this interruptible subcommand routine appears in the staircase endpoint data tables at <a href="4440.html">$4440</a> and <a href="4454.html">$4454</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="13F3"></span>$13F3</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Store the direction indicator (zero, down) at <a href="0047.html">$47</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13F5"></span>$13F5</td>
+<td class="instruction">STA $47</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13F7"></span>$13F7</td>
+<td class="instruction">JMP <a href="13F3.html#13FE">$13FE</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="13FA"></span>
+<div class="comments">
+<div class="paragraph">
+The address of this entry point appears in the staircase endpoint data tables at <a href="4440.html">$4440</a> and <a href="4454.html">$4454</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13FA"></span>$13FA</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="2">Store the direction indicator (non-zero, up) at <a href="0047.html">$47</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="13FC"></span>$13FC</td>
+<td class="instruction">STA $47</td>
+</tr>
+<tr>
+<td class="address-2"><span id="13FE"></span>$13FE</td>
+<td class="instruction">DEC $AC</td>
+<td class="comment-1" rowspan="1">Decrement the movement counter at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1400"></span>$1400</td>
+<td class="instruction">BNE <a href="13F3.html#1405">$1405</a></td>
+<td class="comment-1" rowspan="1">Branch unless the character has reached the top or bottom of the staircase.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1402"></span>$1402</td>
+<td class="instruction">JMP <a href="1D28.html">$1D28</a></td>
+<td class="comment-1" rowspan="1">Terminate this interruptible subcommand routine.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1405"></span>$1405</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1408"></span>$1408</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="140A"></span>$140A</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Is the character midstride?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="140B"></span>$140B</td>
+<td class="instruction">BCC <a href="13F3.html#1410">$1410</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="140D"></span>$140D</td>
+<td class="instruction">JMP <a href="136F.html#1398">$1398</a></td>
+<td class="comment-1" rowspan="1">Move the character from the midstride position.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1410"></span>$1410</td>
+<td class="instruction">INC $26</td>
+<td class="comment-1" rowspan="1">Increment the character's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1412"></span>$1412</td>
+<td class="instruction">LDA $47</td>
+<td class="comment-1" rowspan="1">Pick up the direction indicator from <a href="0047.html">$47</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1414"></span>$1414</td>
+<td class="instruction">BEQ <a href="13F3.html#141B">$141B</a></td>
+<td class="comment-1" rowspan="1">Branch if the character is going down the stairs.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1416"></span>$1416</td>
+<td class="instruction">DEC $FB</td>
+<td class="comment-1" rowspan="1">Decrement the character's y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1418"></span>$1418</td>
+<td class="instruction">JMP <a href="13F3.html#141D">$141D</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="141B"></span>$141B</td>
+<td class="instruction">INC $FB</td>
+<td class="comment-1" rowspan="1">Increment the character's y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="141D"></span>$141D</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's new animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1420"></span>$1420</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="13D5.html">$13D5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#13F3">Map</a></td>
+<td class="next">
+Next: <a href="1421.html">$1421</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

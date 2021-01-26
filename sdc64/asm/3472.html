@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Unused RAM at $3472</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-u">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Unused</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="33BF.html">$33BF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3472">Map</a></td>
+<td class="next">
+Next: <a href="34B5.html">$34B5</a>
+</td>
+</tr>
+</table>
+<div class="description">$3472: Code remnants</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This routine is not used.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3472"></span>$3472</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's status flags from <a href="002B.html">$2B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3474"></span>$3474</td>
+<td class="instruction">AND #$10</td>
+<td class="comment-1" rowspan="1">Is ERIC sitting or lying on the floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3476"></span>$3476</td>
+<td class="instruction">BNE $34A8</td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3478"></span>$3478</td>
+<td class="instruction">STA $4B</td>
+<td class="comment-1" rowspan="1">Clear ERIC's midstride indicator at <a href="004B.html">$4B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="347A"></span>$347A</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Initialise the knockout counter at <a href="000F.html">$0F</a> to $14.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="347C"></span>$347C</td>
+<td class="instruction">STA $0F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="347E"></span>$347E</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3481"></span>$3481</td>
+<td class="instruction">LDA #$1A</td>
+<td class="comment-1" rowspan="2">Set voice #3 attack length to 8ms and decay length to 1.5s.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3483"></span>$3483</td>
+<td class="instruction">STA $D413</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3486"></span>$3486</td>
+<td class="instruction">LDA #$81</td>
+<td class="comment-1" rowspan="2">Set voice #3 control register: voice on, attack-decay-sustain cycle; noise enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3488"></span>$3488</td>
+<td class="instruction">STA $D412</td>
+</tr>
+<tr>
+<td class="address-1"><span id="348B"></span>$348B</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="348D"></span>$348D</td>
+<td class="instruction">CMP #$05</td>
+<td class="comment-1" rowspan="1">Is ERIC sitting on a chair?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="348F"></span>$348F</td>
+<td class="instruction">BNE $3499</td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3491"></span>$3491</td>
+<td class="instruction">INC $26</td>
+<td class="comment-1" rowspan="1">Set ERIC's animatory state to $06 (sitting on the floor).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3493"></span>$3493</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3496"></span>$3496</td>
+<td class="instruction">JMP $34B4</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3499"></span>$3499</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="349B"></span>$349B</td>
+<td class="instruction">AND #$80</td>
+<td class="comment-1" rowspan="1">Keep only the direction bit (bit 7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="349D"></span>$349D</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="3">Set ERIC's animatory state to <a href="../graphics/as.html#07">$07 or $87</a> (lying on the floor).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="349E"></span>$349E</td>
+<td class="instruction">ADC #$07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="34A0"></span>$34A0</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="34A2"></span>$34A2</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="34A5"></span>$34A5</td>
+<td class="instruction">JMP $34B4</td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="34A8"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC is sitting or lying on the floor.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="34A8"></span>$34A8</td>
+<td class="instruction">DEC $0F</td>
+<td class="comment-1" rowspan="1">Decrement the knockout counter at <a href="000F.html">$0F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="34AA"></span>$34AA</td>
+<td class="instruction">BNE $34B4</td>
+<td class="comment-1" rowspan="1">Return unless it's zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="34AC"></span>$34AC</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Clear ERIC's status flags at <a href="002B.html">$2B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="34AE"></span>$34AE</td>
+<td class="instruction">STA $2B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="34B0"></span>$34B0</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="2">Set ERIC's posture indicator at <a href="0014.html">$14</a> to $FF: ERIC is standing up now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="34B2"></span>$34B2</td>
+<td class="instruction">STA $14</td>
+</tr>
+<tr>
+<td class="address-2"><span id="34B4"></span>$34B4</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="33BF.html">$33BF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3472">Map</a></td>
+<td class="next">
+Next: <a href="34B5.html">$34B5</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

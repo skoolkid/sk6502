@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Unused RAM at $59E0</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-u">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Unused</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="5920.html">$5920</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#59E0">Map</a></td>
+<td class="next">
+Next: <a href="5A00.html">$5A00</a>
+</td>
+</tr>
+</table>
+<div class="description">$59E0: Z80 code remnants</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/EFE0.html">$EFE0</a> in the ZX Spectrum version.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59E0"></span>$59E0</td>
+<td class="instruction">.BYTE $21,$00,$1B</td>
+<td class="comment-1" rowspan="1">LD HL,$1B00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59E3"></span>$59E3</td>
+<td class="instruction">.BYTE $06,$08</td>
+<td class="comment-1" rowspan="1">LD B,$08</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59E5"></span>$59E5</td>
+<td class="instruction">.BYTE $70</td>
+<td class="comment-1" rowspan="1">LD (HL),B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59E6"></span>$59E6</td>
+<td class="instruction">.BYTE $C5</td>
+<td class="comment-1" rowspan="1">PUSH BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59E7"></span>$59E7</td>
+<td class="instruction">.BYTE $CD,$E8,$B0</td>
+<td class="comment-1" rowspan="1">CALL $B0E8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59EA"></span>$59EA</td>
+<td class="instruction">.BYTE $E5</td>
+<td class="comment-1" rowspan="1">PUSH HL</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59EB"></span>$59EB</td>
+<td class="instruction">.BYTE $CD,$E8,$B6</td>
+<td class="comment-1" rowspan="1">CALL $B6E8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59EE"></span>$59EE</td>
+<td class="instruction">.BYTE $E1</td>
+<td class="comment-1" rowspan="1">POP HL</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59EF"></span>$59EF</td>
+<td class="instruction">.BYTE $CC,$68,$B8</td>
+<td class="comment-1" rowspan="1">CALL Z,$B868</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59F2"></span>$59F2</td>
+<td class="instruction">.BYTE $28,$FB</td>
+<td class="comment-1" rowspan="1">JR Z,$59EF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59F4"></span>$59F4</td>
+<td class="instruction">.BYTE $CD,$E8,$B5</td>
+<td class="comment-1" rowspan="1">CALL $B5E8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59F7"></span>$59F7</td>
+<td class="instruction">.BYTE $C1</td>
+<td class="comment-1" rowspan="1">POP BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59F8"></span>$59F8</td>
+<td class="instruction">.BYTE $10,$EC</td>
+<td class="comment-1" rowspan="1">DJNZ $59E6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59FA"></span>$59FA</td>
+<td class="instruction">.BYTE $21,$1B,$61</td>
+<td class="comment-1" rowspan="1">LD HL,$611B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59FD"></span>$59FD</td>
+<td class="instruction">.BYTE $36,$7E</td>
+<td class="comment-1" rowspan="1">LD (HL),$7E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="59FF"></span>$59FF</td>
+<td class="instruction">.BYTE $C9</td>
+<td class="comment-1" rowspan="1">RET</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="5920.html">$5920</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#59E0">Map</a></td>
+<td class="next">
+Next: <a href="5A00.html">$5A00</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

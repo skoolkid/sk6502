@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2F8C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2F56.html">$2F56</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2F8C">Map</a></td>
+<td class="next">
+Next: <a href="2FB6.html">$2FB6</a>
+</td>
+</tr>
+</table>
+<div class="description">$2F8C: Print the play area tiles in a single column of the screen</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="3072.html">$3072</a> and <a href="3113.html">$3113</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">Y</td>
+<td class="register-desc">x-coordinate of the column</td>
+</tr>
+<tr>
+<td class="register">(<a href="005A.html">$5A,$5B</a>)</td>
+<td class="register-desc">Screen bitmap address</td>
+</tr>
+<tr>
+<td class="register">(<a href="005A.html#005C">$5C,$5D</a>)</td>
+<td class="register-desc">Colour information address</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2F8C"></span>$2F8C</td>
+<td class="instruction">STY $27</td>
+<td class="comment-1" rowspan="1">Store the x-coordinate at <a href="0027.html">$27</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F8E"></span>$2F8E</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Initialise the row counter at <a href="0027.html#0028">$28</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F90"></span>$2F90</td>
+<td class="instruction">STA $28</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2F92"></span>$2F92</td>
+<td class="instruction">JSR <a href="3326.html#3329">$3329</a></td>
+<td class="comment-1" rowspan="1">Print a play area tile.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F95"></span>$2F95</td>
+<td class="instruction">LDA $5A</td>
+<td class="comment-1" rowspan="7">Add 320 (40x8) to the screen bitmap address at <a href="005A.html">$5A</a> to point at the adjacent tile in the row below.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F97"></span>$2F97</td>
+<td class="instruction">INC $5B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F99"></span>$2F99</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F9A"></span>$2F9A</td>
+<td class="instruction">ADC #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F9C"></span>$2F9C</td>
+<td class="instruction">BCC <a href="2F8C.html#2FA0">$2FA0</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F9E"></span>$2F9E</td>
+<td class="instruction">INC $5B</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2FA0"></span>$2FA0</td>
+<td class="instruction">STA $5A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2FA2"></span>$2FA2</td>
+<td class="instruction">LDA $5C</td>
+<td class="comment-1" rowspan="6">Add 40 to the colour information address at <a href="005A.html#005C">$5C</a> to point at the adjacent tile in the row below.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2FA4"></span>$2FA4</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2FA5"></span>$2FA5</td>
+<td class="instruction">ADC #$28</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2FA7"></span>$2FA7</td>
+<td class="instruction">BCC <a href="2F8C.html#2FAB">$2FAB</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2FA9"></span>$2FA9</td>
+<td class="instruction">INC $5D</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2FAB"></span>$2FAB</td>
+<td class="instruction">STA $5C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2FAD"></span>$2FAD</td>
+<td class="instruction">INC $28</td>
+<td class="comment-1" rowspan="1">Increment the row counter at <a href="0027.html#0028">$28</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2FAF"></span>$2FAF</td>
+<td class="instruction">LDA $28</td>
+<td class="comment-1" rowspan="1">Pick up the row counter.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2FB1"></span>$2FB1</td>
+<td class="instruction">CMP #$15</td>
+<td class="comment-1" rowspan="1">Have we done all 21 rows yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2FB3"></span>$2FB3</td>
+<td class="instruction">BNE <a href="2F8C.html#2F92">$2F92</a></td>
+<td class="comment-1" rowspan="1">Branch back if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2FB5"></span>$2FB5</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2F56.html">$2F56</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2F8C">Map</a></td>
+<td class="next">
+Next: <a href="2FB6.html">$2FB6</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

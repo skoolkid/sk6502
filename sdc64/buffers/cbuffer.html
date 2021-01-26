@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Character buffer</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="CharacterBuffer">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Character buffer</td>
+</tr>
+</table>
+<div class="map-intro">Whenever a character's state needs to be examined or updated, his character
+buffer is copied to the addresses in page 0 shown below by the routine at
+<a href="../asm/3279.html">$3279</a>. Afterwards, the character's buffer is restored from page 0 by the
+routine at <a href="../asm/33BF.html">$33BF</a>.</div>
+<table class="map">
+<tr>
+<th>Address</th>
+<th class="map-length">Length</th>
+<th>Description</th>
+</tr>
+<tr>
+<td class="map-b"><span id="0026"></span><a href="../asm/0026.html">$0026</a></td>
+<td class="map-length">$01</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0026.html">Animatory state</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/0800.html">$0800</a>, <a href="../asm/0C3F.html">$0C3F</a>, <a href="../asm/0FBA.html">$0FBA</a>, <a href="../asm/1129.html">$1129</a>, <a href="../asm/12B5.html">$12B5</a>, <a href="../asm/136F.html">$136F</a>, <a href="../asm/13F3.html">$13F3</a>, <a href="../asm/149F.html">$149F</a>, <a href="../asm/15B3.html">$15B3</a>, <a href="../asm/1640.html">$1640</a>, <a href="../asm/169B.html">$169B</a>, <a href="../asm/16E9.html">$16E9</a>, <a href="../asm/176F.html">$176F</a>, <a href="../asm/17E5.html">$17E5</a>, <a href="../asm/191B.html">$191B</a>, <a href="../asm/1A04.html">$1A04</a>, <a href="../asm/1A51.html">$1A51</a>, <a href="../asm/1B2E.html">$1B2E</a>, <a href="../asm/1C59.html">$1C59</a>, <a href="../asm/1CB4.html">$1CB4</a>, <a href="../asm/1CCB.html">$1CCB</a>, <a href="../asm/1CEC.html">$1CEC</a>, <a href="../asm/267A.html">$267A</a>, <a href="../asm/2696.html">$2696</a>, <a href="../asm/26E0.html">$26E0</a>, <a href="../asm/270D.html">$270D</a>, <a href="../asm/27D2.html">$27D2</a>, <a href="../asm/2873.html">$2873</a>, <a href="../asm/2A43.html">$2A43</a>, <a href="../asm/2B21.html">$2B21</a>, <a href="../asm/2B3F.html">$2B3F</a>, <a href="../asm/2B52.html">$2B52</a>, <a href="../asm/2B9F.html">$2B9F</a>, <a href="../asm/2CA5.html">$2CA5</a>, <a href="../asm/322E.html">$322E</a>, <a href="../asm/3472.html">$3472</a>, <a href="../asm/34B5.html">$34B5</a>, <a href="../asm/350B.html">$350B</a>, <a href="../asm/3558.html">$3558</a>, <a href="../asm/359E.html">$359E</a>, <a href="../asm/35EF.html">$35EF</a>, <a href="../asm/364E.html">$364E</a>, <a href="../asm/365C.html">$365C</a> and <a href="../asm/3687.html">$3687</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="0029"></span><a href="../asm/0029.html">$0029</a></td>
+<td class="map-length">$02</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0029.html">Primary command routine address</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/0B3B.html">$0B3B</a>, <a href="../asm/12B5.html">$12B5</a>, <a href="../asm/1A04.html">$1A04</a>, <a href="../asm/1D16.html">$1D16</a>, <a href="../asm/1D2D.html">$1D2D</a>, <a href="../asm/1EE3.html">$1EE3</a>, <a href="../asm/1F4D.html">$1F4D</a>, <a href="../asm/1F77.html">$1F77</a>, <a href="../asm/1FA0.html">$1FA0</a>, <a href="../asm/27AB.html">$27AB</a>, <a href="../asm/2E13.html">$2E13</a> and <a href="../asm/3B5E.html">$3B5E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="0039"></span><a href="../asm/0039.html">$0039</a></td>
+<td class="map-length">$02</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/0039.html">Continual subcommand routine address</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/2797.html">$2797</a>, <a href="../asm/2865.html">$2865</a>, <a href="../asm/2885.html">$2885</a>, <a href="../asm/2E13.html">$2E13</a> and <a href="../asm/3B5E.html">$3B5E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="003B"></span><a href="../asm/003B.html">$003B</a></td>
+<td class="map-length">$02</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/003B.html">Address reached in the command list</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/2E13.html">$2E13</a>, <a href="../asm/3B5E.html">$3B5E</a> and <a href="../asm/3BE7.html">$3BE7</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="003D"></span><a href="../asm/003D.html">$003D</a></td>
+<td class="map-length">$02</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/003D.html">Command list start address</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/1D4A.html">$1D4A</a>, <a href="../asm/2E13.html">$2E13</a>, <a href="../asm/3AD5.html">$3AD5</a> and <a href="../asm/3B5E.html">$3B5E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="003F"></span><a href="../asm/003F.html">$003F</a></td>
+<td class="map-length">$01</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/003F.html">Various flags</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+This byte holds various flags. These flags are checked by the character-moving routine at <a href="../asm/3B5E.html">$3B5E</a>.
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Bit(s)</th>
+<th colspan="1" rowspan="1">Description</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">0</td>
+<td class="" colspan="1" rowspan="1">Unused; always reset for every character.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">1</td>
+<td class="" colspan="1" rowspan="1">Character is running continuously; reset for everyone initially; reset by the routines at <a href="../asm/12B5.html">$12B5</a>, <a href="../asm/1A04.html">$1A04</a> and <a href="../asm/27AB.html">$27AB</a>; set for a stampeding boy by the routines at <a href="../asm/2797.html">$2797</a> and <a href="../asm/2885.html">$2885</a>; set for MR WACKER by the routine at <a href="../asm/284F.html">$284F</a> when he's looking for the pea-shooter.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">2</td>
+<td class="" colspan="1" rowspan="1">Always set for teachers; set for EINSTEIN by the routine at <a href="../asm/1F4D.html">$1F4D</a> when he's answering a question.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">3</td>
+<td class="" colspan="1" rowspan="1">Set for EINSTEIN by the routine at <a href="../asm/1F4D.html">$1F4D</a> when he's waiting to answer a question.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">4, 5</td>
+<td class="" colspan="1" rowspan="1">Unused; always reset for every character.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">6</td>
+<td class="" colspan="1" rowspan="1">Character is running or otherwise moving quickly; set by the routines at <a href="../asm/0C3F.html">$0C3F</a> and <a href="../asm/1F4D.html">$1F4D</a>; may be reset by the routine at <a href="../asm/3B5E.html">$3B5E</a> on a movement speed change.</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1">7</td>
+<td class="" colspan="1" rowspan="1">If set, the routine at <a href="../asm/3B5E.html">$3B5E</a> restarts the command list (and then resets the flag); set by the routines at <a href="../asm/0EB4.html">$0EB4</a>, <a href="../asm/1D4A.html">$1D4A</a> and <a href="../asm/3AD5.html">$3AD5</a>; additionally checked by the routine at <a href="../asm/2745.html">$2745</a>.</td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00A6"></span><a href="../asm/00A6.html">$00A6</a></td>
+<td class="map-length">$02</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00A6.html">Destination coordinates or walkabout parameters</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/105B.html">$105B</a>, <a href="../asm/12B5.html">$12B5</a>, <a href="../asm/1A04.html">$1A04</a>, <a href="../asm/27AB.html">$27AB</a>, <a href="../asm/284F.html">$284F</a>, <a href="../asm/28BC.html">$28BC</a> and <a href="../asm/2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00A8"></span><a href="../asm/00A8.html">$00A8</a></td>
+<td class="map-length">$01</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00A8.html">Number of mini-walkabouts remaining</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/12B5.html">$12B5</a>, <a href="../asm/27AB.html">$27AB</a> and <a href="../asm/2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00A9"></span><a href="../asm/00A9.html">$00A9</a></td>
+<td class="map-length">$01</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00A9.html">Message repetition delay counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/28BC.html">$28BC</a> and <a href="../asm/2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00AA"></span><a href="../asm/00AA.html">$00AA</a></td>
+<td class="map-length">$02</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00AA.html">Interruptible subcommand routine address</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/0C3F.html">$0C3F</a>, <a href="../asm/0EB4.html">$0EB4</a>, <a href="../asm/1129.html">$1129</a>, <a href="../asm/12B5.html">$12B5</a>, <a href="../asm/136F.html">$136F</a>, <a href="../asm/16E9.html">$16E9</a>, <a href="../asm/1A04.html">$1A04</a>, <a href="../asm/1D28.html">$1D28</a>, <a href="../asm/1EE3.html">$1EE3</a>, <a href="../asm/1F77.html">$1F77</a>, <a href="../asm/1FA0.html">$1FA0</a>, <a href="../asm/2241.html">$2241</a>, <a href="../asm/2387.html">$2387</a>, <a href="../asm/2E13.html">$2E13</a> and <a href="../asm/3B5E.html">$3B5E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00AC"></span><a href="../asm/00AC.html">$00AC</a></td>
+<td class="map-length">$02</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00AC.html">Bytes $6B and and $6C of the character's buffer</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Holds one of the following:
+</div>
+<div class="paragraph">
+<ul class="">
+<li>address of the next character in the message being written on a blackboard or spoken</li>
+<li>coordinates of the next location to move to in pursuit of ERIC</li>
+<li>number of movements remaining to navigate a staircase ($AC)</li>
+<li>walkabout or intermediate destination x-coordinate ($AC)</li>
+<li>walkabout or intermediate destination pace counter ($AD)</li>
+<li>number of movements remaining to wipe the blackboard ($AC)</li>
+<li>x-coordinate of the next column of the blackboard to wipe ($AD)</li>
+</ul>
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/09E9.html">$09E9</a>, <a href="../asm/0A58.html">$0A58</a>, <a href="../asm/0C3F.html">$0C3F</a>, <a href="../asm/0E35.html">$0E35</a>, <a href="../asm/108B.html">$108B</a>, <a href="../asm/1129.html">$1129</a>, <a href="../asm/12B5.html">$12B5</a>, <a href="../asm/136F.html">$136F</a>, <a href="../asm/13F3.html">$13F3</a>, <a href="../asm/16E9.html">$16E9</a>, <a href="../asm/1A04.html">$1A04</a>, <a href="../asm/1EE3.html">$1EE3</a>, <a href="../asm/1FA0.html">$1FA0</a>, <a href="../asm/2241.html">$2241</a>, <a href="../asm/246B.html">$246B</a>, <a href="../asm/2500.html">$2500</a>, <a href="../asm/2757.html">$2757</a>, <a href="../asm/277D.html">$277D</a>, <a href="../asm/28BC.html">$28BC</a>, <a href="../asm/2E13.html">$2E13</a> and <a href="../asm/BE09.html">$BE09</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00AE"></span><a href="../asm/00AE.html">$00AE</a></td>
+<td class="map-length">$02</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00AE.html">Bytes $6D and and $6E of the character's buffer</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Holds one of the following:
+</div>
+<div class="paragraph">
+<ul class="">
+<li>address of the next character in the submessage being written on a blackboard or spoken</li>
+<li>address of the routine to call after the character has found ERIC</li>
+<li>y-coordinate of the top row of the blackboard being wiped ($AE)</li>
+</ul>
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/0B3B.html">$0B3B</a>, <a href="../asm/108B.html">$108B</a>, <a href="../asm/1129.html">$1129</a>, <a href="../asm/16E9.html">$16E9</a>, <a href="../asm/2387.html">$2387</a>, <a href="../asm/2A99.html">$2A99</a> and <a href="../asm/2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00B0"></span><a href="../asm/00B0.html">$00B0</a></td>
+<td class="map-length">$02</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00B0.html">Uninterruptible subcommand routine address</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/0FBA.html">$0FBA</a>, <a href="../asm/1CB4.html">$1CB4</a>, <a href="../asm/1CCB.html">$1CCB</a>, <a href="../asm/1D16.html">$1D16</a>, <a href="../asm/1D32.html">$1D32</a>, <a href="../asm/267A.html">$267A</a>, <a href="../asm/2696.html">$2696</a>, <a href="../asm/26E0.html">$26E0</a>, <a href="../asm/270D.html">$270D</a>, <a href="../asm/27D2.html">$27D2</a>, <a href="../asm/29C8.html">$29C8</a>, <a href="../asm/2B21.html">$2B21</a>, <a href="../asm/2B3F.html">$2B3F</a>, <a href="../asm/2B52.html">$2B52</a>, <a href="../asm/2B9F.html">$2B9F</a>, <a href="../asm/2CA5.html">$2CA5</a>, <a href="../asm/2E13.html">$2E13</a> and <a href="../asm/3B5E.html">$3B5E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00B2"></span><a href="../asm/00B2.html">$00B2</a></td>
+<td class="map-length">$01</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00B2.html">Knockout delay or pellet distance counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Holds one of the following:
+</div>
+<div class="paragraph">
+<ul class="">
+<li>counter determining how much longer the character will stay down after being punched, hit by a catapult pellet, knocked out of a chair, or tripped up by a stampeding kid</li>
+<li>distance remaining for a catapult pellet to travel</li>
+</ul>
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/0FBA.html">$0FBA</a>, <a href="../asm/1042.html">$1042</a>, <a href="../asm/29C8.html">$29C8</a>, <a href="../asm/2A43.html">$2A43</a>, <a href="../asm/2B52.html">$2B52</a>, <a href="../asm/2BB0.html">$2BB0</a> and <a href="../asm/2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00B3"></span><a href="../asm/00B3.html">$00B3</a></td>
+<td class="map-length">$01</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00B3.html">Pre-action animatory state</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Holds a character's animatory state as it was before he is knocked over, throws a punch (ANGELFACE), or fires a catapult (BOY WONDER).
+</div>
+<div class="paragraph">
+Used by the routines at <a href="../asm/267A.html">$267A</a>, <a href="../asm/26E0.html">$26E0</a>, <a href="../asm/2A43.html">$2A43</a>, <a href="../asm/2B21.html">$2B21</a> and <a href="../asm/2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00B4"></span><a href="../asm/00B4.html">$00B4</a></td>
+<td class="map-length">$01</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00B4.html">Unused variable</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Initialised to zero by the routine at <a href="../asm/2E13.html">$2E13</a>, but never used.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00B5"></span><a href="../asm/00B5.html">$00B5</a></td>
+<td class="map-length">$01</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00B5.html">Dethroning delay counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/1CB4.html">$1CB4</a>, <a href="../asm/1CCB.html">$1CCB</a> and <a href="../asm/2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00FB"></span><a href="../asm/00FB.html">$00FB</a></td>
+<td class="map-length">$02</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00FB.html">Character's (y,x) coordinates</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the routines at <a href="../asm/09E9.html">$09E9</a>, <a href="../asm/0A58.html">$0A58</a>, <a href="../asm/0BAC.html">$0BAC</a>, <a href="../asm/0C3F.html">$0C3F</a>, <a href="../asm/0E59.html">$0E59</a>, <a href="../asm/0ECF.html">$0ECF</a>, <a href="../asm/0FBA.html">$0FBA</a>, <a href="../asm/1042.html">$1042</a>, <a href="../asm/12B5.html">$12B5</a>, <a href="../asm/136F.html">$136F</a>, <a href="../asm/13F3.html">$13F3</a>, <a href="../asm/1468.html">$1468</a>, <a href="../asm/1640.html">$1640</a>, <a href="../asm/16E9.html">$16E9</a>, <a href="../asm/176F.html">$176F</a>, <a href="../asm/17E5.html">$17E5</a>, <a href="../asm/189D.html">$189D</a>, <a href="../asm/19A5.html">$19A5</a>, <a href="../asm/1A04.html">$1A04</a>, <a href="../asm/1A51.html">$1A51</a>, <a href="../asm/1B2E.html">$1B2E</a>, <a href="../asm/1BFA.html">$1BFA</a>, <a href="../asm/1C8E.html">$1C8E</a>, <a href="../asm/1CCB.html">$1CCB</a>, <a href="../asm/2043.html">$2043</a>, <a href="../asm/2387.html">$2387</a>, <a href="../asm/2696.html">$2696</a>, <a href="../asm/270D.html">$270D</a>, <a href="../asm/27AB.html">$27AB</a>, <a href="../asm/27D2.html">$27D2</a>, <a href="../asm/2873.html">$2873</a>, <a href="../asm/29C8.html">$29C8</a>, <a href="../asm/2B52.html">$2B52</a>, <a href="../asm/2CA5.html">$2CA5</a>, <a href="../asm/322E.html">$322E</a>, <a href="../asm/34B5.html">$34B5</a>, <a href="../asm/350B.html">$350B</a>, <a href="../asm/3558.html">$3558</a>, <a href="../asm/359E.html">$359E</a>, <a href="../asm/35EF.html">$35EF</a>, <a href="../asm/365C.html">$365C</a>, <a href="../asm/3687.html">$3687</a> and <a href="../asm/BE09.html">$BE09</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="map-b"><span id="00FF"></span><a href="../asm/00FF.html">$00FF</a></td>
+<td class="map-length">$01</td>
+<td class="map-b-desc">
+<div class="map-entry-title-11"><a class="map-entry-title" href="../asm/00FF.html">Movement speed change delay counter</a></div>
+<div class="map-entry-desc">
+<div class="paragraph">
+Used by the character-moving routine at <a href="../asm/3B5E.html">$3B5E</a>.
+</div>
+</div>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

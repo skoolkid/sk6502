@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Data at $6000</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="5F00.html">$5F00</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#6000">Map</a></td>
+<td class="next">
+Next: <a href="6800.html">$6800</a>
+</td>
+</tr>
+</table>
+<div class="description">$6000: Skool graphic data for columns 0-31 (tiles $00-$FF)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/8000.html">$8000</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="3326.html">$3326</a>.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="6000" src="../images/udgs/6000.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6001" src="../images/udgs/6001.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6002" src="../images/udgs/6002.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6003" src="../images/udgs/6003.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6004" src="../images/udgs/6004.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6005" src="../images/udgs/6005.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6006" src="../images/udgs/6006.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6007" src="../images/udgs/6007.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6008" src="../images/udgs/6008.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6009" src="../images/udgs/6009.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="600a" src="../images/udgs/600a.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="600b" src="../images/udgs/600b.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="600c" src="../images/udgs/600c.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="600d" src="../images/udgs/600d.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="600e" src="../images/udgs/600e.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="600f" src="../images/udgs/600f.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="6010" src="../images/udgs/6010.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6011" src="../images/udgs/6011.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6012" src="../images/udgs/6012.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6013" src="../images/udgs/6013.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6014" src="../images/udgs/6014.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6015" src="../images/udgs/6015.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6016" src="../images/udgs/6016.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6017" src="../images/udgs/6017.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6018" src="../images/udgs/6018.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6019" src="../images/udgs/6019.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="601a" src="../images/udgs/601a.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="601b" src="../images/udgs/601b.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="601c" src="../images/udgs/601c.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="601d" src="../images/udgs/601d.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="601e" src="../images/udgs/601e.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="601f" src="../images/udgs/601f.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="6020" src="../images/udgs/6020.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6021" src="../images/udgs/6021.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6022" src="../images/udgs/6022.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6023" src="../images/udgs/6023.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6024" src="../images/udgs/6024.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6025" src="../images/udgs/6025.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6026" src="../images/udgs/6026.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6027" src="../images/udgs/6027.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6028" src="../images/udgs/6028.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6029" src="../images/udgs/6029.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="602a" src="../images/udgs/602a.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="602b" src="../images/udgs/602b.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="602c" src="../images/udgs/602c.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="602d" src="../images/udgs/602d.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="602e" src="../images/udgs/602e.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="602f" src="../images/udgs/602f.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="6030" src="../images/udgs/6030.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6031" src="../images/udgs/6031.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6032" src="../images/udgs/6032.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6033" src="../images/udgs/6033.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6034" src="../images/udgs/6034.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6035" src="../images/udgs/6035.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6036" src="../images/udgs/6036.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6037" src="../images/udgs/6037.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6038" src="../images/udgs/6038.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6039" src="../images/udgs/6039.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="603a" src="../images/udgs/603a.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="603b" src="../images/udgs/603b.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="603c" src="../images/udgs/603c.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="603d" src="../images/udgs/603d.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="603e" src="../images/udgs/603e.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="603f" src="../images/udgs/603f.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="6040" src="../images/udgs/6040.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6041" src="../images/udgs/6041.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6042" src="../images/udgs/6042.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6043" src="../images/udgs/6043.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6044" src="../images/udgs/6044.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6045" src="../images/udgs/6045.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6046" src="../images/udgs/6046.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6047" src="../images/udgs/6047.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6048" src="../images/udgs/6048.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6049" src="../images/udgs/6049.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="604a" src="../images/udgs/604a.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="604b" src="../images/udgs/604b.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="604c" src="../images/udgs/604c.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="604d" src="../images/udgs/604d.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="604e" src="../images/udgs/604e.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="604f" src="../images/udgs/604f.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="6050" src="../images/udgs/6050.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6051" src="../images/udgs/6051.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6052" src="../images/udgs/6052.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6053" src="../images/udgs/6053.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6054" src="../images/udgs/6054.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6055" src="../images/udgs/6055.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6056" src="../images/udgs/6056.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6057" src="../images/udgs/6057.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6058" src="../images/udgs/6058.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6059" src="../images/udgs/6059.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="605a" src="../images/udgs/605a.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="605b" src="../images/udgs/605b.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="605c" src="../images/udgs/605c.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="605d" src="../images/udgs/605d.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="605e" src="../images/udgs/605e.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="605f" src="../images/udgs/605f.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="6060" src="../images/udgs/6060.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6061" src="../images/udgs/6061.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6062" src="../images/udgs/6062.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6063" src="../images/udgs/6063.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6064" src="../images/udgs/6064.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6065" src="../images/udgs/6065.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6066" src="../images/udgs/6066.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6067" src="../images/udgs/6067.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6068" src="../images/udgs/6068.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6069" src="../images/udgs/6069.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="606a" src="../images/udgs/606a.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="606b" src="../images/udgs/606b.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="606c" src="../images/udgs/606c.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="606d" src="../images/udgs/606d.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="606e" src="../images/udgs/606e.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="606f" src="../images/udgs/606f.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="6070" src="../images/udgs/6070.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6071" src="../images/udgs/6071.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6072" src="../images/udgs/6072.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6073" src="../images/udgs/6073.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6074" src="../images/udgs/6074.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6075" src="../images/udgs/6075.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6076" src="../images/udgs/6076.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6077" src="../images/udgs/6077.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6078" src="../images/udgs/6078.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6079" src="../images/udgs/6079.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="607a" src="../images/udgs/607a.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="607b" src="../images/udgs/607b.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="607c" src="../images/udgs/607c.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="607d" src="../images/udgs/607d.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="607e" src="../images/udgs/607e.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="607f" src="../images/udgs/607f.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="6080" src="../images/udgs/6080.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6081" src="../images/udgs/6081.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6082" src="../images/udgs/6082.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6083" src="../images/udgs/6083.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6084" src="../images/udgs/6084.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6085" src="../images/udgs/6085.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6086" src="../images/udgs/6086.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6087" src="../images/udgs/6087.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6088" src="../images/udgs/6088.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6089" src="../images/udgs/6089.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="608a" src="../images/udgs/608a.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="608b" src="../images/udgs/608b.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="608c" src="../images/udgs/608c.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="608d" src="../images/udgs/608d.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="608e" src="../images/udgs/608e.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="608f" src="../images/udgs/608f.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="6090" src="../images/udgs/6090.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6091" src="../images/udgs/6091.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6092" src="../images/udgs/6092.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6093" src="../images/udgs/6093.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6094" src="../images/udgs/6094.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6095" src="../images/udgs/6095.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6096" src="../images/udgs/6096.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6097" src="../images/udgs/6097.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6098" src="../images/udgs/6098.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="6099" src="../images/udgs/6099.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="609a" src="../images/udgs/609a.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="609b" src="../images/udgs/609b.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="609c" src="../images/udgs/609c.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="609d" src="../images/udgs/609d.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="609e" src="../images/udgs/609e.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="609f" src="../images/udgs/609f.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="60a0" src="../images/udgs/60a0.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60a1" src="../images/udgs/60a1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60a2" src="../images/udgs/60a2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60a3" src="../images/udgs/60a3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60a4" src="../images/udgs/60a4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60a5" src="../images/udgs/60a5.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60a6" src="../images/udgs/60a6.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60a7" src="../images/udgs/60a7.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60a8" src="../images/udgs/60a8.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60a9" src="../images/udgs/60a9.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60aa" src="../images/udgs/60aa.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ab" src="../images/udgs/60ab.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ac" src="../images/udgs/60ac.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ad" src="../images/udgs/60ad.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ae" src="../images/udgs/60ae.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60af" src="../images/udgs/60af.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="60b0" src="../images/udgs/60b0.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60b1" src="../images/udgs/60b1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60b2" src="../images/udgs/60b2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60b3" src="../images/udgs/60b3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60b4" src="../images/udgs/60b4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60b5" src="../images/udgs/60b5.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60b6" src="../images/udgs/60b6.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60b7" src="../images/udgs/60b7.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60b8" src="../images/udgs/60b8.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60b9" src="../images/udgs/60b9.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ba" src="../images/udgs/60ba.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60bb" src="../images/udgs/60bb.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60bc" src="../images/udgs/60bc.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60bd" src="../images/udgs/60bd.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60be" src="../images/udgs/60be.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60bf" src="../images/udgs/60bf.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="60c0" src="../images/udgs/60c0.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60c1" src="../images/udgs/60c1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60c2" src="../images/udgs/60c2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60c3" src="../images/udgs/60c3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60c4" src="../images/udgs/60c4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60c5" src="../images/udgs/60c5.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60c6" src="../images/udgs/60c6.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60c7" src="../images/udgs/60c7.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60c8" src="../images/udgs/60c8.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60c9" src="../images/udgs/60c9.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ca" src="../images/udgs/60ca.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60cb" src="../images/udgs/60cb.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60cc" src="../images/udgs/60cc.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60cd" src="../images/udgs/60cd.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ce" src="../images/udgs/60ce.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60cf" src="../images/udgs/60cf.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="60d0" src="../images/udgs/60d0.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60d1" src="../images/udgs/60d1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60d2" src="../images/udgs/60d2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60d3" src="../images/udgs/60d3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60d4" src="../images/udgs/60d4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60d5" src="../images/udgs/60d5.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60d6" src="../images/udgs/60d6.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60d7" src="../images/udgs/60d7.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60d8" src="../images/udgs/60d8.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60d9" src="../images/udgs/60d9.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60da" src="../images/udgs/60da.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60db" src="../images/udgs/60db.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60dc" src="../images/udgs/60dc.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60dd" src="../images/udgs/60dd.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60de" src="../images/udgs/60de.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60df" src="../images/udgs/60df.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="60e0" src="../images/udgs/60e0.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60e1" src="../images/udgs/60e1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60e2" src="../images/udgs/60e2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60e3" src="../images/udgs/60e3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60e4" src="../images/udgs/60e4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60e5" src="../images/udgs/60e5.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60e6" src="../images/udgs/60e6.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60e7" src="../images/udgs/60e7.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60e8" src="../images/udgs/60e8.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60e9" src="../images/udgs/60e9.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ea" src="../images/udgs/60ea.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60eb" src="../images/udgs/60eb.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ec" src="../images/udgs/60ec.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ed" src="../images/udgs/60ed.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ee" src="../images/udgs/60ee.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ef" src="../images/udgs/60ef.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="60f0" src="../images/udgs/60f0.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60f1" src="../images/udgs/60f1.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60f2" src="../images/udgs/60f2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60f3" src="../images/udgs/60f3.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60f4" src="../images/udgs/60f4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60f5" src="../images/udgs/60f5.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60f6" src="../images/udgs/60f6.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60f7" src="../images/udgs/60f7.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60f8" src="../images/udgs/60f8.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60f9" src="../images/udgs/60f9.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60fa" src="../images/udgs/60fa.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60fb" src="../images/udgs/60fb.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60fc" src="../images/udgs/60fc.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60fd" src="../images/udgs/60fd.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60fe" src="../images/udgs/60fe.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="60ff" src="../images/udgs/60ff.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="6000"></span>$6000</td>
+<td class="instruction">.BYTE $00,$FF,$80,$FF,$80,$81,$81,$8A,$82,$80,$81,$80,$80,$FF,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6010"></span>$6010</td>
+<td class="instruction">.BYTE $10,$10,$FF,$00,$00,$8F,$FF,$08,$A0,$01,$FF,$01,$01,$FF,$00,$43</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6020"></span>$6020</td>
+<td class="instruction">.BYTE $43,$00,$C2,$FF,$80,$FF,$20,$00,$80,$80,$87,$FF,$FF,$00,$0F,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6030"></span>$6030</td>
+<td class="instruction">.BYTE $07,$00,$FF,$00,$FF,$BF,$80,$B2,$66,$00,$0F,$00,$80,$E0,$E0,$80</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6040"></span>$6040</td>
+<td class="instruction">.BYTE $FF,$FF,$FF,$00,$BC,$DA,$C0,$C0,$C0,$C0,$FF,$FF,$80,$FF,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6050"></span>$6050</td>
+<td class="instruction">.BYTE $07,$03,$03,$03,$07,$00,$FF,$00,$10,$00,$EB,$00,$08,$1F,$40,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6060"></span>$6060</td>
+<td class="instruction">.BYTE $FF,$80,$00,$FF,$00,$FF,$00,$FF,$00,$C0,$FF,$0F,$E0,$10,$BB,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6070"></span>$6070</td>
+<td class="instruction">.BYTE $80,$00,$01,$FF,$FF,$00,$C0,$81,$81,$FF,$01,$01,$00,$01,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6080"></span>$6080</td>
+<td class="instruction">.BYTE $01,$00,$00,$FF,$60,$FF,$21,$20,$FF,$00,$C0,$FF,$00,$FF,$C0,$E0</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6090"></span>$6090</td>
+<td class="instruction">.BYTE $02,$00,$00,$FF,$00,$FF,$FC,$01,$00,$00,$00,$FF,$FF,$00,$C8,$01</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="60A0"></span>$60A0</td>
+<td class="instruction">.BYTE $00,$10,$00,$FF,$BF,$BF,$BF,$FF,$00,$BF,$00,$20,$00,$00,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="60B0"></span>$60B0</td>
+<td class="instruction">.BYTE $FF,$00,$C0,$0F,$FF,$FF,$FF,$FF,$FF,$FF,$00,$00,$F0,$FF,$FF,$C0</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="60C0"></span>$60C0</td>
+<td class="instruction">.BYTE $C0,$EF,$FF,$FF,$1F,$03,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="60D0"></span>$60D0</td>
+<td class="instruction">.BYTE $FF,$FF,$00,$5F,$FF,$FF,$FF,$60,$C0,$FF,$FF,$7F,$FF,$FF,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="60E0"></span>$60E0</td>
+<td class="instruction">.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$81</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="60F0"></span>$60F0</td>
+<td class="instruction">.BYTE $0E,$7E,$7E,$7E,$7E,$7E,$7E,$70,$40,$00,$00,$00,$00,$00,$00,$02</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6100"></span>$6100</td>
+<td class="instruction">.BYTE $00,$DF,$80,$FF,$80,$81,$81,$8B,$82,$80,$FE,$80,$80,$FF,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6110"></span>$6110</td>
+<td class="instruction">.BYTE $10,$10,$FF,$00,$00,$80,$00,$04,$7F,$01,$01,$01,$01,$FF,$00,$43</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6120"></span>$6120</td>
+<td class="instruction">.BYTE $43,$00,$67,$FF,$80,$71,$20,$C0,$80,$81,$BF,$FF,$1F,$00,$01,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6130"></span>$6130</td>
+<td class="instruction">.BYTE $04,$FF,$FF,$00,$80,$80,$80,$FF,$55,$00,$F0,$00,$E0,$E0,$00,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6140"></span>$6140</td>
+<td class="instruction">.BYTE $FF,$81,$81,$07,$FE,$5F,$C0,$C0,$C0,$C0,$00,$00,$7F,$FF,$F0,$0F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6150"></span>$6150</td>
+<td class="instruction">.BYTE $07,$03,$03,$03,$3F,$7E,$00,$FF,$10,$E3,$FF,$FF,$08,$20,$FF,$7E</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6160"></span>$6160</td>
+<td class="instruction">.BYTE $FF,$80,$7E,$00,$FF,$10,$FF,$FF,$00,$C0,$01,$00,$10,$F0,$F8,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6170"></span>$6170</td>
+<td class="instruction">.BYTE $80,$00,$01,$00,$FF,$00,$C0,$81,$80,$FF,$01,$01,$00,$00,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6180"></span>$6180</td>
+<td class="instruction">.BYTE $01,$1F,$00,$FF,$60,$E1,$20,$20,$FF,$00,$00,$FF,$C0,$FF,$3C,$80</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6190"></span>$6190</td>
+<td class="instruction">.BYTE $02,$00,$00,$FF,$00,$FF,$04,$01,$00,$BF,$00,$7F,$FF,$00,$08,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="61A0"></span>$61A0</td>
+<td class="instruction">.BYTE $F0,$10,$00,$80,$80,$80,$80,$FF,$00,$FF,$00,$20,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="61B0"></span>$61B0</td>
+<td class="instruction">.BYTE $00,$00,$40,$1F,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$C0</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="61C0"></span>$61C0</td>
+<td class="instruction">.BYTE $C0,$FF,$00,$00,$7F,$07,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="61D0"></span>$61D0</td>
+<td class="instruction">.BYTE $00,$00,$FF,$5F,$00,$00,$00,$A0,$FE,$00,$00,$41,$FF,$FF,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="61E0"></span>$61E0</td>
+<td class="instruction">.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$81</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="61F0"></span>$61F0</td>
+<td class="instruction">.BYTE $31,$81,$81,$81,$81,$81,$81,$8C,$40,$00,$00,$00,$00,$00,$00,$02</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6200"></span>$6200</td>
+<td class="instruction">.BYTE $00,$83,$80,$81,$80,$81,$80,$8A,$82,$80,$80,$80,$80,$FF,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6210"></span>$6210</td>
+<td class="instruction">.BYTE $10,$10,$FF,$00,$00,$80,$00,$04,$00,$01,$01,$01,$03,$FF,$00,$43</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6220"></span>$6220</td>
+<td class="instruction">.BYTE $43,$3F,$28,$FF,$80,$20,$20,$C0,$80,$BE,$FF,$FF,$03,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6230"></span>$6230</td>
+<td class="instruction">.BYTE $04,$0E,$FF,$00,$80,$80,$80,$00,$67,$00,$00,$00,$E0,$E0,$00,$03</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6240"></span>$6240</td>
+<td class="instruction">.BYTE $FF,$81,$81,$06,$0F,$DE,$C0,$C0,$C0,$C1,$FF,$FF,$00,$FF,$10,$F8</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6250"></span>$6250</td>
+<td class="instruction">.BYTE $FF,$03,$03,$03,$FF,$1E,$FF,$00,$10,$14,$FF,$00,$08,$40,$00,$72</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6260"></span>$6260</td>
+<td class="instruction">.BYTE $8F,$80,$5E,$FF,$00,$10,$00,$FF,$00,$C0,$01,$00,$10,$70,$FB,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6270"></span>$6270</td>
+<td class="instruction">.BYTE $80,$00,$01,$7F,$FF,$00,$C0,$81,$80,$FF,$01,$00,$03,$00,$FF,$3F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6280"></span>$6280</td>
+<td class="instruction">.BYTE $01,$FF,$00,$FF,$70,$E1,$20,$20,$C0,$00,$00,$8F,$F8,$FF,$04,$80</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6290"></span>$6290</td>
+<td class="instruction">.BYTE $06,$07,$00,$FF,$00,$FF,$04,$00,$00,$C1,$00,$0F,$FF,$00,$08,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="62A0"></span>$62A0</td>
+<td class="instruction">.BYTE $F0,$FF,$00,$BF,$BF,$BF,$80,$FF,$00,$FF,$E0,$FF,$00,$00,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="62B0"></span>$62B0</td>
+<td class="instruction">.BYTE $FF,$C0,$FE,$3F,$FF,$FF,$FF,$FF,$FF,$FF,$00,$00,$00,$FF,$FF,$C1</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="62C0"></span>$62C0</td>
+<td class="instruction">.BYTE $C0,$FF,$FF,$FF,$FF,$0F,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="62D0"></span>$62D0</td>
+<td class="instruction">.BYTE $FF,$FF,$FF,$5F,$FF,$FF,$FF,$A0,$FE,$FF,$FF,$49,$FF,$FF,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="62E0"></span>$62E0</td>
+<td class="instruction">.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$81</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="62F0"></span>$62F0</td>
+<td class="instruction">.BYTE $40,$00,$00,$00,$00,$00,$00,$02,$40,$00,$00,$00,$00,$00,$00,$02</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6300"></span>$6300</td>
+<td class="instruction">.BYTE $00,$81,$80,$80,$80,$81,$80,$89,$81,$80,$80,$80,$80,$7F,$00,$1C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6310"></span>$6310</td>
+<td class="instruction">.BYTE $1E,$10,$07,$00,$00,$80,$00,$04,$00,$01,$01,$0F,$0F,$FF,$00,$43</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6320"></span>$6320</td>
+<td class="instruction">.BYTE $43,$47,$28,$FF,$80,$20,$20,$D7,$80,$C0,$FF,$FF,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6330"></span>$6330</td>
+<td class="instruction">.BYTE $FC,$15,$FF,$00,$80,$80,$9F,$FF,$77,$00,$00,$00,$E0,$E0,$00,$01</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6340"></span>$6340</td>
+<td class="instruction">.BYTE $FF,$81,$81,$E4,$DC,$DF,$C0,$C0,$C0,$CF,$FF,$BF,$00,$FF,$18,$0F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6350"></span>$6350</td>
+<td class="instruction">.BYTE $FF,$03,$03,$03,$FF,$4E,$AE,$00,$10,$74,$FF,$00,$08,$40,$00,$72</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6360"></span>$6360</td>
+<td class="instruction">.BYTE $81,$F0,$4E,$FE,$00,$10,$00,$FF,$00,$C0,$01,$00,$10,$70,$F6,$1F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6370"></span>$6370</td>
+<td class="instruction">.BYTE $80,$00,$02,$FF,$FF,$00,$C0,$81,$80,$FF,$01,$00,$7F,$00,$FF,$3F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6380"></span>$6380</td>
+<td class="instruction">.BYTE $01,$FE,$00,$FF,$0E,$21,$20,$20,$00,$00,$00,$87,$FF,$FF,$04,$80</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6390"></span>$6390</td>
+<td class="instruction">.BYTE $BF,$3C,$00,$FF,$00,$FF,$04,$0F,$FC,$0F,$07,$03,$FF,$00,$08,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="63A0"></span>$63A0</td>
+<td class="instruction">.BYTE $10,$81,$00,$BF,$BF,$BF,$80,$FF,$00,$FF,$E0,$03,$07,$00,$FF,$55</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="63B0"></span>$63B0</td>
+<td class="instruction">.BYTE $FF,$C0,$1E,$7F,$FF,$57,$FF,$FF,$FF,$7F,$00,$00,$00,$FF,$AF,$CF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="63C0"></span>$63C0</td>
+<td class="instruction">.BYTE $C0,$FF,$ED,$FF,$FF,$1F,$FE,$FF,$AA,$75,$BF,$FA,$EE,$3B,$FB,$BD</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="63D0"></span>$63D0</td>
+<td class="instruction">.BYTE $FF,$FF,$FF,$60,$5F,$FF,$EE,$A0,$00,$75,$FF,$55,$FF,$FF,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="63E0"></span>$63E0</td>
+<td class="instruction">.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$42</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="63F0"></span>$63F0</td>
+<td class="instruction">.BYTE $40,$00,$00,$00,$00,$00,$00,$02,$80,$00,$00,$00,$00,$00,$00,$01</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6400"></span>$6400</td>
+<td class="instruction">.BYTE $00,$80,$80,$80,$80,$81,$80,$89,$81,$80,$80,$83,$80,$0F,$00,$13</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6410"></span>$6410</td>
+<td class="instruction">.BYTE $11,$10,$00,$00,$00,$80,$F0,$04,$0B,$01,$01,$F1,$7F,$FF,$E0,$E3</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6420"></span>$6420</td>
+<td class="instruction">.BYTE $43,$42,$27,$8F,$80,$20,$20,$BF,$80,$80,$FF,$FF,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6430"></span>$6430</td>
+<td class="instruction">.BYTE $0C,$FF,$FF,$00,$80,$80,$90,$07,$77,$00,$00,$00,$E0,$E0,$00,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6440"></span>$6440</td>
+<td class="instruction">.BYTE $FF,$81,$81,$E4,$D2,$FF,$C0,$C1,$C0,$FF,$BE,$AA,$FF,$FF,$08,$0B</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6450"></span>$6450</td>
+<td class="instruction">.BYTE $FF,$03,$FF,$03,$FF,$66,$AE,$FC,$10,$F7,$FF,$00,$08,$40,$FF,$4E</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6460"></span>$6460</td>
+<td class="instruction">.BYTE $80,$FE,$46,$CA,$00,$10,$FF,$FF,$80,$C0,$01,$00,$10,$F0,$F6,$03</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6470"></span>$6470</td>
+<td class="instruction">.BYTE $80,$00,$02,$FF,$FF,$00,$EF,$81,$80,$C0,$01,$00,$FF,$00,$00,$0F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6480"></span>$6480</td>
+<td class="instruction">.BYTE $00,$F5,$00,$00,$06,$21,$20,$20,$00,$1F,$00,$80,$FF,$00,$04,$8F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6490"></span>$6490</td>
+<td class="instruction">.BYTE $C0,$E0,$00,$FF,$C0,$03,$04,$FF,$FC,$78,$3C,$00,$FF,$00,$08,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="64A0"></span>$64A0</td>
+<td class="instruction">.BYTE $10,$0E,$00,$BF,$A5,$BA,$80,$FF,$00,$FF,$20,$1E,$3C,$03,$FF,$55</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="64B0"></span>$64B0</td>
+<td class="instruction">.BYTE $AB,$C0,$62,$FF,$FF,$55,$D5,$FF,$27,$54,$00,$00,$00,$FF,$AA,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="64C0"></span>$64C0</td>
+<td class="instruction">.BYTE $C0,$FF,$C5,$AA,$FF,$3F,$AA,$9D,$AA,$55,$A5,$4A,$AA,$31,$AA,$A5</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="64D0"></span>$64D0</td>
+<td class="instruction">.BYTE $FF,$40,$FF,$7F,$55,$FF,$00,$C0,$FE,$54,$BB,$49,$FF,$FF,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="64E0"></span>$64E0</td>
+<td class="instruction">.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$24</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="64F0"></span>$64F0</td>
+<td class="instruction">.BYTE $80,$00,$00,$00,$00,$00,$00,$01,$80,$00,$00,$00,$00,$00,$00,$01</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6500"></span>$6500</td>
+<td class="instruction">.BYTE $00,$80,$80,$80,$81,$81,$87,$85,$81,$80,$80,$FC,$83,$01,$00,$10</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6510"></span>$6510</td>
+<td class="instruction">.BYTE $10,$1F,$00,$00,$00,$80,$18,$06,$7F,$01,$01,$01,$FF,$FF,$5C,$5F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6520"></span>$6520</td>
+<td class="instruction">.BYTE $43,$41,$20,$00,$80,$20,$20,$BF,$80,$80,$FF,$FF,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6530"></span>$6530</td>
+<td class="instruction">.BYTE $0C,$04,$1F,$00,$80,$80,$90,$04,$BF,$00,$00,$03,$E0,$E0,$00,$DD</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6540"></span>$6540</td>
+<td class="instruction">.BYTE $FF,$81,$81,$64,$53,$FF,$C0,$FE,$C0,$FF,$C2,$AA,$80,$FF,$08,$0B</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6550"></span>$6550</td>
+<td class="instruction">.BYTE $FF,$03,$03,$1F,$FF,$72,$AE,$17,$10,$F4,$FF,$F8,$08,$40,$40,$4E</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6560"></span>$6560</td>
+<td class="instruction">.BYTE $80,$FF,$42,$CA,$00,$10,$00,$1F,$C0,$C0,$01,$00,$10,$F0,$F7,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6570"></span>$6570</td>
+<td class="instruction">.BYTE $C0,$00,$02,$FF,$7F,$00,$FF,$81,$80,$7E,$01,$00,$FF,$00,$00,$0F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6580"></span>$6580</td>
+<td class="instruction">.BYTE $00,$FF,$03,$00,$02,$21,$20,$20,$FF,$F0,$0F,$80,$FF,$00,$04,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6590"></span>$6590</td>
+<td class="instruction">.BYTE $3F,$03,$00,$7F,$C0,$00,$04,$FF,$04,$C0,$E0,$00,$07,$00,$0F,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="65A0"></span>$65A0</td>
+<td class="instruction">.BYTE $10,$F0,$00,$A7,$A5,$BA,$80,$FF,$F8,$FF,$20,$F0,$61,$0F,$80,$55</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="65B0"></span>$65B0</td>
+<td class="instruction">.BYTE $AB,$40,$C2,$FF,$0B,$55,$B5,$55,$93,$54,$00,$00,$00,$7A,$AA,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="65C0"></span>$65C0</td>
+<td class="instruction">.BYTE $C0,$FF,$8D,$AA,$FF,$7F,$AA,$CD,$AA,$55,$A5,$4A,$AA,$38,$AB,$A5</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="65D0"></span>$65D0</td>
+<td class="instruction">.BYTE $80,$20,$FC,$80,$55,$00,$03,$0F,$01,$56,$AB,$41,$FF,$FF,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="65E0"></span>$65E0</td>
+<td class="instruction">.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$24</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="65F0"></span>$65F0</td>
+<td class="instruction">.BYTE $80,$00,$00,$00,$00,$00,$00,$01,$80,$00,$00,$00,$00,$00,$00,$01</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6600"></span>$6600</td>
+<td class="instruction">.BYTE $00,$80,$80,$80,$81,$81,$8E,$85,$BF,$80,$80,$80,$9F,$00,$00,$10</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6610"></span>$6610</td>
+<td class="instruction">.BYTE $10,$00,$00,$FF,$00,$80,$08,$03,$7F,$01,$01,$01,$FF,$BF,$43,$43</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6620"></span>$6620</td>
+<td class="instruction">.BYTE $FF,$42,$20,$00,$80,$20,$FF,$DF,$80,$80,$FF,$FF,$00,$20,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6630"></span>$6630</td>
+<td class="instruction">.BYTE $0E,$04,$00,$00,$80,$80,$90,$F4,$FF,$7F,$00,$1F,$E0,$E0,$00,$89</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6640"></span>$6640</td>
+<td class="instruction">.BYTE $BF,$81,$81,$24,$D2,$FF,$C0,$C0,$C3,$FF,$E2,$AA,$80,$FF,$08,$0B</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6650"></span>$6650</td>
+<td class="instruction">.BYTE $FF,$03,$03,$E3,$FF,$3C,$AA,$10,$10,$94,$FF,$08,$08,$40,$40,$2C</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6660"></span>$6660</td>
+<td class="instruction">.BYTE $80,$FF,$24,$CA,$00,$10,$00,$03,$E0,$C0,$01,$00,$10,$07,$FF,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6670"></span>$6670</td>
+<td class="instruction">.BYTE $F8,$01,$FE,$FF,$3F,$00,$FF,$81,$80,$03,$01,$00,$FF,$00,$F0,$03</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6680"></span>$6680</td>
+<td class="instruction">.BYTE $00,$FF,$7E,$00,$02,$21,$20,$20,$FF,$03,$70,$80,$FF,$00,$04,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6690"></span>$6690</td>
+<td class="instruction">.BYTE $C1,$1E,$0F,$0F,$C0,$00,$07,$FF,$04,$00,$0F,$00,$00,$F8,$70,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="66A0"></span>$66A0</td>
+<td class="instruction">.BYTE $10,$00,$0F,$B8,$A5,$BA,$80,$3F,$18,$FF,$20,$00,$8E,$BF,$FF,$55</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="66B0"></span>$66B0</td>
+<td class="instruction">.BYTE $AB,$C0,$02,$FF,$D7,$55,$F5,$55,$C9,$54,$00,$0F,$00,$75,$AA,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="66C0"></span>$66C0</td>
+<td class="instruction">.BYTE $C3,$FF,$1D,$AA,$FF,$FF,$AA,$E5,$AA,$55,$A5,$4A,$AA,$3C,$AB,$A5</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="66D0"></span>$66D0</td>
+<td class="instruction">.BYTE $40,$91,$F0,$FF,$55,$00,$07,$10,$FF,$56,$AB,$41,$FF,$FF,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="66E0"></span>$66E0</td>
+<td class="instruction">.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$14</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="66F0"></span>$66F0</td>
+<td class="instruction">.BYTE $80,$00,$00,$00,$00,$00,$00,$01,$81,$81,$81,$81,$81,$81,$81,$81</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6700"></span>$6700</td>
+<td class="instruction">.BYTE $00,$80,$80,$80,$81,$81,$9B,$85,$FF,$80,$80,$80,$FF,$00,$00,$10</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6710"></span>$6710</td>
+<td class="instruction">.BYTE $10,$00,$00,$00,$FF,$C0,$08,$C0,$FF,$01,$01,$01,$FF,$07,$43,$43</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6720"></span>$6720</td>
+<td class="instruction">.BYTE $07,$43,$20,$00,$FF,$20,$00,$FF,$FF,$80,$FF,$FF,$00,$70,$00,$F0</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6730"></span>$6730</td>
+<td class="instruction">.BYTE $07,$04,$00,$F0,$FF,$FF,$90,$F4,$FF,$80,$00,$FF,$E0,$E0,$00,$DD</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6740"></span>$6740</td>
+<td class="instruction">.BYTE $00,$81,$FF,$24,$53,$FF,$C0,$C0,$FC,$FF,$F2,$AA,$80,$7F,$08,$0F</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6750"></span>$6750</td>
+<td class="instruction">.BYTE $FF,$03,$03,$03,$FF,$18,$AA,$10,$10,$14,$FF,$08,$08,$40,$40,$18</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6760"></span>$6760</td>
+<td class="instruction">.BYTE $80,$FF,$18,$CA,$00,$FF,$00,$00,$C0,$C0,$FF,$00,$10,$FC,$FF,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6770"></span>$6770</td>
+<td class="instruction">.BYTE $FF,$01,$00,$FF,$07,$C0,$FF,$81,$80,$01,$01,$00,$FF,$00,$5F,$03</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6780"></span>$6780</td>
+<td class="instruction">.BYTE $00,$FF,$C0,$E0,$02,$21,$20,$20,$FF,$7E,$80,$80,$FF,$00,$04,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="6790"></span>$6790</td>
+<td class="instruction">.BYTE $00,$70,$F0,$07,$C0,$00,$E0,$FF,$04,$00,$70,$00,$00,$38,$80,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="67A0"></span>$67A0</td>
+<td class="instruction">.BYTE $10,$00,$78,$A7,$A5,$BA,$80,$01,$F8,$FF,$20,$00,$70,$FF,$C0,$55</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="67B0"></span>$67B0</td>
+<td class="instruction">.BYTE $AB,$40,$02,$FF,$6F,$55,$75,$55,$EC,$54,$FC,$7F,$00,$6B,$AA,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="67C0"></span>$67C0</td>
+<td class="instruction">.BYTE $C7,$FF,$BD,$AA,$FF,$FF,$AA,$F5,$AA,$55,$A5,$4A,$AA,$3E,$AB,$A5</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="67D0"></span>$67D0</td>
+<td class="instruction">.BYTE $80,$CA,$A0,$FF,$55,$00,$0F,$3F,$FF,$57,$AB,$7F,$FF,$FF,$FF,$FF</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="67E0"></span>$67E0</td>
+<td class="instruction">.BYTE $FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$FF,$08</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="67F0"></span>$67F0</td>
+<td class="instruction">.BYTE $40,$00,$00,$00,$00,$00,$00,$02,$7E,$7E,$7E,$7E,$7E,$7E,$7E,$7E</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="5F00.html">$5F00</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#6000">Map</a></td>
+<td class="next">
+Next: <a href="6800.html">$6800</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

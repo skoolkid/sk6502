@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $35EF</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="359E.html">$359E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#35EF">Map</a></td>
+<td class="next">
+Next: <a href="364E.html">$364E</a>
+</td>
+</tr>
+</table>
+<div class="description">$35EF: Move ERIC from the midstride position</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Called from the main loop at <a href="0800.html">$0800</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="35EF"></span>$35EF</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35F2"></span>$35F2</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35F4"></span>$35F4</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is ERIC facing left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35F5"></span>$35F5</td>
+<td class="instruction">BCC <a href="35EF.html#35FC">$35FC</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35F7"></span>$35F7</td>
+<td class="instruction">INC $FC</td>
+<td class="comment-1" rowspan="1">Increment ERIC's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="35F9"></span>$35F9</td>
+<td class="instruction">JMP <a href="35EF.html#35FE">$35FE</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="35FC"></span>$35FC</td>
+<td class="instruction">DEC $FC</td>
+<td class="comment-1" rowspan="1">Decrement ERIC's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="35FE"></span>$35FE</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="4">Adjust ERIC's y-coordinate (by the increment previously stored at <a href="0010.html#0011">$11</a>) if he's going down a staircase.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3600"></span>$3600</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3601"></span>$3601</td>
+<td class="instruction">ADC $11</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3603"></span>$3603</td>
+<td class="instruction">STA $FB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3605"></span>$3605</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's new x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3607"></span>$3607</td>
+<td class="instruction">AND #$01</td>
+<td class="comment-1" rowspan="3">Store 0 or 2 at <a href="004D.html#0057">$57</a>, according as ERIC's new x-coordinate is even or odd.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3609"></span>$3609</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="360A"></span>$360A</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="360C"></span>$360C</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="5">Update ERIC's animatory state to the appropriate walking phase depending on his new x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="360E"></span>$360E</td>
+<td class="instruction">AND #$FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3610"></span>$3610</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3611"></span>$3611</td>
+<td class="instruction">ADC $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3613"></span>$3613</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3615"></span>$3615</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's new animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3618"></span>$3618</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore ERIC's character buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="361B"></span>$361B</td>
+<td class="instruction">JSR <a href="31EA.html">$31EA</a></td>
+<td class="comment-1" rowspan="1">Update the display.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="361E"></span>$361E</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Set voice #3 attack length to 2ms and decay length to 24ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3620"></span>$3620</td>
+<td class="instruction">STA $D413</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3623"></span>$3623</td>
+<td class="instruction">LDA #$81</td>
+<td class="comment-1" rowspan="2">Set voice #3 control register: voice on, attack-decay-sustain cycle; noise enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3625"></span>$3625</td>
+<td class="instruction">STA $D412</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3628"></span>$3628</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="362A"></span>$362A</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract the x-coordinate of the leftmost column of the skool on screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="362B"></span>$362B</td>
+<td class="instruction">SBC $58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="362D"></span>$362D</td>
+<td class="instruction">CMP #$07</td>
+<td class="comment-1" rowspan="1">Is ERIC 7 character cells from the left of the screen?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="362F"></span>$362F</td>
+<td class="instruction">BNE <a href="35EF.html#363B">$363B</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3631"></span>$3631</td>
+<td class="instruction">LDA $58</td>
+<td class="comment-1" rowspan="1">Pick up the x-coordinate of the leftmost column of the skool on screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3633"></span>$3633</td>
+<td class="instruction">BEQ <a href="35EF.html#364D">$364D</a></td>
+<td class="comment-1" rowspan="1">Return if it's 0 (the play area window will not shift).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3635"></span>$3635</td>
+<td class="instruction">JSR <a href="3072.html">$3072</a></td>
+<td class="comment-1" rowspan="1">Shift the play area window left.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3638"></span>$3638</td>
+<td class="instruction">JMP <a href="35EF.html#364D">$364D</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="363B"></span>$363B</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="363D"></span>$363D</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract the x-coordinate of the leftmost column of the skool on screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="363E"></span>$363E</td>
+<td class="instruction">SBC $58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3640"></span>$3640</td>
+<td class="instruction">CMP #$1F</td>
+<td class="comment-1" rowspan="1">Is ERIC 31 character cells from the left of the screen?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3642"></span>$3642</td>
+<td class="instruction">BNE <a href="35EF.html#364D">$364D</a></td>
+<td class="comment-1" rowspan="1">Return if not (the play area window will not shift).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3644"></span>$3644</td>
+<td class="instruction">LDA $59</td>
+<td class="comment-1" rowspan="1">Pick up the x-coordinate of the leftmost column of the skool off screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3646"></span>$3646</td>
+<td class="instruction">CMP #$60</td>
+<td class="comment-1" rowspan="1">Is it 96?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3648"></span>$3648</td>
+<td class="instruction">BEQ <a href="35EF.html#364D">$364D</a></td>
+<td class="comment-1" rowspan="1">Branch if so (the play area window will not shift).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="364A"></span>$364A</td>
+<td class="instruction">JSR <a href="3113.html">$3113</a></td>
+<td class="comment-1" rowspan="1">Shift the play area window right.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="364D"></span>$364D</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="359E.html">$359E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#35EF">Map</a></td>
+<td class="next">
+Next: <a href="364E.html">$364E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

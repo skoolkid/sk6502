@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $253E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2500.html">$2500</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#253E">Map</a></td>
+<td class="next">
+Next: <a href="2552.html">$2552</a>
+</td>
+</tr>
+</table>
+<div class="description">$253E: Generate a random value in a given range</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="2241.html">$2241</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">X</td>
+<td class="register-desc">Minimum (m)</td>
+</tr>
+<tr>
+<td class="register">Y</td>
+<td class="register-desc">Maximum (M)</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Random value</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="253E"></span>$253E</td>
+<td class="instruction">STX $E3</td>
+<td class="comment-1" rowspan="1">Store the minimum value (m) at <a href="00E3.html">$E3</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2540"></span>$2540</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="5">Store 1+M-m at <a href="00E3.html#00E4">$E4</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2541"></span>$2541</td>
+<td class="instruction">TYA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2542"></span>$2542</td>
+<td class="instruction">SEC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2543"></span>$2543</td>
+<td class="instruction">SBC $E3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2545"></span>$2545</td>
+<td class="instruction">STA $E4</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2547"></span>$2547</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="1">Generate a random value (R) in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="254A"></span>$254A</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Now <span class="register">A</span>=R-m (if R&gt;=m) or 256-m+R (if R&lt;m).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="254B"></span>$254B</td>
+<td class="instruction">SBC $E3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="254D"></span>$254D</td>
+<td class="instruction">CMP $E4</td>
+<td class="comment-1" rowspan="1">Is 0&lt;=<span class="register">A</span>&lt;=M-m (i.e. m&lt;=R&lt;=M)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="254F"></span>$254F</td>
+<td class="instruction">BCS <a href="253E.html#2547">$2547</a></td>
+<td class="comment-1" rowspan="1">Branch back to generate another random value if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2551"></span>$2551</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1">Return without first adding m back to <span class="register">A</span> to get R. (This is a <a href="../reference/bugs.html#lowProductValues">bug</a>.)</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2500.html">$2500</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#253E">Map</a></td>
+<td class="next">
+Next: <a href="2552.html">$2552</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

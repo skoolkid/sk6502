@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1294</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="126D.html">$126D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1294">Map</a></td>
+<td class="next">
+Next: <a href="12B5.html">$12B5</a>
+</td>
+</tr>
+</table>
+<div class="description">$1294: Get the address of a skool tile corresponding to a blackboard character cell</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="11CF.html">$11CF</a> and <a href="1994.html">$1994</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">(<a href="0015.html">$15</a>)</td>
+<td class="register-desc">Blackboard character cell x-coordinate</td>
+</tr>
+<tr>
+<td class="register">(<a href="0015.html#0016">$16</a>)</td>
+<td class="register-desc">Blackboard character cell y-coordinate</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">(<a href="001B.html">$1B</a>,<a href="001B.html#001C">$1C</a>)</td>
+<td class="register-desc">Address of corresponding skool tile</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1294"></span>$1294</td>
+<td class="instruction">LDA #$78</td>
+<td class="comment-1" rowspan="6">Place the address of the skool tile reference for the blackboard character cell at the given coordinates into <a href="004D.html#0056">$56</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1296"></span>$1296</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1297"></span>$1297</td>
+<td class="instruction">ADC $16</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1299"></span>$1299</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="129B"></span>$129B</td>
+<td class="instruction">LDA $15</td>
+</tr>
+<tr>
+<td class="address-1"><span id="129D"></span>$129D</td>
+<td class="instruction">STA $56</td>
+</tr>
+<tr>
+<td class="address-1"><span id="129F"></span>$129F</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="3">Pick up the skool tile reference and store it at <a href="001B.html">$1B</a>. This is the LSB of the skool tile address.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12A1"></span>$12A1</td>
+<td class="instruction">LDA ($56),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12A3"></span>$12A3</td>
+<td class="instruction">STA $1B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12A5"></span>$12A5</td>
+<td class="instruction">LDX $15</td>
+<td class="comment-1" rowspan="1">Pick up the blackboard character cell x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12A7"></span>$12A7</td>
+<td class="instruction">CPX #$20</td>
+<td class="comment-1" rowspan="1">Is it 32 or greater?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12A9"></span>$12A9</td>
+<td class="instruction">BCS <a href="1294.html#12B0">$12B0</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12AB"></span>$12AB</td>
+<td class="instruction">LDA #$60</td>
+<td class="comment-1" rowspan="1">The skool tiles for x-coordinates 0-31 are in pages <a href="6000.html">$60-$67</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12AD"></span>$12AD</td>
+<td class="instruction">JMP <a href="1294.html#12B2">$12B2</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="12B0"></span>$12B0</td>
+<td class="instruction">LDA #$68</td>
+<td class="comment-1" rowspan="1">The skool tiles for x-coordinates 32-63 are in pages <a href="6800.html">$68-$6F</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="12B2"></span>$12B2</td>
+<td class="instruction">STA $1C</td>
+<td class="comment-1" rowspan="1">Store the MSB of the skool tile address at <a href="001B.html#001C">$1C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="12B4"></span>$12B4</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="126D.html">$126D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1294">Map</a></td>
+<td class="next">
+Next: <a href="12B5.html">$12B5</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

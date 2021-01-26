@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1F29</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1EE3.html">$1EE3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1F29">Map</a></td>
+<td class="next">
+Next: <a href="1F3A.html">$1F3A</a>
+</td>
+</tr>
+</table>
+<div class="description">$1F29: Make MR CREAK reveal his safe combination letter</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="1FA0.html">$1FA0</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1F29"></span>$1F29</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="2">Store the colour information (cyan background) for the safe combination letter message box at <a href="0084.html">$84</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F2B"></span>$1F2B</td>
+<td class="instruction">STA $84</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F2D"></span>$1F2D</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4">Prepare to address the safe combination letter message buffer at <a href="4640.html">$4640</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F2F"></span>$1F2F</td>
+<td class="instruction">STA $87</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F31"></span>$1F31</td>
+<td class="instruction">LDA #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F33"></span>$1F33</td>
+<td class="instruction">STA $86</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F35"></span>$1F35</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up MR CREAK's character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F37"></span>$1F37</td>
+<td class="instruction">JMP <a href="298B.html#2995">$2995</a></td>
+<td class="comment-1" rowspan="1">Make MR CREAK reveal his safe combination letter.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1EE3.html">$1EE3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1F29">Map</a></td>
+<td class="next">
+Next: <a href="1F3A.html">$1F3A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1129</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="108B.html">$108B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1129">Map</a></td>
+<td class="next">
+Next: <a href="11CF.html">$11CF</a>
+</td>
+</tr>
+</table>
+<div class="description">$1129: Make a character write on a blackboard</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7264.html">$7264</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this interruptible subcommand routine is placed into a character's buffer by the routines at <a href="09E9.html">$09E9</a>, <a href="0A58.html">$0A58</a> and <a href="28AB.html">$28AB</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1129"></span>$1129</td>
+<td class="instruction">JSR <a href="1468.html">$1468</a></td>
+<td class="comment-1" rowspan="1">Copy the details of the blackboard nearest to the character into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="112C"></span>$112C</td>
+<td class="instruction">LDA $19</td>
+<td class="comment-1" rowspan="1">Is the blackboard clean?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="112E"></span>$112E</td>
+<td class="instruction">BEQ <a href="1129.html#1133">$1133</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1130"></span>$1130</td>
+<td class="instruction">JMP <a href="1D28.html">$1D28</a></td>
+<td class="comment-1" rowspan="1">Otherwise terminate this uninterruptible subcommand.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1133"></span>$1133</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="2">Pick up the current character number from <a href="0060.html">$60</a> and store it in the second byte of the blackboard buffer as a record of who last wrote on the blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1135"></span>$1135</td>
+<td class="instruction">STA $1A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1137"></span>$1137</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="3">Clear any existing submessage address from <a href="00AE.html">$AE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1139"></span>$1139</td>
+<td class="instruction">STA $AE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="113B"></span>$113B</td>
+<td class="instruction">STA $AF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="113D"></span>$113D</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="113F"></span>$113F</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Reduce <span class="register">A</span> to 0-3 (a teacher) or 5 (BOY WONDER).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1140"></span>$1140</td>
+<td class="instruction">SBC #$0B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1142"></span>$1142</td>
+<td class="instruction">CMP #$05</td>
+<td class="comment-1" rowspan="1">Is the current character BOY WONDER?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1144"></span>$1144</td>
+<td class="instruction">BNE <a href="1129.html#1149">$1149</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1146"></span>$1146</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">Set the carry flag to prepare for subtraction.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1147"></span>$1147</td>
+<td class="instruction">SBC #$01</td>
+<td class="comment-1" rowspan="1">Subtract 1. Now <span class="register">A</span> holds 4.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1149"></span>$1149</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="3">Add $53 to obtain the base page number of the blackboard messages for this character ($53-$57) and store it at <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="114A"></span>$114A</td>
+<td class="instruction">ADC #$53</td>
+</tr>
+<tr>
+<td class="address-1"><span id="114C"></span>$114C</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="114E"></span>$114E</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="2">Generate random value between 0 and 7.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1151"></span>$1151</td>
+<td class="instruction">AND #$07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1153"></span>$1153</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="5">Multiply by 32, giving the LSB of the address of a blackboard message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1154"></span>$1154</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1155"></span>$1155</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1156"></span>$1156</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1157"></span>$1157</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1158"></span>$1158</td>
+<td class="instruction">STA $AC</td>
+<td class="comment-1" rowspan="1">Store this LSB at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="115A"></span>$115A</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="4">Replace the address of this interruptible subcommand routine in the character's buffer with that of <a href="1129.html#1167">$1167</a> below.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="115C"></span>$115C</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="115E"></span>$115E</td>
+<td class="instruction">LDA #$67</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1160"></span>$1160</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1162"></span>$1162</td>
+<td class="instruction">LDY $DA</td>
+<td class="comment-1" rowspan="1">Pick up the blackboard identifier from <a href="00DA.html">$DA</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1164"></span>$1164</td>
+<td class="instruction">JSR <a href="1445.html">$1445</a></td>
+<td class="comment-1" rowspan="1">Restore the blackboard buffer from page 0.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1167"></span>
+<div class="comments">
+<div class="paragraph">
+After the initial call to this routine, each subsequent call enters here.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1167"></span>$1167</td>
+<td class="instruction">JSR <a href="1468.html">$1468</a></td>
+<td class="comment-1" rowspan="1">Copy the details of the blackboard nearest to the character into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="116A"></span>$116A</td>
+<td class="instruction">JSR <a href="108B.html">$108B</a></td>
+<td class="comment-1" rowspan="1">Get the code of the next character to be written on the blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="116D"></span>$116D</td>
+<td class="instruction">CMP #$00</td>
+<td class="comment-1" rowspan="1">Is the message finished?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="116F"></span>$116F</td>
+<td class="instruction">BNE <a href="1129.html#118D">$118D</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1171"></span>$1171</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1174"></span>$1174</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1176"></span>$1176</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="2">Is a teacher (as opposed to BOY WONDER) writing on the blackboard?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1177"></span>$1177</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1178"></span>$1178</td>
+<td class="instruction">BCS <a href="1129.html#1181">$1181</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="117A"></span>$117A</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up BOY WONDER's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="117C"></span>$117C</td>
+<td class="instruction">AND #$F0</td>
+<td class="comment-1" rowspan="1">Clear bits 0-3, lowering his arm.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="117E"></span>$117E</td>
+<td class="instruction">JMP <a href="1129.html#1185">$1185</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1181"></span>$1181</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1183"></span>$1183</td>
+<td class="instruction">AND #$F8</td>
+<td class="comment-1" rowspan="1">Clear bits 0-2, lowering his arm.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1185"></span>$1185</td>
+<td class="instruction">STA $26</td>
+<td class="comment-1" rowspan="1">Update the character's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1187"></span>$1187</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="118A"></span>$118A</td>
+<td class="instruction">JMP <a href="1D28.html">$1D28</a></td>
+<td class="comment-1" rowspan="1">Terminate this interruptible subcommand.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="118D"></span>
+<div class="comments">
+<div class="paragraph">
+The character hasn't finished writing on the board yet.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="118D"></span>$118D</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">Is the next character in the message a newline?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="118F"></span>$118F</td>
+<td class="instruction">BNE <a href="1129.html#1198">$1198</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1191"></span>$1191</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="2">Update the blackboard's pixel column counter at <a href="0019.html">$19</a> to $40 (start of the second line).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1193"></span>$1193</td>
+<td class="instruction">STA $19</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1195"></span>$1195</td>
+<td class="instruction">JMP <a href="1129.html#11C9">$11C9</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1198"></span>$1198</td>
+<td class="instruction">JSR <a href="11CF.html">$11CF</a></td>
+<td class="comment-1" rowspan="1">Write the character on the blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="119B"></span>$119B</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="119E"></span>$119E</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11A0"></span>$11A0</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="2">Is BOY WONDER (as opposed to a teacher) writing on the blackboard?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11A1"></span>$11A1</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11A2"></span>$11A2</td>
+<td class="instruction">BCC <a href="1129.html#11B4">$11B4</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="11A4"></span>
+<div class="comments">
+<div class="paragraph">
+A teacher is writing on the blackboard.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11A4"></span>$11A4</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11A6"></span>$11A6</td>
+<td class="instruction">AND #$F8</td>
+<td class="comment-1" rowspan="1">Clear bits 0-2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11A8"></span>$11A8</td>
+<td class="instruction">CMP $26</td>
+<td class="comment-1" rowspan="1">Is the teacher's arm raised?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11AA"></span>$11AA</td>
+<td class="instruction">BNE <a href="1129.html#11AF">$11AF</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11AC"></span>$11AC</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Add 5 to the teacher's animatory state, thus raising his arm.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11AD"></span>$11AD</td>
+<td class="instruction">ADC #$05</td>
+</tr>
+<tr>
+<td class="address-2"><span id="11AF"></span>$11AF</td>
+<td class="instruction">STA $26</td>
+<td class="comment-1" rowspan="1">Update the teacher's animatory state (raising or lowering his arm).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11B1"></span>$11B1</td>
+<td class="instruction">JMP <a href="1129.html#11C6">$11C6</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="11B4"></span>
+<div class="comments">
+<div class="paragraph">
+BOY WONDER is writing on the blackboard.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="11B4"></span>$11B4</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up BOY WONDER's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11B6"></span>$11B6</td>
+<td class="instruction">AND #$80</td>
+<td class="comment-1" rowspan="1">Keep only the direction bit (bit 7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11B8"></span>$11B8</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Add <a href="../graphics/as.html#3C">$3C</a> - the animatory state of BOY WONDER with his arm raised (phase 1).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11B9"></span>$11B9</td>
+<td class="instruction">ADC #$3C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11BB"></span>$11BB</td>
+<td class="instruction">CMP $26</td>
+<td class="comment-1" rowspan="1">Is BOY WONDER's arm raised (phase 1)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11BD"></span>$11BD</td>
+<td class="instruction">BEQ <a href="1129.html#11C4">$11C4</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11BF"></span>$11BF</td>
+<td class="instruction">STA $26</td>
+<td class="comment-1" rowspan="1">Otherwise set BOY WONDER's animatory state to <a href="../graphics/as.html#3C">$3C/$BC</a> (arm raised, phase 1).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11C1"></span>$11C1</td>
+<td class="instruction">JMP <a href="1129.html#11C6">$11C6</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="11C4"></span>$11C4</td>
+<td class="instruction">INC $26</td>
+<td class="comment-1" rowspan="1">Set BOY WONDER's animatory state to <a href="../graphics/as.html#3D">$3D/$BD</a> (arm raised, phase 2).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="11C6"></span>$11C6</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="11C9"></span>$11C9</td>
+<td class="instruction">LDY $DA</td>
+<td class="comment-1" rowspan="1">Pick up the blackboard identifier from <a href="00DA.html">$DA</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11CB"></span>$11CB</td>
+<td class="instruction">JSR <a href="1445.html">$1445</a></td>
+<td class="comment-1" rowspan="1">Restore the blackboard buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="11CE"></span>$11CE</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="108B.html">$108B</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1129">Map</a></td>
+<td class="next">
+Next: <a href="11CF.html">$11CF</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $212A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="20F5.html">$20F5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#212A">Map</a></td>
+<td class="next">
+Next: <a href="213B.html">$213B</a>
+</td>
+</tr>
+</table>
+<div class="description">$212A: Clear the text graphic buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="2005.html">$2005</a> and <a href="2573.html">$2573</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="212A"></span>$212A</td>
+<td class="instruction">LDA #$45</td>
+<td class="comment-1" rowspan="4">Prepare to address the text graphic buffer at <a href="4500.html">$4500</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="212C"></span>$212C</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="212E"></span>$212E</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2130"></span>$2130</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2132"></span>$2132</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">Initialise <span class="register">Y</span> to 0.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2133"></span>$2133</td>
+<td class="instruction">STA ($4E),Y</td>
+<td class="comment-1" rowspan="3">Fill the 256-byte buffer at <a href="4500.html">$4500</a> with zeroes.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2135"></span>$2135</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2136"></span>$2136</td>
+<td class="instruction">BNE <a href="212A.html#2133">$2133</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2138"></span>$2138</td>
+<td class="instruction">STA $A2</td>
+<td class="comment-1" rowspan="1">Initialise the pixel column counter at <a href="00A2.html">$A2</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="213A"></span>$213A</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="20F5.html">$20F5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#212A">Map</a></td>
+<td class="next">
+Next: <a href="213B.html">$213B</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $BAA3</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BA90.html">$BA90</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BAA3">Map</a></td>
+<td class="next">
+Next: <a href="BAB4.html">$BAB4</a>
+</td>
+</tr>
+</table>
+<div class="description">$BAA3: Collect a byte from a tune data table</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="BAB4.html">$BAB4</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">X</td>
+<td class="register-desc">0 (voice #1), 1 (voice #2) or 2 (voice #3)</td>
+</tr>
+<tr>
+<td class="register">(<a href="004D.html#004E">$4E,$4F</a>)</td>
+<td class="register-desc">Address of the tune data table</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Tune data byte</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BAA3"></span>$BAA3</td>
+<td class="instruction">LDY $BBC0,X</td>
+<td class="comment-1" rowspan="1">Pick up the index of the next tune data byte.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAA6"></span>$BAA6</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="1">Pick up the tune data byte.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAA8"></span>$BAA8</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="3">Increment the tune data byte index and the MSB of the tune data table address if necessary.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAA9"></span>$BAA9</td>
+<td class="instruction">BNE <a href="BAA3.html#BAAD">$BAAD</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAAB"></span>$BAAB</td>
+<td class="instruction">INC $4F</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BAAD"></span>$BAAD</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save the tune data byte on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAAE"></span>$BAAE</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="2">Update the tune data byte index stored at <a href="BBB4.html#BBC0">$BBC0/1/2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAAF"></span>$BAAF</td>
+<td class="instruction">STA $BBC0,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAB2"></span>$BAB2</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore the tune data byte to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAB3"></span>$BAB3</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BA90.html">$BA90</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BAA3">Map</a></td>
+<td class="next">
+Next: <a href="BAB4.html">$BAB4</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

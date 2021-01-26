@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $15B3</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="149F.html">$149F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#15B3">Map</a></td>
+<td class="next">
+Next: <a href="1640.html">$1640</a>
+</td>
+</tr>
+</table>
+<div class="description">$15B3: Deal with ERIC</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Called from the main loop at <a href="0800.html">$0800</a> to deal with ERIC when he's doing something other than walking or standing still.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="15B3"></span>$15B3</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15B5"></span>$15B5</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save it temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15B6"></span>$15B6</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $14 (ERIC).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15B8"></span>$15B8</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15BA"></span>$15BA</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy ERIC's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15BD"></span>$15BD</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's status flags from <a href="002B.html">$2B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15BF"></span>$15BF</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="2">Is bit 6 set?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15C0"></span>$15C0</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15C1"></span>$15C1</td>
+<td class="instruction">BCC <a href="15B3.html#15C9">$15C9</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="15C3"></span>
+<div class="comments">
+<div class="paragraph">
+Bit 6 of ERIC's status flags is set, indicating that he's immobilised.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15C3"></span>$15C3</td>
+<td class="instruction">JSR <a href="290F.html">$290F</a></td>
+<td class="comment-1" rowspan="1">Deal with ERIC if he's being spoken to by little boy no. 10.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15C6"></span>$15C6</td>
+<td class="instruction">JMP <a href="15B3.html#1636">$1636</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="15C9"></span>$15C9</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="2">Is bit 4 of ERIC's status flags set?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15CA"></span>$15CA</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15CB"></span>$15CB</td>
+<td class="instruction">BCC <a href="15B3.html#1615">$1615</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="15CD"></span>
+<div class="comments">
+<div class="paragraph">
+Bit 4 of ERIC's status flags is set, indicating that he's just been knocked down or unseated.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15CD"></span>$15CD</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Clear ERIC's midstride indicator at <a href="004B.html">$4B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15CF"></span>$15CF</td>
+<td class="instruction">STA $4B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15D1"></span>$15D1</td>
+<td class="instruction">LDA $30</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's knockout delay counter from <a href="0030.html">$30</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15D3"></span>$15D3</td>
+<td class="instruction">BEQ <a href="15B3.html#15D9">$15D9</a></td>
+<td class="comment-1" rowspan="1">Branch if it's zero (ERIC's just been knocked over).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15D5"></span>$15D5</td>
+<td class="instruction">CMP #$0B</td>
+<td class="comment-1" rowspan="1">Is ERIC's knockout delay counter less than $0B?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15D7"></span>$15D7</td>
+<td class="instruction">BCC <a href="15B3.html#1608">$1608</a></td>
+<td class="comment-1" rowspan="1">Branch if so (this always happens).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="15D9"></span>$15D9</td>
+<td class="instruction">LDA #$1A</td>
+<td class="comment-1" rowspan="2">Set voice #3 attack length to 8ms and and decay length to 1.5s.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15DB"></span>$15DB</td>
+<td class="instruction">STA $D413</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15DE"></span>$15DE</td>
+<td class="instruction">LDA #$81</td>
+<td class="comment-1" rowspan="2">Set voice #3 control register: voice on, attack-decay-sustain cycle; noise enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15E0"></span>$15E0</td>
+<td class="instruction">STA $D412</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15E3"></span>$15E3</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="2">Initialise ERIC's knockout delay counter at <a href="0030.html">$30</a> to $0A.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15E5"></span>$15E5</td>
+<td class="instruction">STA $30</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15E7"></span>$15E7</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the ERIC's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15EA"></span>$15EA</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15EC"></span>$15EC</td>
+<td class="instruction">AND #$06</td>
+<td class="comment-1" rowspan="1">Keep only bits 1 and 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15EE"></span>$15EE</td>
+<td class="instruction">CMP #$05</td>
+<td class="comment-1" rowspan="1">Compare the result with $05.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15F0"></span>$15F0</td>
+<td class="instruction">BEQ <a href="15B3.html#15FC">$15FC</a></td>
+<td class="comment-1" rowspan="1">This branch is never made.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15F2"></span>$15F2</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15F4"></span>$15F4</td>
+<td class="instruction">AND #$80</td>
+<td class="comment-1" rowspan="1">Keep only the direction bit (bit 7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15F6"></span>$15F6</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Now <span class="register">A</span>=<a href="../graphics/as.html#07">$07 or $87</a>: ERIC lying on his back.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15F7"></span>$15F7</td>
+<td class="instruction">ADC #$07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15F9"></span>$15F9</td>
+<td class="instruction">JMP <a href="15B3.html#1603">$1603</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="15FC"></span>$15FC</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15FE"></span>$15FE</td>
+<td class="instruction">AND #$80</td>
+<td class="comment-1" rowspan="1">Keep only the direction bit (bit 7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1600"></span>$1600</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Now <span class="register">A</span>=<a href="../graphics/as.html#06">$06 or $86</a>: ERIC sitting on the floor.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1601"></span>$1601</td>
+<td class="instruction">ADC #$06</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1603"></span>$1603</td>
+<td class="instruction">STA $26</td>
+<td class="comment-1" rowspan="1">Update ERIC's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1605"></span>$1605</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the ERIC's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1608"></span>$1608</td>
+<td class="instruction">DEC $30</td>
+<td class="comment-1" rowspan="1">Decrement ERIC's knockout delay counter at <a href="0030.html">$30</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="160A"></span>$160A</td>
+<td class="instruction">BNE <a href="15B3.html#1636">$1636</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's zero now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="160C"></span>$160C</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Clear ERIC's status flags at <a href="002B.html">$2B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="160E"></span>$160E</td>
+<td class="instruction">STA $2B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1610"></span>$1610</td>
+<td class="instruction">STA $14</td>
+<td class="comment-1" rowspan="1">Set ERIC's posture indicator at <a href="0014.html">$14</a> to 0: he's not standing up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1612"></span>$1612</td>
+<td class="instruction">JMP <a href="15B3.html#1636">$1636</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1615"></span>$1615</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is bit 3 of ERIC's status flags set?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1616"></span>$1616</td>
+<td class="instruction">BCC <a href="15B3.html#161E">$161E</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1618"></span>
+<div class="comments">
+<div class="paragraph">
+Bit 3 of ERIC's status flags is set, indicating that he's writing on a blackboard.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1618"></span>$1618</td>
+<td class="instruction">JSR <a href="184E.html">$184E</a></td>
+<td class="comment-1" rowspan="1">Deal with ERIC when he's writing on a blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="161B"></span>$161B</td>
+<td class="instruction">JMP <a href="15B3.html#1636">$1636</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="161E"></span>$161E</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is bit 2 of ERIC's status flags set?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="161F"></span>$161F</td>
+<td class="instruction">BCC <a href="15B3.html#1627">$1627</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1621"></span>
+<div class="comments">
+<div class="paragraph">
+Bit 2 of ERIC's status flags is set, indicating that he's hitting.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1621"></span>$1621</td>
+<td class="instruction">JSR <a href="17E5.html">$17E5</a></td>
+<td class="comment-1" rowspan="1">Deal with ERIC when he's hitting.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1624"></span>$1624</td>
+<td class="instruction">JMP <a href="15B3.html#1636">$1636</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1627"></span>$1627</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is bit 1 of ERIC's status flags set?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1628"></span>$1628</td>
+<td class="instruction">BCC <a href="15B3.html#1630">$1630</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="162A"></span>
+<div class="comments">
+<div class="paragraph">
+Bit 1 of ERIC's status flags is set, indicating that he's jumping.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="162A"></span>$162A</td>
+<td class="instruction">JSR <a href="189D.html">$189D</a></td>
+<td class="comment-1" rowspan="1">Deal with ERIC when he's jumping.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="162D"></span>$162D</td>
+<td class="instruction">JMP <a href="15B3.html#1636">$1636</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1630"></span>$1630</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is bit 0 of ERIC's status flags set?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1631"></span>$1631</td>
+<td class="instruction">BCC <a href="15B3.html#1636">$1636</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1633"></span>
+<div class="comments">
+<div class="paragraph">
+Bit 0 of ERIC's status flags is set, indicating that he's firing the catapult.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1633"></span>$1633</td>
+<td class="instruction">JSR <a href="191B.html">$191B</a></td>
+<td class="comment-1" rowspan="1">Deal with ERIC when he's firing the catapult.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1636"></span>$1636</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore ERIC's character buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1639"></span>$1639</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Restore the current character number to <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="163A"></span>$163A</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="163C"></span>$163C</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the current character's buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="163F"></span>$163F</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="149F.html">$149F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#15B3">Map</a></td>
+<td class="next">
+Next: <a href="1640.html">$1640</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

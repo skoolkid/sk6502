@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $19A5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1994.html">$1994</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#19A5">Map</a></td>
+<td class="next">
+Next: <a href="1A04.html">$1A04</a>
+</td>
+</tr>
+</table>
+<div class="description">$19A5: 'W' pressed - write</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/F650.html">$F650</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Called from the main loop at <a href="0800.html">$0800</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="19A5"></span>$19A5</td>
+<td class="instruction">LDA $14</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's posture indicator from <a href="0014.html">$14</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19A7"></span>$19A7</td>
+<td class="instruction">BNE <a href="19A5.html#19AC">$19AC</a></td>
+<td class="comment-1" rowspan="1">Branch if ERIC is standing up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19A9"></span>$19A9</td>
+<td class="instruction">JMP <a href="19A5.html#1A03">$1A03</a></td>
+<td class="comment-1" rowspan="1">Otherwise return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="19AC"></span>$19AC</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19AE"></span>$19AE</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">is ERIC on the top floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19B0"></span>$19B0</td>
+<td class="instruction">BEQ <a href="19A5.html#19D1">$19D1</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19B2"></span>$19B2</td>
+<td class="instruction">CMP #$0A</td>
+<td class="comment-1" rowspan="1">Is ERIC on the middle floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19B4"></span>$19B4</td>
+<td class="instruction">BEQ <a href="19A5.html#19B9">$19B9</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19B6"></span>$19B6</td>
+<td class="instruction">JMP <a href="19A5.html#1A03">$1A03</a></td>
+<td class="comment-1" rowspan="1">Otherwise return.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="19B9"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC is on the middle floor.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="19B9"></span>$19B9</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19BB"></span>$19BB</td>
+<td class="instruction">CMP #$2B</td>
+<td class="comment-1" rowspan="1">Is it less than 43?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19BD"></span>$19BD</td>
+<td class="instruction">BCC <a href="19A5.html#19C6">$19C6</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19BF"></span>$19BF</td>
+<td class="instruction">CMP #$2F</td>
+<td class="comment-1" rowspan="1">Is ERIC's x-coordinate 47 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19C1"></span>$19C1</td>
+<td class="instruction">BCS <a href="19A5.html#19C6">$19C6</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19C3"></span>$19C3</td>
+<td class="instruction">JMP <a href="19A5.html#19DB">$19DB</a></td>
+<td class="comment-1" rowspan="1">Jump forward (ERIC is beside the Exam Room blackboard).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="19C6"></span>$19C6</td>
+<td class="instruction">CMP #$1C</td>
+<td class="comment-1" rowspan="1">Is ERIC's x-coordinate less than 28?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19C8"></span>$19C8</td>
+<td class="instruction">BCC <a href="19A5.html#1A03">$1A03</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19CA"></span>$19CA</td>
+<td class="instruction">CMP #$20</td>
+<td class="comment-1" rowspan="1">Is ERIC's x-coordinate 32 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19CC"></span>$19CC</td>
+<td class="instruction">BCS <a href="19A5.html#1A03">$1A03</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19CE"></span>$19CE</td>
+<td class="instruction">JMP <a href="19A5.html#19DB">$19DB</a></td>
+<td class="comment-1" rowspan="1">Jump forward (ERIC is beside the White Room blackboard).</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="19D1"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC is on the top floor.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="19D1"></span>$19D1</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19D3"></span>$19D3</td>
+<td class="instruction">CMP #$2C</td>
+<td class="comment-1" rowspan="1">Is it 44 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19D5"></span>$19D5</td>
+<td class="instruction">BCC <a href="19A5.html#1A03">$1A03</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19D7"></span>$19D7</td>
+<td class="instruction">CMP #$30</td>
+<td class="comment-1" rowspan="1">Is ERIC's x-coordinate less than 48?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19D9"></span>$19D9</td>
+<td class="instruction">BCS <a href="19A5.html#1A03">$1A03</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="19DB"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC is standing beside one of the blackboards.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="19DB"></span>$19DB</td>
+<td class="instruction">JSR <a href="1468.html">$1468</a></td>
+<td class="comment-1" rowspan="1">Get the identifier and coordinates of the blackboard closest to ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19DE"></span>$19DE</td>
+<td class="instruction">LDA $1A</td>
+<td class="comment-1" rowspan="1">Is the blackboard clean?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19E0"></span>$19E0</td>
+<td class="instruction">BEQ <a href="19A5.html#19E7">$19E7</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19E2"></span>$19E2</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">$00: this blackboard is dirty.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19E4"></span>$19E4</td>
+<td class="instruction">JMP <a href="19A5.html#19E9">$19E9</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="19E7"></span>$19E7</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="1">$80: this blackboard is clean.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="19E9"></span>$19E9</td>
+<td class="instruction">STA $DF</td>
+<td class="comment-1" rowspan="4">Fill the last four bytes of the blackboard's buffer at <a href="00DF.html">$DF</a> with either $00 (ERIC is writing on a dirty blackboard) or $80 (ERIC is writing on a clean blackboard).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19EB"></span>$19EB</td>
+<td class="instruction">STA $E0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19ED"></span>$19ED</td>
+<td class="instruction">STA $E1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19EF"></span>$19EF</td>
+<td class="instruction">STA $E2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19F1"></span>$19F1</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Store $14 at <a href="001A.html">$1A</a>, indicating that ERIC has (or will have) written on this blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19F3"></span>$19F3</td>
+<td class="instruction">STA $1A</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="19F5"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="184E.html">$184E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="19F5"></span>$19F5</td>
+<td class="instruction">LDY $DA</td>
+<td class="comment-1" rowspan="1">Pick up the blackboard identifier from <a href="00DA.html">$DA</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19F7"></span>$19F7</td>
+<td class="instruction">JSR <a href="1445.html">$1445</a></td>
+<td class="comment-1" rowspan="1">Restore the blackboard's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19FA"></span>$19FA</td>
+<td class="instruction">LDX #$08</td>
+<td class="comment-1" rowspan="1">Bit 3 set: ERIC is writing on a blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19FC"></span>$19FC</td>
+<td class="instruction">LDY #$0D</td>
+<td class="comment-1" rowspan="1"><a href="../graphics/as.html#0D">$0D</a> is the animatory state of ERIC with his arm up (as if writing).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="19FE"></span>$19FE</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="1">This will initialise ERIC's action timer at <a href="00FE.html">$FE</a> to $0A.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1A00"></span>$1A00</td>
+<td class="instruction">JMP <a href="169B.html#16B1">$16B1</a></td>
+<td class="comment-1" rowspan="1">Raise ERIC's arm.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1A03"></span>$1A03</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1994.html">$1994</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#19A5">Map</a></td>
+<td class="next">
+Next: <a href="1A04.html">$1A04</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

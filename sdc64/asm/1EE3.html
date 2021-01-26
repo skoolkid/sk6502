@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1EE3</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1EC2.html">$1EC2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1EE3">Map</a></td>
+<td class="next">
+Next: <a href="1F29.html">$1F29</a>
+</td>
+</tr>
+</table>
+<div class="description">$1EE3: Make EINSTEIN speak</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="0A58.html">$0A58</a> and <a href="0B3B.html">$0B3B</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">YX</td>
+<td class="register-desc">Message address</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1EE3"></span>$1EE3</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="4">Push the message address formed by <span class="register">YX</span> onto the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EE4"></span>$1EE4</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EE5"></span>$1EE5</td>
+<td class="instruction">TYA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EE6"></span>$1EE6</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EE7"></span>$1EE7</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore the current character's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EEA"></span>$1EEA</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="2">Pick up the current character number from <a href="0060.html">$60</a> and store it at <a href="004D.html#0057">$57</a> temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EEC"></span>$1EEC</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EEE"></span>$1EEE</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $11 (EINSTEIN).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EF0"></span>$1EF0</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EF2"></span>$1EF2</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy EINSTEIN's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EF5"></span>$1EF5</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="4">Pull the message address off the stack and place it at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EF6"></span>$1EF6</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EF8"></span>$1EF8</td>
+<td class="instruction">PLA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EF9"></span>$1EF9</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EFB"></span>$1EFB</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore EINSTEIN's character buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1EFE"></span>$1EFE</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the saved character number from <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F00"></span>$1F00</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">Update the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F02"></span>$1F02</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the current character's buffer to page 0.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1F05"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="0A58.html">$0A58</a> to make a teacher wait for EINSTEIN to finish speaking.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1F05"></span>$1F05</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="1">Event <a href="4400.html">$03</a>: EINSTEIN is speaking.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F07"></span>$1F07</td>
+<td class="instruction">JSR <a href="31B6.html">$31B6</a></td>
+<td class="comment-1" rowspan="1">Raise the signal for this event.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F0A"></span>$1F0A</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="7">Pull the return address from the stack and place it in the character's buffer as the primary command routine address.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F0B"></span>$1F0B</td>
+<td class="instruction">STA $29</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F0D"></span>$1F0D</td>
+<td class="instruction">PLA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F0E"></span>$1F0E</td>
+<td class="instruction">STA $2A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F10"></span>$1F10</td>
+<td class="instruction">INC $29</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F12"></span>$1F12</td>
+<td class="instruction">BNE <a href="1EE3.html#1F16">$1F16</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F14"></span>$1F14</td>
+<td class="instruction">INC $2A</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1F16"></span>$1F16</td>
+<td class="instruction">LDA #$1F</td>
+<td class="comment-1" rowspan="4">Place the address of the interruptible subcommand routine at <a href="1EE3.html#1F1E">$1F1E</a> (below) into the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F18"></span>$1F18</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F1A"></span>$1F1A</td>
+<td class="instruction">LDA #$1E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F1C"></span>$1F1C</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F1E"></span>$1F1E</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="1">Event <a href="4400.html">$03</a>: EINSTEIN is speaking.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F20"></span>$1F20</td>
+<td class="instruction">JSR <a href="31D2.html">$31D2</a></td>
+<td class="comment-1" rowspan="1">Is EINSTEIN still speaking?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F23"></span>$1F23</td>
+<td class="instruction">BCS <a href="1EE3.html#1F28">$1F28</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F25"></span>$1F25</td>
+<td class="instruction">JMP <a href="1D28.html">$1D28</a></td>
+<td class="comment-1" rowspan="1">Otherwise terminate this interruptible subcommand.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1F28"></span>$1F28</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1EC2.html">$1EC2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1EE3">Map</a></td>
+<td class="next">
+Next: <a href="1F29.html">$1F29</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

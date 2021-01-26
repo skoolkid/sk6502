@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2696</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="267A.html">$267A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2696">Map</a></td>
+<td class="next">
+Next: <a href="26E0.html">$26E0</a>
+</td>
+</tr>
+</table>
+<div class="description">$2696: Make ANGELFACE throw a punch (2)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6F8E.html">$6F8E</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this uninterruptible subcommand routine is placed into ANGELFACE's buffer by the routine at <a href="267A.html">$267A</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2696"></span>$2696</td>
+<td class="instruction">LDA #$26</td>
+<td class="comment-1" rowspan="4">Replace the address of this uninterruptible subcommand routine in ANGELFACE's buffer with that of <a href="26E0.html">$26E0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2698"></span>$2698</td>
+<td class="instruction">STA $B1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="269A"></span>$269A</td>
+<td class="instruction">LDA #$E0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="269C"></span>$269C</td>
+<td class="instruction">STA $B0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="269E"></span>$269E</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ANGELFACE's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26A1"></span>$26A1</td>
+<td class="instruction">INC $26</td>
+<td class="comment-1" rowspan="1">Increment ANGELFACE's animatory state to <a href="../graphics/as.html#2B">$2B/$AB</a>: hitting phase 2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26A3"></span>$26A3</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ANGELFACE's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26A6"></span>$26A6</td>
+<td class="instruction">LDY $FB</td>
+<td class="comment-1" rowspan="1">Pick up ANGELFACE's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26A8"></span>$26A8</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ANGELFACE's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26AA"></span>$26AA</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is ANGELFACE facing right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26AB"></span>$26AB</td>
+<td class="instruction">BCS <a href="2696.html#26B5">$26B5</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26AD"></span>$26AD</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ANGELFACE's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26AF"></span>$26AF</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract 2 to get the x-coordinate of ANGELFACE's fist.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26B0"></span>$26B0</td>
+<td class="instruction">SBC #$02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26B2"></span>$26B2</td>
+<td class="instruction">JMP <a href="2696.html#26BA">$26BA</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="26B5"></span>$26B5</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ANGELFACE's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26B7"></span>$26B7</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Add 2 to get the x-coordinate of ANGELFACE's fist.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26B8"></span>$26B8</td>
+<td class="instruction">ADC #$02</td>
+</tr>
+<tr>
+<td class="address-2"><span id="26BA"></span>$26BA</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">Transfer the fist x-coordinate to <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26BB"></span>$26BB</td>
+<td class="instruction">JSR <a href="27D2.html">$27D2</a></td>
+<td class="comment-1" rowspan="1">Did ANGELFACE's fist land on anyone's jaw?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26BE"></span>$26BE</td>
+<td class="instruction">BCC <a href="26E0.html#26EE">$26EE</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26C0"></span>$26C0</td>
+<td class="instruction">CMP #$14</td>
+<td class="comment-1" rowspan="1">Was ERIC hit?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26C2"></span>$26C2</td>
+<td class="instruction">BEQ <a href="2696.html#26D7">$26D7</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26C4"></span>$26C4</td>
+<td class="instruction">STA $57</td>
+<td class="comment-1" rowspan="1">Store the character number of ANGELFACE's victim at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26C6"></span>$26C6</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore ANGELFACE's character buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26C9"></span>$26C9</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="2">Pick up ANGELFACE's character number from <a href="0060.html">$60</a> and store it at <a href="002F.html">$2F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26CB"></span>$26CB</td>
+<td class="instruction">STA $2F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26CD"></span>$26CD</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the character number of ANGELFACE's victim from <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26CF"></span>$26CF</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">Update the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26D1"></span>$26D1</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the character buffer of ANGELFACE's victim to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26D4"></span>$26D4</td>
+<td class="instruction">JMP <a href="29C8.html#2A19">$2A19</a></td>
+<td class="comment-1" rowspan="1">Knock ANGELFACE's victim over.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="26D7"></span>$26D7</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="3">Set bit 4 of ERIC's status flags at <a href="002B.html">$2B</a>: ERIC has just been knocked down.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26D9"></span>$26D9</td>
+<td class="instruction">ORA #$10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26DB"></span>$26DB</td>
+<td class="instruction">STA $2B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="26DD"></span>$26DD</td>
+<td class="instruction">JMP <a href="26E0.html#26EE">$26EE</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="267A.html">$267A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2696">Map</a></td>
+<td class="next">
+Next: <a href="26E0.html">$26E0</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

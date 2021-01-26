@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $267A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2620.html">$2620</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#267A">Map</a></td>
+<td class="next">
+Next: <a href="2696.html">$2696</a>
+</td>
+</tr>
+</table>
+<div class="description">$267A: Make ANGELFACE throw a punch (1)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6F80.html">$6F80</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this uninterruptible subcommand routine is placed into ANGELFACE's buffer by the routine at <a href="270D.html">$270D</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="267A"></span>$267A</td>
+<td class="instruction">LDA #$26</td>
+<td class="comment-1" rowspan="4">Replace the address of this uninterruptible subcommand routine in ANGERLFACE's buffer with that of <a href="2696.html">$2696</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="267C"></span>$267C</td>
+<td class="instruction">STA $B1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="267E"></span>$267E</td>
+<td class="instruction">LDA #$96</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2680"></span>$2680</td>
+<td class="instruction">STA $B0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2682"></span>$2682</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ANGELFACE's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2685"></span>$2685</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="2">Copy ANGELFACE's pre-punch animatory state from <a href="0026.html">$26</a> to <a href="00B3.html">$B3</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2687"></span>$2687</td>
+<td class="instruction">STA $B3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2689"></span>$2689</td>
+<td class="instruction">AND #$80</td>
+<td class="comment-1" rowspan="4">Set ANGELFACE's animatory state to <a href="../graphics/as.html#2A">$2A/$AA</a>: hitting phase 1.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="268B"></span>$268B</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="268C"></span>$268C</td>
+<td class="instruction">ADC #$2A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="268E"></span>$268E</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2690"></span>$2690</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ANGELFACE's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2693"></span>$2693</td>
+<td class="instruction">JMP <a href="26E0.html#26EE">$26EE</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2620.html">$2620</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#267A">Map</a></td>
+<td class="next">
+Next: <a href="2696.html">$2696</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $27D2</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="27D1.html">$27D1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#27D2">Map</a></td>
+<td class="next">
+Next: <a href="284F.html">$284F</a>
+</td>
+</tr>
+</table>
+<div class="description">$27D2: Check whether anyone was or can be punched by ERIC or ANGELFACE</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="17E5.html">$17E5</a>, <a href="2696.html">$2696</a> and <a href="270D.html">$270D</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">X</td>
+<td class="register-desc">Target x-coordinate</td>
+</tr>
+<tr>
+<td class="register">Y</td>
+<td class="register-desc">Target y-coordinate</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Character number of the potential victim (if any)</td>
+</tr>
+<tr>
+<td class="register">P</td>
+<td class="register-desc">Carry flag set if there is someone punchable at the target coordinates</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="27D2"></span>$27D2</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="2">Pick up ERIC's or ANGELFACE's animatory state from <a href="0026.html">$26</a> and store it at <a href="0007.html#000A">$0A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27D4"></span>$27D4</td>
+<td class="instruction">STA $0A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27D6"></span>$27D6</td>
+<td class="instruction">STX $0B</td>
+<td class="comment-1" rowspan="2">Store the target coordinates at <a href="0007.html#000B">$0B</a> and <a href="0007.html#000C">$0C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27D8"></span>$27D8</td>
+<td class="instruction">STY $0C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27DA"></span>$27DA</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore ERIC's or ANGELFACE's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27DD"></span>$27DD</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27DF"></span>$27DF</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save it temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27E0"></span>$27E0</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $14 (ERIC).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27E2"></span>$27E2</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27E4"></span>$27E4</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy ERIC's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27E7"></span>$27E7</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27E9"></span>$27E9</td>
+<td class="instruction">CMP $0C</td>
+<td class="comment-1" rowspan="1">Does it match the target y-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27EB"></span>$27EB</td>
+<td class="instruction">BNE <a href="27D2.html#2800">$2800</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27ED"></span>$27ED</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27EF"></span>$27EF</td>
+<td class="instruction">CMP $0B</td>
+<td class="comment-1" rowspan="1">Does it match the target x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27F1"></span>$27F1</td>
+<td class="instruction">BNE <a href="27D2.html#2800">$2800</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27F3"></span>$27F3</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27F5"></span>$27F5</td>
+<td class="instruction">EOR $0A</td>
+<td class="comment-1" rowspan="2">Is ERIC facing the puncher?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27F7"></span>$27F7</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27F8"></span>$27F8</td>
+<td class="instruction">BCC <a href="27D2.html#2800">$2800</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27FA"></span>$27FA</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27FC"></span>$27FC</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">Set the carry flag: there is someone (ERIC) at the target coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27FD"></span>$27FD</td>
+<td class="instruction">JMP <a href="27D2.html#283E">$283E</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2800"></span>$2800</td>
+<td class="instruction">LDA #$0F</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $0F (ANGELFACE).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2802"></span>$2802</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="2804"></span>
+<div class="comments">
+<div class="paragraph">
+Here we enter a loop to check whether ANGELFACE, BOY WONDER, EINSTEIN or any of the little boys are at the target location.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2804"></span>$2804</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the current character's buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2807"></span>$2807</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="1">Pick up the character's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2809"></span>$2809</td>
+<td class="instruction">CMP $0C</td>
+<td class="comment-1" rowspan="1">Does it match the target y-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="280B"></span>$280B</td>
+<td class="instruction">BNE <a href="27D2.html#2824">$2824</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="280D"></span>$280D</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="280F"></span>$280F</td>
+<td class="instruction">CMP $0B</td>
+<td class="comment-1" rowspan="1">Does it match the target x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2811"></span>$2811</td>
+<td class="instruction">BNE <a href="27D2.html#2824">$2824</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2813"></span>$2813</td>
+<td class="instruction">LDA $B1</td>
+<td class="comment-1" rowspan="1">Is the character currently controlled by an uninterruptible subcommand routine?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2815"></span>$2815</td>
+<td class="instruction">BNE <a href="27D2.html#2824">$2824</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2817"></span>$2817</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2819"></span>$2819</td>
+<td class="instruction">EOR $0A</td>
+<td class="comment-1" rowspan="2">Is the character facing the puncher?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="281B"></span>$281B</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="281C"></span>$281C</td>
+<td class="instruction">BCC <a href="27D2.html#2824">$2824</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="281E"></span>$281E</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character's number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2820"></span>$2820</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">Set the carry flag: there is someone at the target coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2821"></span>$2821</td>
+<td class="instruction">JMP <a href="27D2.html#283E">$283E</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2824"></span>$2824</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2826"></span>$2826</td>
+<td class="instruction">CMP #$11</td>
+<td class="comment-1" rowspan="1">Have we just checked character number $11 (EINSTEIN)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2828"></span>$2828</td>
+<td class="instruction">BNE <a href="27D2.html#2831">$2831</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="282A"></span>$282A</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">Otherwise start checking the little boys.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="282C"></span>$282C</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">Update the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="282E"></span>$282E</td>
+<td class="instruction">JMP <a href="27D2.html#2804">$2804</a></td>
+<td class="comment-1" rowspan="1">Jump back to the start of the loop.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2831"></span>$2831</td>
+<td class="instruction">CMP #$0A</td>
+<td class="comment-1" rowspan="1">Is the current character number $0A (little boy no. 11)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2833"></span>$2833</td>
+<td class="instruction">BNE <a href="27D2.html#2839">$2839</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2835"></span>$2835</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">Clear the carry flag: there is no one at the target coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2836"></span>$2836</td>
+<td class="instruction">JMP <a href="27D2.html#283E">$283E</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2839"></span>$2839</td>
+<td class="instruction">INC $60</td>
+<td class="comment-1" rowspan="1">Increment the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="283B"></span>$283B</td>
+<td class="instruction">JMP <a href="27D2.html#2804">$2804</a></td>
+<td class="comment-1" rowspan="1">Jump back to the start of the loop.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="283E"></span>$283E</td>
+<td class="instruction">STA $57</td>
+<td class="comment-1" rowspan="1">Store the character number of the potential victim at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2840"></span>$2840</td>
+<td class="instruction">ROL A</td>
+<td class="comment-1" rowspan="2">Rotate the carry flag into bit 0 of <span class="register">A</span> and store it at <a href="004D.html#0056">$56</a> temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2841"></span>$2841</td>
+<td class="instruction">STA $56</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2843"></span>$2843</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore the current character number to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2844"></span>$2844</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">Update the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2846"></span>$2846</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the current character's buffer into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2849"></span>$2849</td>
+<td class="instruction">LDA $56</td>
+<td class="comment-1" rowspan="2">Restore the carry flag from bit 0 at <a href="004D.html#0056">$56</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="284B"></span>$284B</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="284C"></span>$284C</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the character number of the potential victim.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="284E"></span>$284E</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="27D1.html">$27D1</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#27D2">Map</a></td>
+<td class="next">
+Next: <a href="284F.html">$284F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

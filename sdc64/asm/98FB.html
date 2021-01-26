@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $98FB</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="98E8.html">$98E8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#98FB">Map</a></td>
+<td class="next">
+Next: <a href="98FF.html">$98FF</a>
+</td>
+</tr>
+</table>
+<div class="description">$98FB: Check the x-coordinate of the leftmost section of the speech bubble (2)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="95E8.html">$95E8</a>. Returns with the zero flag set if bit 8 of the x-coordinate of sprite #2 (the leftmost section of the speech bubble) is reset.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Bit 8 of the sprites' x-coordinates (from $D010) rotated left</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="98FB"></span>$98FB</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">Transfer bit 8 of the sprites' x-coordinates to <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="98FC"></span>$98FC</td>
+<td class="instruction">AND #$08</td>
+<td class="comment-1" rowspan="1">Set the zero flag if bit 8 of the x-coordinate of sprite #2 is reset.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="98FE"></span>$98FE</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="98E8.html">$98E8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#98FB">Map</a></td>
+<td class="next">
+Next: <a href="98FF.html">$98FF</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

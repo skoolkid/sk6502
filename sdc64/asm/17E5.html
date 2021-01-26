@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $17E5</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="176F.html">$176F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#17E5">Map</a></td>
+<td class="next">
+Next: <a href="184E.html">$184E</a>
+</td>
+</tr>
+</table>
+<div class="description">$17E5: Deal with ERIC when he's hitting</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/F4A4.html">$F4A4</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="15B3.html">$15B3</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="17E5"></span>$17E5</td>
+<td class="instruction">DEC $FE</td>
+<td class="comment-1" rowspan="1">Decrement ERIC's action timer at <a href="00FE.html">$FE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17E7"></span>$17E7</td>
+<td class="instruction">BNE <a href="17E5.html#17EC">$17EC</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's zero now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17E9"></span>$17E9</td>
+<td class="instruction">JMP <a href="191B.html#191F">$191F</a></td>
+<td class="comment-1" rowspan="1">Otherwise restore ERIC's animatory state to what it was before he threw the punch.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="17EC"></span>$17EC</td>
+<td class="instruction">LDA $FE</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's action timer from <a href="00FE.html">$FE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17EE"></span>$17EE</td>
+<td class="instruction">CMP #$0C</td>
+<td class="comment-1" rowspan="1">Is it time to raise the fist to eye level?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17F0"></span>$17F0</td>
+<td class="instruction">BNE <a href="17E5.html#17F5">$17F5</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17F2"></span>$17F2</td>
+<td class="instruction">JMP <a href="2B3F.html#2B47">$2B47</a></td>
+<td class="comment-1" rowspan="1">Raise ERIC's fist to eye level.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="17F5"></span>$17F5</td>
+<td class="instruction">CMP #$0B</td>
+<td class="comment-1" rowspan="1">Is it time to check whether anyone was hit?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17F7"></span>$17F7</td>
+<td class="instruction">BNE <a href="17E5.html#184D">$184D</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17F9"></span>$17F9</td>
+<td class="instruction">LDY $FB</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17FB"></span>$17FB</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17FD"></span>$17FD</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is ERIC facing right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="17FE"></span>$17FE</td>
+<td class="instruction">BCS <a href="17E5.html#1808">$1808</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1800"></span>$1800</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1802"></span>$1802</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract 2 from it to get the x-coordinate of ERIC's fist.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1803"></span>$1803</td>
+<td class="instruction">SBC #$02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1805"></span>$1805</td>
+<td class="instruction">JMP <a href="17E5.html#180D">$180D</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1808"></span>$1808</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="180A"></span>$180A</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Add 2 to it to get the x-coordinate of ERIC's fist.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="180B"></span>$180B</td>
+<td class="instruction">ADC #$02</td>
+</tr>
+<tr>
+<td class="address-2"><span id="180D"></span>$180D</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">Transfer the x-coordinate of ERIC's fist to <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="180E"></span>$180E</td>
+<td class="instruction">JSR <a href="27D2.html">$27D2</a></td>
+<td class="comment-1" rowspan="1">Did ERIC hit anyone?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1811"></span>$1811</td>
+<td class="instruction">BCC <a href="17E5.html#182F">$182F</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1813"></span>$1813</td>
+<td class="instruction">CMP #$0F</td>
+<td class="comment-1" rowspan="1">Character number $0F is ANGELFACE.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1815"></span>$1815</td>
+<td class="instruction">STA $C1</td>
+<td class="comment-1" rowspan="1">Store the character number of ERIC's victim at <a href="00C0.html#00C1">$C1</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1817"></span>$1817</td>
+<td class="instruction">BNE <a href="17E5.html#181E">$181E</a></td>
+<td class="comment-1" rowspan="1">Branch unless ERIC hit ANGELFACE.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1819"></span>$1819</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="2">Add 30 to the score and print it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="181B"></span>$181B</td>
+<td class="instruction">JSR <a href="1D37.html">$1D37</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="181E"></span>$181E</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore the character's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1821"></span>$1821</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="2">Pick up the current character number from <a href="0060.html">$60</a> and copy it to <a href="002F.html">$2F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1823"></span>$1823</td>
+<td class="instruction">STA $2F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1825"></span>$1825</td>
+<td class="instruction">LDA $C1</td>
+<td class="comment-1" rowspan="2">Pick up the character number of ERIC's victim from <a href="00C0.html#00C1">$C1</a> and copy it to <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1827"></span>$1827</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1829"></span>$1829</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the victim's character buffer into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="182C"></span>$182C</td>
+<td class="instruction">JSR <a href="29C8.html#2A19">$2A19</a></td>
+<td class="comment-1" rowspan="1">Knock the victim to the floor.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="182F"></span>$182F</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="4">Set voice #2 frequency to $1000.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1831"></span>$1831</td>
+<td class="instruction">STA $D408</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1834"></span>$1834</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1836"></span>$1836</td>
+<td class="instruction">STA $D407</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1839"></span>$1839</td>
+<td class="instruction">LDA #$34</td>
+<td class="comment-1" rowspan="2">Set voice #2 attack length to 24ms and decay length to 114ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="183B"></span>$183B</td>
+<td class="instruction">STA $D40C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="183E"></span>$183E</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set voice #2 sustain volume to 0 and release length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1840"></span>$1840</td>
+<td class="instruction">STA $D40D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1843"></span>$1843</td>
+<td class="instruction">LDA #$81</td>
+<td class="comment-1" rowspan="2">Set voice #2 control register: voice on, attack-decay-sustain cycle; noise enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1845"></span>$1845</td>
+<td class="instruction">STA $D40B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1848"></span>$1848</td>
+<td class="instruction">LDA #$0E</td>
+<td class="comment-1" rowspan="1">Lines reprimand <a href="4CC0.html">$0E</a>: DON'T HIT YOUR MATES.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="184A"></span>$184A</td>
+<td class="instruction">JMP <a href="191B.html#1972">$1972</a></td>
+<td class="comment-1" rowspan="1">Make any nearby teacher give ERIC lines.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="184D"></span>$184D</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="176F.html">$176F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#17E5">Map</a></td>
+<td class="next">
+Next: <a href="184E.html">$184E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

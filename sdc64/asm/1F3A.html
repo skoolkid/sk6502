@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Unused RAM at $1F3A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-u">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Unused</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1F29.html">$1F29</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1F3A">Map</a></td>
+<td class="next">
+Next: <a href="1F4C.html">$1F4C</a>
+</td>
+</tr>
+</table>
+<div class="description">$1F3A: Code remnants</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This routine is not used.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F3A"></span>$1F3A</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">Transfer the safe combination letter index (0-3) to <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F3B"></span>$1F3B</td>
+<td class="instruction">LDA $90,X</td>
+<td class="comment-1" rowspan="1">Pick up a safe combination letter from <a href="0090.html">$90-$93</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F3D"></span>$1F3D</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="2">Copy it to the address stored at <a href="0084.html#0086">$86</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F3F"></span>$1F3F</td>
+<td class="instruction">STA ($86),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F41"></span>$1F41</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4"><a href="4640.html#4642">$4642</a> is in the safe combination letter message buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F43"></span>$1F43</td>
+<td class="instruction">STA $89</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F45"></span>$1F45</td>
+<td class="instruction">LDA #$42</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F47"></span>$1F47</td>
+<td class="instruction">STA $88</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1F49"></span>$1F49</td>
+<td class="instruction">JMP <a href="2043.html">$2043</a></td>
+<td class="comment-1" rowspan="1">Print the safe combination letter above the teacher's head.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1F29.html">$1F29</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1F3A">Map</a></td>
+<td class="next">
+Next: <a href="1F4C.html">$1F4C</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

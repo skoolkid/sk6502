@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Pokes</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Pokes">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Pokes</td>
+</tr>
+</table>
+<ul class="contents">
+<li><a href="#infiniteLines">Infinite lines</a></li>
+<li><a href="#noLines">No lines</a></li>
+<li><a href="#silentSnitch">Silent snitch</a></li>
+<li><a href="#singleShield">Single shield</a></li>
+<li><a href="#unsafeCombination">Unsafe combination</a></li>
+<li><a href="#seeEricRun">See ERIC run</a></li>
+<li><a href="#superCatty">Super catapult</a></li>
+<li><a href="#throughWalls">Walk through walls</a></li>
+</ul>
+<div><span id="infiniteLines"></span></div>
+<div class="box box-1">
+<div class="box-title">Infinite lines</div>
+<div class="paragraph">
+To stop MR WACKER expelling ERIC after 10000 lines:
+</div>
+<div class="paragraph">
+POKE 7528,2 <a href="../asm/1D4A.html#1D67">($1D68,$02)</a>
+</div>
+</div>
+<div><span id="noLines"></span></div>
+<div class="box box-2">
+<div class="box-title">No lines</div>
+<div class="paragraph">
+To prevent teachers from giving lines to ERIC or anyone else:
+</div>
+<div class="paragraph">
+POKE 7607,96 <a href="../asm/1DB7.html">($1DB7,$60)</a>
+</div>
+<div class="paragraph">
+However, that won't prevent MR WACKER from giving ERIC 2000 lines during the
+'special' playtimes (if EINSTEIN tells WACKER what ERIC's up to, or WACKER
+finds the pea-shooter on the fire escape). For that you need:
+</div>
+<div class="paragraph">
+POKE 10127,0 <a href="../asm/277D.html#278E">($278F,$00)</a>
+</div>
+<div class="paragraph">
+One harmless side effect of this POKE is that the lines total will be printed
+as '00' instead of '0' when WACKER delivers his 'TAKE 2000 LINES...' speech.
+</div>
+</div>
+<div><span id="silentSnitch"></span></div>
+<div class="box box-1">
+<div class="box-title">Silent snitch</div>
+<div class="paragraph">
+To make sure that EINSTEIN never tells tales:
+</div>
+<div class="paragraph">
+<div>POKE 2666,8 <a href="../asm/0A58.html#0A68">($0A6A,$08)</a></div>
+<div>POKE 2707,2 <a href="../asm/0A58.html#0A92">($0A93,$02)</a></div>
+</div>
+<div class="paragraph">
+Alternatively, to make the teacher always give lines to EINSTEIN for telling
+tales:
+</div>
+<div class="paragraph">
+POKE 9561,0 <a href="../asm/2552.html#2558">($2559,$00)</a>
+</div>
+</div>
+<div><span id="singleShield"></span></div>
+<div class="box box-2">
+<div class="box-title">Single shield</div>
+<div class="paragraph">
+Hitting all 15 shields before obtaining the safe combination, and then hitting
+all 15 shields again after opening the safe can be hard work for a busy
+skoolboy. To reduce ERIC's task to hitting just one shield (any shield):
+</div>
+<div class="paragraph">
+POKE 11313,1 <a href="../asm/2BB0.html#2C30">($2C31,$01)</a>
+</div>
+<div class="paragraph">
+Note that in order to go up a year, ERIC will have to hit the same shield as he
+hit before opening the safe.
+</div>
+</div>
+<div><span id="unsafeCombination"></span></div>
+<div class="box box-1">
+<div class="box-title">Unsafe combination</div>
+<div class="paragraph">
+Having to knock down the teachers (or, in CREAK's case, discover his year of
+birth and then write it on the blackboard in the classroom he'll be teaching
+in next) in order to obtain the safe combination letters, and then try up to
+six permutations of those letters before hitting the right one, can be a
+tiresome task. How much easier it would be if BOY WONDER and the teachers took
+it upon themselves to reveal the safe combination (stored at <a href="../asm/0090.html">$90</a>) every time
+they wrote on a blackboard:
+</div>
+<div class="paragraph">
+<div>POKE 4426,169 <a href="../asm/1129.html#1149">($114A,$A9)</a></div>
+<div>POKE 4427,0 <a href="../asm/1129.html#1149">($114B,$00)</a></div>
+<div>POKE 4438,169 <a href="../asm/1129.html#1153">($1156,$A9)</a></div>
+<div>POKE 4439,144 <a href="../asm/1129.html#1153">($1157,$90)</a></div>
+</div>
+<div class="paragraph">
+The teachers and BOY WONDER will actually write the safe combination followed
+by CREAK's year of birth on the board, but the birth year can be ignored.
+</div>
+</div>
+<div><span id="seeEricRun"></span></div>
+<div class="box box-2">
+<div class="box-title">See ERIC run</div>
+<div class="paragraph">
+Compared to the ZX Spectrum version, ERIC seems to amble along with no sense of
+urgency at all, which can be rather frustrating (especially when being chased
+back to class by a teacher). To make ERIC pick up the pace a little:
+</div>
+<div class="paragraph">
+<div>POKE 2193,2 <a href="../asm/0800.html#0890">($0891,$02)</a></div>
+<div>POKE 2304,2 <a href="../asm/0800.html#08FF">($0900,$02)</a></div>
+<div>POKE 13938,2 <a href="../asm/365C.html#3671">($3672,$02)</a></div>
+</div>
+</div>
+<div><span id="superCatty"></span></div>
+<div class="box box-1">
+<div class="box-title">Super catapult</div>
+<div class="paragraph">
+To extend the range of the catapult from 13 to N:
+</div>
+<div class="paragraph">
+POKE 11137,N <a href="../asm/2B52.html#2B80">($2B81,N)</a>
+</div>
+<div class="paragraph">
+However, this doesn't extend the 'hit zone' of the pellet (the portion of its
+flight where it can hit something). To change the hit zone from the last 7
+stages of its flight to the last M stages (M=N-6 is a good choice):
+</div>
+<div class="paragraph">
+POKE 4106,M+1 <a href="../asm/0FBA.html#1009">($100A,M+1)</a>
+</div>
+</div>
+<div><span id="throughWalls"></span></div>
+<div class="box box-2">
+<div class="box-title">Walk through walls</div>
+<div class="paragraph">
+To enable ERIC to walk through specific walls:
+</div>
+<div class="paragraph">
+<div>POKE 13702,0 <a href="../asm/3558.html#3585">($3586,$00)</a> (Map Room wall)</div>
+<div>POKE 13715,0 <a href="../asm/3558.html#3592">($3593,$00)</a> (Exam Room wall)</div>
+<div>POKE 13768,0 <a href="../asm/359E.html#35C7">($35C8,$00)</a> (Reading Room wall)</div>
+<div>POKE 13785,0 <a href="../asm/359E.html#35D8">($35D9,$00)</a> (White Room wall)</div>
+<div>POKE 13789,0 <a href="../asm/359E.html#35DC">($35DD,$00)</a> (wall outside the Exam Room door)</div>
+</div>
+</div>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

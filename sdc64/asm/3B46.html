@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $3B46</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3AD5.html">$3AD5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3B46">Map</a></td>
+<td class="next">
+Next: <a href="3B5E.html">$3B5E</a>
+</td>
+</tr>
+</table>
+<div class="description">$3B46: Select a special PLAYTIME occasionally</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6E33.html">$6E33</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="3AD5.html">$3AD5</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">(<a href="0042.html">$42</a>)</td>
+<td class="register-desc">Current lesson identifier</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3B46"></span>$3B46</td>
+<td class="instruction">LDA $42</td>
+<td class="comment-1" rowspan="1">Pick up the current lesson identifier from <a href="0042.html">$42</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B48"></span>$3B48</td>
+<td class="instruction">CMP #$F3</td>
+<td class="comment-1" rowspan="1">Is it less than $F3 (i.e. not a playtime)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B4A"></span>$3B4A</td>
+<td class="instruction">BCC <a href="3B46.html#3B5D">$3B5D</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B4C"></span>$3B4C</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="0046.html">$46</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B4E"></span>$3B4E</td>
+<td class="instruction">BEQ <a href="3B46.html#3B5D">$3B5D</a></td>
+<td class="comment-1" rowspan="1">Return if we're in demo mode.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B50"></span>$3B50</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="2">Generate a random value between 0 and 7.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B53"></span>$3B53</td>
+<td class="instruction">AND #$07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B55"></span>$3B55</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Is it 3 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B57"></span>$3B57</td>
+<td class="instruction">BCS <a href="3B46.html#3B5D">$3B5D</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B59"></span>$3B59</td>
+<td class="instruction">ADC #$F3</td>
+<td class="comment-1" rowspan="1">Now <span class="register">A</span>=<a href="../lessons/F3.html">$F3</a>, <a href="../lessons/F4.html">$F4</a> or <a href="../lessons/F5.html">$F5</a> (one of the 'special' playtimes).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B5B"></span>$3B5B</td>
+<td class="instruction">STA $42</td>
+<td class="comment-1" rowspan="1">Make this special playtime the actual playtime.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3B5D"></span>$3B5D</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3AD5.html">$3AD5</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3B46">Map</a></td>
+<td class="next">
+Next: <a href="3B5E.html">$3B5E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

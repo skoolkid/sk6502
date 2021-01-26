@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $3047</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="302A.html">$302A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3047">Map</a></td>
+<td class="next">
+Next: <a href="3072.html">$3072</a>
+</td>
+</tr>
+</table>
+<div class="description">$3047: Initialise speech bubble sprites</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="2CD9.html">$2CD9</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3047"></span>$3047</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Disable all sprites.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3049"></span>$3049</td>
+<td class="instruction">STA $D015</td>
+</tr>
+<tr>
+<td class="address-1"><span id="304C"></span>$304C</td>
+<td class="instruction">STA $D01D</td>
+<td class="comment-1" rowspan="1">Clear the sprite double width register.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="304F"></span>$304F</td>
+<td class="instruction">LDA #$3C</td>
+<td class="comment-1" rowspan="4">Prepare to address the initial speech bubble sprite graphic data at <a href="3C00.html">$3C00</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3051"></span>$3051</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3053"></span>$3053</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3055"></span>$3055</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3057"></span>$3057</td>
+<td class="instruction">LDA #$C8</td>
+<td class="comment-1" rowspan="4">Prepare to address the runtime speech bubble sprite graphic data at $C800.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3059"></span>$3059</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="305B"></span>$305B</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="305D"></span>$305D</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="305F"></span>$305F</td>
+<td class="instruction">LDX #$04</td>
+<td class="comment-1" rowspan="10">Copy the contents of addresses <a href="3C00.html">$3C00-$3FFF</a> to $C800-$CBFF.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3061"></span>$3061</td>
+<td class="instruction">LDY #$00</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3063"></span>$3063</td>
+<td class="instruction">LDA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3065"></span>$3065</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3067"></span>$3067</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3068"></span>$3068</td>
+<td class="instruction">BNE <a href="3047.html#3063">$3063</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="306A"></span>$306A</td>
+<td class="instruction">INC $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="306C"></span>$306C</td>
+<td class="instruction">INC $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="306E"></span>$306E</td>
+<td class="instruction">DEX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="306F"></span>$306F</td>
+<td class="instruction">BNE <a href="3047.html#3061">$3061</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3071"></span>$3071</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="302A.html">$302A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3047">Map</a></td>
+<td class="next">
+Next: <a href="3072.html">$3072</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

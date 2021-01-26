@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $298B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="292F.html">$292F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#298B">Map</a></td>
+<td class="next">
+Next: <a href="29C8.html">$29C8</a>
+</td>
+</tr>
+</table>
+<div class="description">$298B: Make a stricken teacher reveal his safe combination letter</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="2A43.html">$2A43</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="298B"></span>$298B</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="298D"></span>$298D</td>
+<td class="instruction">CMP #$0B</td>
+<td class="comment-1" rowspan="1">Is it $00-$0A (a little boy)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="298F"></span>$298F</td>
+<td class="instruction">BCC <a href="298B.html#29C7">$29C7</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2991"></span>$2991</td>
+<td class="instruction">CMP #$0E</td>
+<td class="comment-1" rowspan="1">Is the current character number $0B-$0D (a teacher other than MR CREAK)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2993"></span>$2993</td>
+<td class="instruction">BCS <a href="298B.html#29C7">$29C7</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="2995"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="1F29.html">$1F29</a> to make MR CREAK reveal his safe combination letter.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2995"></span>$2995</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Reduce the teacher's character number to 0-3.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2996"></span>$2996</td>
+<td class="instruction">SBC #$0B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2998"></span>$2998</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="3">Pick up the teacher's safe combination letter from <a href="0003.html">$03-$06</a> and store it at <a href="4640.html">$4640</a>. This is the first line in the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2999"></span>$2999</td>
+<td class="instruction">LDA $03,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="299B"></span>$299B</td>
+<td class="instruction">STA $4640</td>
+</tr>
+<tr>
+<td class="address-1"><span id="299E"></span>$299E</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4">Prepare the MSBs of the addresses of the first and second lines in the message at <a href="0084.html#0087">$87</a> and <a href="0084.html#0089">$89</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29A0"></span>$29A0</td>
+<td class="instruction">STA $87</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29A2"></span>$29A2</td>
+<td class="instruction">LDA #$46</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29A4"></span>$29A4</td>
+<td class="instruction">STA $89</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29A6"></span>$29A6</td>
+<td class="instruction">LDA #$20</td>
+<td class="comment-1" rowspan="2">Store a space character at <a href="4640.html#4642">$4642</a>. This is the second line in the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29A8"></span>$29A8</td>
+<td class="instruction">STA $4642</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29AB"></span>$29AB</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="4">Prepare the LSBs of the addresses of the first and second lines in the message at <a href="0084.html#0086">$86</a> and <a href="0084.html#0088">$88</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29AD"></span>$29AD</td>
+<td class="instruction">STA $86</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29AF"></span>$29AF</td>
+<td class="instruction">LDA #$42</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29B1"></span>$29B1</td>
+<td class="instruction">STA $88</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29B3"></span>$29B3</td>
+<td class="instruction">LDA $D015</td>
+<td class="comment-1" rowspan="2">Pick up the current value of the sprite enable register and store it at <a href="00F2.html#00F6">$F6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29B6"></span>$29B6</td>
+<td class="instruction">STA $F6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29B8"></span>$29B8</td>
+<td class="instruction">BEQ <a href="298B.html#29BD">$29BD</a></td>
+<td class="comment-1" rowspan="1">Branch if no sprites are enabled at the moment.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29BA"></span>$29BA</td>
+<td class="instruction">JSR <a href="38AC.html">$38AC</a></td>
+<td class="comment-1" rowspan="1">Back up existing sprite information</td>
+</tr>
+<tr>
+<td class="address-2"><span id="29BD"></span>$29BD</td>
+<td class="instruction">JSR <a href="2043.html">$2043</a></td>
+<td class="comment-1" rowspan="1">Print the safe combination letter above the teacher's head.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29C0"></span>$29C0</td>
+<td class="instruction">LDA $F6</td>
+<td class="comment-1" rowspan="1">Were any sprites enabled before this routine was called?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29C2"></span>$29C2</td>
+<td class="instruction">BEQ <a href="298B.html#29C7">$29C7</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="29C4"></span>$29C4</td>
+<td class="instruction">JSR <a href="38EF.html">$38EF</a></td>
+<td class="comment-1" rowspan="1">Otherwise restore the previous sprite information.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="29C7"></span>$29C7</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="292F.html">$292F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#298B">Map</a></td>
+<td class="next">
+Next: <a href="29C8.html">$29C8</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

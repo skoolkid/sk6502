@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $284F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="27D2.html">$27D2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#284F">Map</a></td>
+<td class="next">
+Next: <a href="2864.html">$2864</a>
+</td>
+</tr>
+</table>
+<div class="description">$284F: Make MR WACKER run to a given location</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by command list <a href="4352.html">$DA</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="284F"></span>$284F</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Set bit 1 of the flags byte at <a href="003F.html">$3F</a>: MR WACKER is running continuously.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2851"></span>$2851</td>
+<td class="instruction">ORA #$02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2853"></span>$2853</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2855"></span>$2855</td>
+<td class="instruction">JSR <a href="3BE7.html">$3BE7</a></td>
+<td class="comment-1" rowspan="3">Collect the destination x-coordinate from the command list, store it at <a href="00A6.html">$A6</a> and transfer it to <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2858"></span>$2858</td>
+<td class="instruction">STA $A6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="285A"></span>$285A</td>
+<td class="instruction">TAX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="285B"></span>$285B</td>
+<td class="instruction">JSR <a href="3BE7.html">$3BE7</a></td>
+<td class="comment-1" rowspan="3">Collect the destination y-coordinate from the command list, store it at <a href="00A6.html#00A7">$A7</a> and transfer it to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="285E"></span>$285E</td>
+<td class="instruction">STA $A7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2860"></span>$2860</td>
+<td class="instruction">TAY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2861"></span>$2861</td>
+<td class="instruction">JMP <a href="12B5.html#12C7">$12C7</a></td>
+<td class="comment-1" rowspan="1">Make MR WACKER go to the location.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="27D2.html">$27D2</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#284F">Map</a></td>
+<td class="next">
+Next: <a href="2864.html">$2864</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

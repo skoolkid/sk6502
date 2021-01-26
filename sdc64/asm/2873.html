@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2873</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2872.html">$2872</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2873">Map</a></td>
+<td class="next">
+Next: <a href="2885.html">$2885</a>
+</td>
+</tr>
+</table>
+<div class="description">$2873: Make a little boy trip people up</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/69F6.html">$69F6</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command lists <a href="42AD.html">$CC</a> and <a href="42CF.html">$CE</a>. The address of this continual subcommand routine is also placed into the stampede leader's buffer by the routine at <a href="2797.html">$2797</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2873"></span>$2873</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the boy's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2875"></span>$2875</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Is the boy midstride?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2876"></span>$2876</td>
+<td class="instruction">BCS <a href="2873.html#2884">$2884</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2878"></span>$2878</td>
+<td class="instruction">JSR <a href="1C8E.html">$1C8E</a></td>
+<td class="comment-1" rowspan="1">Is the boy on a staircase?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="287B"></span>$287B</td>
+<td class="instruction">BCS <a href="2873.html#2884">$2884</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="287D"></span>$287D</td>
+<td class="instruction">LDX $FC</td>
+<td class="comment-1" rowspan="2">Pick up the boy's x- and y-coordinates from <a href="00FB.html#00FC">$FC</a> and <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="287F"></span>$287F</td>
+<td class="instruction">LDY $FB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2881"></span>$2881</td>
+<td class="instruction">JMP <a href="29C8.html">$29C8</a></td>
+<td class="comment-1" rowspan="1">Knock down any potential victim at these coordinates.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2884"></span>$2884</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2872.html">$2872</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2873">Map</a></td>
+<td class="next">
+Next: <a href="2885.html">$2885</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

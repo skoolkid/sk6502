@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Data at $4008</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="4000.html">$4000</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#4008">Map</a></td>
+<td class="next">
+Next: <a href="4071.html">$4071</a>
+</td>
+</tr>
+</table>
+<div class="description">$4008: Screen refresh buffer (SRB)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7F0C.html">$7F0C</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="31EA.html">$31EA</a> and <a href="36E3.html">$36E3</a>. Each byte of the SRB corresponds to a segment of 8 character cells on the screen, the leftmost of which will be at x=0, x=8, x=16, x=24 or x=32. Each bit set in an SRB byte corresponds to a cell in the segment that needs refreshing. Bit 7 corresponds to the leftmost cell in the segment, bit 0 to the rightmost cell.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4008"></span>$4008</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="400D"></span>$400D</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4012"></span>$4012</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4017"></span>$4017</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="401C"></span>$401C</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4021"></span>$4021</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4026"></span>$4026</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="402B"></span>$402B</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4030"></span>$4030</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4035"></span>$4035</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="403A"></span>$403A</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="403F"></span>$403F</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4044"></span>$4044</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4049"></span>$4049</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="404E"></span>$404E</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4053"></span>$4053</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4058"></span>$4058</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="405D"></span>$405D</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4062"></span>$4062</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4067"></span>$4067</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="406C"></span>$406C</td>
+<td class="instruction">.BYTE $00,$00,$00,$00,$00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="4000.html">$4000</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#4008">Map</a></td>
+<td class="next">
+Next: <a href="4071.html">$4071</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

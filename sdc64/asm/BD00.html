@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $BD00</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BCDE.html">$BCDE</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BD00">Map</a></td>
+<td class="next">
+Next: <a href="BE08.html">$BE08</a>
+</td>
+</tr>
+</table>
+<div class="description">$BD00: Manage sound effects</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Called from the main loop at <a href="0800.html">$0800</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD00"></span>$BD00</td>
+<td class="instruction">LDA $2C</td>
+<td class="comment-1" rowspan="1">Pick up the sound effect identifier from <a href="002C.html">$2C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD02"></span>$BD02</td>
+<td class="instruction">CMP #$01</td>
+<td class="comment-1" rowspan="1">Is the shield-hitting sound effect currently playing?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD04"></span>$BD04</td>
+<td class="instruction">BNE <a href="BD00.html#BD09">$BD09</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD06"></span>$BD06</td>
+<td class="instruction">JMP <a href="BD00.html#BD1A">$BD1A</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD09"></span>$BD09</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">Is the jumping sound effect currently playing?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD0B"></span>$BD0B</td>
+<td class="instruction">BNE <a href="BD00.html#BD10">$BD10</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD0D"></span>$BD0D</td>
+<td class="instruction">JMP <a href="BD00.html#BD66">$BD66</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD10"></span>$BD10</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Is the bell ringing?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD12"></span>$BD12</td>
+<td class="instruction">BNE <a href="BD00.html#BD17">$BD17</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD14"></span>$BD14</td>
+<td class="instruction">JMP <a href="BD00.html#BDB2">$BDB2</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD17"></span>$BD17</td>
+<td class="instruction">JMP <a href="BD00.html#BE07">$BE07</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BD1A"></span>
+<div class="comments">
+<div class="paragraph">
+The value at <a href="002C.html">$2C</a> is 1: shield-hitting sound effect.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD1A"></span>$BD1A</td>
+<td class="instruction">DEC $2D</td>
+<td class="comment-1" rowspan="1">Decrement the sound effect timer at <a href="002D.html">$2D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD1C"></span>$BD1C</td>
+<td class="instruction">LDA $2D</td>
+<td class="comment-1" rowspan="2">Is the sound effect timer equal to $10 now?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD1E"></span>$BD1E</td>
+<td class="instruction">CMP #$10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD20"></span>$BD20</td>
+<td class="instruction">BNE <a href="BD00.html#BD3E">$BD3E</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD22"></span>$BD22</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="4">Set voice #2 frequency to $4000.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD24"></span>$BD24</td>
+<td class="instruction">STA $D408</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD27"></span>$BD27</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD29"></span>$BD29</td>
+<td class="instruction">STA $D407</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD2C"></span>$BD2C</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set voice #2 attack length to 2ms and decay length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD2E"></span>$BD2E</td>
+<td class="instruction">STA $D40C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD31"></span>$BD31</td>
+<td class="instruction">LDA #$F0</td>
+<td class="comment-1" rowspan="2">Set voice #2 sustain volume to maximum and release length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD33"></span>$BD33</td>
+<td class="instruction">STA $D40D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD36"></span>$BD36</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="2">Set voice #2 control register: voice on, attack-decay-sustain cycle; triangle waveform enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD38"></span>$BD38</td>
+<td class="instruction">STA $D40B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD3B"></span>$BD3B</td>
+<td class="instruction">JMP <a href="BD00.html#BE07">$BE07</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD3E"></span>$BD3E</td>
+<td class="instruction">CMP #$00</td>
+<td class="comment-1" rowspan="1">Is the sound effect timer equal to 0?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD40"></span>$BD40</td>
+<td class="instruction">BNE <a href="BD00.html#BD55">$BD55</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD42"></span>$BD42</td>
+<td class="instruction">LDA #$FB</td>
+<td class="comment-1" rowspan="2">Set voice #2 sustain volume to maximum and release length to 2.4s.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD44"></span>$BD44</td>
+<td class="instruction">STA $D40D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD47"></span>$BD47</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="2">Set voice #2 control register: voice off, release cycle; triangle waveform enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD49"></span>$BD49</td>
+<td class="instruction">STA $D40B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD4C"></span>$BD4C</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="3">Reset the sound effect identifier at <a href="002C.html">$2C</a> and the sound effect timer at <a href="002D.html">$2D</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD4E"></span>$BD4E</td>
+<td class="instruction">STA $2C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD50"></span>$BD50</td>
+<td class="instruction">STA $2D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD52"></span>$BD52</td>
+<td class="instruction">JMP <a href="BD00.html#BE07">$BE07</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD55"></span>$BD55</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="8">Set <span class="register">A</span> to 192-8*(<a href="002D.html">$2D</a>).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD57"></span>$BD57</td>
+<td class="instruction">SEC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD58"></span>$BD58</td>
+<td class="instruction">SBC $2D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD5A"></span>$BD5A</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD5B"></span>$BD5B</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD5C"></span>$BD5C</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD5D"></span>$BD5D</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD5E"></span>$BD5E</td>
+<td class="instruction">ADC #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD60"></span>$BD60</td>
+<td class="instruction">STA $D408</td>
+<td class="comment-1" rowspan="1">Make this the MSB of voice #2's frequency.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD63"></span>$BD63</td>
+<td class="instruction">JMP <a href="BD00.html#BE07">$BE07</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BD66"></span>
+<div class="comments">
+<div class="paragraph">
+The value at <a href="002C.html">$2C</a> is 2: jumping sound effect.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD66"></span>$BD66</td>
+<td class="instruction">DEC $2D</td>
+<td class="comment-1" rowspan="1">Decrement the sound effect timer at <a href="002D.html">$2D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD68"></span>$BD68</td>
+<td class="instruction">LDA $2D</td>
+<td class="comment-1" rowspan="2">Is the sound effect timer equal to $20 now?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD6A"></span>$BD6A</td>
+<td class="instruction">CMP #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD6C"></span>$BD6C</td>
+<td class="instruction">BNE <a href="BD00.html#BD8A">$BD8A</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD6E"></span>$BD6E</td>
+<td class="instruction">LDA #$A0</td>
+<td class="comment-1" rowspan="4">Set voice #2 frequency to $A000.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD70"></span>$BD70</td>
+<td class="instruction">STA $D408</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD73"></span>$BD73</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD75"></span>$BD75</td>
+<td class="instruction">STA $D407</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD78"></span>$BD78</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set voice #2 attack length to 2ms and decay length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD7A"></span>$BD7A</td>
+<td class="instruction">STA $D40C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD7D"></span>$BD7D</td>
+<td class="instruction">LDA #$F0</td>
+<td class="comment-1" rowspan="2">Set voice #2 sustain volume to maximum and release length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD7F"></span>$BD7F</td>
+<td class="instruction">STA $D40D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD82"></span>$BD82</td>
+<td class="instruction">LDA #$21</td>
+<td class="comment-1" rowspan="2">Set voice #2 control register: voice on, attack-sustain-decay cycle; saw waveform enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD84"></span>$BD84</td>
+<td class="instruction">STA $D40B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD87"></span>$BD87</td>
+<td class="instruction">JMP <a href="BD00.html#BE07">$BE07</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BD8A"></span>$BD8A</td>
+<td class="instruction">CMP #$00</td>
+<td class="comment-1" rowspan="1">Is the sound effect timer equal to 0?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD8C"></span>$BD8C</td>
+<td class="instruction">BNE <a href="BD00.html#BDA1">$BDA1</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD8E"></span>$BD8E</td>
+<td class="instruction">LDA #$F7</td>
+<td class="comment-1" rowspan="2">Set voice #2 sustain volume to maximum and release length to 240ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD90"></span>$BD90</td>
+<td class="instruction">STA $D40D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD93"></span>$BD93</td>
+<td class="instruction">LDA #$20</td>
+<td class="comment-1" rowspan="2">Set voice #2 control register: voice off, release cycle; saw waveform enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD95"></span>$BD95</td>
+<td class="instruction">STA $D40B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD98"></span>$BD98</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="3">Reset the sound effect identifier at <a href="002C.html">$2C</a> and the sound effect timer at <a href="002D.html">$2D</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD9A"></span>$BD9A</td>
+<td class="instruction">STA $2C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD9C"></span>$BD9C</td>
+<td class="instruction">STA $2D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BD9E"></span>$BD9E</td>
+<td class="instruction">JMP <a href="BD00.html#BE07">$BE07</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BDA1"></span>$BDA1</td>
+<td class="instruction">STA $57</td>
+<td class="comment-1" rowspan="7">Set <span class="register">A</span> to 224-2*(<a href="002D.html">$2D</a>).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDA3"></span>$BDA3</td>
+<td class="instruction">LDA #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDA5"></span>$BDA5</td>
+<td class="instruction">SEC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDA6"></span>$BDA6</td>
+<td class="instruction">SBC $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDA8"></span>$BDA8</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDA9"></span>$BDA9</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDAA"></span>$BDAA</td>
+<td class="instruction">ADC #$A0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDAC"></span>$BDAC</td>
+<td class="instruction">STA $D408</td>
+<td class="comment-1" rowspan="1">Make this the MSB of voice #2's frequency.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDAF"></span>$BDAF</td>
+<td class="instruction">JMP <a href="BD00.html#BE07">$BE07</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BDB2"></span>
+<div class="comments">
+<div class="paragraph">
+The value at <a href="002C.html">$2C</a> is 3: lesson bell sound effect.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BDB2"></span>$BDB2</td>
+<td class="instruction">DEC $2D</td>
+<td class="comment-1" rowspan="1">Decrement the sound effect timer at <a href="002D.html">$2D</a>($2D).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDB4"></span>$BDB4</td>
+<td class="instruction">LDA $2D</td>
+<td class="comment-1" rowspan="2">Is the sound effect timer equal to $20?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDB6"></span>$BDB6</td>
+<td class="instruction">CMP #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDB8"></span>$BDB8</td>
+<td class="instruction">BNE <a href="BD00.html#BDE0">$BDE0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDBA"></span>$BDBA</td>
+<td class="instruction">LDA #$38</td>
+<td class="comment-1" rowspan="4">Set voice #2 frequency to $3800.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDBC"></span>$BDBC</td>
+<td class="instruction">STA $D408</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDBF"></span>$BDBF</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDC1"></span>$BDC1</td>
+<td class="instruction">STA $D407</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDC4"></span>$BDC4</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set voice #2 attack length to 2ms and decay length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDC6"></span>$BDC6</td>
+<td class="instruction">STA $D40C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDC9"></span>$BDC9</td>
+<td class="instruction">LDA #$F0</td>
+<td class="comment-1" rowspan="2">Set voice #2 sustain volume to maximum and release length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDCB"></span>$BDCB</td>
+<td class="instruction">STA $D40D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDCE"></span>$BDCE</td>
+<td class="instruction">LDA #$43</td>
+<td class="comment-1" rowspan="4">Set voice #2 pulse width to $4350.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDD0"></span>$BDD0</td>
+<td class="instruction">STA $D40A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDD3"></span>$BDD3</td>
+<td class="instruction">LDA #$50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDD5"></span>$BDD5</td>
+<td class="instruction">STA $D409</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDD8"></span>$BDD8</td>
+<td class="instruction">LDA #$41</td>
+<td class="comment-1" rowspan="2">Set voice #2 control register: voice on, attack-decay-sustain cycle; rectangle waveform enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDDA"></span>$BDDA</td>
+<td class="instruction">STA $D40B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDDD"></span>$BDDD</td>
+<td class="instruction">JMP <a href="BD00.html#BE07">$BE07</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BDE0"></span>$BDE0</td>
+<td class="instruction">CMP #$00</td>
+<td class="comment-1" rowspan="1">Is the sound effect timer equal to 0?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDE2"></span>$BDE2</td>
+<td class="instruction">BNE <a href="BD00.html#BDF7">$BDF7</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDE4"></span>$BDE4</td>
+<td class="instruction">LDA #$F4</td>
+<td class="comment-1" rowspan="2">Set voice #2 sustain volume to maximum and release length to 114ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDE6"></span>$BDE6</td>
+<td class="instruction">STA $D40D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDE9"></span>$BDE9</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="2">Set voice #2 control register: voice off, release cycle; rectangle waveform enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDEB"></span>$BDEB</td>
+<td class="instruction">STA $D40B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDEE"></span>$BDEE</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="3">Reset the sound effect identifier at <a href="002C.html">$2C</a> and the sound effect timer at <a href="002D.html">$2D</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDF0"></span>$BDF0</td>
+<td class="instruction">STA $2C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDF2"></span>$BDF2</td>
+<td class="instruction">STA $2D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDF4"></span>$BDF4</td>
+<td class="instruction">JMP <a href="BD00.html#BE07">$BE07</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BDF7"></span>$BDF7</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Is the sound effect timer value even?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDF8"></span>$BDF8</td>
+<td class="instruction">BCC <a href="BD00.html#BDFF">$BDFF</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDFA"></span>$BDFA</td>
+<td class="instruction">LDA #$39</td>
+<td class="comment-1" rowspan="1">This will be the MSB of voice 2's frequency.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BDFC"></span>$BDFC</td>
+<td class="instruction">JMP <a href="BD00.html#BE01">$BE01</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BDFF"></span>$BDFF</td>
+<td class="instruction">LDA #$37</td>
+<td class="comment-1" rowspan="1">This will be the MSB of voice 2's frequency.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BE01"></span>$BE01</td>
+<td class="instruction">STA $D408</td>
+<td class="comment-1" rowspan="1">Set the MSB of voice #2's frequency to $37 or $39.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE04"></span>$BE04</td>
+<td class="instruction">JMP <a href="BD00.html#BE07">$BE07</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BE07"></span>$BE07</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BCDE.html">$BCDE</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BD00">Map</a></td>
+<td class="next">
+Next: <a href="BE08.html">$BE08</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

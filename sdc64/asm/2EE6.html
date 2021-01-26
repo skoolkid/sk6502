@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2EE6</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2E13.html">$2E13</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2EE6">Map</a></td>
+<td class="next">
+Next: <a href="2F20.html">$2F20</a>
+</td>
+</tr>
+</table>
+<div class="description">$2EE6: Get the screen bitmap and colour information addresses for a play area tile</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="3326.html">$3326</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">(<a href="0027.html">$27</a>)</td>
+<td class="register-desc">Play area x-coordinate</td>
+</tr>
+<tr>
+<td class="register">(<a href="0027.html#0028">$28</a>)</td>
+<td class="register-desc">Play area y-coordinate</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">(<a href="005A.html">$5A,$5B</a>)</td>
+<td class="register-desc">Screen bitmap address</td>
+</tr>
+<tr>
+<td class="register">(<a href="005A.html#005C">$5C,$5D</a>)</td>
+<td class="register-desc">Colour information address</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2EE6"></span>$2EE6</td>
+<td class="instruction">LDA $27</td>
+<td class="comment-1" rowspan="1">Pick up the x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EE8"></span>$2EE8</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract the x-coordinate of the leftmost column of the skool on screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EE9"></span>$2EE9</td>
+<td class="instruction">SBC $58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EEB"></span>$2EEB</td>
+<td class="instruction">STA $5A</td>
+<td class="comment-1" rowspan="1">Store this relative x-coordinate at <a href="005A.html">$5A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EED"></span>$2EED</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Initialise <a href="005A.html#005D">$5D</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EEF"></span>$2EEF</td>
+<td class="instruction">STA $5D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EF1"></span>$2EF1</td>
+<td class="instruction">LDA $28</td>
+<td class="comment-1" rowspan="1">Pick up the y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EF3"></span>$2EF3</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="8">Multiply it by 40, storing bits 8 and 9 of the result at <a href="005A.html#005D">$5D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EF4"></span>$2EF4</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EF5"></span>$2EF5</td>
+<td class="instruction">ADC $28</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EF7"></span>$2EF7</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EF8"></span>$2EF8</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EF9"></span>$2EF9</td>
+<td class="instruction">ROL $5D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EFB"></span>$2EFB</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EFC"></span>$2EFC</td>
+<td class="instruction">ROL $5D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2EFE"></span>$2EFE</td>
+<td class="instruction">ADC $5A</td>
+<td class="comment-1" rowspan="1">Add the relative x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F00"></span>$2F00</td>
+<td class="instruction">STA $5A</td>
+<td class="comment-1" rowspan="1">Store the relative x-coordinate at <a href="005A.html">$5A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F02"></span>$2F02</td>
+<td class="instruction">STA $5C</td>
+<td class="comment-1" rowspan="3">Add the relative x-coordinate to the value at <a href="005A.html#005C">$5C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F04"></span>$2F04</td>
+<td class="instruction">BCC <a href="2EE6.html#2F08">$2F08</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F06"></span>$2F06</td>
+<td class="instruction">INC $5D</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="2F08"></span>
+<div class="comments">
+<div class="paragraph">
+Now the two-byte value at <a href="005A.html#005C">$5C</a> is equal to 40y+x, where (x,y) are the screen coordinates corresponding to the input play area coordinates. This is the index of the tile, counting row by row from the top left of the screen.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2F08"></span>$2F08</td>
+<td class="instruction">LDA $5D</td>
+<td class="comment-1" rowspan="9">Multiply the tile index by 8, add $E000 (the base address of the screen bitmap), and store the result at <a href="005A.html">$5A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F0A"></span>$2F0A</td>
+<td class="instruction">ASL $5A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F0C"></span>$2F0C</td>
+<td class="instruction">ROL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F0D"></span>$2F0D</td>
+<td class="instruction">ASL $5A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F0F"></span>$2F0F</td>
+<td class="instruction">ROL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F10"></span>$2F10</td>
+<td class="instruction">ASL $5A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F12"></span>$2F12</td>
+<td class="instruction">ROL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F13"></span>$2F13</td>
+<td class="instruction">ADC #$E0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F15"></span>$2F15</td>
+<td class="instruction">STA $5B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F17"></span>$2F17</td>
+<td class="instruction">LDA $5D</td>
+<td class="comment-1" rowspan="3">Add $CC00 (the base address of the colour information) to the tile index at <a href="005A.html#005C">$5C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F19"></span>$2F19</td>
+<td class="instruction">ADC #$CC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F1B"></span>$2F1B</td>
+<td class="instruction">STA $5D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F1D"></span>$2F1D</td>
+<td class="instruction">ADC #$28</td>
+<td class="comment-1" rowspan="1">Add 40 to <span class="register">A</span> for no good reason.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2F1F"></span>$2F1F</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2E13.html">$2E13</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2EE6">Map</a></td>
+<td class="next">
+Next: <a href="2F20.html">$2F20</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2B3F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2B21.html">$2B21</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2B3F">Map</a></td>
+<td class="next">
+Next: <a href="2B52.html">$2B52</a>
+</td>
+</tr>
+</table>
+<div class="description">$2B3F: Make BOY WONDER fire his catapult (2)</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/703D.html">$703D</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this uninterruptible subcommand routine is placed into BOY WONDER's buffer by the routine at <a href="2B21.html">$2B21</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2B3F"></span>$2B3F</td>
+<td class="instruction">LDA #$2B</td>
+<td class="comment-1" rowspan="4">Replace the address of this uninterruptible subcommand routine in BOY WONDER's buffer with that of <a href="2B52.html">$2B52</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B41"></span>$2B41</td>
+<td class="instruction">STA $B1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B43"></span>$2B43</td>
+<td class="instruction">LDA #$52</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B45"></span>$2B45</td>
+<td class="instruction">STA $B0</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="2B47"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="17E5.html">$17E5</a> and <a href="191B.html">$191B</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2B47"></span>$2B47</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B4A"></span>$2B4A</td>
+<td class="instruction">INC $26</td>
+<td class="comment-1" rowspan="1">Increment the character's animatory state to the next action phase.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B4C"></span>$2B4C</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2B4F"></span>$2B4F</td>
+<td class="instruction">JMP <a href="2B9F.html#2BAF">$2BAF</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2B21.html">$2B21</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2B3F">Map</a></td>
+<td class="next">
+Next: <a href="2B52.html">$2B52</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

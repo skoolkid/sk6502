@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $BAB4</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BAA3.html">$BAA3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BAB4">Map</a></td>
+<td class="next">
+Next: <a href="BBB4.html">$BBB4</a>
+</td>
+</tr>
+</table>
+<div class="description">$BAB4: Tune-playing interrupt routine</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+The address of this routine is placed at $FFFE by the routines at <a href="BA00.html">$BA00</a> and <a href="BA48.html">$BA48</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BAB4"></span>$BAB4</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Push <span class="register">A</span> onto the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAB5"></span>$BAB5</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="2">Push <span class="register">X</span> onto the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAB6"></span>$BAB6</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAB7"></span>$BAB7</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="2">Push <span class="register">Y</span> onto the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAB8"></span>$BAB8</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAB9"></span>$BAB9</td>
+<td class="instruction">INC $BBCA</td>
+<td class="comment-1" rowspan="2">Increment the timing counter at <a href="BBB4.html#BBCA">$BBCA</a> and pick up the new value.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BABC"></span>$BABC</td>
+<td class="instruction">LDA $BBCA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BABF"></span>$BABF</td>
+<td class="instruction">CMP #$04</td>
+<td class="comment-1" rowspan="1">Is it 4?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAC1"></span>$BAC1</td>
+<td class="instruction">BEQ <a href="BAB4.html#BAC6">$BAC6</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAC3"></span>$BAC3</td>
+<td class="instruction">JMP <a href="BAB4.html#BBB1">$BBB1</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump to the regular interrupt routine.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BAC6"></span>$BAC6</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1"><span class="register">X</span> indicates the voice being dealt with.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAC8"></span>$BAC8</td>
+<td class="instruction">STX $BBCA</td>
+<td class="comment-1" rowspan="1">Reset the timing counter at <a href="BBB4.html#BBCA">$BBCA</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BACB"></span>$BACB</td>
+<td class="instruction">STX $4E</td>
+<td class="comment-1" rowspan="1">Pointlessly store <span class="register">X</span> at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BACD"></span>$BACD</td>
+<td class="instruction">STX $BBBF</td>
+<td class="comment-1" rowspan="1">Save the voice indicator at <a href="BBB4.html#BBBF">$BBBF</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAD0"></span>$BAD0</td>
+<td class="instruction">LDA $BBC6,X</td>
+<td class="comment-1" rowspan="4">Copy the tune data address for the current voice to <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAD3"></span>$BAD3</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAD5"></span>$BAD5</td>
+<td class="instruction">LDA $BBC3,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAD8"></span>$BAD8</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BADA"></span>$BADA</td>
+<td class="instruction">LDA $BBB6,X</td>
+<td class="comment-1" rowspan="1">Is it time to play the next note for the current voice?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BADD"></span>$BADD</td>
+<td class="instruction">BEQ <a href="BAB4.html#BAE5">$BAE5</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BADF"></span>$BADF</td>
+<td class="instruction">DEC $BBB6,X</td>
+<td class="comment-1" rowspan="1">Decrement the note duration counter for the current voice.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAE2"></span>$BAE2</td>
+<td class="instruction">JMP <a href="BAB4.html#BB6B">$BB6B</a></td>
+<td class="comment-1" rowspan="1">Jump forward to consider the next voice.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BAE5"></span>$BAE5</td>
+<td class="instruction">LDA $BBCB,X</td>
+<td class="comment-1" rowspan="1">Pick up the stored value of the control register for the current voice.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAE8"></span>$BAE8</td>
+<td class="instruction">AND #$FE</td>
+<td class="comment-1" rowspan="1">Reset bit 0: voice off, release cycle.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAEA"></span>$BAEA</td>
+<td class="instruction">CPX #$02</td>
+<td class="comment-1" rowspan="1">Are we dealing with voice #3?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAEC"></span>$BAEC</td>
+<td class="instruction">BEQ <a href="BAB4.html#BAFE">$BAFE</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAEE"></span>$BAEE</td>
+<td class="instruction">CPX #$01</td>
+<td class="comment-1" rowspan="1">Are we dealing with voice #2?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAF0"></span>$BAF0</td>
+<td class="instruction">BEQ <a href="BAB4.html#BAF8">$BAF8</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAF2"></span>$BAF2</td>
+<td class="instruction">STA $D404</td>
+<td class="comment-1" rowspan="1">Set voice #1 control register: voice off, release cycle.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAF5"></span>$BAF5</td>
+<td class="instruction">JMP <a href="BAB4.html#BB01">$BB01</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BAF8"></span>$BAF8</td>
+<td class="instruction">STA $D40B</td>
+<td class="comment-1" rowspan="1">Set voice #2 control register: voice off, release cycle.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAFB"></span>$BAFB</td>
+<td class="instruction">JMP <a href="BAB4.html#BB01">$BB01</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BAFE"></span>$BAFE</td>
+<td class="instruction">STA $D412</td>
+<td class="comment-1" rowspan="1">Set voice #3 control register: voice off, release cycle.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB01"></span>$BB01</td>
+<td class="instruction">JSR <a href="BAA3.html">$BAA3</a></td>
+<td class="comment-1" rowspan="1">Collect a byte (the note frequency specifier) from the tune data table.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB04"></span>$BB04</td>
+<td class="instruction">STA $BBB4</td>
+<td class="comment-1" rowspan="1">Store the note frequency specifier at <a href="BBB4.html">$BBB4</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB07"></span>$BB07</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Have we reached the end of the tune data table for this voice?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB08"></span>$BB08</td>
+<td class="instruction">BCS <a href="BAB4.html#BB60">$BB60</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB0A"></span>$BB0A</td>
+<td class="instruction">JSR <a href="BAA3.html">$BAA3</a></td>
+<td class="comment-1" rowspan="1">Collect the next byte (the note duration specifier) from the tune data table.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB0D"></span>$BB0D</td>
+<td class="instruction">STA $BBB6,X</td>
+<td class="comment-1" rowspan="2">Store the note duration specifier at the appropriate location for the current voice and decrement it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB10"></span>$BB10</td>
+<td class="instruction">DEC $BBB6,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB13"></span>$BB13</td>
+<td class="instruction">LDA $BBB4</td>
+<td class="comment-1" rowspan="1">Pick up the note frequency specifier just collected from the tune data table; call it F.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB16"></span>$BB16</td>
+<td class="instruction">BEQ <a href="BAB4.html#BB55">$BB55</a></td>
+<td class="comment-1" rowspan="1">Branch if F is zero (this never happens).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB18"></span>$BB18</td>
+<td class="instruction">AND #$F0</td>
+<td class="comment-1" rowspan="10">Store 7-F/16 at <a href="BBB4.html#BBB5">$BBB5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB1A"></span>$BB1A</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB1B"></span>$BB1B</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB1C"></span>$BB1C</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB1D"></span>$BB1D</td>
+<td class="instruction">LSR A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB1E"></span>$BB1E</td>
+<td class="instruction">STA $BBB5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB21"></span>$BB21</td>
+<td class="instruction">LDA #$07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB23"></span>$BB23</td>
+<td class="instruction">SEC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB24"></span>$BB24</td>
+<td class="instruction">SBC $BBB5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB27"></span>$BB27</td>
+<td class="instruction">STA $BBB5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB2A"></span>$BB2A</td>
+<td class="instruction">LDA $BBB4</td>
+<td class="comment-1" rowspan="1">Pick up the note frequency specifier (F) again.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB2D"></span>$BB2D</td>
+<td class="instruction">AND #$0F</td>
+<td class="comment-1" rowspan="2">Bits 0-3 of F indicate the base note frequency. Transfer them to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB2F"></span>$BB2F</td>
+<td class="instruction">TAY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB30"></span>$BB30</td>
+<td class="instruction">LDA $BBD4,Y</td>
+<td class="comment-1" rowspan="4">Pick up the corresponding frequency value from the table at <a href="BBD4.html">$BBD4</a> and copy it into the tune buffer at the appropriate location for the current voice.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB33"></span>$BB33</td>
+<td class="instruction">STA $BBB9,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB36"></span>$BB36</td>
+<td class="instruction">LDA $BBE0,Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB39"></span>$BB39</td>
+<td class="instruction">STA $BBBC,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB3C"></span>$BB3C</td>
+<td class="instruction">LDY $BBB5</td>
+<td class="comment-1" rowspan="1">Pick up 7-F/16 from <a href="BBB4.html#BBB5">$BBB5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB3F"></span>$BB3F</td>
+<td class="instruction">BEQ <a href="BAB4.html#BB4A">$BB4A</a></td>
+<td class="comment-1" rowspan="1">Branch if it's zero (this never happens).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB41"></span>$BB41</td>
+<td class="instruction">LSR $BBBC,X</td>
+<td class="comment-1" rowspan="4">Divide the frequency by 2**(7-F/16).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB44"></span>$BB44</td>
+<td class="instruction">ROR $BBB9,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB47"></span>$BB47</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB48"></span>$BB48</td>
+<td class="instruction">BNE <a href="BAB4.html#BB41">$BB41</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB4A"></span>$BB4A</td>
+<td class="instruction">LDA $BBCB,X</td>
+<td class="comment-1" rowspan="3">Set bit 0 of the stored control register for the current voice: voice on, attack-decay-sustain cycle.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB4D"></span>$BB4D</td>
+<td class="instruction">ORA #$01</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB4F"></span>$BB4F</td>
+<td class="instruction">STA $BBCB,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB52"></span>$BB52</td>
+<td class="instruction">JMP <a href="BAB4.html#BB6B">$BB6B</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB55"></span>$BB55</td>
+<td class="instruction">LDA $BBCB,X</td>
+<td class="comment-1" rowspan="3">Reset bit 0 of the stored control register for the current voice: voice off, release cycle.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB58"></span>$BB58</td>
+<td class="instruction">AND #$FE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB5A"></span>$BB5A</td>
+<td class="instruction">STA $BBCB,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB5D"></span>$BB5D</td>
+<td class="instruction">JMP <a href="BAB4.html#BB6B">$BB6B</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB60"></span>$BB60</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="2">Set the tune status indicator at <a href="BBB4.html#BBCE">$BBCE</a> to $FF: the tune has finished playing.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB62"></span>$BB62</td>
+<td class="instruction">STA $BBCE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB65"></span>$BB65</td>
+<td class="instruction">JMP <a href="BAB4.html#BBB1">$BBB1</a></td>
+<td class="comment-1" rowspan="1">Jump to the regular interrupt routine.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB68"></span>$BB68</td>
+<td class="instruction">LDX $BBBF</td>
+<td class="comment-1" rowspan="1">Pick up the voice indicator (0, 1, 2) from <a href="BBB4.html#BBBF">$BBBF</a>. This instruction is never executed.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB6B"></span>$BB6B</td>
+<td class="instruction">LDA $4F</td>
+<td class="comment-1" rowspan="2">Copy the tune data table address MSB from <a href="004D.html#004E">$4F</a> into the tune buffer in case it was incremented.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB6D"></span>$BB6D</td>
+<td class="instruction">STA $BBC6,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB70"></span>$BB70</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">Next voice.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB71"></span>$BB71</td>
+<td class="instruction">CPX #$03</td>
+<td class="comment-1" rowspan="1">Have we done voices #1, #2 and #3 now?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB73"></span>$BB73</td>
+<td class="instruction">BEQ <a href="BAB4.html#BB78">$BB78</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB75"></span>$BB75</td>
+<td class="instruction">JMP <a href="BAB4.html#BACD">$BACD</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump back to deal with the next voice.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BB78"></span>$BB78</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1"><span class="register">X</span>=2 (voice #3).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB79"></span>$BB79</td>
+<td class="instruction">LDA $BBB9,X</td>
+<td class="comment-1" rowspan="4">Set voice #3 frequency.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB7C"></span>$BB7C</td>
+<td class="instruction">STA $D40E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB7F"></span>$BB7F</td>
+<td class="instruction">LDA $BBBC,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB82"></span>$BB82</td>
+<td class="instruction">STA $D40F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB85"></span>$BB85</td>
+<td class="instruction">LDA $BBCB,X</td>
+<td class="comment-1" rowspan="2">Set voice #3 control register.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB88"></span>$BB88</td>
+<td class="instruction">STA $D412</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB8B"></span>$BB8B</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1"><span class="register">X</span>=1 (voice #2).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB8C"></span>$BB8C</td>
+<td class="instruction">LDA $BBB9,X</td>
+<td class="comment-1" rowspan="4">Set voice #2 frequency.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB8F"></span>$BB8F</td>
+<td class="instruction">STA $D407</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB92"></span>$BB92</td>
+<td class="instruction">LDA $BBBC,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB95"></span>$BB95</td>
+<td class="instruction">STA $D408</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB98"></span>$BB98</td>
+<td class="instruction">LDA $BBCB,X</td>
+<td class="comment-1" rowspan="2">Set voice #2 control register.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB9B"></span>$BB9B</td>
+<td class="instruction">STA $D40B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB9E"></span>$BB9E</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1"><span class="register">X</span>=0 (voice #1).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BB9F"></span>$BB9F</td>
+<td class="instruction">LDA $BBB9,X</td>
+<td class="comment-1" rowspan="4">Set voice #1 frequency.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBA2"></span>$BBA2</td>
+<td class="instruction">STA $D400</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBA5"></span>$BBA5</td>
+<td class="instruction">LDA $BBBC,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBA8"></span>$BBA8</td>
+<td class="instruction">STA $D401</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBAB"></span>$BBAB</td>
+<td class="instruction">LDA $BBCB,X</td>
+<td class="comment-1" rowspan="2">Set voice #1 control register.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BBAE"></span>$BBAE</td>
+<td class="instruction">STA $D404</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BBB1"></span>$BBB1</td>
+<td class="instruction">JMP <a href="39C7.html#39CC">$39CC</a></td>
+<td class="comment-1" rowspan="1">Jump to the regular interrupt routine.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BAA3.html">$BAA3</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BAB4">Map</a></td>
+<td class="next">
+Next: <a href="BBB4.html">$BBB4</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

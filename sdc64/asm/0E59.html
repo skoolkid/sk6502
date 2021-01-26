@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $0E59</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0E58.html">$0E58</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0E59">Map</a></td>
+<td class="next">
+Next: <a href="0EB4.html">$0EB4</a>
+</td>
+</tr>
+</table>
+<div class="description">$0E59: Check whether a boy can be seen by a teacher</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6E3C.html">$6E3C</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="149F.html">$149F</a>, <a href="191B.html">$191B</a>, <a href="270D.html">$270D</a> and <a href="2CA5.html">$2CA5</a>.
+</div>
+</div>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">P</td>
+<td class="register-desc">Carry flag set if the boy can be seen by a teacher</td>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Teacher's character number ($0B-$0E)</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0E59"></span>$0E59</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=$FF, corresponding to no particular teacher.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0E5B"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="149F.html">$149F</a> with <span class="register">A</span> holding a teacher's character number.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0E5B"></span>$0E5B</td>
+<td class="instruction">STA $78</td>
+<td class="comment-1" rowspan="1">Store $FF or the teacher's character number at <a href="0072.html#0078">$78</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E5D"></span>$0E5D</td>
+<td class="instruction">JSR <a href="0BAC.html">$0BAC</a></td>
+<td class="comment-1" rowspan="1">Compute the coordinate ranges within which the boy can be seen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E60"></span>$0E60</td>
+<td class="instruction">LDA #$0B</td>
+<td class="comment-1" rowspan="1">Character number $0B is MR WACKER.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E62"></span>$0E62</td>
+<td class="instruction">STA $07</td>
+<td class="comment-1" rowspan="1">Store the teacher's character number at <a href="0007.html">$07</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0E64"></span>$0E64</td>
+<td class="instruction">CMP $78</td>
+<td class="comment-1" rowspan="1">Does this teacher's character number match the one at <a href="0072.html#0078">$78</a>?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E66"></span>$0E66</td>
+<td class="instruction">BEQ <a href="0E59.html#0EA3">$0EA3</a></td>
+<td class="comment-1" rowspan="1">Branch if so to skip this teacher.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E68"></span>$0E68</td>
+<td class="instruction">JSR <a href="0D67.html">$0D67</a></td>
+<td class="comment-1" rowspan="1">Can the teacher see the boy?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E6B"></span>$0E6B</td>
+<td class="instruction">BCC <a href="0E59.html#0EA3">$0EA3</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E6D"></span>$0E6D</td>
+<td class="instruction">LDA #$78</td>
+<td class="comment-1" rowspan="6">Store the base address of the teacher's character buffer at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E6F"></span>$0E6F</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E70"></span>$0E70</td>
+<td class="instruction">ADC $07</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E72"></span>$0E72</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E74"></span>$0E74</td>
+<td class="instruction">LDA #$60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E76"></span>$0E76</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E78"></span>$0E78</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="3">Pick up the teacher's animatory state and store it at <a href="0007.html#000A">$0A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E7A"></span>$0E7A</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E7C"></span>$0E7C</td>
+<td class="instruction">STA $0A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E7E"></span>$0E7E</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="3">Pick up the teacher's x-coordinate and store it at <a href="0007.html#000B">$0B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E7F"></span>$0E7F</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E81"></span>$0E81</td>
+<td class="instruction">STA $0B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E83"></span>$0E83</td>
+<td class="instruction">LDY #$10</td>
+<td class="comment-1" rowspan="2">Is the teacher currently controlled by an uninterruptible subcommand routine?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E85"></span>$0E85</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E87"></span>$0E87</td>
+<td class="instruction">BNE <a href="0E59.html#0EA3">$0EA3</a></td>
+<td class="comment-1" rowspan="1">Consider the next teacher if so (this one is busy).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E89"></span>$0E89</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the boy's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E8B"></span>$0E8B</td>
+<td class="instruction">INC $0B</td>
+<td class="comment-1" rowspan="2">Is the boy's x-coordinate greater than the teacher's?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E8D"></span>$0E8D</td>
+<td class="instruction">CMP $0B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E8F"></span>$0E8F</td>
+<td class="instruction">BCS <a href="0E59.html#0E9A">$0E9A</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E91"></span>$0E91</td>
+<td class="instruction">LDA $0A</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E93"></span>$0E93</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is the teacher facing the boy?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E94"></span>$0E94</td>
+<td class="instruction">BCS <a href="0E59.html#0EA3">$0EA3</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E96"></span>$0E96</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">Set the carry flag: the boy can be seen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E97"></span>$0E97</td>
+<td class="instruction">JMP <a href="0E59.html#0EB1">$0EB1</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0E9A"></span>$0E9A</td>
+<td class="instruction">LDA $0A</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E9C"></span>$0E9C</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is the teacher facing the boy?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E9D"></span>$0E9D</td>
+<td class="instruction">BCC <a href="0E59.html#0EA3">$0EA3</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0E9F"></span>$0E9F</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">Set the carry flag: the boy can be seen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EA0"></span>$0EA0</td>
+<td class="instruction">JMP <a href="0E59.html#0EB1">$0EB1</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0EA3"></span>$0EA3</td>
+<td class="instruction">LDA $07</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's character number.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EA5"></span>$0EA5</td>
+<td class="instruction">CMP #$0E</td>
+<td class="comment-1" rowspan="1">Have we checked all four teachers yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EA7"></span>$0EA7</td>
+<td class="instruction">BEQ <a href="0E59.html#0EB0">$0EB0</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EA9"></span>$0EA9</td>
+<td class="instruction">INC $07</td>
+<td class="comment-1" rowspan="1">Next teacher.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EAB"></span>$0EAB</td>
+<td class="instruction">LDA $07</td>
+<td class="comment-1" rowspan="1">Pick up the next teacher's character number.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EAD"></span>$0EAD</td>
+<td class="instruction">JMP <a href="0E59.html#0E64">$0E64</a></td>
+<td class="comment-1" rowspan="1">Jump back to consider him.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0EB0"></span>$0EB0</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">Clear the carry flag: the boy cannot be seen.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0EB1"></span>$0EB1</td>
+<td class="instruction">LDA $07</td>
+<td class="comment-1" rowspan="1">Pick up the teacher's character number.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0EB3"></span>$0EB3</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0E58.html">$0E58</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0E59">Map</a></td>
+<td class="next">
+Next: <a href="0EB4.html">$0EB4</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

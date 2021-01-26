@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1D4A</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1D49.html">$1D49</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1D4A">Map</a></td>
+<td class="next">
+Next: <a href="1DB6.html">$1DB6</a>
+</td>
+</tr>
+</table>
+<div class="description">$1D4A: Add to ERIC's lines total and print it</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="1DB7.html">$1DB7</a> and <a href="277D.html">$277D</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Number of lines to add (divided by 10)</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1D4A"></span>$1D4A</td>
+<td class="instruction">STA $57</td>
+<td class="comment-1" rowspan="1">Store the number of lines to add at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D4C"></span>$1D4C</td>
+<td class="instruction">LDA $7F</td>
+<td class="comment-1" rowspan="1">Pick up the MSB of the lines total from <a href="007E.html#007F">$7F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D4E"></span>$1D4E</td>
+<td class="instruction">CMP #$04</td>
+<td class="comment-1" rowspan="1">Is it 4 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D50"></span>$1D50</td>
+<td class="instruction">BCS <a href="1D4A.html#1DA2">$1DA2</a></td>
+<td class="comment-1" rowspan="1">Branch if so (the lines total is at least 10240).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D52"></span>$1D52</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Is the MSB of the lines total equal to 3?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D54"></span>$1D54</td>
+<td class="instruction">BNE <a href="1D4A.html#1D5C">$1D5C</a></td>
+<td class="comment-1" rowspan="1">Branch if not (the lines total is less than 7680).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D56"></span>$1D56</td>
+<td class="instruction">LDA $7E</td>
+<td class="comment-1" rowspan="1">Pick up the LSB of the lines total from <a href="007E.html">$7E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D58"></span>$1D58</td>
+<td class="instruction">CMP #$E8</td>
+<td class="comment-1" rowspan="1">Is the lines total 10000 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D5A"></span>$1D5A</td>
+<td class="instruction">BCS <a href="1D4A.html#1DA2">$1DA2</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1D5C"></span>$1D5C</td>
+<td class="instruction">LDA $7E</td>
+<td class="comment-1" rowspan="6">Increase the lines total at <a href="007E.html">$7E</a> by the value stored at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D5E"></span>$1D5E</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D5F"></span>$1D5F</td>
+<td class="instruction">ADC $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D61"></span>$1D61</td>
+<td class="instruction">BCC <a href="1D4A.html#1D65">$1D65</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D63"></span>$1D63</td>
+<td class="instruction">INC $7F</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1D65"></span>$1D65</td>
+<td class="instruction">STA $7E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D67"></span>$1D67</td>
+<td class="instruction">LDA $7F</td>
+<td class="comment-1" rowspan="1">Pick up the MSB of the lines total from <a href="007E.html#007F">$7F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D69"></span>$1D69</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Compare the MSB of the lines total with 3.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D6B"></span>$1D6B</td>
+<td class="instruction">BCC <a href="1D4A.html#1DAD">$1DAD</a></td>
+<td class="comment-1" rowspan="1">Branch if it's less than 3 (the lines total is less than 7680).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D6D"></span>$1D6D</td>
+<td class="instruction">BNE <a href="1D4A.html#1D75">$1D75</a></td>
+<td class="comment-1" rowspan="1">Branch if it's 4 or more (the lines total is at least 10240).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D6F"></span>$1D6F</td>
+<td class="instruction">LDA $7E</td>
+<td class="comment-1" rowspan="1">Pick up the LSB of the lines total from <a href="007E.html">$7E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D71"></span>$1D71</td>
+<td class="instruction">CMP #$E8</td>
+<td class="comment-1" rowspan="1">Is the lines total 10000 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D73"></span>$1D73</td>
+<td class="instruction">BCC <a href="1D4A.html#1DAD">$1DAD</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1D75"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC now has 10000 or more lines.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1D75"></span>$1D75</td>
+<td class="instruction">LDA #$43</td>
+<td class="comment-1" rowspan="4">Place the address of the command list at <a href="43A2.html">$43A2</a> into MR WACKER's character buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D77"></span>$1D77</td>
+<td class="instruction">STA $8378</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D7A"></span>$1D7A</td>
+<td class="instruction">LDA #$A2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D7C"></span>$1D7C</td>
+<td class="instruction">STA $8377</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D7F"></span>$1D7F</td>
+<td class="instruction">LDA $837A</td>
+<td class="comment-1" rowspan="3">Set bit 7 of byte $7A of MR WACKER's character buffer, triggering a command list restart at the next available opportunity.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D82"></span>$1D82</td>
+<td class="instruction">ORA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D84"></span>$1D84</td>
+<td class="instruction">STA $837A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D87"></span>$1D87</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D89"></span>$1D89</td>
+<td class="instruction">CMP #$0B</td>
+<td class="comment-1" rowspan="1">Is it $0B (MR WACKER)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D8B"></span>$1D8B</td>
+<td class="instruction">BNE <a href="1D4A.html#1D9B">$1D9B</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D8D"></span>$1D8D</td>
+<td class="instruction">LDA #$43</td>
+<td class="comment-1" rowspan="4">Place the address of the command list at <a href="43A2.html">$43A2</a> into the copy of MR WACKER's character buffer in page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D8F"></span>$1D8F</td>
+<td class="instruction">STA $3E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D91"></span>$1D91</td>
+<td class="instruction">LDA #$A2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D93"></span>$1D93</td>
+<td class="instruction">STA $3D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D95"></span>$1D95</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Set bit 7 of the flags byte at <a href="003F.html">$3F</a> in the copy of MR WACKER's character buffer in page 0, triggering a command list restart at the next available opportunity.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D97"></span>$1D97</td>
+<td class="instruction">ORA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D99"></span>$1D99</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1D9B"></span>$1D9B</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="2">Set the MSB of the lesson clock at <a href="0040.html">$40</a> to $FF, giving MR WACKER time to find ERIC before the bell rings.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D9D"></span>$1D9D</td>
+<td class="instruction">STA $40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1D9F"></span>$1D9F</td>
+<td class="instruction">JMP <a href="1D4A.html#1DAD">$1DAD</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1DA2"></span>$1DA2</td>
+<td class="instruction">LDA $7E</td>
+<td class="comment-1" rowspan="6">Increase the lines total at <a href="007E.html">$7E</a> by the value stored at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DA4"></span>$1DA4</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DA5"></span>$1DA5</td>
+<td class="instruction">ADC $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DA7"></span>$1DA7</td>
+<td class="instruction">BCC <a href="1D4A.html#1DAB">$1DAB</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DA9"></span>$1DA9</td>
+<td class="instruction">INC $7F</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1DAB"></span>$1DAB</td>
+<td class="instruction">STA $7E</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1DAD"></span>$1DAD</td>
+<td class="instruction">LDA #$7E</td>
+<td class="comment-1" rowspan="2">Store the LSB of the address of the lines total at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DAF"></span>$1DAF</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DB1"></span>$1DB1</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=1, indicating the lines total.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1DB3"></span>$1DB3</td>
+<td class="instruction">JMP <a href="2620.html">$2620</a></td>
+<td class="comment-1" rowspan="1">Print the new lines total.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1D49.html">$1D49</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1D4A">Map</a></td>
+<td class="next">
+Next: <a href="1DB6.html">$1DB6</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

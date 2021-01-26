@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $3B5E</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3B46.html">$3B46</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3B5E">Map</a></td>
+<td class="next">
+Next: <a href="3BE7.html">$3BE7</a>
+</td>
+</tr>
+</table>
+<div class="description">$3B5E: Move the current character</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="3AB4.html">$3AB4</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3B5E"></span>$3B5E</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B60"></span>$3B60</td>
+<td class="instruction">CMP #$12</td>
+<td class="comment-1" rowspan="1">Is it $12 (BOY WONDER's pellet)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B62"></span>$3B62</td>
+<td class="instruction">BEQ <a href="3B5E.html#3BA0">$3BA0</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B64"></span>$3B64</td>
+<td class="instruction">CMP #$13</td>
+<td class="comment-1" rowspan="1">Is the current character number $13 (ERIC's pellet)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B66"></span>$3B66</td>
+<td class="instruction">BEQ <a href="3B5E.html#3BA0">$3BA0</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B68"></span>$3B68</td>
+<td class="instruction">DEC $FF</td>
+<td class="comment-1" rowspan="1">Decrement the character's movement speed change delay counter at <a href="00FF.html">$FF</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B6A"></span>$3B6A</td>
+<td class="instruction">BEQ <a href="3B5E.html#3B7A">$3B7A</a></td>
+<td class="comment-1" rowspan="1">Branch if it's time to consider a change in movement speed.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B6C"></span>$3B6C</td>
+<td class="instruction">LDA $FF</td>
+<td class="comment-1" rowspan="1">Pick up the character's movement speed change delay counter from <a href="00FF.html">$FF</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B6E"></span>$3B6E</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Is the new value even?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B6F"></span>$3B6F</td>
+<td class="instruction">BCC <a href="3B5E.html#3BA0">$3BA0</a></td>
+<td class="comment-1" rowspan="1">Branch if so (half the time) to move the character.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B71"></span>$3B71</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="1">Pick up the flags byte from <a href="003F.html">$3F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B73"></span>$3B73</td>
+<td class="instruction">AND #$40</td>
+<td class="comment-1" rowspan="1">Is bit 6 set, meaning the character is running (or otherwise moving quickly)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B75"></span>$3B75</td>
+<td class="instruction">BNE <a href="3B5E.html#3BA0">$3BA0</a></td>
+<td class="comment-1" rowspan="1">Branch if so to move the character now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B77"></span>$3B77</td>
+<td class="instruction">JMP <a href="3B5E.html#3BE6">$3BE6</a></td>
+<td class="comment-1" rowspan="1">Otherwise return without having moved the character.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="3B7A"></span>
+<div class="comments">
+<div class="paragraph">
+It's time to consider a movement speed change for this character.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3B7A"></span>$3B7A</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="3">Generate a random value between 4 and 67.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B7D"></span>$3B7D</td>
+<td class="instruction">AND #$3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B7F"></span>$3B7F</td>
+<td class="instruction">ADC #$04</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B81"></span>$3B81</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Now 2&lt;=<span class="register">A</span>&lt;=33, and the carry flag is set if the random value is odd.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B82"></span>$3B82</td>
+<td class="instruction">STA $FF</td>
+<td class="comment-1" rowspan="1">Reinitialise the movement speed change delay counter at <a href="00FF.html">$FF</a> with this value.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B84"></span>$3B84</td>
+<td class="instruction">BCC <a href="3B5E.html#3B90">$3B90</a></td>
+<td class="comment-1" rowspan="1">Branch if the random value is even.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B86"></span>$3B86</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Set bit 6 of the flags byte at <a href="003F.html">$3F</a>: the character is running (or otherwise moving quickly).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B88"></span>$3B88</td>
+<td class="instruction">ORA #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B8A"></span>$3B8A</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B8C"></span>$3B8C</td>
+<td class="instruction">AND #$05</td>
+<td class="comment-1" rowspan="1">Is bit 2 of the flags byte set, meaning this character is either a teacher, or EINSTEIN speaking?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B8E"></span>$3B8E</td>
+<td class="instruction">BEQ <a href="3B5E.html#3BA0">$3BA0</a></td>
+<td class="comment-1" rowspan="1">Branch if not to move the character now.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3B90"></span>$3B90</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Reset bit 6 of the flags byte at <a href="003F.html">$3F</a>: the character is walking (or otherwise moving) at a normal pace.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B92"></span>$3B92</td>
+<td class="instruction">AND #$BF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B94"></span>$3B94</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B96"></span>$3B96</td>
+<td class="instruction">AND #$0A</td>
+<td class="comment-1" rowspan="1">Is bit 1 or bit 3 of the flags byte set (meaning the character is a stampeding boy, MR WACKER looking for the pea-shooter, or EINSTEIN waiting to answer a teacher's question)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B98"></span>$3B98</td>
+<td class="instruction">BEQ <a href="3B5E.html#3BA0">$3BA0</a></td>
+<td class="comment-1" rowspan="1">Branch if not to move the character now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B9A"></span>$3B9A</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Set bit 6 of the flags byte at <a href="003F.html">$3F</a>: the character is running (or otherwise moving quickly).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B9C"></span>$3B9C</td>
+<td class="instruction">ORA #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3B9E"></span>$3B9E</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="3BA0"></span>
+<div class="comments">
+<div class="paragraph">
+Now we consider the character's next move.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3BA0"></span>$3BA0</td>
+<td class="instruction">LDA $B1</td>
+<td class="comment-1" rowspan="1">Is there an uninterruptible subcommand routine address at <a href="00B0.html">$B0</a>?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BA2"></span>$3BA2</td>
+<td class="instruction">BEQ <a href="3B5E.html#3BA7">$3BA7</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BA4"></span>$3BA4</td>
+<td class="instruction">JMP (<a href="00B0.html">$00B0</a>)</td>
+<td class="comment-1" rowspan="1">Otherwise jump to the uninterruptible subcommand routine.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3BA7"></span>$3BA7</td>
+<td class="instruction">LDA $3A</td>
+<td class="comment-1" rowspan="1">Is there a continual subcommand routine address at <a href="0039.html">$39</a>?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BA9"></span>$3BA9</td>
+<td class="instruction">BEQ <a href="3B5E.html#3BB4">$3BB4</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BAB"></span>$3BAB</td>
+<td class="instruction">LDA #$3B</td>
+<td class="comment-1" rowspan="4">Push $3BB3 onto the stack so that we return to <a href="3B5E.html#3BB4">$3BB4</a> below after executing the continual subcommand routine.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BAD"></span>$3BAD</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BAE"></span>$3BAE</td>
+<td class="instruction">LDA #$B3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BB0"></span>$3BB0</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BB1"></span>$3BB1</td>
+<td class="instruction">JMP (<a href="0039.html">$0039</a>)</td>
+<td class="comment-1" rowspan="1">Jump to the continual subcommand routine.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3BB4"></span>$3BB4</td>
+<td class="instruction">LDA $AB</td>
+<td class="comment-1" rowspan="1">Is there an interruptible subcommand routine address at <a href="00AA.html">$AA</a>?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BB6"></span>$3BB6</td>
+<td class="instruction">BEQ <a href="3B5E.html#3BBB">$3BBB</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BB8"></span>$3BB8</td>
+<td class="instruction">JMP (<a href="00AA.html">$00AA</a>)</td>
+<td class="comment-1" rowspan="1">Otherwise jump to the interruptible subcommand routine.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3BBB"></span>$3BBB</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="1">Pick up the flags byte from <a href="003F.html">$3F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BBD"></span>$3BBD</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is a command list restart required (bit 7 set)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BBE"></span>$3BBE</td>
+<td class="instruction">BCC <a href="3B5E.html#3BDF">$3BDF</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BC0"></span>$3BC0</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Reset bit 7 of the flags byte at <a href="003F.html">$3F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BC2"></span>$3BC2</td>
+<td class="instruction">AND #$7F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BC4"></span>$3BC4</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BC6"></span>$3BC6</td>
+<td class="instruction">LDA $3D</td>
+<td class="comment-1" rowspan="4">Copy the command list start address from <a href="003D.html">$3D</a> to <a href="003B.html">$3B</a>. This has the effect of restarting the command list.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BC8"></span>$3BC8</td>
+<td class="instruction">STA $3B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BCA"></span>$3BCA</td>
+<td class="instruction">LDA $3E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BCC"></span>$3BCC</td>
+<td class="instruction">STA $3C</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3BCE"></span>$3BCE</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="2">Remove the address of any continual subcommand routine from <a href="0039.html">$39</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BD0"></span>$3BD0</td>
+<td class="instruction">STY $3A</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="3BD2"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="2865.html">$2865</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3BD2"></span>$3BD2</td>
+<td class="instruction">JSR <a href="3BE7.html">$3BE7</a></td>
+<td class="comment-1" rowspan="4">Collect the address of the primary command routine from the command list and place it into the character's buffer at <a href="0029.html">$29</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BD5"></span>$3BD5</td>
+<td class="instruction">STA $29</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BD7"></span>$3BD7</td>
+<td class="instruction">JSR <a href="3BE7.html">$3BE7</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BDA"></span>$3BDA</td>
+<td class="instruction">STA $2A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BDC"></span>$3BDC</td>
+<td class="instruction">JMP <a href="3B5E.html#3BE3">$3BE3</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3BDF"></span>$3BDF</td>
+<td class="instruction">LDA $2A</td>
+<td class="comment-1" rowspan="1">Is there a primary command routine address at <a href="0029.html">$29</a>?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3BE1"></span>$3BE1</td>
+<td class="instruction">BEQ <a href="3B5E.html#3BCE">$3BCE</a></td>
+<td class="comment-1" rowspan="1">Branch back if not to collect one from the command list.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3BE3"></span>$3BE3</td>
+<td class="instruction">JMP (<a href="0029.html">$0029</a>)</td>
+<td class="comment-1" rowspan="1">Jump to the primary command routine.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3BE6"></span>$3BE6</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3B46.html">$3B46</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3B5E">Map</a></td>
+<td class="next">
+Next: <a href="3BE7.html">$3BE7</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

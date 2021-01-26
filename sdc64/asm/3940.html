@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $3940</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="392D.html">$392D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3940">Map</a></td>
+<td class="next">
+Next: <a href="39C7.html">$39C7</a>
+</td>
+</tr>
+</table>
+<div class="description">$3940: Read the keyboard</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the interrupt routine at <a href="39C7.html">$39C7</a>. This is a modified version of the keyboard reading routine at <a href="https://skoolkid.github.io/sk6502/c64rom/asm/EA87.html">$EA87</a> in the C64 ROM.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3940"></span>$3940</td>
+<td class="instruction">LDA $EB</td>
+<td class="comment-1" rowspan="1">Pick up the keyboard delay counter from <a href="00EB.html">$EB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3942"></span>$3942</td>
+<td class="instruction">BEQ <a href="3940.html#3951">$3951</a></td>
+<td class="comment-1" rowspan="1">Branch if it's zero (time to read the keyboard).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3944"></span>$3944</td>
+<td class="instruction">CMP #$10</td>
+<td class="comment-1" rowspan="1">Is the keyboard delay counter less than $10?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3946"></span>$3946</td>
+<td class="instruction">BCC <a href="3940.html#394C">$394C</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3948"></span>$3948</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="2">Reset the keyboard delay counter at <a href="00EB.html">$EB</a> to $10.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="394A"></span>$394A</td>
+<td class="instruction">STA $EB</td>
+</tr>
+<tr>
+<td class="address-2"><span id="394C"></span>$394C</td>
+<td class="instruction">DEC $EB</td>
+<td class="comment-1" rowspan="1">Decrement the keyboard delay counter at <a href="00EB.html">$EB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="394E"></span>$394E</td>
+<td class="instruction">JMP <a href="3940.html#39C6">$39C6</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3951"></span>$3951</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Initialise the modifier key flag at <a href="00CA.html">$CA</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3953"></span>$3953</td>
+<td class="instruction">STA $CA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3955"></span>$3955</td>
+<td class="instruction">LDY #$40</td>
+<td class="comment-1" rowspan="2">Initialise the keyboard indicator at <a href="00CA.html#00CB">$CB</a> to no key.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3957"></span>$3957</td>
+<td class="instruction">STY $CB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3959"></span>$3959</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">Initialise the key index in <span class="register">Y</span> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="395A"></span>$395A</td>
+<td class="instruction">STA $DC00</td>
+<td class="comment-1" rowspan="1">Prepare to read the entire keyboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="395D"></span>$395D</td>
+<td class="instruction">LDX $DC01</td>
+<td class="comment-1" rowspan="1">Pick up a keyboard reading.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3960"></span>$3960</td>
+<td class="instruction">CPX #$FF</td>
+<td class="comment-1" rowspan="1">Was any key pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3962"></span>$3962</td>
+<td class="instruction">BEQ <a href="3940.html#39C6">$39C6</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3964"></span>$3964</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Prepare to address the standard keyboard table at <a href="5F00.html">$5F00</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3966"></span>$3966</td>
+<td class="instruction">STA $CE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3968"></span>$3968</td>
+<td class="instruction">LDA #$5F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="396A"></span>$396A</td>
+<td class="instruction">STA $CF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="396C"></span>$396C</td>
+<td class="instruction">LDA #$FE</td>
+<td class="comment-1" rowspan="2">Prepare to read keyboard matrix column 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="396E"></span>$396E</td>
+<td class="instruction">STA $DC00</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3971"></span>$3971</td>
+<td class="instruction">LDX #$08</td>
+<td class="comment-1" rowspan="1"><span class="register">X</span> will count the keyboard rows.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3973"></span>$3973</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save the keyboard column bit mask temporarily.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3974"></span>$3974</td>
+<td class="instruction">LDA $DC01</td>
+<td class="comment-1" rowspan="1">Pick up a keyboard/joystick reading.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3977"></span>$3977</td>
+<td class="instruction">CMP $DC01</td>
+<td class="comment-1" rowspan="1">Compare it with itself.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="397A"></span>$397A</td>
+<td class="instruction">BNE <a href="3940.html#3974">$3974</a></td>
+<td class="comment-1" rowspan="1">Branch back to get another reading while it's changing.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="397C"></span>$397C</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="1">Shift a bit of the keyboard reading into the carry flag.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="397D"></span>$397D</td>
+<td class="instruction">BCS <a href="3940.html#3993">$3993</a></td>
+<td class="comment-1" rowspan="1">Branch if there was no keypress in this row.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="397F"></span>$397F</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save the remainder of the keyboard reading temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3980"></span>$3980</td>
+<td class="instruction">LDA ($CE),Y</td>
+<td class="comment-1" rowspan="1">Pick up a character code from the keyboard table at <a href="5F00.html">$5F00</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3982"></span>$3982</td>
+<td class="instruction">CMP #$05</td>
+<td class="comment-1" rowspan="1">Is a control key being pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3984"></span>$3984</td>
+<td class="instruction">BCS <a href="3940.html#3990">$3990</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3986"></span>$3986</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Is the STOP key being pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3988"></span>$3988</td>
+<td class="instruction">BEQ <a href="3940.html#3990">$3990</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="398A"></span>$398A</td>
+<td class="instruction">ORA $CA</td>
+<td class="comment-1" rowspan="2">Update the modifier key flag at <a href="00CA.html">$CA</a>: SHIFT, CTRL or the CBM key is being pressed.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="398C"></span>$398C</td>
+<td class="instruction">STA $CA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="398E"></span>$398E</td>
+<td class="instruction">BPL <a href="3940.html#3992">$3992</a></td>
+<td class="comment-1" rowspan="1">Skip over the next instruction.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3990"></span>$3990</td>
+<td class="instruction">STY $CB</td>
+<td class="comment-1" rowspan="1">Store the key index at <a href="00CA.html#00CB">$CB</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3992"></span>$3992</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore the remainder of the keyboard reading to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3993"></span>$3993</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">Increment the key index.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3994"></span>$3994</td>
+<td class="instruction">CPY #$41</td>
+<td class="comment-1" rowspan="1">Have we read every key yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3996"></span>$3996</td>
+<td class="instruction">BCS <a href="3940.html#39A3">$39A3</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3998"></span>$3998</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">Decrement the keyboard row counter.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3999"></span>$3999</td>
+<td class="instruction">BNE <a href="3940.html#397C">$397C</a></td>
+<td class="comment-1" rowspan="1">Branch back to check the next row.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="399B"></span>$399B</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">Set the carry flag to ensure that a set bit is rotated into bit 0 of the mask in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="399C"></span>$399C</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore the keyboard column bit mask to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="399D"></span>$399D</td>
+<td class="instruction">ROL A</td>
+<td class="comment-1" rowspan="2">Prepare to read the next keyboard matrix column.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="399E"></span>$399E</td>
+<td class="instruction">STA $DC00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39A1"></span>$39A1</td>
+<td class="instruction">BNE <a href="3940.html#3971">$3971</a></td>
+<td class="comment-1" rowspan="1">Branch back to get a reading.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="39A3"></span>$39A3</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Drop the keyboard column bit mask from the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39A4"></span>$39A4</td>
+<td class="instruction">LDA $CA</td>
+<td class="comment-1" rowspan="1">Pick up the modifier key flag from <a href="00CA.html">$CA</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39A6"></span>$39A6</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Were the SHIFT and CBM keys being pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39A8"></span>$39A8</td>
+<td class="instruction">BEQ <a href="3940.html#39BC">$39BC</a></td>
+<td class="comment-1" rowspan="1">Branch if so to use the standard keyboard table.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39AA"></span>$39AA</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Shift the modifier key flag left.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39AB"></span>$39AB</td>
+<td class="instruction">CMP #$08</td>
+<td class="comment-1" rowspan="1">Was CTRL being pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39AD"></span>$39AD</td>
+<td class="instruction">BCC <a href="3940.html#39B1">$39B1</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39AF"></span>$39AF</td>
+<td class="instruction">LDA #$06</td>
+<td class="comment-1" rowspan="1">Select the CTRL keyboard table.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="39B1"></span>$39B1</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="5">Collect the appropriate keyboard table address from <a href="4438.html">$4438</a> and store it at <a href="00CE.html">$CE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39B2"></span>$39B2</td>
+<td class="instruction">LDA $4438,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39B5"></span>$39B5</td>
+<td class="instruction">STA $CE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39B7"></span>$39B7</td>
+<td class="instruction">LDA $4439,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39BA"></span>$39BA</td>
+<td class="instruction">STA $CF</td>
+</tr>
+<tr>
+<td class="address-2"><span id="39BC"></span>$39BC</td>
+<td class="instruction">LDY $CB</td>
+<td class="comment-1" rowspan="2">Pick up an entry from one of the four keyboard tables at <a href="5F00.html">$5F00</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39BE"></span>$39BE</td>
+<td class="instruction">LDA ($CE),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39C0"></span>$39C0</td>
+<td class="instruction">STA $4C</td>
+<td class="comment-1" rowspan="1">Set the keyboard reading at <a href="004C.html">$4C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39C2"></span>$39C2</td>
+<td class="instruction">LDA #$0F</td>
+<td class="comment-1" rowspan="2">Reset the keyboard delay counter at <a href="00EB.html">$EB</a> to $0F.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="39C4"></span>$39C4</td>
+<td class="instruction">STA $EB</td>
+</tr>
+<tr>
+<td class="address-2"><span id="39C6"></span>$39C6</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="392D.html">$392D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3940">Map</a></td>
+<td class="next">
+Next: <a href="39C7.html">$39C7</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

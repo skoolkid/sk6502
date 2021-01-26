@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $BE09</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BE08.html">$BE08</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BE09">Map</a></td>
+<td class="next">
+Next: <a href="BFF5.html">$BFF5</a>
+</td>
+</tr>
+</table>
+<div class="description">$BE09: Change the characters' names if required</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/FA49.html">$FA49</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Called from the main loop at <a href="0800.html">$0800</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BE09"></span>$BE09</td>
+<td class="instruction">JSR <a href="2E13.html">$2E13</a></td>
+<td class="comment-1" rowspan="1">Prepare for a new game.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE0C"></span>$BE0C</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1"><span class="register">X</span> will count the characters from little boy no. 1 to ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE0E"></span>$BE0E</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="1">The second byte of a character's buffer holds his x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE10"></span>$BE10</td>
+<td class="instruction">LDA #$60</td>
+<td class="comment-1" rowspan="4">Prepare to address the character buffers, starting with little boy no. 1's at <a href="7860.html">$7860</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE12"></span>$BE12</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE14"></span>$BE14</td>
+<td class="instruction">LDA #$78</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE16"></span>$BE16</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE18"></span>$BE18</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="1">Set <span class="register">A</span> to 0.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BE19"></span>$BE19</td>
+<td class="instruction">STA ($50),Y</td>
+<td class="comment-1" rowspan="10">Set the x-coordinate of every character to 0. Given that the leftmost column of the skool on screen has been initialised to 32, this places the character off screen to the left.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE1B"></span>$BE1B</td>
+<td class="instruction">INC $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE1D"></span>$BE1D</td>
+<td class="instruction">NOP</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE1E"></span>$BE1E</td>
+<td class="instruction">NOP</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE1F"></span>$BE1F</td>
+<td class="instruction">NOP</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE20"></span>$BE20</td>
+<td class="instruction">NOP</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE21"></span>$BE21</td>
+<td class="instruction">NOP</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE22"></span>$BE22</td>
+<td class="instruction">INX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE23"></span>$BE23</td>
+<td class="instruction">CPX #$15</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE25"></span>$BE25</td>
+<td class="instruction">BNE <a href="BE09.html#BE19">$BE19</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE27"></span>$BE27</td>
+<td class="instruction">LDA #$A9</td>
+<td class="comment-1" rowspan="7">Change the instructions at <a href="3326.html#333F">$333F</a> and <a href="3326.html#334B">$334B</a> to 'LDA #$06' and 'LDA #$00'. This makes the routine at <a href="3326.html">$3326</a> draw blank blue tiles.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE29"></span>$BE29</td>
+<td class="instruction">STA $333F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE2C"></span>$BE2C</td>
+<td class="instruction">STA $334B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE2F"></span>$BE2F</td>
+<td class="instruction">LDA #$06</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE31"></span>$BE31</td>
+<td class="instruction">STA $3340</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE34"></span>$BE34</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE36"></span>$BE36</td>
+<td class="instruction">STA $334C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE39"></span>$BE39</td>
+<td class="instruction">JSR <a href="3012.html">$3012</a></td>
+<td class="comment-1" rowspan="1">Bring  a blank screen into view.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE3C"></span>$BE3C</td>
+<td class="instruction">LDA #$44</td>
+<td class="comment-1" rowspan="4"><a href="4468.html">$4468</a> is the address of the message 'Do you want to put in'. Store it at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE3E"></span>$BE3E</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE40"></span>$BE40</td>
+<td class="instruction">LDA #$68</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE42"></span>$BE42</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE44"></span>$BE44</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="2">The message will be 16 character cells wide. Store this width at <a href="009A.html#009D">$9D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE46"></span>$BE46</td>
+<td class="instruction">STA $9D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE48"></span>$BE48</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="2">Store the number of bytes to copy from the text graphic buffer at <a href="0031.html">$31</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE4A"></span>$BE4A</td>
+<td class="instruction">STA $31</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE4C"></span>$BE4C</td>
+<td class="instruction">JSR <a href="BFF5.html">$BFF5</a></td>
+<td class="comment-1" rowspan="1">Write this message into the text graphic buffer and centre it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE4F"></span>$BE4F</td>
+<td class="instruction">LDX #$14</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE51"></span>$BE51</td>
+<td class="instruction">LDY #$01</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE53"></span>$BE53</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE56"></span>$BE56</td>
+<td class="instruction">LDA #$8D</td>
+<td class="comment-1" rowspan="4"><a href="8DE8.html">$8DE8</a> is the address of the message 'your own names Y/N?'. Store it at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE58"></span>$BE58</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE5A"></span>$BE5A</td>
+<td class="instruction">LDA #$E8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE5C"></span>$BE5C</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE5E"></span>$BE5E</td>
+<td class="instruction">JSR <a href="BFF5.html">$BFF5</a></td>
+<td class="comment-1" rowspan="1">Write this message into the text graphic buffer and centre it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE61"></span>$BE61</td>
+<td class="instruction">LDX #$14</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE63"></span>$BE63</td>
+<td class="instruction">LDY #$02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE65"></span>$BE65</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE68"></span>$BE68</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Initialise the keyboard reading at <a href="004C.html">$4C</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE6A"></span>$BE6A</td>
+<td class="instruction">STA $4C</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BE6C"></span>$BE6C</td>
+<td class="instruction">LDA $4C</td>
+<td class="comment-1" rowspan="1">Pick up the keyboard reading at <a href="004C.html">$4C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE6E"></span>$BE6E</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">Transfer the reading to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE6F"></span>$BE6F</td>
+<td class="instruction">CPY #$59</td>
+<td class="comment-1" rowspan="1">Was 'Y' pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE71"></span>$BE71</td>
+<td class="instruction">BEQ <a href="BE09.html#BE7A">$BE7A</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE73"></span>$BE73</td>
+<td class="instruction">CPY #$4E</td>
+<td class="comment-1" rowspan="1">Was 'N' pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE75"></span>$BE75</td>
+<td class="instruction">BNE <a href="BE09.html#BE6C">$BE6C</a></td>
+<td class="comment-1" rowspan="1">Branch back if not to get another keyboard reading.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE77"></span>$BE77</td>
+<td class="instruction">JMP <a href="BE09.html#BFDB">$BFDB</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BE7A"></span>
+<div class="comments">
+<div class="paragraph">
+The player has pressed 'Y' to change the names.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BE7A"></span>$BE7A</td>
+<td class="instruction">LDA #$8D</td>
+<td class="comment-1" rowspan="4"><a href="8D68.html">$8D68</a> is the address of the message 'CAST OF CHARACTERS'. Store it at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE7C"></span>$BE7C</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE7E"></span>$BE7E</td>
+<td class="instruction">LDA #$68</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE80"></span>$BE80</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE82"></span>$BE82</td>
+<td class="instruction">JSR <a href="BFF5.html">$BFF5</a></td>
+<td class="comment-1" rowspan="1">Write this message into the text graphic buffer and centre it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE85"></span>$BE85</td>
+<td class="instruction">LDX #$14</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE87"></span>$BE87</td>
+<td class="instruction">LDY #$05</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE89"></span>$BE89</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE8C"></span>$BE8C</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $14 (ERIC).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE8E"></span>$BE8E</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BE90"></span>$BE90</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the current character's buffer into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE93"></span>$BE93</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE95"></span>$BE95</td>
+<td class="instruction">CMP #$14</td>
+<td class="comment-1" rowspan="1">Is it $14 (ERIC)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE97"></span>$BE97</td>
+<td class="instruction">BNE <a href="BE09.html#BE9C">$BE9C</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE99"></span>$BE99</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">Set the carry flag to prepare for subtraction.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE9A"></span>$BE9A</td>
+<td class="instruction">SBC #$02</td>
+<td class="comment-1" rowspan="1">Now <span class="register">A</span>=$12 for ERIC.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BE9C"></span>$BE9C</td>
+<td class="instruction">STA $52</td>
+<td class="comment-1" rowspan="1">Store the modified character number ($0B-$12) at <a href="004D.html#0052">$52</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BE9E"></span>$BE9E</td>
+<td class="instruction">LDA #$12</td>
+<td class="comment-1" rowspan="5">Subtract this modified character number from $12 and then add $90. Now <span class="register">A</span> holds $90-$97, the MSB of the address of the message that describes the current character.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEA0"></span>$BEA0</td>
+<td class="instruction">SEC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEA1"></span>$BEA1</td>
+<td class="instruction">SBC $52</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEA3"></span>$BEA3</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEA4"></span>$BEA4</td>
+<td class="instruction">ADC #$90</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEA6"></span>$BEA6</td>
+<td class="instruction">STA $D7</td>
+<td class="comment-1" rowspan="3">Store this address (<a href="9068.html">$9068</a>, <a href="9168.html">$9168</a>, <a href="9268.html">$9268</a>, <a href="9368.html">$9368</a>, <a href="9468.html">$9468</a>, <a href="9568.html">$9568</a>, <a href="9668.html">$9668</a> or <a href="9768.html">$9768</a>) at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEA8"></span>$BEA8</td>
+<td class="instruction">LDA #$68</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEAA"></span>$BEAA</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEAC"></span>$BEAC</td>
+<td class="instruction">JSR <a href="BFF5.html">$BFF5</a></td>
+<td class="comment-1" rowspan="1">Write the message into the text graphic buffer and centre it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEAF"></span>$BEAF</td>
+<td class="instruction">LDX #$14</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEB1"></span>$BEB1</td>
+<td class="instruction">LDY #$08</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEB3"></span>$BEB3</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEB6"></span>$BEB6</td>
+<td class="instruction">LDA $52</td>
+<td class="comment-1" rowspan="1">Pick up the modified character number ($0B-$12) from <a href="004D.html#0052">$52</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEB8"></span>$BEB8</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">Set the carry flag to prepare for subtraction.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEB9"></span>$BEB9</td>
+<td class="instruction">SBC #$0B</td>
+<td class="comment-1" rowspan="1">Now <span class="register">A</span>=$00-$07.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEBB"></span>$BEBB</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">Transfer this character identifier to <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEBC"></span>$BEBC</td>
+<td class="instruction">LDA $90E8,X</td>
+<td class="comment-1" rowspan="2">Pick up the corresponding character name message address LSB from the table at <a href="90E8.html">$90E8</a> and store it at <a href="0072.html">$72</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEBF"></span>$BEBF</td>
+<td class="instruction">STA $72</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEC1"></span>$BEC1</td>
+<td class="instruction">STA $D6</td>
+<td class="comment-1" rowspan="3">Now the vector at <a href="00D6.html">$D6</a> holds the address of the character's name.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEC3"></span>$BEC3</td>
+<td class="instruction">LDA #$47</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEC5"></span>$BEC5</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEC7"></span>$BEC7</td>
+<td class="instruction">JSR <a href="BFF5.html">$BFF5</a></td>
+<td class="comment-1" rowspan="1">Write the character's name into the text graphic buffer and centre it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BECA"></span>$BECA</td>
+<td class="instruction">LDX #$14</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the character's name.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BECC"></span>$BECC</td>
+<td class="instruction">LDY #$11</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BECE"></span>$BECE</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BED1"></span>$BED1</td>
+<td class="instruction">LDA #$1C</td>
+<td class="comment-1" rowspan="2">Set the character's x-coordinate to 28.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BED3"></span>$BED3</td>
+<td class="instruction">STA $FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BED5"></span>$BED5</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="2">Set the character's y-coordinate to 10.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BED7"></span>$BED7</td>
+<td class="instruction">STA $FB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BED9"></span>$BED9</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="2">Initialise the counter at <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEDB"></span>$BEDB</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEDD"></span>$BEDD</td>
+<td class="instruction">LDA #$32</td>
+<td class="comment-1" rowspan="2">Set the character's destination x-coordinate to 50 (approximately the centre of the screen).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEDF"></span>$BEDF</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEE1"></span>$BEE1</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore the character's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BEE4"></span>$BEE4</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the character's buffer into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEE7"></span>$BEE7</td>
+<td class="instruction">JSR <a href="136F.html#137B">$137B</a></td>
+<td class="comment-1" rowspan="1">Send the character one step along the way to the centre of the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEEA"></span>$BEEA</td>
+<td class="instruction">LDX #$3F</td>
+<td class="comment-1" rowspan="6">Pause briefly.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BEEC"></span>$BEEC</td>
+<td class="instruction">LDY #$FF</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BEEE"></span>$BEEE</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEEF"></span>$BEEF</td>
+<td class="instruction">BNE <a href="BE09.html#BEEE">$BEEE</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEF1"></span>$BEF1</td>
+<td class="instruction">DEX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEF2"></span>$BEF2</td>
+<td class="instruction">BNE <a href="BE09.html#BEEC">$BEEC</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEF4"></span>$BEF4</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore the character's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEF7"></span>$BEF7</td>
+<td class="instruction">JSR <a href="31EA.html">$31EA</a></td>
+<td class="comment-1" rowspan="1">Update the display.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEFA"></span>$BEFA</td>
+<td class="instruction">LDA $AD</td>
+<td class="comment-1" rowspan="1">Decrement the counter at <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BEFC"></span>$BEFC</td>
+<td class="instruction">BNE <a href="BE09.html#BEE4">$BEE4</a></td>
+<td class="comment-1" rowspan="1">Branch back unless it's zero now.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BEFE"></span>$BEFE</td>
+<td class="instruction">LDA #$8E</td>
+<td class="comment-1" rowspan="4">Store <a href="8E68.html">$8E68</a> (PRESS'C'TO CHANGE NAME) at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF00"></span>$BF00</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF02"></span>$BF02</td>
+<td class="instruction">LDA #$68</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF04"></span>$BF04</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF06"></span>$BF06</td>
+<td class="instruction">JSR <a href="BFF5.html">$BFF5</a></td>
+<td class="comment-1" rowspan="1">Write this message into the text graphic buffer and centre it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF09"></span>$BF09</td>
+<td class="instruction">LDX #$14</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF0B"></span>$BF0B</td>
+<td class="instruction">LDY #$13</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF0D"></span>$BF0D</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF10"></span>$BF10</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Reset the keyboard reading at <a href="004C.html">$4C</a> to zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF12"></span>$BF12</td>
+<td class="instruction">STA $4C</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BF14"></span>$BF14</td>
+<td class="instruction">LDA $4C</td>
+<td class="comment-1" rowspan="3">Wait for a keypress.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF16"></span>$BF16</td>
+<td class="instruction">TAY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF17"></span>$BF17</td>
+<td class="instruction">BEQ <a href="BE09.html#BF14">$BF14</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF19"></span>$BF19</td>
+<td class="instruction">CPY #$43</td>
+<td class="comment-1" rowspan="1">Was it 'C'?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF1B"></span>$BF1B</td>
+<td class="instruction">BEQ <a href="BE09.html#BF20">$BF20</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF1D"></span>$BF1D</td>
+<td class="instruction">JMP <a href="BE09.html#BFA1">$BFA1</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BF20"></span>
+<div class="comments">
+<div class="paragraph">
+'C' was pressed to change the character's name.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BF20"></span>$BF20</td>
+<td class="instruction">JSR <a href="8FE8.html">$8FE8</a></td>
+<td class="comment-1" rowspan="1">Wipe the character's name.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF23"></span>$BF23</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF24"></span>$BF24</td>
+<td class="instruction">LDA #$68</td>
+<td class="comment-1" rowspan="2">Change the address at <a href="00D6.html">$D6</a> to <a href="8F68.html">$8F68</a> (ENTER NEW NAME).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF26"></span>$BF26</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF28"></span>$BF28</td>
+<td class="instruction">JSR <a href="BFF5.html">$BFF5</a></td>
+<td class="comment-1" rowspan="1">Write this message into the text graphic buffer and centre it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF2B"></span>$BF2B</td>
+<td class="instruction">LDX #$14</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF2D"></span>$BF2D</td>
+<td class="instruction">LDY #$13</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF2F"></span>$BF2F</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF32"></span>$BF32</td>
+<td class="instruction">LDX #$0B</td>
+<td class="comment-1" rowspan="5">Clear the character name entry buffer at <a href="4700.html">$4700</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF34"></span>$BF34</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BF36"></span>$BF36</td>
+<td class="instruction">STA $4700,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF39"></span>$BF39</td>
+<td class="instruction">DEX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF3A"></span>$BF3A</td>
+<td class="instruction">BPL <a href="BE09.html#BF36">$BF36</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF3C"></span>$BF3C</td>
+<td class="instruction">LDA #$47</td>
+<td class="comment-1" rowspan="4">Store the address of the (empty) character name entry buffer at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF3E"></span>$BF3E</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF40"></span>$BF40</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF42"></span>$BF42</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF44"></span>$BF44</td>
+<td class="instruction">JSR <a href="BFF5.html">$BFF5</a></td>
+<td class="comment-1" rowspan="1">Write this blank message into the text graphic buffer and centre it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF47"></span>$BF47</td>
+<td class="instruction">LDX #$14</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the message.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF49"></span>$BF49</td>
+<td class="instruction">LDY #$11</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF4B"></span>$BF4B</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF4E"></span>$BF4E</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span> will counter the number of letters entered so far.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BF50"></span>$BF50</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Initialise the keyboard reading at <a href="004C.html">$4C</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF52"></span>$BF52</td>
+<td class="instruction">STA $4C</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BF54"></span>$BF54</td>
+<td class="instruction">LDA $4C</td>
+<td class="comment-1" rowspan="1">Pick up the keyboard reading at <a href="004C.html">$4C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF56"></span>$BF56</td>
+<td class="instruction">BEQ <a href="BE09.html#BF54">$BF54</a></td>
+<td class="comment-1" rowspan="1">Branch back until a key has been pressed.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF58"></span>$BF58</td>
+<td class="instruction">TAX</td>
+<td class="comment-1" rowspan="1">Transfer the keypress code to <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF59"></span>$BF59</td>
+<td class="instruction">CPX #$20</td>
+<td class="comment-1" rowspan="1">Was SPACE pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF5B"></span>$BF5B</td>
+<td class="instruction">BEQ <a href="BE09.html#BF69">$BF69</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF5D"></span>$BF5D</td>
+<td class="instruction">CPX #$0D</td>
+<td class="comment-1" rowspan="1">Was RETURN pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF5F"></span>$BF5F</td>
+<td class="instruction">BEQ <a href="BE09.html#BEFE">$BEFE</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF61"></span>$BF61</td>
+<td class="instruction">CPX #$41</td>
+<td class="comment-1" rowspan="1">Is the character code less than $41 ('A')?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF63"></span>$BF63</td>
+<td class="instruction">BCC <a href="BE09.html#BF50">$BF50</a></td>
+<td class="comment-1" rowspan="1">Branch back if so to get the next keypress.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF65"></span>$BF65</td>
+<td class="instruction">CPX #$5B</td>
+<td class="comment-1" rowspan="1">Is the character code greater than $5A ('Z')?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF67"></span>$BF67</td>
+<td class="instruction">BCS <a href="BE09.html#BF50">$BF50</a></td>
+<td class="comment-1" rowspan="1">Branch back if so to get the next keypress.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BF69"></span>$BF69</td>
+<td class="instruction">CPY #$0C</td>
+<td class="comment-1" rowspan="1">Have 12 letters already been entered?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF6B"></span>$BF6B</td>
+<td class="instruction">BEQ <a href="BE09.html#BF50">$BF50</a></td>
+<td class="comment-1" rowspan="1">Branch back if so to get the next keypress.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF6D"></span>$BF6D</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="2">Transfer the keypress code back to <span class="register">A</span> and store it in the character name buffer at <a href="4700.html">$4700</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF6E"></span>$BF6E</td>
+<td class="instruction">STA $4700,Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF71"></span>$BF71</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">Next letter.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF72"></span>$BF72</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="2">Save the letter counter on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF73"></span>$BF73</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF74"></span>$BF74</td>
+<td class="instruction">LDA #$47</td>
+<td class="comment-1" rowspan="4">Store the address of the character name entry buffer (<a href="4700.html">$4700</a>) at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF76"></span>$BF76</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF78"></span>$BF78</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF7A"></span>$BF7A</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF7C"></span>$BF7C</td>
+<td class="instruction">JSR <a href="BFF5.html">$BFF5</a></td>
+<td class="comment-1" rowspan="1">Write the name entered so far into the text graphic buffer and centre it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF7F"></span>$BF7F</td>
+<td class="instruction">LDX #$14</td>
+<td class="comment-1" rowspan="2">These are the coordinates at which to print the name.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF81"></span>$BF81</td>
+<td class="instruction">LDY #$11</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF83"></span>$BF83</td>
+<td class="instruction">JSR <a href="3868.html">$3868</a></td>
+<td class="comment-1" rowspan="1">Copy the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF86"></span>$BF86</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Restore the letter counter to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF87"></span>$BF87</td>
+<td class="instruction">TAY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF88"></span>$BF88</td>
+<td class="instruction">LDA #$47</td>
+<td class="comment-1" rowspan="7">Store the address of the character name entry buffer (<a href="4700.html">$4700</a>) at <a href="004D.html#004E">$4E</a> and the address of the character's existing name at <a href="004D.html#0050">$50</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF8A"></span>$BF8A</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF8C"></span>$BF8C</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF8E"></span>$BF8E</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF90"></span>$BF90</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF92"></span>$BF92</td>
+<td class="instruction">LDA $72</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF94"></span>$BF94</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF96"></span>$BF96</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="3">Point at the last letter entered in the character name entry buffer and copy it over the corresponding letter in the character's existing name.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF97"></span>$BF97</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF99"></span>$BF99</td>
+<td class="instruction">STA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF9B"></span>$BF9B</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="1">Increment the letter counter.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF9C"></span>$BF9C</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF9D"></span>$BF9D</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BF9E"></span>$BF9E</td>
+<td class="instruction">JMP <a href="BE09.html#BF50">$BF50</a></td>
+<td class="comment-1" rowspan="1">Jump back to get another keypress.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BFA1"></span>
+<div class="comments">
+<div class="paragraph">
+The character's name change has finished or been skipped. Time to walk the character off screen.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BFA1"></span>$BFA1</td>
+<td class="instruction">LDA #$4A</td>
+<td class="comment-1" rowspan="2">Set the character's destination x-coordinate to 74 (off screen to the right).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFA3"></span>$BFA3</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFA5"></span>$BFA5</td>
+<td class="instruction">LDA #$40</td>
+<td class="comment-1" rowspan="2">Initialise the counter at <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFA7"></span>$BFA7</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFA9"></span>$BFA9</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore the character's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BFAC"></span>$BFAC</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the character's buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFAF"></span>$BFAF</td>
+<td class="instruction">JSR <a href="136F.html#137B">$137B</a></td>
+<td class="comment-1" rowspan="1">Send the character one step along the way off the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFB2"></span>$BFB2</td>
+<td class="instruction">LDX #$3F</td>
+<td class="comment-1" rowspan="6">Pause briefly.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BFB4"></span>$BFB4</td>
+<td class="instruction">LDY #$FF</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BFB6"></span>$BFB6</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFB7"></span>$BFB7</td>
+<td class="instruction">BNE <a href="BE09.html#BFB6">$BFB6</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFB9"></span>$BFB9</td>
+<td class="instruction">DEX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFBA"></span>$BFBA</td>
+<td class="instruction">BNE <a href="BE09.html#BFB4">$BFB4</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFBC"></span>$BFBC</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore the character's buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFBF"></span>$BFBF</td>
+<td class="instruction">JSR <a href="31EA.html">$31EA</a></td>
+<td class="comment-1" rowspan="1">Update the display.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFC2"></span>$BFC2</td>
+<td class="instruction">LDA $AD</td>
+<td class="comment-1" rowspan="1">Decrement the counter at <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFC4"></span>$BFC4</td>
+<td class="instruction">BNE <a href="BE09.html#BFAC">$BFAC</a></td>
+<td class="comment-1" rowspan="1">Branch back unless it's zero now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFC6"></span>$BFC6</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFC8"></span>$BFC8</td>
+<td class="instruction">CMP #$14</td>
+<td class="comment-1" rowspan="1">Is it $14 (ERIC)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFCA"></span>$BFCA</td>
+<td class="instruction">BNE <a href="BE09.html#BFD0">$BFD0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFCC"></span>$BFCC</td>
+<td class="instruction">DEC $60</td>
+<td class="comment-1" rowspan="2">Decrease the current character number at <a href="0060.html">$60</a> by two (to $12), thus skipping over ERIC's and BOY WONDER's catapult pellets.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFCE"></span>$BFCE</td>
+<td class="instruction">DEC $60</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BFD0"></span>$BFD0</td>
+<td class="instruction">DEC $60</td>
+<td class="comment-1" rowspan="1">Decrement the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFD2"></span>$BFD2</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFD4"></span>$BFD4</td>
+<td class="instruction">CMP #$0A</td>
+<td class="comment-1" rowspan="1">Is it $0A (little boy no. 11)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFD6"></span>$BFD6</td>
+<td class="instruction">BEQ <a href="BE09.html#BFDB">$BFDB</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFD8"></span>$BFD8</td>
+<td class="instruction">JMP <a href="BE09.html#BE90">$BE90</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump back to deal with the next character.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="BFDB"></span>
+<div class="comments">
+<div class="paragraph">
+The player either pressed 'N' to leave the names alone, or has finished naming every character.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BFDB"></span>$BFDB</td>
+<td class="instruction">LDA #$B1</td>
+<td class="comment-1" rowspan="7">Change the instructions at <a href="3326.html#333F">$333F</a> and <a href="3326.html#334B">$334B</a> back to 'LDA ($52),Y' and 'LDA ($54),Y'.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFDD"></span>$BFDD</td>
+<td class="instruction">STA $333F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFE0"></span>$BFE0</td>
+<td class="instruction">STA $334B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFE3"></span>$BFE3</td>
+<td class="instruction">LDA #$52</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFE5"></span>$BFE5</td>
+<td class="instruction">STA $3340</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFE8"></span>$BFE8</td>
+<td class="instruction">LDA #$54</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFEA"></span>$BFEA</td>
+<td class="instruction">STA $334C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFED"></span>$BFED</td>
+<td class="instruction">JSR <a href="2E13.html">$2E13</a></td>
+<td class="comment-1" rowspan="1">Prepare for a new game.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFF0"></span>$BFF0</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Set the game mode indicator at <a href="0046.html">$46</a> to 1.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFF2"></span>$BFF2</td>
+<td class="instruction">STA $46</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BFF4"></span>$BFF4</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BE08.html">$BE08</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BE09">Map</a></td>
+<td class="next">
+Next: <a href="BFF5.html">$BFF5</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

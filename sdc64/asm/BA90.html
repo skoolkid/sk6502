@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $BA90</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BA48.html">$BA48</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BA90">Map</a></td>
+<td class="next">
+Next: <a href="BAA3.html">$BAA3</a>
+</td>
+</tr>
+</table>
+<div class="description">$BA90: Initialise the tune buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="BA00.html">$BA00</a> and <a href="BA48.html">$BA48</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BA90"></span>$BA90</td>
+<td class="instruction">LDA #$B4</td>
+<td class="comment-1" rowspan="4">Prepare to address the tune buffer at <a href="BBB4.html">$BBB4</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA92"></span>$BA92</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA94"></span>$BA94</td>
+<td class="instruction">LDA #$BB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA96"></span>$BA96</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA98"></span>$BA98</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="6">Fill the buffer with zeroes.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA9A"></span>$BA9A</td>
+<td class="instruction">TYA</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BA9B"></span>$BA9B</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA9D"></span>$BA9D</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA9E"></span>$BA9E</td>
+<td class="instruction">CPY #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAA0"></span>$BAA0</td>
+<td class="instruction">BNE <a href="BA90.html#BA9B">$BA9B</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="BAA2"></span>$BAA2</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="BA48.html">$BA48</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BA90">Map</a></td>
+<td class="next">
+Next: <a href="BAA3.html">$BAA3</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

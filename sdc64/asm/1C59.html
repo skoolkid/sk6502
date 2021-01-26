@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1C59</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1BFA.html">$1BFA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1C59">Map</a></td>
+<td class="next">
+Next: <a href="1C8D.html">$1C8D</a>
+</td>
+</tr>
+</table>
+<div class="description">$1C59: Knock the current occupant (if any) out of a chair</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6B7D.html">$6B7D</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="1CEC.html">$1CEC</a> and <a href="365C.html">$365C</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1C59"></span>$1C59</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="2">Initialise the potential occupant character number at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C5B"></span>$1C5B</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1C5D"></span>$1C5D</td>
+<td class="instruction">INC $57</td>
+<td class="comment-1" rowspan="1">Next potential occupant.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C5F"></span>$1C5F</td>
+<td class="instruction">JSR <a href="1BFA.html">$1BFA</a></td>
+<td class="comment-1" rowspan="1">Check whether the chair is occupied by the potential occupant and unseat him if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C62"></span>$1C62</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the potential occupant's character number from <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C64"></span>$1C64</td>
+<td class="instruction">CMP #$0A</td>
+<td class="comment-1" rowspan="1">Have we checked the 11 little boys yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C66"></span>$1C66</td>
+<td class="instruction">BNE <a href="1C59.html#1C5D">$1C5D</a></td>
+<td class="comment-1" rowspan="1">Branch back if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C68"></span>$1C68</td>
+<td class="instruction">LDA #$0E</td>
+<td class="comment-1" rowspan="2">Character number $0F (ANGELFACE) is next.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C6A"></span>$1C6A</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1C6C"></span>$1C6C</td>
+<td class="instruction">INC $57</td>
+<td class="comment-1" rowspan="1">Next potential occupant.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C6E"></span>$1C6E</td>
+<td class="instruction">JSR <a href="1BFA.html">$1BFA</a></td>
+<td class="comment-1" rowspan="1">Check whether the chair is occupied by one of the three main kids besides ERIC and unseat him if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C71"></span>$1C71</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the potential occupant's character number from <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C73"></span>$1C73</td>
+<td class="instruction">CMP #$11</td>
+<td class="comment-1" rowspan="1">Have we checked the three main kids besides ERIC yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C75"></span>$1C75</td>
+<td class="instruction">BNE <a href="1C59.html#1C6C">$1C6C</a></td>
+<td class="comment-1" rowspan="1">Branch back if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C77"></span>$1C77</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="1">Character number $14 is ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C79"></span>$1C79</td>
+<td class="instruction">STA $57</td>
+<td class="comment-1" rowspan="1">Store this character number at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C7B"></span>$1C7B</td>
+<td class="instruction">JSR <a href="1BFA.html">$1BFA</a></td>
+<td class="comment-1" rowspan="1">Check whether the chair is occupied by ERIC and unseat him if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C7E"></span>$1C7E</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="5">Adjust the character's animatory state at <a href="0026.html">$26</a> to make him sit on the chair.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C80"></span>$1C80</td>
+<td class="instruction">AND #$F8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C82"></span>$1C82</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C83"></span>$1C83</td>
+<td class="instruction">ADC #$05</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C85"></span>$1C85</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C87"></span>$1C87</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1C8A"></span>$1C8A</td>
+<td class="instruction">JMP <a href="1D32.html">$1D32</a></td>
+<td class="comment-1" rowspan="1">Terminate the character's uninterruptible subcommand.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1BFA.html">$1BFA</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1C59">Map</a></td>
+<td class="next">
+Next: <a href="1C8D.html">$1C8D</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

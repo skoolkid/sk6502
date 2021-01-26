@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $149F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1468.html">$1468</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#149F">Map</a></td>
+<td class="next">
+Next: <a href="15B3.html">$15B3</a>
+</td>
+</tr>
+</table>
+<div class="description">$149F: Make any nearby teacher give ERIC lines if necessary</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/77AC.html">$77AC</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Called from the main loop at <a href="0800.html">$0800</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="149F"></span>$149F</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14A1"></span>$14A1</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save it temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14A2"></span>$14A2</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $14 (ERIC).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14A4"></span>$14A4</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14A6"></span>$14A6</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy ERIC's character buffer into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14A9"></span>$14A9</td>
+<td class="instruction">DEC $C6</td>
+<td class="comment-1" rowspan="1">Decrement the lines-giving delay counter at <a href="00C6.html">$C6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14AB"></span>$14AB</td>
+<td class="instruction">LDA $C6</td>
+<td class="comment-1" rowspan="1">Pick up the lines-giving delay counter from <a href="00C6.html">$C6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14AD"></span>$14AD</td>
+<td class="instruction">AND #$0F</td>
+<td class="comment-1" rowspan="1">Is the low nibble zero?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14AF"></span>$14AF</td>
+<td class="instruction">BEQ <a href="149F.html#14B4">$14B4</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14B1"></span>$14B1</td>
+<td class="instruction">JMP <a href="149F.html#15AC">$15AC</a></td>
+<td class="comment-1" rowspan="1">Otherwise there's nothing to do.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="14B4"></span>$14B4</td>
+<td class="instruction">LDA $C6</td>
+<td class="comment-1" rowspan="1">Pick up the lines-giving delay counter from <a href="00C6.html">$C6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14B6"></span>$14B6</td>
+<td class="instruction">AND #$F0</td>
+<td class="comment-1" rowspan="1">Clear bits 0-3.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14B8"></span>$14B8</td>
+<td class="instruction">CMP #$51</td>
+<td class="comment-1" rowspan="1">Is the high nibble 5 or less?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14BA"></span>$14BA</td>
+<td class="instruction">BCC <a href="149F.html#14BF">$14BF</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14BC"></span>$14BC</td>
+<td class="instruction">JMP <a href="149F.html#15AC">$15AC</a></td>
+<td class="comment-1" rowspan="1">Otherwise there's nothing to do.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="14BF"></span>$14BF</td>
+<td class="instruction">LDA $C6</td>
+<td class="comment-1" rowspan="1">Pick up the lines-giving delay counter from <a href="00C6.html">$C6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14C1"></span>$14C1</td>
+<td class="instruction">AND #$F0</td>
+<td class="comment-1" rowspan="1">Is the high nibble zero?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14C3"></span>$14C3</td>
+<td class="instruction">BNE <a href="149F.html#14C7">$14C7</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14C5"></span>$14C5</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="1">Prepare to reset the lines-giving delay counter to $10.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="14C7"></span>$14C7</td>
+<td class="instruction">STA $C6</td>
+<td class="comment-1" rowspan="1">Update the lines-giving delay counter at <a href="00C6.html">$C6</a> (the low nibble is now zero).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14C9"></span>$14C9</td>
+<td class="instruction">JSR <a href="1EC2.html">$1EC2</a></td>
+<td class="comment-1" rowspan="1">Get ERIC's coordinates in <span class="register">X</span> and <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14CC"></span>$14CC</td>
+<td class="instruction">CPY #$03</td>
+<td class="comment-1" rowspan="1">Is ERIC on the top floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14CE"></span>$14CE</td>
+<td class="instruction">BEQ <a href="149F.html#14E1">$14E1</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14D0"></span>$14D0</td>
+<td class="instruction">CPY #$0A</td>
+<td class="comment-1" rowspan="1">Is ERIC on the middle floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14D2"></span>$14D2</td>
+<td class="instruction">BEQ <a href="149F.html#14E1">$14E1</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14D4"></span>$14D4</td>
+<td class="instruction">CPY #$11</td>
+<td class="comment-1" rowspan="1">Is ERIC on the bottom floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14D6"></span>$14D6</td>
+<td class="instruction">BEQ <a href="149F.html#14E1">$14E1</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14D8"></span>$14D8</td>
+<td class="instruction">LDA $14</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's posture indicator from <a href="0014.html">$14</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14DA"></span>$14DA</td>
+<td class="instruction">BNE <a href="149F.html#14E1">$14E1</a></td>
+<td class="comment-1" rowspan="1">Branch unless ERIC is sitting on a staircase.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14DC"></span>$14DC</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">Lines reprimand <a href="4980.html">$00</a>: DON'T SIT ON THE STAIRS.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14DE"></span>$14DE</td>
+<td class="instruction">JMP <a href="149F.html#1538">$1538</a></td>
+<td class="comment-1" rowspan="1">Make any nearby teacher give lines to ERIC.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="14E1"></span>$14E1</td>
+<td class="instruction">JSR <a href="0D91.html">$0D91</a></td>
+<td class="comment-1" rowspan="1">Is ERIC in the classroom he should be in?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14E4"></span>$14E4</td>
+<td class="instruction">BNE <a href="149F.html#14EB">$14EB</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14E6"></span>$14E6</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=$00: ERIC's where he should be.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14E8"></span>$14E8</td>
+<td class="instruction">JMP <a href="149F.html#14ED">$14ED</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="14EB"></span>$14EB</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=$FF: ERIC's not where he should be.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="14ED"></span>$14ED</td>
+<td class="instruction">STA $EC</td>
+<td class="comment-1" rowspan="1">Store this indicator at <a href="00EC.html">$EC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14EF"></span>$14EF</td>
+<td class="instruction">LDA $C7</td>
+<td class="comment-1" rowspan="1">Pick up the region identifier (0-7) for ERIC's location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14F1"></span>$14F1</td>
+<td class="instruction">BNE <a href="149F.html#14F8">$14F8</a></td>
+<td class="comment-1" rowspan="1">Branch unless ERIC's in the head's study or the staff room.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14F3"></span>$14F3</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1">Lines reprimand <a href="49A0.html">$01</a>: THE ROOM IS PRIVATE.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14F5"></span>$14F5</td>
+<td class="instruction">JMP <a href="149F.html#1538">$1538</a></td>
+<td class="comment-1" rowspan="1">Make any nearby teacher give lines to ERIC.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="14F8"></span>$14F8</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="1">Event <a href="4400.html">$01</a>: ERIC should be in class or the dinner hall now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14FA"></span>$14FA</td>
+<td class="instruction">JSR <a href="31D2.html">$31D2</a></td>
+<td class="comment-1" rowspan="1">Has the signal for this event been raised?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14FD"></span>$14FD</td>
+<td class="instruction">BCS <a href="149F.html#151F">$151F</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="14FF"></span>$14FF</td>
+<td class="instruction">LDA $C7</td>
+<td class="comment-1" rowspan="1">Pick up the region identifier (0-7) for ERIC's location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1501"></span>$1501</td>
+<td class="instruction">CMP #$05</td>
+<td class="comment-1" rowspan="1">Is ERIC in a classroom?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1503"></span>$1503</td>
+<td class="instruction">BCC <a href="149F.html#1519">$1519</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1505"></span>$1505</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1507"></span>$1507</td>
+<td class="instruction">AND #$07</td>
+<td class="comment-1" rowspan="1">Keep only bits 0-2.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1509"></span>$1509</td>
+<td class="instruction">CMP #$06</td>
+<td class="comment-1" rowspan="1">Is ERIC sitting on the floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="150B"></span>$150B</td>
+<td class="instruction">BEQ <a href="149F.html#1514">$1514</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="150D"></span>$150D</td>
+<td class="instruction">CMP #$07</td>
+<td class="comment-1" rowspan="1">Is ERIC lying on his back?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="150F"></span>$150F</td>
+<td class="instruction">BEQ <a href="149F.html#1514">$1514</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1511"></span>$1511</td>
+<td class="instruction">JMP <a href="149F.html#15AC">$15AC</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1514"></span>$1514</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="1">Lines reprimand <a href="4A80.html">$04</a>: GET OFF THE FLOOR.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1516"></span>$1516</td>
+<td class="instruction">JMP <a href="149F.html#1538">$1538</a></td>
+<td class="comment-1" rowspan="1">Make any nearby teacher give lines to ERIC.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1519"></span>$1519</td>
+<td class="instruction">LDA $40</td>
+<td class="comment-1" rowspan="1">Pick up the MSB of the lesson clock from <a href="0040.html">$40</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="151B"></span>$151B</td>
+<td class="instruction">CMP #$08</td>
+<td class="comment-1" rowspan="1">Is it 8 or more?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="151D"></span>$151D</td>
+<td class="instruction">BCS <a href="149F.html#1505">$1505</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="151F"></span>$151F</td>
+<td class="instruction">LDA $EC</td>
+<td class="comment-1" rowspan="1">Is ERIC where he should be?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1521"></span>$1521</td>
+<td class="instruction">BEQ <a href="149F.html#1528">$1528</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1523"></span>$1523</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="1">Lines reprimand <a href="49C0.html">$02</a>: GET TO WHERE YOU SHOULD BE.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1525"></span>$1525</td>
+<td class="instruction">JMP <a href="149F.html#1538">$1538</a></td>
+<td class="comment-1" rowspan="1">Make any nearby teacher give lines to ERIC.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1528"></span>$1528</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="1">Event <a href="4400.html">$02</a>: ERIC's lesson has started.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="152A"></span>$152A</td>
+<td class="instruction">JSR <a href="31D2.html">$31D2</a></td>
+<td class="comment-1" rowspan="1">Has the signal for this event been raised?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="152D"></span>$152D</td>
+<td class="instruction">BCC <a href="149F.html#1505">$1505</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="152F"></span>$152F</td>
+<td class="instruction">LDA $14</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's posture indicator from <a href="0014.html">$14</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1531"></span>$1531</td>
+<td class="instruction">BNE <a href="149F.html#1536">$1536</a></td>
+<td class="comment-1" rowspan="1">Branch if ERIC is standing up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1533"></span>$1533</td>
+<td class="instruction">JMP <a href="149F.html#15AC">$15AC</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1536"></span>$1536</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="1">Lines reprimand <a href="49E0.html">$03</a>: NOW FIND A SEAT.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1538"></span>$1538</td>
+<td class="instruction">STA $D8</td>
+<td class="comment-1" rowspan="1">Store the lines reprimand identifier at <a href="00D6.html#00D8">$D8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="153A"></span>$153A</td>
+<td class="instruction">LDA $C6</td>
+<td class="comment-1" rowspan="1">Pick up the lines giving delay counter from <a href="00C6.html">$C6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="153C"></span>$153C</td>
+<td class="instruction">CMP #$10</td>
+<td class="comment-1" rowspan="1">Is the high nibble equal to 1?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="153E"></span>$153E</td>
+<td class="instruction">BEQ <a href="149F.html#1548">$1548</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1540"></span>$1540</td>
+<td class="instruction">LDA $71</td>
+<td class="comment-1" rowspan="1">Pick up the character number of the teacher who last gave ERIC lines from <a href="0071.html">$71</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1542"></span>$1542</td>
+<td class="instruction">JSR <a href="0E59.html#0E5B">$0E5B</a></td>
+<td class="comment-1" rowspan="1">Check whether ERIC can be seen by any other teacher.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1545"></span>$1545</td>
+<td class="instruction">JMP <a href="149F.html#154B">$154B</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1548"></span>$1548</td>
+<td class="instruction">JSR <a href="0E59.html">$0E59</a></td>
+<td class="comment-1" rowspan="1">Can ERIC be seen by a teacher?</td>
+</tr>
+<tr>
+<td class="address-2"><span id="154B"></span>$154B</td>
+<td class="instruction">BCS <a href="149F.html#1550">$1550</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="154D"></span>$154D</td>
+<td class="instruction">JMP <a href="149F.html#15AC">$15AC</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump forward.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1550"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC has been spotted by a teacher doing something he shouldn't be doing.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1550"></span>$1550</td>
+<td class="instruction">STA $71</td>
+<td class="comment-1" rowspan="1">Store the character number of the teacher who can see ERIC at <a href="0071.html">$71</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1552"></span>$1552</td>
+<td class="instruction">LDA #$A0</td>
+<td class="comment-1" rowspan="2">Reset the high and low nibbles of the lines-giving delay counter at <a href="00C6.html">$C6</a> to 10 and 0 respectively.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1554"></span>$1554</td>
+<td class="instruction">STA $C6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1556"></span>$1556</td>
+<td class="instruction">LDA $D8</td>
+<td class="comment-1" rowspan="1">Pick up the lines reprimand identifier from <a href="00D6.html#00D8">$D8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1558"></span>$1558</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">Is it <a href="49C0.html">$02</a> (GET TO WHERE YOU SHOULD BE)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="155A"></span>$155A</td>
+<td class="instruction">BNE <a href="149F.html#159E">$159E</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="155C"></span>$155C</td>
+<td class="instruction">LDA $70</td>
+<td class="comment-1" rowspan="1">Pick up the current lesson descriptor from <a href="0070.html">$70</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="155E"></span>$155E</td>
+<td class="instruction">AND #$F0</td>
+<td class="comment-1" rowspan="1">Keep only the teacher bits (4-7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1560"></span>$1560</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">Transfer them to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1561"></span>$1561</td>
+<td class="instruction">CPY #$00</td>
+<td class="comment-1" rowspan="1">Is ERIC's teacher for this lesson MR WACKER?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1563"></span>$1563</td>
+<td class="instruction">BNE <a href="149F.html#156A">$156A</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1565"></span>$1565</td>
+<td class="instruction">LDA #$0B</td>
+<td class="comment-1" rowspan="1">$0B is MR WACKER's character number.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1567"></span>$1567</td>
+<td class="instruction">JMP <a href="149F.html#1587">$1587</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="156A"></span>$156A</td>
+<td class="instruction">CPY #$10</td>
+<td class="comment-1" rowspan="1">Is ERIC's teacher for this lesson MR ROCKITT?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="156C"></span>$156C</td>
+<td class="instruction">BNE <a href="149F.html#1573">$1573</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="156E"></span>$156E</td>
+<td class="instruction">LDA #$0C</td>
+<td class="comment-1" rowspan="1">$0C is MR ROCKITT's character number.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1570"></span>$1570</td>
+<td class="instruction">JMP <a href="149F.html#1587">$1587</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1573"></span>$1573</td>
+<td class="instruction">CPY #$20</td>
+<td class="comment-1" rowspan="1">Is ERIC's teacher for this lesson MR WITHIT?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1575"></span>$1575</td>
+<td class="instruction">BNE <a href="149F.html#157C">$157C</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1577"></span>$1577</td>
+<td class="instruction">LDA #$0D</td>
+<td class="comment-1" rowspan="1">$0D is MR WITHIT's character number.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1579"></span>$1579</td>
+<td class="instruction">JMP <a href="149F.html#1587">$1587</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="157C"></span>$157C</td>
+<td class="instruction">CPY #$30</td>
+<td class="comment-1" rowspan="1">Is ERIC's teacher for this lesson MR CREAK?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="157E"></span>$157E</td>
+<td class="instruction">BNE <a href="149F.html#1585">$1585</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1580"></span>$1580</td>
+<td class="instruction">LDA #$0E</td>
+<td class="comment-1" rowspan="1">$0E is MR CREAK's character number.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1582"></span>$1582</td>
+<td class="instruction">JMP <a href="149F.html#1587">$1587</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1585"></span>$1585</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="1">Set <span class="register">A</span> to $FF, indicating that ERIC has no teacher for this period.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1587"></span>$1587</td>
+<td class="instruction">CMP $71</td>
+<td class="comment-1" rowspan="1">Was ERIC seen by his teacher for this lesson?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1589"></span>$1589</td>
+<td class="instruction">BNE <a href="149F.html#159E">$159E</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="158B"></span>
+<div class="comments">
+<div class="paragraph">
+The truant ERIC has been spotted by his teacher for this period.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="158B"></span>$158B</td>
+<td class="instruction">LDA #$05</td>
+<td class="comment-1" rowspan="1">Lines reprimand <a href="4AA0.html">$05</a>: COME ALONG WITH ME BOY.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="158D"></span>$158D</td>
+<td class="instruction">STA $D8</td>
+<td class="comment-1" rowspan="1">Store this lines reprimand identifier at <a href="00D6.html#00D8">$D8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="158F"></span>$158F</td>
+<td class="instruction">INC $C8</td>
+<td class="comment-1" rowspan="2">Increment the identifier of the lines reprimand message at <a href="00C8.html">$C8</a> and pick up its new value.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1591"></span>$1591</td>
+<td class="instruction">LDA $C8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1593"></span>$1593</td>
+<td class="instruction">CMP #$01</td>
+<td class="comment-1" rowspan="1">Has the teacher just found ERIC?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1595"></span>$1595</td>
+<td class="instruction">BEQ <a href="149F.html#159E">$159E</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1597"></span>$1597</td>
+<td class="instruction">AND #$01</td>
+<td class="comment-1" rowspan="3">Now <span class="register">A</span> is either <a href="4AC0.html">$06</a> (HURRY UP YOU HORROR) or <a href="4AE0.html">$07</a> (DON'T TRY MY PATIENCE BOY).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1599"></span>$1599</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="159A"></span>$159A</td>
+<td class="instruction">ADC #$06</td>
+</tr>
+<tr>
+<td class="address-1"><span id="159C"></span>$159C</td>
+<td class="instruction">STA $D8</td>
+<td class="comment-1" rowspan="1">Store this lines reprimand identifier at <a href="00D6.html#00D8">$D8</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="159E"></span>$159E</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="1">Character number $14 is ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15A0"></span>$15A0</td>
+<td class="instruction">STA $72</td>
+<td class="comment-1" rowspan="1">Store this lines recipient identifier at <a href="0072.html">$72</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15A2"></span>$15A2</td>
+<td class="instruction">LDA $71</td>
+<td class="comment-1" rowspan="1">Pick up the character number of the teacher who saw ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15A4"></span>$15A4</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">Update the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15A6"></span>$15A6</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy this teacher's buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15A9"></span>$15A9</td>
+<td class="instruction">JSR <a href="1DB7.html">$1DB7</a></td>
+<td class="comment-1" rowspan="1">Make the teacher give lines to ERIC.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="15AC"></span>$15AC</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Restore the current character number to <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15AD"></span>$15AD</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15AF"></span>$15AF</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the current character's buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="15B2"></span>$15B2</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1468.html">$1468</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#149F">Map</a></td>
+<td class="next">
+Next: <a href="15B3.html">$15B3</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

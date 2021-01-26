@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $1FA0</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1F9F.html">$1F9F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1FA0">Map</a></td>
+<td class="next">
+Next: <a href="2004.html">$2004</a>
+</td>
+</tr>
+</table>
+<div class="description">$1FA0: Make a teacher tell the kids to sit down</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7D84.html">$7D84</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command lists <a href="4080.html">$80</a>, <a href="4095.html">$82</a>, <a href="40AE.html">$84</a> and <a href="40C3.html">$86</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1FA0"></span>$1FA0</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FA2"></span>$1FA2</td>
+<td class="instruction">CMP #$0E</td>
+<td class="comment-1" rowspan="1">Is it $0E (MR CREAK)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FA4"></span>$1FA4</td>
+<td class="instruction">BNE <a href="1FA0.html#1FD0">$1FD0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FA6"></span>$1FA6</td>
+<td class="instruction">LDA $46</td>
+<td class="comment-1" rowspan="1">Pick up the game mode indicator from <a href="0046.html">$46</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FA8"></span>$1FA8</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Has ERIC opened the safe yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FAA"></span>$1FAA</td>
+<td class="instruction">BCS <a href="1FA0.html#1FD0">$1FD0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FAC"></span>$1FAC</td>
+<td class="instruction">JSR <a href="1468.html">$1468</a></td>
+<td class="comment-1" rowspan="1">Copy the buffer of the blackboard closest to MR CREAK into page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FAF"></span>$1FAF</td>
+<td class="instruction">LDA $1A</td>
+<td class="comment-1" rowspan="1">Pick up the character number of whoever last wrote on the blackboard.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FB1"></span>$1FB1</td>
+<td class="instruction">CMP #$14</td>
+<td class="comment-1" rowspan="1">Was it ERIC?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FB3"></span>$1FB3</td>
+<td class="instruction">BNE <a href="1FA0.html#1FD0">$1FD0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FB5"></span>$1FB5</td>
+<td class="instruction">LDA $E2</td>
+<td class="comment-1" rowspan="1">Pick up the first character written on the blackboard by ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FB7"></span>$1FB7</td>
+<td class="instruction">CMP $94</td>
+<td class="comment-1" rowspan="1">Does it match the first digit of MR CREAK's year of birth?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FB9"></span>$1FB9</td>
+<td class="instruction">BNE <a href="1FA0.html#1FD0">$1FD0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FBB"></span>$1FBB</td>
+<td class="instruction">LDA $E1</td>
+<td class="comment-1" rowspan="1">Pick up the second character written on the blackboard by ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FBD"></span>$1FBD</td>
+<td class="instruction">CMP $95</td>
+<td class="comment-1" rowspan="1">Does it match the second digit of MR CREAK's year of birth?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FBF"></span>$1FBF</td>
+<td class="instruction">BNE <a href="1FA0.html#1FD0">$1FD0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FC1"></span>$1FC1</td>
+<td class="instruction">LDA $E0</td>
+<td class="comment-1" rowspan="1">Pick up the third character written on the blackboard by ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FC3"></span>$1FC3</td>
+<td class="instruction">CMP $96</td>
+<td class="comment-1" rowspan="1">Does it match the third digit of MR CREAK's year of birth?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FC5"></span>$1FC5</td>
+<td class="instruction">BNE <a href="1FA0.html#1FD0">$1FD0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FC7"></span>$1FC7</td>
+<td class="instruction">LDA $DF</td>
+<td class="comment-1" rowspan="1">Pick up the fourth character written on the blackboard by ERIC.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FC9"></span>$1FC9</td>
+<td class="instruction">CMP $97</td>
+<td class="comment-1" rowspan="1">Does it match the fourth digit of MR CREAK's year of birth?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FCB"></span>$1FCB</td>
+<td class="instruction">BNE <a href="1FA0.html#1FD0">$1FD0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FCD"></span>$1FCD</td>
+<td class="instruction">JSR <a href="1F29.html">$1F29</a></td>
+<td class="comment-1" rowspan="1">Otherwise make MR CREAK reveal his safe combination letter.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1FD0"></span>$1FD0</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Remove the address of this primary command routine from the teacher's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FD2"></span>$1FD2</td>
+<td class="instruction">STA $2A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FD4"></span>$1FD4</td>
+<td class="instruction">LDA #$5B</td>
+<td class="comment-1" rowspan="2">$5B is the MSB of the teachers' sit down message addresses. Store it at <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FD6"></span>$1FD6</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FD8"></span>$1FD8</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="1">Pick up the current character number from <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FDA"></span>$1FDA</td>
+<td class="instruction">CMP #$0C</td>
+<td class="comment-1" rowspan="1">Is it $0C (MR ROCKITT)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FDC"></span>$1FDC</td>
+<td class="instruction">BNE <a href="1FA0.html#1FE3">$1FE3</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FDE"></span>$1FDE</td>
+<td class="instruction">LDA #$59</td>
+<td class="comment-1" rowspan="1">$59 is the LSB of <a href="5B59.html">$5B59</a> (MR ROCKITT's sit down message).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FE0"></span>$1FE0</td>
+<td class="instruction">JMP <a href="1FA0.html#1FF7">$1FF7</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1FE3"></span>$1FE3</td>
+<td class="instruction">CMP #$0D</td>
+<td class="comment-1" rowspan="1">Is the current character number $0D (MR WITHIT)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FE5"></span>$1FE5</td>
+<td class="instruction">BNE <a href="1FA0.html#1FEC">$1FEC</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FE7"></span>$1FE7</td>
+<td class="instruction">LDA #$7B</td>
+<td class="comment-1" rowspan="1">$7B is the LSB of <a href="5B7B.html">$5B7B</a> (MR WITHIT's sit down messaage).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FE9"></span>$1FE9</td>
+<td class="instruction">JMP <a href="1FA0.html#1FF7">$1FF7</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1FEC"></span>$1FEC</td>
+<td class="instruction">CMP #$0E</td>
+<td class="comment-1" rowspan="1">Is the current character number $0E (MR CREAK)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FEE"></span>$1FEE</td>
+<td class="instruction">BNE <a href="1FA0.html#1FF5">$1FF5</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FF0"></span>$1FF0</td>
+<td class="instruction">LDA #$97</td>
+<td class="comment-1" rowspan="1">$97 is the LSB of <a href="5B97.html">$5B97</a> (MR CREAK's sit down message).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FF2"></span>$1FF2</td>
+<td class="instruction">JMP <a href="1FA0.html#1FF7">$1FF7</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1FF5"></span>$1FF5</td>
+<td class="instruction">LDA #$C1</td>
+<td class="comment-1" rowspan="1">$C1 is the LSB of <a href="5BC1.html">$5BC1</a> (MR WACKER's sit down message).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1FF7"></span>$1FF7</td>
+<td class="instruction">STA $AC</td>
+<td class="comment-1" rowspan="1">Store the LSB of the address of the teacher's sit down message at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FF9"></span>$1FF9</td>
+<td class="instruction">LDA #$87</td>
+<td class="comment-1" rowspan="4">Place the address of the interruptible subcommand routine at <a href="2387.html">$2387</a> into the character's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FFB"></span>$1FFB</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FFD"></span>$1FFD</td>
+<td class="instruction">LDA #$23</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1FFF"></span>$1FFF</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2001"></span>$2001</td>
+<td class="instruction">JMP (<a href="00AA.html">$00AA</a>)</td>
+<td class="comment-1" rowspan="1">Jump to <a href="2387.html">$2387</a> to make the teacher start delivering the sit down message.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1F9F.html">$1F9F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#1FA0">Map</a></td>
+<td class="next">
+Next: <a href="2004.html">$2004</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

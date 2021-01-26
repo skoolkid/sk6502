@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2D47</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2D3E.html">$2D3E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2D47">Map</a></td>
+<td class="next">
+Next: <a href="2DAD.html">$2DAD</a>
+</td>
+</tr>
+</table>
+<div class="description">$2D47: Initialise the game status buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="2CD9.html">$2CD9</a> and <a href="2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2D47"></span>$2D47</td>
+<td class="instruction">LDA #$20</td>
+<td class="comment-1" rowspan="2">Initialise the x-coordinate of the leftmost column of the skool on screen to 32.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D49"></span>$2D49</td>
+<td class="instruction">STA $58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D4B"></span>$2D4B</td>
+<td class="instruction">LDA #$48</td>
+<td class="comment-1" rowspan="2">Initialise the x-coordinate of the leftmost column of the skool off screen to 72.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D4D"></span>$2D4D</td>
+<td class="instruction">STA $59</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D4F"></span>$2D4F</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Store the address of the play area tile back buffer (<a href="4000.html">$4000</a>) at <a href="005E.html">$5E</a> for the routine at <a href="3326.html">$3326</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D51"></span>$2D51</td>
+<td class="instruction">STA $5E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D53"></span>$2D53</td>
+<td class="instruction">LDA #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D55"></span>$2D55</td>
+<td class="instruction">STA $5F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D57"></span>$2D57</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Store the screen bitmap start address ($E000) at <a href="005A.html">$5A</a>. This is redundant because the routines that use the address stored there will reinitialise it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D59"></span>$2D59</td>
+<td class="instruction">STA $5A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D5B"></span>$2D5B</td>
+<td class="instruction">LDA #$E0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D5D"></span>$2D5D</td>
+<td class="instruction">STA $5B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D5F"></span>$2D5F</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Store the colour information start address ($CC00) at <a href="005A.html#005C">$5C</a>. This is redundant because the routines that use the address stored there will reinitialise it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D61"></span>$2D61</td>
+<td class="instruction">STA $5C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D63"></span>$2D63</td>
+<td class="instruction">LDA #$CC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D65"></span>$2D65</td>
+<td class="instruction">STA $5D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D67"></span>$2D67</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="2">Initialise the current character number at <a href="0060.html">$60</a> to $FF.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D69"></span>$2D69</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D6B"></span>$2D6B</td>
+<td class="instruction">STA $14</td>
+<td class="comment-1" rowspan="1">Initialise ERIC's posture indicator at <a href="0014.html">$14</a> to $FF: ERIC is standing up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D6D"></span>$2D6D</td>
+<td class="instruction">LDA #$0F</td>
+<td class="comment-1" rowspan="2">Initialise MSB of the lesson clock at <a href="0040.html">$40</a> to $0F.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D6F"></span>$2D6F</td>
+<td class="instruction">STA $40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D71"></span>$2D71</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Initialise the LSB of the lesson clock at <a href="00FD.html">$FD</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D73"></span>$2D73</td>
+<td class="instruction">STA $FD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D75"></span>$2D75</td>
+<td class="instruction">STA $D9</td>
+<td class="comment-1" rowspan="1">Initialise the shield counter at <a href="00D9.html">$D9</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D77"></span>$2D77</td>
+<td class="instruction">STA $4B</td>
+<td class="comment-1" rowspan="1">Clear ERIC's midstride indicator at <a href="004B.html">$4B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D79"></span>$2D79</td>
+<td class="instruction">STA $2B</td>
+<td class="comment-1" rowspan="1">Clear all of ERIC's status flags at <a href="002B.html">$2B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D7B"></span>$2D7B</td>
+<td class="instruction">STA $46</td>
+<td class="comment-1" rowspan="1">Initialise the game mode indicator at <a href="0046.html">$46</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D7D"></span>$2D7D</td>
+<td class="instruction">STA $2C</td>
+<td class="comment-1" rowspan="1">Initialise the sound effect identifier at <a href="002C.html">$2C</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D7F"></span>$2D7F</td>
+<td class="instruction">STA $2D</td>
+<td class="comment-1" rowspan="1">Initialise the sound effect timer at <a href="002D.html">$2D</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D81"></span>$2D81</td>
+<td class="instruction">STA $D015</td>
+<td class="comment-1" rowspan="1">Disable all sprites.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D84"></span>$2D84</td>
+<td class="instruction">STA $4C</td>
+<td class="comment-1" rowspan="1">Initialise the keyboard/joystick reading at <a href="004C.html">$4C</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D86"></span>$2D86</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Initialise the keyboard/joystick input timer at <a href="00E5.html">$E5</a> to 1.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D88"></span>$2D88</td>
+<td class="instruction">STA $E5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D8A"></span>$2D8A</td>
+<td class="instruction">LDA #$04</td>
+<td class="comment-1" rowspan="2">Initialise ERIC's action timer at <a href="00FE.html">$FE</a> to 4.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D8C"></span>$2D8C</td>
+<td class="instruction">STA $FE</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2D8E"></span>$2D8E</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="3">Generate a random value between $00 and $14 in <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D91"></span>$2D91</td>
+<td class="instruction">CMP #$15</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D93"></span>$2D93</td>
+<td class="instruction">BCS <a href="2D47.html#2D8E">$2D8E</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D95"></span>$2D95</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="1">Transfer the random value to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D96"></span>$2D96</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4">Prepare to address of the table of initial lesson numbers at <a href="4650.html">$4650</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D98"></span>$2D98</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D9A"></span>$2D9A</td>
+<td class="instruction">LDA #$50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D9C"></span>$2D9C</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2D9E"></span>$2D9E</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="3">Pick up a randomly chosen value from this table and store it at <a href="0041.html">$41</a>; this initialises the lesson number.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DA0"></span>$2DA0</td>
+<td class="instruction">STA $41</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DA2"></span>$2DA2</td>
+<td class="instruction">DEC $41</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DA4"></span>$2DA4</td>
+<td class="instruction">LDA #$05</td>
+<td class="comment-1" rowspan="2">Initialise the keyboard delay counter at <a href="00EB.html">$EB</a> to 5.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DA6"></span>$2DA6</td>
+<td class="instruction">STA $EB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DA8"></span>$2DA8</td>
+<td class="instruction">LDA #$44</td>
+<td class="comment-1" rowspan="2">Initialise the value at <a href="0042.html#0044">$44</a> to $44 (this is never used).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DAA"></span>$2DAA</td>
+<td class="instruction">STA $44</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DAC"></span>$2DAC</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2D3E.html">$2D3E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2D47">Map</a></td>
+<td class="next">
+Next: <a href="2DAD.html">$2DAD</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

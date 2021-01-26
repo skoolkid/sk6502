@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $0FBA</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0ECF.html">$0ECF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0FBA">Map</a></td>
+<td class="next">
+Next: <a href="1042.html">$1042</a>
+</td>
+</tr>
+</table>
+<div class="description">$0FBA: Control the horizontal flight of a catapult pellet</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6D1C.html">$6D1C</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+The address of this uninterruptible subcommand routine is placed into a pellet's buffer by the routine at <a href="2B52.html">$2B52</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0FBA"></span>$0FBA</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the pellet's current location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FBD"></span>$0FBD</td>
+<td class="instruction">DEC $B2</td>
+<td class="comment-1" rowspan="1">Has the pellet finished its flight yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FBF"></span>$0FBF</td>
+<td class="instruction">BNE <a href="0FBA.html#0FCC">$0FCC</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0FC1"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="1042.html">$1042</a> to terminate the vertical portion of the pellet's flight.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0FC1"></span>$0FC1</td>
+<td class="instruction">LDA #$96</td>
+<td class="comment-1" rowspan="2">Hide the pellet at x-coordinate 150.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FC3"></span>$0FC3</td>
+<td class="instruction">STA $FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FC5"></span>$0FC5</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Remove the uninterruptible subcommand routine address from the pellet's buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FC7"></span>$0FC7</td>
+<td class="instruction">STA $B1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FC9"></span>$0FC9</td>
+<td class="instruction">JMP <a href="0FBA.html#1041">$1041</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0FCC"></span>$0FCC</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the pellet's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FCE"></span>$0FCE</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is the pellet moving right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FCF"></span>$0FCF</td>
+<td class="instruction">BCS <a href="0FBA.html#0FD6">$0FD6</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FD1"></span>$0FD1</td>
+<td class="instruction">DEC $FC</td>
+<td class="comment-1" rowspan="1">Decerement the pellet's x-coordinate at <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FD3"></span>$0FD3</td>
+<td class="instruction">JMP <a href="0FBA.html#0FD8">$0FD8</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0FD6"></span>$0FD6</td>
+<td class="instruction">INC $FC</td>
+<td class="comment-1" rowspan="1">Increment the pellet's x-coordinate at <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0FD8"></span>$0FD8</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the pellet's new x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FDA"></span>$0FDA</td>
+<td class="instruction">CMP #$60</td>
+<td class="comment-1" rowspan="1">Is it now 96 or greater?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FDC"></span>$0FDC</td>
+<td class="instruction">BCS <a href="0FBA.html#0FC1">$0FC1</a></td>
+<td class="comment-1" rowspan="1">Terminate the pellet if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FDE"></span>$0FDE</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="1">Pick up the pellet's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FE0"></span>$0FE0</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Is the pellet at boys' eye level on the top floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FE2"></span>$0FE2</td>
+<td class="instruction">BEQ <a href="0FBA.html#0FFB">$0FFB</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FE4"></span>$0FE4</td>
+<td class="instruction">CMP #$0A</td>
+<td class="comment-1" rowspan="1">Is the pellet at boys' eye level on the middle floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FE6"></span>$0FE6</td>
+<td class="instruction">BEQ <a href="0FBA.html#0FF2">$0FF2</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FE8"></span>$0FE8</td>
+<td class="instruction">CMP #$11</td>
+<td class="comment-1" rowspan="1">Is the pellet at boys' eye level on the bottom floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FEA"></span>$0FEA</td>
+<td class="instruction">BEQ <a href="0FBA.html#1004">$1004</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FEC"></span>$0FEC</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the pellet's new location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FEF"></span>$0FEF</td>
+<td class="instruction">JMP <a href="1042.html#1051">$1051</a></td>
+<td class="comment-1" rowspan="1">Check whether the pellet has hit a shield.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0FF2"></span>$0FF2</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the pellet's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FF4"></span>$0FF4</td>
+<td class="instruction">CMP #$26</td>
+<td class="comment-1" rowspan="1">Is it 38 (equal to that of the Exam Room wall)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FF6"></span>$0FF6</td>
+<td class="instruction">BNE <a href="0FBA.html#1004">$1004</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FF8"></span>$0FF8</td>
+<td class="instruction">JMP <a href="0FBA.html#0FC1">$0FC1</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump back to terminate the pellet.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0FFB"></span>$0FFB</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the pellet's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FFD"></span>$0FFD</td>
+<td class="instruction">CMP #$39</td>
+<td class="comment-1" rowspan="1">Is it 57 (equal to the Map Room wall)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0FFF"></span>$0FFF</td>
+<td class="instruction">BNE <a href="0FBA.html#1004">$1004</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1001"></span>$1001</td>
+<td class="instruction">JMP <a href="0FBA.html#0FC1">$0FC1</a></td>
+<td class="comment-1" rowspan="1">Otherwise jump back to terminate the pellet.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1004"></span>$1004</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the pellet's new location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1007"></span>$1007</td>
+<td class="instruction">LDA $B2</td>
+<td class="comment-1" rowspan="1">Pick up the pellet's remaining distance to travel from <a href="00B2.html">$B2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1009"></span>$1009</td>
+<td class="instruction">CMP #$08</td>
+<td class="comment-1" rowspan="1">Is the pellet ready to hit something?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="100B"></span>$100B</td>
+<td class="instruction">BCS <a href="0FBA.html#1041">$1041</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="100D"></span>$100D</td>
+<td class="instruction">LDY $FB</td>
+<td class="comment-1" rowspan="2">Pick up the pellet's coordinates in <span class="register">X</span> and <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="100F"></span>$100F</td>
+<td class="instruction">LDX $FC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1011"></span>$1011</td>
+<td class="instruction">JSR <a href="29C8.html">$29C8</a></td>
+<td class="comment-1" rowspan="1">Check whether anyone has been hit by the pellet.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1014"></span>$1014</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save <span class="register">A</span> temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1015"></span>$1015</td>
+<td class="instruction">BCS <a href="0FBA.html#1033">$1033</a></td>
+<td class="comment-1" rowspan="1">Branch if someone was knocked over by the pellet.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1017"></span>$1017</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1018"></span>$1018</td>
+<td class="instruction">CMP #$00</td>
+<td class="comment-1" rowspan="1">Was anyone hit by the pellet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="101A"></span>$101A</td>
+<td class="instruction">BEQ <a href="0FBA.html#1041">$1041</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="101C"></span>$101C</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="4">Place the address of the uninterruptible subcommand routine at <a href="1042.html">$1042</a> into the pellet's buffer. This will control the vertical portion of the pellet's flight.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="101E"></span>$101E</td>
+<td class="instruction">STA $B1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1020"></span>$1020</td>
+<td class="instruction">LDA #$42</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1022"></span>$1022</td>
+<td class="instruction">STA $B0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1024"></span>$1024</td>
+<td class="instruction">LDA #$05</td>
+<td class="comment-1" rowspan="2">Set the remaining distance for the pellet to travel to 5.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1026"></span>$1026</td>
+<td class="instruction">STA $B2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1028"></span>$1028</td>
+<td class="instruction">LDY $FB</td>
+<td class="comment-1" rowspan="1">Pick up the pellet's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="102A"></span>$102A</td>
+<td class="instruction">CPY #$03</td>
+<td class="comment-1" rowspan="1">Is the pellet on the top floor?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="102C"></span>$102C</td>
+<td class="instruction">BNE <a href="0FBA.html#1041">$1041</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="102E"></span>$102E</td>
+<td class="instruction">STY $B2</td>
+<td class="comment-1" rowspan="1">Otherwise adjust the remaining distance to 3.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1030"></span>$1030</td>
+<td class="instruction">JMP <a href="0FBA.html#1041">$1041</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1033"></span>$1033</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Set the remaining distance for the pellet to travel to 1. This ensures that it's terminated on the next pass.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1035"></span>$1035</td>
+<td class="instruction">STA $B2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1037"></span>$1037</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Now <span class="register">A</span> holds the number of the character who was knocked over by the pellet.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1038"></span>$1038</td>
+<td class="instruction">CMP #$11</td>
+<td class="comment-1" rowspan="1">Was it EINSTEIN?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="103A"></span>$103A</td>
+<td class="instruction">BNE <a href="0FBA.html#1041">$1041</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="103C"></span>$103C</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="2">Add 30 to the score and print it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="103E"></span>$103E</td>
+<td class="instruction">JMP <a href="1D37.html">$1D37</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="1041"></span>$1041</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0ECF.html">$0ECF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0FBA">Map</a></td>
+<td class="next">
+Next: <a href="1042.html">$1042</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

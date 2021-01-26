@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2797</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2796.html">$2796</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2797">Map</a></td>
+<td class="next">
+Next: <a href="27AA.html">$27AA</a>
+</td>
+</tr>
+</table>
+<div class="description">$2797: Make the stampede leader trip people up on the way to a random location</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+The address of this continual subcommand routine is placed into the stampede leader's buffer by command list <a href="42AD.html">$CC</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2797"></span>$2797</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="1">This instruction is redundant.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2799"></span>$2799</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Set bit 1 of the flags byte at <a href="003F.html">$3F</a>: this character is running continuously.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="279B"></span>$279B</td>
+<td class="instruction">ORA #$02</td>
+</tr>
+<tr>
+<td class="address-1"><span id="279D"></span>$279D</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="279F"></span>$279F</td>
+<td class="instruction">LDA #$28</td>
+<td class="comment-1" rowspan="4">Replace the address of this continual subcommand routine in the boy's buffer with that of <a href="2873.html">$2873</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27A1"></span>$27A1</td>
+<td class="instruction">STA $3A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27A3"></span>$27A3</td>
+<td class="instruction">LDA #$73</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27A5"></span>$27A5</td>
+<td class="instruction">STA $39</td>
+</tr>
+<tr>
+<td class="address-1"><span id="27A7"></span>$27A7</td>
+<td class="instruction">JMP <a href="105B.html">$105B</a></td>
+<td class="comment-1" rowspan="1">Make the boy go to a random location.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2796.html">$2796</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2797">Map</a></td>
+<td class="next">
+Next: <a href="27AA.html">$27AA</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

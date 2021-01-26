@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $0D67</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0C3F.html">$0C3F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0D67">Map</a></td>
+<td class="next">
+Next: <a href="0D91.html">$0D91</a>
+</td>
+</tr>
+</table>
+<div class="description">$0D67: Check whether a character is within a coordinate range</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="0E59.html">$0E59</a> and <a href="0ECF.html">$0ECF</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">Character number ($00-$14)</td>
+</tr>
+<tr>
+<td class="register">(<a href="0072.html#0073">$73</a>)</td>
+<td class="register-desc">Minimum y-coordinate</td>
+</tr>
+<tr>
+<td class="register">(<a href="0072.html#0074">$74</a>)</td>
+<td class="register-desc">Maximum y-coordinate</td>
+</tr>
+<tr>
+<td class="register">(<a href="0072.html#0075">$75</a>)</td>
+<td class="register-desc">Minimum x-coordinate</td>
+</tr>
+<tr>
+<td class="register">(<a href="0072.html#0076">$76</a>)</td>
+<td class="register-desc">Maximum x-coordinate</td>
+</tr>
+</table>
+<table class="output">
+<tr class="asm-output-header">
+<th colspan="2">Output</th>
+</tr>
+<tr>
+<td class="register">P</td>
+<td class="register-desc">Carry flag set if the character is within the coordinate range</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0D67"></span>$0D67</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="5">Store the base address of the character's buffer at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D68"></span>$0D68</td>
+<td class="instruction">ADC #$78</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D6A"></span>$0D6A</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D6C"></span>$0D6C</td>
+<td class="instruction">LDA #$60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D6E"></span>$0D6E</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D70"></span>$0D70</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="2">Pick up the character's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D72"></span>$0D72</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D74"></span>$0D74</td>
+<td class="instruction">CMP $75</td>
+<td class="comment-1" rowspan="1">Is it less than the minimum x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D76"></span>$0D76</td>
+<td class="instruction">BCC <a href="0D67.html#0D8F">$0D8F</a></td>
+<td class="comment-1" rowspan="1">Return with the carry flag reset if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D78"></span>$0D78</td>
+<td class="instruction">INC $76</td>
+<td class="comment-1" rowspan="2">Is the character's x-coordinate greater than the maximum x-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D7A"></span>$0D7A</td>
+<td class="instruction">CMP $76</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D7C"></span>$0D7C</td>
+<td class="instruction">BCS <a href="0D67.html#0D8F">$0D8F</a></td>
+<td class="comment-1" rowspan="1">Return with the carry flag reset if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D7E"></span>$0D7E</td>
+<td class="instruction">INY</td>
+<td class="comment-1" rowspan="2">Pick up the character's y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D7F"></span>$0D7F</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D81"></span>$0D81</td>
+<td class="instruction">CMP $73</td>
+<td class="comment-1" rowspan="1">Is it less than the minimum y-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D83"></span>$0D83</td>
+<td class="instruction">BCC <a href="0D67.html#0D8F">$0D8F</a></td>
+<td class="comment-1" rowspan="1">Return with the carry flag reset if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D85"></span>$0D85</td>
+<td class="instruction">INC $74</td>
+<td class="comment-1" rowspan="2">Is the character's y-coordinate greater than the maximum y-coordinate?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D87"></span>$0D87</td>
+<td class="instruction">CMP $74</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D89"></span>$0D89</td>
+<td class="instruction">BCS <a href="0D67.html#0D8F">$0D8F</a></td>
+<td class="comment-1" rowspan="1">Return with the carry flag reset if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D8B"></span>$0D8B</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Return with the the carry flag set.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D8C"></span>$0D8C</td>
+<td class="instruction">JMP <a href="0D67.html#0D90">$0D90</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="0D8F"></span>$0D8F</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="1">Clear the carry flag.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0D90"></span>$0D90</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0C3F.html">$0C3F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0D67">Map</a></td>
+<td class="next">
+Next: <a href="0D91.html">$0D91</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

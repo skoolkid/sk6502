@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $213B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="212A.html">$212A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#213B">Map</a></td>
+<td class="next">
+Next: <a href="2156.html">$2156</a>
+</td>
+</tr>
+</table>
+<div class="description">$213B: Centre the text in the text graphic buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="2043.html">$2043</a>, <a href="2573.html">$2573</a>, <a href="2BB0.html">$2BB0</a> and <a href="BFF5.html">$BFF5</a>.
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">(<a href="009A.html#009D">$9D</a>)</td>
+<td class="register-desc">Width (in character cells) of the target message box</td>
+</tr>
+<tr>
+<td class="register">(<a href="00A2.html">$A2</a>)</td>
+<td class="register-desc">Number of pixel columns already inserted into the buffer</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="213B"></span>$213B</td>
+<td class="instruction">LDA $9D</td>
+<td class="comment-1" rowspan="4">Pick up the width (in character cells) of the target message box from <a href="009A.html#009D">$9D</a> and multiply by 8 to get the width in pixels.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="213D"></span>$213D</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="213E"></span>$213E</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="213F"></span>$213F</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2140"></span>$2140</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract the number of pixel columns that have been inserted into the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2141"></span>$2141</td>
+<td class="instruction">SBC $A2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2143"></span>$2143</td>
+<td class="instruction">BMI <a href="213B.html#2155">$2155</a></td>
+<td class="comment-1" rowspan="1">Return if the buffer is already full (no centring required).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2145"></span>$2145</td>
+<td class="instruction">CMP #$02</td>
+<td class="comment-1" rowspan="1">Are there fewer than two free pixel columns remaining?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2147"></span>$2147</td>
+<td class="instruction">BCC <a href="213B.html#2155">$2155</a></td>
+<td class="comment-1" rowspan="1">Return if so (no centring required).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2149"></span>$2149</td>
+<td class="instruction">LSR A</td>
+<td class="comment-1" rowspan="2">Divide <span class="register">A</span> by 2 and store the result at <a href="004D.html#0057">$57</a>. This is the number of pixel columns by which the message will be shifted in order to centre it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="214A"></span>$214A</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-2"><span id="214C"></span>$214C</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Insert a blank pixel column into the text graphic buffer at <a href="4500.html">$4500</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="214E"></span>$214E</td>
+<td class="instruction">JSR <a href="20F5.html">$20F5</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2151"></span>$2151</td>
+<td class="instruction">DEC $57</td>
+<td class="comment-1" rowspan="1">Is the message centred yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2153"></span>$2153</td>
+<td class="instruction">BNE <a href="213B.html#214C">$214C</a></td>
+<td class="comment-1" rowspan="1">Branch back if not.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2155"></span>$2155</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="212A.html">$212A</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#213B">Map</a></td>
+<td class="next">
+Next: <a href="2156.html">$2156</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $290F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="28BC.html">$28BC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#290F">Map</a></td>
+<td class="next">
+Next: <a href="292F.html">$292F</a>
+</td>
+</tr>
+</table>
+<div class="description">$290F: Deal with ERIC if he's being spoken to by little boy no. 10</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="15B3.html">$15B3</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="290F"></span>$290F</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's status flags from <a href="002B.html">$2B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2911"></span>$2911</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="3">Is bit 5 set, indicating that little boy no. 10 is waiting for a response?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2912"></span>$2912</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2913"></span>$2913</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2914"></span>$2914</td>
+<td class="instruction">BCC <a href="290F.html#292E">$292E</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2916"></span>$2916</td>
+<td class="instruction">LDA $4C</td>
+<td class="comment-1" rowspan="2">Pick up the keyboard/joystick reading from <a href="004C.html">$4C</a> and store a copy at <a href="00C5.html">$C5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2918"></span>$2918</td>
+<td class="instruction">STA $C5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="291A"></span>$291A</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Clear the keyboard/joystick reading at <a href="004C.html">$4C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="291C"></span>$291C</td>
+<td class="instruction">STA $4C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="291E"></span>$291E</td>
+<td class="instruction">LDA $C5</td>
+<td class="comment-1" rowspan="1">Pick up the keyboard/joystick reading from <a href="00C5.html">$C5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2920"></span>$2920</td>
+<td class="instruction">BEQ <a href="290F.html#292E">$292E</a></td>
+<td class="comment-1" rowspan="1">Return if no key was pressed.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2922"></span>$2922</td>
+<td class="instruction">AND #$5F</td>
+<td class="comment-1" rowspan="2">Was 'U' pressed?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2924"></span>$2924</td>
+<td class="instruction">CMP #$55</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2926"></span>$2926</td>
+<td class="instruction">BNE <a href="290F.html#292E">$292E</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2928"></span>$2928</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="3">Otherwise clear bits 4-6 of ERIC's status flags at <a href="002B.html">$2B</a>: he is free to move again.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="292A"></span>$292A</td>
+<td class="instruction">AND #$8F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="292C"></span>$292C</td>
+<td class="instruction">STA $2B</td>
+</tr>
+<tr>
+<td class="address-2"><span id="292E"></span>$292E</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="28BC.html">$28BC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#290F">Map</a></td>
+<td class="next">
+Next: <a href="292F.html">$292F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2DAD</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2D47.html">$2D47</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2DAD">Map</a></td>
+<td class="next">
+Next: <a href="2DCB.html">$2DCB</a>
+</td>
+</tr>
+</table>
+<div class="description">$2DAD: Clear the screen</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="2CD9.html">$2CD9</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2DAD"></span>$2DAD</td>
+<td class="instruction">LDA #$E0</td>
+<td class="comment-1" rowspan="4">Prepare to address the screen bitmap at $E000.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DAF"></span>$2DAF</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DB1"></span>$2DB1</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DB3"></span>$2DB3</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DB5"></span>$2DB5</td>
+<td class="instruction">LDX #$1F</td>
+<td class="comment-1" rowspan="8">Fill addresses $E000-$FEFF with zeroes.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2DB7"></span>$2DB7</td>
+<td class="instruction">LDY #$00</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2DB9"></span>$2DB9</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DBB"></span>$2DBB</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DBC"></span>$2DBC</td>
+<td class="instruction">BNE <a href="2DAD.html#2DB9">$2DB9</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DBE"></span>$2DBE</td>
+<td class="instruction">INC $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DC0"></span>$2DC0</td>
+<td class="instruction">DEX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DC1"></span>$2DC1</td>
+<td class="instruction">BNE <a href="2DAD.html#2DB7">$2DB7</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DC3"></span>$2DC3</td>
+<td class="instruction">LDY #$37</td>
+<td class="comment-1" rowspan="4">Fill addresses $FF00-$FF37 with zeroes.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2DC5"></span>$2DC5</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DC7"></span>$2DC7</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DC8"></span>$2DC8</td>
+<td class="instruction">BPL <a href="2DAD.html#2DC5">$2DC5</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2DCA"></span>$2DCA</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2D47.html">$2D47</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2DAD">Map</a></td>
+<td class="next">
+Next: <a href="2DCB.html">$2DCB</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

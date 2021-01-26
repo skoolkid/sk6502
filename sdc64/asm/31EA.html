@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $31EA</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="31DF.html">$31DF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#31EA">Map</a></td>
+<td class="next">
+Next: <a href="322E.html">$322E</a>
+</td>
+</tr>
+</table>
+<div class="description">$31EA: Update the display</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/6992.html">$6992</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routines at <a href="0800.html">$0800</a>, <a href="35EF.html">$35EF</a> and <a href="BE09.html">$BE09</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="31EA"></span>$31EA</td>
+<td class="instruction">LDY #$5E</td>
+<td class="comment-1" rowspan="5">Prepare to address the screen refresh buffer (SRB) at <a href="4008.html">$4008</a>, working backwards from the last byte at $4070 to the 11th byte $4012. This ignores the first ten bytes - which correspond to the top two rows of the screen - and is a <a href="../reference/bugs.html#disappearingPellet">bug</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31EC"></span>$31EC</td>
+<td class="instruction">LDA #$12</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31EE"></span>$31EE</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31F0"></span>$31F0</td>
+<td class="instruction">LDA #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31F2"></span>$31F2</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-2"><span id="31F4"></span>$31F4</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="1">Pick up a byte from the screen refresh buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31F6"></span>$31F6</td>
+<td class="instruction">BEQ <a href="31EA.html#322A">$322A</a></td>
+<td class="comment-1" rowspan="1">Branch if it's zero (no updates required).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31F8"></span>$31F8</td>
+<td class="instruction">STA $57</td>
+<td class="comment-1" rowspan="1">Store the SRB byte at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31FA"></span>$31FA</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="2">Save <span class="register">Y</span> temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31FB"></span>$31FB</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31FC"></span>$31FC</td>
+<td class="instruction">LDX #$01</td>
+<td class="comment-1" rowspan="5">Set <span class="register">X</span> to 1+8*INT(<span class="register">Y</span>/40).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31FE"></span>$31FE</td>
+<td class="instruction">CMP #$28</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3200"></span>$3200</td>
+<td class="instruction">BCC <a href="31EA.html#3206">$3206</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3202"></span>$3202</td>
+<td class="instruction">SBC #$28</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3204"></span>$3204</td>
+<td class="instruction">LDX #$09</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3206"></span>$3206</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="4">Increase <span class="register">X</span> by INT((<span class="register">Y</span>%40)/5)+1. This is the play area y-coordinate of the segment corresponding to the SRB byte under inspection.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3207"></span>$3207</td>
+<td class="instruction">SEC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3208"></span>$3208</td>
+<td class="instruction">SBC #$05</td>
+</tr>
+<tr>
+<td class="address-1"><span id="320A"></span>$320A</td>
+<td class="instruction">BPL <a href="31EA.html#3206">$3206</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="320C"></span>$320C</td>
+<td class="instruction">STX $28</td>
+<td class="comment-1" rowspan="1">Store this play area y-coordinate at <a href="0027.html#0028">$28</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="320E"></span>$320E</td>
+<td class="instruction">ADC #$05</td>
+<td class="comment-1" rowspan="1">Now 0&lt;=<span class="register">A</span>&lt;5, the remainder when <span class="register">Y</span> is divided by 5.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3210"></span>$3210</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="4">Multiply by 8 and add the x-coordinate of the leftmost column of the skool on screen. This gives the play area x-coordinate of the leftmost cell in the segment corresponding to the SRB byte under inspection.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3211"></span>$3211</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3212"></span>$3212</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3213"></span>$3213</td>
+<td class="instruction">ADC $58</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3215"></span>$3215</td>
+<td class="instruction">STA $27</td>
+<td class="comment-1" rowspan="1">Store this play area x-coordinate at <a href="0027.html">$27</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3217"></span>$3217</td>
+<td class="instruction">ASL $57</td>
+<td class="comment-1" rowspan="1">Move bit 7 of the SRB byte into the carry flag.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3219"></span>$3219</td>
+<td class="instruction">BCC <a href="31EA.html#321E">$321E</a></td>
+<td class="comment-1" rowspan="1">Branch if it's clear (no update required).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="321B"></span>$321B</td>
+<td class="instruction">JSR <a href="3326.html">$3326</a></td>
+<td class="comment-1" rowspan="1">Print the corresponding play area tile.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="321E"></span>$321E</td>
+<td class="instruction">INC $27</td>
+<td class="comment-1" rowspan="1">Increment the play area x-coordinate at <a href="0027.html">$27</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3220"></span>$3220</td>
+<td class="instruction">LDA $57</td>
+<td class="comment-1" rowspan="1">Pick up the remains of the SRB byte.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3222"></span>$3222</td>
+<td class="instruction">BNE <a href="31EA.html#3217">$3217</a></td>
+<td class="comment-1" rowspan="1">Branch back until it's zero.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3224"></span>$3224</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Restore the SRB index to <span class="register">Y</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3225"></span>$3225</td>
+<td class="instruction">TAY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3226"></span>$3226</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Clear all bits in this byte of the screen refresh buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3228"></span>$3228</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-2"><span id="322A"></span>$322A</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">Next byte in the screen refresh buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="322B"></span>$322B</td>
+<td class="instruction">BPL <a href="31EA.html#31F4">$31F4</a></td>
+<td class="comment-1" rowspan="1">Branch back unless we've finished.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="322D"></span>$322D</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="31DF.html">$31DF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#31EA">Map</a></td>
+<td class="next">
+Next: <a href="322E.html">$322E</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

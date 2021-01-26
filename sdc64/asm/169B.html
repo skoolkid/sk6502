@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $169B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1640.html">$1640</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#169B">Map</a></td>
+<td class="next">
+Next: <a href="16D0.html">$16D0</a>
+</td>
+</tr>
+</table>
+<div class="description">$169B: 'F' or SPACE pressed - fire catapult</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/F46E.html">$F46E</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Called from the main loop at <a href="0800.html">$0800</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="169B"></span>$169B</td>
+<td class="instruction">LDA #$8B</td>
+<td class="comment-1" rowspan="4">Prepare to address the buffer for ERIC's pellet at <a href="8B60.html">$8B60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="169D"></span>$169D</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="169F"></span>$169F</td>
+<td class="instruction">LDA #$60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16A1"></span>$16A1</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16A3"></span>$16A3</td>
+<td class="instruction">LDY #$01</td>
+<td class="comment-1" rowspan="2">Pick up the pellet's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16A5"></span>$16A5</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16A7"></span>$16A7</td>
+<td class="instruction">CMP #$80</td>
+<td class="comment-1" rowspan="1">Is the pellet already airborne?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16A9"></span>$16A9</td>
+<td class="instruction">BCC <a href="169B.html#16CF">$16CF</a></td>
+<td class="comment-1" rowspan="1">Return if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16AB"></span>$16AB</td>
+<td class="instruction">LDX #$01</td>
+<td class="comment-1" rowspan="1">Bit 0 set (ERIC is firing the catapult).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16AD"></span>$16AD</td>
+<td class="instruction">LDY #$08</td>
+<td class="comment-1" rowspan="1"><a href="../graphics/as.html#08">$08</a> is the animatory state of ERIC raising the catapult.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16AF"></span>$16AF</td>
+<td class="instruction">LDA #$18</td>
+<td class="comment-1" rowspan="1">This will initialise the catapult-firing action timer to $18.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="16B1"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="16D0.html">$16D0</a> (with <span class="register">A</span>=$10, <span class="register">X</span>=$02 and <span class="register">Y</span>=<a href="../graphics/as.html#0C">$0C</a> when ERIC has just jumped), <a href="16DF.html">$16DF</a> (with <span class="register">A</span>=$12, <span class="register">X</span>=$04 and <span class="register">Y</span>=<a href="../graphics/as.html#0A">$0A</a> when ERIC has just begun to throw a punch) and <a href="19A5.html">$19A5</a> (with <span class="register">A</span>=$0A, <span class="register">X</span>=$08 and <span class="register">Y</span>=<a href="../graphics/as.html#0D">$0D</a> when ERIC has just started writing on a blackboard).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="16B1"></span>$16B1</td>
+<td class="instruction">STA $FE</td>
+<td class="comment-1" rowspan="1">Initialise ERIC's action timer at <a href="00FE.html">$FE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16B3"></span>$16B3</td>
+<td class="instruction">LDA $14</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's posture indicator from <a href="0014.html">$14</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16B5"></span>$16B5</td>
+<td class="instruction">BEQ <a href="169B.html#16CF">$16CF</a></td>
+<td class="comment-1" rowspan="1">Return unless ERIC is standing up.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16B7"></span>$16B7</td>
+<td class="instruction">STX $2B</td>
+<td class="comment-1" rowspan="1">Update ERIC's status flags at <a href="002B.html">$2B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16B9"></span>$16B9</td>
+<td class="instruction">TYA</td>
+<td class="comment-1" rowspan="1">Transfer ERIC's next animatory state to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16BA"></span>$16BA</td>
+<td class="instruction">PHA</td>
+<td class="comment-1" rowspan="1">Save it temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16BB"></span>$16BB</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's current animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16BE"></span>$16BE</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="2">Pick up ERIC's current animatory state from <a href="0026.html">$26</a> and store it at <a href="00D2.html">$D2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16C0"></span>$16C0</td>
+<td class="instruction">STA $D2</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16C2"></span>$16C2</td>
+<td class="instruction">AND #$80</td>
+<td class="comment-1" rowspan="1">Clear all but the direction bit (bit 7).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16C4"></span>$16C4</td>
+<td class="instruction">STA $26</td>
+<td class="comment-1" rowspan="1">Save this base animatory state at <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16C6"></span>$16C6</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="1">Restore ERIC's next animatory state to <span class="register">A</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16C7"></span>$16C7</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Adjust bit 7 according to the direction ERIC's facing.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16C8"></span>$16C8</td>
+<td class="instruction">ADC $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16CA"></span>$16CA</td>
+<td class="instruction">STA $26</td>
+<td class="comment-1" rowspan="1">Save the new animatory state with the correct bit 7.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="16CC"></span>$16CC</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="16CF"></span>$16CF</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="1640.html">$1640</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#169B">Map</a></td>
+<td class="next">
+Next: <a href="16D0.html">$16D0</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Data at $4400</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43FF.html">$43FF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#4400">Map</a></td>
+<td class="next">
+Next: <a href="4420.html">$4420</a>
+</td>
+</tr>
+</table>
+<div class="description">$4400: Signal flags</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="2AF9.html">$2AF9</a>, <a href="2B0D.html">$2B0D</a>, <a href="31B6.html">$31B6</a>, <a href="31C4.html">$31C4</a>, <a href="31D2.html">$31D2</a> and <a href="392D.html">$392D</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4400"></span>$4400</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $00: end of lesson/playtime (always 0).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4401"></span>$4401</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $01: ERIC should be in class or the dinner hall now. This signal is raised by the routines at <a href="0A58.html">$0A58</a>, <a href="0B3B.html">$0B3B</a> and <a href="0E35.html">$0E35</a>, and checked by the routines at <a href="0B3B.html">$0B3B</a> and <a href="149F.html">$149F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4402"></span>$4402</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $02: ERIC's lesson has started. This signal is raised by the routine at <a href="0A58.html">$0A58</a>, and checked by the routine at <a href="149F.html">$149F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4403"></span>$4403</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $03: EINSTEIN is speaking. This signal is raised and checked by the routine at <a href="1EE3.html">$1EE3</a>, and lowered and checked by the routine at <a href="1F4D.html">$1F4D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4404"></span>$4404</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $04 (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4405"></span>$4405</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $05 (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4406"></span>$4406</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $06 (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4407"></span>$4407</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $07 (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4408"></span>$4408</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $08: teacher has arrived at the Map Room. This signal is raised by command list <a href="4080.html">$80</a>, and checked by command lists <a href="40DC.html">$88</a>, <a href="40E7.html">$8C</a>, <a href="40FA.html">$8E</a> and <a href="410D.html">$90</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4409"></span>$4409</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $09: teacher has arrived at the Reading Room. This signal is raised by command list <a href="4095.html">$82</a>, and checked by command lists <a href="4118.html">$92</a>, <a href="4123.html">$94</a>, <a href="413D.html">$96</a> and <a href="4150.html">$98</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="440A"></span>$440A</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $0A: teacher has arrived at the Exam Room. This signal is raised by command list <a href="40AE.html">$84</a>, and checked by command lists <a href="415B.html">$9A</a>, <a href="4166.html">$9C</a>, <a href="4180.html">$9E</a> and <a href="4193.html">$A0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="440B"></span>$440B</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $0B: teacher has arrived at the White Room. This signal is raised by command list <a href="40C3.html">$86</a>, and checked by command lists <a href="419E.html">$A2</a>, <a href="41A9.html">$A4</a>, <a href="41C3.html">$A6</a> and <a href="41D6.html">$A8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="440C"></span>$440C</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $0C: ERIC has mumps. This signal is raised by the routine at <a href="26EF.html">$26EF</a>, and checked by command list <a href="4376.html">$DE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="440D"></span>$440D</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $0D (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="440E"></span>$440E</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $0E (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="440F"></span>$440F</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $0F (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4410"></span>$4410</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $10: little boy no. 1 is ready to stampede. This signal is raised and lowered by command list <a href="42AD.html">$CC</a>, and checked by command list <a href="42CF.html">$CE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4411"></span>$4411</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $11: little boy no. 1 is ready to stampede again. This signal is raised and lowered by command list <a href="42AD.html">$CC</a>, and checked by command list <a href="42CF.html">$CE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4412"></span>$4412</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $12 (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4413"></span>$4413</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $13 (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4414"></span>$4414</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $14 (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4415"></span>$4415</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $15 (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4416"></span>$4416</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $16 (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4417"></span>$4417</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $17 (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4418"></span>$4418</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $18 (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4419"></span>$4419</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $19 (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="441A"></span>$441A</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $1A: EINSTEIN or BOY WONDER is ready. This signal is raised by command lists <a href="4309.html">$D4</a> and <a href="4334.html">$D8</a>, and checked by command lists <a href="42E3.html">$D0</a> and <a href="438A.html">$E0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="441B"></span>$441B</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $1B: MR WACKER is ready. This signal is raised by command lists <a href="431F.html">$D6</a> and <a href="4352.html">$DA</a>, and checked by command lists <a href="42E3.html">$D0</a> and <a href="438A.html">$E0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="441C"></span>$441C</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $1C: ERIC has been told about EINSTEIN, BOY WONDER or ANGELFACE. This signal is raised by command lists <a href="42E3.html">$D0</a>, <a href="42FB.html">$D2</a> and <a href="438A.html">$E0</a>, and checked by command lists <a href="4309.html">$D4</a>, <a href="4334.html">$D8</a> and <a href="4352.html">$DA</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="441D"></span>$441D</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $1D: EINSTEIN has told MR WACKER what ERIC's up to. This signal is raised by command list <a href="4309.html">$D4</a>, and checked by command list <a href="431F.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="441E"></span>$441E</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $1E (unused).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="441F"></span>$441F</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1">Event $1F (unused).</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="43FF.html">$43FF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#4400">Map</a></td>
+<td class="next">
+Next: <a href="4420.html">$4420</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

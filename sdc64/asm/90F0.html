@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Unused RAM at $90F0</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-u">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Unused</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="90E8.html">$90E8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#90F0">Map</a></td>
+<td class="next">
+Next: <a href="90FF.html">$90FF</a>
+</td>
+</tr>
+</table>
+<div class="description">$90F0: Z80 code remnants</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/B0E8.html">$B0E8</a> in the ZX Spectrum version.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="90F0"></span>$90F0</td>
+<td class="instruction">.BYTE $40</td>
+<td class="comment-1" rowspan="1">Third byte of 'LD DE,$40E0'.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="90F1"></span>$90F1</td>
+<td class="instruction">.BYTE $C5</td>
+<td class="comment-1" rowspan="1">PUSH BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="90F2"></span>$90F2</td>
+<td class="instruction">.BYTE $CD,$E8,$AF</td>
+<td class="comment-1" rowspan="1">CALL $AFE8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="90F5"></span>$90F5</td>
+<td class="instruction">.BYTE $C1</td>
+<td class="comment-1" rowspan="1">POP BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="90F6"></span>$90F6</td>
+<td class="instruction">.BYTE $CD,$72,$B0</td>
+<td class="comment-1" rowspan="1">CALL $B072</td>
+</tr>
+<tr>
+<td class="address-1"><span id="90F9"></span>$90F9</td>
+<td class="instruction">.BYTE $26,$D9</td>
+<td class="comment-1" rowspan="1">LD H,$D9</td>
+</tr>
+<tr>
+<td class="address-1"><span id="90FB"></span>$90FB</td>
+<td class="instruction">.BYTE $E5</td>
+<td class="comment-1" rowspan="1">PUSH HL</td>
+</tr>
+<tr>
+<td class="address-1"><span id="90FC"></span>$90FC</td>
+<td class="instruction">.BYTE $C3,$E8,$B1</td>
+<td class="comment-1" rowspan="1">JP $B1E8</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="90E8.html">$90E8</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#90F0">Map</a></td>
+<td class="next">
+Next: <a href="90FF.html">$90FF</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

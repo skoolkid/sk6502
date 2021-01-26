@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $BA00</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B9A0.html">$B9A0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BA00">Map</a></td>
+<td class="next">
+Next: <a href="BA48.html">$BA48</a>
+</td>
+</tr>
+</table>
+<div class="description">$BA00: Play the theme tune</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="0800.html">$0800</a> and <a href="2BB0.html">$2BB0</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BA00"></span>$BA00</td>
+<td class="instruction">SEI</td>
+<td class="comment-1" rowspan="1">Disable interrupts.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA01"></span>$BA01</td>
+<td class="instruction">LDA #$BA</td>
+<td class="comment-1" rowspan="4">Set the interrupt routine address at $FFFE to <a href="BAB4.html">$BAB4</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA03"></span>$BA03</td>
+<td class="instruction">STA $FFFF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA06"></span>$BA06</td>
+<td class="instruction">LDA #$B4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA08"></span>$BA08</td>
+<td class="instruction">STA $FFFE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA0B"></span>$BA0B</td>
+<td class="instruction">JSR <a href="BA90.html">$BA90</a></td>
+<td class="comment-1" rowspan="1">Initialise the tune buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA0E"></span>$BA0E</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">The theme tune data for voice #1 is at <a href="BC00.html">$BC00</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA10"></span>$BA10</td>
+<td class="instruction">STA $BBC3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA13"></span>$BA13</td>
+<td class="instruction">LDA #$BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA15"></span>$BA15</td>
+<td class="instruction">STA $BBC6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA18"></span>$BA18</td>
+<td class="instruction">LDA #$41</td>
+<td class="comment-1" rowspan="4">The theme tune data for voice #2 is at <a href="BC00.html#BC41">$BC41</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA1A"></span>$BA1A</td>
+<td class="instruction">STA $BBC4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA1D"></span>$BA1D</td>
+<td class="instruction">LDA #$BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA1F"></span>$BA1F</td>
+<td class="instruction">STA $BBC7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA22"></span>$BA22</td>
+<td class="instruction">LDA #$5A</td>
+<td class="comment-1" rowspan="4">The theme tune data for voice #3 is at <a href="BC00.html#BC5A">$BC5A</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA24"></span>$BA24</td>
+<td class="instruction">STA $BBC5</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA27"></span>$BA27</td>
+<td class="instruction">LDA #$BC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA29"></span>$BA29</td>
+<td class="instruction">STA $BBC8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA2C"></span>$BA2C</td>
+<td class="instruction">JSR <a href="B940.html">$B940</a></td>
+<td class="comment-1" rowspan="1">Initialise voices #1, #2 and #3.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA2F"></span>$BA2F</td>
+<td class="instruction">CLI</td>
+<td class="comment-1" rowspan="1">Re-enable interrupts to start playing the tune.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BA30"></span>$BA30</td>
+<td class="instruction">LDA $BBCE</td>
+<td class="comment-1" rowspan="1">Has the tune finished playing yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA33"></span>$BA33</td>
+<td class="instruction">BNE <a href="BA00.html#BA38">$BA38</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA35"></span>$BA35</td>
+<td class="instruction">JMP <a href="BA00.html#BA30">$BA30</a></td>
+<td class="comment-1" rowspan="1">Otherwise check again.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="BA38"></span>$BA38</td>
+<td class="instruction">SEI</td>
+<td class="comment-1" rowspan="1">Disable interrupts.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA39"></span>$BA39</td>
+<td class="instruction">LDA #$39</td>
+<td class="comment-1" rowspan="4">Set the interrupt routine address at $FFFE back to <a href="39C7.html">$39C7</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA3B"></span>$BA3B</td>
+<td class="instruction">STA $FFFF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA3E"></span>$BA3E</td>
+<td class="instruction">LDA #$C7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA40"></span>$BA40</td>
+<td class="instruction">STA $FFFE</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA43"></span>$BA43</td>
+<td class="instruction">CLI</td>
+<td class="comment-1" rowspan="1">Re-enable interrupts.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA44"></span>$BA44</td>
+<td class="instruction">JSR <a href="302A.html">$302A</a></td>
+<td class="comment-1" rowspan="1">Initialise voice #3.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="BA47"></span>$BA47</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B9A0.html">$B9A0</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#BA00">Map</a></td>
+<td class="next">
+Next: <a href="BA48.html">$BA48</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

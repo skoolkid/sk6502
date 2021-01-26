@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $277D</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="277C.html">$277C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#277D">Map</a></td>
+<td class="next">
+Next: <a href="2796.html">$2796</a>
+</td>
+</tr>
+</table>
+<div class="description">$277D: Make MR WACKER give ERIC 2000 lines</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/F7E0.html">$F7E0</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command lists <a href="431F.html">$D6</a> and <a href="4352.html">$DA</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="277D"></span>$277D</td>
+<td class="instruction">LDA #$4C</td>
+<td class="comment-1" rowspan="4">Place <a href="4C00.html">$4C00</a> (TAKE 2000 LINES YOU NASTY BOY) at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="277F"></span>$277F</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2781"></span>$2781</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2783"></span>$2783</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2785"></span>$2785</td>
+<td class="instruction">JSR <a href="1F77.html">$1F77</a></td>
+<td class="comment-1" rowspan="2">Place the address of the interruptible subcommand routine at <a href="2387.html">$2387</a> into MR WACKER's buffer and jump to it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2788"></span>$2788</td>
+<td class="instruction">.WORD <a href="2387.html">$2387</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="278A"></span>
+<div class="comments">
+<div class="paragraph">
+Control returns here after MR WACKER has spoken to ERIC.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="278A"></span>$278A</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Set the MSB of the lesson clock at <a href="0040.html">$40</a> to 1 so that the bell will ring soon.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="278C"></span>$278C</td>
+<td class="instruction">STA $40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="278E"></span>$278E</td>
+<td class="instruction">LDA #$C8</td>
+<td class="comment-1" rowspan="2">Add 2000 lines to ERIC's total.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2790"></span>$2790</td>
+<td class="instruction">JSR <a href="1D4A.html">$1D4A</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2793"></span>$2793</td>
+<td class="instruction">JMP <a href="1D2D.html">$1D2D</a></td>
+<td class="comment-1" rowspan="1">Terminate this primary command.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="277C.html">$277C</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#277D">Map</a></td>
+<td class="next">
+Next: <a href="2796.html">$2796</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

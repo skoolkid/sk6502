@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $28BC</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="28BB.html">$28BB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#28BC">Map</a></td>
+<td class="next">
+Next: <a href="290F.html">$290F</a>
+</td>
+</tr>
+</table>
+<div class="description">$28BC: Make little boy no. 10 give ERIC a message</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/F800.html">$F800</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command lists <a href="42E3.html">$D0</a> and <a href="42FB.html">$D2</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="28BC"></span>$28BC</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="3">Set bit 6 of ERIC's status flags at <a href="002B.html">$2B</a>, indicating that he is immobilised.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28BE"></span>$28BE</td>
+<td class="instruction">ORA #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28C0"></span>$28C0</td>
+<td class="instruction">STA $2B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28C2"></span>$28C2</td>
+<td class="instruction">JSR <a href="3BE7.html">$3BE7</a></td>
+<td class="comment-1" rowspan="4">Collect the message address from the command list and store it at <a href="00A6.html">$A6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28C5"></span>$28C5</td>
+<td class="instruction">STA $A6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28C7"></span>$28C7</td>
+<td class="instruction">JSR <a href="3BE7.html">$3BE7</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="28CA"></span>$28CA</td>
+<td class="instruction">STA $A7</td>
+</tr>
+<tr>
+<td class="address-2"><span id="28CC"></span>$28CC</td>
+<td class="instruction">LDA #$FF</td>
+<td class="comment-1" rowspan="2">Set the MSB of the lesson clock at <a href="0040.html">$40</a> to $FF to ensure that the bell won't ring before the message is delivered.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28CE"></span>$28CE</td>
+<td class="instruction">STA $40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28D0"></span>$28D0</td>
+<td class="instruction">LDA $A6</td>
+<td class="comment-1" rowspan="4">Copy the message address from <a href="00A6.html">$A6</a> to <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28D2"></span>$28D2</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28D4"></span>$28D4</td>
+<td class="instruction">LDA $A7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28D6"></span>$28D6</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28D8"></span>$28D8</td>
+<td class="instruction">JSR <a href="1F77.html">$1F77</a></td>
+<td class="comment-1" rowspan="2">Place the address of the interruptible subcommand routine at <a href="2387.html">$2387</a> into little boy no. 10's buffer and jump to it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28DB"></span>$28DB</td>
+<td class="instruction">.WORD <a href="2387.html">$2387</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="28DD"></span>
+<div class="comments">
+<div class="paragraph">
+Control returns here after the message has been delivered.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28DD"></span>$28DD</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="3">Set bit 5 of ERIC's status flags at <a href="002B.html">$2B</a>, indicating that little boy no. 10 is expecting a response.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28DF"></span>$28DF</td>
+<td class="instruction">ORA #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28E1"></span>$28E1</td>
+<td class="instruction">STA $2B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28E3"></span>$28E3</td>
+<td class="instruction">LDA #$46</td>
+<td class="comment-1" rowspan="4">Store <a href="4620.html">$4620</a> (PRESS 'U' IF YOU UNDERSTAND) at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28E5"></span>$28E5</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28E7"></span>$28E7</td>
+<td class="instruction">LDA #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28E9"></span>$28E9</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28EB"></span>$28EB</td>
+<td class="instruction">LDA #$28</td>
+<td class="comment-1" rowspan="2">Initialise the message repetition delay counter at <a href="00A9.html">$A9</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28ED"></span>$28ED</td>
+<td class="instruction">STA $A9</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28EF"></span>$28EF</td>
+<td class="instruction">JSR <a href="1F77.html">$1F77</a></td>
+<td class="comment-1" rowspan="2">Place the address of the interruptible subcommand routine at <a href="2387.html">$2387</a> into little boy no. 10's buffer and jump to it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28F2"></span>$28F2</td>
+<td class="instruction">.WORD <a href="2387.html">$2387</a></td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="28F4"></span>
+<div class="comments">
+<div class="paragraph">
+Control returns here after little boy no. 10 has asked ERIC if he understands.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28F4"></span>$28F4</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's status flags from <a href="002B.html">$2B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28F6"></span>$28F6</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="2">Is bit 6 set, indicating that he is still immobolised?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28F7"></span>$28F7</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28F8"></span>$28F8</td>
+<td class="instruction">BCS <a href="28BC.html#2901">$2901</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28FA"></span>$28FA</td>
+<td class="instruction">LDA #$0F</td>
+<td class="comment-1" rowspan="2">Reset the MSB of the lesson clock to $0F.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28FC"></span>$28FC</td>
+<td class="instruction">STA $40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28FE"></span>$28FE</td>
+<td class="instruction">JMP <a href="1D2D.html">$1D2D</a></td>
+<td class="comment-1" rowspan="1">Terminate this primary command.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2901"></span>$2901</td>
+<td class="instruction">DEC $A9</td>
+<td class="comment-1" rowspan="1">Decrement the message repetition delay counter at <a href="00A9.html">$A9</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2903"></span>$2903</td>
+<td class="instruction">BNE <a href="28BC.html#290E">$290E</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's zero now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2905"></span>$2905</td>
+<td class="instruction">LDA $2B</td>
+<td class="comment-1" rowspan="3">Reset bit 5 of ERIC's status flags at <a href="002B.html">$2B</a>, indicating that little boy no. 10 is no longer expecting a response, because he's going to repeat the message first.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2907"></span>$2907</td>
+<td class="instruction">AND #$DF</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2909"></span>$2909</td>
+<td class="instruction">STA $2B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="290B"></span>$290B</td>
+<td class="instruction">JMP <a href="28BC.html#28CC">$28CC</a></td>
+<td class="comment-1" rowspan="1">Jump back to deliver the message again.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="290E"></span>$290E</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="28BB.html">$28BB</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#28BC">Map</a></td>
+<td class="next">
+Next: <a href="290F.html">$290F</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

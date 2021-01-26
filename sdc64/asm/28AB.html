@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $28AB</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2885.html">$2885</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#28AB">Map</a></td>
+<td class="next">
+Next: <a href="28BB.html">$28BB</a>
+</td>
+</tr>
+</table>
+<div class="description">$28AB: Make BOY WONDER write on a blackboard</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/7DA7.html">$7DA7</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by command lists <a href="4123.html">$94</a>, <a href="4166.html">$9C</a>, <a href="41A9.html">$A4</a> and <a href="425D.html">$C0</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="28AB"></span>$28AB</td>
+<td class="instruction">JSR <a href="3BE7.html">$3BE7</a></td>
+<td class="comment-1" rowspan="1">Collect the event identifier from the command list.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28AE"></span>$28AE</td>
+<td class="instruction">JSR <a href="31D2.html">$31D2</a></td>
+<td class="comment-1" rowspan="1">Has the signal for this event been raised?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28B1"></span>$28B1</td>
+<td class="instruction">BCS <a href="28AB.html#28B8">$28B8</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28B3"></span>$28B3</td>
+<td class="instruction">JSR <a href="1F77.html">$1F77</a></td>
+<td class="comment-1" rowspan="2">Place the address of the interruptible subcommand routine at <a href="1129.html">$1129</a> into BOY WONDER's buffer and jump to it.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="28B6"></span>$28B6</td>
+<td class="instruction">.WORD <a href="1129.html">$1129</a></td>
+</tr>
+<tr>
+<td class="address-2"><span id="28B8"></span>$28B8</td>
+<td class="instruction">JMP <a href="1D2D.html">$1D2D</a></td>
+<td class="comment-1" rowspan="1">Terminate this primary command.</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2885.html">$2885</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#28AB">Map</a></td>
+<td class="next">
+Next: <a href="28BB.html">$28BB</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

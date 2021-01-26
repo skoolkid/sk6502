@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Data at $00AE</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="00AC.html">$00AC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#00AE">Map</a></td>
+<td class="next">
+Next: <a href="00B0.html">$00B0</a>
+</td>
+</tr>
+</table>
+<div class="description">$00AE: Bytes $6D and and $6E of the character's buffer</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Holds one of the following:
+</div>
+<div class="paragraph">
+<ul class="">
+<li>address of the next character in the submessage being written on a blackboard or spoken</li>
+<li>address of the routine to call after the character has found ERIC</li>
+<li>y-coordinate of the top row of the blackboard being wiped ($AE)</li>
+</ul>
+</div>
+<div class="paragraph">
+Used by the routines at <a href="0B3B.html">$0B3B</a>, <a href="108B.html">$108B</a>, <a href="1129.html">$1129</a>, <a href="16E9.html">$16E9</a>, <a href="2387.html">$2387</a>, <a href="2A99.html">$2A99</a> and <a href="2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="00AE"></span>$00AE</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="00AF"></span>$00AF</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-0" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="00AC.html">$00AC</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#00AE">Map</a></td>
+<td class="next">
+Next: <a href="00B0.html">$00B0</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

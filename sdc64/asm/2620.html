@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $2620</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2573.html">$2573</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2620">Map</a></td>
+<td class="next">
+Next: <a href="267A.html">$267A</a>
+</td>
+</tr>
+</table>
+<div class="description">$2620: Print the score, lines total or hi-score</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="1D37.html">$1D37</a> (to print the score), <a href="1D4A.html">$1D4A</a> (to print the lines total) and <a href="2E13.html">$2E13</a> (to print the hi-score).
+</div>
+</div>
+<table class="input">
+<tr class="asm-input-header">
+<th colspan="2">Input</th>
+</tr>
+<tr>
+<td class="register">A</td>
+<td class="register-desc">0 (score), 1 (lines total) or 2 (hi-score)</td>
+</tr>
+<tr>
+<td class="register">(<a href="004D.html#004E">$4E</a>)</td>
+<td class="register-desc">LSB of the address of the value to print</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2620"></span>$2620</td>
+<td class="instruction">STA $E6</td>
+<td class="comment-1" rowspan="1">Store the number identifier at <a href="00E6.html">$E6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2622"></span>$2622</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set the MSB of the address of the value to print.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2624"></span>$2624</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2626"></span>$2626</td>
+<td class="instruction">TAY</td>
+<td class="comment-1" rowspan="6">Copy the value to print to <a href="00A2.html#00A3">$A3</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2627"></span>$2627</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2629"></span>$2629</td>
+<td class="instruction">STA $A3</td>
+</tr>
+<tr>
+<td class="address-1"><span id="262B"></span>$262B</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="262C"></span>$262C</td>
+<td class="instruction">LDA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="262E"></span>$262E</td>
+<td class="instruction">STA $A4</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2630"></span>$2630</td>
+<td class="instruction">JSR <a href="217E.html">$217E</a></td>
+<td class="comment-1" rowspan="1">Generate the character codes of the digits of this value at <a href="0084.html#008A">$8A-$8E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2633"></span>$2633</td>
+<td class="instruction">LDA #$03</td>
+<td class="comment-1" rowspan="2">Store the width (in character cells) of the area in which the number will be printed at <a href="009A.html#009D">$9D</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2635"></span>$2635</td>
+<td class="instruction">STA $9D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2637"></span>$2637</td>
+<td class="instruction">LDA #$8A</td>
+<td class="comment-1" rowspan="4">Store the address of the digit character codes (<a href="0084.html#008A">$8A</a>) at <a href="00D6.html">$D6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2639"></span>$2639</td>
+<td class="instruction">STA $D6</td>
+</tr>
+<tr>
+<td class="address-1"><span id="263B"></span>$263B</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="263D"></span>$263D</td>
+<td class="instruction">STA $D7</td>
+</tr>
+<tr>
+<td class="address-1"><span id="263F"></span>$263F</td>
+<td class="instruction">JSR <a href="2005.html">$2005</a></td>
+<td class="comment-1" rowspan="1">Write the digits of the value into the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2642"></span>$2642</td>
+<td class="instruction">LDA $E6</td>
+<td class="comment-1" rowspan="1">Pick up the number identifier from <a href="00E6.html">$E6</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2644"></span>$2644</td>
+<td class="instruction">BNE <a href="2620.html#2651">$2651</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's the score.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2646"></span>$2646</td>
+<td class="instruction">LDA #$FB</td>
+<td class="comment-1" rowspan="4">Store the screen bitmap address for the score ($FB40) at <a href="004D.html#0050">$50</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2648"></span>$2648</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="264A"></span>$264A</td>
+<td class="instruction">LDA #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="264C"></span>$264C</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="264E"></span>$264E</td>
+<td class="instruction">JMP <a href="2620.html#2668">$2668</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2651"></span>$2651</td>
+<td class="instruction">CMP #$01</td>
+<td class="comment-1" rowspan="1">Are we printing the lines total?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2653"></span>$2653</td>
+<td class="instruction">BNE <a href="2620.html#2660">$2660</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2655"></span>$2655</td>
+<td class="instruction">LDA #$FC</td>
+<td class="comment-1" rowspan="4">Store the screen bitmap address for the lines total ($FC80) at <a href="004D.html#0050">$50</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2657"></span>$2657</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2659"></span>$2659</td>
+<td class="instruction">LDA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="265B"></span>$265B</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="265D"></span>$265D</td>
+<td class="instruction">JMP <a href="2620.html#2668">$2668</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2660"></span>$2660</td>
+<td class="instruction">LDA #$FD</td>
+<td class="comment-1" rowspan="4">Store the screen bitmap address for the hi-score ($FDC0) at <a href="004D.html#0050">$50</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2662"></span>$2662</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2664"></span>$2664</td>
+<td class="instruction">LDA #$C0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2666"></span>$2666</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2668"></span>$2668</td>
+<td class="instruction">LDY #$17</td>
+<td class="comment-1" rowspan="1"><span class="register">Y</span> will count the bytes to copy from the text graphic buffer.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="266A"></span>$266A</td>
+<td class="instruction">LDA #$45</td>
+<td class="comment-1" rowspan="4">Store the address of the first byte to copy from the text graphic buffer ($45E8) at <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="266C"></span>$266C</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="266E"></span>$266E</td>
+<td class="instruction">LDA #$E8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2670"></span>$2670</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2672"></span>$2672</td>
+<td class="instruction">LDA ($4E),Y</td>
+<td class="comment-1" rowspan="4">Copy 24 bytes (3 character cells) from the text graphic buffer to the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2674"></span>$2674</td>
+<td class="instruction">STA ($50),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2676"></span>$2676</td>
+<td class="instruction">DEY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2677"></span>$2677</td>
+<td class="instruction">BPL <a href="2620.html#2672">$2672</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2679"></span>$2679</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="2573.html">$2573</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#2620">Map</a></td>
+<td class="next">
+Next: <a href="267A.html">$267A</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

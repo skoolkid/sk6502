@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $3113</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3072.html">$3072</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3113">Map</a></td>
+<td class="next">
+Next: <a href="31B6.html">$31B6</a>
+</td>
+</tr>
+</table>
+<div class="description">$3113: Shift the play area window right</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="3012.html">$3012</a> and <a href="35EF.html">$35EF</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3113"></span>$3113</td>
+<td class="instruction">SEI</td>
+<td class="comment-1" rowspan="1">Disable interrupts.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3114"></span>$3114</td>
+<td class="instruction">LDA $59</td>
+<td class="comment-1" rowspan="1">Pick up the x-coordinate of the leftmost column of the skool off screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3116"></span>$3116</td>
+<td class="instruction">CMP #$59</td>
+<td class="comment-1" rowspan="1">Is it less than 89?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3118"></span>$3118</td>
+<td class="instruction">BCC <a href="3113.html#311D">$311D</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="311A"></span>$311A</td>
+<td class="instruction">JMP <a href="3113.html#31B4">$31B4</a></td>
+<td class="comment-1" rowspan="1">Otherwise return now.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="311D"></span>$311D</td>
+<td class="instruction">LDA #$08</td>
+<td class="comment-1" rowspan="2">Set the source colour information index at <a href="004D.html#0054">$54</a> to 8.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="311F"></span>$311F</td>
+<td class="instruction">STA $54</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3121"></span>$3121</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set the destination colour information index at <a href="004D.html#0055">$55</a> to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3123"></span>$3123</td>
+<td class="instruction">STA $55</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3125"></span>$3125</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Store $E000 at <a href="005A.html">$5A</a>. This screen bitmap address corresponds to the tile at the top left of the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3127"></span>$3127</td>
+<td class="instruction">STA $5A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3129"></span>$3129</td>
+<td class="instruction">LDA #$E0</td>
+</tr>
+<tr>
+<td class="address-1"><span id="312B"></span>$312B</td>
+<td class="instruction">STA $5B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="312D"></span>$312D</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Store $CC00 at <a href="005A.html#005C">$5C</a>. This colour information address corresponds to the tile at the top left of the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="312F"></span>$312F</td>
+<td class="instruction">STA $5C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3131"></span>$3131</td>
+<td class="instruction">LDA #$CC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3133"></span>$3133</td>
+<td class="instruction">STA $5D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3135"></span>$3135</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="1">Initialise the column counter in <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3137"></span>$3137</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">Increment the column counter in <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3138"></span>$3138</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="2">Save the column counter on the stack temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3139"></span>$3139</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="313A"></span>$313A</td>
+<td class="instruction">LDA $5A</td>
+<td class="comment-1" rowspan="4">Copy the screen bitmap address from <a href="005A.html">$5A</a> to <a href="004D.html#0052">$52</a>. This will be the destination address.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="313C"></span>$313C</td>
+<td class="instruction">STA $52</td>
+</tr>
+<tr>
+<td class="address-1"><span id="313E"></span>$313E</td>
+<td class="instruction">LDA $5B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3140"></span>$3140</td>
+<td class="instruction">STA $53</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3142"></span>$3142</td>
+<td class="instruction">LDA $5C</td>
+<td class="comment-1" rowspan="4">Copy the colour information address from <a href="005A.html#005C">$5C</a> to <a href="004D.html#0050">$50</a>. This will be the source address.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3144"></span>$3144</td>
+<td class="instruction">STA $50</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3146"></span>$3146</td>
+<td class="instruction">LDA $5D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3148"></span>$3148</td>
+<td class="instruction">STA $51</td>
+</tr>
+<tr>
+<td class="address-1"><span id="314A"></span>$314A</td>
+<td class="instruction">LDA $52</td>
+<td class="comment-1" rowspan="4">Copy the screen bitmap address from <a href="004D.html#0052">$52</a> to <a href="004D.html#004E">$4E</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="314C"></span>$314C</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="314E"></span>$314E</td>
+<td class="instruction">LDA $53</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3150"></span>$3150</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3152"></span>$3152</td>
+<td class="instruction">LDA $4E</td>
+<td class="comment-1" rowspan="6">Add 64 to the screen bitmap address at <a href="004D.html#004E">$4E</a>. This corresponds to the tile that is 8 cells to the right in the same row, and will be the source address.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3154"></span>$3154</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3155"></span>$3155</td>
+<td class="instruction">ADC #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3157"></span>$3157</td>
+<td class="instruction">BCC <a href="3113.html#315B">$315B</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3159"></span>$3159</td>
+<td class="instruction">INC $4F</td>
+</tr>
+<tr>
+<td class="address-2"><span id="315B"></span>$315B</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="315D"></span>$315D</td>
+<td class="instruction">JSR <a href="2FB6.html">$2FB6</a></td>
+<td class="comment-1" rowspan="1">Move a column of screen tiles left.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3160"></span>$3160</td>
+<td class="instruction">LDA $5A</td>
+<td class="comment-1" rowspan="6">Add 8 to the destination screen bitmap address at <a href="005A.html">$5A</a>. This corresponds to the next tile to the right in the top row of the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3162"></span>$3162</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3163"></span>$3163</td>
+<td class="instruction">ADC #$08</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3165"></span>$3165</td>
+<td class="instruction">BNE <a href="3113.html#3169">$3169</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3167"></span>$3167</td>
+<td class="instruction">INC $5B</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3169"></span>$3169</td>
+<td class="instruction">STA $5A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="316B"></span>$316B</td>
+<td class="instruction">INC $5C</td>
+<td class="comment-1" rowspan="1">Increment the colour information address at <a href="005A.html#005C">$5C</a>. This corresponds to the next tile to the right in the top row of the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="316D"></span>$316D</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Restore the column counter to <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="316E"></span>$316E</td>
+<td class="instruction">TAX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="316F"></span>$316F</td>
+<td class="instruction">CPX #$20</td>
+<td class="comment-1" rowspan="1">Have we moved 32 columns of screen tiles yet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3171"></span>$3171</td>
+<td class="instruction">BNE <a href="3113.html#3137">$3137</a></td>
+<td class="comment-1" rowspan="1">Branch back if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="3173"></span>
+<div class="comments">
+<div class="paragraph">
+The 32 rightmost columns of the skool on screen have been shifted left. Time to draw the rightmost 8 columns of the skool.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3173"></span>$3173</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Store $E100 at <a href="005A.html">$5A</a>. This screen bitmap address corresponds to the 33rd tile from the left in the top row.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3175"></span>$3175</td>
+<td class="instruction">STA $5A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3177"></span>$3177</td>
+<td class="instruction">LDA #$E1</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3179"></span>$3179</td>
+<td class="instruction">STA $5B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="317B"></span>$317B</td>
+<td class="instruction">LDA #$20</td>
+<td class="comment-1" rowspan="2">Store $CC20 at <a href="005A.html#005C">$5C</a>. This colour information address corresponds to the 33rd tile from the left in the top row.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="317D"></span>$317D</td>
+<td class="instruction">STA $5C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="317F"></span>$317F</td>
+<td class="instruction">NOP</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="3180"></span>$3180</td>
+<td class="instruction">JSR <a href="98E8.html">$98E8</a></td>
+<td class="comment-1" rowspan="1">Move sprites #0-#6 left by 64 pixels.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3183"></span>$3183</td>
+<td class="instruction">LDX #$08</td>
+<td class="comment-1" rowspan="1">There are 8 new play area columns to draw in the gap left by the shifting window.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3185"></span>$3185</td>
+<td class="instruction">TXA</td>
+<td class="comment-1" rowspan="2">Save this column counter temporarily.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3186"></span>$3186</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3187"></span>$3187</td>
+<td class="instruction">INC $58</td>
+<td class="comment-1" rowspan="2">Increment the x-coordinates of the leftmost column of the skool on screen and off.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3189"></span>$3189</td>
+<td class="instruction">INC $59</td>
+</tr>
+<tr>
+<td class="address-1"><span id="318B"></span>$318B</td>
+<td class="instruction">LDY $59</td>
+<td class="comment-1" rowspan="1">Pick up the x-coordinate of the leftmost column of the skool off screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="318D"></span>$318D</td>
+<td class="instruction">DEY</td>
+<td class="comment-1" rowspan="1">Now <span class="register">Y</span> holds the x-coordinate of the rightmost column of the skool on screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="318E"></span>$318E</td>
+<td class="instruction">LDA $5A</td>
+<td class="comment-1" rowspan="4">Save the screen bitmap address on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3190"></span>$3190</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3191"></span>$3191</td>
+<td class="instruction">LDA $5B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3193"></span>$3193</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3194"></span>$3194</td>
+<td class="instruction">LDA $5C</td>
+<td class="comment-1" rowspan="4">Save the colour information address on the stack.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3196"></span>$3196</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3197"></span>$3197</td>
+<td class="instruction">LDA $5D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3199"></span>$3199</td>
+<td class="instruction">PHA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="319A"></span>$319A</td>
+<td class="instruction">JSR <a href="2F8C.html">$2F8C</a></td>
+<td class="comment-1" rowspan="1">Print the play area tiles in a single column of the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="319D"></span>$319D</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="4">Restore the saved colour information address to <a href="005A.html#005C">$5C</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="319E"></span>$319E</td>
+<td class="instruction">STA $5D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31A0"></span>$31A0</td>
+<td class="instruction">PLA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31A1"></span>$31A1</td>
+<td class="instruction">STA $5C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31A3"></span>$31A3</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="7">Restore the saved screen bitmap address to <a href="005A.html">$5A</a> and add 8 to it. This points at the next tile to the right in the top row of the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31A4"></span>$31A4</td>
+<td class="instruction">STA $5B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31A6"></span>$31A6</td>
+<td class="instruction">PLA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31A7"></span>$31A7</td>
+<td class="instruction">DEX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31A8"></span>$31A8</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31A9"></span>$31A9</td>
+<td class="instruction">ADC #$08</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31AB"></span>$31AB</td>
+<td class="instruction">STA $5A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31AD"></span>$31AD</td>
+<td class="instruction">INC $5C</td>
+<td class="comment-1" rowspan="1">Add 1 to the colour information address at <a href="005A.html#005C">$5C</a>. This points at the next tile to the right in the top row of the screen.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31AF"></span>$31AF</td>
+<td class="instruction">PLA</td>
+<td class="comment-1" rowspan="2">Restore the column counter to <span class="register">X</span>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31B0"></span>$31B0</td>
+<td class="instruction">TAX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31B1"></span>$31B1</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">Decrement the column counter.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31B2"></span>$31B2</td>
+<td class="instruction">BNE <a href="3113.html#3185">$3185</a></td>
+<td class="comment-1" rowspan="1">Branch back to deal with the remaining columns.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="31B4"></span>$31B4</td>
+<td class="instruction">CLI</td>
+<td class="comment-1" rowspan="1">Re-enable interrupts.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="31B5"></span>$31B5</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="3072.html">$3072</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#3113">Map</a></td>
+<td class="next">
+Next: <a href="31B6.html">$31B6</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

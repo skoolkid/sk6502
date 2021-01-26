@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $292F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="290F.html">$290F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#292F">Map</a></td>
+<td class="next">
+Next: <a href="298B.html">$298B</a>
+</td>
+</tr>
+</table>
+<div class="description">$292F: Generate a safe combination code</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="2BB0.html">$2BB0</a> and <a href="2E13.html">$2E13</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="292F"></span>$292F</td>
+<td class="instruction">LDX #$04</td>
+<td class="comment-1" rowspan="1">There are 4 letters in the safe combination code.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2931"></span>$2931</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="2">Generate a random value between 0 and 31.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2934"></span>$2934</td>
+<td class="instruction">AND #$1F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2936"></span>$2936</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Add $41 (the ASCII code for 'A').</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2937"></span>$2937</td>
+<td class="instruction">ADC #$41</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2939"></span>$2939</td>
+<td class="instruction">CMP #$5B</td>
+<td class="comment-1" rowspan="1">Is the result greater than $5A (the code for 'Z')?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="293B"></span>$293B</td>
+<td class="instruction">BCS <a href="292F.html#2931">$2931</a></td>
+<td class="comment-1" rowspan="1">Branch back if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="293D"></span>$293D</td>
+<td class="instruction">CMP $90,X</td>
+<td class="comment-1" rowspan="1">Does this randomly chosen letter match the character at $90+<span class="register">X</span> (which might be the first digit of MR CREAK's year of birth at <a href="0094.html">$94</a>)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="293F"></span>$293F</td>
+<td class="instruction">BEQ <a href="292F.html#2931">$2931</a></td>
+<td class="comment-1" rowspan="1">Branch back if so to get another one.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2941"></span>$2941</td>
+<td class="instruction">DEX</td>
+<td class="comment-1" rowspan="1">Decrement the letter counter.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2942"></span>$2942</td>
+<td class="instruction">STA $90,X</td>
+<td class="comment-1" rowspan="1">Store a randomly chosen letter at <a href="0090.html">$90-$93</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2944"></span>$2944</td>
+<td class="instruction">STA $4E,X</td>
+<td class="comment-1" rowspan="1">Store a copy of it at <a href="004D.html#004E">$4E-$51</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2946"></span>$2946</td>
+<td class="instruction">BNE <a href="292F.html#2931">$2931</a></td>
+<td class="comment-1" rowspan="1">Branch back until 4 letters have been generated.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2948"></span>$2948</td>
+<td class="instruction">LDA #$0A</td>
+<td class="comment-1" rowspan="2">Initialise the shuffle counter at <a href="004D.html#0055">$55</a> to $0A.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="294A"></span>$294A</td>
+<td class="instruction">STA $55</td>
+</tr>
+<tr>
+<td class="address-2"><span id="294C"></span>$294C</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="4">Generate a random number between 1 and 3. Call it P.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="294F"></span>$294F</td>
+<td class="instruction">AND #$03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2951"></span>$2951</td>
+<td class="instruction">BNE <a href="292F.html#2955">$2955</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2953"></span>$2953</td>
+<td class="instruction">LDA #$01</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2955"></span>$2955</td>
+<td class="instruction">STA $56</td>
+<td class="comment-1" rowspan="1">Store P at <a href="004D.html#0056">$56</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2957"></span>$2957</td>
+<td class="instruction">INX</td>
+<td class="comment-1" rowspan="1">Increment <span class="register">X</span> for no apparent reason.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2958"></span>$2958</td>
+<td class="instruction">STA $FD</td>
+<td class="comment-1" rowspan="1">Set the LSB of the lesson clock at <a href="00FD.html">$FD</a> to P for no apparent reason.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="295A"></span>$295A</td>
+<td class="instruction">LDA $D41B</td>
+<td class="comment-1" rowspan="4">Generate a random number between 1 and 3. Call it Q.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="295D"></span>$295D</td>
+<td class="instruction">AND #$03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="295F"></span>$295F</td>
+<td class="instruction">BNE <a href="292F.html#2963">$2963</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="2961"></span>$2961</td>
+<td class="instruction">LDA #$01</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2963"></span>$2963</td>
+<td class="instruction">STA $57</td>
+<td class="comment-1" rowspan="1">Store Q at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2965"></span>$2965</td>
+<td class="instruction">LDX $57</td>
+<td class="comment-1" rowspan="10">Swap the letters stored at $4E+P and $4E+Q.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2967"></span>$2967</td>
+<td class="instruction">LDA $4E,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2969"></span>$2969</td>
+<td class="instruction">STA $54</td>
+</tr>
+<tr>
+<td class="address-1"><span id="296B"></span>$296B</td>
+<td class="instruction">LDX $56</td>
+</tr>
+<tr>
+<td class="address-1"><span id="296D"></span>$296D</td>
+<td class="instruction">LDA $4E,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="296F"></span>$296F</td>
+<td class="instruction">LDX $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2971"></span>$2971</td>
+<td class="instruction">STA $4E,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2973"></span>$2973</td>
+<td class="instruction">LDX $56</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2975"></span>$2975</td>
+<td class="instruction">LDA $54</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2977"></span>$2977</td>
+<td class="instruction">STA $4E,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2979"></span>$2979</td>
+<td class="instruction">DEC $55</td>
+<td class="comment-1" rowspan="1">Decrement the shuffle counter at <a href="004D.html#0055">$55</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="297B"></span>$297B</td>
+<td class="instruction">LDA $55</td>
+<td class="comment-1" rowspan="1">Pick up the shuffle counter from <a href="004D.html#0055">$55</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="297D"></span>$297D</td>
+<td class="instruction">BNE <a href="292F.html#294C">$294C</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's zero now.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="297F"></span>$297F</td>
+<td class="instruction">LDX #$00</td>
+<td class="comment-1" rowspan="6">Copy the randomly shuffled letters at <a href="004D.html#004E">$4E-$51</a> to <a href="0003.html">$03-$06</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="2981"></span>$2981</td>
+<td class="instruction">LDA $4E,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2983"></span>$2983</td>
+<td class="instruction">STA $03,X</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2985"></span>$2985</td>
+<td class="instruction">INX</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2986"></span>$2986</td>
+<td class="instruction">CPX #$04</td>
+</tr>
+<tr>
+<td class="address-1"><span id="2988"></span>$2988</td>
+<td class="instruction">BNE <a href="292F.html#2981">$2981</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="298A"></span>$298A</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="290F.html">$290F</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#292F">Map</a></td>
+<td class="next">
+Next: <a href="298B.html">$298B</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

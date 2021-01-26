@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $191B</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="189D.html">$189D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#191B">Map</a></td>
+<td class="next">
+Next: <a href="1994.html">$1994</a>
+</td>
+</tr>
+</table>
+<div class="description">$191B: Deal with ERIC when he's firing the catapult</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+This corresponds to <a href="https://skoolkid.github.io/skooldaze/asm/F41F.html">$F41F</a> in the ZX Spectrum version.
+</div>
+<div class="paragraph">
+Used by the routine at <a href="15B3.html">$15B3</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="191B"></span>$191B</td>
+<td class="instruction">DEC $FE</td>
+<td class="comment-1" rowspan="1">Decrement ERIC's action timer at <a href="00FE.html">$FE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="191D"></span>$191D</td>
+<td class="instruction">BNE <a href="191B.html#1935">$1935</a></td>
+<td class="comment-1" rowspan="1">Branch unless it's zero now.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="191F"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="17E5.html">$17E5</a>, <a href="184E.html">$184E</a> and <a href="189D.html">$189D</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="191F"></span>$191F</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Clear ERIC's status flags at <a href="002B.html">$2B</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1921"></span>$1921</td>
+<td class="instruction">STA $2B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1923"></span>$1923</td>
+<td class="instruction">LDA #$10</td>
+<td class="comment-1" rowspan="2">Set voice #2 control register: voice off, release cycle; triangle waveform enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1925"></span>$1925</td>
+<td class="instruction">STA $D40B</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1928"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routine at <a href="184E.html">$184E</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1928"></span>$1928</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the ERIC's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="192B"></span>$192B</td>
+<td class="instruction">LDA $D2</td>
+<td class="comment-1" rowspan="2">Restore ERIC's pre-action animatory state from <a href="00D2.html">$D2</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="192D"></span>$192D</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="192F"></span>$192F</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1932"></span>$1932</td>
+<td class="instruction">JMP <a href="191B.html#1993">$1993</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1935"></span>$1935</td>
+<td class="instruction">LDA $FE</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's action timer from <a href="00FE.html">$FE</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1937"></span>$1937</td>
+<td class="instruction">CMP #$12</td>
+<td class="comment-1" rowspan="1">Is it time to raise the catapult to eye level?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1939"></span>$1939</td>
+<td class="instruction">BNE <a href="191B.html#193E">$193E</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="193B"></span>$193B</td>
+<td class="instruction">JMP <a href="2B3F.html#2B47">$2B47</a></td>
+<td class="comment-1" rowspan="1">Make ERIC raise the catapult to eye level.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="193E"></span>$193E</td>
+<td class="instruction">CMP #$06</td>
+<td class="comment-1" rowspan="1">Is it time to start lowering the catapult?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1940"></span>$1940</td>
+<td class="instruction">BNE <a href="191B.html#1945">$1945</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1942"></span>$1942</td>
+<td class="instruction">JMP <a href="2B9F.html#2BA7">$2BA7</a></td>
+<td class="comment-1" rowspan="1">Make ERIC lower the catapult.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1945"></span>$1945</td>
+<td class="instruction">CMP #$0C</td>
+<td class="comment-1" rowspan="1">Is it time to launch the pellet?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1947"></span>$1947</td>
+<td class="instruction">BEQ <a href="191B.html#194C">$194C</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1949"></span>$1949</td>
+<td class="instruction">JMP <a href="191B.html#1993">$1993</a></td>
+<td class="comment-1" rowspan="1">Otherwise return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="194C"></span>$194C</td>
+<td class="instruction">LDA $60</td>
+<td class="comment-1" rowspan="2">Pick up the current character number from <a href="0060.html">$60</a> and store a copy at <a href="00DA.html#00DB">$DB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="194E"></span>$194E</td>
+<td class="instruction">STA $DB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1950"></span>$1950</td>
+<td class="instruction">LDA #$13</td>
+<td class="comment-1" rowspan="1">Character number $13 is ERIC's pellet.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1952"></span>$1952</td>
+<td class="instruction">STA $DC</td>
+<td class="comment-1" rowspan="1">Store this at <a href="00DA.html#00DC">$DC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1954"></span>$1954</td>
+<td class="instruction">JSR <a href="2B52.html#2B62">$2B62</a></td>
+<td class="comment-1" rowspan="1">Set the pellet on its way from ERIC's catapult.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1957"></span>$1957</td>
+<td class="instruction">LDA #$30</td>
+<td class="comment-1" rowspan="4">Set voice #2 frequency to $3000.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1959"></span>$1959</td>
+<td class="instruction">STA $D408</td>
+</tr>
+<tr>
+<td class="address-1"><span id="195C"></span>$195C</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="195E"></span>$195E</td>
+<td class="instruction">STA $D407</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1961"></span>$1961</td>
+<td class="instruction">LDA #$1B</td>
+<td class="comment-1" rowspan="2">Set voice #2 attack length to 8ms and decay length to 2.4s.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1963"></span>$1963</td>
+<td class="instruction">STA $D40C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1966"></span>$1966</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set voice #2 sustain volume to 0 and release length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1968"></span>$1968</td>
+<td class="instruction">STA $D40D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="196B"></span>$196B</td>
+<td class="instruction">LDA #$11</td>
+<td class="comment-1" rowspan="2">Set voice #2 control register: voice on, attack-sustain-decay cycle; triangle waveform enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="196D"></span>$196D</td>
+<td class="instruction">STA $D40B</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1970"></span>$1970</td>
+<td class="instruction">LDA #$0D</td>
+<td class="comment-1" rowspan="1">Lines reprimand <a href="4CA0.html">$0D</a>: CATAPULTS ARE FORBIDDEN.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="1972"></span>
+<div class="comments">
+<div class="paragraph">
+This entry point is used by the routines at <a href="17E5.html">$17E5</a> (with <span class="register">A</span>=<a href="4CC0.html">$0E</a>: DON'T HIT YOUR MATES) and <a href="189D.html">$189D</a> (with <span class="register">A</span>=<a href="4CE0.html">$0F</a>: YOU ARE NOT A KANGAROO).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1972"></span>$1972</td>
+<td class="instruction">STA $D8</td>
+<td class="comment-1" rowspan="1">Store the lines reprimand identifier at <a href="00D6.html#00D8">$D8</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1974"></span>$1974</td>
+<td class="instruction">JSR <a href="0E59.html">$0E59</a></td>
+<td class="comment-1" rowspan="1">Was ERIC seen by a teacher?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1977"></span>$1977</td>
+<td class="instruction">BCC <a href="191B.html#1993">$1993</a></td>
+<td class="comment-1" rowspan="1">Return if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1979"></span>$1979</td>
+<td class="instruction">STA $C0</td>
+<td class="comment-1" rowspan="1">Copy the character number of the teacher who saw ERIC to <a href="00C0.html">$C0</a>. (This might overwrite the character number already stored there by the routine at <a href="0A58.html">$0A58</a>, which is a <a href="../reference/bugs.html#bullyAndBlackboard">bug</a>.)</td>
+</tr>
+<tr>
+<td class="address-1"><span id="197B"></span>$197B</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Store ERIC's character number ($14) at <a href="0072.html">$72</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="197D"></span>$197D</td>
+<td class="instruction">STA $72</td>
+</tr>
+<tr>
+<td class="address-1"><span id="197F"></span>$197F</td>
+<td class="instruction">JSR <a href="33BF.html">$33BF</a></td>
+<td class="comment-1" rowspan="1">Restore ERIC's character buffer from page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1982"></span>$1982</td>
+<td class="instruction">LDA $C0</td>
+<td class="comment-1" rowspan="1">Pick up the character number of the teacher who saw ERIC from <a href="00C0.html">$C0</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1984"></span>$1984</td>
+<td class="instruction">STA $60</td>
+<td class="comment-1" rowspan="1">Update the current character number at <a href="0060.html">$60</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1986"></span>$1986</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy the teacher's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1989"></span>$1989</td>
+<td class="instruction">JSR <a href="1DB7.html">$1DB7</a></td>
+<td class="comment-1" rowspan="1">Make the teacher give ERIC lines.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="198C"></span>$198C</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Set the current character number at <a href="0060.html">$60</a> to $14 (ERIC).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="198E"></span>$198E</td>
+<td class="instruction">STA $60</td>
+</tr>
+<tr>
+<td class="address-1"><span id="1990"></span>$1990</td>
+<td class="instruction">JSR <a href="3279.html">$3279</a></td>
+<td class="comment-1" rowspan="1">Copy ERIC's character buffer to page 0.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="1993"></span>$1993</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="189D.html">$189D</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#191B">Map</a></td>
+<td class="next">
+Next: <a href="1994.html">$1994</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

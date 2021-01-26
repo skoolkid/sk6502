@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $392D</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="38EF.html">$38EF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#392D">Map</a></td>
+<td class="next">
+Next: <a href="3940.html">$3940</a>
+</td>
+</tr>
+</table>
+<div class="description">$392D: Clear all the signal flags</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="3AD5.html">$3AD5</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="392D"></span>$392D</td>
+<td class="instruction">LDA #$44</td>
+<td class="comment-1" rowspan="4">Prepare to address the signal flags table at <a href="4400.html">$4400</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="392F"></span>$392F</td>
+<td class="instruction">STA $4F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3931"></span>$3931</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3933"></span>$3933</td>
+<td class="instruction">STA $4E</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3935"></span>$3935</td>
+<td class="instruction">LDY #$00</td>
+<td class="comment-1" rowspan="6">Clear the flag for every signal in the table.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3937"></span>$3937</td>
+<td class="instruction">TYA</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3938"></span>$3938</td>
+<td class="instruction">STA ($4E),Y</td>
+</tr>
+<tr>
+<td class="address-1"><span id="393A"></span>$393A</td>
+<td class="instruction">INY</td>
+</tr>
+<tr>
+<td class="address-1"><span id="393B"></span>$393B</td>
+<td class="instruction">CPY #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="393D"></span>$393D</td>
+<td class="instruction">BNE <a href="392D.html#3938">$3938</a></td>
+</tr>
+<tr>
+<td class="address-1"><span id="393F"></span>$393F</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="38EF.html">$38EF</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#392D">Map</a></td>
+<td class="next">
+Next: <a href="3940.html">$3940</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

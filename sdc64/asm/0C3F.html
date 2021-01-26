@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $0C3F</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0C31.html">$0C31</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0C3F">Map</a></td>
+<td class="next">
+Next: <a href="0D67.html">$0D67</a>
+</td>
+</tr>
+</table>
+<div class="description">$0C3F: Make a character track down ERIC</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+The address of this interruptible subcommand routine is placed into a character's buffer by the routines at <a href="0B3B.html">$0B3B</a> and <a href="2A99.html">$2A99</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0C3F"></span>$0C3F</td>
+<td class="instruction">LDA $3F</td>
+<td class="comment-1" rowspan="3">Set bit 6 of the flags byte at <a href="003F.html">$3F</a>: the character is running.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C41"></span>$0C41</td>
+<td class="instruction">ORA #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C43"></span>$0C43</td>
+<td class="instruction">STA $3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C45"></span>$0C45</td>
+<td class="instruction">JSR <a href="1EC2.html">$1EC2</a></td>
+<td class="comment-1" rowspan="1">Get ERIC's coordinates.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C48"></span>$0C48</td>
+<td class="instruction">STX $08</td>
+<td class="comment-1" rowspan="2">Save ERIC's coordinates at <a href="0007.html#0008">$08</a> and <a href="0007.html#0009">$09</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C4A"></span>$0C4A</td>
+<td class="instruction">STY $09</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C4C"></span>$0C4C</td>
+<td class="instruction">JSR <a href="1C8E.html">$1C8E</a></td>
+<td class="comment-1" rowspan="1">Is the character on a staircase?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C4F"></span>$0C4F</td>
+<td class="instruction">BCS <a href="0C3F.html#0C94">$0C94</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C51"></span>$0C51</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="1">Pick up the character's y-coordinate from <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C53"></span>$0C53</td>
+<td class="instruction">CMP $09</td>
+<td class="comment-1" rowspan="1">Is ERIC's y-coordinate less than the character's?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C55"></span>$0C55</td>
+<td class="instruction">BCS <a href="0C3F.html#0C63">$0C63</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C57"></span>$0C57</td>
+<td class="instruction">LDA $09</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's y-coordinate from <a href="0007.html#0009">$09</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C59"></span>$0C59</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract the character's y-coordinate from ERIC's y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C5A"></span>$0C5A</td>
+<td class="instruction">SBC $FB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C5C"></span>$0C5C</td>
+<td class="instruction">CMP #$04</td>
+<td class="comment-1" rowspan="1">Is ERIC within 4 y-coordinates of the character?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C5E"></span>$0C5E</td>
+<td class="instruction">BCS <a href="0C3F.html#0C94">$0C94</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C60"></span>$0C60</td>
+<td class="instruction">JMP <a href="0C3F.html#0C6A">$0C6A</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0C63"></span>$0C63</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract ERIC's y-coordinate from the character's y-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C64"></span>$0C64</td>
+<td class="instruction">SBC $09</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C66"></span>$0C66</td>
+<td class="instruction">CMP #$04</td>
+<td class="comment-1" rowspan="1">Is ERIC within 4 y-coordinates of the character?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C68"></span>$0C68</td>
+<td class="instruction">BCS <a href="0C3F.html#0C94">$0C94</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0C6A"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC and the character looking for him are less than 4 y-coordinates away from each other.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0C6A"></span>$0C6A</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C6C"></span>$0C6C</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is he facing right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C6D"></span>$0C6D</td>
+<td class="instruction">BCS <a href="0C3F.html#0C81">$0C81</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C6F"></span>$0C6F</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C71"></span>$0C71</td>
+<td class="instruction">CMP $08</td>
+<td class="comment-1" rowspan="1">Is ERIC's x-coordinate greater than the character's?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C73"></span>$0C73</td>
+<td class="instruction">BCC <a href="0C3F.html#0C94">$0C94</a></td>
+<td class="comment-1" rowspan="1">Branch if so (ERIC is behind the character).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C75"></span>$0C75</td>
+<td class="instruction">LDA $08</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate from <a href="0007.html#0008">$08</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C77"></span>$0C77</td>
+<td class="instruction">CLC</td>
+<td class="comment-1" rowspan="2">Add 3 to ERIC's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C78"></span>$0C78</td>
+<td class="instruction">ADC #$03</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C7A"></span>$0C7A</td>
+<td class="instruction">CMP $FC</td>
+<td class="comment-1" rowspan="1">Is ERIC within 3 x-coordinates in front of the character?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C7C"></span>$0C7C</td>
+<td class="instruction">BCC <a href="0C3F.html#0C94">$0C94</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C7E"></span>$0C7E</td>
+<td class="instruction">JMP <a href="0C3F.html#0C90">$0C90</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0C81"></span>$0C81</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C83"></span>$0C83</td>
+<td class="instruction">CMP $08</td>
+<td class="comment-1" rowspan="1">Is ERIC's x-coordinate greater than the character's?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C85"></span>$0C85</td>
+<td class="instruction">BCS <a href="0C3F.html#0C94">$0C94</a></td>
+<td class="comment-1" rowspan="1">Branch if not (ERIC is behind the character).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C87"></span>$0C87</td>
+<td class="instruction">LDA $08</td>
+<td class="comment-1" rowspan="1">Pick up ERIC's x-coordinate from <a href="0007.html#0008">$08</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C89"></span>$0C89</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="2">Subtract 4 from ERIC's x-coordinate.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C8A"></span>$0C8A</td>
+<td class="instruction">SBC #$04</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C8C"></span>$0C8C</td>
+<td class="instruction">CMP $FC</td>
+<td class="comment-1" rowspan="1">Is ERIC within 4 x-coordinates in front of the character?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C8E"></span>$0C8E</td>
+<td class="instruction">BCS <a href="0C3F.html#0C94">$0C94</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0C90"></span>
+<div class="comments">
+<div class="paragraph">
+The character has found ERIC and is facing him.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0C90"></span>$0C90</td>
+<td class="instruction">SEC</td>
+<td class="comment-1" rowspan="1">Set the carry flag to indicate that the lesson clock can be restarted.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C91"></span>$0C91</td>
+<td class="instruction">JMP (<a href="00AE.html">$00AE</a>)</td>
+<td class="comment-1" rowspan="1">Jump to <a href="0C31.html">$0C31</a> (with the carry flag set) or <a href="2745.html">$2745</a>.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0C94"></span>
+<div class="comments">
+<div class="paragraph">
+ERIC and the character looking for him are 4 or more y-coordinates away from each other.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0C94"></span>$0C94</td>
+<td class="instruction">LDA #$14</td>
+<td class="comment-1" rowspan="2">Store ERIC's character number ($14) at <a href="004D.html">$4D</a> for the following subroutine call.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C96"></span>$0C96</td>
+<td class="instruction">STA $4D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C98"></span>$0C98</td>
+<td class="instruction">JSR <a href="1B2E.html">$1B2E</a></td>
+<td class="comment-1" rowspan="2">Determine the next move of the character in his search for ERIC and store its identifier at <a href="0072.html#0077">$77</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C9B"></span>$0C9B</td>
+<td class="instruction">STA $77</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0C9D"></span>$0C9D</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CA0"></span>$0CA0</td>
+<td class="instruction">LDA $77</td>
+<td class="comment-1" rowspan="1">Pick up the next move identifier from <a href="0072.html#0077">$77</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CA2"></span>$0CA2</td>
+<td class="instruction">BNE <a href="0C3F.html#0CA7">$0CA7</a></td>
+<td class="comment-1" rowspan="1">Branch if there is a move to be made.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CA4"></span>$0CA4</td>
+<td class="instruction">JMP <a href="0C3F.html#0D66">$0D66</a></td>
+<td class="comment-1" rowspan="1">Otherwise return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0CA7"></span>$0CA7</td>
+<td class="instruction">CMP #$03</td>
+<td class="comment-1" rowspan="1">Should the character go left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CA9"></span>$0CA9</td>
+<td class="instruction">BNE <a href="0C3F.html#0CDE">$0CDE</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0CAB"></span>
+<div class="comments">
+<div class="paragraph">
+The character looking for ERIC should go left.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CAB"></span>$0CAB</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CAD"></span>$0CAD</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is the character facing left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CAE"></span>$0CAE</td>
+<td class="instruction">BCC <a href="0C3F.html#0CC4">$0CC4</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0CB0"></span>$0CB0</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="3">Flip bit 7 of the character's animatory state, thus turning him round.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CB2"></span>$0CB2</td>
+<td class="instruction">EOR #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CB4"></span>$0CB4</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0CB6"></span>$0CB6</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CB9"></span>$0CB9</td>
+<td class="instruction">JSR <a href="1C8E.html">$1C8E</a></td>
+<td class="comment-1" rowspan="1">Is the character on a staircase?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CBC"></span>$0CBC</td>
+<td class="instruction">BCC <a href="0C3F.html#0CC1">$0CC1</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CBE"></span>$0CBE</td>
+<td class="instruction">JMP <a href="0C3F.html#0D66">$0D66</a></td>
+<td class="comment-1" rowspan="1">Otherwise return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0CC1"></span>$0CC1</td>
+<td class="instruction">JMP (<a href="00AE.html">$00AE</a>)</td>
+<td class="comment-1" rowspan="1">Jump to <a href="0C31.html">$0C31</a> (with the carry flag clear) or <a href="2745.html">$2745</a>.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0CC4"></span>$0CC4</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="3">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a>, subtract 1 from it and store the result at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CC6"></span>$0CC6</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CC8"></span>$0CC8</td>
+<td class="instruction">DEC $AC</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0CCA"></span>$0CCA</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="2">Pick up the character's y-coordinate from <a href="00FB.html">$FB</a> and store it at <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CCC"></span>$0CCC</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0CCE"></span>$0CCE</td>
+<td class="instruction">INC $26</td>
+<td class="comment-1" rowspan="1">Increment the character's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CD0"></span>$0CD0</td>
+<td class="instruction">LDA #$0D</td>
+<td class="comment-1" rowspan="4">Replace the address of this interruptible subcommand routine in the character's buffer with that of <a href="0C3F.html#0D40">$0D40</a> (below).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CD2"></span>$0CD2</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CD4"></span>$0CD4</td>
+<td class="instruction">LDA #$40</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CD6"></span>$0CD6</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CD8"></span>$0CD8</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's new animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CDB"></span>$0CDB</td>
+<td class="instruction">JMP <a href="0C3F.html#0D66">$0D66</a></td>
+<td class="comment-1" rowspan="1">Return.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0CDE"></span>$0CDE</td>
+<td class="instruction">CMP #$04</td>
+<td class="comment-1" rowspan="1">Should the character go right?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CE0"></span>$0CE0</td>
+<td class="instruction">BNE <a href="0C3F.html#0CF0">$0CF0</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0CE2"></span>
+<div class="comments">
+<div class="paragraph">
+The character looking for ERIC should go right.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CE2"></span>$0CE2</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CE4"></span>$0CE4</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is the character facing left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CE5"></span>$0CE5</td>
+<td class="instruction">BCC <a href="0C3F.html#0CB0">$0CB0</a></td>
+<td class="comment-1" rowspan="1">Branch if so to turn him round.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CE7"></span>$0CE7</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="3">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a>, add 1 to it and store the result at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CE9"></span>$0CE9</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CEB"></span>$0CEB</td>
+<td class="instruction">INC $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CED"></span>$0CED</td>
+<td class="instruction">JMP <a href="0C3F.html#0CCA">$0CCA</a></td>
+<td class="comment-1" rowspan="1">Jump back to move the character midstride.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0CF0"></span>$0CF0</td>
+<td class="instruction">CMP #$01</td>
+<td class="comment-1" rowspan="1">Should the character start or continue going upstairs?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CF2"></span>$0CF2</td>
+<td class="instruction">BNE <a href="0C3F.html#0D22">$0D22</a></td>
+<td class="comment-1" rowspan="1">Branch if not.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0CF4"></span>
+<div class="comments">
+<div class="paragraph">
+The character looking for ERIC should start or continue going upstairs.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CF4"></span>$0CF4</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CF6"></span>$0CF6</td>
+<td class="instruction">CMP #$30</td>
+<td class="comment-1" rowspan="1">Is it 48 or more (on the right-hand side of the skool)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CF8"></span>$0CF8</td>
+<td class="instruction">BCS <a href="0C3F.html#0D03">$0D03</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CFA"></span>$0CFA</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="3">Reset bit 7 of the character's animatory state at <a href="0026.html">$26</a>, thus making him face left.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CFC"></span>$0CFC</td>
+<td class="instruction">AND #$7F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0CFE"></span>$0CFE</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D00"></span>$0D00</td>
+<td class="instruction">JMP <a href="0C3F.html#0D09">$0D09</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0D03"></span>$0D03</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="3">Set bit 7 of the character's animatory state at <a href="0026.html">$26</a>, thus making him face right.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D05"></span>$0D05</td>
+<td class="instruction">ORA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D07"></span>$0D07</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0D09"></span>$0D09</td>
+<td class="instruction">DEC $FB</td>
+<td class="comment-1" rowspan="1">Decrement the character's y-coordinate at <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D0B"></span>$0D0B</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="2">Pick up this new y-coordinate and store it at <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D0D"></span>$0D0D</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0D0F"></span>$0D0F</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="2">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a> and store it at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D11"></span>$0D11</td>
+<td class="instruction">STA $AC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D13"></span>$0D13</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="1">Pick up the character's animatory state from <a href="0026.html">$26</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D15"></span>$0D15</td>
+<td class="instruction">ASL A</td>
+<td class="comment-1" rowspan="1">Is the character facing left?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D16"></span>$0D16</td>
+<td class="instruction">BCC <a href="0C3F.html#0D1D">$0D1D</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D18"></span>$0D18</td>
+<td class="instruction">INC $AC</td>
+<td class="comment-1" rowspan="1">Increment the x-coordinate at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D1A"></span>$0D1A</td>
+<td class="instruction">JMP <a href="0C3F.html#0CCE">$0CCE</a></td>
+<td class="comment-1" rowspan="1">Jump back.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0D1D"></span>$0D1D</td>
+<td class="instruction">DEC $AC</td>
+<td class="comment-1" rowspan="1">Decrement the x-coordinate at <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D1F"></span>$0D1F</td>
+<td class="instruction">JMP <a href="0C3F.html#0CCE">$0CCE</a></td>
+<td class="comment-1" rowspan="1">Jump back to move the character midstride.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0D22"></span>
+<div class="comments">
+<div class="paragraph">
+The character looking for ERIC should start or continue going downstairs.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0D22"></span>$0D22</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the character's x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D24"></span>$0D24</td>
+<td class="instruction">CMP #$30</td>
+<td class="comment-1" rowspan="1">Is it 48 or more (on the right-hand side of the skool)?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D26"></span>$0D26</td>
+<td class="instruction">BCS <a href="0C3F.html#0D31">$0D31</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D28"></span>$0D28</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="3">Set bit 7 of the character's animatory state at <a href="0026.html">$26</a>, thus making him face right.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D2A"></span>$0D2A</td>
+<td class="instruction">ORA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D2C"></span>$0D2C</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D2E"></span>$0D2E</td>
+<td class="instruction">JMP <a href="0C3F.html#0D37">$0D37</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0D31"></span>$0D31</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="3">Reset bit 7 of the character's animatory state at <a href="0026.html">$26</a>, thus making him face left.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D33"></span>$0D33</td>
+<td class="instruction">AND #$7F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D35"></span>$0D35</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0D37"></span>$0D37</td>
+<td class="instruction">INC $FB</td>
+<td class="comment-1" rowspan="1">Increment the character's y-coordinate at <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D39"></span>$0D39</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="2">Pick up this new y-coordinate and store it at <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D3B"></span>$0D3B</td>
+<td class="instruction">STA $AD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D3D"></span>$0D3D</td>
+<td class="instruction">JMP <a href="0C3F.html#0D0F">$0D0F</a></td>
+<td class="comment-1" rowspan="1">Jump back to compute the character's next x-coordinate.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="0D40"></span>
+<div class="comments">
+<div class="paragraph">
+The address of this entry point is placed into the character's buffer at <a href="0C3F.html#0CD0">$0CD0</a> above. It takes care of moving the character looking for ERIC from the midstride position.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D40"></span>$0D40</td>
+<td class="instruction">LDA #$0C</td>
+<td class="comment-1" rowspan="4">Replace the address of this entry point in the character's buffer with that of the main entry point at <a href="0C3F.html">$0C3F</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D42"></span>$0D42</td>
+<td class="instruction">STA $AB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D44"></span>$0D44</td>
+<td class="instruction">LDA #$3F</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D46"></span>$0D46</td>
+<td class="instruction">STA $AA</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D48"></span>$0D48</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for the character's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D4B"></span>$0D4B</td>
+<td class="instruction">LDA $AC</td>
+<td class="comment-1" rowspan="1">Pick up the character's next x-coordinate from <a href="00AC.html">$AC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D4D"></span>$0D4D</td>
+<td class="instruction">STA $FC</td>
+<td class="comment-1" rowspan="1">Update the character's x-coordinate at <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D4F"></span>$0D4F</td>
+<td class="instruction">LDA $AD</td>
+<td class="comment-1" rowspan="1">Pick up the character's next y-coordinate from <a href="00AC.html#00AD">$AD</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D51"></span>$0D51</td>
+<td class="instruction">STA $FB</td>
+<td class="comment-1" rowspan="1">Update the character's y-coordinate at <a href="00FB.html">$FB</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D53"></span>$0D53</td>
+<td class="instruction">LDA $26</td>
+<td class="comment-1" rowspan="3">Pick up the character's animatory state from <a href="0026.html">$26</a>, clear bits 0-2, and store the result at <a href="004D.html#0057">$57</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D55"></span>$0D55</td>
+<td class="instruction">AND #$F8</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D57"></span>$0D57</td>
+<td class="instruction">STA $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D59"></span>$0D59</td>
+<td class="instruction">LDA $FC</td>
+<td class="comment-1" rowspan="1">Pick up the character's new x-coordinate from <a href="00FB.html#00FC">$FC</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D5B"></span>$0D5B</td>
+<td class="instruction">AND #$01</td>
+<td class="comment-1" rowspan="5">Adjust the character's animatory state depending on whether the new x-coordinate is even or odd.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D5D"></span>$0D5D</td>
+<td class="instruction">ASL A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D5E"></span>$0D5E</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D5F"></span>$0D5F</td>
+<td class="instruction">ADC $57</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D61"></span>$0D61</td>
+<td class="instruction">STA $26</td>
+</tr>
+<tr>
+<td class="address-1"><span id="0D63"></span>$0D63</td>
+<td class="instruction">JMP <a href="0C3F.html#0CB6">$0CB6</a></td>
+<td class="comment-1" rowspan="1">Jump back.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="0D66"></span>$0D66</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="0C31.html">$0C31</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#0C3F">Map</a></td>
+<td class="next">
+Next: <a href="0D67.html">$0D67</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

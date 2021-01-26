@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Data at $4440</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-b">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Data</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="4438.html">$4438</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#4440">Map</a></td>
+<td class="next">
+Next: <a href="4454.html">$4454</a>
+</td>
+</tr>
+</table>
+<div class="description">$4440: Staircase endpoint data table 1</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="12B5.html">$12B5</a> when the region identifier for the character's current location (C) is less than the destination region identifier. The second staircase endpoint data table is at <a href="4454.html">$4454</a>.
+</div>
+<div class="paragraph">
+The first entry is used when C=0, which means the character is on the top floor, to the left of the Map Room wall.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4440"></span>$4440</td>
+<td class="instruction">.BYTE $0D</td>
+<td class="comment-1" rowspan="1">x-coordinate of the top of the stairs leading down from the head's study.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4441"></span>$4441</td>
+<td class="instruction">.BYTE $80</td>
+<td class="comment-1" rowspan="1">Direction indicator: face right.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4442"></span>$4442</td>
+<td class="instruction">.WORD <a href="13F3.html">$13F3</a></td>
+<td class="comment-1" rowspan="1">Guide the character down the staircase.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="4444"></span>
+<div class="comments">
+<div class="paragraph">
+The second entry is used when C=1, which means the character is on the middle floor, to the left of the Exam Room wall.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4444"></span>$4444</td>
+<td class="instruction">.BYTE $0D</td>
+<td class="comment-1" rowspan="1">x-coordinate of the top of the stairs leading down from the staff room.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4445"></span>$4445</td>
+<td class="instruction">.BYTE $80</td>
+<td class="comment-1" rowspan="1">Direction indicator: face right.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4446"></span>$4446</td>
+<td class="instruction">.WORD <a href="13F3.html">$13F3</a></td>
+<td class="comment-1" rowspan="1">Guide the character down the staircase.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="4448"></span>
+<div class="comments">
+<div class="paragraph">
+The third entry is used when C=2, which means the character is on the bottom floor.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4448"></span>$4448</td>
+<td class="instruction">.BYTE $46</td>
+<td class="comment-1" rowspan="1">x-coordinate of the bottom of the stairs leading up to the Exam Room.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4449"></span>$4449</td>
+<td class="instruction">.BYTE $80</td>
+<td class="comment-1" rowspan="1">Direction indicator: face right.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="444A"></span>$444A</td>
+<td class="instruction">.WORD <a href="13F3.html#13FA">$13FA</a></td>
+<td class="comment-1" rowspan="1">Guide the character up the staircase.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="444C"></span>
+<div class="comments">
+<div class="paragraph">
+The fourth entry is used when C=3, which means the character is on the middle floor, to the right of the Exam Room wall.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="444C"></span>$444C</td>
+<td class="instruction">.BYTE $46</td>
+<td class="comment-1" rowspan="1">x-coordinate of the bottom of the stairs leading up from the Exam Room.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="444D"></span>$444D</td>
+<td class="instruction">.BYTE $80</td>
+<td class="comment-1" rowspan="1">Direction indicator: face right.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="444E"></span>$444E</td>
+<td class="instruction">.WORD <a href="13F3.html#13FA">$13FA</a></td>
+<td class="comment-1" rowspan="1">Guide the character up the staircase.</td>
+</tr>
+<tr>
+<td class="routine-comment" colspan="5">
+<span id="4450"></span>
+<div class="comments">
+<div class="paragraph">
+The fifth entry is unused (C cannot be 4).
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-1"><span id="4450"></span>$4450</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4451"></span>$4451</td>
+<td class="instruction">.BYTE $00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+<tr>
+<td class="address-1"><span id="4452"></span>$4452</td>
+<td class="instruction">.BYTE $00,$00</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="4438.html">$4438</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#4440">Map</a></td>
+<td class="next">
+Next: <a href="4454.html">$4454</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

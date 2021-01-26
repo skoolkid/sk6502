@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $B940</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B938.html">$B938</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B940">Map</a></td>
+<td class="next">
+Next: <a href="B9A0.html">$B9A0</a>
+</td>
+</tr>
+</table>
+<div class="description">$B940: Initialise voices #1, #2 and #3 for the theme tune</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routine at <a href="BA00.html">$BA00</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="B940"></span>$B940</td>
+<td class="instruction">LDA #$16</td>
+<td class="comment-1" rowspan="2">Set voice #1 attack length to 8ms and decay length to 204ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B942"></span>$B942</td>
+<td class="instruction">STA $D405</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B945"></span>$B945</td>
+<td class="instruction">LDA #$1C</td>
+<td class="comment-1" rowspan="2">Set voice #2 attack length to 8ms and decay length to 3s.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B947"></span>$B947</td>
+<td class="instruction">STA $D40C</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B94A"></span>$B94A</td>
+<td class="instruction">LDA #$1C</td>
+<td class="comment-1" rowspan="2">Set voice #3 attack length to 8ms and decay length to 3s.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B94C"></span>$B94C</td>
+<td class="instruction">STA $D413</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B94F"></span>$B94F</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set voice #1 sustain volume to 0 and release length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B951"></span>$B951</td>
+<td class="instruction">STA $D406</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B954"></span>$B954</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set voice #2 sustain volume to 0 and release length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B956"></span>$B956</td>
+<td class="instruction">STA $D40D</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B959"></span>$B959</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Set voice #3 sustain volume to 0 and release length to 6ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B95B"></span>$B95B</td>
+<td class="instruction">STA $D414</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B95E"></span>$B95E</td>
+<td class="instruction">LDA #$20</td>
+<td class="comment-1" rowspan="6">Initialise the voice control registers in the tune buffer at <a href="BBB4.html">$BBB4</a>: voice off; saw waveform enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B960"></span>$B960</td>
+<td class="instruction">STA $BBCB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B963"></span>$B963</td>
+<td class="instruction">LDA #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B965"></span>$B965</td>
+<td class="instruction">STA $BBCC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B968"></span>$B968</td>
+<td class="instruction">LDA #$20</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B96A"></span>$B96A</td>
+<td class="instruction">STA $BBCD</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B96D"></span>$B96D</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="4">Set voice #1 pulse width to $8080.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B96F"></span>$B96F</td>
+<td class="instruction">STA $D402</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B972"></span>$B972</td>
+<td class="instruction">LDA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B974"></span>$B974</td>
+<td class="instruction">STA $D403</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B977"></span>$B977</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="4">Set voice #2 pulse width to $8080.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B979"></span>$B979</td>
+<td class="instruction">STA $D409</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B97C"></span>$B97C</td>
+<td class="instruction">LDA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B97E"></span>$B97E</td>
+<td class="instruction">STA $D40A</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B981"></span>$B981</td>
+<td class="instruction">LDA #$80</td>
+<td class="comment-1" rowspan="4">Set voice #3 pulse width to $8080.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B983"></span>$B983</td>
+<td class="instruction">STA $D410</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B986"></span>$B986</td>
+<td class="instruction">LDA #$80</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B988"></span>$B988</td>
+<td class="instruction">STA $D411</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B98B"></span>$B98B</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="4">Set filter cut off frequency to 0.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B98D"></span>$B98D</td>
+<td class="instruction">STA $D416</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B990"></span>$B990</td>
+<td class="instruction">LDA #$00</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B992"></span>$B992</td>
+<td class="instruction">STA $D415</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B995"></span>$B995</td>
+<td class="instruction">LDA #$00</td>
+<td class="comment-1" rowspan="2">Disable voice filters.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B997"></span>$B997</td>
+<td class="instruction">STA $D417</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B99A"></span>$B99A</td>
+<td class="instruction">LDA #$0F</td>
+<td class="comment-1" rowspan="2">Set volume to maximum and disable filters.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B99C"></span>$B99C</td>
+<td class="instruction">STA $D418</td>
+</tr>
+<tr>
+<td class="address-1"><span id="B99F"></span>$B99F</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="B938.html">$B938</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#B940">Map</a></td>
+<td class="next">
+Next: <a href="B9A0.html">$B9A0</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>

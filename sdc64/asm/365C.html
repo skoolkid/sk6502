@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Skool Daze: Routine at $365C</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" type="text/css" href="../skoolkit.css" />
+<link rel="stylesheet" type="text/css" href="../theme.css" />
+</head>
+<body class="Asm-c">
+<table class="header">
+<tr>
+<td class="logo"><a href="../index.html"><img alt="logo" src="../images/logo.png" /></a></td>
+<td class="page-header">Routines</td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="364E.html">$364E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#365C">Map</a></td>
+<td class="next">
+Next: <a href="3687.html">$3687</a>
+</td>
+</tr>
+</table>
+<div class="description">$365C: Move ERIC midstride</div>
+<table class="disassembly">
+<tr>
+<td class="routine-comment" colspan="5">
+<div class="details">
+<div class="paragraph">
+Used by the routines at <a href="34B5.html">$34B5</a>, <a href="350B.html">$350B</a> and <a href="3558.html">$3558</a>.
+</div>
+</div>
+</td>
+</tr>
+<tr>
+<td class="address-2"><span id="365C"></span>$365C</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's current animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="365F"></span>$365F</td>
+<td class="instruction">LDA $FB</td>
+<td class="comment-1" rowspan="4">Adjust ERIC's y-coordinate at <a href="00FB.html">$FB</a> (by the increment previously stored at <a href="0010.html">$10</a>) if he's going up a staircase.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3661"></span>$3661</td>
+<td class="instruction">CLC</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3662"></span>$3662</td>
+<td class="instruction">ADC $10</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3664"></span>$3664</td>
+<td class="instruction">STA $FB</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3666"></span>$3666</td>
+<td class="instruction">INC $26</td>
+<td class="comment-1" rowspan="1">Increment ERIC's animatory state.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3668"></span>$3668</td>
+<td class="instruction">JSR <a href="322E.html">$322E</a></td>
+<td class="comment-1" rowspan="1">Update the SRB for ERIC's new animatory state and location.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="366B"></span>$366B</td>
+<td class="instruction">LDA $C5</td>
+<td class="comment-1" rowspan="1">Pick up the keyboard/joystick reading from <a href="00C5.html">$C5</a>.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="366D"></span>$366D</td>
+<td class="instruction">CMP #$C0</td>
+<td class="comment-1" rowspan="1">Is it a joystick left/right/up/down reading?</td>
+</tr>
+<tr>
+<td class="address-1"><span id="366F"></span>$366F</td>
+<td class="instruction">BCS <a href="365C.html#3676">$3676</a></td>
+<td class="comment-1" rowspan="1">Branch if so.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3671"></span>$3671</td>
+<td class="instruction">LDA #$06</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=6 (slow).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3673"></span>$3673</td>
+<td class="instruction">JMP <a href="365C.html#3678">$3678</a></td>
+<td class="comment-1" rowspan="1">Jump forward.</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3676"></span>$3676</td>
+<td class="instruction">LDA #$02</td>
+<td class="comment-1" rowspan="1"><span class="register">A</span>=2 (fast).</td>
+</tr>
+<tr>
+<td class="address-2"><span id="3678"></span>$3678</td>
+<td class="instruction">STA $E5</td>
+<td class="comment-1" rowspan="1">Initialise ERIC's midstride timer at <a href="00E5.html">$E5</a> to 2 (fast) or 6 (slow).</td>
+</tr>
+<tr>
+<td class="address-1"><span id="367A"></span>$367A</td>
+<td class="instruction">STA $4B</td>
+<td class="comment-1" rowspan="1">Set ERIC's midstride indicator at <a href="004B.html">$4B</a> to a non-zero value.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="367C"></span>$367C</td>
+<td class="instruction">LDA #$01</td>
+<td class="comment-1" rowspan="2">Set voice #3 attack length to 2ms and decay length to 24ms.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="367E"></span>$367E</td>
+<td class="instruction">STA $D413</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3681"></span>$3681</td>
+<td class="instruction">LDA #$81</td>
+<td class="comment-1" rowspan="2">Set voice #3 control register: voice on, attack-decay-sustain cycle; noise enabled.</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3683"></span>$3683</td>
+<td class="instruction">STA $D412</td>
+</tr>
+<tr>
+<td class="address-1"><span id="3686"></span>$3686</td>
+<td class="instruction">RTS</td>
+<td class="comment-1" rowspan="1"></td>
+</tr>
+</table>
+<table class="asm-navigation">
+<tr>
+<td class="prev">
+Prev: <a href="364E.html">$364E</a>
+</td>
+<td class="up">Up: <a href="../maps/all.html#365C">Map</a></td>
+<td class="next">
+Next: <a href="3687.html">$3687</a>
+</td>
+</tr>
+</table>
+<footer>
+<div class="release"></div>
+<div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+</footer>
+</body>
+</html>
