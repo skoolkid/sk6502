@@ -1,0 +1,288 @@
+; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+
+[Fact:whitherWander:Whither WANDER?]
+In the ZX Spectrum version, the tearaway is named BOY WANDER. For some reason,
+his name in the C64 version has been de-punned: BOY WONDER.
+
+[Fact:forgottenSpeechBubble:The forgotten speech bubble]
+The graphic data for the speech bubble used in the ZX Spectrum version is
+present in tiles $EF-$FF of the skool graphic data in pages #R$6000($60-$67)
+and #R$6800($68-$6F), but is not used in the C64 version.
+
+#UDGTABLE { #FOR($60EF,$60FF)(n,#UDG(n,,2,256), | ) } TABLE#
+
+[Fact:flawedCharacters:Flawed characters]
+#DEFINE1(FCHAR,
+  #UDG($4700+{0},step=256,flip=2,rotate=1){{width=4*(#PEEK($4700+{0})+2)}}(*c)
+  #FOR(0,7)(n,#PLOT(0,n,0)(c)#PLOT(#PEEK($4700+{0})+1,n,0)(c))
+  #UDGARRAY*c(char{0:02X})
+)
+The font graphics for the '/' (slash), '\' (backslash) and '3' characters are
+all slightly marred by missing pixels:
+
+#UDGTABLE { #FCHAR47 | #FCHAR92 | #FCHAR51 } TABLE#
+
+[Fact:expelled:Expelled?]
+Little boy no. 5's #R$4A00(initial x-coordinate) is set to 128 (out of sight),
+and the character-moving routine at #A$3AB4 skips over him. In other words, he
+never appears in the game. Has he been expelled?
+
+[Fact:unsyncedShields:Unsynchronised shields]
+Shields that have been hit by ERIC don't necessarily flash in sync (as they do
+by virtue of hardware design in the ZX Spectrum version): some will be
+displayed with inverted colours when others are not. This is because the
+interrupt routine at #A$39C7 that makes the shields flash will swap a shield's
+foreground and background colours when a shield is hit, regardless of the
+current colour status of any other shields.
+
+[Fact:betweenTheLinesAmounts:Between the lines amounts]
+The number of lines a teacher gives is always a multiple of 50 from 150 to 900
+(see the section of code at #A$1DE9). In the ZX Spectrum version, it's always a
+multiple of 100 from 100 to 800.
+
+[Fact:aQuickMessage:A quick message]
+The #R$4620(PRESS 'U' IF YOU UNDERSTAND) message doesn't have 8 spaces at the
+end like other spoken messages, and so ends very abruptly. It's also different
+from the corresponding message in the ZX Spectrum version: #ZXR$ECE0(Press 'U'
+if you understood).
+
+To add the 8 spaces at the end:
+
+POKE 17979,3 #R$4620(($463B,$03))
+
+[Fact:linesMessageVSpeechBubble:Lines message v. speech bubble]
+When a teacher is giving lines, the speech bubble disappears. The speech bubble
+reappears after the lines message box has been removed. This happens because
+both the lines message box and the speech bubble are drawn by using sprites,
+and there are not enough sprites to draw both simultaneously.
+
+[Fact:oneStampedeOutOfTwo:One stampede out of two]
+Playtime period #LINK:LessonFC($FC), in which the little boys run around the
+skool knocking people over, does not appear anywhere in the #R$5D00(main
+timetable). Its companion stampede playtime, #LINK:LessonFD($FD), does appear
+once, however.
+
+In the ZX Spectrum version, there are three stampede playtimes in the main
+timetable: one instance of $FD, and two instances of $FC.
+
+[Fact:withitUnedited:WITHIT unedited]
+Three of MR WITHIT's blackboard messages are different in the C64 version:
+
+#TABLE(default)
+{ =h Commodore 64                     | =h ZX Spectrum }
+{ #R$5500(WHY IT RAINS IN MANCHESTER) | #ZXR$E800(MANCHESTER MONSOONS) }
+{ #R$5540(THE MOUNTAINS OF PERU)      | #ZXR$E840(THE PEAKS OF PERU) }
+{ #R$5560(THE DONCASTER RAIN-FOREST)  | #ZXR$E860(THE GLASGOW RAIN-FOREST) }
+TABLE#
+
+What's interesting is that the messages in the C64 version don't even fit on
+the blackboard, which suggests that they were fixed for the ZX Spectrum
+version. But the ZX Spectrum version was released <em>before</em> the C64
+version. What goes on?
+
+[Fact:theSpecialPlaytimeTruce:The special playtime truce]
+BOY WONDER doesn't spend every period looking for opportunities to fire his
+catapult: in special playtimes #LINK:LessonF3($F3) (in which ANGELFACE has
+mumps) and #LINK:LessonF4($F4) (in which EINSTEIN is going tell MR WACKER what
+ERIC's up to) he keeps his catapult in his pocket at all times.
+
+Similarly, ANGELFACE doesn't spend every period looking for opportunities to
+beat up his classmates: in special playtimes #LINK:LessonF3($F3) (in which he
+has mumps), #LINK:LessonF4($F4) (in which EINSTEIN is going to tell MR WACKER
+what ERIC's up to) and #LINK:LessonF5($F5) (in which BOY WONDER has hidden a
+pea-shooter) he keeps his fists to himself.
+
+[Fact:theAccessibleBackSeat:The accessible back seat]
+Unlike the ZX Spectrum version, in the C64 version kids (besides ERIC) can sit
+in the back seat in the Reading Room.
+
+[Fact:boy11:The importance of little boy no. 11]
+In demo mode, ERIC bases his every move on where little boy no. 11 is and what
+he's doing (see the main loop at #A$0800). This important role means that
+little boy no. 11 is in all of ERIC's classes (if he weren't, ERIC would be
+guilty of truancy in demo mode). In fact, little boy no. 11 is the only
+character besides EINSTEIN who joins ERIC for every class.
+
+[Fact:skoolTunes:Skool tunes]
+The tune that plays just before a game (or demo mode) starts, and also when
+ERIC goes up a year, is
+<a href="https://en.wikipedia.org/wiki/Girls_and_Boys_Come_Out_To_Play">Girls
+and Boys Come Out To Play</a>. The tune that plays when ERIC makes the final
+shield flash, and when he opens the safe, is
+<a href="https://en.wikipedia.org/wiki/Au_clair_de_la_lune">Au clair de la
+lune</a>.
+
+[Fact:onePaceOrThree:One pace or three?]
+If a teacher is conducting a class without ERIC, or is conducting ERIC's class
+but has chosen not to engage in a question-and-answer session with EINSTEIN, he
+will pace up and down in front of the blackboard (or map). But the number of
+paces up and then down depends on the room he's in.
+
+If he's in the White Room, he will take one pace up and then down, oscillating
+between x-coordinates 29 and 30. If he's in the Reading Room, he will also take
+one pace up and then down, oscillating between x-coordinates 45 and 46. And if
+he's in the Map Room, he will once again take one pace up and then down,
+oscillating between x-coordinates 61 and 62. But if he's in the Exam Room, he
+will take three paces up and then down, oscillating between x-coordinates 44
+and 47.
+
+The reason for this discrepancy in pace numbers is the method used to calculate
+the teacher's next pace-up or pace-down destination, which is to take his
+current x-coordinate and do an EOR $03 on it: see the sections of code at
+#A$0A47 and #A$0B0C.
+
+[Fact:pointsForAP:Points for a punching]
+ANGELFACE is unique among the cast of characters in that if ERIC knocks him
+over with a punch, 30 points are awarded (see #A$17E5).
+
+[Fact:bwShootsEricScores:BOY WONDER shoots, ERIC scores]
+BOY WONDER may be a tearaway, but sometimes his impulsive nature can be more of
+a help than a hindrance. If he lets rip with his catapult and the pellet knocks
+EINSTEIN for six, you score 30 points - just as if ERIC had floored the swot
+himself. The reason for this is that the routine at #A$0FBA does not bother to
+check whose pellet has collided with EINSTEIN's head.
+
+It's also possible for one of BOY WONDER's pellets to bounce off a teacher's
+head, hit a shield, and make it flash - scoring even more points - but that
+would be a rare occurrence indeed.
+
+[Fact:shieldStats:Shield stats]
+Of the 15 shields on display around the skool, eight are blue and seven are
+red.
+
+Unlike the colours, the shield designs appear in equal numbers. Five shields
+display the stripe design (and are all red):
+
+#UDGTABLE { #UDG$6055,50,4,256(stripe) } TABLE#
+
+five display the squares design (three blue and two red):
+
+#UDGTABLE { #UDG$605F,49,4,256(squares) } TABLE#
+
+and the remaining five display the triangle design (all blue):
+
+#UDGTABLE { #UDG$6062,49,4,256(triangle) } TABLE#
+
+[Fact:teacherRooms:Teachers and classrooms]
+MR WACKER is the only teacher who teaches ERIC in all four classrooms. See his
+#R$83E0(personal timetable).
+
+MR ROCKITT never teaches in the Map Room. See his #R$84E0(personal timetable).
+
+MR WITHIT never teaches ERIC in the Reading Room or the Exam Room, but he does
+teach other kids in those rooms. See his #R$85E0(personal timetable).
+
+MR CREAK never teaches in the Map Room or the Exam Room. See his
+#R$86E0(personal timetable).
+
+[Fact:timetableStats:Timetable stats]
+There are 64 periods in the #R$5D00(main timetable): 24 playtimes, 4 dinner
+periods, and 36 lesson periods (when ERIC is supposed to be in either a
+classroom or the Revision Library).
+
+In the 36 lesson periods, ERIC is scheduled to be in the White Room 12 times,
+the Reading Room 10 times, the Map Room 6 times, the Exam Room 3 times, and the
+Revision Library 5 times.
+
+ERIC has 9 classes with MR CREAK, 8 classes with MR ROCKITT, and 7 classes each
+with MR WACKER and MR WITHIT.
+
+ERIC has 6 classes with MR CREAK in the Reading Room (which is more than any
+other teacher/classroom combination), but only one class with MR WACKER in the
+White Room and only one class with MR ROCKITT in the Exam Room.
+
+MR WACKER is on dinner duty for two of the dinner periods, and MR WITHIT is on
+duty for the other two.
+
+MR ROCKITT is the busiest teacher, teaching a class in 34 of the 36 lesson
+periods. MR WACKER is the laziest teacher, teaching a class in only 26 periods.
+
+MR WACKER teaches most often in the Exam Room (12 times); MR ROCKITT also
+teaches most often in the Exam Room (15 times); MR WITHIT teaches most often in
+the Map Room (22 times); and MR CREAK teaches most often in the Reading Room
+(19 times).
+
+Every boy is taught at least 3 times by each teacher, and at least 3 times in
+each classroom. However, little boys 2, 3, 4, 6, 7, 8 and 9 are - unlike all
+the other boys - never in the Revision Library during a lesson period.
+
+ANGELFACE spends more lesson periods in the Revision Library than any other boy
+(9 periods compared to BOY WONDER's 7 and ERIC's 5).
+
+[Fact:playtimeProbabilities:Playtime probabilities]
+During playtime, the teacher most likely to be found pacing up and down in the
+staff room is MR CREAK, who spends 23 of the 24 playtimes in the #R$5D00(main
+timetable) in that room (the one exception being the playtime where the little
+boys stampede around the skool). The teacher least likely to be found in the
+staff room is MR WACKER, who spends only two playtimes there; the other 22
+playtimes he divides between his study (4 times) and walking around the skool
+(18).
+
+BOY WONDER spends most of his playtimes (15 out of 24) in search of clean
+blackboards to write on.
+
+ANGELFACE and EINSTEIN spend every playtime wandering around the skool from one
+#R$105B(randomly chosen location) to another. The 11 little boys, however,
+split their playtimes between wandering around the skool and walking up and
+down in one of the four playtime locations (Revision Library, fire escape, gym
+and big window) until the bell rings.
+
+The playtime probabilities described here are all subject to alteration by the
+fact that, three times out of eight, a playtime in the main timetable is
+replaced with a 'special' playtime (#LINK:LessonF3($F4), #LINK:LessonF4($F4) or
+#LINK:LessonF5($F5)) chosen at random (see #A$3B46).
+
+[Fact:doublePlaytimes:Double playtimes]
+There are three places in the #R$5D00(main timetable) where one playtime is
+followed immediately by another: timetable indexes #R$5D13($13/$14),
+#R$5D29($29/$2A) and #R$5D33($33/$34). But unlike the ZX Spectrum version, the
+bell rings between two playtimes.
+
+[Fact:playtimeDistribution:Playtime distribution]
+Understandably, ERIC is always eager for playtime to come, but the number of
+lesson or Revision Library periods he has to tolerate between each break varies
+between one and three throughout the #R$5D00(main timetable).
+
+#LIST
+{ There is one period between playtimes at timetable index #R$5D0E($0F). }
+{ There are three periods between playtimes at timetable indexes
+  #R$5D19($1A-$1C), #R$5D20($21-$23) and #R$5D3C($3D-$3F). }
+{ There are two periods between all the other playtimes (not counting dinner
+  periods). }
+LIST#
+
+[Fact:dullPlaytimes:Always a dull playtime in demo mode]
+Special playtimes - the ones where ERIC must avoid contact with ANGELFACE,
+prevent MR WACKER from getting to the fire escape before BOY WONDER, or prevent
+EINSTEIN from making it to the head's study - never happen in demo mode (see
+#A$3B46). Which makes sense, because otherwise the user would have to press 'U'
+to signify understanding after being told what BOY WONDER, EINSTEIN or
+ANGELFACE is up to, and then press another key to exit demo mode.
+
+[Fact:handsUp:Hands up!]
+Among the graphic data for the boys at #A$9900, there are four unused sprites
+of the main kids sitting down with a hand raised:
+
+#UDGTABLE
+{ #ASIMG4 | #ASIMG20 | #ASIMG36 | #ASIMG52 }
+TABLE#
+
+Were these used while the game was in development? We'll probably never know.
+
+[Fact:wipingBully:Board-wiping bully?]
+Among the graphic data for the boys at #A$9900, there are four unused sprites
+of ANGELFACE that show him with his arm up as if writing on or wiping a
+blackboard:
+
+#UDGTABLE
+{ #ASIMG44 | #ASIMG45 | #ASIMG172 | #ASIMG173 }
+TABLE#
+
+Were they used while the game was in development? Again, we'll probably never
+know.
+
+[Fact:battle1800:WHICH BATTLE OCCURRED IN 1800?]
+Among the 21 battle dates that comprise MR CREAK's history curriculum, 1800
+makes no appearance. But perhaps it was not always so: see #A$52E8. We can only
+speculate which battle from that year EINSTEIN would have chosen for his
+answer.

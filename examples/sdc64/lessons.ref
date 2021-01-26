@@ -1,0 +1,977 @@
+; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+
+[Links+]
+LessonIndex=Lessons
+
+[Titles+]
+LessonIndex=Lessons
+LessonE0=Lesson $E0
+LessonE1=Lesson $E1
+LessonE2=Lesson $E2
+LessonE3=Lesson $E3
+LessonE4=Lesson $E4
+LessonE5=Lesson $E5
+LessonE6=Lesson $E6
+LessonE7=Lesson $E7
+LessonE8=Lesson $E8
+LessonE9=Lesson $E9
+LessonEA=Lesson $EA
+LessonEB=Lesson $EB
+LessonEC=Lesson $EC
+LessonED=Lesson $ED
+LessonEE=Lesson $EE
+LessonEF=Lesson $EF
+LessonF0=Lesson $F0
+LessonF1=Lesson $F1
+LessonF2=Lesson $F2
+LessonF3=Lesson $F3
+LessonF4=Lesson $F4
+LessonF5=Lesson $F5
+LessonF6=Lesson $F6
+LessonF7=Lesson $F7
+LessonF8=Lesson $F8
+LessonF9=Lesson $F9
+LessonFA=Lesson $FA
+LessonFB=Lesson $FB
+LessonFC=Lesson $FC
+LessonFD=Lesson $FD
+LessonFE=Lesson $FE
+LessonFF=Lesson $FF
+
+[PageHeaders+]
+LessonE0=#LINK:LessonIndex(Lessons)
+LessonE1=#LINK:LessonIndex(Lessons)
+LessonE2=#LINK:LessonIndex(Lessons)
+LessonE3=#LINK:LessonIndex(Lessons)
+LessonE4=#LINK:LessonIndex(Lessons)
+LessonE5=#LINK:LessonIndex(Lessons)
+LessonE6=#LINK:LessonIndex(Lessons)
+LessonE7=#LINK:LessonIndex(Lessons)
+LessonE8=#LINK:LessonIndex(Lessons)
+LessonE9=#LINK:LessonIndex(Lessons)
+LessonEA=#LINK:LessonIndex(Lessons)
+LessonEB=#LINK:LessonIndex(Lessons)
+LessonEC=#LINK:LessonIndex(Lessons)
+LessonED=#LINK:LessonIndex(Lessons)
+LessonEE=#LINK:LessonIndex(Lessons)
+LessonEF=#LINK:LessonIndex(Lessons)
+LessonF0=#LINK:LessonIndex(Lessons)
+LessonF1=#LINK:LessonIndex(Lessons)
+LessonF2=#LINK:LessonIndex(Lessons)
+LessonF3=#LINK:LessonIndex(Lessons)
+LessonF4=#LINK:LessonIndex(Lessons)
+LessonF5=#LINK:LessonIndex(Lessons)
+LessonF6=#LINK:LessonIndex(Lessons)
+LessonF7=#LINK:LessonIndex(Lessons)
+LessonF8=#LINK:LessonIndex(Lessons)
+LessonF9=#LINK:LessonIndex(Lessons)
+LessonFA=#LINK:LessonIndex(Lessons)
+LessonFB=#LINK:LessonIndex(Lessons)
+LessonFC=#LINK:LessonIndex(Lessons)
+LessonFD=#LINK:LessonIndex(Lessons)
+LessonFE=#LINK:LessonIndex(Lessons)
+LessonFF=#LINK:LessonIndex(Lessons)
+
+[Page:LessonIndex]
+PageContent=#INCLUDE(LessonIndex)
+
+[LessonIndex]
+#TABLE(default)
+{ =h ID | =h Lesson }
+{ $E0 | #LINK:LessonE0(DINNER (MR WITHIT)) }
+{ $E1 | #LINK:LessonE1(DINNER (MR WACKER)) }
+{ $E2 | #LINK:LessonE2(MR WACKER - EXAM ROOM) }
+{ $E3 | #LINK:LessonE3(MR ROCKITT - EXAM ROOM) }
+{ $E4 | #LINK:LessonE4(REVISION LIBRARY) }
+{ $E5 | #LINK:LessonE5(REVISION LIBRARY) }
+{ $E6 | #LINK:LessonE6(REVISION LIBRARY) }
+{ $E7 | #LINK:LessonE7(MR WITHIT - MAP ROOM) }
+{ $E8 | #LINK:LessonE8(MR WACKER - READING ROOM) }
+{ $E9 | #LINK:LessonE9(MR ROCKITT - READING ROOM) }
+{ $EA | #LINK:LessonEA(MR CREAK - READING ROOM) }
+{ $EB | #LINK:LessonEB(MR CREAK - WHITE ROOM) }
+{ $EC | #LINK:LessonEC(MR WACKER - WHITE ROOM) }
+{ $ED | #LINK:LessonED(MR WITHIT - WHITE ROOM) }
+{ $EE | #LINK:LessonEE(MR ROCKITT - WHITE ROOM) }
+{ $EF | #LINK:LessonEF(MR WACKER - MAP ROOM) }
+{ $F0 | #LINK:LessonF0(MR WITHIT - MAP ROOM) }
+{ $F1 | #LINK:LessonF1(MR ROCKITT - WHITE ROOM) }
+{ $F2 | #LINK:LessonF2(MR CREAK - READING ROOM) }
+{ $F3 | #LINK:LessonF3(PLAYTIME (ANGELFACE has mumps)) }
+{ $F4 | #LINK:LessonF4(PLAYTIME (EINSTEIN is going to grass on ERIC)) }
+{ $F5 | #LINK:LessonF5(PLAYTIME (BOY WONDER has hidden a pea-shooter)) }
+{ $F6 | #LINK:LessonF6(PLAYTIME) }
+{ $F7 | #LINK:LessonF7(PLAYTIME) }
+{ $F8 | #LINK:LessonF8(PLAYTIME) }
+{ $F9 | #LINK:LessonF9(PLAYTIME) }
+{ $FA | #LINK:LessonFA(PLAYTIME) }
+{ $FB | #LINK:LessonFB(PLAYTIME) }
+{ $FC | #LINK:LessonFC(PLAYTIME (little boys stampede)) }
+{ $FD | #LINK:LessonFD(PLAYTIME (little boys stampede)) }
+{ $FE | #LINK:LessonFE(PLAYTIME) }
+{ $FF | #LINK:LessonFF(PLAYTIME) }
+TABLE#
+
+[Page:LessonE0]
+PageContent=#INCLUDE(LessonE0)
+
+[LessonE0]
+<h3>Lesson $E0: DINNER (MR WITHIT)</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$79E0(Little boy no. 2) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$7AE0(Little boy no. 3) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$7BE0(Little boy no. 4) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$7CE0(Little boy no. 5) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$7DE0(Little boy no. 6) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$7EE0(Little boy no. 7) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$7FE0(Little boy no. 8) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$80E0(Little boy no. 9) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$81E0(Little boy no. 10) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$82E0(Little boy no. 11) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$83E0(MR WACKER) | #R$4247($BA) - Head's study - MR WACKER }
+{ #R$84E0(MR ROCKITT) | #R$424E($BC) - Staff room - teacher }
+{ #R$85E0(MR WITHIT) | #R$423B($B8) - Dinner duty }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$41F7($AE) - Dinner - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$41E8($AC) - Dinner - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+TABLE#
+
+[Page:LessonE1]
+PageContent=#INCLUDE(LessonE1)
+
+[LessonE1]
+<h3>Lesson $E1: DINNER (MR WACKER)</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$79E0(Little boy no. 2) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$7AE0(Little boy no. 3) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$7BE0(Little boy no. 4) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$7CE0(Little boy no. 5) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$7DE0(Little boy no. 6) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$7EE0(Little boy no. 7) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$7FE0(Little boy no. 8) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$80E0(Little boy no. 9) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$81E0(Little boy no. 10) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$82E0(Little boy no. 11) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+{ #R$83E0(MR WACKER) | #R$423B($B8) - Dinner duty }
+{ #R$84E0(MR ROCKITT) | #R$424E($BC) - Staff room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4298($C6) - Walk around the fire escape }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$41F7($AE) - Dinner - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$41E8($AC) - Dinner - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$41E1($AA) - Dinner - EINSTEIN/little boy }
+TABLE#
+
+[Page:LessonE2]
+PageContent=#INCLUDE(LessonE2)
+
+[LessonE2]
+<h3>Lesson $E2: MR WACKER - EXAM ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4118($92) - Reading Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$4118($92) - Reading Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$4118($92) - Reading Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$4118($92) - Reading Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$4118($92) - Reading Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$415B($9A) - Exam Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$415B($9A) - Exam Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$415B($9A) - Exam Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$415B($9A) - Exam Room - little boy }
+{ #R$83E0(MR WACKER) | #R$40AE($84) - Exam Room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$4290($C4) - Walkabout }
+{ #R$85E0(MR WITHIT) | #R$4095($82) - Reading Room - teacher }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$4180($9E) - Exam Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4166($9C) - Exam Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4193($A0) - Exam Room - EINSTEIN }
+TABLE#
+
+[Page:LessonE3]
+PageContent=#INCLUDE(LessonE3)
+
+[LessonE3]
+<h3>Lesson $E3: MR ROCKITT - EXAM ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$415B($9A) - Exam Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$419E($A2) - White Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$419E($A2) - White Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$419E($A2) - White Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$419E($A2) - White Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$419E($A2) - White Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$415B($9A) - Exam Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$415B($9A) - Exam Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$415B($9A) - Exam Room - little boy }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$40AE($84) - Exam Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4255($BE) - Walkabout - teacher }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$4180($9E) - Exam Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4166($9C) - Exam Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4193($A0) - Exam Room - EINSTEIN }
+TABLE#
+
+[Page:LessonE4]
+PageContent=#INCLUDE(LessonE4)
+
+[LessonE4]
+<h3>Lesson $E4: REVISION LIBRARY</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$79E0(Little boy no. 2) | #R$4118($92) - Reading Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$4118($92) - Reading Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$4118($92) - Reading Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$419E($A2) - White Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$419E($A2) - White Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$415B($9A) - Exam Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$415B($9A) - Exam Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$415B($9A) - Exam Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$83E0(MR WACKER) | #R$4095($82) - Reading Room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$40AE($84) - Exam Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$42A6($CA) - Walk around the big window }
+{ #R$86E0(MR CREAK) | #R$40C3($86) - White Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$41C3($A6) - White Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$420D($B2) - Revision Library - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+TABLE#
+
+[Page:LessonE5]
+PageContent=#INCLUDE(LessonE5)
+
+[LessonE5]
+<h3>Lesson $E5: REVISION LIBRARY</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$40DC($88) - Map Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$40DC($88) - Map Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$40DC($88) - Map Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$4118($92) - Reading Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$7DE0(Little boy no. 6) | #R$4118($92) - Reading Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$4118($92) - Reading Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$4118($92) - Reading Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$40DC($88) - Map Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$40DC($88) - Map Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$415B($9A) - Exam Room - little boy }
+{ #R$85E0(MR WITHIT) | #R$4080($80) - Map Room - teacher }
+{ #R$86E0(MR CREAK) | #R$4095($82) - Reading Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$421C($B4) - Revision Library - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$40E7($8C) - Map Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+TABLE#
+
+[Page:LessonE6]
+PageContent=#INCLUDE(LessonE6)
+
+[LessonE6]
+<h3>Lesson $E6: REVISION LIBRARY</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$415B($9A) - Exam Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$419E($A2) - White Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$419E($A2) - White Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$419E($A2) - White Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$419E($A2) - White Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$419E($A2) - White Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$82E0(Little boy no. 11) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$40C3($86) - White Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$40AE($84) - Exam Room - teacher }
+{ #R$86E0(MR CREAK) | #R$4095($82) - Reading Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$421C($B4) - Revision Library - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$420D($B2) - Revision Library - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+TABLE#
+
+[Page:LessonE7]
+PageContent=#INCLUDE(LessonE7)
+
+[LessonE7]
+<h3>Lesson $E7: MR WITHIT - MAP ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4118($92) - Reading Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$419E($A2) - White Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$4118($92) - Reading Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$419E($A2) - White Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$4118($92) - Reading Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$419E($A2) - White Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$4118($92) - Reading Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$415B($9A) - Exam Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$415B($9A) - Exam Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$40DC($88) - Map Room - little boy }
+{ #R$83E0(MR WACKER) | #R$40AE($84) - Exam Room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$40C3($86) - White Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4080($80) - Map Room - teacher }
+{ #R$86E0(MR CREAK) | #R$4095($82) - Reading Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$40FA($8E) - Map Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4166($9C) - Exam Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$410D($90) - Map Room - EINSTEIN }
+TABLE#
+
+[Page:LessonE8]
+PageContent=#INCLUDE(LessonE8)
+
+[LessonE8]
+<h3>Lesson $E8: MR WACKER - READING ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$419E($A2) - White Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$4118($92) - Reading Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$40DC($88) - Map Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$40DC($88) - Map Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$4118($92) - Reading Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$415B($9A) - Exam Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$40DC($88) - Map Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$419E($A2) - White Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$4118($92) - Reading Room - little boy }
+{ #R$83E0(MR WACKER) | #R$4095($82) - Reading Room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$40AE($84) - Exam Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4080($80) - Map Room - teacher }
+{ #R$86E0(MR CREAK) | #R$40C3($86) - White Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$41C3($A6) - White Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4123($94) - Reading Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4150($98) - Reading Room - EINSTEIN }
+TABLE#
+
+[Page:LessonE9]
+PageContent=#INCLUDE(LessonE9)
+
+[LessonE9]
+<h3>Lesson $E9: MR ROCKITT - READING ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$415B($9A) - Exam Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$419E($A2) - White Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$4118($92) - Reading Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$419E($A2) - White Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$419E($A2) - White Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$40DC($88) - Map Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$40DC($88) - Map Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$40DC($88) - Map Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$4118($92) - Reading Room - little boy }
+{ #R$83E0(MR WACKER) | #R$40AE($84) - Exam Room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$4095($82) - Reading Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4080($80) - Map Room - teacher }
+{ #R$86E0(MR CREAK) | #R$40C3($86) - White Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$413D($96) - Reading Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4123($94) - Reading Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4150($98) - Reading Room - EINSTEIN }
+TABLE#
+
+[Page:LessonEA]
+PageContent=#INCLUDE(LessonEA)
+
+[LessonEA]
+<h3>Lesson $EA: MR CREAK - READING ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4118($92) - Reading Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$40DC($88) - Map Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$419E($A2) - White Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$419E($A2) - White Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$40DC($88) - Map Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$415B($9A) - Exam Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$419E($A2) - White Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$40DC($88) - Map Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$4118($92) - Reading Room - little boy }
+{ #R$83E0(MR WACKER) | #R$40C3($86) - White Room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$40AE($84) - Exam Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4080($80) - Map Room - teacher }
+{ #R$86E0(MR CREAK) | #R$4095($82) - Reading Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$413D($96) - Reading Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4123($94) - Reading Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4150($98) - Reading Room - EINSTEIN }
+TABLE#
+
+[Page:LessonEB]
+PageContent=#INCLUDE(LessonEB)
+
+[LessonEB]
+<h3>Lesson $EB: MR CREAK - WHITE ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4118($92) - Reading Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$40DC($88) - Map Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$4118($92) - Reading Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$40DC($88) - Map Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$4118($92) - Reading Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$40DC($88) - Map Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$415B($9A) - Exam Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$4118($92) - Reading Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$419E($A2) - White Room - little boy }
+{ #R$83E0(MR WACKER) | #R$4095($82) - Reading Room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$40AE($84) - Exam Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4080($80) - Map Room - teacher }
+{ #R$86E0(MR CREAK) | #R$40C3($86) - White Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$41C3($A6) - White Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$41A9($A4) - White Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$41D6($A8) - White Room - EINSTEIN }
+TABLE#
+
+[Page:LessonEC]
+PageContent=#INCLUDE(LessonEC)
+
+[LessonEC]
+<h3>Lesson $EC: MR WACKER - WHITE ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$40DC($88) - Map Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$4118($92) - Reading Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$40DC($88) - Map Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$4118($92) - Reading Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$40DC($88) - Map Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$419E($A2) - White Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$4118($92) - Reading Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$415B($9A) - Exam Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$415B($9A) - Exam Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$419E($A2) - White Room - little boy }
+{ #R$83E0(MR WACKER) | #R$40C3($86) - White Room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$40AE($84) - Exam Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4080($80) - Map Room - teacher }
+{ #R$86E0(MR CREAK) | #R$4095($82) - Reading Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$41C3($A6) - White Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$420D($B2) - Revision Library - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$41D6($A8) - White Room - EINSTEIN }
+TABLE#
+
+[Page:LessonED]
+PageContent=#INCLUDE(LessonED)
+
+[LessonED]
+<h3>Lesson $ED: MR WITHIT - WHITE ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4118($92) - Reading Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$419E($A2) - White Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$40DC($88) - Map Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$4118($92) - Reading Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$419E($A2) - White Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$40DC($88) - Map Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$4118($92) - Reading Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$415B($9A) - Exam Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$419E($A2) - White Room - little boy }
+{ #R$83E0(MR WACKER) | #R$4080($80) - Map Room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$40AE($84) - Exam Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$40C3($86) - White Room - teacher }
+{ #R$86E0(MR CREAK) | #R$4095($82) - Reading Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$421C($B4) - Revision Library - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$420D($B2) - Revision Library - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$41D6($A8) - White Room - EINSTEIN }
+TABLE#
+
+[Page:LessonEE]
+PageContent=#INCLUDE(LessonEE)
+
+[LessonEE]
+<h3>Lesson $EE: MR ROCKITT - WHITE ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$40DC($88) - Map Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$40DC($88) - Map Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$40DC($88) - Map Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$419E($A2) - White Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$4118($92) - Reading Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$40DC($88) - Map Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$4118($92) - Reading Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$415B($9A) - Exam Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$4118($92) - Reading Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$419E($A2) - White Room - little boy }
+{ #R$83E0(MR WACKER) | #R$40AE($84) - Exam Room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$40C3($86) - White Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4080($80) - Map Room - teacher }
+{ #R$86E0(MR CREAK) | #R$4095($82) - Reading Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$421C($B4) - Revision Library - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$41A9($A4) - White Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$41D6($A8) - White Room - EINSTEIN }
+TABLE#
+
+[Page:LessonEF]
+PageContent=#INCLUDE(LessonEF)
+
+[LessonEF]
+<h3>Lesson $EF: MR WACKER - MAP ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$415B($9A) - Exam Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$419E($A2) - White Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$419E($A2) - White Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$4118($92) - Reading Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$415B($9A) - Exam Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$4118($92) - Reading Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$415B($9A) - Exam Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$40DC($88) - Map Room - little boy }
+{ #R$83E0(MR WACKER) | #R$4080($80) - Map Room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$4095($82) - Reading Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$40AE($84) - Exam Room - teacher }
+{ #R$86E0(MR CREAK) | #R$40C3($86) - White Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$40FA($8E) - Map Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4166($9C) - Exam Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$410D($90) - Map Room - EINSTEIN }
+TABLE#
+
+[Page:LessonF0]
+PageContent=#INCLUDE(LessonF0)
+
+[LessonF0]
+<h3>Lesson $F0: MR WITHIT - MAP ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4118($92) - Reading Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$4118($92) - Reading Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$40DC($88) - Map Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$4118($92) - Reading Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$419E($A2) - White Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$419E($A2) - White Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$419E($A2) - White Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$4118($92) - Reading Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$4118($92) - Reading Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$419E($A2) - White Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$40DC($88) - Map Room - little boy }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$4095($82) - Reading Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4080($80) - Map Room - teacher }
+{ #R$86E0(MR CREAK) | #R$40C3($86) - White Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$40FA($8E) - Map Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$40E7($8C) - Map Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$410D($90) - Map Room - EINSTEIN }
+TABLE#
+
+[Page:LessonF1]
+PageContent=#INCLUDE(LessonF1)
+
+[LessonF1]
+<h3>Lesson $F1: MR ROCKITT - WHITE ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$415B($9A) - Exam Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$415B($9A) - Exam Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$415B($9A) - Exam Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$415B($9A) - Exam Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$415B($9A) - Exam Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$419E($A2) - White Room - little boy }
+{ #R$83E0(MR WACKER) | #R$40AE($84) - Exam Room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$40C3($86) - White Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4290($C4) - Walkabout }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$41C3($A6) - White Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$41A9($A4) - White Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$41D6($A8) - White Room - EINSTEIN }
+TABLE#
+
+[Page:LessonF2]
+PageContent=#INCLUDE(LessonF2)
+
+[LessonF2]
+<h3>Lesson $F2: MR CREAK - READING ROOM</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$419E($A2) - White Room - little boy }
+{ #R$79E0(Little boy no. 2) | #R$40DC($88) - Map Room - little boy }
+{ #R$7AE0(Little boy no. 3) | #R$419E($A2) - White Room - little boy }
+{ #R$7BE0(Little boy no. 4) | #R$40DC($88) - Map Room - little boy }
+{ #R$7CE0(Little boy no. 5) | #R$419E($A2) - White Room - little boy }
+{ #R$7DE0(Little boy no. 6) | #R$40DC($88) - Map Room - little boy }
+{ #R$7EE0(Little boy no. 7) | #R$419E($A2) - White Room - little boy }
+{ #R$7FE0(Little boy no. 8) | #R$40DC($88) - Map Room - little boy }
+{ #R$80E0(Little boy no. 9) | #R$40DC($88) - Map Room - little boy }
+{ #R$81E0(Little boy no. 10) | #R$419E($A2) - White Room - little boy }
+{ #R$82E0(Little boy no. 11) | #R$4118($92) - Reading Room - little boy }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$40C3($86) - White Room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4080($80) - Map Room - teacher }
+{ #R$86E0(MR CREAK) | #R$4095($82) - Reading Room - teacher }
+{ #R$87E0(ANGELFACE) | #R$413D($96) - Reading Room - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4123($94) - Reading Room - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4150($98) - Reading Room - EINSTEIN }
+TABLE#
+
+[Page:LessonF3]
+PageContent=#INCLUDE(LessonF3)
+
+[LessonF3]
+<h3>Lesson $F3: PLAYTIME (ANGELFACE has mumps)</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4290($C4) - Walkabout }
+{ #R$79E0(Little boy no. 2) | #R$4290($C4) - Walkabout }
+{ #R$7AE0(Little boy no. 3) | #R$4290($C4) - Walkabout }
+{ #R$7BE0(Little boy no. 4) | #R$4290($C4) - Walkabout }
+{ #R$7CE0(Little boy no. 5) | #R$4290($C4) - Walkabout }
+{ #R$7DE0(Little boy no. 6) | #R$4290($C4) - Walkabout }
+{ #R$7EE0(Little boy no. 7) | #R$4290($C4) - Walkabout }
+{ #R$7FE0(Little boy no. 8) | #R$4290($C4) - Walkabout }
+{ #R$80E0(Little boy no. 9) | #R$4290($C4) - Walkabout }
+{ #R$81E0(Little boy no. 10) | #R$42FB($D2) - Tell ERIC about ANGELFACE }
+{ #R$82E0(Little boy no. 11) | #R$4290($C4) - Walkabout }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$4376($DE) - Mumps duty }
+{ #R$85E0(MR WITHIT) | #R$4255($BE) - Walkabout - teacher }
+{ #R$86E0(MR CREAK) | #R$4255($BE) - Walkabout - teacher }
+{ #R$87E0(ANGELFACE) | #R$436E($DC) - Mumps walkabout }
+{ #R$88E0(BOY WONDER) | #R$4290($C4) - Walkabout }
+{ #R$89E0(EINSTEIN) | #R$4290($C4) - Walkabout }
+TABLE#
+
+[Page:LessonF4]
+PageContent=#INCLUDE(LessonF4)
+
+[LessonF4]
+<h3>Lesson $F4: PLAYTIME (EINSTEIN is going to grass on ERIC)</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4290($C4) - Walkabout }
+{ #R$79E0(Little boy no. 2) | #R$4290($C4) - Walkabout }
+{ #R$7AE0(Little boy no. 3) | #R$4290($C4) - Walkabout }
+{ #R$7BE0(Little boy no. 4) | #R$4290($C4) - Walkabout }
+{ #R$7CE0(Little boy no. 5) | #R$4290($C4) - Walkabout }
+{ #R$7DE0(Little boy no. 6) | #R$4290($C4) - Walkabout }
+{ #R$7EE0(Little boy no. 7) | #R$4290($C4) - Walkabout }
+{ #R$7FE0(Little boy no. 8) | #R$4290($C4) - Walkabout }
+{ #R$80E0(Little boy no. 9) | #R$4290($C4) - Walkabout }
+{ #R$81E0(Little boy no. 10) | #R$438A($E0) - Tell ERIC about EINSTEIN }
+{ #R$82E0(Little boy no. 11) | #R$4290($C4) - Walkabout }
+{ #R$83E0(MR WACKER) | #R$431F($D6) - Wait for EINSTEIN to grass on ERIC }
+{ #R$84E0(MR ROCKITT) | #R$4255($BE) - Walkabout - teacher }
+{ #R$85E0(MR WITHIT) | #R$4255($BE) - Walkabout - teacher }
+{ #R$86E0(MR CREAK) | #R$4255($BE) - Walkabout - teacher }
+{ #R$87E0(ANGELFACE) | #R$4290($C4) - Walkabout }
+{ #R$88E0(BOY WONDER) | #R$4290($C4) - Walkabout }
+{ #R$89E0(EINSTEIN) | #R$4309($D4) - Grass on ERIC }
+TABLE#
+
+[Page:LessonF5]
+PageContent=#INCLUDE(LessonF5)
+
+[LessonF5]
+<h3>Lesson $F5: PLAYTIME (BOY WONDER has hidden a pea-shooter)</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4290($C4) - Walkabout }
+{ #R$79E0(Little boy no. 2) | #R$4290($C4) - Walkabout }
+{ #R$7AE0(Little boy no. 3) | #R$4290($C4) - Walkabout }
+{ #R$7BE0(Little boy no. 4) | #R$4290($C4) - Walkabout }
+{ #R$7CE0(Little boy no. 5) | #R$4290($C4) - Walkabout }
+{ #R$7DE0(Little boy no. 6) | #R$4290($C4) - Walkabout }
+{ #R$7EE0(Little boy no. 7) | #R$4290($C4) - Walkabout }
+{ #R$7FE0(Little boy no. 8) | #R$4290($C4) - Walkabout }
+{ #R$80E0(Little boy no. 9) | #R$4290($C4) - Walkabout }
+{ #R$81E0(Little boy no. 10) | #R$42E3($D0) - Tell ERIC about BOY WONDER }
+{ #R$82E0(Little boy no. 11) | #R$4290($C4) - Walkabout }
+{ #R$83E0(MR WACKER) | #R$4352($DA) - Look for the pea-shooter }
+{ #R$84E0(MR ROCKITT) | #R$4255($BE) - Walkabout - teacher }
+{ #R$85E0(MR WITHIT) | #R$4255($BE) - Walkabout - teacher }
+{ #R$86E0(MR CREAK) | #R$4255($BE) - Walkabout - teacher }
+{ #R$87E0(ANGELFACE) | #R$4290($C4) - Walkabout }
+{ #R$88E0(BOY WONDER) | #R$4334($D8) - Collect the pea-shooter }
+{ #R$89E0(EINSTEIN) | #R$4290($C4) - Walkabout }
+TABLE#
+
+[Page:LessonF6]
+PageContent=#INCLUDE(LessonF6)
+
+[LessonF6]
+<h3>Lesson $F6: PLAYTIME</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4298($C6) - Walk around the fire escape }
+{ #R$79E0(Little boy no. 2) | #R$4298($C6) - Walk around the fire escape }
+{ #R$7AE0(Little boy no. 3) | #R$4298($C6) - Walk around the fire escape }
+{ #R$7BE0(Little boy no. 4) | #R$429F($C8) - Walk around the gym }
+{ #R$7CE0(Little boy no. 5) | #R$429F($C8) - Walk around the gym }
+{ #R$7DE0(Little boy no. 6) | #R$429F($C8) - Walk around the gym }
+{ #R$7EE0(Little boy no. 7) | #R$42A6($CA) - Walk around the big window }
+{ #R$7FE0(Little boy no. 8) | #R$42A6($CA) - Walk around the big window }
+{ #R$80E0(Little boy no. 9) | #R$42A6($CA) - Walk around the big window }
+{ #R$81E0(Little boy no. 10) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$82E0(Little boy no. 11) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$4255($BE) - Walkabout - teacher }
+{ #R$85E0(MR WITHIT) | #R$4255($BE) - Walkabout - teacher }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$422B($B6) - Walkabout - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$425D($C0) - Write on the boards - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4290($C4) - Walkabout }
+TABLE#
+
+[Page:LessonF7]
+PageContent=#INCLUDE(LessonF7)
+
+[LessonF7]
+<h3>Lesson $F7: PLAYTIME</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$79E0(Little boy no. 2) | #R$4298($C6) - Walk around the fire escape }
+{ #R$7AE0(Little boy no. 3) | #R$429F($C8) - Walk around the gym }
+{ #R$7BE0(Little boy no. 4) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$7CE0(Little boy no. 5) | #R$4298($C6) - Walk around the fire escape }
+{ #R$7DE0(Little boy no. 6) | #R$42A6($CA) - Walk around the big window }
+{ #R$7EE0(Little boy no. 7) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$7FE0(Little boy no. 8) | #R$4298($C6) - Walk around the fire escape }
+{ #R$80E0(Little boy no. 9) | #R$429F($C8) - Walk around the gym }
+{ #R$81E0(Little boy no. 10) | #R$429F($C8) - Walk around the gym }
+{ #R$82E0(Little boy no. 11) | #R$42A6($CA) - Walk around the big window }
+{ #R$83E0(MR WACKER) | #R$4247($BA) - Head's study - MR WACKER }
+{ #R$84E0(MR ROCKITT) | #R$424E($BC) - Staff room - teacher }
+{ #R$85E0(MR WITHIT) | #R$424E($BC) - Staff room - teacher }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$422B($B6) - Walkabout - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4272($C2) - Walkabout - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4290($C4) - Walkabout }
+TABLE#
+
+[Page:LessonF8]
+PageContent=#INCLUDE(LessonF8)
+
+[LessonF8]
+<h3>Lesson $F8: PLAYTIME</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$79E0(Little boy no. 2) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$7AE0(Little boy no. 3) | #R$4298($C6) - Walk around the fire escape }
+{ #R$7BE0(Little boy no. 4) | #R$4298($C6) - Walk around the fire escape }
+{ #R$7CE0(Little boy no. 5) | #R$42A6($CA) - Walk around the big window }
+{ #R$7DE0(Little boy no. 6) | #R$429F($C8) - Walk around the gym }
+{ #R$7EE0(Little boy no. 7) | #R$429F($C8) - Walk around the gym }
+{ #R$7FE0(Little boy no. 8) | #R$42A6($CA) - Walk around the big window }
+{ #R$80E0(Little boy no. 9) | #R$4290($C4) - Walkabout }
+{ #R$81E0(Little boy no. 10) | #R$4290($C4) - Walkabout }
+{ #R$82E0(Little boy no. 11) | #R$4290($C4) - Walkabout }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$4290($C4) - Walkabout }
+{ #R$85E0(MR WITHIT) | #R$424E($BC) - Staff room - teacher }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$422B($B6) - Walkabout - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$425D($C0) - Write on the boards - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4290($C4) - Walkabout }
+TABLE#
+
+[Page:LessonF9]
+PageContent=#INCLUDE(LessonF9)
+
+[LessonF9]
+<h3>Lesson $F9: PLAYTIME</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$42A6($CA) - Walk around the big window }
+{ #R$79E0(Little boy no. 2) | #R$42A6($CA) - Walk around the big window }
+{ #R$7AE0(Little boy no. 3) | #R$42A6($CA) - Walk around the big window }
+{ #R$7BE0(Little boy no. 4) | #R$4298($C6) - Walk around the fire escape }
+{ #R$7CE0(Little boy no. 5) | #R$429F($C8) - Walk around the gym }
+{ #R$7DE0(Little boy no. 6) | #R$4298($C6) - Walk around the fire escape }
+{ #R$7EE0(Little boy no. 7) | #R$429F($C8) - Walk around the gym }
+{ #R$7FE0(Little boy no. 8) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$80E0(Little boy no. 9) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$81E0(Little boy no. 10) | #R$4290($C4) - Walkabout }
+{ #R$82E0(Little boy no. 11) | #R$4290($C4) - Walkabout }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$424E($BC) - Staff room - teacher }
+{ #R$85E0(MR WITHIT) | #R$4290($C4) - Walkabout }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$422B($B6) - Walkabout - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$425D($C0) - Write on the boards - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4290($C4) - Walkabout }
+TABLE#
+
+[Page:LessonFA]
+PageContent=#INCLUDE(LessonFA)
+
+[LessonFA]
+<h3>Lesson $FA: PLAYTIME</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4290($C4) - Walkabout }
+{ #R$79E0(Little boy no. 2) | #R$4290($C4) - Walkabout }
+{ #R$7AE0(Little boy no. 3) | #R$4290($C4) - Walkabout }
+{ #R$7BE0(Little boy no. 4) | #R$429F($C8) - Walk around the gym }
+{ #R$7CE0(Little boy no. 5) | #R$429F($C8) - Walk around the gym }
+{ #R$7DE0(Little boy no. 6) | #R$42A6($CA) - Walk around the big window }
+{ #R$7EE0(Little boy no. 7) | #R$42A6($CA) - Walk around the big window }
+{ #R$7FE0(Little boy no. 8) | #R$4298($C6) - Walk around the fire escape }
+{ #R$80E0(Little boy no. 9) | #R$4298($C6) - Walk around the fire escape }
+{ #R$81E0(Little boy no. 10) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$82E0(Little boy no. 11) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$4290($C4) - Walkabout }
+{ #R$85E0(MR WITHIT) | #R$424E($BC) - Staff room - teacher }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$422B($B6) - Walkabout - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$425D($C0) - Write on the boards - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4290($C4) - Walkabout }
+TABLE#
+
+[Page:LessonFB]
+PageContent=#INCLUDE(LessonFB)
+
+[LessonFB]
+<h3>Lesson $FB: PLAYTIME</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4290($C4) - Walkabout }
+{ #R$79E0(Little boy no. 2) | #R$4290($C4) - Walkabout }
+{ #R$7AE0(Little boy no. 3) | #R$4290($C4) - Walkabout }
+{ #R$7BE0(Little boy no. 4) | #R$4290($C4) - Walkabout }
+{ #R$7CE0(Little boy no. 5) | #R$4290($C4) - Walkabout }
+{ #R$7DE0(Little boy no. 6) | #R$4290($C4) - Walkabout }
+{ #R$7EE0(Little boy no. 7) | #R$4290($C4) - Walkabout }
+{ #R$7FE0(Little boy no. 8) | #R$4290($C4) - Walkabout }
+{ #R$80E0(Little boy no. 9) | #R$4290($C4) - Walkabout }
+{ #R$81E0(Little boy no. 10) | #R$4290($C4) - Walkabout }
+{ #R$82E0(Little boy no. 11) | #R$4290($C4) - Walkabout }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$4290($C4) - Walkabout }
+{ #R$85E0(MR WITHIT) | #R$424E($BC) - Staff room - teacher }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$422B($B6) - Walkabout - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4272($C2) - Walkabout - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4290($C4) - Walkabout }
+TABLE#
+
+[Page:LessonFC]
+PageContent=#INCLUDE(LessonFC)
+
+[LessonFC]
+<h3>Lesson $FC: PLAYTIME (little boys stampede)</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$42AD($CC) - Stampede - leader }
+{ #R$79E0(Little boy no. 2) | #R$42CF($CE) - Stampede - follower }
+{ #R$7AE0(Little boy no. 3) | #R$42CF($CE) - Stampede - follower }
+{ #R$7BE0(Little boy no. 4) | #R$42CF($CE) - Stampede - follower }
+{ #R$7CE0(Little boy no. 5) | #R$42CF($CE) - Stampede - follower }
+{ #R$7DE0(Little boy no. 6) | #R$42CF($CE) - Stampede - follower }
+{ #R$7EE0(Little boy no. 7) | #R$42CF($CE) - Stampede - follower }
+{ #R$7FE0(Little boy no. 8) | #R$42CF($CE) - Stampede - follower }
+{ #R$80E0(Little boy no. 9) | #R$42CF($CE) - Stampede - follower }
+{ #R$81E0(Little boy no. 10) | #R$42CF($CE) - Stampede - follower }
+{ #R$82E0(Little boy no. 11) | #R$42CF($CE) - Stampede - follower }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$4290($C4) - Walkabout }
+{ #R$85E0(MR WITHIT) | #R$4290($C4) - Walkabout }
+{ #R$86E0(MR CREAK) | #R$4290($C4) - Walkabout }
+{ #R$87E0(ANGELFACE) | #R$422B($B6) - Walkabout - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4272($C2) - Walkabout - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4290($C4) - Walkabout }
+TABLE#
+
+[Page:LessonFD]
+PageContent=#INCLUDE(LessonFD)
+
+[LessonFD]
+<h3>Lesson $FD: PLAYTIME (little boys stampede)</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$42AD($CC) - Stampede - leader }
+{ #R$79E0(Little boy no. 2) | #R$42CF($CE) - Stampede - follower }
+{ #R$7AE0(Little boy no. 3) | #R$42CF($CE) - Stampede - follower }
+{ #R$7BE0(Little boy no. 4) | #R$42CF($CE) - Stampede - follower }
+{ #R$7CE0(Little boy no. 5) | #R$42CF($CE) - Stampede - follower }
+{ #R$7DE0(Little boy no. 6) | #R$42CF($CE) - Stampede - follower }
+{ #R$7EE0(Little boy no. 7) | #R$42CF($CE) - Stampede - follower }
+{ #R$7FE0(Little boy no. 8) | #R$42CF($CE) - Stampede - follower }
+{ #R$80E0(Little boy no. 9) | #R$42CF($CE) - Stampede - follower }
+{ #R$81E0(Little boy no. 10) | #R$42CF($CE) - Stampede - follower }
+{ #R$82E0(Little boy no. 11) | #R$42CF($CE) - Stampede - follower }
+{ #R$83E0(MR WACKER) | #R$4290($C4) - Walkabout }
+{ #R$84E0(MR ROCKITT) | #R$4290($C4) - Walkabout }
+{ #R$85E0(MR WITHIT) | #R$4290($C4) - Walkabout }
+{ #R$86E0(MR CREAK) | #R$4290($C4) - Walkabout }
+{ #R$87E0(ANGELFACE) | #R$422B($B6) - Walkabout - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4272($C2) - Walkabout - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4290($C4) - Walkabout }
+TABLE#
+
+[Page:LessonFE]
+PageContent=#INCLUDE(LessonFE)
+
+[LessonFE]
+<h3>Lesson $FE: PLAYTIME</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$79E0(Little boy no. 2) | #R$4298($C6) - Walk around the fire escape }
+{ #R$7AE0(Little boy no. 3) | #R$429F($C8) - Walk around the gym }
+{ #R$7BE0(Little boy no. 4) | #R$42A6($CA) - Walk around the big window }
+{ #R$7CE0(Little boy no. 5) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$7DE0(Little boy no. 6) | #R$4298($C6) - Walk around the fire escape }
+{ #R$7EE0(Little boy no. 7) | #R$429F($C8) - Walk around the gym }
+{ #R$7FE0(Little boy no. 8) | #R$42A6($CA) - Walk around the big window }
+{ #R$80E0(Little boy no. 9) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$81E0(Little boy no. 10) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$82E0(Little boy no. 11) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$83E0(MR WACKER) | #R$424E($BC) - Staff room - teacher }
+{ #R$84E0(MR ROCKITT) | #R$424E($BC) - Staff room - teacher }
+{ #R$85E0(MR WITHIT) | #R$424E($BC) - Staff room - teacher }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$422B($B6) - Walkabout - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$425D($C0) - Write on the boards - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4290($C4) - Walkabout }
+TABLE#
+
+[Page:LessonFF]
+PageContent=#INCLUDE(LessonFF)
+
+[LessonFF]
+<h3>Lesson $FF: PLAYTIME</h3>
+#TABLE(default)
+{ =h Character | =h Command list }
+{ #R$78E0(Little boy no. 1) | #R$4290($C4) - Walkabout }
+{ #R$79E0(Little boy no. 2) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$7AE0(Little boy no. 3) | #R$4290($C4) - Walkabout }
+{ #R$7BE0(Little boy no. 4) | #R$4298($C6) - Walk around the fire escape }
+{ #R$7CE0(Little boy no. 5) | #R$429F($C8) - Walk around the gym }
+{ #R$7DE0(Little boy no. 6) | #R$42A6($CA) - Walk around the big window }
+{ #R$7EE0(Little boy no. 7) | #R$4206($B0) - Revision Library - EINSTEIN/little boy }
+{ #R$7FE0(Little boy no. 8) | #R$4298($C6) - Walk around the fire escape }
+{ #R$80E0(Little boy no. 9) | #R$429F($C8) - Walk around the gym }
+{ #R$81E0(Little boy no. 10) | #R$42A6($CA) - Walk around the big window }
+{ #R$82E0(Little boy no. 11) | #R$4290($C4) - Walkabout }
+{ #R$83E0(MR WACKER) | #R$4255($BE) - Walkabout - teacher }
+{ #R$84E0(MR ROCKITT) | #R$4290($C4) - Walkabout }
+{ #R$85E0(MR WITHIT) | #R$424E($BC) - Staff room - teacher }
+{ #R$86E0(MR CREAK) | #R$424E($BC) - Staff room - teacher }
+{ #R$87E0(ANGELFACE) | #R$422B($B6) - Walkabout - ANGELFACE }
+{ #R$88E0(BOY WONDER) | #R$4272($C2) - Walkabout - BOY WONDER }
+{ #R$89E0(EINSTEIN) | #R$4290($C4) - Walkabout }
+TABLE#

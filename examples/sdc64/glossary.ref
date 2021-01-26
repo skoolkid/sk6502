@@ -1,0 +1,43 @@
+; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+
+[Glossary:Animatory state]
+Number denoting one of the #LINK:AnimatoryStates(phases of animation) of a
+character's sprite.
+
+[Glossary:Character buffer]
+#LINK:CharacterBuffer(Buffer) containing data on the current state of a
+character.
+
+[Glossary:Command list]
+#R$4480(List of commands) used to control a character during a lesson.
+
+[Glossary:Continual subcommand]
+One of various character-controlling command routines whose address is stored
+in a character's buffer. The command is executed each time the character is
+moved - before the interruptible subcommand or primary command - unless the
+character is under the control of an uninterruptible subcommand (see #A$3B5E).
+
+[Glossary:Interruptible subcommand]
+One of various character-controlling command routines whose address is stored
+in a character's buffer. If present, the command is executed each time the
+character is moved, unless the character is under the control of an
+uninterruptible subcommand (see #A$3B5E).
+
+[Glossary:Midstride]
+Of a character: in phase 2 or 4 of the walking animation. For example:
+
+#UDGTABLE { #ASIMG$81 | #ASIMG$83 } TABLE#
+
+[Glossary:Primary command]
+One of various character-controlling command routines whose address is stored
+in a character's buffer. If present, the command is executed each time the
+character is moved, unless the character is under the control of an
+uninterruptible or interruptible subcommand (see #A$3B5E).
+
+[Glossary:SRB]
+Screen refresh buffer at #A$4012.
+
+[Glossary:Uninterruptible subcommand]
+One of various character-controlling command routines whose address is stored
+in a character's buffer. If present, the command is executed each time the
+character is moved, and overrides any other command (see #A$3B5E).

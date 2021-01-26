@@ -1,0 +1,87 @@
+; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+
+[Poke:infiniteLines:Infinite lines]
+To stop MR WACKER expelling ERIC after 10000 lines:
+
+POKE 7528,2 #R$1D67(($1D68,$02))
+
+[Poke:noLines:No lines]
+To prevent teachers from giving lines to ERIC or anyone else:
+
+POKE 7607,96 #R$1DB7(($1DB7,$60))
+
+However, that won't prevent MR WACKER from giving ERIC 2000 lines during the
+'special' playtimes (if EINSTEIN tells WACKER what ERIC's up to, or WACKER
+finds the pea-shooter on the fire escape). For that you need:
+
+POKE 10127,0 #R$278E(($278F,$00))
+
+One harmless side effect of this POKE is that the lines total will be printed
+as '00' instead of '0' when WACKER delivers his 'TAKE 2000 LINES...' speech. 
+
+[Poke:silentSnitch:Silent snitch]
+To make sure that EINSTEIN never tells tales:
+
+<div>POKE 2666,8 #R$0A68(($0A6A,$08))</div>
+<div>POKE 2707,2 #R$0A92(($0A93,$02))</div>
+
+Alternatively, to make the teacher always give lines to EINSTEIN for telling
+tales:
+
+POKE 9561,0 #R$2558(($2559,$00))
+
+[Poke:singleShield:Single shield]
+Hitting all 15 shields before obtaining the safe combination, and then hitting
+all 15 shields again after opening the safe can be hard work for a busy
+skoolboy. To reduce ERIC's task to hitting just one shield (any shield):
+
+POKE 11313,1 #R$2C30(($2C31,$01))
+
+Note that in order to go up a year, ERIC will have to hit the same shield as he
+hit before opening the safe.
+
+[Poke:unsafeCombination:Unsafe combination]
+Having to knock down the teachers (or, in CREAK's case, discover his year of
+birth and then write it on the blackboard in the classroom he'll be teaching
+in next) in order to obtain the safe combination letters, and then try up to
+six permutations of those letters before hitting the right one, can be a
+tiresome task. How much easier it would be if BOY WONDER and the teachers took
+it upon themselves to reveal the safe combination (stored at #A$90) every time
+they wrote on a blackboard:
+
+<div>POKE 4426,169 #R$1149(($114A,$A9))</div>
+<div>POKE 4427,0 #R$1149(($114B,$00))</div>
+<div>POKE 4438,169 #R$1153(($1156,$A9))</div>
+<div>POKE 4439,144 #R$1153(($1157,$90))</div>
+
+The teachers and BOY WONDER will actually write the safe combination followed
+by CREAK's year of birth on the board, but the birth year can be ignored.
+
+[Poke:seeEricRun:See ERIC run]
+Compared to the ZX Spectrum version, ERIC seems to amble along with no sense of
+urgency at all, which can be rather frustrating (especially when being chased
+back to class by a teacher). To make ERIC pick up the pace a little:
+
+<div>POKE 2193,2 #R$0890(($0891,$02))</div>
+<div>POKE 2304,2 #R$08FF(($0900,$02))</div>
+<div>POKE 13938,2 #R$3671(($3672,$02))</div>
+
+[Poke:superCatty:Super catapult]
+To extend the range of the catapult from 13 to N:
+
+POKE 11137,N #R$2B80(($2B81,N))
+
+However, this doesn't extend the 'hit zone' of the pellet (the portion of its
+flight where it can hit something). To change the hit zone from the last 7
+stages of its flight to the last M stages (M=N-6 is a good choice):
+
+POKE 4106,M+1 #R$1009(($100A,M+1))
+
+[Poke:throughWalls:Walk through walls]
+To enable ERIC to walk through specific walls:
+
+<div>POKE 13702,0 #R$3585(($3586,$00)) (Map Room wall)</div>
+<div>POKE 13715,0 #R$3592(($3593,$00)) (Exam Room wall)</div>
+<div>POKE 13768,0 #R$35C7(($35C8,$00)) (Reading Room wall)</div>
+<div>POKE 13785,0 #R$35D8(($35D9,$00)) (White Room wall)</div>
+<div>POKE 13789,0 #R$35DC(($35DD,$00)) (wall outside the Exam Room door)</div>

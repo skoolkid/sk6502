@@ -1,0 +1,150 @@
+; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+
+[Config]
+RefFiles=as.ref;bugs.ref;facts.ref;glossary.ref;lessons.ref;pokes.ref;templates.ref
+
+[Game]
+AddressAnchor={address:04X}
+Game=Skool Daze
+Logo=#UDGARRAY8,31;$5920-$59D8-8({ImagePath}/logo)
+StyleSheet=skoolkit.css;theme.css
+LinkInternalOperands=1
+LinkOperands=BCC,BCS,BEQ,BMI,BNE,BPL,BVC,BVS,JMP,JSR,.WORD
+Created=Created using <a href="https://skoolkit.ca">SkoolKit</a> #VERSION and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.
+Copyright=&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.
+
+[MemoryMap:MemoryMap]
+PageByteColumns=0
+
+[MemoryMap:DataMap]
+PageByteColumns=0
+
+[MemoryMap:UnusedMap]
+PageByteColumns=0
+
+[MemoryMap:CharacterBuffer]
+Intro=#INCLUDE(CharacterBufferIntro)
+EntryDescriptions=1
+EntryTypes=
+Includes=$26,$29,$39,$3B,$3D,$3F,$A6,$A8,$A9,$AA,$AC,$AE,$B0,$B2,$B3,$B4,$B5,$FB,$FF
+LengthColumn=1
+
+[CharacterBufferIntro]
+Whenever a character's state needs to be examined or updated, his character
+buffer is copied to the addresses in page 0 shown below by the routine at
+#A$3279. Afterwards, the character's buffer is restored from page 0 by the
+routine at #A$33BF.
+
+[MemoryMap:BlackboardBuffer]
+Intro=#INCLUDE(BlackboardBufferIntro)
+EntryDescriptions=1
+EntryTypes=
+Includes=$19,$1A,$DF
+LengthColumn=1
+
+[BlackboardBufferIntro]
+Whenever a blackboard's state needs to be examined or updated, its buffer is
+copied to the addresses in page 0 shown below by the routine at #A$1421.
+Afterwards, the blackboard's buffer is restored from page 0 by the routine at
+#A$1445.
+
+[Index:Graphics:Graphics]
+PlayArea
+AnimatoryStates
+
+[Index:DataTables:Data tables and buffers]
+GameStatusBuffer
+CharacterBuffer
+BlackboardBuffer
+TuneBuffer
+MainTimetable
+LessonIndex
+CommandLists
+
+[Links]
+CommandLists=Command lists
+MainTimetable=Main timetable
+
+[PageHeaders]
+GameIndex=The complete<>C64 disassembly
+
+[Titles]
+Asm-b=Data at ${entry[address]}
+Asm-c=Routine at ${entry[address]}
+Asm-g=Game status buffer entry at ${entry[address]}
+Asm-t=Text at ${entry[address]}
+Asm-u=Unused RAM at ${entry[address]}
+Asm-w=Data at ${entry[address]}
+AnimatoryStates=Animatory states
+BlackboardBuffer=Blackboard buffer
+CharacterBuffer=Character buffer
+PlayArea=Play area
+TuneBuffer=Tune buffer
+
+[Paths]
+AnimatoryStates=graphics/as.html
+BlackboardBuffer=buffers/bbuffer.html
+CharacterBuffer=buffers/cbuffer.html
+CodeFiles={address:04X}.html
+LessonIndex=lessons/index.html
+LessonE0=lessons/E0.html
+LessonE1=lessons/E1.html
+LessonE2=lessons/E2.html
+LessonE3=lessons/E3.html
+LessonE4=lessons/E4.html
+LessonE5=lessons/E5.html
+LessonE6=lessons/E6.html
+LessonE7=lessons/E7.html
+LessonE8=lessons/E8.html
+LessonE9=lessons/E9.html
+LessonEA=lessons/EA.html
+LessonEB=lessons/EB.html
+LessonEC=lessons/EC.html
+LessonED=lessons/ED.html
+LessonEE=lessons/EE.html
+LessonEF=lessons/EF.html
+LessonF0=lessons/F0.html
+LessonF1=lessons/F1.html
+LessonF2=lessons/F2.html
+LessonF3=lessons/F3.html
+LessonF4=lessons/F4.html
+LessonF5=lessons/F5.html
+LessonF6=lessons/F6.html
+LessonF7=lessons/F7.html
+LessonF8=lessons/F8.html
+LessonF9=lessons/F9.html
+LessonFA=lessons/FA.html
+LessonFB=lessons/FB.html
+LessonFC=lessons/FC.html
+LessonFD=lessons/FD.html
+LessonFE=lessons/FE.html
+LessonFF=lessons/FF.html
+PlayArea=graphics/playarea.html
+UDGFilename={addr:04x}
+
+[Colours]
+RED=#880000
+BLUE=#0000aa
+MAGENTA=#cc44cc
+GREEN=#aaff66
+CYAN=#aaffee
+YELLOW=#eeee77
+WHITE=#bbbbbb
+
+[Page:MainTimetable]
+Content=asm/5D00.html
+
+[Page:CommandLists]
+Content=asm/4480.html
+
+[Page:TuneBuffer]
+Content=asm/BBB4.html
+
+[Page:PlayArea]
+PageContent=#INCLUDE(PlayAreaPage)
+
+[PlayAreaPage]
+<p><b>Note:</b> Owing to limitations in SkoolKit's image writer component, the
+colours in this image are not accurate.</p>
+
+#SKOOLIMG0,0,96,21(skool)

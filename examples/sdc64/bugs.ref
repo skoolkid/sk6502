@@ -1,0 +1,414 @@
+; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+
+[Bug:mistrialSubtraction:Mistrial subtraction]
+The routine at #A$217E miscalculates the 10000s digit of a number. Instead of
+repeatedly trying to subtract 10000 to determine the digit, it subtracts 10100
+(and then checks whether the result is still 10100 or greater).
+
+<div>POKE 8613,16 #R$21A1(($21A5,$10))</div>
+<div>POKE 8637,16 #R$21BC(($21BD,$10))</div>
+
+[Bug:lowProductValues:Low product values]
+The numbers that MR WACKER asks the class to multiply are supposed to be
+between 32 and 99 (to ensure that the answer has exactly 4 digits), but because
+of a bug in the routine at #A$253E, the numbers are actually between 0 and 67.
+
+[Bug:derelictionOfDinnerDuty:Dereliction of dinner duty]
+During dinner, the teacher on duty is supposed to walk up and down between the
+table (at x-coordinate 54) and the middle of the bench (at x-coordinate 42) in
+the dinner hall for a while before dinner actually starts. However, the x- and
+y-coordinates of that second location are the wrong way round in command list
+#R$423B($B8), which means the teacher instead walks up and down between the
+table in the dinner hall and the bottom of the staircase (at x-coordinate 17)
+that leads up to the staff room.
+
+POKE 16961,42 #R$4241(($4241,$2A))
+
+[Bug:pairOfJerks:A pair of jerks]
+BOY WONDER often takes a step back just before firing his catapult, which
+results in his animation appearing somewhat jerky. Likewise, ANGELFACE also
+often steps back just before throwing a punch, making his animation appear
+somewhat jerky too.
+
+The reason for this is that the continual subcommand routines that make BOY
+WONDER fire occasionally (#A$2CA5) and ANGELFACE hit occasionally (#A$270D) do
+not drop the return address from the stack after deciding to go ahead with the
+fire/hit action. This means that they return to the middle of the
+character-handling routine at #A$3B5E, which then has the opportunity of moving
+them midstride before they begin the fire/hit action on the next pass through
+that routine.
+
+The jerky animation can be fixed by reversing the midstride check in the
+routines at #A$270D and #A$2CA5:
+
+<div>POKE 10000,144 #R$2710(($2710,$90)) (ANGELFACE)</div>
+<div>POKE 11438,144 #R$2CAE(($2CAE,$90)) (BOY WONDER)</div>
+
+[Bug:bullyAndBlackboard:The bully and the blackboard]
+If a teacher gives lines to ERIC for jumping, hitting or firing his catapult
+while EINSTEIN is blaming either ERIC or BOY WONDER for writing on the
+blackboard, the same teacher will then go on to give lines to ANGELFACE for
+writing on the blackboard.
+
+Why is the bully unfairly punished for this misdemeanour? It boils down to a
+careless use of temporary variables in page 0. The routine at #A$0A58 stores
+the character number of the boy that EINSTEIN will blame for writing on the
+blackboard at #A$C0, then makes EINSTEIN blame that boy, and finally picks up
+the character number of the blamed boy from #A$C0 and passes it to the routine
+at #A$2552 to decide who should get lines.
+
+Now, if the teacher spots ERIC jumping, hitting or firing while EINSTEIN is
+blaming ERIC or BOY WONDER for writing on the blackboard, the routine at
+#A$191B uses #A$C0 to temporarily store the character number of the teacher,
+thus overwriting the character number of the boy EINSTEIN is telling tales on.
+
+All this means that by the time the routine at #A$1DB7 is invoked to give
+someone lines for writing on the blackboard, it defaults to giving ANGELFACE
+lines because it doesn't recognise the teacher's character number at #A$C0 (see
+the section of code at #A$1DFC).
+
+To make the routine at #A$191B use #A$C3 instead of #A$C0 for storing the
+teacher's character number:
+
+<div>POKE 6522,195 #R$1979(($197A,$C3))</div>
+<div>POKE 6531,195 #R$1982(($1983,$C3))</div>
+
+[Bug:theWallMostStaredAt:The wall most stared at]
+When a teacher is in the Map Room, he faces the wall instead of the class while
+speaking. This is because command list #R$4080($80) sends the teacher up to the
+map, but does not turn him round before starting the class.
+
+[Bug:aStepTooFar:A step too far]
+If a teacher is going to teach a class in the Exam Room, he faces the wrong way
+at the doorway when telling the kids to sit down.
+
+The reason for this behaviour is that the x-coordinate of the top of the
+staircase is defined, in the fifth entry of the table at #A$4454, as 76. This
+means that when the teacher has reached the bottom of the staircase, his
+x-coordinate is 69, which is one to the left of the x-coordinate of the Exam
+Room doorway at 70, as defined in command list #R$40AE($84). So after arriving
+at x-coordinate 69, the teacher turns round and moves one step forward to reach
+his destination.
+
+One possible fix for this is to make the teacher's destination x-coordinate 69
+instead of 70:
+
+POKE 16564,69 #R$40AE(($40B4,$45))
+
+Another possible (and perhaps better) fix is to define the x-coordinate of the
+top of the staircase leading down to the Exam Room as 77 instead of 76. This
+makes sense because 77 matches the x-coordinate used in the Spectrum version
+and by the routine at #A$34B5 that moves ERIC one step down a staircase, and is
+also 7 cells to the right of the bottom of the staircase, which is defined as
+70 in the fourth entry of the table at #A$4440 (7 cells being the height of the
+staircase).
+
+POKE 17508,77 #R$4464(($4464,$4D))
+
+[Bug:doubleStaircases:Double staircases]
+When a character is looking for ERIC, if he has to go down a staircase on the
+left side of the skool, he will start at x-coordinate 12 instead of the usual
+13, which makes him appear to be walking inside the staircase instead of on it.
+Similarly, if the character looking for ERIC has to go down a staircase
+on the right side of the skool, he will start at x-coordinate 77 instead of the
+usual 76, which produces a similar effect.
+
+The reason has more to do with the way characters other than ERIC are animated
+when going down a staircase than it has to do with the x-coordinates of the
+tops of the staircases themselves. When ERIC proceeds from one step to the
+next, he moves midstride first, and then drops to the step below as he finishes
+his stride. But the other characters - in contrast to ERIC and to their
+counterparts in the ZX Spectrum version - move midstride as they drop to the
+step below, and then finish their stride on that step before moving to the next
+one. It's this drop-first-and-finish-the-stride-later technique that accounts
+for the anomalous appearance.
+
+Luckily, changing this technique to match ERIC's requires just a few POKEs that
+modify the relevant section of code at #A$0D37:
+
+#TABLE(box-asm,address-1,instruction,box-comment)
+{ $0D37 | LDA $FB   | Pick up the character's y-coordinate from #A$FB. }
+{ $0D39 | STA $AD   | Copy the character's y-coordinate to #A$AD. }
+{ $0D3B | INC $AD   | Increment the y-coordinate at #A$AD. }
+{ $0D3D | JMP $0D0F | Jump back to compute the character's next x-coordinate. }
+TABLE#
+
+<div>POKE 3383,165 ($0D37,$A5)</div>
+<div>POKE 3385,133 ($0D39,$85)</div>
+<div>POKE 3386,173 ($0D3A,$AD)</div>
+<div>POKE 3387,230 ($0D3B,$E6)</div>
+
+[Bug:staircaseSaga:The staircase saga continues]
+In #BUG#doubleStaircases() above we took the approach of modifying the
+staircase descent technique of a character who is looking for ERIC in order to
+fix an animation bug. But what if a character is not looking for ERIC? In that
+case, it's the routine at #A$13F3 that takes care of any trip down a staircase.
+And not so luckily this time, a rather larger set of POKEs is required to
+modify the relevant section of code:
+
+#TABLE(box-asm,address-1,instruction,box-comment)
+{ $140A | LSR A       | Is the character midstride? }
+{ $140B | BCC $1416   | Branch if not. }
+{ $140D | LDA $47     | Pick up the direction indicator from #A$47. }
+{ $140F | BNE $1413   | Branch if going upstairs. }
+{ $1411 | INC $FB     | Increment the y-coordinate if going downstairs. }
+{ $1413 | JMP #A$1393 | Move the character from the midstride position. }
+{ $1416 | INC $26     | Move the character midstride. }
+{ $1418 | LDA $47     | Pick up the direction indicator from #A$47. }
+{ $141A | BEQ $141E   | Branch if going downstairs. }
+{ $141C | DEC $FB     | Decrement the y-coordinate if going upstairs. }
+{ $141E | JMP #A$322E | Update the SRB for the character's new animatory state
+                        and location. }
+TABLE#
+
+<div>POKE 5132,9 ($140C,$09)</div>
+<div>POKE 5133,165 ($140D,$A5)</div>
+<div>POKE 5134,71 ($140E,$47)</div>
+<div>POKE 5135,208 ($140F,$D0)</div>
+<div>POKE 5136,2 ($1410,$02)</div>
+<div>POKE 5137,230 ($1411,$E6)</div>
+<div>POKE 5138,251 ($1412,$FB)</div>
+<div>POKE 5139,76 ($1413,$4C)</div>
+<div>POKE 5140,147 ($1414,$93)</div>
+<div>POKE 5141,19 ($1415,$13)</div>
+<div>POKE 5142,230 ($1416,$E6)</div>
+<div>POKE 5143,38 ($1417,$26)</div>
+<div>POKE 5144,165 ($1418,$A5)</div>
+<div>POKE 5145,71 ($1419,$47)</div>
+<div>POKE 5146,240 ($141A,$F0)</div>
+<div>POKE 5147,2 ($141B,$02)</div>
+<div>POKE 5148,198 ($141C,$C6)</div>
+<div>POKE 5149,251 ($141D,$FB)</div>
+<div>POKE 5150,76 ($141E,$4C)</div>
+<div>POKE 5151,46 ($141F,$2E)</div>
+<div>POKE 5152,50 ($1420,$32)</div>
+
+With that change out of the way, it now makes sense to adjust the x-coordinates
+of the tops of the staircases in the tables at #A4440 and #A$4454, for optimal
+compatibility with the new technique:
+
+<div>POKE 17472,12 ($4440,$0C)</div>
+<div>POKE 17476,12 ($4444,$0C)</div>
+<div>POKE 17504,77 ($4460,$4D)</div>
+<div>POKE 17508,77 ($4464,$4D) (this is the same POKE as was used in
+#BUG#aStepTooFar())</div>
+
+[Bug:initialNonPlaytimes:Initial non-playtimes]
+Unlike the ZX Spectrum version, the C64 version of the game does not always
+start on a playtime: two of the entries in the table of initial lesson numbers
+at #A$4650 are classroom periods.
+
+What's interesting is that the non-playtime lesson numbers in this table - $0C
+and $3D - would be playtimes if the main timetable at #A$5D00 were exactly the
+same as the one in the ZX Spectrum version. This strongly suggests that these
+initial non-playtimes are not intentional.
+
+[Bug:invisibilityRange:Invisibility range]
+The routine at #A$0BAC, which is used to calculate the coordinate ranges within
+which a character can be seen, does not always compute the minimum x-coordinate
+correctly. The most obvious consequence of this miscalculation is that ERIC can
+flagrantly violate the skool rules in front of a teacher, without getting
+lines, when he's to the right of that teacher and in one of the following
+locations:
+
+#LIST
+{ on the top floor with x-coordinate &lt; 47 (to the left of the blue shield in
+  the Reading Room) }
+{ on the middle floor with x-coordinate &lt; 28 (to the left of the front seat
+  in the White Room) }
+LIST#
+
+Specifically, in these situations ERIC's horizontal visibility range is
+calculated as [x, x+10] (where 'x' is ERIC's x-coordinate) instead
+of [x&#8722;10, x+10], which means any teacher to his left is effectively
+unable to see him.
+
+<div>POKE 3075,207 #R$0C02(($0C03,$CF))</div>
+<div>POKE 3110,207 #R$0C25(($0C26,$CF))</div>
+<div>POKE 3118,207 #R$0C2D(($0C2E,$CF))</div>
+
+[Bug:offByOne:Off by one]
+The skool region data tables for the #R$46A0(top floor), #R$46AC(middle floor)
+and #R$46B6(bottom floor) are the same as those in the ZX Spectrum version, but
+they are interpreted differently: each x-coordinate they contain is the maximum
+x-coordinate of the current region rather than the minimum x-coordinate of the
+next region along.
+
+One obvious consequence of this is that ERIC is considered to be inside the
+head's study (and will be given lines accordingly) even when he's standing just
+outside the doorway.
+
+[Bug:disappearingPellet:The disappearing pellet]
+If a pellet bounces off a teacher's head on the top floor of the skool, it will
+disappear before it reaches the top of the screen. The reason for this is that
+the routine at #A$31EA (which updates the display) ignores the first ten bytes
+of the screen refresh buffer at #A$4008, which correspond to the top two rows
+of the screen. This means that anything at y-coordinate 0 or 1 is never drawn.
+
+[Bug:leapsOfFaith:Leaps of faith]
+If you've spent any time in the Exam Room knocking boys out in order to jump on
+them and thence to the shields, but been left wondering whether this method is
+actually reliable, rest assured that in fact it most certainly is not.
+
+The reason is that the routine at #A$1640, which checks whether ERIC is
+standing on a boy, is rather careless with ERIC's x-coordinate. The routine
+stores this x-coordinate at $D3, and then enters a loop to compare the value
+stored there with the x-coordinate of each boy whose y-coordinate is one more
+than ERIC's (i.e. underneath him). The problem is that the value at $D3 is
+either decremented or incremented by one on each pass through the loop
+depending on the boy's x-coordinate relative to ERIC's. So the comparison works
+for the first boy checked, but is off by one for the next boy, then possibly
+off by two for the next boy after that, and so on.
+
+The following POKEs fix the section of code at #A$166B to make the x-coordinate
+comparisons consistent:
+
+#TABLE(box-asm,address-1,instruction,box-comment)
+{ $166B | DEC $D3   | Decrement the comparison x-coordinate (C) at #A$D3. }
+{ $166D | LDA $FC   | Pick up the character's x-coordinate from #A$FC. }
+{ $166F | CMP $D3   | Compare the character's x-coordinate with C&#8722;1. }
+{ $1671 | INC $D3   | Reset the x-coordinate at #A$D3 back to C. }
+{ $1673 | BCC $168E | Branch if the character's x-coordinate is less than
+                      C&#8722;1. }
+{ $1675 | LDA $D3   | Pick up the comparison x-coordinate (C) from #A$D3. }
+{ $1677 | ADC #00   | Add 1 to it. }
+{ $1679 | CMP $FC   | Is the character's x-coordinate greater than C+1? }
+{ $167B | BCC $168E | Branch if so. }
+TABLE#
+
+<div>POKE 5745,230 ($1671,$E6)</div>
+<div>POKE 5746,211 ($1672,$D3)</div>
+<div>POKE 5747,144 ($1673,$90)</div>
+<div>POKE 5748,25 ($1674,$19)</div>
+<div>POKE 5749,165 ($1675,$A5)</div>
+<div>POKE 5751,105 ($1677,$69)</div>
+<div>POKE 5752,0 ($1678,$00)</div>
+
+[Bug:brokenBookcase:Broken bookcase]
+The bottom of the bookcase on the left in the Revision Library seems to have
+been vandalised since it was first used in the ZX Spectrum version:
+
+#UDGTABLE { #SKOOLIMG19,3,14,4(bookcase1) } TABLE#
+
+To restore the bookcase to something close to its former glory:
+
+#PUSHS
+#POKES$6015,$FF;$6115,0,7,$100
+#UDGTABLE
+{ #SKOOLIMG19,3,14,4(bookcase2) } {
+<div>POKE 24597,255 ($6015,$FF)</div>
+<div>POKE 24853,0 ($6115,$00)</div>
+<div>POKE 25109,0 ($6215,$00)</div>
+<div>POKE 25365,0 ($6315,$00)</div>
+<div>POKE 25621,0 ($6415,$00)</div>
+<div>POKE 25877,0 ($6515,$00)</div>
+<div>POKE 26133,0 ($6615,$00)</div>
+<div>POKE 26389,0 ($6715,$00)</div>
+}
+TABLE#
+#POPS
+
+These POKEs also affect the sofa and the window on the left in the staff room
+(specifically the tiles at (3,9), (8,11) and (9,11)), but in a way that can be
+overlooked for the sake of the bookcase:
+
+#UDGTABLE(gallery)
+{ #SKOOLIMG0,7,11,7(staffroom1) |
+  #PUSHS #POKES$6015,$FF;$6115,0,7,$100 #SKOOLIMG0,7,11,7(staffroom2) #POPS }
+{ Before | After }
+TABLE#
+
+Nearly there, but something is still not quite right with the books on the
+bottom shelf on the right-hand side:
+
+#PUSHS
+#POKES$6015,$FF;$6115,0,7,$100
+#UDGTABLE { #SKOOLIMG28,3,4,4(books1) } TABLE#
+
+To fix them:
+
+#POKES$64D6,$55;$65D6,$AB;$66D6,$57;$67D6,$AF
+#UDGTABLE
+{ #SKOOLIMG28,3,4,4(books2) } {
+<div>POKE 25814,85 ($64D6,$55)</div>
+<div>POKE 26070,171 ($65D6,$AB)</div>
+<div>POKE 26326,87 ($66D6,$57)</div>
+<div>POKE 26582,175 ($67D6,$AF)</div>
+}
+TABLE#
+#POPS
+
+[Bug:missAndHit:Miss and hit]
+ERIC can be knocked out by BOY WONDER's catapult pellet even when he's sitting
+on the floor or is already lying on the floor (and the pellet should really fly
+straight over his head instead). The best way to reproduce this bug is to stand
+(or sit) in BOY WONDER's line of fire in a classroom while everyone's waiting
+for the teacher to show up for the lesson.
+
+[Bug:allPlayAndNoWork:All play and no work]
+In lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM), little boys 4-8 head
+off to the White Room in accordance with their personal timetables, but no
+teacher ever arrives to start the lesson.
+
+POKE 34531,134 #R$86E3(($86E3,$86)) (sends MR CREAK to the White Room)
+
+[Bug:waitingForEinstein:Waiting for EINSTEIN]
+Before wiping the board and getting a lesson under way, ERIC's teacher will
+wait for EINSTEIN to sit down first: see #A$0B3B. This makes sense at the
+beginning of a lesson, but that same routine is called several times during the
+course of a lesson (see #A$0A58) to check whether ERIC is present, which means
+that the teacher will also stop whatever he's doing and wait for EINSTEIN to
+sit down before continuing on those occasions too. This is not really
+noticeable except during lessons where there is no question-and-answer session
+taking place between the teacher and the swot, and the teacher is pacing up and
+down in front of the blackboard instead. During those lessons, the call to
+#A$0B3B is made each time the teacher has reached the point where he is just
+about to turn round; if EINSTEIN is not sitting in a chair at that time
+(because ERIC has pushed him out of his seat, for example), the teacher will
+wait until EINSTEIN is back in his seat before turning round.
+
+This phenomenon can be made more readily reproducible and observable by using
+the following POKEs:
+
+<div>POKE 7349,20 #R$1CB4(($1CB5,$14)) (to lengthen the delay before a
+dethroned character rises)</div>
+<div>POKE 2850,0 #R$0B1F(($0B22,$00)) (to make every lesson a
+non-question-and-answer lesson)</div>
+
+[Bug:wackersNumberBlindness:WACKER's number blindness]
+If ERIC has exactly 10000 lines, MR WACKER will come rushing to ERIC's side and
+say "YOU HAVE OVER 10000 LINES TO WRITE ERIC...". Does the headmaster not know
+how to count, or does he actually think that 10000 > 10000? Either way, this is
+poor form for a maths teacher.
+
+POKE 7538,233 #R$1D71(($1D72,$E9)) (keeps MR WACKER at bay until ERIC's lines
+total exceeds 10000)
+
+[Bug:rockittExamRoom:MR ROCKITT as a boy]
+In lesson #LINK:LessonE5($E5) (REVISION LIBRARY), MR ROCKITT paces up and down
+in the Exam Room like a little boy, waiting for a teacher who never arrives.
+
+POKE 34021,188 #R$84E5(($84E5,$BC)) (sends MR ROCKITT to the staff room)
+
+[Bug:typo:Misspelt element]
+'Phosphorous' (at #A$4EBC) is misspelt; it should be 'Phosphorus'.
+
+[Bug:emptyClass:MR CREAK and the empty class]
+Lesson #LINK:LessonE6($E6) (REVISION LIBRARY) has MR CREAK teaching an empty
+class in the Reading Room.
+
+POKE 34534,188 #R$86E6(($86E6,$BC)) (sends MR CREAK to the staff room)
+
+[Bug:chairHit:Share a chair]
+If ERIC hits a character who is sitting on a chair, and then quickly sits in
+the chair just vacated, ERIC will not be pushed out of the chair when the
+character rises and takes his seat again.
+
+[Bug:absentTearaway:800 LINES BOY WONDER - NOW WHERE ARE YOU?]
+In lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM), BOY WONDER is in the
+Revision Library (on his own, as it happens). However, if EINSTEIN tells on BOY
+WONDER for writing on the board, MR WACKER will still give lines to the absent
+tearaway. (Perhaps the ceiling in the White Room conducts sound well enough for
+BOY WONDER to hear the admonition.) The same thing may also happen in lesson
+#LINK:LessonED($ED) (MR WITHIT - WHITE ROOM), when BOY WONDER is once again in
+the Revision Library (this time accompanied by ANGELFACE).
