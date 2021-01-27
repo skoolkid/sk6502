@@ -71,6 +71,28 @@ class ControlDirectiveComposerTest(unittest.TestCase):
         }
         self._test_generation(snapshot, exp_ctls)
 
+    def test_code_with_absolute_jumps(self):
+        snapshot = [
+            0xF0, 0x03,       # 0000 BEQ $0005
+            0x4C, 0x06, 0x00, # 0002 JMP $0006
+            0x60,             # 0005 RTS
+            0xF0, 0x03,       # 0006 BEQ $000B
+            0x4C, 0x0C, 0x00, # 0008 JMP $000C
+            0x60,             # 000B RTS
+            0xE8,             # 000C INX
+            0x60,             # 000D RTS
+            0xF0, 0x03,       # 000E BEQ $0013
+            0x4C, 0x14, 0x00, # 0010 JMP $0014
+            0x60,             # 0013 RTS
+            0xC8,             # 0014 INY
+            0x60              # 0015 RTS
+        ]
+        exp_ctls = {
+            0x0000: 'c',
+            0x000E: 'c'
+        }
+        self._test_generation(snapshot, exp_ctls)
+
     def test_data(self):
         snapshot = [
             0xA9, 0x01, # 0000 LDA #$01

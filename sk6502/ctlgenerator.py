@@ -272,8 +272,8 @@ def _generate_ctls_without_code_map(snapshot, start, end, config):
 
     ctls = dict(ctls)
 
-    # Join two adjacent blocks if the first one is code and branches to the
-    # second
+    # Join two adjacent blocks if the first one is code and branches or jumps
+    # to the second
     edges = sorted(ctls)
     while 1:
         done = True
@@ -282,10 +282,13 @@ def _generate_ctls_without_code_map(snapshot, start, end, config):
             if ctls[addr] == 'c':
                 while addr < end:
                     size, operation = _get_operation(operations, snapshot, addr)
-                    if operation.startswith(('BC', 'BE', 'BM', 'BN', 'BP', 'BV')):
-                        operand = snapshot[addr + 1]
-                        branch_addr = addr + 2 + (operand if operand < 128 else operand - 256)
-                        if branch_addr == end:
+                    if operation.startswith(('BC', 'BE', 'BM', 'BN', 'BP', 'BV')) or (snapshot[addr] == 0x4C and len(snapshot) > addr + 2):
+                        if snapshot[addr] == 0x4C:
+                            op_addr = snapshot[addr + 1] + 256 * snapshot[addr + 2]
+                        else:
+                            operand = snapshot[addr + 1]
+                            op_addr = addr + 2 + (operand if operand < 128 else operand - 256)
+                        if op_addr == end:
                             del ctls[end], edges[1]
                             done = False
                             break
