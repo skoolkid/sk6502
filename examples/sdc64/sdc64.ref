@@ -4,6 +4,7 @@
 RefFiles=as.ref;bugs.ref;facts.ref;glossary.ref;lessons.ref;pokes.ref;templates.ref
 
 [Game]
+Address=${address:04X}
 AddressAnchor={address:04X}
 Game=Skool Daze
 Logo=#UDGARRAY8,31;$5920-$59D8-8({ImagePath}/logo)
@@ -69,12 +70,6 @@ MainTimetable=Main timetable
 GameIndex=The complete<>C64 disassembly
 
 [Titles]
-Asm-b=Data at ${entry[address]}
-Asm-c=Routine at ${entry[address]}
-Asm-g=Game status buffer entry at ${entry[address]}
-Asm-t=Text at ${entry[address]}
-Asm-u=Unused RAM at ${entry[address]}
-Asm-w=Data at ${entry[address]}
 AnimatoryStates=Animatory states
 BlackboardBuffer=Blackboard buffer
 CharacterBuffer=Character buffer
