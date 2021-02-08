@@ -1,12 +1,13 @@
 ; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
 
 [Config]
-RefFiles=as.ref;bugs.ref;facts.ref;glossary.ref;lessons.ref;pokes.ref;templates.ref
+RefFiles=as.ref;bugs.ref;facts.ref;glossary.ref;lessons.ref;pokes.ref
 
 [Game]
 Address=${address:04X}
 AddressAnchor={address:04X}
 Game=Skool Daze
+Length=${size:02X}
 Logo=#UDGARRAY8,31;$5920-$59D8-8({ImagePath}/logo)
 StyleSheet=skoolkit.css;theme.css
 LinkInternalOperands=1
