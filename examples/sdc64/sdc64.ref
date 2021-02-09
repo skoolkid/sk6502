@@ -15,6 +15,10 @@ LinkOperands=BCC,BCS,BEQ,BMI,BNE,BPL,BVC,BVS,JMP,JSR,.WORD
 Created=Created using <a href="https://skoolkit.ca">SkoolKit</a> #VERSION and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.
 Copyright=&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.
 
+[EntryGroups]
+BlackboardBuffer=$19,$1A,$DF
+CharacterBuffer=$26,$29,$39,$3B,$3D,$3F,$A6,$A8,$A9,$AA,$AC,$AE,$B0,$B2,$B3,$B4,$B5,$FB,$FF
+
 [MemoryMap:MemoryMap]
 PageByteColumns=0
 
@@ -27,8 +31,7 @@ PageByteColumns=0
 [MemoryMap:CharacterBuffer]
 Intro=#INCLUDE(CharacterBufferIntro)
 EntryDescriptions=1
-EntryTypes=
-Includes=$26,$29,$39,$3B,$3D,$3F,$A6,$A8,$A9,$AA,$AC,$AE,$B0,$B2,$B3,$B4,$B5,$FB,$FF
+Includes=CharacterBuffer
 LengthColumn=1
 
 [CharacterBufferIntro]
@@ -40,8 +43,7 @@ routine at #A$33BF.
 [MemoryMap:BlackboardBuffer]
 Intro=#INCLUDE(BlackboardBufferIntro)
 EntryDescriptions=1
-EntryTypes=
-Includes=$19,$1A,$DF
+Includes=BlackboardBuffer
 LengthColumn=1
 
 [BlackboardBufferIntro]
@@ -68,10 +70,14 @@ CommandLists=Command lists
 MainTimetable=Main timetable
 
 [PageHeaders]
+Asm-BlackboardBuffer=Blackboard buffer
+Asm-CharacterBuffer=Character buffer
 GameIndex=The complete<>C64 disassembly
 
 [Titles]
 AnimatoryStates=Animatory states
+Asm-BlackboardBuffer=Blackboard buffer entry at {entry[address]}
+Asm-CharacterBuffer=Character buffer entry at {entry[address]}
 BlackboardBuffer=Blackboard buffer
 CharacterBuffer=Character buffer
 PlayArea=Play area
