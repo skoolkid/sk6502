@@ -3,9 +3,9 @@
 ; SkoolKit control file for the Commodore 64 version of Skool Daze.
 ;
 ; First install SkoolKit, and copy the 'sk6502' directory (which contains the
-; SkoolKit components for MOS 6502 disassembly), skoolkit.ini and templates.ini
-; into the current directory alongside this control file (sdc64.ctl) and the
-; other source files.
+; SkoolKit components for MOS 6502 disassembly) and templates.ini into the
+; current directory alongside this control file (sdc64.ctl) and the other
+; source files.
 ;
 ; Next, obtain a VSF snapshot of Skool Daze, and use it to build a skool file:
 ;
@@ -29,13 +29,11 @@
 @ $0002 expand=#DEFINE1,1(ZXR,#HTML(<a href="https://skoolkid.github.io/skooldaze/asm/{:04X}.html">{}</a>))
 @ $0002 expand=#DEFINE1(ZX,#HTML(This corresponds to #ZXR{0}(${0:04X}) in the ZX Spectrum version.))
 @ $0002 expand=#DEFINE1,1(AS,#LINK:AnimatoryStates#{:02X}({}))
-@ $0002 expand=#DEFINE1||SPRITE|#UDGARRAY3;{0}-({0}+$32)-1-$18,,3{{height=42}}(s{0:04x})||
+@ $0002 expand=#DEFINE1||SPRITE|#UDGARRAY3,$0F;{0}-({0}+$32)-1-$18,,3{{height=42}}(s{0:04x})||
 @ $0002 expand=#DEFINE2(ASTADDR,#PEEK($8D00+{0}+256*{1})+#IF({0}&$7F<$48||{0}&$7F==$7F)($9900,$A900))
-@ $0002 expand=#DEFINE1(ASUDGARRAY,#UDGARRAY#(3,56,2,512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#ASTADDR({0},t))))(as{0:02X}))
+@ $0002 expand=#DEFINE1(ASUDGARRAY,#UDGARRAY#(3,$0F,2,512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#ASTADDR({0},t))))(as{0:02X}))
 @ $0002 expand=#DEFINE1(ASIMG,#PUSHS #POKES($9900,0,2,$1000) #ASUDGARRAY({}) #POPS)
-@ $0002 expand=#DEFINE1(ZXCOLOUR,#MAP({})(0,0:0,1:7,2:2,3:5,4:3,5:4,6:1,7:6,13:4,14:5,15:7))
-@ $0002 expand=#DEFINE2(STATTR,#LET(c=#PEEK({}+$7880+256*{}))8*#ZXCOLOUR({{c}}&$0F)+#ZXCOLOUR({{c}}/16))
-@ $0002 expand=#DEFINE2//STSPEC/(#PEEK({0}+$7800+256*{1})+$6000+$40*({0}&$60)),(#STATTR({0},{1}))//
+@ $0002 expand=#DEFINE2//STSPEC/(#PEEK({0}+$7800+256*{1})+$6000+$40*({0}&$60)),(#PEEK({0}+$7880+256*{1}))//
 @ $0002 expand=#DEFINE4(SKOOLIMG,#UDGARRAY#({2},,2,256#FOR({1},{1}+{3}-1)(y,#FOR({0},{0}+{2}-1)(x,;#STSPEC(x,y)))))
 @ $0002 expand=#DEFINE1(A,#R{0}($#N({0},,,,1)))
 @ $0002 expand=#DEFINE0(BUG,#LINK:Bugs)
@@ -6784,7 +6782,7 @@ B $5800,32,8
 b $5820 Score box graphic
 D $5820 #ZX$EE00
 D $5820 Used by the routine at #A$2F56. The colour information for the score box can be found at #A$5D48.
-D $5820 #UDGTABLE { #UDGARRAY8,32;$5820-$58D8-8(scorebox) } TABLE#
+D $5820 #UDGTABLE { #UDGARRAY8,$05;$5820-$58D8-8(scorebox) } TABLE#
 B $5820,192,8
 b $58E0 Shield locations and status
 D $58E0 Used by the routines at #A$2BB0, #A$2E13 and #A$39C7. Each 3-byte entry in this table corresponds to a shield. The first two bytes of each entry are the shield's coordinates. The third byte indicates whether the shield has been hit.
@@ -6808,7 +6806,7 @@ B $590D,19,3,8
 b $5920 Skool Daze logo
 D $5920 #ZX$EF00
 D $5920 Used by the routine at #A$2F20. The colour information for the logo can be found at #A$5D48.
-D $5920 #UDGTABLE { #UDGARRAY8,31;$5920-$59D8-8(logo) } TABLE#
+D $5920 #UDGTABLE { #UDGARRAY8,$14;$5920-$59D8-8({ImagePath}/logo) } TABLE#
 B $5920,192,8
 u $59E0 Z80 code remnants
 D $59E0 #ZX$EFE0
@@ -7063,17 +7061,17 @@ B $5FC0,64,8
 b $6000 Skool graphic data for columns 0-31 (tiles $00-$FF)
 D $6000 #ZX$8000
 D $6000 Used by the routine at #A$3326.
-D $6000 #UDGTABLE #FOR(0,15)(n,{ #FOR(0,15)(m,#UDG(#PC+m+16*n,,2,256), | ) } ) TABLE#
+D $6000 #UDGTABLE #FOR(0,15)(n,{ #FOR(0,15)(m,#UDG(#PC+m+16*n,$0F,2,256), | ) } ) TABLE#
 B $6000,2048,16
 b $6800 Skool graphic data for columns 32-63 (tiles $00-$FF)
 D $6800 #ZX$8800
 D $6800 Used by the routine at #A$3326.
-D $6800 #UDGTABLE #FOR(0,15)(n,{ #FOR(0,15)(m,#UDG(#PC+m+16*n,,2,256), | ) } ) TABLE#
+D $6800 #UDGTABLE #FOR(0,15)(n,{ #FOR(0,15)(m,#UDG(#PC+m+16*n,$0F,2,256), | ) } ) TABLE#
 B $6800,2048,16
 b $7000 Skool graphic data for columns 64-95 (tiles $00-$FF)
 D $7000 #ZX$9000
 D $7000 Used by the routine at #A$3326.
-D $7000 #UDGTABLE #FOR(0,15)(n,{ #FOR(0,15)(m,#UDG(#PC+m+16*n,,2,256), | ) } ) TABLE#
+D $7000 #UDGTABLE #FOR(0,15)(n,{ #FOR(0,15)(m,#UDG(#PC+m+16*n,$0F,2,256), | ) } ) TABLE#
 B $7000,2048,16
 b $7800 Skool tile references (LSBs) for row 0
 D $7800 #ZX$9800
@@ -8403,12 +8401,12 @@ B $98FF,1,1
 b $9900 Sprite graphic data for the boys and the catapult pellet
 D $9900 #ZX$B900
 D $9900 Used by the routine at #A$3326.
-D $9900 #UDGTABLE #FOR(0,15)(n,{ #FOR(0,15)(m,#UDG(#PC+m+16*n,,2,512), | ) } ) TABLE#
+D $9900 #UDGTABLE #FOR(0,15)(n,{ #FOR(0,15)(m,#UDG(#PC+m+16*n,$0F,2,512), | ) } ) TABLE#
 B $9900,4096,16
 b $A900 Sprite graphic data for the teachers
 D $A900 #ZX$C900
 D $A900 Used by the routine at #A$3326.
-D $A900 #UDGTABLE #FOR(0,15)(n,{ #FOR(0,15)(m,#UDG(#PC+m+16*n,,2,512), | ) } ) TABLE#
+D $A900 #UDGTABLE #FOR(0,15)(n,{ #FOR(0,15)(m,#UDG(#PC+m+16*n,$0F,2,512), | ) } ) TABLE#
 B $A900,4096,16
 b $B900 Sprite information backup area
 D $B900 Used by the routines at #A$38AC and #A$38EF.

@@ -9,11 +9,11 @@ The graphic data for the speech bubble used in the ZX Spectrum version is
 present in tiles $EF-$FF of the skool graphic data in pages #R$6000($60-$67)
 and #R$6800($68-$6F), but is not used in the C64 version.
 
-#UDGTABLE { #FOR($60EF,$60FF)(n,#UDG(n,,2,256), | ) } TABLE#
+#UDGTABLE { #FOR($60EF,$60FF)(n,#UDG(n,$0F,2,256), | ) } TABLE#
 
 [Fact:flawedCharacters:Flawed characters]
 #DEFINE1(FCHAR,
-  #UDG($4700+{0},step=256,flip=2,rotate=1){{width=4*(#PEEK($4700+{0})+2)}}(*c)
+  #UDG($4700+{0},$0F,,256,flip=2,rotate=1){{width=4*(#PEEK($4700+{0})+2)}}(*c)
   #FOR(0,7)(n,#PLOT(0,n,0)(c)#PLOT(#PEEK($4700+{0})+1,n,0)(c))
   #UDGARRAY*c(char{0:02X})
 )
@@ -153,15 +153,15 @@ red.
 Unlike the colours, the shield designs appear in equal numbers. Five shields
 display the stripe design (and are all red):
 
-#UDGTABLE { #UDG$6055,50,4,256(stripe) } TABLE#
+#UDGTABLE { #UDG$6055,$27,4,256(stripe) } TABLE#
 
 five display the squares design (three blue and two red):
 
-#UDGTABLE { #UDG$605F,49,4,256(squares) } TABLE#
+#UDGTABLE { #UDG$605F,$67,4,256(squares) } TABLE#
 
 and the remaining five display the triangle design (all blue):
 
-#UDGTABLE { #UDG$6062,49,4,256(triangle) } TABLE#
+#UDGTABLE { #UDG$6062,$67,4,256(triangle) } TABLE#
 
 [Fact:teacherRooms:Teachers and classrooms]
 MR WACKER is the only teacher who teaches ERIC in all four classrooms. See his

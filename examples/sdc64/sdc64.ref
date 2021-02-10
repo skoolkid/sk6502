@@ -8,7 +8,7 @@ Address=${address:04X}
 AddressAnchor={address:04X}
 Game=Skool Daze
 Length=${size:02X}
-Logo=#UDGARRAY8,31;$5920-$59D8-8({ImagePath}/logo)
+Logo=#UDGARRAY8,$14;$5920-$59D8-8({ImagePath}/logo)
 StyleSheet=skoolkit.css;theme.css
 LinkInternalOperands=1
 LinkOperands=BCC,BCS,BEQ,BMI,BNE,BPL,BVC,BVS,JMP,JSR,.WORD
@@ -124,15 +124,6 @@ LessonFF=lessons/FF.html
 PlayArea=graphics/playarea.html
 UDGFilename={addr:04x}
 
-[Colours]
-RED=#880000
-BLUE=#0000aa
-MAGENTA=#cc44cc
-GREEN=#aaff66
-CYAN=#aaffee
-YELLOW=#eeee77
-WHITE=#bbbbbb
-
 [Page:MainTimetable]
 Content=asm/5D00.html
 
@@ -146,7 +137,4 @@ Content=asm/BBB4.html
 PageContent=#INCLUDE(PlayAreaPage)
 
 [PlayAreaPage]
-<p><b>Note:</b> Owing to limitations in SkoolKit's image writer component, the
-colours in this image are not accurate.</p>
-
 #SKOOLIMG0,0,96,21(skool)
