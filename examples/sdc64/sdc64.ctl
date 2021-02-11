@@ -35,6 +35,11 @@
 @ $0002 expand=#DEFINE1(ASIMG,#PUSHS #POKES($9900,0,2,$1000) #ASUDGARRAY({}) #POPS)
 @ $0002 expand=#DEFINE2//STSPEC/(#PEEK({0}+$7800+256*{1})+$6000+$40*({0}&$60)),(#PEEK({0}+$7880+256*{1}))//
 @ $0002 expand=#DEFINE4(SKOOLIMG,#UDGARRAY#({2},,2,256#FOR({1},{1}+{3}-1)(y,#FOR({0},{0}+{2}-1)(x,;#STSPEC(x,y)))))
+@ $0002 expand=#DEFINE1(FCHAR,
+@ $0002 expand=+  #UDG($4700+{0},$0F,,256,flip=2,rotate=1){{width=4*(#PEEK($4700+{0})+2)}}(*c)
+@ $0002 expand=+  #FOR(0,7)(n,#PLOT(0,n,0)(c)#PLOT(#PEEK($4700+{0})+1,n,0)(c))
+@ $0002 expand=+  #UDGARRAY*c(char{0:02X})
+@ $0002 expand=+)
 @ $0002 expand=#DEFINE1(A,#R{0}($#N({0},,,,1)))
 @ $0002 expand=#DEFINE0(BUG,#LINK:Bugs)
 @ $0002 replace=/`([AXY]+)`/#REG(\1)

@@ -12,11 +12,6 @@ and #R$6800($68-$6F), but is not used in the C64 version.
 #UDGTABLE { #FOR($60EF,$60FF)(n,#UDG(n,$0F,2,256), | ) } TABLE#
 
 [Fact:flawedCharacters:Flawed characters]
-#DEFINE1(FCHAR,
-  #UDG($4700+{0},$0F,,256,flip=2,rotate=1){{width=4*(#PEEK($4700+{0})+2)}}(*c)
-  #FOR(0,7)(n,#PLOT(0,n,0)(c)#PLOT(#PEEK($4700+{0})+1,n,0)(c))
-  #UDGARRAY*c(char{0:02X})
-)
 The font graphics for the '/' (slash), '\' (backslash) and '3' characters are
 all slightly marred by missing pixels:
 
