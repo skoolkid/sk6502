@@ -141,6 +141,48 @@ It's also possible for one of BOY WONDER's pellets to bounce off a teacher's
 head, hit a shield, and make it flash - scoring even more points - but that
 would be a rare occurrence indeed.
 
+[Fact:seatSelection:Seat selection]
+Typically, when a teacher arrives at the classroom doorway to start the lesson,
+the boys will rush to the back seat and sit down. However, if a boy is late for
+class in the Map Room or Exam Room - that is, he arrives at the doorway after
+the teacher already has - then he will take some other seat (as shown below),
+depending on where his command list sends him.
+
+#PUSHS
+#POKES$7861,$80,21,256
+#UDGTABLE(gallery) {
+  #PUSHS #PLACECHAR$78,66,3,$45 #SDIMG63,0,11,7(ss_mr_boy) #POPS |
+  #PUSHS #PLACECHAR$88,64,3,$35 #SDIMG63,0,11,7(ss_mr_boy_wonder) #POPS |
+  #PUSHS #PLACECHAR$87,68,3,$25 #SDIMG63,0,11,7(ss_mr_angelface) #POPS |
+  #PUSHS #PLACECHAR$89,66,3,$15 #SDIMG63,0,11,7(ss_mr_einstein) #POPS
+} TABLE#
+
+#UDGTABLE(gallery) {
+  #PUSHS #PLACECHAR$78,60,10,$45 #SDIMG51,7,14,7(ss_er_boy) #POPS |
+  #PUSHS #PLACECHAR$87,53,10,$25 #SDIMG51,7,14,7(ss_er_angelface) #POPS |
+  #PUSHS #PLACECHAR$89,53,10,$15 #SDIMG51,7,14,7(ss_er_einstein) #POPS
+} TABLE#
+#POPS
+
+The reason this happens to a latecomer is that he doesn't get a chance to walk
+around before having to find a seat and sit down, because the teacher has
+already arrived, the corresponding signal has already been raised, and so the
+routine at #A$1A04 moves straight to the next command in the command list:
+#A$1D16 (find a seat and sit down). That command makes the boy move forward to
+the next seat if he's facing left (which is the case if he's just entered the
+Map Room or Exam Room), or walk to the back of the classroom if he's facing
+right. When the boy does get a chance to walk around first, he ends up facing
+right before that command kicks in, and then keeps moving right to the back of
+the class.
+
+Note that BOY WONDER always tries to sit in the back seat in the Exam Room,
+because after entering that room he goes to the blackboard first, and then
+walks to the middle of the room, at which point he is facing right.
+
+This unusual seat selection does not happen in the Reading Room or White Room,
+because the boy is facing right when he arrives in the classroom, and so keeps
+moving right to the back of the class.
+
 [Fact:shieldStats:Shield stats]
 Of the 15 shields on display around the skool, eight are blue and seven are
 red.

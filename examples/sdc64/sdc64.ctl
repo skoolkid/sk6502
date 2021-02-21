@@ -35,10 +35,30 @@
 @ $0002 expand=#DEFINE1(ASIMG,#PUSHS #POKES($9900,0,2,$1000) #ASUDGARRAY({}) #POPS)
 @ $0002 expand=#DEFINE2//STSPEC/(#PEEK({0}+$7800+256*{1})+$6000+$40*({0}&$60)),(#PEEK({0}+$7880+256*{1}))//
 @ $0002 expand=#DEFINE4(SKOOLIMG,#UDGARRAY#({2},,2,256#FOR({1},{1}+{3}-1)(y,#FOR({0},{0}+{2}-1)(x,;#STSPEC(x,y)))))
+@ $0002 expand=#DEFINE4(PLACECHAR,#POKES({0}*256+$60,{3});({0}*256+$61,{1});({0}*256+$62,{2}))
 @ $0002 expand=#DEFINE1(FCHAR,
 @ $0002 expand=+  #UDG($4700+{0},$0F,,256,flip=2,rotate=1){{width=4*(#PEEK($4700+{0})+2)}}(*c)
 @ $0002 expand=+  #FOR(0,7)(n,#PLOT(0,n,0)(c)#PLOT(#PEEK($4700+{0})+1,n,0)(c))
 @ $0002 expand=+  #UDGARRAY*c(char{0:02X})
+@ $0002 expand=+)
+@ $0002 expand=#DEFINE3(ASTOVER,
+@ $0002 expand=+  #LET(col={0}-#PEEK({2}*256+$61)) #LET(row={1}-#PEEK({2}*256+$62))
+@ $0002 expand=+  #IF(0<={{col}}<=2 && 0<={{row}}<=3)(
+@ $0002 expand=+    #LET(a=#ASTADDR(#PEEK({2}*256+$60),4*{{col}}+{{row}}))
+@ $0002 expand=+    #FOR(0,7)(n,#POKES({{i}}+n,#PEEK({{i}}+n)|#PEEK({{a}}+512*n)))
+@ $0002 expand=+    #FOR(0,7)(n,#POKES({{i}}+n,#PEEK({{i}}+n)&#PEEK({{a}}+256+512*n)))
+@ $0002 expand=+  )
+@ $0002 expand=+)
+@ $0002 expand=#DEFINE2(STCOPY,
+@ $0002 expand=+  #POKES({{i}},#PEEK({0}+$7880+256*{1})) #LET(i={{i}}+1)
+@ $0002 expand=+  #LET(src=#PEEK({0}+$7800+256*{1})+$6000+$40*({0}&$60))
+@ $0002 expand=+  #FOR(0,7)(n,#POKES({{i}}+n,#PEEK({{src}}+n*256)))
+@ $0002 expand=+  #FOR($78,$8C)(c,#ASTOVER({0},{1},c)) #LET(i={{i}}+8)
+@ $0002 expand=+)
+@ $0002 expand=#DEFINE4,1(SDIMG,
+@ $0002 expand=+  #POKES($9900,0,2,$1000);($9A00,$FF,8,$200) #LET(i=0)
+@ $0002 expand=+  #FOR({1},{1}+{3}-1)(y,#FOR({0},{0}+{2}-1)(x,#STCOPY(x,y)))
+@ $0002 expand=+  #UDGARRAY{2};1-(9*({2}*{3})-8)-9@0-(9*({2}*{3}-1))-9({4})
 @ $0002 expand=+)
 @ $0002 expand=#DEFINE1(A,#R{0}($#N({0},,,,1)))
 @ $0002 expand=#DEFINE0(BUG,#LINK:Bugs)
