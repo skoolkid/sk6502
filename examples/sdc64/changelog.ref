@@ -1,0 +1,13 @@
+; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+
+[Page:Changelog]
+SectionType=BulletPoints
+
+[Changelog:YYYYMMDD]
+-
+
+- Replaced the default SkoolKit image writer with C64ImageWriter
+- Added a trivia entry: #FACT#seatSelection()
+
+[Changelog:20210126]
+Initial release.

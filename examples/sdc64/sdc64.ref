@@ -1,7 +1,7 @@
 ; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
 
 [Config]
-RefFiles=as.ref;bugs.ref;facts.ref;glossary.ref;lessons.ref;pokes.ref
+RefFiles=as.ref;bugs.ref;changelog.ref;facts.ref;glossary.ref;lessons.ref;pokes.ref
 
 [Game]
 Address=${address:04X}
@@ -12,6 +12,7 @@ Logo=#UDGARRAY8,$14;$5920-$59D8-8({ImagePath}/logo)
 StyleSheet=skoolkit.css;theme.css
 LinkInternalOperands=1
 LinkOperands=BCC,BCS,BEQ,BMI,BNE,BPL,BVC,BVS,JMP,JSR,.WORD
+Release=The complete Skool Daze C64 disassembly 20210126
 Created=Created using <a href="https://skoolkit.ca">SkoolKit</a> #VERSION and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.
 Copyright=&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.
 

@@ -62,6 +62,7 @@
 @ $0002 expand=+)
 @ $0002 expand=#DEFINE1(A,#R{0}($#N({0},,,,1)))
 @ $0002 expand=#DEFINE0(BUG,#LINK:Bugs)
+@ $0002 expand=#DEFINE0(FACT,#LINK:Facts)
 @ $0002 replace=/`([AXY]+)`/#REG(\1)
 @ $0002 defs=$FE
 u $0002 Unused
