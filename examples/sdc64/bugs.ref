@@ -184,7 +184,7 @@ TABLE#
 <div>POKE 5152,50 ($1420,$32)</div>
 
 With that change out of the way, it now makes sense to adjust the x-coordinates
-of the tops of the staircases in the tables at #A4440 and #A$4454, for optimal
+of the tops of the staircases in the tables at #A$4440 and #A$4454, for optimal
 compatibility with the new technique:
 
 <div>POKE 17472,12 ($4440,$0C)</div>
