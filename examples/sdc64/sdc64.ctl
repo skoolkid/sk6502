@@ -41,6 +41,11 @@
 @ $0002 expand=+  #FOR(0,7)(n,#PLOT(0,n,0)(c)#PLOT(#PEEK($4700+{0})+1,n,0)(c))
 @ $0002 expand=+  #UDGARRAY*c(char{0:02X})
 @ $0002 expand=+)
+@ $0002 expand=#DEFINE3(ASIMGX,
+@ $0002 expand=+  #PUSHS #POKES($9900,0,2,$1000)
+@ $0002 expand=+  #UDGARRAY#(3,$0F,{2},512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#PEEK($8D00+{0}+256*t)+{1}*256)))(as{0:02X}{1:02X}x{2})
+@ $0002 expand=+  #POPS
+@ $0002 expand=+)
 @ $0002 expand=#DEFINE3(ASTOVER,
 @ $0002 expand=+  #LET(col={0}-#PEEK({2}*256+$61)) #LET(row={1}-#PEEK({2}*256+$62))
 @ $0002 expand=+  #IF(0<={{col}}<=2 && 0<={{row}}<=3)(

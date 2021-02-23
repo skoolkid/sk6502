@@ -126,6 +126,27 @@ the teacher's next pace-up or pace-down destination, which is to take his
 current x-coordinate and do an EOR $03 on it: see the sections of code at
 #A$0A47 and #A$0B0C.
 
+[Fact:doppelwacker:Doppelwacker]
+The sprite graphic data is split between two base pages: page #R$9900($99) for
+the boys and the catapult pellet, and page #R$A900($A9) for the teachers.
+However, the graphic data based in page $99 contains exact copies of most of MR
+WACKER's sprites:
+
+#UDGTABLE(gallery)
+{ =c2 $99 | =c2 $A9 }
+{ #ASIMGX$50,$99,2 | #ASIMGX$D0,$99,2 | #ASIMGX$50,$A9,2 | #ASIMGX$D0,$A9,2 }
+{ #ASIMGX$51,$99,2 | #ASIMGX$D1,$99,2 | #ASIMGX$51,$A9,2 | #ASIMGX$D1,$A9,2 }
+{ #ASIMGX$52,$99,2 | #ASIMGX$D2,$99,2 | #ASIMGX$52,$A9,2 | #ASIMGX$D2,$A9,2 }
+{ #ASIMGX$53,$99,2 | #ASIMGX$D3,$99,2 | #ASIMGX$53,$A9,2 | #ASIMGX$D3,$A9,2 }
+{ #ASIMGX$55,$99,2 | #ASIMGX$D5,$99,2 | #ASIMGX$55,$A9,2 | #ASIMGX$D5,$A9,2 }
+{ #ASIMGX$57,$99,2 | #ASIMGX$D7,$99,2 | #ASIMGX$57,$A9,2 | #ASIMGX$D7,$A9,2 }
+TABLE#
+
+This suggests that the original plan was to have the graphic data for every
+character based in page $99, but space ran out while adding MR WACKER's
+sprites, so the graphic data for him and the other teachers had to go to page
+$A9.
+
 [Fact:pointsForAP:Points for a punching]
 ANGELFACE is unique among the cast of characters in that if ERIC knocks him
 over with a punch, 30 points are awarded (see #A$17E5).
