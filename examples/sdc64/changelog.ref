@@ -9,6 +9,7 @@ SectionType=BulletPoints
 - Replaced the default SkoolKit image writer with C64ImageWriter
 - Added trivia entries:
   - #FACT#doppelwacker()
+  - #FACT#wackersOldShoes()
   - #FACT#seatSelection()
 
 [Changelog:20210126]

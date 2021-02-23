@@ -134,18 +134,82 @@ WACKER's sprites:
 
 #UDGTABLE(gallery)
 { =c2 $99 | =c2 $A9 }
-{ #ASIMGX$50,$99,2 | #ASIMGX$D0,$99,2 | #ASIMGX$50,$A9,2 | #ASIMGX$D0,$A9,2 }
-{ #ASIMGX$51,$99,2 | #ASIMGX$D1,$99,2 | #ASIMGX$51,$A9,2 | #ASIMGX$D1,$A9,2 }
-{ #ASIMGX$52,$99,2 | #ASIMGX$D2,$99,2 | #ASIMGX$52,$A9,2 | #ASIMGX$D2,$A9,2 }
-{ #ASIMGX$53,$99,2 | #ASIMGX$D3,$99,2 | #ASIMGX$53,$A9,2 | #ASIMGX$D3,$A9,2 }
-{ #ASIMGX$55,$99,2 | #ASIMGX$D5,$99,2 | #ASIMGX$55,$A9,2 | #ASIMGX$D5,$A9,2 }
-{ #ASIMGX$57,$99,2 | #ASIMGX$D7,$99,2 | #ASIMGX$57,$A9,2 | #ASIMGX$D7,$A9,2 }
+{ #ASIMGX$50,$99,2() | #ASIMGX$D0,$99,2() |
+  #ASIMGX$50,$A9,2() | #ASIMGX$D0,$A9,2() }
+{ #ASIMGX$51,$99,2() | #ASIMGX$D1,$99,2() |
+  #ASIMGX$51,$A9,2() | #ASIMGX$D1,$A9,2() }
+{ #ASIMGX$52,$99,2() | #ASIMGX$D2,$99,2() |
+  #ASIMGX$52,$A9,2() | #ASIMGX$D2,$A9,2() }
+{ #ASIMGX$53,$99,2() | #ASIMGX$D3,$99,2() |
+  #ASIMGX$53,$A9,2() | #ASIMGX$D3,$A9,2() }
+{ #ASIMGX$55,$99,2() | #ASIMGX$D5,$99,2() |
+  #ASIMGX$55,$A9,2() | #ASIMGX$D5,$A9,2() }
+{ #ASIMGX$57,$99,2() | #ASIMGX$D7,$99,2() |
+  #ASIMGX$57,$A9,2() | #ASIMGX$D7,$A9,2() }
 TABLE#
 
 This suggests that the original plan was to have the graphic data for every
 character based in page $99, but space ran out while adding MR WACKER's
 sprites, so the graphic data for him and the other teachers had to go to page
 $A9.
+
+[Fact:wackersOldShoes:MR WACKER's old shoes]
+The #FACT#doppelwacker(copies of MR WACKER's sprites based in page $99) show
+a slight difference in animatory states $51 and $D1 compared to the official
+sprites based in page $A9:
+
+#UDGTABLE(gallery)
+{ =c2 $99 | =c2 $A9 }
+{ #ASIMGX$51,$99,4() | #ASIMGX$D1,$99,4() |
+  #ASIMGX$51,$A9,4() | #ASIMGX$D1,$A9,4() }
+{ $51 | $D1 | $51 | $D1 }
+TABLE#
+
+Note the incorrect tile at the bottom right of animatory state $51, and the
+corresponding incorrect tile at the bottom left of animatory state $D1. An
+examination of the tile references used to build these sprites reveals
+something interesting:
+
+<table>
+<tr>
+<td>
+#TABLE(asgrid)
+{ $5A | $59 | $00 }
+{ $58 | $57 | $64 }
+{ $56 | $55 | $54 }
+{ $53 | $52 | <b>$0D</b> }
+TABLE#
+</td>
+<td style="width: 20px"></td>
+<td>
+#TABLE(asgrid)
+{ $00 | $D9 | $DA }
+{ $E4 | $D7 | $D8 }
+{ $D4 | $D5 | $D6 }
+{ <b>$8D</b> | $D2 | $D3 }
+TABLE#
+</td>
+</tr>
+</table>
+
+The numbering of the tiles suggests that the bottom-right tile of animatory
+state $51 was originally $51 (not $0D), and the bottom-left tile of animatory
+state $D1 was originally $D1 (not $8D). If those tile references are changed to
+$51 and $D1, the shoe on MR WACKER's back foot takes a different shape:
+
+#UDGTABLE(gallery)
+{ =c2 $99 (modified) | =c2 $A9 }
+{ #PUSHS #POKES$9851,$51 #POKES$90D1,$D1
+  #ASIMGX$51,$99,4(wos) | #ASIMGX$D1,$99,4(wos) #POPS |
+  #ASIMGX$51,$A9,4() | #ASIMGX$D1,$A9,4() }
+{ $51 | $D1 | $51 | $D1 }
+TABLE#
+
+So why didn't copies of tiles $51 and $D1 from page $99 (which seem to finish
+MR WACKER's back foot better than tiles $0D and $8D do) make their way into
+page $A9? The most likely answer is lack of space: there are no unused sprite
+tiles based in page $A9, and tiles $0D and $8D are similar enough to tiles $51
+and $D1 to make reasonable substitutes.
 
 [Fact:pointsForAP:Points for a punching]
 ANGELFACE is unique among the cast of characters in that if ERIC knocks him
