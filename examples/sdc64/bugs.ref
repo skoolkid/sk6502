@@ -227,6 +227,43 @@ unable to see him.
 <div>POKE 3110,207 #R$0C25(($0C26,$CF))</div>
 <div>POKE 3118,207 #R$0C2D(($0C2E,$CF))</div>
 
+[Bug:creaksSuperiorVision:MR CREAK's superior vision]
+In contrast to those situations where ERIC's horizontal visibility range is
+reduced from [x&#8722;10, x+10] to [x, x+10] (see #BUG#invisibilityRange()),
+there are other situations in which the upper bound of that range is increased
+from x+10 to x+13 for MR CREAK in particular. This means, for example, that
+when MR CREAK is at x-coordinate 34 in the White Room waiting for EINSTEIN to
+tell tales, he can see ERIC (and give him lines for hitting, firing etc.) even
+if he's standing in the White Room doorway 13 spaces away at x-coordinate 21.
+
+#PUSHS
+#PLACECHAR$8B,21,10,$8B
+#PLACECHAR$82,29,10,$45
+#PLACECHAR$87,31,10,$25
+#PLACECHAR$88,33,10,$35
+#PLACECHAR$86,34,10,$48
+#PLACECHAR$89,37,10,$15
+#UDGTABLE { #SDIMG20,7,20,7(csv) } TABLE#
+#POPS
+
+The reason for this is as follows. When the check is made whether ERIC should
+be given lines, his visibility range is calculated by the routine at #A$0BAC,
+and the minimum and maximum y- and x-coordinates of that range are stored at
+$73, $74, $75 and $76. Then the routine at #A$0E59 checks whether any of the
+teachers are in that range. It does this by calling the routine at #A$0D67 for
+each teacher in turn: MR WACKER first, then MR ROCKITT, then MR WITHIT, and
+finally MR CREAK. But the routine at #A$0D67 is rather careless with the
+maximum x-coordinate. For each teacher checked, the maximum x-coordinate at $76
+is incremented if that teacher's x-coordinate is at least equal to the minimum
+x-coordinate. So by the time MR CREAK is checked, the maximum x-coordinate of
+ERIC's visibility range has increased by up to 3.
+
+In addition, for each teacher checked by the routine at #A$0D67, the maximum
+y-coordinate at $74 is incremented if that teacher is within the x-coordinate
+range and has a y-coordinate at least equal to the minimum y-coordinate. So in
+very specific (and unlikely) situations, MR CREAK's superior vision can extend
+vertically as well as horizontally.
+
 [Bug:offByOne:Off by one]
 The skool region data tables for the #R$46A0(top floor), #R$46AC(middle floor)
 and #R$46B6(bottom floor) are the same as those in the ZX Spectrum version, but

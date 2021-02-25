@@ -61,7 +61,7 @@
 @ $0002 expand=+  #FOR($78,$8C)(c,#ASTOVER({0},{1},c)) #LET(i={{i}}+8)
 @ $0002 expand=+)
 @ $0002 expand=#DEFINE4,1(SDIMG,
-@ $0002 expand=+  #POKES($9900,0,2,$1000);($9A00,$FF,8,$200) #LET(i=0)
+@ $0002 expand=+  #POKES($9900,0,2,$1000);($9A00,$FF,16,$200) #LET(i=0)
 @ $0002 expand=+  #FOR({1},{1}+{3}-1)(y,#FOR({0},{0}+{2}-1)(x,#STCOPY(x,y)))
 @ $0002 expand=+  #UDGARRAY{2};1-(9*({2}*{3})-8)-9@0-(9*({2}*{3}-1))-9({4})
 @ $0002 expand=+)
@@ -1002,12 +1002,14 @@ C $0D67,9 Store the base address of the character's buffer at #A$4E.
 C $0D70,4 Pick up the character's x-coordinate.
 C $0D74,2 Is it less than the minimum x-coordinate?
 C $0D76,2 Return with the carry flag reset if so.
-C $0D78,4 Is the character's x-coordinate greater than the maximum x-coordinate?
+C $0D78,2 Increment the maximum x-coordinate at #A$76. (This is a #BUG#creaksSuperiorVision(bug).)
+C $0D7A,2 Is the character's x-coordinate greater than the maximum x-coordinate?
 C $0D7C,2 Return with the carry flag reset if so.
 C $0D7E,3 Pick up the character's y-coordinate.
 C $0D81,2 Is it less than the minimum y-coordinate?
 C $0D83,2 Return with the carry flag reset if so.
-C $0D85,4 Is the character's y-coordinate greater than the maximum y-coordinate?
+C $0D85,2 Increment the maximum y-coordinate at #A$74. (This is a #BUG#creaksSuperiorVision(bug).)
+C $0D87,2 Is the character's y-coordinate greater than the maximum y-coordinate?
 C $0D89,2 Return with the carry flag reset if so.
 C $0D8B,4 Return with the the carry flag set.
 C $0D8F,1 Clear the carry flag.
