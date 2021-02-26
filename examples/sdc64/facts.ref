@@ -60,6 +60,26 @@ once, however.
 In the ZX Spectrum version, there are three stampede playtimes in the main
 timetable: one instance of $FD, and two instances of $FC.
 
+[Fact:angelfacesXrayVision:ANGELFACE's X-ray vision]
+When ANGELFACE is in the White Room waiting for the teacher to arrive and ERIC
+is in the Exam Room next to and facing the wall, ANGELFACE will throw punches
+at the White Room wall, apparently aware that ERIC is behind it, but unaware
+that ERIC cannot walk through the wall and meet his fist.
+
+#PUSHS
+#PLACECHAR$87,36,10,$AB
+#PLACECHAR$8C,39,10,$00
+#UDGTABLE { #SDIMG30,7,20,7(axrv) } TABLE#
+#POPS
+
+The reason this happens is that the routine at #A$27D2, which checks whether
+anyone is within punching range, does not take into account the walls between
+classrooms.
+
+However, ANGELFACE will only perform this trick in the White Room: in the other
+classrooms he doesn't get close enough to the wall to be able to 'see' anyone
+through it.
+
 [Fact:withitUnedited:WITHIT unedited]
 Three of MR WITHIT's blackboard messages are different in the C64 version:
 
