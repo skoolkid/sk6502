@@ -321,6 +321,63 @@ TABLE#
 <div>POKE 5751,105 ($1677,$69)</div>
 <div>POKE 5752,0 ($1678,$00)</div>
 
+[Bug:misplacedMessageBox:Misplaced message box]
+When a teacher is close (but not too close!) to the left edge of the visible
+play area and either gives lines or reveals a safe combination letter, the
+8-cell-wide message box above his head may be drawn with the leftmost one or
+two cell columns missing.
+
+The reason for this lies in how the routine at #A$2043 computes the
+x-coordinate of sprite #1, which holds the contents of the leftmost three cell
+columns (24 pixel columns) of the message box. In the following discussion, we
+will use T to denote the teacher's play area x-coordinate (0-95), S to denote
+the play area x-coordinate of the leftmost column of the skool on screen (0, 8,
+16, 24...56), and S' to denote the play area x-coordinate of the leftmost
+column of the skool off screen (40, 48, 56, 64...96, i.e. S+40).
+
+When S&gt;T&#8722;4 (meaning there is a gap of one, two or three cell columns
+between the teacher and the left edge of the visible play area), the
+x-coordinate of sprite #1 is set to 32. This puts a 1-cell-wide gap between the
+message box and the left edge of the visible play area. (Remember that sprite
+x-coordinates 0-23 and 344-512 are outside the visible area of the screen, and
+only x-coordinates 24-343 are within it.)
+
+But when S&lt;=T&#8722;4, the x-coordinate of sprite #1 is set to
+8(T&#8722;S&#8722;3). This means that, in particular, when S=T&#8722;4 (meaning
+there is a gap of exactly four cell columns between the teacher and the left
+edge of the visible play area), the x-coordinate of sprite #1 is set to 8,
+which means the leftmost two cell columns of the message box are not visible.
+And when S=T&#8722;5 (meaning there is a gap of exactly five cell columns
+between the teacher and the left edge of the visible play area), the
+x-coordinate of sprite #1 is set to 16, which means the leftmost cell column of
+the message box is not visible.
+
+So much for the left side of the screen. What about when a teacher is close to
+the right edge of the visible play area? It turns out that the message box is
+not exactly ideally placed in that situation either.
+
+When S'&lt;=T+5 (meaning there is a gap of one or two cell columns between the
+teacher and the right edge of the visible play area), the x-coordinate of
+sprite #1 is set to 256. This puts a 3-cell-wide gap between the message box
+and the right edge of the visible play area, which means it's nowhere near
+being centred over the teacher's head.
+
+In summary, it's as if the routine at #A$2043 assumes that the x-coordinate of
+the left edge of visible area of the screen, as far as sprites are concerned,
+is 0 instead of 24.
+
+POKE 8297,0 #R$2067(($2069,$00)) - sets the x-coordinate of sprite #1 to
+8(T&#8722;S) when S&lt;=T&#8722;4 or S'&gt;T+5, which roughly centres the
+message box above the teacher's head.
+
+POKE 8305,3 #R$2070(($2071,$03)) - sets the minimum x-coordinate of sprite #1
+to 24 instead of 32 (used when S&gt;T&#8722;4), which pushes the message box up
+against the left edge of the visible play area.
+
+POKE 8310,35 #R$2075(($2076,$23)) - sets the maximum x-coordinate of sprite #1
+to 280 instead of 256 (used when S'&lt;=T+5), which pushes the message box up
+against the right edge of the visible play area.
+
 [Bug:brokenBookcase:Broken bookcase]
 The bottom of the bookcase on the left in the Revision Library seems to have
 been vandalised since it was first used in the ZX Spectrum version:
