@@ -51,6 +51,10 @@ reappears after the lines message box has been removed. This happens because
 both the lines message box and the speech bubble are drawn by using sprites,
 and there are not enough sprites to draw both simultaneously.
 
+[Fact:stridentScrawling:Strident scrawling]
+When ERIC writes on a blackboard, the letters always appear in upper case. This
+is unlike the ZX Spectrum version, where ERIC can write in lower case as well.
+
 [Fact:oneStampedeOutOfTwo:One stampede out of two]
 Playtime period #LINK:LessonFC($FC), in which the little boys run around the
 skool knocking people over, does not appear anywhere in the #R$5D00(main
