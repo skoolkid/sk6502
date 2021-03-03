@@ -2686,7 +2686,7 @@ u $1DB6 Unused
 B $1DB6,1,1
 c $1DB7 Make a teacher give lines
 D $1DB7 #ZX$7700
-D $1DB7 Used by the routines at #A$0B3B, #A$0ECF, #A$149F, #A$191B and #A$2552.
+D $1DB7 Used by the routines at #A$0B3B, #A$0ECF, #A$149F, #A$191B and #A$2552. Note that this routine does not first check whether the teacher is currently on screen before adding lines to ERIC's total or starting the lines-giving sound effect, which is a #BUG#hiddenAccusers(bug).
 R $1DB7 /(#A$72)/ Character number of the lines recipient ($0F, $10, $11 or $14)
 R $1DB7 /(#A$D8)/ Lines reprimand identifier ($00-$0F)
 C $1DB7,5 Pick up the current value of the sprite enable register and store a copy at #A$F6.

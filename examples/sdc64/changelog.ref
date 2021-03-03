@@ -8,6 +8,7 @@ SectionType=BulletPoints
 
 - Replaced the default SkoolKit image writer with C64ImageWriter
 - Documented bugs:
+  - #BUG#hiddenAccusers()
   - #BUG#creaksSuperiorVision()
   - #BUG#misplacedMessageBox()
 - Added trivia entries:

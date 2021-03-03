@@ -78,6 +78,20 @@ When a teacher is in the Map Room, he faces the wall instead of the class while
 speaking. This is because command list #R$4080($80) sends the teacher up to the
 map, but does not turn him round before starting the class.
 
+[Bug:hiddenAccusers:Hidden accusers]
+Occasionally during gameplay you might hear something like a truncated sound
+effect, and perhaps even also see ERIC's lines total increase at the same time
+for no apparent reason.
+
+One likely explanation for this phenomenon is that a teacher is giving lines
+while off screen. The reason that can happen is that the routine at #A$1DB7
+does not check whether the teacher is on screen before adding lines to ERIC's
+total or starting the lines-giving sound effect. But then, when it calls the
+routine at #A$2043 to display the lines message box above the teacher's head,
+that routine <em>does</em> check whether the teacher is on screen and returns
+early (without displaying the lines message box or pausing to give the
+accompanying sound effect time to play) if he isn't.
+
 [Bug:aStepTooFar:A step too far]
 If a teacher is going to teach a class in the Exam Room, he faces the wrong way
 at the doorway when telling the kids to sit down.
