@@ -24,11 +24,17 @@ never appears in the game. Has he been expelled?
 
 [Fact:unsyncedShields:Unsynchronised shields]
 Shields that have been hit by ERIC don't necessarily flash in sync (as they do
-by virtue of hardware design in the ZX Spectrum version): some will be
-displayed with inverted colours when others are not. This is because the
-interrupt routine at #A$39C7 that makes the shields flash will swap a shield's
-foreground and background colours when a shield is hit, regardless of the
-current colour status of any other shields.
+by virtue of hardware design in the ZX Spectrum version): some may be displayed
+with inverted colours when others are not. This is because the interrupt
+routine at #A$39C7 that makes the shields flash will swap a shield's foreground
+and background colours when a shield is hit, regardless of the current colour
+status of any other shields.
+
+#PUSHS
+#POKES$7AAF,$76 #SKOOLIMG45,2,8,5(*usf1)
+#POKES$7AAF,$67;$7AB2,$72 #SKOOLIMG45,2,8,5(*usf2)
+#POPS
+#UDGTABLE { #UDGARRAY*usf1,50;usf2(ushields) } TABLE#
 
 [Fact:betweenTheLinesAmounts:Between the lines amounts]
 The number of lines a teacher gives is always a multiple of 50 from 150 to 900
