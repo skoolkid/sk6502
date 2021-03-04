@@ -19,6 +19,7 @@ SectionType=BulletPoints
   - #FACT#seatSelection()
 - Added images to the following bug descriptions and trivia entries:
   - #BUG#theWallMostStaredAt()
+  - #BUG#aStepTooFar()
   - #FACT#unsyncedShields()
 
 [Changelog:20210126]

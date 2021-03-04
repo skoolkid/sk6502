@@ -105,6 +105,13 @@ accompanying sound effect time to play) if he isn't.
 If a teacher is going to teach a class in the Exam Room, he faces the wrong way
 at the doorway when telling the kids to sit down.
 
+#PUSHS
+#PLACECHAR$83,70,10,$D0
+#PLACECHAR$82,66,10,$91
+#PLACECHAR$89,64,10,$C0
+#UDGTABLE { #SDIMG64,7,14,7(stf) } TABLE#
+#POPS
+
 The reason for this behaviour is that the x-coordinate of the top of the
 staircase is defined, in the fifth entry of the table at #A$4454, as 76. This
 means that when the teacher has reached the bottom of the staircase, his
