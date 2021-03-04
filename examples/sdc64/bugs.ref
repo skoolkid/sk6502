@@ -78,6 +78,15 @@ When a teacher is in the Map Room, he faces the wall instead of the class while
 speaking. This is because command list #R$4080($80) sends the teacher up to the
 map, but does not turn him round before starting the class.
 
+#PUSHS
+#PLACECHAR$85,62,3,$60
+#PLACECHAR$82,66,3,$45
+#PLACECHAR$87,68,3,$25
+#PLACECHAR$8C,70,3,$05
+#PLACECHAR$89,72,3,$15
+#UDGTABLE { #SDIMG56,0,20,7(wmsa) } TABLE#
+#POPS
+
 [Bug:hiddenAccusers:Hidden accusers]
 Occasionally during gameplay you might hear something like a truncated sound
 effect, and perhaps even also see ERIC's lines total increase at the same time

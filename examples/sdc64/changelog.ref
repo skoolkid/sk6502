@@ -17,7 +17,9 @@ SectionType=BulletPoints
   - #FACT#doppelwacker()
   - #FACT#wackersOldShoes()
   - #FACT#seatSelection()
-- Added an image to the #FACT#unsyncedShields() trivia entry
+- Added images to the following bug descriptions and trivia entries:
+  - #BUG#theWallMostStaredAt()
+  - #FACT#unsyncedShields()
 
 [Changelog:20210126]
 Initial release.
