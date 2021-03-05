@@ -305,6 +305,12 @@ One obvious consequence of this is that ERIC is considered to be inside the
 head's study (and will be given lines accordingly) even when he's standing just
 outside the doorway.
 
+#PUSHS
+#PLACECHAR$8C,8,3,$80
+#PLACECHAR$83,14,3,$50
+#SDIMG4,0,16,7(obo)
+#POPS
+
 [Bug:disappearingPellet:The disappearing pellet]
 If a pellet bounces off a teacher's head on the top floor of the skool, it will
 disappear before it reaches the top of the screen. The reason for this is that

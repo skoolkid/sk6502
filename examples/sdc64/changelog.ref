@@ -20,6 +20,7 @@ SectionType=BulletPoints
 - Added images to the following bug descriptions and trivia entries:
   - #BUG#theWallMostStaredAt()
   - #BUG#aStepTooFar()
+  - #BUG#offByOne()
   - #FACT#unsyncedShields()
 
 [Changelog:20210126]
