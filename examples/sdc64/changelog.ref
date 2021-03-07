@@ -7,6 +7,7 @@ SectionType=BulletPoints
 -
 
 - Replaced the default SkoolKit image writer with C64ImageWriter
+- Added x-coordinate indicator bars to the #LINK:PlayArea(Play area) page
 - Documented bugs:
   - #BUG#hiddenAccusers()
   - #BUG#creaksSuperiorVision()

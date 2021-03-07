@@ -138,4 +138,13 @@ Content=asm/BBB4.html
 PageContent=#INCLUDE(PlayAreaPage)
 
 [PlayAreaPage]
+#PUSHS
+#POKES0,48;1,32;2,56;3,32;192,1,48,2;193,7,48,2
+#FOR(16,88,8)(x,#POKES(x/4,48+x/10);(x/4+1,48+x%10))
+#UDGARRAY96;$46F8x96@192-287(*xbar)
+#FOR(0,190,2)(i,#WRITE(i,2,i*32,0)(xbar))
+#POPS
+
+#UDGARRAY*xbar(xbar)
 #SKOOLIMG0,0,96,21(skool)
+#UDGARRAY*xbar(xbar)
