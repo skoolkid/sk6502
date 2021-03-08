@@ -79,7 +79,7 @@ that ERIC cannot walk through the wall and meet his fist.
 #PUSHS
 #PLACECHAR$87,36,10,$AB
 #PLACECHAR$8C,39,10,$00
-#UDGTABLE { #SDIMG30,7,20,7(axrv) } TABLE#
+#UDGTABLE { #SDIMG30,7,20,7,36,41,10,13(axrv) } TABLE#
 #POPS
 
 The reason this happens is that the routine at #A$27D2, which checks whether
@@ -265,17 +265,19 @@ depending on where his command list sends him.
 
 #PUSHS
 #POKES$7861,$80,21,256
+#PUSHS #PUSHS #PUSHS #PUSHS
 #UDGTABLE(gallery) {
-  #PUSHS #PLACECHAR$78,66,3,$45 #SDIMG63,0,11,7(ss_mr_boy) #POPS |
-  #PUSHS #PLACECHAR$88,64,3,$35 #SDIMG63,0,11,7(ss_mr_boy_wonder) #POPS |
-  #PUSHS #PLACECHAR$87,68,3,$25 #SDIMG63,0,11,7(ss_mr_angelface) #POPS |
-  #PUSHS #PLACECHAR$89,66,3,$15 #SDIMG63,0,11,7(ss_mr_einstein) #POPS
+  #PLACECHAR$78,66,3,$45 #SDIMG63,0,11,7,66,68,3,6(ss_mr_boy) #POPS |
+  #PLACECHAR$88,64,3,$35 #SDIMG63,0,11,7,64,66,3,6(ss_mr_boy_wonder) #POPS |
+  #PLACECHAR$87,68,3,$25 #SDIMG63,0,11,7,68,70,3,6(ss_mr_angelface) #POPS |
+  #PLACECHAR$89,66,3,$15 #SDIMG63,0,11,7,66,68,3,6(ss_mr_einstein) #POPS
 } TABLE#
 
+#PUSHS #PUSHS #PUSHS
 #UDGTABLE(gallery) {
-  #PUSHS #PLACECHAR$78,60,10,$45 #SDIMG51,7,14,7(ss_er_boy) #POPS |
-  #PUSHS #PLACECHAR$87,53,10,$25 #SDIMG51,7,14,7(ss_er_angelface) #POPS |
-  #PUSHS #PLACECHAR$89,53,10,$15 #SDIMG51,7,14,7(ss_er_einstein) #POPS
+  #PLACECHAR$78,60,10,$45 #SDIMG51,7,14,7,60,62,10,13(ss_er_boy) #POPS |
+  #PLACECHAR$87,53,10,$25 #SDIMG51,7,14,7,53,55,10,13(ss_er_angelface) #POPS |
+  #PLACECHAR$89,53,10,$15 #SDIMG51,7,14,7,53,55,10,13(ss_er_einstein) #POPS
 } TABLE#
 #POPS
 

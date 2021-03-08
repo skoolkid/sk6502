@@ -55,6 +55,7 @@ Afterwards, the blackboard's buffer is restored from page 0 by the routine at
 
 [Index:Graphics:Graphics]
 PlayArea
+InitialAnimatoryStates
 AnimatoryStates
 
 [Index:DataTables:Data tables and buffers]
@@ -81,6 +82,7 @@ Asm-BlackboardBuffer=Blackboard buffer entry at {entry[address]}
 Asm-CharacterBuffer=Character buffer entry at {entry[address]}
 BlackboardBuffer=Blackboard buffer
 CharacterBuffer=Character buffer
+InitialAnimatoryStates=Initial animatory states and locations
 PlayArea=Play area
 TuneBuffer=Tune buffer
 
@@ -89,6 +91,7 @@ AnimatoryStates=graphics/as.html
 BlackboardBuffer=buffers/bbuffer.html
 CharacterBuffer=buffers/cbuffer.html
 CodeFiles={address:04X}.html
+InitialAnimatoryStates=graphics/asstart.html
 LessonIndex=lessons/index.html
 LessonE0=lessons/E0.html
 LessonE1=lessons/E1.html
@@ -134,10 +137,7 @@ Content=asm/4480.html
 [Page:TuneBuffer]
 Content=asm/BBB4.html
 
-[Page:PlayArea]
-PageContent=#INCLUDE(PlayAreaPage)
-
-[PlayAreaPage]
+[xBarFrame]
 #PUSHS
 #POKES0,48;1,32;2,56;3,32;192,1,48,2;193,7,48,2
 #FOR(16,88,8)(x,#POKES(x/4,48+x/10);(x/4+1,48+x%10))
@@ -145,6 +145,25 @@ PageContent=#INCLUDE(PlayAreaPage)
 #FOR(0,190,2)(i,#WRITE(i,2,i*32,0)(xbar))
 #POPS
 
+[Page:PlayArea]
+PageContent=#INCLUDE(PlayAreaPage)
+xBarFrame=#INCLUDE(xBarFrame)
+
+[PlayAreaPage]
 #UDGARRAY*xbar(xbar)
 #SKOOLIMG0,0,96,21(skool)
+#UDGARRAY*xbar(xbar)
+
+[Page:InitialAnimatoryStates]
+PageContent=#INCLUDE(InitialAnimatoryStates)
+xBarFrame=#INCLUDE(xBarFrame)
+
+[InitialAnimatoryStates]
+#UDGARRAY*xbar(xbar)
+#PUSHS
+#FOR(0,20)(c,#POKES((c+$78)*256+$60,#PEEK($4900+c)))
+#FOR(0,20)(c,#POKES((c+$78)*256+$61,#PEEK($4A00+c)))
+#FOR(0,20)(c,#POKES((c+$78)*256+$62,17))
+#SDIMG0,0,96,21,10,72,17,20(initial_as)
+#POPS
 #UDGARRAY*xbar(xbar)

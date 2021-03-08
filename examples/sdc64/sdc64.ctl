@@ -54,16 +54,16 @@
 @ $0002 expand=+    #FOR(0,7)(n,#POKES({{i}}+n,#PEEK({{i}}+n)&#PEEK({{a}}+256+512*n)))
 @ $0002 expand=+  )
 @ $0002 expand=+)
-@ $0002 expand=#DEFINE2(STCOPY,
+@ $0002 expand=#DEFINE3(STCOPY,
 @ $0002 expand=+  #POKES({{i}},#PEEK({0}+$7880+256*{1})) #LET(i={{i}}+1)
 @ $0002 expand=+  #LET(src=#PEEK({0}+$7800+256*{1})+$6000+$40*({0}&$60))
 @ $0002 expand=+  #FOR(0,7)(n,#POKES({{i}}+n,#PEEK({{src}}+n*256)))
-@ $0002 expand=+  #FOR($78,$8C)(c,#ASTOVER({0},{1},c)) #LET(i={{i}}+8)
+@ $0002 expand=+  #IF({2})(#FOR($78,$8C)(c,#ASTOVER({0},{1},c))) #LET(i={{i}}+8)
 @ $0002 expand=+)
-@ $0002 expand=#DEFINE4,1(SDIMG,
+@ $0002 expand=#DEFINE8,1(SDIMG,
 @ $0002 expand=+  #POKES($9900,0,2,$1000);($9A00,$FF,16,$200) #LET(i=0)
-@ $0002 expand=+  #FOR({1},{1}+{3}-1)(y,#FOR({0},{0}+{2}-1)(x,#STCOPY(x,y)))
-@ $0002 expand=+  #UDGARRAY{2};1-(9*({2}*{3})-8)-9@0-(9*({2}*{3}-1))-9({4})
+@ $0002 expand=+  #FOR({1},{1}+{3}-1)(y,#FOR({0},{0}+{2}-1)(x,#STCOPY(x,y,{4}<=x<={5}&&{6}<=y<={7})))
+@ $0002 expand=+  #UDGARRAY{2};1-(9*({2}*{3})-8)-9@0-(9*({2}*{3}-1))-9({8})
 @ $0002 expand=+)
 @ $0002 expand=#DEFINE4,1(WRITE,#LET(x={2})
 @ $0002 expand=+  #FOR({0},{0}+{1}-1)(_a_,#LET(w=#PEEK($4700+#PEEK_a_))#LET(x={{x}}+1)
