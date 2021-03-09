@@ -1364,7 +1364,7 @@ D $1129 The address of this interruptible subcommand routine is placed into a ch
 C $1129,3 Copy the details of the blackboard nearest to the character into page 0.
 C $112C,2 Is the blackboard clean?
 C $112E,2 Branch if so.
-C $1130,3 Otherwise terminate this uninterruptible subcommand.
+C $1130,3 Otherwise terminate this interruptible subcommand.
 C $1133,4 Pick up the current character number from #A$60 and store it in the second byte of the blackboard buffer as a record of who last wrote on the blackboard.
 C $1137,6 Clear any existing submessage address from #A$AE.
 C $113D,2 Pick up the current character number from #A$60.
@@ -3597,14 +3597,15 @@ u $2864 Unused
 B $2864,1,1
 c $2865 Place a continual subcommand routine address into a character's buffer
 D $2865 #ZX$7C5A
-D $2865 Used by command lists #R$40E7($8C), #R$40FA($8E), #R$4123($94), #R$413D($96), #R$4166($9C), #R$4180($9E), #R$41A9($A4), #R$41C3($A6), #R$41E8($AC), #R$41F7($AE), #R$420D($B2), #R$421C($B4), #R$422B($B6), #R$4272($C2), #R$42AD($CC), #R$42CF($CE), #R$4334($D8), #R$436E($DC) and #R$4376($DE).
+D $2865 Used by command lists #R$40E7($8C), #R$40FA($8E), #R$4123($94), #R$413D($96), #R$4166($9C), #R$4180($9E), #R$41A9($A4), #R$41C3($A6), #R$41E8($AC), #R$41F7($AE), #R$420D($B2), #R$421C($B4), #R$422B($B6), #R$4272($C2), #R$42AD($CC), #R$42CF($CE), #R$4334($D8), #R$436E($DC) and #R$4376($DE). The continual subcommand routine address collected from the command list will be one of the following:
+D $2865 #TABLE(default,centre,:w) { =h Address | =h Description } { #A$26EF | #D$26EF } { #A$270D | #D$270D } { #A$2797 | #D$2797 } { #A$2873 | #D$2873 } { #A$2CA5 | #D$2CA5 } TABLE#
 C $2865,10 Collect the address of the continual subcommand routine from the command list and store it at #A$39.
 C $286F,3 Move to the next command in the command list.
 u $2872 Unused
 B $2872,1,1
 c $2873 Make a little boy trip people up
 D $2873 #ZX$69F6
-D $2873 Used by command lists #R$42AD($CC) and #R$42CF($CE). The address of this continual subcommand routine is also placed into the stampede leader's buffer by the routine at #A$2797.
+D $2873 The address of this continual subcommand routine is placed into a little boy's buffer by command lists #R$42AD($CC) and #R$42CF($CE), and is also placed into the stampede leader's buffer by the routine at #A$2797.
 C $2873,2 Pick up the boy's animatory state from #A$26.
 C $2875,1 Is the boy midstride?
 C $2876,2 Return if so.
@@ -5202,7 +5203,16 @@ C $3B90,6 Reset bit 6 of the flags byte at #A$3F: the character is walking (or o
 C $3B96,2 Is bit 1 or bit 3 of the flags byte set (meaning the character is a stampeding boy, MR WACKER looking for the pea-shooter, or EINSTEIN waiting to answer a teacher's question)?
 C $3B98,2 Branch if not to move the character now.
 C $3B9A,6 Set bit 6 of the flags byte at #A$3F: the character is running (or otherwise moving quickly).
-N $3BA0 Now we consider the character's next move.
+N $3BA0 Now we consider the character's next move. From this point, the following steps are taken:
+N $3BA0 #LIST { If there is an uninterruptible subcommand routine address at #A$B0, jump to it. } { Otherwise, if there is a continual subcommand routine address at #A$39, jump to it (and then return to execute the next step below). } { If there is an interruptible subcommand routine address at #A$AA, jump to it. } { Otherwise, restart the command list if bit 7 of the flags byte at #A$3F is set. } { If there is a primary command routine address at #A$29, jump to it. } { Otherwise, collect the next primary command routine address from the command list, place it at #A$29, and jump to it. } LIST#
+N $3BA0 The address of one of the following uninterruptible subcommand routines may be present at #A$B0:
+N $3BA0 #TABLE(default,centre,:w) { =h Address | =h Description } { #A$0FBA | #D$0FBA } { #A$1042 | #D$1042 } { #A$1CB4 | #D$1CB4 } { #A$1CCB | #D$1CCB } { #A$1CEC | #D$1CEC } { #A$267A | #D$267A } { #A$2696 | #D$2696 } { #A$26E0 | #D$26E0 } { #A$2A43 | #D$2A43 } { #A$2B21 | #D$2B21 } { #A$2B3F | #D$2B3F } { #A$2B52 | #D$2B52 } { #A$2B9F | #D$2B9F } TABLE#
+N $3BA0 The address of one of the following continual subcommand routines may be present at #A$39:
+N $3BA0 #TABLE(default,centre,:w) { =h Address | =h Description } { #A$26EF | #D$26EF } { #A$270D | #D$270D } { #A$2797 | #D$2797 } { #A$2873 | #D$2873 } { #A$2CA5 | #D$2CA5 } TABLE#
+N $3BA0 The address of one of the following interruptible subcommand routines (or an entry point thereof) may be present at #A$AA:
+N $3BA0 #TABLE(default,centre,:w) { =h Address | =h Description } { #A$0C3F | #D$0C3F } { #A$1129 | #D$1129 } { #A$136F | #D$136F } { #A$13F3 | #D$13F3 } { #A$16E9 | #D$16E9 } { #A$1F1E | Make a teacher wait for EINSTEIN to finish speaking } { #A$2387 | #D$2387 } TABLE#
+N $3BA0 The address of one of the following primary command routines (or an entry point thereof) may be present at #A$29:
+N $3BA0 #TABLE(default,centre,:w) { =h Address | =h Description } { #A$09E9 | #D$09E9 } { #A$0A57 | #D$0A57 } { #A$0A58 | #D$0A58 } { #A$0E35 | #D$0E35 } { #A$0EB4 | #D$0EB4 } { #A$0EC2 | #D$0EC2 } { #A$105B | #D$105B } { #A$1A04 | #D$1A04 } { #A$1D16 | #D$1D16 } { #A$1F4D | #D$1F4D } { #A$1FA0 | #D$1FA0 } { #A$2757 | #D$2757 } { #A$277D | #D$277D } { #A$27AB | #D$27AB } { #A$284F | #D$284F } { #A$2865 | #D$2865 } { #A$2885 | #D$2885 } { #A$28AB | #D$28AB } { #A$28BC | #D$28BC } { #A$2A99 | #D$2A99 } { #A$2AF9 | #D$2AF9 } { #A$2B0D | #D$2B0D } TABLE#
 C $3BA0,2 Is there an uninterruptible subcommand routine address at #A$B0?
 C $3BA2,2 Branch if not.
 C $3BA4,3 Otherwise jump to the uninterruptible subcommand routine.
