@@ -6184,27 +6184,27 @@ B $48F0,16,c8,8
 b $4900 Initial animatory states of the characters
 D $4900 #ZX$DB00
 D $4900 Used by the routine at #A$2E13. The characters' initial x-coordinates are located at #A$4A00.
-B $4900,1,1 Little boy no. 1
-B $4901,1,1 Little boy no. 2
-B $4902,1,1 Little boy no. 3
-B $4903,1,1 Little boy no. 4
-B $4904,1,1 Little boy no. 5
-B $4905,1,1 Little boy no. 6
-B $4906,1,1 Little boy no. 7
-B $4907,1,1 Little boy no. 8
-B $4908,1,1 Little boy no. 9
-B $4909,1,1 Little boy no. 10
-B $490A,1,1 Little boy no. 11
-B $490B,1,1 MR WACKER
-B $490C,1,1 MR ROCKITT
-B $490D,1,1 MR WITHIT
-B $490E,1,1 MR CREAK
-B $490F,1,1 ANGELFACE
-B $4910,1,1 BOY WONDER
-B $4911,1,1 EINSTEIN
-B $4912,1,1 BOY WONDER's pellet
-B $4913,1,1 ERIC's pellet
-B $4914,1,1 ERIC
+B $4900,1,1 Little boy no. 1 (#AS$40($40) - standing, facing left)
+B $4901,1,1 Little boy no. 2 (#AS$40($C0) - standing, facing right)
+B $4902,1,1 Little boy no. 3 (#AS$40($40) - standing, facing left)
+B $4903,1,1 Little boy no. 4 (#AS$40($C0) - standing, facing right)
+B $4904,1,1 Little boy no. 5 (#AS$40($40) - standing, facing left)
+B $4905,1,1 Little boy no. 6 (#AS$40($C0) - standing, facing right)
+B $4906,1,1 Little boy no. 7 (#AS$40($40) - standing, facing left)
+B $4907,1,1 Little boy no. 8 (#AS$40($C0) - standing, facing right)
+B $4908,1,1 Little boy no. 9 (#AS$40($40) - standing, facing left)
+B $4909,1,1 Little boy no. 10 (#AS$40($C0) - standing, facing right)
+B $490A,1,1 Little boy no. 11 (#AS$40($40) - standing, facing left)
+B $490B,1,1 MR WACKER (#AS$50($50) - standing, facing left)
+B $490C,1,1 MR ROCKITT (#AS$58($58) - standing, facing left)
+B $490D,1,1 MR WITHIT (#AS$60($60) - standing, facing left)
+B $490E,1,1 MR CREAK (#AS$48($48) - standing, facing left)
+B $490F,1,1 ANGELFACE (#AS$20($20) - standing, facing left)
+B $4910,1,1 BOY WONDER (#AS$30($30) - standing, facing left)
+B $4911,1,1 EINSTEIN (#AS$10($10) - standing, facing left)
+B $4912,1,1 BOY WONDER's pellet (#AS$7F($7F))
+B $4913,1,1 ERIC's pellet (#AS$7F($7F))
+B $4914,1,1 ERIC (#AS$00($00) - standing, facing left)
 u $4915 Unused
 B $4915,11,8,3
 b $4920 Font graphic data for CHR$(32-127) (pixel column 2)
