@@ -2924,13 +2924,12 @@ C $205C,2 Pick up the teacher's x-coordinate from #A$FC.
 C $205E,5 Is S'>T+5 (meaning the teacher is a good distance from the right edge of the screen)?
 C $2063,2 Branch if not.
 C $2065,2 Pick up the teacher's x-coordinate from #A$FC.
-C $2067,3 Subtract 3 to get the x-coordinate of the left edge of the message box.
-C $206A,3 Subtract the x-coordinate of the leftmost column of the skool on screen to get the screen x-coordinate.
+C $2067,6 Subtract 3 and then S (the x-coordinate of the leftmost column of the skool on screen) to get the cell x-coordinate of the left edge of the message box. This actually shifts the centre of the message box well to the left of the teacher's head, which is probably a #BUG#misplacedMessageBox(bug).
 C $206D,3 Jump forward.
-C $2070,2 When the teacher is close to the left edge of the screen, set the message box screen x-coordinate to 4.
+C $2070,2 When the teacher is close to the left edge of the screen, this sets the x-coordinate of sprite #1 (and therefore the left edge of the message box) to 32.
 C $2072,3 Jump forward.
-C $2075,2 When the teacher is close to the right edge of the screen, set the message box screen x-coordinate to 32.
-C $2077,2 Save the screen x-coordinate of the left edge of the message box at #A$9A.
+C $2075,2 When the teacher is close to the right edge of the screen, this sets the x-coordinate of sprite #1 (and therefore the left edge of the message box) to 256.
+C $2077,2 Save this cell x-coordinate at #A$9A, where it will never be used.
 C $2079,3 Multiply by 8 to get the corresponding pixel x-coordinate.
 C $207C,2 Branch unless the pixel x-coordinate is greater than 256.
 C $207E,5 Set bit 8 of the x-coordinates of sprites #0-#7.
