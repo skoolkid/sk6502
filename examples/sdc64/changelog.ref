@@ -10,6 +10,7 @@ SectionType=BulletPoints
 - Added x-coordinate indicator bars to the #LINK:PlayArea(Play area) page
 - Added the #LINK:InitialAnimatoryStates(Initial animatory states and
   locations) page
+- Added a memory map page for #LINK:TemporaryVariables(temporary variables)
 - Documented bugs:
   - #BUG#hiddenAccusers()
   - #BUG#creaksSuperiorVision()

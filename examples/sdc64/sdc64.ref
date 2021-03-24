@@ -19,6 +19,7 @@ Copyright=&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dym
 [EntryGroups]
 BlackboardBuffer=$19,$1A,$DF
 CharacterBuffer=$26,$29,$39,$3B,$3D,$3F,$A6,$A8,$A9,$AA,$AC,$AE,$B0,$B2,$B3,$B4,$B5,$FB,$FF
+TemporaryVariables=$07,$12,$15,$1B,$21,$27,$2F,$31,$42,$47,$4D,$5A,$72,$84,$9A,$A2,$C0,$C3,$C7,$CA,$CE,$D3,$D6,$DA,$E3,$E6,$E9,$EC,$F2
 
 [MemoryMap:MemoryMap]
 PageByteColumns=0
@@ -53,6 +54,10 @@ copied to the addresses in page 0 shown below by the routine at #A$1421.
 Afterwards, the blackboard's buffer is restored from page 0 by the routine at
 #A$1445.
 
+[MemoryMap:TemporaryVariables]
+Includes=TemporaryVariables
+LengthColumn=1
+
 [Index:Graphics:Graphics]
 PlayArea
 InitialAnimatoryStates
@@ -62,6 +67,7 @@ AnimatoryStates
 GameStatusBuffer
 CharacterBuffer
 BlackboardBuffer
+TemporaryVariables
 TuneBuffer
 MainTimetable
 LessonIndex
@@ -74,16 +80,19 @@ MainTimetable=Main timetable
 [PageHeaders]
 Asm-BlackboardBuffer=Blackboard buffer
 Asm-CharacterBuffer=Character buffer
+Asm-TemporaryVariables=Temporary variables
 GameIndex=The complete<>C64 disassembly
 
 [Titles]
 AnimatoryStates=Animatory states
 Asm-BlackboardBuffer=Blackboard buffer entry at {entry[address]}
 Asm-CharacterBuffer=Character buffer entry at {entry[address]}
+Asm-TemporaryVariables=Temporary variables at {entry[address]}
 BlackboardBuffer=Blackboard buffer
 CharacterBuffer=Character buffer
 InitialAnimatoryStates=Initial animatory states and locations
 PlayArea=Play area
+TemporaryVariables=Temporary variables
 TuneBuffer=Tune buffer
 
 [Paths]
@@ -126,6 +135,7 @@ LessonFD=lessons/FD.html
 LessonFE=lessons/FE.html
 LessonFF=lessons/FF.html
 PlayArea=graphics/playarea.html
+TemporaryVariables=buffers/tvars.html
 UDGFilename={addr:04x}
 
 [Page:MainTimetable]
