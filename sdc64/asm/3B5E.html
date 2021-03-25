@@ -207,7 +207,249 @@ It's time to consider a movement speed change for this character.
 <span id="3BA0"></span>
 <div class="comments">
 <div class="paragraph">
-Now we consider the character's next move.
+Now we consider the character's next move. From this point, the following steps are taken:
+</div>
+<div class="paragraph">
+<ul class="">
+<li>If there is an uninterruptible subcommand routine address at <a href="00B0.html">$B0</a>, jump to it.</li>
+<li>Otherwise, if there is a continual subcommand routine address at <a href="0039.html">$39</a>, jump to it (and then return to execute the next step below).</li>
+<li>If there is an interruptible subcommand routine address at <a href="00AA.html">$AA</a>, jump to it.</li>
+<li>Otherwise, restart the command list if bit 7 of the flags byte at <a href="003F.html">$3F</a> is set.</li>
+<li>If there is a primary command routine address at <a href="0029.html">$29</a>, jump to it.</li>
+<li>Otherwise, collect the next primary command routine address from the command list, place it at <a href="0029.html">$29</a>, and jump to it.</li>
+</ul>
+</div>
+<div class="paragraph">
+The address of one of the following uninterruptible subcommand routines may be present at <a href="00B0.html">$B0</a>:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Address</th>
+<th colspan="1" rowspan="1">Description</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="0FBA.html">$0FBA</a></td>
+<td class="" colspan="1" rowspan="1">Control the horizontal flight of a catapult pellet</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="1042.html">$1042</a></td>
+<td class="" colspan="1" rowspan="1">Control the vertical flight of a catapult pellet</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="1CB4.html">$1CB4</a></td>
+<td class="" colspan="1" rowspan="1">Deal with a character who's been dethroned (1)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="1CCB.html">$1CCB</a></td>
+<td class="" colspan="1" rowspan="1">Deal with a character who's been dethroned (2)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="1CEC.html">$1CEC</a></td>
+<td class="" colspan="1" rowspan="1">Deal with a character who is looking for a seat</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="267A.html">$267A</a></td>
+<td class="" colspan="1" rowspan="1">Make ANGELFACE throw a punch (1)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2696.html">$2696</a></td>
+<td class="" colspan="1" rowspan="1">Make ANGELFACE throw a punch (2)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="26E0.html">$26E0</a></td>
+<td class="" colspan="1" rowspan="1">Make ANGELFACE finish punching or BOY WONDER finish firing his catapult</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2A43.html">$2A43</a></td>
+<td class="" colspan="1" rowspan="1">Deal with a character who has been knocked over</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2B21.html">$2B21</a></td>
+<td class="" colspan="1" rowspan="1">Make BOY WONDER fire his catapult (1)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2B3F.html">$2B3F</a></td>
+<td class="" colspan="1" rowspan="1">Make BOY WONDER fire his catapult (2)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2B52.html">$2B52</a></td>
+<td class="" colspan="1" rowspan="1">Make BOY WONDER fire his catapult (3)</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2B9F.html">$2B9F</a></td>
+<td class="" colspan="1" rowspan="1">Make BOY WONDER fire his catapult (4)</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The address of one of the following continual subcommand routines may be present at <a href="0039.html">$39</a>:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Address</th>
+<th colspan="1" rowspan="1">Description</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="26EF.html">$26EF</a></td>
+<td class="" colspan="1" rowspan="1">Check whether ANGELFACE is touching ERIC</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="270D.html">$270D</a></td>
+<td class="" colspan="1" rowspan="1">Make ANGELFACE hit now and then</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2797.html">$2797</a></td>
+<td class="" colspan="1" rowspan="1">Make the stampede leader trip people up on the way to a random location</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2873.html">$2873</a></td>
+<td class="" colspan="1" rowspan="1">Make a little boy trip people up</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2CA5.html">$2CA5</a></td>
+<td class="" colspan="1" rowspan="1">Make BOY WONDER fire his catapult now and then</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The address of one of the following interruptible subcommand routines (or an entry point thereof) may be present at <a href="00AA.html">$AA</a>:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Address</th>
+<th colspan="1" rowspan="1">Description</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="0C3F.html">$0C3F</a></td>
+<td class="" colspan="1" rowspan="1">Make a character track down ERIC</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="1129.html">$1129</a></td>
+<td class="" colspan="1" rowspan="1">Make a character write on a blackboard</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="136F.html">$136F</a></td>
+<td class="" colspan="1" rowspan="1">Guide a character to an intermediate destination</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="13F3.html">$13F3</a></td>
+<td class="" colspan="1" rowspan="1">Guide a character up or down a staircase</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="16E9.html">$16E9</a></td>
+<td class="" colspan="1" rowspan="1">Make a teacher wipe a blackboard</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="1EE3.html#1F1E">$1F1E</a></td>
+<td class="" colspan="1" rowspan="1">Make a teacher wait for EINSTEIN to finish speaking</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2387.html">$2387</a></td>
+<td class="" colspan="1" rowspan="1">Make a character speak</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The address of one of the following primary command routines (or an entry point thereof) may be present at <a href="0029.html">$29</a>:
+</div>
+<div class="paragraph">
+<table class="default">
+<tr>
+<th colspan="1" rowspan="1">Address</th>
+<th colspan="1" rowspan="1">Description</th>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="09E9.html">$09E9</a></td>
+<td class="" colspan="1" rowspan="1">Make a teacher conduct a class</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="0A57.html">$0A57</a></td>
+<td class="" colspan="1" rowspan="1">Do nothing</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="0A58.html">$0A58</a></td>
+<td class="" colspan="1" rowspan="1">Make a teacher conduct a class with ERIC</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="0E35.html">$0E35</a></td>
+<td class="" colspan="1" rowspan="1">Make a teacher perform dinner duty</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="0EB4.html">$0EB4</a></td>
+<td class="" colspan="1" rowspan="1">Restart the command list</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="0EC2.html">$0EC2</a></td>
+<td class="" colspan="1" rowspan="1">Restart the command list unless it's time to start the lesson</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="105B.html">$105B</a></td>
+<td class="" colspan="1" rowspan="1">Make a character go to a random location</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="1A04.html">$1A04</a></td>
+<td class="" colspan="1" rowspan="1">Make a character walk up and down until a certain time</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="1D16.html">$1D16</a></td>
+<td class="" colspan="1" rowspan="1">Make a character find a seat</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="1F4D.html">$1F4D</a></td>
+<td class="" colspan="1" rowspan="1">Control EINSTEIN during class</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="1FA0.html">$1FA0</a></td>
+<td class="" colspan="1" rowspan="1">Make a teacher tell the kids to sit down</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2757.html">$2757</a></td>
+<td class="" colspan="1" rowspan="1">Make a teacher tell ERIC to go home, and end the game</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="277D.html">$277D</a></td>
+<td class="" colspan="1" rowspan="1">Make MR WACKER give ERIC 2000 lines</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="27AB.html">$27AB</a></td>
+<td class="" colspan="1" rowspan="1">Make a character walk up and down a few times or until a certain time</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="284F.html">$284F</a></td>
+<td class="" colspan="1" rowspan="1">Make MR WACKER run to a given location</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2865.html">$2865</a></td>
+<td class="" colspan="1" rowspan="1">Place a continual subcommand routine address into a character's buffer</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2885.html">$2885</a></td>
+<td class="" colspan="1" rowspan="1">Make a little boy find and follow little boy no. 1</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="28AB.html">$28AB</a></td>
+<td class="" colspan="1" rowspan="1">Make BOY WONDER write on a blackboard</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="28BC.html">$28BC</a></td>
+<td class="" colspan="1" rowspan="1">Make little boy no. 10 give ERIC a message</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2A99.html">$2A99</a></td>
+<td class="" colspan="1" rowspan="1">Make a character find ERIC</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2AF9.html">$2AF9</a></td>
+<td class="" colspan="1" rowspan="1">Raise the signal for a certain event and move to the next command</td>
+</tr>
+<tr>
+<td class="centre" colspan="1" rowspan="1"><a href="2B0D.html">$2B0D</a></td>
+<td class="" colspan="1" rowspan="1">Lower the signal for a certain event and move to the next command</td>
+</tr>
+</table>
 </div>
 </div>
 </td>
@@ -393,9 +635,9 @@ Next: <a href="3BE7.html">$3BE7</a>
 </tr>
 </table>
 <footer>
-<div class="release"></div>
+<div class="release">The complete Skool Daze C64 disassembly 20210325</div>
 <div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.4 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
 </footer>
 </body>
 </html>

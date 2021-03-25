@@ -151,7 +151,7 @@ We start by comparing the teacher's x-coordinate (T) with the x-coordinates of t
 <tr>
 <td class="address-1"><span id="2067"></span>$2067</td>
 <td class="instruction">SEC</td>
-<td class="comment-1" rowspan="2">Subtract 3 to get the x-coordinate of the left edge of the message box.</td>
+<td class="comment-1" rowspan="4">Subtract 3 and then S (the x-coordinate of the leftmost column of the skool on screen) to get the cell x-coordinate of the left edge of the message box. This actually shifts the centre of the message box well to the left of the teacher's head, which is probably a <a href="../reference/bugs.html#misplacedMessageBox">bug</a>.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="2068"></span>$2068</td>
@@ -160,7 +160,6 @@ We start by comparing the teacher's x-coordinate (T) with the x-coordinates of t
 <tr>
 <td class="address-1"><span id="206A"></span>$206A</td>
 <td class="instruction">SEC</td>
-<td class="comment-1" rowspan="2">Subtract the x-coordinate of the leftmost column of the skool on screen to get the screen x-coordinate.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="206B"></span>$206B</td>
@@ -174,7 +173,7 @@ We start by comparing the teacher's x-coordinate (T) with the x-coordinates of t
 <tr>
 <td class="address-2"><span id="2070"></span>$2070</td>
 <td class="instruction">LDA #$04</td>
-<td class="comment-1" rowspan="1">When the teacher is close to the left edge of the screen, set the message box screen x-coordinate to 4.</td>
+<td class="comment-1" rowspan="1">When the teacher is close to the left edge of the screen, this sets the x-coordinate of sprite #1 (and therefore the left edge of the message box) to 32.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="2072"></span>$2072</td>
@@ -184,12 +183,12 @@ We start by comparing the teacher's x-coordinate (T) with the x-coordinates of t
 <tr>
 <td class="address-2"><span id="2075"></span>$2075</td>
 <td class="instruction">LDA #$20</td>
-<td class="comment-1" rowspan="1">When the teacher is close to the right edge of the screen, set the message box screen x-coordinate to 32.</td>
+<td class="comment-1" rowspan="1">When the teacher is close to the right edge of the screen, this sets the x-coordinate of sprite #1 (and therefore the left edge of the message box) to 256.</td>
 </tr>
 <tr>
 <td class="address-2"><span id="2077"></span>$2077</td>
 <td class="instruction">STA $9A</td>
-<td class="comment-1" rowspan="1">Save the screen x-coordinate of the left edge of the message box at <a href="009A.html">$9A</a>.</td>
+<td class="comment-1" rowspan="1">Save this cell x-coordinate at <a href="009A.html">$9A</a>, where it will never be used.</td>
 </tr>
 <tr>
 <td class="address-1"><span id="2079"></span>$2079</td>
@@ -453,9 +452,9 @@ Next: <a href="20F5.html">$20F5</a>
 </tr>
 </table>
 <footer>
-<div class="release"></div>
+<div class="release">The complete Skool Daze C64 disassembly 20210325</div>
 <div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.4 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
 </footer>
 </body>
 </html>

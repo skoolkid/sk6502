@@ -22,15 +22,20 @@
 <li><a href="#betweenTheLinesAmounts">Between the lines amounts</a></li>
 <li><a href="#aQuickMessage">A quick message</a></li>
 <li><a href="#linesMessageVSpeechBubble">Lines message v. speech bubble</a></li>
+<li><a href="#stridentScrawling">Strident scrawling</a></li>
 <li><a href="#oneStampedeOutOfTwo">One stampede out of two</a></li>
+<li><a href="#angelfacesXrayVision">ANGELFACE's X-ray vision</a></li>
 <li><a href="#withitUnedited">WITHIT unedited</a></li>
 <li><a href="#theSpecialPlaytimeTruce">The special playtime truce</a></li>
 <li><a href="#theAccessibleBackSeat">The accessible back seat</a></li>
 <li><a href="#boy11">The importance of little boy no. 11</a></li>
 <li><a href="#skoolTunes">Skool tunes</a></li>
 <li><a href="#onePaceOrThree">One pace or three?</a></li>
+<li><a href="#doppelwacker">Doppelwacker</a></li>
+<li><a href="#wackersOldShoes">MR WACKER's old shoes</a></li>
 <li><a href="#pointsForAP">Points for a punching</a></li>
 <li><a href="#bwShootsEricScores">BOY WONDER shoots, ERIC scores</a></li>
+<li><a href="#seatSelection">Seat selection</a></li>
 <li><a href="#shieldStats">Shield stats</a></li>
 <li><a href="#teacherRooms">Teachers and classrooms</a></li>
 <li><a href="#timetableStats">Timetable stats</a></li>
@@ -113,11 +118,18 @@ never appears in the game. Has he been expelled?
 <div class="box-title">Unsynchronised shields</div>
 <div class="paragraph">
 Shields that have been hit by ERIC don't necessarily flash in sync (as they do
-by virtue of hardware design in the ZX Spectrum version): some will be
-displayed with inverted colours when others are not. This is because the
-interrupt routine at <a href="../asm/39C7.html">$39C7</a> that makes the shields flash will swap a shield's
-foreground and background colours when a shield is hit, regardless of the
-current colour status of any other shields.
+by virtue of hardware design in the ZX Spectrum version): some may be displayed
+with inverted colours when others are not. This is because the interrupt
+routine at <a href="../asm/39C7.html">$39C7</a> that makes the shields flash will swap a shield's foreground
+and background colours when a shield is hit, regardless of the current colour
+status of any other shields.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="ushields" src="../images/udgs/ushields.png" /></td>
+</tr>
+</table>
 </div>
 </div>
 <div><span id="betweenTheLinesAmounts"></span></div>
@@ -155,8 +167,16 @@ both the lines message box and the speech bubble are drawn by using sprites,
 and there are not enough sprites to draw both simultaneously.
 </div>
 </div>
-<div><span id="oneStampedeOutOfTwo"></span></div>
+<div><span id="stridentScrawling"></span></div>
 <div class="box box-1">
+<div class="box-title">Strident scrawling</div>
+<div class="paragraph">
+When ERIC writes on a blackboard, the letters always appear in upper case. This
+is unlike the ZX Spectrum version, where ERIC can write in lower case as well.
+</div>
+</div>
+<div><span id="oneStampedeOutOfTwo"></span></div>
+<div class="box box-2">
 <div class="box-title">One stampede out of two</div>
 <div class="paragraph">
 Playtime period <a href="../lessons/FC.html">$FC</a>, in which the little boys run around the
@@ -167,6 +187,33 @@ once, however.
 <div class="paragraph">
 In the ZX Spectrum version, there are three stampede playtimes in the main
 timetable: one instance of $FD, and two instances of $FC.
+</div>
+</div>
+<div><span id="angelfacesXrayVision"></span></div>
+<div class="box box-1">
+<div class="box-title">ANGELFACE's X-ray vision</div>
+<div class="paragraph">
+When ANGELFACE is in the White Room waiting for the teacher to arrive and ERIC
+is in the Exam Room next to and facing the wall, ANGELFACE will throw punches
+at the White Room wall, apparently aware that ERIC is behind it, but unaware
+that ERIC cannot walk through the wall and meet his fist.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="axrv" src="../images/udgs/axrv.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The reason this happens is that the routine at <a href="../asm/27D2.html">$27D2</a>, which checks whether
+anyone is within punching range, does not take into account the walls between
+classrooms.
+</div>
+<div class="paragraph">
+However, ANGELFACE will only perform this trick in the White Room: in the other
+classrooms he doesn't get close enough to the wall to be able to 'see' anyone
+through it.
 </div>
 </div>
 <div><span id="withitUnedited"></span></div>
@@ -276,6 +323,189 @@ current x-coordinate and do an EOR $03 on it: see the sections of code at
 <a href="../asm/09E9.html#0A47">$0A47</a> and <a href="../asm/0A58.html#0B0C">$0B0C</a>.
 </div>
 </div>
+<div><span id="doppelwacker"></span></div>
+<div class="box box-2">
+<div class="box-title">Doppelwacker</div>
+<div class="paragraph">
+The sprite graphic data is split between two base pages: page <a href="../asm/9900.html">$99</a> for
+the boys and the catapult pellet, and page <a href="../asm/A900.html">$A9</a> for the teachers.
+However, the graphic data based in page $99 contains exact copies of most of MR
+WACKER's sprites:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="2" rowspan="1">$99</td>
+<td class="" colspan="2" rowspan="1">$A9</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="as5099x2" src="../images/udgs/as5099x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD099x2" src="../images/udgs/asD099x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="as50A9x2" src="../images/udgs/as50A9x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD0A9x2" src="../images/udgs/asD0A9x2.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="as5199x2" src="../images/udgs/as5199x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD199x2" src="../images/udgs/asD199x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="as51A9x2" src="../images/udgs/as51A9x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD1A9x2" src="../images/udgs/asD1A9x2.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="as5299x2" src="../images/udgs/as5299x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD299x2" src="../images/udgs/asD299x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="as52A9x2" src="../images/udgs/as52A9x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD2A9x2" src="../images/udgs/asD2A9x2.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="as5399x2" src="../images/udgs/as5399x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD399x2" src="../images/udgs/asD399x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="as53A9x2" src="../images/udgs/as53A9x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD3A9x2" src="../images/udgs/asD3A9x2.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="as5599x2" src="../images/udgs/as5599x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD599x2" src="../images/udgs/asD599x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="as55A9x2" src="../images/udgs/as55A9x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD5A9x2" src="../images/udgs/asD5A9x2.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="as5799x2" src="../images/udgs/as5799x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD799x2" src="../images/udgs/asD799x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="as57A9x2" src="../images/udgs/as57A9x2.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD7A9x2" src="../images/udgs/asD7A9x2.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+This suggests that the original plan was to have the graphic data for every
+character based in page $99, but space ran out while adding MR WACKER's
+sprites, so the graphic data for him and the other teachers had to go to page
+$A9.
+</div>
+</div>
+<div><span id="wackersOldShoes"></span></div>
+<div class="box box-1">
+<div class="box-title">MR WACKER's old shoes</div>
+<div class="paragraph">
+The <a href="facts.html#doppelwacker">copies of MR WACKER's sprites based in page $99</a> show
+a slight difference in animatory states $51 and $D1 compared to the official
+sprites based in page $A9:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="2" rowspan="1">$99</td>
+<td class="" colspan="2" rowspan="1">$A9</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="as5199x4" src="../images/udgs/as5199x4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD199x4" src="../images/udgs/asD199x4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="as51A9x4" src="../images/udgs/as51A9x4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD1A9x4" src="../images/udgs/asD1A9x4.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">$51</td>
+<td class="" colspan="1" rowspan="1">$D1</td>
+<td class="" colspan="1" rowspan="1">$51</td>
+<td class="" colspan="1" rowspan="1">$D1</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+Note the incorrect tile at the bottom right of animatory state $51, and the
+corresponding incorrect tile at the bottom left of animatory state $D1. An
+examination of the tile references used to build these sprites reveals
+something interesting:
+</div>
+<div class="paragraph">
+<table>
+<tr>
+<td>
+<table class="asgrid">
+<tr>
+<td class="" colspan="1" rowspan="1">$5A</td>
+<td class="" colspan="1" rowspan="1">$59</td>
+<td class="" colspan="1" rowspan="1">$00</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">$58</td>
+<td class="" colspan="1" rowspan="1">$57</td>
+<td class="" colspan="1" rowspan="1">$64</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">$56</td>
+<td class="" colspan="1" rowspan="1">$55</td>
+<td class="" colspan="1" rowspan="1">$54</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">$53</td>
+<td class="" colspan="1" rowspan="1">$52</td>
+<td class="" colspan="1" rowspan="1"><b>$0D</b></td>
+</tr>
+</table>
+</td>
+<td style="width: 20px"></td>
+<td>
+<table class="asgrid">
+<tr>
+<td class="" colspan="1" rowspan="1">$00</td>
+<td class="" colspan="1" rowspan="1">$D9</td>
+<td class="" colspan="1" rowspan="1">$DA</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">$E4</td>
+<td class="" colspan="1" rowspan="1">$D7</td>
+<td class="" colspan="1" rowspan="1">$D8</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">$D4</td>
+<td class="" colspan="1" rowspan="1">$D5</td>
+<td class="" colspan="1" rowspan="1">$D6</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><b>$8D</b></td>
+<td class="" colspan="1" rowspan="1">$D2</td>
+<td class="" colspan="1" rowspan="1">$D3</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The numbering of the tiles suggests that the bottom-right tile of animatory
+state $51 was originally $51 (not $0D), and the bottom-left tile of animatory
+state $D1 was originally $D1 (not $8D). If those tile references are changed to
+$51 and $D1, the shoe on MR WACKER's back foot takes a different shape:
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="2" rowspan="1">$99 (modified)</td>
+<td class="" colspan="2" rowspan="1">$A9</td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="as5199x4wos" src="../images/udgs/as5199x4wos.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD199x4wos" src="../images/udgs/asD199x4wos.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="as51A9x4" src="../images/udgs/as51A9x4.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="asD1A9x4" src="../images/udgs/asD1A9x4.png" /></td>
+</tr>
+<tr>
+<td class="" colspan="1" rowspan="1">$51</td>
+<td class="" colspan="1" rowspan="1">$D1</td>
+<td class="" colspan="1" rowspan="1">$51</td>
+<td class="" colspan="1" rowspan="1">$D1</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+So why didn't copies of tiles $51 and $D1 from page $99 (which seem to finish
+MR WACKER's back foot better than tiles $0D and $8D do) make their way into
+page $A9? The most likely answer is lack of space: there are no unused sprite
+tiles based in page $A9, and tiles $0D and $8D are similar enough to tiles $51
+and $D1 to make reasonable substitutes.
+</div>
+</div>
 <div><span id="pointsForAP"></span></div>
 <div class="box box-2">
 <div class="box-title">Points for a punching</div>
@@ -300,8 +530,60 @@ head, hit a shield, and make it flash - scoring even more points - but that
 would be a rare occurrence indeed.
 </div>
 </div>
-<div><span id="shieldStats"></span></div>
+<div><span id="seatSelection"></span></div>
 <div class="box box-2">
+<div class="box-title">Seat selection</div>
+<div class="paragraph">
+Typically, when a teacher arrives at the classroom doorway to start the lesson,
+the boys will rush to the back seat and sit down. However, if a boy is late for
+class in the Map Room or Exam Room - that is, he arrives at the doorway after
+the teacher already has - then he will take some other seat (as shown below),
+depending on where his command list sends him.
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="ss_mr_boy" src="../images/udgs/ss_mr_boy.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ss_mr_boy_wonder" src="../images/udgs/ss_mr_boy_wonder.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ss_mr_angelface" src="../images/udgs/ss_mr_angelface.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ss_mr_einstein" src="../images/udgs/ss_mr_einstein.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<table class="gallery">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="ss_er_boy" src="../images/udgs/ss_er_boy.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ss_er_angelface" src="../images/udgs/ss_er_angelface.png" /></td>
+<td class="" colspan="1" rowspan="1"><img alt="ss_er_einstein" src="../images/udgs/ss_er_einstein.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The reason this happens to a latecomer is that he doesn't get a chance to walk
+around before having to find a seat and sit down, because the teacher has
+already arrived, the corresponding signal has already been raised, and so the
+routine at <a href="../asm/1A04.html">$1A04</a> moves straight to the next command in the command list:
+<a href="../asm/1D16.html">$1D16</a> (find a seat and sit down). That command makes the boy move forward to
+the next seat if he's facing left (which is the case if he's just entered the
+Map Room or Exam Room), or walk to the back of the classroom if he's facing
+right. When the boy does get a chance to walk around first, he ends up facing
+right before that command kicks in, and then keeps moving right to the back of
+the class.
+</div>
+<div class="paragraph">
+Note that BOY WONDER always tries to sit in the back seat in the Exam Room,
+because after entering that room he goes to the blackboard first, and then
+walks to the middle of the room, at which point he is facing right.
+</div>
+<div class="paragraph">
+This unusual seat selection does not happen in the Reading Room or White Room,
+because the boy is facing right when he arrives in the classroom, and so keeps
+moving right to the back of the class.
+</div>
+</div>
+<div><span id="shieldStats"></span></div>
+<div class="box box-1">
 <div class="box-title">Shield stats</div>
 <div class="paragraph">
 Of the 15 shields on display around the skool, eight are blue and seven are
@@ -340,7 +622,7 @@ and the remaining five display the triangle design (all blue):
 </div>
 </div>
 <div><span id="teacherRooms"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Teachers and classrooms</div>
 <div class="paragraph">
 MR WACKER is the only teacher who teaches ERIC in all four classrooms. See his
@@ -359,7 +641,7 @@ MR CREAK never teaches in the Map Room or the Exam Room. See his
 </div>
 </div>
 <div><span id="timetableStats"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Timetable stats</div>
 <div class="paragraph">
 There are 64 periods in the <a href="../asm/5D00.html">main timetable</a>: 24 playtimes, 4 dinner
@@ -405,7 +687,7 @@ ANGELFACE spends more lesson periods in the Revision Library than any other boy
 </div>
 </div>
 <div><span id="playtimeProbabilities"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Playtime probabilities</div>
 <div class="paragraph">
 During playtime, the teacher most likely to be found pacing up and down in the
@@ -435,7 +717,7 @@ replaced with a 'special' playtime (<a href="../lessons/F3.html">$F4</a>, <a hre
 </div>
 </div>
 <div><span id="doublePlaytimes"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Double playtimes</div>
 <div class="paragraph">
 There are three places in the <a href="../asm/5D00.html">main timetable</a> where one playtime is
@@ -445,7 +727,7 @@ bell rings between two playtimes.
 </div>
 </div>
 <div><span id="playtimeDistribution"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Playtime distribution</div>
 <div class="paragraph">
 Understandably, ERIC is always eager for playtime to come, but the number of
@@ -461,7 +743,7 @@ between one and three throughout the <a href="../asm/5D00.html">main timetable</
 </div>
 </div>
 <div><span id="dullPlaytimes"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Always a dull playtime in demo mode</div>
 <div class="paragraph">
 Special playtimes - the ones where ERIC must avoid contact with ANGELFACE,
@@ -473,7 +755,7 @@ ANGELFACE is up to, and then press another key to exit demo mode.
 </div>
 </div>
 <div><span id="handsUp"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Hands up!</div>
 <div class="paragraph">
 Among the graphic data for the boys at <a href="../asm/9900.html">$9900</a>, there are four unused sprites
@@ -494,7 +776,7 @@ Were these used while the game was in development? We'll probably never know.
 </div>
 </div>
 <div><span id="wipingBully"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Board-wiping bully?</div>
 <div class="paragraph">
 Among the graphic data for the boys at <a href="../asm/9900.html">$9900</a>, there are four unused sprites
@@ -517,7 +799,7 @@ know.
 </div>
 </div>
 <div><span id="battle1800"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">WHICH BATTLE OCCURRED IN 1800?</div>
 <div class="paragraph">
 Among the 21 battle dates that comprise MR CREAK's history curriculum, 1800
@@ -527,9 +809,9 @@ answer.
 </div>
 </div>
 <footer>
-<div class="release"></div>
+<div class="release">The complete Skool Daze C64 disassembly 20210325</div>
 <div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.4 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
 </footer>
 </body>
 </html>

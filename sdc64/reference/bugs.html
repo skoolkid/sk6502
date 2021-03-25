@@ -20,14 +20,17 @@
 <li><a href="#pairOfJerks">A pair of jerks</a></li>
 <li><a href="#bullyAndBlackboard">The bully and the blackboard</a></li>
 <li><a href="#theWallMostStaredAt">The wall most stared at</a></li>
+<li><a href="#hiddenAccusers">Hidden accusers</a></li>
 <li><a href="#aStepTooFar">A step too far</a></li>
 <li><a href="#doubleStaircases">Double staircases</a></li>
 <li><a href="#staircaseSaga">The staircase saga continues</a></li>
 <li><a href="#initialNonPlaytimes">Initial non-playtimes</a></li>
 <li><a href="#invisibilityRange">Invisibility range</a></li>
+<li><a href="#creaksSuperiorVision">MR CREAK's superior vision</a></li>
 <li><a href="#offByOne">Off by one</a></li>
 <li><a href="#disappearingPellet">The disappearing pellet</a></li>
 <li><a href="#leapsOfFaith">Leaps of faith</a></li>
+<li><a href="#misplacedMessageBox">Misplaced message box</a></li>
 <li><a href="#brokenBookcase">Broken bookcase</a></li>
 <li><a href="#missAndHit">Miss and hit</a></li>
 <li><a href="#allPlayAndNoWork">All play and no work</a></li>
@@ -150,13 +153,46 @@ When a teacher is in the Map Room, he faces the wall instead of the class while
 speaking. This is because command list <a href="../asm/4080.html">$80</a> sends the teacher up to the
 map, but does not turn him round before starting the class.
 </div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="wmsa" src="../images/udgs/wmsa.png" /></td>
+</tr>
+</table>
+</div>
+</div>
+<div><span id="hiddenAccusers"></span></div>
+<div class="box box-1">
+<div class="box-title">Hidden accusers</div>
+<div class="paragraph">
+Occasionally during gameplay you might hear something like a truncated sound
+effect, and perhaps even also see ERIC's lines total increase at the same time
+for no apparent reason.
+</div>
+<div class="paragraph">
+One likely explanation for this phenomenon is that a teacher is giving lines
+while off screen. The reason that can happen is that the routine at <a href="../asm/1DB7.html">$1DB7</a>
+does not check whether the teacher is on screen before adding lines to ERIC's
+total or starting the lines-giving sound effect. But then, when it calls the
+routine at <a href="../asm/2043.html">$2043</a> to display the lines message box above the teacher's head,
+that routine <em>does</em> check whether the teacher is on screen and returns
+early (without displaying the lines message box or pausing to give the
+accompanying sound effect time to play) if he isn't.
+</div>
 </div>
 <div><span id="aStepTooFar"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">A step too far</div>
 <div class="paragraph">
 If a teacher is going to teach a class in the Exam Room, he faces the wrong way
 at the doorway when telling the kids to sit down.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="stf" src="../images/udgs/stf.png" /></td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 The reason for this behaviour is that the x-coordinate of the top of the
@@ -188,7 +224,7 @@ POKE 17508,77 <a href="../asm/4454.html#4464">($4464,$4D)</a>
 </div>
 </div>
 <div><span id="doubleStaircases"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Double staircases</div>
 <div class="paragraph">
 When a character is looking for ERIC, if he has to go down a staircase on the
@@ -245,7 +281,7 @@ modify the relevant section of code at <a href="../asm/0C3F.html#0D37">$0D37</a>
 </div>
 </div>
 <div><span id="staircaseSaga"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">The staircase saga continues</div>
 <div class="paragraph">
 In <a href="bugs.html#doubleStaircases">Double staircases</a> above we took the approach of modifying the
@@ -339,7 +375,7 @@ modify the relevant section of code:
 </div>
 <div class="paragraph">
 With that change out of the way, it now makes sense to adjust the x-coordinates
-of the tops of the staircases in the tables at <a href="../asm/1129.html#1158">$1158</a> and <a href="../asm/4454.html">$4454</a>, for optimal
+of the tops of the staircases in the tables at <a href="../asm/4440.html">$4440</a> and <a href="../asm/4454.html">$4454</a>, for optimal
 compatibility with the new technique:
 </div>
 <div class="paragraph">
@@ -351,7 +387,7 @@ compatibility with the new technique:
 </div>
 </div>
 <div><span id="initialNonPlaytimes"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Initial non-playtimes</div>
 <div class="paragraph">
 Unlike the ZX Spectrum version, the C64 version of the game does not always
@@ -366,7 +402,7 @@ initial non-playtimes are not intentional.
 </div>
 </div>
 <div><span id="invisibilityRange"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Invisibility range</div>
 <div class="paragraph">
 The routine at <a href="../asm/0BAC.html">$0BAC</a>, which is used to calculate the coordinate ranges within
@@ -394,6 +430,46 @@ unable to see him.
 <div>POKE 3118,207 <a href="../asm/0BAC.html#0C2D">($0C2E,$CF)</a></div>
 </div>
 </div>
+<div><span id="creaksSuperiorVision"></span></div>
+<div class="box box-1">
+<div class="box-title">MR CREAK's superior vision</div>
+<div class="paragraph">
+In contrast to those situations where ERIC's horizontal visibility range is
+reduced from [x&#8722;10, x+10] to [x, x+10] (see <a href="bugs.html#invisibilityRange">Invisibility range</a>),
+there are other situations in which the upper bound of that range is increased
+from x+10 to x+13 for MR CREAK in particular. This means, for example, that
+when MR CREAK is at x-coordinate 34 in the White Room waiting for EINSTEIN to
+tell tales, he can see ERIC (and give him lines for hitting, firing etc.) even
+if he's standing in the White Room doorway 13 spaces away at x-coordinate 21.
+</div>
+<div class="paragraph">
+<table class="">
+<tr>
+<td class="" colspan="1" rowspan="1"><img alt="csv" src="../images/udgs/csv.png" /></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+The reason for this is as follows. When the check is made whether ERIC should
+be given lines, his visibility range is calculated by the routine at <a href="../asm/0BAC.html">$0BAC</a>,
+and the minimum and maximum y- and x-coordinates of that range are stored at
+$73, $74, $75 and $76. Then the routine at <a href="../asm/0E59.html">$0E59</a> checks whether any of the
+teachers are in that range. It does this by calling the routine at <a href="../asm/0D67.html">$0D67</a> for
+each teacher in turn: MR WACKER first, then MR ROCKITT, then MR WITHIT, and
+finally MR CREAK. But the routine at <a href="../asm/0D67.html">$0D67</a> is rather careless with the
+maximum x-coordinate. For each teacher checked, the maximum x-coordinate at $76
+is incremented if that teacher's x-coordinate is at least equal to the minimum
+x-coordinate. So by the time MR CREAK is checked, the maximum x-coordinate of
+ERIC's visibility range has increased by up to 3.
+</div>
+<div class="paragraph">
+In addition, for each teacher checked by the routine at <a href="../asm/0D67.html">$0D67</a>, the maximum
+y-coordinate at $74 is incremented if that teacher is within the x-coordinate
+range and has a y-coordinate at least equal to the minimum y-coordinate. So in
+very specific (and unlikely) situations, MR CREAK's superior vision can extend
+vertically as well as horizontally.
+</div>
+</div>
 <div><span id="offByOne"></span></div>
 <div class="box box-2">
 <div class="box-title">Off by one</div>
@@ -408,6 +484,9 @@ next region along.
 One obvious consequence of this is that ERIC is considered to be inside the
 head's study (and will be given lines accordingly) even when he's standing just
 outside the doorway.
+</div>
+<div class="paragraph">
+<img alt="obo" src="../images/udgs/obo.png" />
 </div>
 </div>
 <div><span id="disappearingPellet"></span></div>
@@ -503,8 +582,78 @@ comparisons consistent:
 <div>POKE 5752,0 ($1678,$00)</div>
 </div>
 </div>
-<div><span id="brokenBookcase"></span></div>
+<div><span id="misplacedMessageBox"></span></div>
 <div class="box box-1">
+<div class="box-title">Misplaced message box</div>
+<div class="paragraph">
+When a teacher is close (but not too close!) to the left edge of the visible
+play area and either gives lines or reveals a safe combination letter, the
+8-cell-wide message box above his head may be drawn with the leftmost one or
+two cell columns missing.
+</div>
+<div class="paragraph">
+The reason for this lies in how the routine at <a href="../asm/2043.html">$2043</a> computes the
+x-coordinate of sprite #1, which holds the contents of the leftmost three cell
+columns (24 pixel columns) of the message box. In the following discussion, we
+will use T to denote the teacher's play area x-coordinate (0-95), S to denote
+the play area x-coordinate of the leftmost column of the skool on screen (0, 8,
+16, 24...56), and S' to denote the play area x-coordinate of the leftmost
+column of the skool off screen (40, 48, 56, 64...96, i.e. S+40).
+</div>
+<div class="paragraph">
+When S&gt;T&#8722;4 (meaning there is a gap of one, two or three cell columns
+between the teacher and the left edge of the visible play area), the
+x-coordinate of sprite #1 is set to 32. This puts a 1-cell-wide gap between the
+message box and the left edge of the visible play area. (Remember that sprite
+x-coordinates 0-23 and 344-512 are outside the visible area of the screen, and
+only x-coordinates 24-343 are within it.)
+</div>
+<div class="paragraph">
+But when S&lt;=T&#8722;4, the x-coordinate of sprite #1 is set to
+8(T&#8722;S&#8722;3). This means that, in particular, when S=T&#8722;4 (meaning
+there is a gap of exactly four cell columns between the teacher and the left
+edge of the visible play area), the x-coordinate of sprite #1 is set to 8,
+which means the leftmost two cell columns of the message box are not visible.
+And when S=T&#8722;5 (meaning there is a gap of exactly five cell columns
+between the teacher and the left edge of the visible play area), the
+x-coordinate of sprite #1 is set to 16, which means the leftmost cell column of
+the message box is not visible.
+</div>
+<div class="paragraph">
+So much for the left side of the screen. What about when a teacher is close to
+the right edge of the visible play area? It turns out that the message box is
+not exactly ideally placed in that situation either.
+</div>
+<div class="paragraph">
+When S'&lt;=T+5 (meaning there is a gap of one or two cell columns between the
+teacher and the right edge of the visible play area), the x-coordinate of
+sprite #1 is set to 256. This puts a 3-cell-wide gap between the message box
+and the right edge of the visible play area, which means it's nowhere near
+being centred over the teacher's head.
+</div>
+<div class="paragraph">
+In summary, it's as if the routine at <a href="../asm/2043.html">$2043</a> assumes that the x-coordinate of
+the left edge of visible area of the screen, as far as sprites are concerned,
+is 0 instead of 24.
+</div>
+<div class="paragraph">
+POKE 8297,0 <a href="../asm/2043.html#2067">($2069,$00)</a> - sets the x-coordinate of sprite #1 to
+8(T&#8722;S) when S&lt;=T&#8722;4 or S'&gt;T+5, which roughly centres the
+message box above the teacher's head.
+</div>
+<div class="paragraph">
+POKE 8305,3 <a href="../asm/2043.html#2070">($2071,$03)</a> - sets the minimum x-coordinate of sprite #1
+to 24 instead of 32 (used when S&gt;T&#8722;4), which pushes the message box up
+against the left edge of the visible play area.
+</div>
+<div class="paragraph">
+POKE 8310,35 <a href="../asm/2043.html#2075">($2076,$23)</a> - sets the maximum x-coordinate of sprite #1
+to 280 instead of 256 (used when S'&lt;=T+5), which pushes the message box up
+against the right edge of the visible play area.
+</div>
+</div>
+<div><span id="brokenBookcase"></span></div>
+<div class="box box-2">
 <div class="box-title">Broken bookcase</div>
 <div class="paragraph">
 The bottom of the bookcase on the left in the Revision Library seems to have
@@ -573,7 +722,7 @@ To fix them:
 </div>
 </div>
 <div><span id="missAndHit"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Miss and hit</div>
 <div class="paragraph">
 ERIC can be knocked out by BOY WONDER's catapult pellet even when he's sitting
@@ -584,7 +733,7 @@ for the teacher to show up for the lesson.
 </div>
 </div>
 <div><span id="allPlayAndNoWork"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">All play and no work</div>
 <div class="paragraph">
 In lesson <a href="../lessons/E3.html">$E3</a> (MR ROCKITT - EXAM ROOM), little boys 4-8 head
@@ -596,7 +745,7 @@ POKE 34531,134 <a href="../asm/86E0.html#86E3">($86E3,$86)</a> (sends MR CREAK t
 </div>
 </div>
 <div><span id="waitingForEinstein"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">Waiting for EINSTEIN</div>
 <div class="paragraph">
 Before wiping the board and getting a lesson under way, ERIC's teacher will
@@ -625,7 +774,7 @@ non-question-and-answer lesson)</div>
 </div>
 </div>
 <div><span id="wackersNumberBlindness"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">WACKER's number blindness</div>
 <div class="paragraph">
 If ERIC has exactly 10000 lines, MR WACKER will come rushing to ERIC's side and
@@ -639,7 +788,7 @@ total exceeds 10000)
 </div>
 </div>
 <div><span id="rockittExamRoom"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">MR ROCKITT as a boy</div>
 <div class="paragraph">
 In lesson <a href="../lessons/E5.html">$E5</a> (REVISION LIBRARY), MR ROCKITT paces up and down
@@ -650,14 +799,14 @@ POKE 34021,188 <a href="../asm/84E0.html#84E5">($84E5,$BC)</a> (sends MR ROCKITT
 </div>
 </div>
 <div><span id="typo"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Misspelt element</div>
 <div class="paragraph">
 'Phosphorous' (at <a href="../asm/4EBC.html">$4EBC</a>) is misspelt; it should be 'Phosphorus'.
 </div>
 </div>
 <div><span id="emptyClass"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">MR CREAK and the empty class</div>
 <div class="paragraph">
 Lesson <a href="../lessons/E6.html">$E6</a> (REVISION LIBRARY) has MR CREAK teaching an empty
@@ -668,7 +817,7 @@ POKE 34534,188 <a href="../asm/86E0.html#86E6">($86E6,$BC)</a> (sends MR CREAK t
 </div>
 </div>
 <div><span id="chairHit"></span></div>
-<div class="box box-1">
+<div class="box box-2">
 <div class="box-title">Share a chair</div>
 <div class="paragraph">
 If ERIC hits a character who is sitting on a chair, and then quickly sits in
@@ -677,7 +826,7 @@ character rises and takes his seat again.
 </div>
 </div>
 <div><span id="absentTearaway"></span></div>
-<div class="box box-2">
+<div class="box box-1">
 <div class="box-title">800 LINES BOY WONDER - NOW WHERE ARE YOU?</div>
 <div class="paragraph">
 In lesson <a href="../lessons/EC.html">$EC</a> (MR WACKER - WHITE ROOM), BOY WONDER is in the
@@ -690,9 +839,9 @@ the Revision Library (this time accompanied by ANGELFACE).
 </div>
 </div>
 <footer>
-<div class="release"></div>
+<div class="release">The complete Skool Daze C64 disassembly 20210325</div>
 <div class="copyright">&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.</div>
-<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.3 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
+<div class="created">Created using <a href="https://skoolkit.ca">SkoolKit</a> 8.4 and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.</div>
 </footer>
 </body>
 </html>

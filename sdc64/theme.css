@@ -65,14 +65,20 @@ table.map th {
 table.map td {
   background-color: #3333af;
 }
-table.gallery {
+table.asgrid, table.gallery {
   border-collapse: collapse;
 }
-table.gallery td {
+table.asgrid td, table.gallery td {
   text-align: center;
   border-width: 1px;
   border-style: solid;
   border-color: #000000;
+}
+table.asgrid td {
+  width: 48px;
+  height: 48px;
+}
+table.gallery td {
   padding: 5px;
 }
 table.box-asm {
