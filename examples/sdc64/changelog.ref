@@ -3,7 +3,7 @@
 [Page:Changelog]
 SectionType=BulletPoints
 
-[Changelog:YYYYMMDD]
+[Changelog:20210325]
 -
 
 - Replaced the default SkoolKit image writer with C64ImageWriter

@@ -12,7 +12,7 @@ Logo=#UDGARRAY8,$14;$5920-$59D8-8({ImagePath}/logo)
 StyleSheet=skoolkit.css;theme.css
 LinkInternalOperands=1
 LinkOperands=BCC,BCS,BEQ,BMI,BNE,BPL,BVC,BVS,JMP,JSR,.WORD
-Release=The complete Skool Daze C64 disassembly 20210126
+Release=The complete Skool Daze C64 disassembly 20210325
 Created=Created using <a href="https://skoolkit.ca">SkoolKit</a> #VERSION and <a href="https://github.com/skoolkid/sk6502">sk6502</a>.
 Copyright=&#169; 1985 Microsphere Computer Services Ltd. &#169; 2021 Richard Dymond.
 
