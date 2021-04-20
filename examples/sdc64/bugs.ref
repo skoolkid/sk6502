@@ -84,7 +84,7 @@ map, but does not turn him round before starting the class.
 #PLACECHAR$87,68,3,$25
 #PLACECHAR$8C,70,3,$05
 #PLACECHAR$89,72,3,$15
-#UDGTABLE { #SDIMG56,0,20,7,62,74,3,6(wmsa) } TABLE#
+#UDGTABLE { #SDIMG56,0,20,7(wmsa) } TABLE#
 #POPS
 
 [Bug:hiddenAccusers:Hidden accusers]
@@ -109,7 +109,7 @@ at the doorway when telling the kids to sit down.
 #PLACECHAR$83,70,10,$D0
 #PLACECHAR$82,66,10,$91
 #PLACECHAR$89,64,10,$C0
-#UDGTABLE { #SDIMG64,7,14,7,64,72,10,13(stf) } TABLE#
+#UDGTABLE { #SDIMG64,7,14,7(stf) } TABLE#
 #POPS
 
 The reason for this behaviour is that the x-coordinate of the top of the
@@ -273,7 +273,7 @@ if he's standing in the White Room doorway 13 spaces away at x-coordinate 21.
 #PLACECHAR$88,33,10,$35
 #PLACECHAR$86,34,10,$48
 #PLACECHAR$89,37,10,$15
-#UDGTABLE { #SDIMG20,7,20,7,21,39,10,13(csv) } TABLE#
+#UDGTABLE { #SDIMG20,7,20,7(csv) } TABLE#
 #POPS
 
 The reason for this is as follows. When the check is made whether ERIC should
@@ -308,7 +308,7 @@ outside the doorway.
 #PUSHS
 #PLACECHAR$8C,8,3,$80
 #PLACECHAR$83,14,3,$50
-#SDIMG4,0,16,7,8,16,3,6(obo)
+#SDIMG4,0,16,7(obo)
 #POPS
 
 [Bug:disappearingPellet:The disappearing pellet]

@@ -46,24 +46,20 @@
 @ $0002 expand=+  #UDGARRAY#(3,$0F,{2},512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#PEEK($8D00+{0}+256*t)+{1}*256)))(as{0:02X}{1:02X}x{2}{3})
 @ $0002 expand=+  #POPS
 @ $0002 expand=+)
-@ $0002 expand=#DEFINE3(ASTOVER,
-@ $0002 expand=+  #LET(col={0}-#PEEK({2}*256+$61)) #LET(row={1}-#PEEK({2}*256+$62))
-@ $0002 expand=+  #IF(0<={{col}}<=2 && 0<={{row}}<=3)(
-@ $0002 expand=+    #LET(a=#ASTADDR(#PEEK({2}*256+$60),4*{{col}}+{{row}}))
-@ $0002 expand=+    #FOR(0,7)(n,#POKES({{i}}+n,#PEEK({{i}}+n)|#PEEK({{a}}+512*n)))
-@ $0002 expand=+    #FOR(0,7)(n,#POKES({{i}}+n,#PEEK({{i}}+n)&#PEEK({{a}}+256+512*n)))
+@ $0002 expand=#DEFINE5,1(SOVER,
+@ $0002 expand=+  #LET(a=#PEEK(256*{0}+$60))
+@ $0002 expand=+  #LET(x=#PEEK(256*{0}+$61)-{1})
+@ $0002 expand=+  #LET(y=#PEEK(256*{0}+$62)-{2})
+@ $0002 expand=+  #IF(0<={{x}}<{3} && 0<={{y}}<{4})(
+@ $0002 expand=+    #UDGARRAY#(3,$0F,2,512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#ASTADDR({{a}},t)):(#ASTADDR({{a}},t)+256)))(*sprite)
+@ $0002 expand=+    #OVER({{x}},{{y}})({5},sprite)
 @ $0002 expand=+  )
 @ $0002 expand=+)
-@ $0002 expand=#DEFINE3(STCOPY,
-@ $0002 expand=+  #POKES({{i}},#PEEK({0}+$7880+256*{1})) #LET(i={{i}}+1)
-@ $0002 expand=+  #LET(src=#PEEK({0}+$7800+256*{1})+$6000+$40*({0}&$60))
-@ $0002 expand=+  #FOR(0,7)(n,#POKES({{i}}+n,#PEEK({{src}}+n*256)))
-@ $0002 expand=+  #IF({2})(#FOR($78,$8C)(c,#ASTOVER({0},{1},c))) #LET(i={{i}}+8)
-@ $0002 expand=+)
-@ $0002 expand=#DEFINE8,1(SDIMG,
-@ $0002 expand=+  #POKES($9900,0,2,$1000);($9A00,$FF,16,$200) #LET(i=0)
-@ $0002 expand=+  #FOR({1},{1}+{3}-1)(y,#FOR({0},{0}+{2}-1)(x,#STCOPY(x,y,{4}<=x<={5}&&{6}<=y<={7})))
-@ $0002 expand=+  #UDGARRAY{2};1-(9*({2}*{3})-8)-9@0-(9*({2}*{3}-1))-9({8})
+@ $0002 expand=#DEFINE4,1(SDIMG,
+@ $0002 expand=+  #POKES($9900,0,2,$1000);($9A00,$FF,16,$200)
+@ $0002 expand=+  #SKOOLIMG({0},{1},{2},{3})(*sdimg)
+@ $0002 expand=+  #FOR($78,$8C)(c,#SOVER(c,{0},{1},{2},{3})(sdimg))
+@ $0002 expand=+  #UDGARRAY*sdimg({4})
 @ $0002 expand=+)
 @ $0002 expand=#DEFINE4,1(WRITE,#LET(x={2})
 @ $0002 expand=+  #FOR({0},{0}+{1}-1)(_a_,#LET(w=#PEEK($4700+#PEEK_a_))#LET(x={{x}}+1)
