@@ -55,7 +55,7 @@
 @ $0002 expand=+    #OVER({{x}},{{y}})({5},sprite)
 @ $0002 expand=+  )
 @ $0002 expand=+)
-@ $0002 expand=#DEFINE4,1,1(SDIMG,
+@ $0002 expand=#DEFINE4,1,,1(SDIMG,
 @ $0002 expand=+  #POKES($9900,0,2,$1000);($9A00,$FF,16,$200)
 @ $0002 expand=+  #SKOOLIMG({0},{1},{2},{3})(*sdimg)
 @ $0002 expand=+  #FOR($78,$8C)(c,#SOVER(c,{0},{1},{2},{3})(sdimg))
