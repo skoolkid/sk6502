@@ -55,9 +55,10 @@
 @ $0002 expand=+    #OVER({{x}},{{y}})({5},sprite)
 @ $0002 expand=+  )
 @ $0002 expand=+)
+@ $0002 expand=#UDGARRAY#(96,,2,256#FOR(0,20)(y,#FOR(0,95)(x,;#STSPEC(x,y))))(*wholeskool)
 @ $0002 expand=#DEFINE4,1,,1(SDIMG,
 @ $0002 expand=+  #POKES($9900,0,2,$1000);($9A00,$FF,16,$200)
-@ $0002 expand=+  #SKOOLIMG({0},{1},{2},{3})(*sdimg)
+@ $0002 expand=+  #COPY({0},{1},{2},{3})(wholeskool,sdimg)
 @ $0002 expand=+  #FOR($78,$8C)(c,#SOVER(c,{0},{1},{2},{3})(sdimg))
 @ $0002 expand=+  #UDGARRAY*sdimg({4})
 @ $0002 expand=+)
