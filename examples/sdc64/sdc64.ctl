@@ -26,33 +26,33 @@
 @ $0002 start
 @ $0002 org
 @ $0002 set-handle-unsupported-macros=1
-@ $0002 expand=#DEFINE1,1(ZXR,#HTML(<a href="https://skoolkid.github.io/skooldaze/asm/{:04X}.html">{}</a>))
-@ $0002 expand=#DEFINE1(ZX,#HTML(This corresponds to #ZXR{0}(${0:04X}) in the ZX Spectrum version.))
-@ $0002 expand=#DEFINE1,1(AS,#LINK:AnimatoryStates#{:02X}({}))
-@ $0002 expand=#DEFINE1||SPRITE|#UDGARRAY3,$0F;{0}-({0}+$32)-1-$18,,3{{height=42}}(s{0:04x})||
-@ $0002 expand=#DEFINE2(ASTADDR,#PEEK($8D00+{0}+256*{1})+#IF({0}&$7F<$48||{0}&$7F==$7F)($9900,$A900))
-@ $0002 expand=#DEFINE1(ASUDGARRAY,#UDGARRAY#(3,$0F,2,512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#ASTADDR({0},t))))(as{0:02X}))
-@ $0002 expand=#DEFINE1(ASIMG,#PUSHS #POKES($9900,0,2,$1000) #ASUDGARRAY({}) #POPS)
-@ $0002 expand=#DEFINE2//STSPEC/(#PEEK({0}+$7800+256*{1})+$6000+$40*({0}&$60)),(#PEEK({0}+$7880+256*{1}))//
-@ $0002 expand=#DEFINE4(SKOOLIMG,#UDGARRAY#({2},,2,256#FOR({1},{1}+{3}-1)(y,#FOR({0},{0}+{2}-1)(x,;#STSPEC(x,y)))))
-@ $0002 expand=#DEFINE4(PLACECHAR,#POKES({0}*256+$60,{3});({0}*256+$61,{1});({0}*256+$62,{2}))
-@ $0002 expand=#DEFINE1(FCHAR,
-@ $0002 expand=+  #UDG($4700+{0},$0F,,256,flip=2,rotate=1){{width=4*(#PEEK($4700+{0})+2)}}(*c)
-@ $0002 expand=+  #FOR(0,7)(n,#PLOT(0,n,0)(c)#PLOT(#PEEK($4700+{0})+1,n,0)(c))
-@ $0002 expand=+  #UDGARRAY*c(char{0:02X})
+@ $0002 expand=#DEF1(#ZXR(addr)(text) #HTML(<a href="https://skoolkid.github.io/skooldaze/asm/{addr:04X}.html">{text}</a>))
+@ $0002 expand=#DEF1(#ZX(addr) #HTML(This corresponds to #ZXR{addr}(${addr:04X}) in the ZX Spectrum version.))
+@ $0002 expand=#DEF1(#AS(state)(text) #LINK:AnimatoryStates#{state:02X}({text}))
+@ $0002 expand=#DEF1(#SPRITE(addr) #UDGARRAY3,$0F;{addr}-({addr}+$32)-1-$18,,3{{height=42}}(s{addr:04x}))
+@ $0002 expand=#DEF(#ASTADDR(state,tile) #PEEK($8D00+$state+256*$tile)+#IF($state&$7F<$48||$state&$7F==$7F)($9900,$A900))
+@ $0002 expand=#DEF1(#ASUDGARRAY(state) #UDGARRAY#(3,$0F,2,512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#ASTADDR({state},t))))(as{state:02X}))
+@ $0002 expand=#DEF(#ASIMG(state) #PUSHS #POKES($9900,0,2,$1000) #ASUDGARRAY$state #POPS)
+@ $0002 expand=#DEF(#STSPEC(x,y) (#PEEK($x+$7800+256*$y)+$6000+$40*($x&$60)),(#PEEK($x+$7880+256*$y)))
+@ $0002 expand=#DEF(#SKOOLIMG(x,y,w,h) #UDGARRAY#($w,,2,256#FOR($y,$y+$h-1)(y,#FOR($x,$x+$w-1)(x,;#STSPEC(x,y)))))
+@ $0002 expand=#DEF(#PLACECHAR(cnum,x,y,state) #POKES($cnum*256+$60,$state);($cnum*256+$61,$x);($cnum*256+$62,$y))
+@ $0002 expand=#DEF1(#FCHAR(code)
+@ $0002 expand=+  #UDG($4700+{code},$0F,,256,flip=2,rotate=1){{width=4*(#PEEK($4700+{code})+2)}}(*c)
+@ $0002 expand=+  #FOR(0,7)(n,#PLOT(0,n,0)(c)#PLOT(#PEEK($4700+{code})+1,n,0)(c))
+@ $0002 expand=+  #UDGARRAY*c(char{code:02X})
 @ $0002 expand=+)
-@ $0002 expand=#DEFINE3,1(ASIMGX,
+@ $0002 expand=#DEF1(#ASIMGX(state,page,scale)(suffix)
 @ $0002 expand=+  #PUSHS #POKES($9900,0,2,$1000)
-@ $0002 expand=+  #UDGARRAY#(3,$0F,{2},512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#PEEK($8D00+{0}+256*t)+{1}*256)))(as{0:02X}{1:02X}x{2}{3})
+@ $0002 expand=+  #UDGARRAY#(3,$0F,{scale},512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#PEEK($8D00+{state}+256*t)+{page}*256)))(as{state:02X}{page:02X}x{scale}{suffix})
 @ $0002 expand=+  #POPS
 @ $0002 expand=+)
-@ $0002 expand=#DEFINE5,1(SOVER,
-@ $0002 expand=+  #LET(a=#PEEK(256*{0}+$60))
-@ $0002 expand=+  #LET(x=#PEEK(256*{0}+$61)-{1})
-@ $0002 expand=+  #LET(y=#PEEK(256*{0}+$62)-{2})
-@ $0002 expand=+  #IF(0<={{x}}<{3} && 0<={{y}}<{4})(
-@ $0002 expand=+    #UDGARRAY#(3,$0F,2,512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#ASTADDR({{a}},t)):(#ASTADDR({{a}},t)+256)))(*sprite)
-@ $0002 expand=+    #OVER({{x}},{{y}})({5},sprite)
+@ $0002 expand=#DEF(#SOVER(cnum,x,y,width,height)(bg)
+@ $0002 expand=+  #LET(a=#PEEK(256*$cnum+$60))
+@ $0002 expand=+  #LET(x=#PEEK(256*$cnum+$61)-$x)
+@ $0002 expand=+  #LET(y=#PEEK(256*$cnum+$62)-$y)
+@ $0002 expand=+  #IF(0<={x}<$width && 0<={y}<$height)(
+@ $0002 expand=+    #UDGARRAY#(3,$0F,2,512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#ASTADDR({a},t)):(#ASTADDR({a},t)+256)))(*sprite)
+@ $0002 expand=+    #OVER({x},{y})($bg,sprite)
 @ $0002 expand=+  )
 @ $0002 expand=+)
 @ $0002 expand=#UDGARRAY#(96,,2,256#FOR(0,20)(y,#FOR(0,95)(x,;#STSPEC(x,y))))(*wholeskool)
@@ -62,13 +62,14 @@
 @ $0002 expand=+  #FOR($78,$8C)(c,#SOVER(c,$x,$y,$w,$h)(sdimg))
 @ $0002 expand=+  #UDGARRAY*sdimg($fname)
 @ $0002 expand=+)
-@ $0002 expand=#DEFINE4,1(WRITE,#LET(x={2})
-@ $0002 expand=+  #FOR({0},{0}+{1}-1)(_a_,#LET(w=#PEEK($4700+#PEEK_a_))#LET(x={{x}}+1)
-@ $0002 expand=+    #FOR(1,{{w}})(_n_,#LET(b=#PEEK($4700+#PEEK_a_+256*_n_))
-@ $0002 expand=+      #FOR(0,7)(y,#IF({{b}}&2**(7-y))(#PLOT({{x}},{3}+y)({4})))#LET(x={{x}}+1))))
-@ $0002 expand=#DEFINE1(A,#R{0}($#N({0},,,,1)))
-@ $0002 expand=#DEFINE0(BUG,#LINK:Bugs)
-@ $0002 expand=#DEFINE0(FACT,#LINK:Facts)
+@ $0002 expand=#DEF(#WRITE(addr,length,left,top)(frame)
+@ $0002 expand=+  #LET(x=$left)
+@ $0002 expand=+  #FOR($addr,$addr+$length-1)(_a_,#LET(w=#PEEK($4700+#PEEK_a_))#LET(x={x}+1)
+@ $0002 expand=+    #FOR(1,{w})(_n_,#LET(b=#PEEK($4700+#PEEK_a_+256*_n_))
+@ $0002 expand=+      #FOR(0,7)(y,#IF({b}&2**(7-y))(#PLOT({x},$top+y)($frame)))#LET(x={x}+1))))
+@ $0002 expand=#DEF(#A(addr) #R$addr($#N($addr,,,,1)))
+@ $0002 expand=#DEF(#BUG #LINK:Bugs)
+@ $0002 expand=#DEF(#FACT #LINK:Facts)
 @ $0002 replace=/`([AXY]+)`/#REG(\1)
 @ $0002 defs=$FE
 u $0002 Unused
