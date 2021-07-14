@@ -1,6 +1,7 @@
 ; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
 
 [Config]
+Expand=#INCLUDE(Expand)
 RefFiles=as.ref;bugs.ref;changelog.ref;facts.ref;glossary.ref;lessons.ref;pokes.ref
 
 [Game]
@@ -177,3 +178,70 @@ xBarFrame=#INCLUDE(xBarFrame)
 #SDIMG0,0,96,21(initial_as)
 #POPS
 #UDGARRAY*xbar(xbar)
+
+[Expand]
+#DEF(#FACT #LINK:Facts)
+
+#DEF(#ASTADDR(state,tile)
+  #PEEK($8D00+$state+256*$tile)+#IF($state&$7F<$48||$state&$7F==$7F)($9900,$A900)
+)
+
+#DEF1(#ASUDGARRAY(state)
+  #UDGARRAY#(3,$0F,2,512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#ASTADDR({state},t))))(as{state:02X})
+)
+
+#DEF(#ASIMG(state)
+  #PUSHS #POKES($9900,0,2,$1000) #ASUDGARRAY$state #POPS
+)
+
+#DEF(#STSPEC(x,y)
+  (#PEEK($x+$7800+256*$y)+$6000+$40*($x&$60)),(#PEEK($x+$7880+256*$y))
+)
+
+#DEF(#SKOOLIMG(x,y,w,h)
+  #UDGARRAY#($w,,2,256#FOR($y,$y+$h-1)(y,#FOR($x,$x+$w-1)(x,;#STSPEC(x,y))))
+)
+
+#DEF(#PLACECHAR(cnum,x,y,state)
+  #POKES($cnum*256+$60,$state);($cnum*256+$61,$x);($cnum*256+$62,$y)
+)
+
+#DEF1(#FCHAR(code)
+  #UDG($4700+{code},$0F,,256,flip=2,rotate=1){{width=4*(#PEEK($4700+{code})+2)}}(*c)
+  #FOR(0,7)(n,#PLOT(0,n,0)(c)#PLOT(#PEEK($4700+{code})+1,n,0)(c))
+  #UDGARRAY*c(char{code:02X})
+)
+
+#DEF1(#ASIMGX(state,page,scale)(suffix)
+  #PUSHS #POKES$9900,0,2,$1000
+  #UDGARRAY#(3,$0F,{scale},512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#PEEK($8D00+{state}+256*t)+{page}*256)))(as{state:02X}{page:02X}x{scale}{suffix})
+  #POPS
+)
+
+#DEF(#SOVER(cnum,x,y,width,height)(bg)
+  #LET(a=#PEEK(256*$cnum+$60))
+  #LET(x=#PEEK(256*$cnum+$61)-$x)
+  #LET(y=#PEEK(256*$cnum+$62)-$y)
+  #IF(0<={x}<$width && 0<={y}<$height)(
+    #UDGARRAY#(3,$0F,2,512#FOREACH(0,4,8,1,5,9,2,6,10,3,7,11)(t,;(#ASTADDR({a},t)):(#ASTADDR({a},t)+256)))(*sprite)
+    #OVER({x},{y})($bg,sprite)
+  )
+)
+
+#UDGARRAY#(96,,2,256#FOR(0,20)(y,#FOR(0,95)(x,;#STSPEC(x,y))))(*wholeskool)
+
+#DEF(#SDIMG(x,y,w,h)(fname)
+  #POKES$9900,0,2,$1000;$9A00,$FF,16,$200
+  #COPY($x,$y,$w,$h)(wholeskool,sdimg)
+  #FOR($78,$8C)(c,#SOVER(c,$x,$y,$w,$h)(sdimg))
+  #UDGARRAY*sdimg($fname)
+)
+
+#DEF(#WRITE(addr,length,left,top)(frame)
+  #LET(x=$left)
+  #FOR($addr,$addr+$length-1)(_a_,#LET(w=#PEEK($4700+#PEEK_a_))#LET(x={x}+1)
+    #FOR(1,{w})(_n_,#LET(b=#PEEK($4700+#PEEK_a_+256*_n_))
+      #FOR(0,7)(y,#IF({b}&2**(7-y))(#PLOT({x},$top+y)($frame)))#LET(x={x}+1)
+    )
+  )
+)
