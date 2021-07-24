@@ -230,7 +230,7 @@ xBarFrame=#INCLUDE(xBarFrame)
 
 #UDGARRAY#(96,,2,256#FOR(0,20)(y,#FOR(0,95)(x,;#STSPEC(x,y))))(*wholeskool)
 
-#DEF(#SDIMG(x,y,w,h)(fname)
+#DEF2(#SDIMG(x,y,w,h)(fname)
   #POKES$9900,0,2,$1000;$9A00,$FF,16,$200
   #COPY($x,$y,$w,$h)(wholeskool,sdimg)
   #FOR($78,$8C)(c,#SOVER(c,$x,$y,$w,$h)(sdimg))
