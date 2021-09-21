@@ -9,7 +9,7 @@
 ;
 ; Next, obtain a VSF snapshot of Skool Daze, and use it to build a skool file:
 ;
-; $ sna2skool.py skooldaze.vsf > sdc64.skool
+; $ sna2skool.py -c sdc64.ctl skooldaze.vsf > sdc64.skool
 ;
 ; To convert the skool file into an HTML disassembly:
 ;
