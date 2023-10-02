@@ -44,7 +44,7 @@ B $0004,1,1 MR ROCKITT's safe combination letter is stored here.
 B $0005,1,1 MR WITHIT's safe combination letter is stored here.
 B $0006,1,1 MR CREAK's safe combination letter is stored here.
 b $0007 Temporary variables
-B $0007,1,1 Used by the routine at #A$0E59 and #A$0ECF.
+B $0007,1,1 Used by the routines at #A$0E59 and #A$0ECF.
 B $0008,2,1 Used by the routines at #A$0C3F and #A$1B2E.
 B $000A,1,1 Used by the routines at #A$0E59, #A$1BFA, #A$27D2 and #A$2B52.
 B $000B,1,1 Used by the routines at #A$0E59, #A$0ECF, #A$1BFA, #A$27D2, #A$29C8 and #A$2B52.
