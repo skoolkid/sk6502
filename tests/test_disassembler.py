@@ -8,12 +8,13 @@ SKOOLKIT_HOME = os.environ.get('SKOOLKIT_HOME')
 if SKOOLKIT_HOME:
     sys.path.insert(0, SKOOLKIT_HOME)
 from skoolkit.disassembler import OperandFormatter
+from skoolkit.snaskool import Instruction
 
 SK6502_HOME = abspath(dirname(dirname(__file__)))
 sys.path.insert(0, SK6502_HOME)
 from sk6502 import Disassembler
 
-Config = namedtuple('Config', 'asm_hex asm_lower defb_size defm_size defw_size')
+Config = namedtuple('Config', 'asm_hex asm_lower defb_size defm_size defw_size imaker')
 
 ASM = {
     '000000': ('BRK', 'BRK', 'BRK'),
@@ -448,7 +449,7 @@ BOUNDARY_OPS = (
 
 class DisassemblerTest(unittest.TestCase):
     def _get_disassembler(self, snapshot, asm_lower=False, defb_size=8, defm_size=66, defw_size=1):
-        return Disassembler(snapshot, Config(True, asm_lower, defb_size, defm_size, defw_size))
+        return Disassembler(snapshot, Config(True, asm_lower, defb_size, defm_size, defw_size, Instruction))
 
     def test_disassemble(self):
         snapshot = [0] * 65536
@@ -456,7 +457,7 @@ class DisassemblerTest(unittest.TestCase):
         for hex_bytes, ops in ASM.items():
             snapshot[32768:32771] = [int(hex_bytes[i:i + 2], 16) for i in range(0, 6, 2)]
             instructions = disassembler.disassemble(32768, 32771, 'n')
-            operations = tuple([i[1] for i in instructions])
+            operations = tuple([i.operation for i in instructions])
             self.assertEqual(ops, operations)
 
     def test_disassemble_lower_case(self):
@@ -465,7 +466,7 @@ class DisassemblerTest(unittest.TestCase):
         for hex_bytes, ops in ASM.items():
             snapshot[32768:32771] = [int(hex_bytes[i:i + 2], 16) for i in range(0, 6, 2)]
             instructions = disassembler.disassemble(32768, 32771, 'n')
-            operations = tuple([i[1] for i in instructions])
+            operations = tuple([i.operation for i in instructions])
             self.assertEqual(tuple(op.lower() for op in ops), operations)
 
     def test_disassemble_at_64k_boundary(self):
@@ -474,7 +475,7 @@ class DisassemblerTest(unittest.TestCase):
         for data in BOUNDARY_OPS:
             address = 65536 - len(data)
             snapshot[address:] = data
-            operation = disassembler.disassemble(address, 65536, 'n')[0][1]
+            operation = disassembler.disassemble(address, 65536, 'n')[0].operation
             exp_op = '.BYTE ' + ','.join('${:02X}'.format(b) for b in data)
             self.assertEqual(operation, exp_op)
 
@@ -483,90 +484,118 @@ class DisassemblerTest(unittest.TestCase):
         disassembler = self._get_disassembler(snapshot)
         instructions = disassembler.defb_range(0, 3, ((0, 'n'),))
         self.assertEqual(len(instructions), 1)
-        self.assertEqual((0, '.BYTE $01,$02,$03', [1, 2, 3]), instructions[0])
+        self.assertEqual(instructions[0].address, 0)
+        self.assertEqual(instructions[0].operation, '.BYTE $01,$02,$03')
+        self.assertEqual([1, 2, 3], instructions[0].bytes)
 
     def test_defb_range_long(self):
         snapshot = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] + [0] * 65526
         disassembler = self._get_disassembler(snapshot)
         instructions = disassembler.defb_range(0, 10, ((0, 'n'),))
         self.assertEqual(len(instructions), 2)
-        self.assertEqual((0, '.BYTE $01,$02,$03,$04,$05,$06,$07,$08', [1, 2, 3, 4, 5, 6, 7, 8]), instructions[0])
-        self.assertEqual((8, '.BYTE $09,$0A', [9, 10]), instructions[1])
+        self.assertEqual(instructions[0].address, 0)
+        self.assertEqual(instructions[0].operation, '.BYTE $01,$02,$03,$04,$05,$06,$07,$08')
+        self.assertEqual([1, 2, 3, 4, 5, 6, 7, 8], instructions[0].bytes)
+        self.assertEqual(instructions[1].address, 8)
+        self.assertEqual(instructions[1].operation, '.BYTE $09,$0A')
+        self.assertEqual([9, 10], instructions[1].bytes)
 
     def test_defm_range(self):
         snapshot = [65, 66, 67] + [0] * 65533
         disassembler = self._get_disassembler(snapshot)
         instructions = disassembler.defm_range(0, 3, ((0, 'c'),))
         self.assertEqual(len(instructions), 1)
-        self.assertEqual((0, '.BYTE "ABC"', [65, 66, 67]), instructions[0])
+        self.assertEqual(instructions[0].address, 0)
+        self.assertEqual(instructions[0].operation, '.BYTE "ABC"')
+        self.assertEqual([65, 66, 67], instructions[0].bytes)
 
     def test_defm_range_with_escaped_characters(self):
         snapshot = [34, 72, 101, 108, 108, 111, 34, 67, 58, 92, 84, 69, 77, 80] + [0] * 65522
         disassembler = self._get_disassembler(snapshot)
         instruction = disassembler.defm_range(0, 7, ((0, 'c'),))[0]
-        self.assertEqual(instruction[1], r'.BYTE "\"Hello\""')
+        self.assertEqual(instruction.operation, r'.BYTE "\"Hello\""')
         instruction = disassembler.defm_range(7, 14, ((0, 'c'),))[0]
-        self.assertEqual(instruction[1], r'.BYTE "C:\\TEMP"')
+        self.assertEqual(instruction.operation, r'.BYTE "C:\\TEMP"')
         instruction = disassembler.defm_range(9, 10, ((1, 'c'),))[0]
-        self.assertEqual(instruction[1], r'.BYTE "\\"')
+        self.assertEqual(instruction.operation, r'.BYTE "\\"')
 
     def test_defm_range_with_inverted_character(self):
         snapshot = [65, 194] + [0] * 65534
         disassembler = self._get_disassembler(snapshot)
         instructions = disassembler.defm_range(0, 2, ((1, 'c'), (1, 'c')))
         self.assertEqual(len(instructions), 1)
-        self.assertEqual((0, '.BYTE "A","B"+$80', [65, 194]), instructions[0])
+        self.assertEqual(instructions[0].address, 0)
+        self.assertEqual(instructions[0].operation, '.BYTE "A","B"+$80')
+        self.assertEqual([65, 194], instructions[0].bytes)
 
     def test_defs_range(self):
         snapshot = [0] * 65536
         disassembler = self._get_disassembler(snapshot)
         instructions = disassembler.defs_range(0, 3, ((0, 'n'),))
         self.assertEqual(len(instructions), 1)
-        self.assertEqual((0, '.FILL $03', [0, 0, 0]), instructions[0])
+        self.assertEqual(instructions[0].address, 0)
+        self.assertEqual(instructions[0].operation, '.FILL $03')
+        self.assertEqual([0, 0, 0], instructions[0].bytes)
 
     def test_defs_range_with_non_zero_values(self):
         snapshot = [1, 1, 1] + [0] * 65533
         disassembler = self._get_disassembler(snapshot)
         instructions = disassembler.defs_range(0, 3, ((0, 'n'),))
         self.assertEqual(len(instructions), 1)
-        self.assertEqual((0, '.FILL $03,$01', [1, 1, 1]), instructions[0])
+        self.assertEqual(instructions[0].address, 0)
+        self.assertEqual(instructions[0].operation, '.FILL $03,$01')
+        self.assertEqual([1, 1, 1], instructions[0].bytes)
 
     def test_defs_range_with_value_base(self):
         snapshot = [1, 1, 1] + [0] * 65533
         disassembler = self._get_disassembler(snapshot)
         instructions = disassembler.defs_range(0, 3, ((0, 'n'), (0, 'd')))
         self.assertEqual(len(instructions), 1)
-        self.assertEqual((0, '.FILL $03,1', [1, 1, 1]), instructions[0])
+        self.assertEqual(instructions[0].address, 0)
+        self.assertEqual(instructions[0].operation, '.FILL $03,1')
+        self.assertEqual([1, 1, 1], instructions[0].bytes)
 
     def test_defs_range_with_multiple_byte_values(self):
         snapshot = [1, 2, 3] + [0] * 65533
         disassembler = self._get_disassembler(snapshot)
         instructions = disassembler.defs_range(0, 3, ((0, 'n'),))
         self.assertEqual(len(instructions), 1)
-        self.assertEqual((0, '.BYTE $01,$02,$03', [1, 2, 3]), instructions[0])
+        self.assertEqual(instructions[0].address, 0)
+        self.assertEqual(instructions[0].operation, '.BYTE $01,$02,$03')
+        self.assertEqual([1, 2, 3], instructions[0].bytes)
 
     def test_defw_range(self):
         snapshot = [1, 1, 2, 2] + [0] * 65532
         disassembler = self._get_disassembler(snapshot)
         instructions = disassembler.defw_range(0, 4, ((0, 'n'),))
         self.assertEqual(len(instructions), 2)
-        self.assertEqual((0, '.WORD $0101', [1, 1]), instructions[0])
-        self.assertEqual((2, '.WORD $0202', [2, 2]), instructions[1])
+        self.assertEqual(instructions[0].address, 0)
+        self.assertEqual(instructions[0].operation, '.WORD $0101')
+        self.assertEqual([1, 1], instructions[0].bytes)
+        self.assertEqual(instructions[1].address, 2)
+        self.assertEqual(instructions[1].operation, '.WORD $0202')
+        self.assertEqual([2, 2], instructions[1].bytes)
 
     def test_defw_range_with_size(self):
         snapshot = [1, 1, 2, 2] + [0] * 65532
         disassembler = self._get_disassembler(snapshot)
         instructions = disassembler.defw_range(0, 4, ((4, 'n'),))
         self.assertEqual(len(instructions), 1)
-        self.assertEqual((0, '.WORD $0101,$0202', [1, 1, 2, 2]), instructions[0])
+        self.assertEqual(instructions[0].address, 0)
+        self.assertEqual(instructions[0].operation, '.WORD $0101,$0202')
+        self.assertEqual([1, 1, 2, 2], instructions[0].bytes)
 
     def test_defw_range_with_defw_size(self):
         snapshot = [1, 1, 2, 2, 3, 3] + [0] * 65530
         disassembler = self._get_disassembler(snapshot, defw_size=2)
         instructions = disassembler.defw_range(0, 6, ((0, 'n'),))
         self.assertEqual(len(instructions), 2)
-        self.assertEqual((0, '.WORD $0101,$0202', [1, 1, 2, 2]), instructions[0])
-        self.assertEqual((4, '.WORD $0303', [3, 3]), instructions[1])
+        self.assertEqual(instructions[0].address, 0)
+        self.assertEqual(instructions[0].operation, '.WORD $0101,$0202')
+        self.assertEqual([1, 1, 2, 2], instructions[0].bytes)
+        self.assertEqual(instructions[1].address, 4)
+        self.assertEqual(instructions[1].operation, '.WORD $0303')
+        self.assertEqual([3, 3], instructions[1].bytes)
 
 if __name__ == '__main__':
     unittest.main()

@@ -10,6 +10,7 @@ class Disassembler:
         self.defb_size = config.defb_size
         self.defm_size = config.defm_size
         self.defw_size = config.defw_size
+        self.imaker = config.imaker
         self.byte = '.BYTE '
         self.fill = '.FILL '
         self.word = '.WORD '
@@ -31,7 +32,7 @@ class Disassembler:
             else:
                 operation, length = decoder(self, template, address, base)
             if address + length <= 65536:
-                instructions.append((address, operation, self.snapshot[address:address + length]))
+                instructions.append(self.imaker(address, operation, self.snapshot[address:address + length]))
             else:
                 instructions.append(self._byte_line(address, self.snapshot[address:65536]))
             address += length
@@ -51,7 +52,7 @@ class Disassembler:
         return self.byte +  ','.join(items)
 
     def _byte_line(self, address, data, sublengths=((0, 'n'),)):
-        return (address, self._byte_dir(data, sublengths), data)
+        return self.imaker(address, self._byte_dir(data, sublengths), data)
 
     def _byte_lines(self, start, end, sublengths, max_size):
         if sublengths[0][0] or end - start <= max_size:
@@ -105,7 +106,7 @@ class Disassembler:
                 sublengths = ((end - address, sublengths[0][1]),)
             data = self.snapshot[address:address + step]
             word_dir = self.word + self._defw_items(data, sublengths)
-            instructions.append((address, word_dir, data))
+            instructions.append(self.imaker(address, word_dir, data))
         return instructions
 
     def defs_range(self, start, end, sublengths):
@@ -120,7 +121,7 @@ class Disassembler:
             items.append(self.op_formatter.format_byte(value, sublengths[1][1]))
         elif value:
             items.append(self.op_formatter.format_byte(value, 'n'))
-        return [(start, self.fill + ','.join(items), data)]
+        return [self.imaker(start, self.fill + ','.join(items), data)]
 
     def defb(self, a, length):
         return self._byte_dir(self.snapshot[a:a + length]), length
