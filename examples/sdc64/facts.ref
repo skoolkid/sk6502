@@ -1,4 +1,4 @@
-; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+; © 2021, 2026 Richard Dymond (rjdymond@gmail.com)
 
 [Fact:whitherWander:Whither WANDER?]
 In the ZX Spectrum version, the tearaway is named BOY WANDER. For some reason,
@@ -34,7 +34,7 @@ status of any other shields.
 #POKES$7AAF,$76 #SKOOLIMG45,2,8,5(*usf1)
 #POKES$7AAF,$67;$7AB2,$72 #SKOOLIMG45,2,8,5(*usf2)
 #POPS
-#UDGTABLE { #UDGARRAY*usf1,50;usf2(ushields) } TABLE#
+#UDGTABLE { #FRAMES(usf1,50;usf2)(ushields) } TABLE#
 
 [Fact:betweenTheLinesAmounts:Between the lines amounts]
 The number of lines a teacher gives is always a multiple of 50 from 150 to 900
@@ -62,9 +62,9 @@ When ERIC writes on a blackboard, the letters always appear in upper case. This
 is unlike the ZX Spectrum version, where ERIC can write in lower case as well.
 
 [Fact:oneStampedeOutOfTwo:One stampede out of two]
-Playtime period #LINK:LessonFC($FC), in which the little boys run around the
+Playtime period #LINK(LessonFC)($FC), in which the little boys run around the
 skool knocking people over, does not appear anywhere in the #R$5D00(main
-timetable). Its companion stampede playtime, #LINK:LessonFD($FD), does appear
+timetable). Its companion stampede playtime, #LINK(LessonFD)($FD), does appear
 once, however.
 
 In the ZX Spectrum version, there are three stampede playtimes in the main
@@ -107,14 +107,14 @@ version. What goes on?
 
 [Fact:theSpecialPlaytimeTruce:The special playtime truce]
 BOY WONDER doesn't spend every period looking for opportunities to fire his
-catapult: in special playtimes #LINK:LessonF3($F3) (in which ANGELFACE has
-mumps) and #LINK:LessonF4($F4) (in which EINSTEIN is going tell MR WACKER what
+catapult: in special playtimes #LINK(LessonF3)($F3) (in which ANGELFACE has
+mumps) and #LINK(LessonF4)($F4) (in which EINSTEIN is going tell MR WACKER what
 ERIC's up to) he keeps his catapult in his pocket at all times.
 
 Similarly, ANGELFACE doesn't spend every period looking for opportunities to
-beat up his classmates: in special playtimes #LINK:LessonF3($F3) (in which he
-has mumps), #LINK:LessonF4($F4) (in which EINSTEIN is going to tell MR WACKER
-what ERIC's up to) and #LINK:LessonF5($F5) (in which BOY WONDER has hidden a
+beat up his classmates: in special playtimes #LINK(LessonF3)($F3) (in which he
+has mumps), #LINK(LessonF4)($F4) (in which EINSTEIN is going to tell MR WACKER
+what ERIC's up to) and #LINK(LessonF5)($F5) (in which BOY WONDER has hidden a
 pea-shooter) he keeps his fists to himself.
 
 [Fact:theAccessibleBackSeat:The accessible back seat]
@@ -184,7 +184,7 @@ sprites, so the graphic data for him and the other teachers had to go to page
 $A9.
 
 [Fact:wackersOldShoes:MR WACKER's old shoes]
-The #FACT#doppelwacker(copies of MR WACKER's sprites based in page $99) show
+The #FACT(doppelwacker)(copies of MR WACKER's sprites based in page $99) show
 a slight difference in animatory states $51 and $D1 compared to the official
 sprites based in page $A9:
 
@@ -383,8 +383,8 @@ and big window) until the bell rings.
 
 The playtime probabilities described here are all subject to alteration by the
 fact that, three times out of eight, a playtime in the main timetable is
-replaced with a 'special' playtime (#LINK:LessonF3($F4), #LINK:LessonF4($F4) or
-#LINK:LessonF5($F5)) chosen at random (see #A$3B46).
+replaced with a 'special' playtime (#LINK(LessonF3)($F4), #LINK(LessonF4)($F4)
+or #LINK(LessonF5)($F5)) chosen at random (see #A$3B46).
 
 [Fact:doublePlaytimes:Double playtimes]
 There are three places in the #R$5D00(main timetable) where one playtime is

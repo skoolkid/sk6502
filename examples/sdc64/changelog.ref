@@ -1,4 +1,4 @@
-; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+; © 2021, 2026 Richard Dymond (rjdymond@gmail.com)
 
 [Page:Changelog]
 SectionType=BulletPoints
@@ -7,25 +7,25 @@ SectionType=BulletPoints
 -
 
 - Replaced the default SkoolKit image writer with C64ImageWriter
-- Added x-coordinate indicator bars to the #LINK:PlayArea(Play area) page
-- Added the #LINK:InitialAnimatoryStates(Initial animatory states and
+- Added x-coordinate indicator bars to the #LINK(PlayArea)(Play area) page
+- Added the #LINK(InitialAnimatoryStates)(Initial animatory states and
   locations) page
-- Added a memory map page for #LINK:TemporaryVariables(temporary variables)
+- Added a memory map page for #LINK(TemporaryVariables)(temporary variables)
 - Documented bugs:
-  - #BUG#hiddenAccusers()
-  - #BUG#creaksSuperiorVision()
-  - #BUG#misplacedMessageBox()
+  - #BUG(hiddenAccusers)()
+  - #BUG(creaksSuperiorVision)()
+  - #BUG(misplacedMessageBox)()
 - Added trivia entries:
-  - #FACT#stridentScrawling()
-  - #FACT#angelfacesXrayVision()
-  - #FACT#doppelwacker()
-  - #FACT#wackersOldShoes()
-  - #FACT#seatSelection()
+  - #FACT(stridentScrawling)()
+  - #FACT(angelfacesXrayVision)()
+  - #FACT(doppelwacker)()
+  - #FACT(wackersOldShoes)()
+  - #FACT(seatSelection)()
 - Added images to the following bug descriptions and trivia entries:
-  - #BUG#theWallMostStaredAt()
-  - #BUG#aStepTooFar()
-  - #BUG#offByOne()
-  - #FACT#unsyncedShields()
+  - #BUG(theWallMostStaredAt)()
+  - #BUG(aStepTooFar)()
+  - #BUG(offByOne)()
+  - #FACT(unsyncedShields)()
 
 [Changelog:20210126]
 Initial release.

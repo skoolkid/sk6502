@@ -1,4 +1,4 @@
-; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+; © 2021, 2026 Richard Dymond (rjdymond@gmail.com)
 
 [Bug:mistrialSubtraction:Mistrial subtraction]
 The routine at #A$217E miscalculates the 10000s digit of a number. Instead of
@@ -169,7 +169,7 @@ TABLE#
 <div>POKE 3387,230 ($0D3B,$E6)</div>
 
 [Bug:staircaseSaga:The staircase saga continues]
-In #BUG#doubleStaircases() above we took the approach of modifying the
+In #BUG(doubleStaircases)() above we took the approach of modifying the
 staircase descent technique of a character who is looking for ERIC in order to
 fix an animation bug. But what if a character is not looking for ERIC? In that
 case, it's the routine at #A$13F3 that takes care of any trip down a staircase.
@@ -221,7 +221,7 @@ compatibility with the new technique:
 <div>POKE 17476,12 ($4444,$0C)</div>
 <div>POKE 17504,77 ($4460,$4D)</div>
 <div>POKE 17508,77 ($4464,$4D) (this is the same POKE as was used in
-#BUG#aStepTooFar())</div>
+#BUG(aStepTooFar)())</div>
 
 [Bug:initialNonPlaytimes:Initial non-playtimes]
 Unlike the ZX Spectrum version, the C64 version of the game does not always
@@ -259,7 +259,7 @@ unable to see him.
 
 [Bug:creaksSuperiorVision:MR CREAK's superior vision]
 In contrast to those situations where ERIC's horizontal visibility range is
-reduced from [x&#8722;10, x+10] to [x, x+10] (see #BUG#invisibilityRange()),
+reduced from [x&#8722;10, x+10] to [x, x+10] (see #BUG(invisibilityRange)()),
 there are other situations in which the upper bound of that range is increased
 from x+10 to x+13 for MR CREAK in particular. This means, for example, that
 when MR CREAK is at x-coordinate 34 in the White Room waiting for EINSTEIN to
@@ -476,7 +476,7 @@ straight over his head instead). The best way to reproduce this bug is to stand
 for the teacher to show up for the lesson.
 
 [Bug:allPlayAndNoWork:All play and no work]
-In lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM), little boys 4-8 head
+In lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM), little boys 4-8 head
 off to the White Room in accordance with their personal timetables, but no
 teacher ever arrives to start the lesson.
 
@@ -515,7 +515,7 @@ POKE 7538,233 #R$1D71(($1D72,$E9)) (keeps MR WACKER at bay until ERIC's lines
 total exceeds 10000)
 
 [Bug:rockittExamRoom:MR ROCKITT as a boy]
-In lesson #LINK:LessonE5($E5) (REVISION LIBRARY), MR ROCKITT paces up and down
+In lesson #LINK(LessonE5)($E5) (REVISION LIBRARY), MR ROCKITT paces up and down
 in the Exam Room like a little boy, waiting for a teacher who never arrives.
 
 POKE 34021,188 #R$84E5(($84E5,$BC)) (sends MR ROCKITT to the staff room)
@@ -524,7 +524,7 @@ POKE 34021,188 #R$84E5(($84E5,$BC)) (sends MR ROCKITT to the staff room)
 'Phosphorous' (at #A$4EBC) is misspelt; it should be 'Phosphorus'.
 
 [Bug:emptyClass:MR CREAK and the empty class]
-Lesson #LINK:LessonE6($E6) (REVISION LIBRARY) has MR CREAK teaching an empty
+Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY) has MR CREAK teaching an empty
 class in the Reading Room.
 
 POKE 34534,188 #R$86E6(($86E6,$BC)) (sends MR CREAK to the staff room)
@@ -535,10 +535,10 @@ the chair just vacated, ERIC will not be pushed out of the chair when the
 character rises and takes his seat again.
 
 [Bug:absentTearaway:800 LINES BOY WONDER - NOW WHERE ARE YOU?]
-In lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM), BOY WONDER is in the
+In lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM), BOY WONDER is in the
 Revision Library (on his own, as it happens). However, if EINSTEIN tells on BOY
 WONDER for writing on the board, MR WACKER will still give lines to the absent
 tearaway. (Perhaps the ceiling in the White Room conducts sound well enough for
 BOY WONDER to hear the admonition.) The same thing may also happen in lesson
-#LINK:LessonED($ED) (MR WITHIT - WHITE ROOM), when BOY WONDER is once again in
+#LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM), when BOY WONDER is once again in
 the Revision Library (this time accompanied by ANGELFACE).

@@ -1,4 +1,4 @@
-; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+; © 2021, 2026 Richard Dymond (rjdymond@gmail.com)
 ;
 ; SkoolKit control file for the Commodore 64 version of Skool Daze.
 ;
@@ -28,10 +28,10 @@
 @ $0002 set-handle-unsupported-macros=1
 @ $0002 expand=#DEF1(#ZXR(addr)(text) #HTML(<a href="https://skoolkid.github.io/skooldaze/asm/{addr:04X}.html">{text}</a>))
 @ $0002 expand=#DEF1(#ZX(addr) #HTML(This corresponds to #ZXR{addr}(${addr:04X}) in the ZX Spectrum version.))
-@ $0002 expand=#DEF1(#AS(state)(text) #LINK:AnimatoryStates#{state:02X}({text}))
-@ $0002 expand=#DEF1(#SPRITE(addr) #UDGARRAY3,$0F;{addr}-({addr}+$32)-1-$18,,3{{height=42}}(s{addr:04x}))
+@ $0002 expand=#DEF1(#AS(state)(text) #LINK(AnimatoryStates#{state:02X})({text}))
+@ $0002 expand=#DEF1(#SPRITE(addr) #UDGARRAY3,$0F({addr}-({addr}+$32)-1-$18,,3{{height=42}})(s{addr:04x}))
 @ $0002 expand=#DEF(#A(addr) #R$addr($#N($addr,,,,1)))
-@ $0002 expand=#DEF(#BUG #LINK:Bugs)
+@ $0002 expand=#DEF(#BUG()(a) #LINK(Bugs#$a))
 @ $0002 replace=/`([AXY]+)`/#REG(\1)
 @ $0002 defs=$FE
 u $0002 Unused
@@ -817,7 +817,7 @@ C $0BF7,3 Return.
 C $0BFA,2 Is the character's x-coordinate less than 28?
 C $0BFC,2 Branch if so.
 C $0BFE,4 Store the x-coordinate of the White Room wall (37) at #A$76: teachers can't see through it into the Exam Room.
-C $0C02,3 Jump back. (This is a #BUG#invisibilityRange(bug). The jump should be to #A$0BCF instead.)
+C $0C02,3 Jump back. (This is a #BUG(invisibilityRange)(bug). The jump should be to #A$0BCF instead.)
 N $0C05 The character is on the top floor.
 C $0C05,2 Pick up the character's x-coordinate from #A$FC.
 C $0C07,2 Is the character to the left of the Map Room wall?
@@ -831,9 +831,9 @@ C $0C1A,3 Return.
 C $0C1D,2 Is the character's x-coordinate less than 47?
 C $0C1F,2 Branch if so.
 C $0C21,4 Store the x-coordinate of the Reading Room wall (56) at #A$76: teachers can't see through it into the Map Room.
-C $0C25,3 Jump back. (This is a #BUG#invisibilityRange(bug). The jump should be to #A$0BCF instead.)
+C $0C25,3 Jump back. (This is a #BUG(invisibilityRange)(bug). The jump should be to #A$0BCF instead.)
 C $0C28,5 Add 10 to the character's x-coordinate and store it at #A$76. This is the maximum x-coordinate.
-C $0C2D,3 Jump back. (This is a #BUG#invisibilityRange(bug). The jump should be to #A$0BCF instead.)
+C $0C2D,3 Jump back. (This is a #BUG(invisibilityRange)(bug). The jump should be to #A$0BCF instead.)
 c $0C31 Adjust the lesson length if a character is looking for ERIC
 D $0C31 Used by the interruptible subcommand routine at #A$0C3F after having its address placed at #A$AE by the routine at #A$2A99.
 R $0C31 P Carry flag set if the character has found ERIC
@@ -966,13 +966,13 @@ C $0D67,9 Store the base address of the character's buffer at #A$4E.
 C $0D70,4 Pick up the character's x-coordinate.
 C $0D74,2 Is it less than the minimum x-coordinate?
 C $0D76,2 Return with the carry flag reset if so.
-C $0D78,2 Increment the maximum x-coordinate at #A$76. (This is a #BUG#creaksSuperiorVision(bug).)
+C $0D78,2 Increment the maximum x-coordinate at #A$76. (This is a #BUG(creaksSuperiorVision)(bug).)
 C $0D7A,2 Is the character's x-coordinate greater than the maximum x-coordinate?
 C $0D7C,2 Return with the carry flag reset if so.
 C $0D7E,3 Pick up the character's y-coordinate.
 C $0D81,2 Is it less than the minimum y-coordinate?
 C $0D83,2 Return with the carry flag reset if so.
-C $0D85,2 Increment the maximum y-coordinate at #A$74. (This is a #BUG#creaksSuperiorVision(bug).)
+C $0D85,2 Increment the maximum y-coordinate at #A$74. (This is a #BUG(creaksSuperiorVision)(bug).)
 C $0D87,2 Is the character's y-coordinate greater than the maximum y-coordinate?
 C $0D89,2 Return with the carry flag reset if so.
 C $0D8B,4 Return with the the carry flag set.
@@ -1640,7 +1640,7 @@ C $145D,5 Copy the fifth byte of the blackboard buffer from #A$E1.
 C $1462,5 Copy the sixth byte of the blackboard buffer from #A$E2.
 c $1468 Get the identifier and coordinates of the blackboard closest to a character
 D $1468 #ZX$7128
-D $1468 Used by the routines at #A$0A58, #A$1129, #A$16E9, #A$184E, #A$19A5 and #A$1FA0. This routine also copies the #LINK:BlackboardBuffer(blackboard's buffer) into page 0.
+D $1468 Used by the routines at #A$0A58, #A$1129, #A$16E9, #A$184E, #A$19A5 and #A$1FA0. This routine also copies the #LINK(BlackboardBuffer)(blackboard's buffer) into page 0.
 R $1468 /O:(#A$DA)/ Blackboard identifier
 R $1468 /O:(#R$15($15,$16))/ Blackboard coordinates
 C $1468,3 Check which floor the character is on.
@@ -1870,10 +1870,10 @@ C $1669,2 Branch if not.
 C $166B,2 Decrement the x-coordinate at #A$D3.
 C $166D,2 Pick up the character's x-coordinate from #A$FC.
 C $166F,2 Is the character's x-coordinate smaller?
-C $1671,2 Branch if so (without restoring the x-coordinate at #A$D3 to its original value, which is a #BUG#leapsOfFaith(bug)).
+C $1671,2 Branch if so (without restoring the x-coordinate at #A$D3 to its original value, which is a #BUG(leapsOfFaith)(bug)).
 C $1673,6 Add two to the x-coordinate at #A$D3 and pick up its new value.
 C $1679,2 Is the character's x-coordinate greater?
-C $167B,2 Branch if so (without restoring the x-coordinate at #A$D3 to its original value, which is a #BUG#leapsOfFaith(bug)).
+C $167B,2 Branch if so (without restoring the x-coordinate at #A$D3 to its original value, which is a #BUG(leapsOfFaith)(bug)).
 C $167D,2 Pick up the boy's animatory state from #A$26.
 C $167F,2 Keep only bits 0-3.
 C $1681,2 Is the boy lying flat on his back?
@@ -2190,7 +2190,7 @@ N $1972 This entry point is used by the routines at #A$17E5 (with `A`=#R$4CC0($0
 C $1972,2 Store the lines reprimand identifier at #A$D8.
 C $1974,3 Was ERIC seen by a teacher?
 C $1977,2 Return if not.
-C $1979,2 Copy the character number of the teacher who saw ERIC to #A$C0. (This might overwrite the character number already stored there by the routine at #A$0A58, which is a #BUG#bullyAndBlackboard(bug).)
+C $1979,2 Copy the character number of the teacher who saw ERIC to #A$C0. (This might overwrite the character number already stored there by the routine at #A$0A58, which is a #BUG(bullyAndBlackboard)(bug).)
 C $197B,4 Store ERIC's character number ($14) at #A$72.
 C $197F,3 Restore ERIC's character buffer from page 0.
 C $1982,2 Pick up the character number of the teacher who saw ERIC from #A$C0.
@@ -2650,7 +2650,7 @@ u $1DB6 Unused
 B $1DB6,1,1
 c $1DB7 Make a teacher give lines
 D $1DB7 #ZX$7700
-D $1DB7 Used by the routines at #A$0B3B, #A$0ECF, #A$149F, #A$191B and #A$2552. Note that this routine does not first check whether the teacher is currently on screen before adding lines to ERIC's total or starting the lines-giving sound effect, which is a #BUG#hiddenAccusers(bug).
+D $1DB7 Used by the routines at #A$0B3B, #A$0ECF, #A$149F, #A$191B and #A$2552. Note that this routine does not first check whether the teacher is currently on screen before adding lines to ERIC's total or starting the lines-giving sound effect, which is a #BUG(hiddenAccusers)(bug).
 R $1DB7 /(#A$72)/ Character number of the lines recipient ($0F, $10, $11 or $14)
 R $1DB7 /(#A$D8)/ Lines reprimand identifier ($00-$0F)
 C $1DB7,5 Pick up the current value of the sprite enable register and store a copy at #A$F6.
@@ -2884,7 +2884,7 @@ C $205C,2 Pick up the teacher's x-coordinate from #A$FC.
 C $205E,5 Is S'>T+5 (meaning the teacher is a good distance from the right edge of the screen)?
 C $2063,2 Branch if not.
 C $2065,2 Pick up the teacher's x-coordinate from #A$FC.
-C $2067,6 Subtract 3 and then S (the x-coordinate of the leftmost column of the skool on screen) to get the cell x-coordinate of the left edge of the message box. This actually shifts the centre of the message box well to the left of the teacher's head, which is probably a #BUG#misplacedMessageBox(bug).
+C $2067,6 Subtract 3 and then S (the x-coordinate of the leftmost column of the skool on screen) to get the cell x-coordinate of the left edge of the message box. This actually shifts the centre of the message box well to the left of the teacher's head, which is probably a #BUG(misplacedMessageBox)(bug).
 C $206D,3 Jump forward.
 C $2070,2 When the teacher is close to the left edge of the screen, this sets the x-coordinate of sprite #1 (and therefore the left edge of the message box) to 32.
 C $2072,3 Jump forward.
@@ -2985,12 +2985,12 @@ C $218C,2 Is it less than 40 (meaning the number is less than 10240)?
 C $218E,2 Branch if so.
 C $2190,9 Increment the character code of the first digit at #A$8A from space to '1', '1' to '2' etc.
 C $2199,8 Set the character code of the second, third and fourth digits at #A$8B, #A$8C and #A$8D to '0'.
-C $21A1,18 Subtract $2774 (10100) from the number at #A$A3. (This is a #BUG#mistrialSubtraction(bug).)
+C $21A1,18 Subtract $2774 (10100) from the number at #A$A3. (This is a #BUG(mistrialSubtraction)(bug).)
 C $21B3,3 Jump back to consider the 10000's digit again.
 C $21B6,2 Is the MSB of the number 39 (meaning the number is at least 9984)?
 C $21B8,2 Branch if not.
 C $21BA,2 Pick up the LSB of the number.
-C $21BC,2 Is it 116 or more (meaning the number is 10100 or more)? (This is a #BUG#mistrialSubtraction(bug).)
+C $21BC,2 Is it 116 or more (meaning the number is 10100 or more)? (This is a #BUG(mistrialSubtraction)(bug).)
 C $21BE,2 Branch back to deal with the 10000s digit if so.
 N $21C0 The 10000s digit has been computed. Now for the 1000s digit.
 C $21C0,2 Pick up the MSB of what remains of the number.
@@ -3242,7 +3242,7 @@ C $2547,3 Generate a random value (R) in `A`.
 C $254A,3 Now `A`=R-m (if R>=m) or 256-m+R (if R<m).
 C $254D,2 Is 0<=`A`<=M-m (i.e. m<=R<=M)?
 C $254F,2 Branch back to generate another random value if not.
-C $2551,1 Return without first adding m back to `A` to get R. (This is a #BUG#lowProductValues(bug).)
+C $2551,1 Return without first adding m back to `A` to get R. (This is a #BUG(lowProductValues)(bug).)
 c $2552 Make a teacher give lines to EINSTEIN or the boy he's telling tales on
 D $2552 Used by the routines at #A$0A58 and #A$0B3B.
 R $2552 A Character number of EINSTEIN or the boy that he's telling tales on
@@ -3427,7 +3427,7 @@ C $2736,1 Transfer the target x-coordinate to `X`.
 C $2737,3 Is there anyone at the target coordinates?
 C $273A,2 Return if not.
 C $273C,8 Place the address of the uninterruptible subcommand routine at #A$267A into ANGELFACE's buffer to make him throw a punch.
-C $2744,1 Return to the character-handling routine at #A$3B5E, which then has the opportunity of moving ANGELFACE midstride before he begins the punch. This is a #BUG#pairOfJerks(bug).
+C $2744,1 Return to the character-handling routine at #A$3B5E, which then has the opportunity of moving ANGELFACE midstride before he begins the punch. This is a #BUG(pairOfJerks)(bug).
 c $2745 Deal with a teacher who has found the truant ERIC
 D $2745 Used by the routine at #A$0C3F after having its address placed at #A$AE by the routine at #A$0B3B.
 C $2745,2 Pick up the flags byte from #A$3F.
@@ -3980,7 +3980,7 @@ C $2CC8,4 Pick up the pellet's x-coordinate.
 C $2CCC,1 Is the pellet already airborne?
 C $2CCD,2 Return if so.
 C $2CCF,8 Place the address of the uninterruptible subcommand routine at #A$2B21 into BOY WONDER's buffer.
-C $2CD7,1 Return to the character-handling routine at #A$3B5E, which then has the opportunity of moving BOY WONDER midstride before he begins firing. This is a #BUG#pairOfJerks(bug).
+C $2CD7,1 Return to the character-handling routine at #A$3B5E, which then has the opportunity of moving BOY WONDER midstride before he begins firing. This is a #BUG(pairOfJerks)(bug).
 u $2CD8 Unused
 B $2CD8,1,1
 c $2CD9 Initialise interrupts, screen memory and page 0
@@ -4317,7 +4317,7 @@ C $31DF,10 Count down from $FFFF to $0000.
 c $31EA Update the display
 D $31EA #ZX$6992
 D $31EA Used by the routines at #A$0800, #A$35EF and #A$BE09.
-C $31EA,10 Prepare to address the screen refresh buffer (SRB) at #A$4008, working backwards from the last byte at $4070 to the 11th byte $4012. This ignores the first ten bytes - which correspond to the top two rows of the screen - and is a #BUG#disappearingPellet(bug).
+C $31EA,10 Prepare to address the screen refresh buffer (SRB) at #A$4008, working backwards from the last byte at $4070 to the 11th byte $4012. This ignores the first ten bytes - which correspond to the top two rows of the screen - and is a #BUG(disappearingPellet)(bug).
 C $31F4,2 Pick up a byte from the screen refresh buffer.
 C $31F6,2 Branch if it's zero (no updates required).
 C $31F8,2 Store the SRB byte at #A$57.
@@ -5132,7 +5132,7 @@ C $3B4E,2 Return if we're in demo mode.
 C $3B50,5 Generate a random value between 0 and 7.
 C $3B55,2 Is it 3 or more?
 C $3B57,2 Return if so.
-C $3B59,2 Now `A`=#LINK:LessonF3($F3), #LINK:LessonF4($F4) or #LINK:LessonF5($F5) (one of the 'special' playtimes).
+C $3B59,2 Now `A`=#LINK(LessonF3)($F3), #LINK(LessonF4)($F4) or #LINK(LessonF5)($F5) (one of the 'special' playtimes).
 C $3B5B,2 Make this special playtime the actual playtime.
 c $3B5E Move the current character
 D $3B5E Used by the routine at #A$3AB4.
@@ -5233,7 +5233,7 @@ u $4071 Unused
 B $4071,15,8,7
 b $4080 Command list $80: Map Room - teacher
 D $4080 #ZX$FB80
-D $4080 Used by MR WACKER in lessons #LINK:LessonED($ED) and #LINK:LessonEF($EF); and by MR WITHIT in lessons #LINK:LessonE5($E5), #LINK:LessonE7($E7), #LINK:LessonE8($E8), #LINK:LessonE9($E9), #LINK:LessonEA($EA), #LINK:LessonEB($EB), #LINK:LessonEC($EC), #LINK:LessonEE($EE), #LINK:LessonF0($F0) and #LINK:LessonF2($F2).
+D $4080 Used by MR WACKER in lessons #LINK(LessonED)($ED) and #LINK(LessonEF)($EF); and by MR WITHIT in lessons #LINK(LessonE5)($E5), #LINK(LessonE7)($E7), #LINK(LessonE8)($E8), #LINK(LessonE9)($E9), #LINK(LessonEA)($EA), #LINK(LessonEB)($EB), #LINK(LessonEC)($EC), #LINK(LessonEE)($EE), #LINK(LessonF0)($F0) and #LINK(LessonF2)($F2).
 W $4080,2,2 Go to...
 B $4082,2,2 ...the fire escape.
 W $4084,2,2 Go to...
@@ -5244,10 +5244,10 @@ B $408C,1,1 ...the teacher has arrived at the Map Room.
 W $408D,2,2 Tell the kids to sit down.
 W $408F,2,2 Go to...
 B $4091,2,2 ...the chair nearest the map in the Map Room.
-W $4093,2,2 Conduct the class (without first turning round to face the class, which is a #BUG#theWallMostStaredAt(bug)).
+W $4093,2,2 Conduct the class (without first turning round to face the class, which is a #BUG(theWallMostStaredAt)(bug)).
 b $4095 Command list $82: Reading Room - teacher
 D $4095 #ZX$FB9A
-D $4095 Used by MR WACKER in lessons #LINK:LessonE4($E4), #LINK:LessonE8($E8) and #LINK:LessonEB($EB); by MR ROCKITT in lessons #LINK:LessonE9($E9), #LINK:LessonEF($EF) and #LINK:LessonF0($F0); by MR WITHIT in lesson #LINK:LessonE2($E2); and by MR CREAK in lessons #LINK:LessonE5($E5), #LINK:LessonE6($E6), #LINK:LessonE7($E7), #LINK:LessonEA($EA), #LINK:LessonEC($EC), #LINK:LessonED($ED), #LINK:LessonEE($EE) and #LINK:LessonF2($F2).
+D $4095 Used by MR WACKER in lessons #LINK(LessonE4)($E4), #LINK(LessonE8)($E8) and #LINK(LessonEB)($EB); by MR ROCKITT in lessons #LINK(LessonE9)($E9), #LINK(LessonEF)($EF) and #LINK(LessonF0)($F0); by MR WITHIT in lesson #LINK(LessonE2)($E2); and by MR CREAK in lessons #LINK(LessonE5)($E5), #LINK(LessonE6)($E6), #LINK(LessonE7)($E7), #LINK(LessonEA)($EA), #LINK(LessonEC)($EC), #LINK(LessonED)($ED), #LINK(LessonEE)($EE) and #LINK(LessonF2)($F2).
 W $4095,2,2 Go to...
 B $4097,2,2 ...the middle of the Revision Library.
 W $4099,2,2 Go to...
@@ -5263,7 +5263,7 @@ B $40AA,2,2 ...the place in the Reading Room where teachers wait for EINSTEIN to
 W $40AC,2,2 Wipe the board and conduct the class.
 b $40AE Command list $84: Exam Room - teacher
 D $40AE #ZX$FBB4
-D $40AE Used by MR WACKER in lessons #LINK:LessonE2($E2), #LINK:LessonE7($E7), #LINK:LessonE9($E9), #LINK:LessonEE($EE) and #LINK:LessonF1($F1); by MR ROCKITT in lessons #LINK:LessonE3($E3), #LINK:LessonE4($E4), #LINK:LessonE8($E8), #LINK:LessonEA($EA), #LINK:LessonEB($EB), #LINK:LessonEC($EC) and #LINK:LessonED($ED); and by MR WITHIT in lessons #LINK:LessonE6($E6) and #LINK:LessonEF($EF).
+D $40AE Used by MR WACKER in lessons #LINK(LessonE2)($E2), #LINK(LessonE7)($E7), #LINK(LessonE9)($E9), #LINK(LessonEE)($EE) and #LINK(LessonF1)($F1); by MR ROCKITT in lessons #LINK(LessonE3)($E3), #LINK(LessonE4)($E4), #LINK(LessonE8)($E8), #LINK(LessonEA)($EA), #LINK(LessonEB)($EB), #LINK(LessonEC)($EC) and #LINK(LessonED)($ED); and by MR WITHIT in lessons #LINK(LessonE6)($E6) and #LINK(LessonEF)($EF).
 W $40AE,2,2 Go to...
 B $40B0,2,2 ...the fire escape.
 W $40B2,2,2 Go to...
@@ -5277,7 +5277,7 @@ B $40BF,2,2 ...the place in the Exam Room where teachers wait for EINSTEIN to gr
 W $40C1,2,2 Wipe the board and conduct the class.
 b $40C3 Command list $86: White Room - teacher
 D $40C3 #ZX$FBCA
-D $40C3 Used by MR WACKER in lessons #LINK:LessonEA($EA) and #LINK:LessonEC($EC); by MR ROCKITT in lessons #LINK:LessonE6($E6), #LINK:LessonE7($E7), #LINK:LessonEE($EE), #LINK:LessonF1($F1) and #LINK:LessonF2($F2); by MR WITHIT in lesson #LINK:LessonED($ED); and by MR CREAK in lessons #LINK:LessonE4($E4), #LINK:LessonE8($E8), #LINK:LessonE9($E9), #LINK:LessonEB($EB), #LINK:LessonEF($EF) and #LINK:LessonF0($F0).
+D $40C3 Used by MR WACKER in lessons #LINK(LessonEA)($EA) and #LINK(LessonEC)($EC); by MR ROCKITT in lessons #LINK(LessonE6)($E6), #LINK(LessonE7)($E7), #LINK(LessonEE)($EE), #LINK(LessonF1)($F1) and #LINK(LessonF2)($F2); by MR WITHIT in lesson #LINK(LessonED)($ED); and by MR CREAK in lessons #LINK(LessonE4)($E4), #LINK(LessonE8)($E8), #LINK(LessonE9)($E9), #LINK(LessonEB)($EB), #LINK(LessonEF)($EF) and #LINK(LessonF0)($F0).
 W $40C3,2,2 Go to...
 B $40C5,2,2 ...the staff room.
 W $40C7,2,2 Go to...
@@ -5293,7 +5293,7 @@ B $40D8,2,2 ...the right end of the board in the White Room.
 W $40DA,2,2 Wipe the board and conduct the class.
 b $40DC Command list $88: Map Room - little boy
 D $40DC #ZX$FBE4
-D $40DC Used by little boy no. 1 in lessons #LINK:LessonE5($E5), #LINK:LessonEC($EC) and #LINK:LessonEE($EE); by little boy no. 2 in lessons #LINK:LessonE5($E5), #LINK:LessonEA($EA), #LINK:LessonEB($EB) and #LINK:LessonF2($F2); by little boy no. 3 in lessons #LINK:LessonE5($E5), #LINK:LessonE8($E8), #LINK:LessonEC($EC), #LINK:LessonEE($EE) and #LINK:LessonF0($F0); by little boy no. 4 in lessons #LINK:LessonED($ED), #LINK:LessonEE($EE) and #LINK:LessonF2($F2); by little boy no. 5 in lessons #LINK:LessonE8($E8) and #LINK:LessonEB($EB); by little boy no. 6 in lessons #LINK:LessonEC($EC) and #LINK:LessonF2($F2); by little boy no. 7 in lessons #LINK:LessonEA($EA) and #LINK:LessonEE($EE); by little boy no. 8 in lessons #LINK:LessonE9($E9), #LINK:LessonEB($EB), #LINK:LessonED($ED) and #LINK:LessonF2($F2); by little boy no. 9 in lessons #LINK:LessonE5($E5), #LINK:LessonE8($E8), #LINK:LessonE9($E9) and #LINK:LessonF2($F2); by little boy no. 10 in lessons #LINK:LessonE5($E5), #LINK:LessonE9($E9) and #LINK:LessonEA($EA); and by little boy no. 11 in lessons #LINK:LessonE7($E7), #LINK:LessonEF($EF) and #LINK:LessonF0($F0).
+D $40DC Used by little boy no. 1 in lessons #LINK(LessonE5)($E5), #LINK(LessonEC)($EC) and #LINK(LessonEE)($EE); by little boy no. 2 in lessons #LINK(LessonE5)($E5), #LINK(LessonEA)($EA), #LINK(LessonEB)($EB) and #LINK(LessonF2)($F2); by little boy no. 3 in lessons #LINK(LessonE5)($E5), #LINK(LessonE8)($E8), #LINK(LessonEC)($EC), #LINK(LessonEE)($EE) and #LINK(LessonF0)($F0); by little boy no. 4 in lessons #LINK(LessonED)($ED), #LINK(LessonEE)($EE) and #LINK(LessonF2)($F2); by little boy no. 5 in lessons #LINK(LessonE8)($E8) and #LINK(LessonEB)($EB); by little boy no. 6 in lessons #LINK(LessonEC)($EC) and #LINK(LessonF2)($F2); by little boy no. 7 in lessons #LINK(LessonEA)($EA) and #LINK(LessonEE)($EE); by little boy no. 8 in lessons #LINK(LessonE9)($E9), #LINK(LessonEB)($EB), #LINK(LessonED)($ED) and #LINK(LessonF2)($F2); by little boy no. 9 in lessons #LINK(LessonE5)($E5), #LINK(LessonE8)($E8), #LINK(LessonE9)($E9) and #LINK(LessonF2)($F2); by little boy no. 10 in lessons #LINK(LessonE5)($E5), #LINK(LessonE9)($E9) and #LINK(LessonEA)($EA); and by little boy no. 11 in lessons #LINK(LessonE7)($E7), #LINK(LessonEF)($EF) and #LINK(LessonF0)($F0).
 W $40DC,2,2 Go to...
 B $40DE,2,2 ...the Map Room.
 W $40E0,2,2 Move about until...
@@ -5306,7 +5306,7 @@ D $40E5 This command list appears in the timetables for BOY WONDER's and ERIC's 
 W $40E5,2,2 Do nothing.
 b $40E7 Command list $8C: Map Room - BOY WONDER
 D $40E7 #ZX$FBF0
-D $40E7 Used by BOY WONDER in lessons #LINK:LessonE5($E5) and #LINK:LessonF0($F0).
+D $40E7 Used by BOY WONDER in lessons #LINK(LessonE5)($E5) and #LINK(LessonF0)($F0).
 W $40E7,2,2 Put the next address in BOY WONDER's buffer, making him...
 W $40E9,2,2 ...fire the catapult now and then.
 W $40EB,2,2 Go to...
@@ -5319,7 +5319,7 @@ W $40F6,2,2 Find a seat and sit down.
 W $40F8,2,2 Sit still.
 b $40FA Command list $8E: Map Room - ANGELFACE
 D $40FA #ZX$FC04
-D $40FA Used by ANGELFACE in lessons #LINK:LessonE7($E7), #LINK:LessonEF($EF) and #LINK:LessonF0($F0).
+D $40FA Used by ANGELFACE in lessons #LINK(LessonE7)($E7), #LINK(LessonEF)($EF) and #LINK(LessonF0)($F0).
 W $40FA,2,2 Put the next address in ANGELFACE's buffer, making him...
 W $40FC,2,2 ...hit now and then.
 W $40FE,2,2 Go to...
@@ -5332,7 +5332,7 @@ W $4109,2,2 Find a seat and sit down.
 W $410B,2,2 Sit still.
 b $410D Command list $90: Map Room - EINSTEIN
 D $410D #ZX$FC18
-D $410D Used by EINSTEIN in lessons #LINK:LessonE7($E7), #LINK:LessonEF($EF) and #LINK:LessonF0($F0).
+D $410D Used by EINSTEIN in lessons #LINK(LessonE7)($E7), #LINK(LessonEF)($EF) and #LINK(LessonF0)($F0).
 W $410D,2,2 Go to...
 B $410F,2,2 ...the Map Room.
 W $4111,2,2 Move about until...
@@ -5341,7 +5341,7 @@ W $4114,2,2 Find a seat and sit down.
 W $4116,2,2 Grass and answer questions.
 b $4118 Command list $92: Reading Room - little boy
 D $4118 #ZX$FC24
-D $4118 Used by little boy no. 1 in lessons #LINK:LessonE2($E2), #LINK:LessonE7($E7), #LINK:LessonEA($EA), #LINK:LessonEB($EB), #LINK:LessonED($ED) and #LINK:LessonF0($F0); by little boy no. 2 in lessons #LINK:LessonE2($E2), #LINK:LessonE4($E4), #LINK:LessonE8($E8), #LINK:LessonEC($EC) and #LINK:LessonF0($F0); by little boy no. 3 in lessons #LINK:LessonE2($E2), #LINK:LessonE4($E4) and #LINK:LessonE7($E7); by little boy no. 4 in lessons #LINK:LessonE2($E2), #LINK:LessonE4($E4), #LINK:LessonE5($E5), #LINK:LessonEB($EB), #LINK:LessonEC($EC) and #LINK:LessonF0($F0); by little boy no. 5 in lessons #LINK:LessonE2($E2), #LINK:LessonE7($E7), #LINK:LessonE9($E9) and #LINK:LessonED($ED); by little boy no. 6 in lessons #LINK:LessonE5($E5) and #LINK:LessonEE($EE); by little boy no. 7 in lessons #LINK:LessonE5($E5), #LINK:LessonE8($E8), #LINK:LessonEB($EB) and #LINK:LessonEF($EF); by little boy no. 8 in lessons #LINK:LessonE5($E5), #LINK:LessonE7($E7), #LINK:LessonEC($EC), #LINK:LessonEE($EE) and #LINK:LessonF0($F0); by little boy no. 9 in lessons #LINK:LessonED($ED), #LINK:LessonEF($EF) and #LINK:LessonF0($F0); by little boy no. 10 in lessons #LINK:LessonEB($EB) and #LINK:LessonEE($EE); and by little boy no. 11 in lessons #LINK:LessonE8($E8), #LINK:LessonE9($E9), #LINK:LessonEA($EA) and #LINK:LessonF2($F2).
+D $4118 Used by little boy no. 1 in lessons #LINK(LessonE2)($E2), #LINK(LessonE7)($E7), #LINK(LessonEA)($EA), #LINK(LessonEB)($EB), #LINK(LessonED)($ED) and #LINK(LessonF0)($F0); by little boy no. 2 in lessons #LINK(LessonE2)($E2), #LINK(LessonE4)($E4), #LINK(LessonE8)($E8), #LINK(LessonEC)($EC) and #LINK(LessonF0)($F0); by little boy no. 3 in lessons #LINK(LessonE2)($E2), #LINK(LessonE4)($E4) and #LINK(LessonE7)($E7); by little boy no. 4 in lessons #LINK(LessonE2)($E2), #LINK(LessonE4)($E4), #LINK(LessonE5)($E5), #LINK(LessonEB)($EB), #LINK(LessonEC)($EC) and #LINK(LessonF0)($F0); by little boy no. 5 in lessons #LINK(LessonE2)($E2), #LINK(LessonE7)($E7), #LINK(LessonE9)($E9) and #LINK(LessonED)($ED); by little boy no. 6 in lessons #LINK(LessonE5)($E5) and #LINK(LessonEE)($EE); by little boy no. 7 in lessons #LINK(LessonE5)($E5), #LINK(LessonE8)($E8), #LINK(LessonEB)($EB) and #LINK(LessonEF)($EF); by little boy no. 8 in lessons #LINK(LessonE5)($E5), #LINK(LessonE7)($E7), #LINK(LessonEC)($EC), #LINK(LessonEE)($EE) and #LINK(LessonF0)($F0); by little boy no. 9 in lessons #LINK(LessonED)($ED), #LINK(LessonEF)($EF) and #LINK(LessonF0)($F0); by little boy no. 10 in lessons #LINK(LessonEB)($EB) and #LINK(LessonEE)($EE); and by little boy no. 11 in lessons #LINK(LessonE8)($E8), #LINK(LessonE9)($E9), #LINK(LessonEA)($EA) and #LINK(LessonF2)($F2).
 W $4118,2,2 Go to...
 B $411A,2,2 ...the Reading Room.
 W $411C,2,2 Move about until...
@@ -5350,7 +5350,7 @@ W $411F,2,2 Find a seat and sit down.
 W $4121,2,2 Sit still.
 b $4123 Command list $94: Reading Room - BOY WONDER
 D $4123 #ZX$FC30
-D $4123 Used by BOY WONDER in lessons #LINK:LessonE8($E8), #LINK:LessonE9($E9), #LINK:LessonEA($EA) and #LINK:LessonF2($F2).
+D $4123 Used by BOY WONDER in lessons #LINK(LessonE8)($E8), #LINK(LessonE9)($E9), #LINK(LessonEA)($EA) and #LINK(LessonF2)($F2).
 W $4123,2,2 Put the next address in BOY WONDER's buffer, making him...
 W $4125,2,2 ...fire the catapult now and then.
 W $4127,2,2 Go to...
@@ -5367,7 +5367,7 @@ W $4139,2,2 Find a seat and sit down.
 W $413B,2,2 Sit still.
 b $413D Command list $96: Reading Room - ANGELFACE
 D $413D #ZX$FC4B
-D $413D Used by ANGELFACE in lessons #LINK:LessonE9($E9), #LINK:LessonEA($EA) and #LINK:LessonF2($F2).
+D $413D Used by ANGELFACE in lessons #LINK(LessonE9)($E9), #LINK(LessonEA)($EA) and #LINK(LessonF2)($F2).
 W $413D,2,2 Put the next address in ANGELFACE's buffer, making him...
 W $413F,2,2 ...hit now and then.
 W $4141,2,2 Go to...
@@ -5380,7 +5380,7 @@ W $414C,2,2 Find a seat and sit down.
 W $414E,2,2 Sit still.
 b $4150 Command list $98: Reading Room - EINSTEIN
 D $4150 #ZX$FC5F
-D $4150 Used by EINSTEIN in lessons #LINK:LessonE8($E8), #LINK:LessonE9($E9), #LINK:LessonEA($EA) and #LINK:LessonF2($F2).
+D $4150 Used by EINSTEIN in lessons #LINK(LessonE8)($E8), #LINK(LessonE9)($E9), #LINK(LessonEA)($EA) and #LINK(LessonF2)($F2).
 W $4150,2,2 Go to...
 B $4152,2,2 ...the Reading Room.
 W $4154,2,2 Move about until...
@@ -5389,7 +5389,7 @@ W $4157,2,2 Find a seat and sit down.
 W $4159,2,2 Grass and answer questions.
 b $415B Command list $9A: Exam Room - little boy
 D $415B #ZX$FC6B
-D $415B Used by little boy no. 1 in lessons #LINK:LessonE3($E3), #LINK:LessonE6($E6), #LINK:LessonE9($E9), #LINK:LessonEF($EF) and #LINK:LessonF1($F1); by little boy no. 2 in lessons #LINK:LessonE3($E3), #LINK:LessonE9($E9), #LINK:LessonEE($EE) and #LINK:LessonF1($F1); by little boy no. 3 in lessons #LINK:LessonE3($E3), #LINK:LessonE6($E6), #LINK:LessonE9($E9), #LINK:LessonEB($EB), #LINK:LessonED($ED), #LINK:LessonEF($EF) and #LINK:LessonF1($F1); by little boy no. 4 in lessons #LINK:LessonE6($E6), #LINK:LessonE8($E8), #LINK:LessonEA($EA) and #LINK:LessonF1($F1); by little boy no. 5 in lessons #LINK:LessonEC($EC), #LINK:LessonEF($EF) and #LINK:LessonF1($F1); by little boy no. 6 in lessons #LINK:LessonE2($E2), #LINK:LessonE8($E8), #LINK:LessonEA($EA), #LINK:LessonEB($EB), #LINK:LessonEF($EF) and #LINK:LessonF1($F1); by little boy no. 7 in lessons #LINK:LessonE2($E2), #LINK:LessonE4($E4), #LINK:LessonE6($E6), #LINK:LessonE7($E7), #LINK:LessonED($ED) and #LINK:LessonF1($F1); by little boy no. 8 in lessons #LINK:LessonE2($E2), #LINK:LessonE4($E4), #LINK:LessonE8($E8), #LINK:LessonEA($EA), #LINK:LessonEF($EF) and #LINK:LessonF1($F1); by little boy no. 9 in lessons #LINK:LessonE2($E2), #LINK:LessonE3($E3), #LINK:LessonE4($E4), #LINK:LessonE7($E7), #LINK:LessonEB($EB), #LINK:LessonEC($EC), #LINK:LessonEE($EE) and #LINK:LessonF1($F1); by little boy no. 10 in lessons #LINK:LessonE2($E2), #LINK:LessonE3($E3), #LINK:LessonE4($E4), #LINK:LessonE7($E7), #LINK:LessonEC($EC), #LINK:LessonED($ED), #LINK:LessonEF($EF) and #LINK:LessonF1($F1); by little boy no. 11 in lessons #LINK:LessonE2($E2) and #LINK:LessonE3($E3); and by MR ROCKITT in lesson #LINK:LessonE5($E5).
+D $415B Used by little boy no. 1 in lessons #LINK(LessonE3)($E3), #LINK(LessonE6)($E6), #LINK(LessonE9)($E9), #LINK(LessonEF)($EF) and #LINK(LessonF1)($F1); by little boy no. 2 in lessons #LINK(LessonE3)($E3), #LINK(LessonE9)($E9), #LINK(LessonEE)($EE) and #LINK(LessonF1)($F1); by little boy no. 3 in lessons #LINK(LessonE3)($E3), #LINK(LessonE6)($E6), #LINK(LessonE9)($E9), #LINK(LessonEB)($EB), #LINK(LessonED)($ED), #LINK(LessonEF)($EF) and #LINK(LessonF1)($F1); by little boy no. 4 in lessons #LINK(LessonE6)($E6), #LINK(LessonE8)($E8), #LINK(LessonEA)($EA) and #LINK(LessonF1)($F1); by little boy no. 5 in lessons #LINK(LessonEC)($EC), #LINK(LessonEF)($EF) and #LINK(LessonF1)($F1); by little boy no. 6 in lessons #LINK(LessonE2)($E2), #LINK(LessonE8)($E8), #LINK(LessonEA)($EA), #LINK(LessonEB)($EB), #LINK(LessonEF)($EF) and #LINK(LessonF1)($F1); by little boy no. 7 in lessons #LINK(LessonE2)($E2), #LINK(LessonE4)($E4), #LINK(LessonE6)($E6), #LINK(LessonE7)($E7), #LINK(LessonED)($ED) and #LINK(LessonF1)($F1); by little boy no. 8 in lessons #LINK(LessonE2)($E2), #LINK(LessonE4)($E4), #LINK(LessonE8)($E8), #LINK(LessonEA)($EA), #LINK(LessonEF)($EF) and #LINK(LessonF1)($F1); by little boy no. 9 in lessons #LINK(LessonE2)($E2), #LINK(LessonE3)($E3), #LINK(LessonE4)($E4), #LINK(LessonE7)($E7), #LINK(LessonEB)($EB), #LINK(LessonEC)($EC), #LINK(LessonEE)($EE) and #LINK(LessonF1)($F1); by little boy no. 10 in lessons #LINK(LessonE2)($E2), #LINK(LessonE3)($E3), #LINK(LessonE4)($E4), #LINK(LessonE7)($E7), #LINK(LessonEC)($EC), #LINK(LessonED)($ED), #LINK(LessonEF)($EF) and #LINK(LessonF1)($F1); by little boy no. 11 in lessons #LINK(LessonE2)($E2) and #LINK(LessonE3)($E3); and by MR ROCKITT in lesson #LINK(LessonE5)($E5).
 W $415B,2,2 Go to...
 B $415D,2,2 ...the Exam Room.
 W $415F,2,2 Move about until...
@@ -5398,7 +5398,7 @@ W $4162,2,2 Find a seat and sit down.
 W $4164,2,2 Sit still.
 b $4166 Command list $9C: Exam Room - BOY WONDER
 D $4166 #ZX$FC77
-D $4166 Used by BOY WONDER in lessons #LINK:LessonE2($E2), #LINK:LessonE3($E3), #LINK:LessonE7($E7) and #LINK:LessonEF($EF).
+D $4166 Used by BOY WONDER in lessons #LINK(LessonE2)($E2), #LINK(LessonE3)($E3), #LINK(LessonE7)($E7) and #LINK(LessonEF)($EF).
 W $4166,2,2 Put the next address in BOY WONDER's buffer, making him...
 W $4168,2,2 ...fire the catapult now and then.
 W $416A,2,2 Go to...
@@ -5415,7 +5415,7 @@ W $417C,2,2 Find a seat and sit down.
 W $417E,2,2 Sit still.
 b $4180 Command list $9E: Exam Room - ANGELFACE
 D $4180 #ZX$FC92
-D $4180 Used by ANGELFACE in lessons #LINK:LessonE2($E2) and #LINK:LessonE3($E3).
+D $4180 Used by ANGELFACE in lessons #LINK(LessonE2)($E2) and #LINK(LessonE3)($E3).
 W $4180,2,2 Put the next address in ANGELFACE's buffer, making him...
 W $4182,2,2 ...hit now and then.
 W $4184,2,2 Go to...
@@ -5428,7 +5428,7 @@ W $418F,2,2 Find a seat and sit down.
 W $4191,2,2 Sit still.
 b $4193 Command list $A0: Exam Room - EINSTEIN
 D $4193 #ZX$FCA6
-D $4193 Used by EINSTEIN in lessons #LINK:LessonE2($E2) and #LINK:LessonE3($E3).
+D $4193 Used by EINSTEIN in lessons #LINK(LessonE2)($E2) and #LINK(LessonE3)($E3).
 W $4193,2,2 Go to...
 B $4195,2,2 ...the Exam Room.
 W $4197,2,2 Move about until...
@@ -5437,7 +5437,7 @@ W $419A,2,2 Find a seat and sit down.
 W $419C,2,2 Grass and answer questions.
 b $419E Command list $A2: White Room - little boy
 D $419E #ZX$FCB2
-D $419E Used by little boy no. 1 in lessons #LINK:LessonE8($E8) and #LINK:LessonF2($F2); by little boy no. 2 in lessons #LINK:LessonE6($E6), #LINK:LessonE7($E7), #LINK:LessonED($ED) and #LINK:LessonEF($EF); by little boy no. 3 in lessons #LINK:LessonEA($EA) and #LINK:LessonF2($F2); by little boy no. 4 in lessons #LINK:LessonE3($E3), #LINK:LessonE7($E7), #LINK:LessonE9($E9) and #LINK:LessonEF($EF); by little boy no. 5 in lessons #LINK:LessonE3($E3), #LINK:LessonE4($E4), #LINK:LessonE6($E6), #LINK:LessonEA($EA), #LINK:LessonEE($EE), #LINK:LessonF0($F0) and #LINK:LessonF2($F2); by little boy no. 6 in lessons #LINK:LessonE3($E3), #LINK:LessonE4($E4), #LINK:LessonE6($E6), #LINK:LessonE7($E7), #LINK:LessonE9($E9), #LINK:LessonED($ED) and #LINK:LessonF0($F0); by little boy no. 7 in lessons #LINK:LessonE3($E3), #LINK:LessonE9($E9), #LINK:LessonEC($EC), #LINK:LessonF0($F0) and #LINK:LessonF2($F2); by little boy no. 8 in lessons #LINK:LessonE3($E3) and #LINK:LessonE6($E6); by little boy no. 9 in lessons #LINK:LessonE6($E6) and #LINK:LessonEA($EA); by little boy no. 10 in lessons #LINK:LessonE8($E8), #LINK:LessonF0($F0) and #LINK:LessonF2($F2); and by little boy no. 11 in lessons #LINK:LessonEB($EB), #LINK:LessonEC($EC), #LINK:LessonED($ED), #LINK:LessonEE($EE) and #LINK:LessonF1($F1).
+D $419E Used by little boy no. 1 in lessons #LINK(LessonE8)($E8) and #LINK(LessonF2)($F2); by little boy no. 2 in lessons #LINK(LessonE6)($E6), #LINK(LessonE7)($E7), #LINK(LessonED)($ED) and #LINK(LessonEF)($EF); by little boy no. 3 in lessons #LINK(LessonEA)($EA) and #LINK(LessonF2)($F2); by little boy no. 4 in lessons #LINK(LessonE3)($E3), #LINK(LessonE7)($E7), #LINK(LessonE9)($E9) and #LINK(LessonEF)($EF); by little boy no. 5 in lessons #LINK(LessonE3)($E3), #LINK(LessonE4)($E4), #LINK(LessonE6)($E6), #LINK(LessonEA)($EA), #LINK(LessonEE)($EE), #LINK(LessonF0)($F0) and #LINK(LessonF2)($F2); by little boy no. 6 in lessons #LINK(LessonE3)($E3), #LINK(LessonE4)($E4), #LINK(LessonE6)($E6), #LINK(LessonE7)($E7), #LINK(LessonE9)($E9), #LINK(LessonED)($ED) and #LINK(LessonF0)($F0); by little boy no. 7 in lessons #LINK(LessonE3)($E3), #LINK(LessonE9)($E9), #LINK(LessonEC)($EC), #LINK(LessonF0)($F0) and #LINK(LessonF2)($F2); by little boy no. 8 in lessons #LINK(LessonE3)($E3) and #LINK(LessonE6)($E6); by little boy no. 9 in lessons #LINK(LessonE6)($E6) and #LINK(LessonEA)($EA); by little boy no. 10 in lessons #LINK(LessonE8)($E8), #LINK(LessonF0)($F0) and #LINK(LessonF2)($F2); and by little boy no. 11 in lessons #LINK(LessonEB)($EB), #LINK(LessonEC)($EC), #LINK(LessonED)($ED), #LINK(LessonEE)($EE) and #LINK(LessonF1)($F1).
 W $419E,2,2 Go to...
 B $41A0,2,2 ...the White Room.
 W $41A2,2,2 Move about until...
@@ -5446,7 +5446,7 @@ W $41A5,2,2 Find a seat and sit down.
 W $41A7,2,2 Sit still.
 b $41A9 Command list $A4: White Room - BOY WONDER
 D $41A9 #ZX$FCBE
-D $41A9 Used by BOY WONDER in lessons #LINK:LessonEB($EB), #LINK:LessonEE($EE) and #LINK:LessonF1($F1).
+D $41A9 Used by BOY WONDER in lessons #LINK(LessonEB)($EB), #LINK(LessonEE)($EE) and #LINK(LessonF1)($F1).
 W $41A9,2,2 Put the next address in BOY WONDER's buffer, making him...
 W $41AB,2,2 ...fire the catapult now and then.
 W $41AD,2,2 Go to...
@@ -5463,7 +5463,7 @@ W $41BF,2,2 Find a seat and sit down.
 W $41C1,2,2 Sit still.
 b $41C3 Command list $A6: White Room - ANGELFACE
 D $41C3 #ZX$FCD9
-D $41C3 Used by ANGELFACE in lessons #LINK:LessonE4($E4), #LINK:LessonE8($E8), #LINK:LessonEB($EB), #LINK:LessonEC($EC) and #LINK:LessonF1($F1).
+D $41C3 Used by ANGELFACE in lessons #LINK(LessonE4)($E4), #LINK(LessonE8)($E8), #LINK(LessonEB)($EB), #LINK(LessonEC)($EC) and #LINK(LessonF1)($F1).
 W $41C3,2,2 Put the next address in ANGELFACE's buffer, making him...
 W $41C5,2,2 ...hit now and then.
 W $41C7,2,2 Go to...
@@ -5476,7 +5476,7 @@ W $41D2,2,2 Find a seat and sit down.
 W $41D4,2,2 Sit still.
 b $41D6 Command list $A8: White Room - EINSTEIN
 D $41D6 #ZX$FCED
-D $41D6 Used by EINSTEIN in lessons #LINK:LessonEB($EB), #LINK:LessonEC($EC), #LINK:LessonED($ED), #LINK:LessonEE($EE) and #LINK:LessonF1($F1).
+D $41D6 Used by EINSTEIN in lessons #LINK(LessonEB)($EB), #LINK(LessonEC)($EC), #LINK(LessonED)($ED), #LINK(LessonEE)($EE) and #LINK(LessonF1)($F1).
 W $41D6,2,2 Go to...
 B $41D8,2,2 ...the White Room.
 W $41DA,2,2 Move about until...
@@ -5485,14 +5485,14 @@ W $41DD,2,2 Find a seat and sit down.
 W $41DF,2,2 Grass and answer questions.
 b $41E1 Command list $AA: Dinner - EINSTEIN/little boy
 D $41E1 #ZX$FCF9
-D $41E1 Used by little boy no. 1, little boy no. 2, little boy no. 3, little boy no. 4, little boy no. 5, little boy no. 6, little boy no. 7, little boy no. 8, little boy no. 9, little boy no. 10, little boy no. 11 and EINSTEIN in lessons #LINK:LessonE0($E0) and #LINK:LessonE1($E1).
+D $41E1 Used by little boy no. 1, little boy no. 2, little boy no. 3, little boy no. 4, little boy no. 5, little boy no. 6, little boy no. 7, little boy no. 8, little boy no. 9, little boy no. 10, little boy no. 11 and EINSTEIN in lessons #LINK(LessonE0)($E0) and #LINK(LessonE1)($E1).
 W $41E1,2,2 Go to...
 B $41E3,2,2 ...the dinner hall.
 W $41E5,2,2 Move about until...
 B $41E7,1,1 ...the bell rings.
 b $41E8 Command list $AC: Dinner - BOY WONDER
 D $41E8 #ZX$FD01
-D $41E8 Used by BOY WONDER in lessons #LINK:LessonE0($E0) and #LINK:LessonE1($E1).
+D $41E8 Used by BOY WONDER in lessons #LINK(LessonE0)($E0) and #LINK(LessonE1)($E1).
 W $41E8,2,2 Put the next address in BOY WONDER's buffer, making him...
 W $41EA,2,2 ...fire the catapult now and then.
 W $41EC,2,2 Go to...
@@ -5503,7 +5503,7 @@ W $41F4,2,2 Move about until...
 B $41F6,1,1 ...the bell rings.
 b $41F7 Command list $AE: Dinner - ANGELFACE
 D $41F7 #ZX$FD11
-D $41F7 Used by ANGELFACE in lessons #LINK:LessonE0($E0) and #LINK:LessonE1($E1).
+D $41F7 Used by ANGELFACE in lessons #LINK(LessonE0)($E0) and #LINK(LessonE1)($E1).
 W $41F7,2,2 Put the next address in ANGELFACE's buffer, making him...
 W $41F9,2,2 ...hit now and then.
 W $41FB,2,2 Go to...
@@ -5514,14 +5514,14 @@ W $4203,2,2 Move about until...
 B $4205,1,1 ...the bell rings.
 b $4206 Command list $B0: Revision Library - EINSTEIN/little boy
 D $4206 #ZX$FD21
-D $4206 Used by little boy no. 1 in lessons #LINK:LessonE4($E4), #LINK:LessonF7($F7), #LINK:LessonF8($F8) and #LINK:LessonFE($FE); by little boy no. 2 in lessons #LINK:LessonF8($F8) and #LINK:LessonFF($FF); by little boy no. 4 in lesson #LINK:LessonF7($F7); by little boy no. 5 in lessons #LINK:LessonE5($E5) and #LINK:LessonFE($FE); by little boy no. 7 in lessons #LINK:LessonF7($F7) and #LINK:LessonFF($FF); by little boy no. 8 in lesson #LINK:LessonF9($F9); by little boy no. 9 in lessons #LINK:LessonF9($F9) and #LINK:LessonFE($FE); by little boy no. 10 in lessons #LINK:LessonE6($E6), #LINK:LessonF6($F6), #LINK:LessonFA($FA) and #LINK:LessonFE($FE); by little boy no. 11 in lessons #LINK:LessonE4($E4), #LINK:LessonE5($E5), #LINK:LessonE6($E6), #LINK:LessonF6($F6), #LINK:LessonFA($FA) and #LINK:LessonFE($FE); and by EINSTEIN in lessons #LINK:LessonE4($E4), #LINK:LessonE5($E5) and #LINK:LessonE6($E6).
+D $4206 Used by little boy no. 1 in lessons #LINK(LessonE4)($E4), #LINK(LessonF7)($F7), #LINK(LessonF8)($F8) and #LINK(LessonFE)($FE); by little boy no. 2 in lessons #LINK(LessonF8)($F8) and #LINK(LessonFF)($FF); by little boy no. 4 in lesson #LINK(LessonF7)($F7); by little boy no. 5 in lessons #LINK(LessonE5)($E5) and #LINK(LessonFE)($FE); by little boy no. 7 in lessons #LINK(LessonF7)($F7) and #LINK(LessonFF)($FF); by little boy no. 8 in lesson #LINK(LessonF9)($F9); by little boy no. 9 in lessons #LINK(LessonF9)($F9) and #LINK(LessonFE)($FE); by little boy no. 10 in lessons #LINK(LessonE6)($E6), #LINK(LessonF6)($F6), #LINK(LessonFA)($FA) and #LINK(LessonFE)($FE); by little boy no. 11 in lessons #LINK(LessonE4)($E4), #LINK(LessonE5)($E5), #LINK(LessonE6)($E6), #LINK(LessonF6)($F6), #LINK(LessonFA)($FA) and #LINK(LessonFE)($FE); and by EINSTEIN in lessons #LINK(LessonE4)($E4), #LINK(LessonE5)($E5) and #LINK(LessonE6)($E6).
 W $4206,2,2 Go to...
 B $4208,2,2 ...the Revision Library.
 W $420A,2,2 Move about until...
 B $420C,1,1 ...the bell rings.
 b $420D Command list $B2: Revision Library - BOY WONDER
 D $420D #ZX$FD29
-D $420D Used by BOY WONDER in lessons #LINK:LessonE4($E4), #LINK:LessonE6($E6), #LINK:LessonEC($EC) and #LINK:LessonED($ED).
+D $420D Used by BOY WONDER in lessons #LINK(LessonE4)($E4), #LINK(LessonE6)($E6), #LINK(LessonEC)($EC) and #LINK(LessonED)($ED).
 W $420D,2,2 Put the next address in BOY WONDER's buffer, making him...
 W $420F,2,2 ...fire the catapult now and then.
 W $4211,2,2 Go to...
@@ -5532,7 +5532,7 @@ W $4219,2,2 Move about until...
 B $421B,1,1 ...the bell rings.
 b $421C Command list $B4: Revision Library - ANGELFACE
 D $421C #ZX$FD39
-D $421C Used by ANGELFACE in lessons #LINK:LessonE5($E5), #LINK:LessonE6($E6), #LINK:LessonED($ED) and #LINK:LessonEE($EE).
+D $421C Used by ANGELFACE in lessons #LINK(LessonE5)($E5), #LINK(LessonE6)($E6), #LINK(LessonED)($ED) and #LINK(LessonEE)($EE).
 W $421C,2,2 Put the next address in ANGELFACE's buffer, making him...
 W $421E,2,2 ...hit now and then.
 W $4220,2,2 Go to...
@@ -5543,7 +5543,7 @@ W $4228,2,2 Move about until...
 B $422A,1,1 ...the bell rings.
 b $422B Command list $B6: Walkabout - ANGELFACE
 D $422B #ZX$FD49
-D $422B Used by ANGELFACE in lessons #LINK:LessonF6($F6), #LINK:LessonF7($F7), #LINK:LessonF8($F8), #LINK:LessonF9($F9), #LINK:LessonFA($FA), #LINK:LessonFB($FB), #LINK:LessonFC($FC), #LINK:LessonFD($FD), #LINK:LessonFE($FE) and #LINK:LessonFF($FF).
+D $422B Used by ANGELFACE in lessons #LINK(LessonF6)($F6), #LINK(LessonF7)($F7), #LINK(LessonF8)($F8), #LINK(LessonF9)($F9), #LINK(LessonFA)($FA), #LINK(LessonFB)($FB), #LINK(LessonFC)($FC), #LINK(LessonFD)($FD), #LINK(LessonFE)($FE) and #LINK(LessonFF)($FF).
 W $422B,2,2 Put the next address in ANGELFACE's buffer, making him...
 W $422D,2,2 ...hit now and then.
 W $422F,2,2 Go to a random location.
@@ -5554,37 +5554,37 @@ B $4237,2,2 ...20 times.
 W $4239,2,2 Restart the command list.
 b $423B Command list $B8: Dinner duty
 D $423B #ZX$FD59
-D $423B Used by MR WACKER in lesson #LINK:LessonE1($E1); and by MR WITHIT in lesson #LINK:LessonE0($E0).
+D $423B Used by MR WACKER in lesson #LINK(LessonE1)($E1); and by MR WITHIT in lesson #LINK(LessonE0)($E0).
 W $423B,2,2 Go to...
 B $423D,2,2 ...the table in the dinner hall.
 W $423F,2,2 Go to...
-B $4241,2,2 ...the bottom of the staircase that leads up to the staff room. (This is a #BUG#derelictionOfDinnerDuty(bug).)
+B $4241,2,2 ...the bottom of the staircase that leads up to the staff room. (This is a #BUG(derelictionOfDinnerDuty)(bug).)
 W $4243,2,2 Restart the command list unless dinner has started.
 W $4245,2,2 Perform dinner duty.
 b $4247 Command list $BA: Head's study - MR WACKER
 D $4247 #ZX$FD65
-D $4247 Used by MR WACKER in lessons #LINK:LessonE0($E0) and #LINK:LessonF7($F7).
+D $4247 Used by MR WACKER in lessons #LINK(LessonE0)($E0) and #LINK(LessonF7)($F7).
 W $4247,2,2 Go to...
 B $4249,2,2 ...the doorway of the Head's study.
 W $424B,2,2 Move about until...
 B $424D,1,1 ...the bell rings.
 b $424E Command list $BC: Staff room - teacher
 D $424E #ZX$FD6C
-D $424E Used by MR WACKER in lesson #LINK:LessonFE($FE); by MR ROCKITT in lessons #LINK:LessonE0($E0), #LINK:LessonE1($E1), #LINK:LessonF7($F7), #LINK:LessonF9($F9) and #LINK:LessonFE($FE); by MR WITHIT in lessons #LINK:LessonF7($F7), #LINK:LessonF8($F8), #LINK:LessonFA($FA), #LINK:LessonFB($FB), #LINK:LessonFE($FE) and #LINK:LessonFF($FF); and by MR CREAK in lessons #LINK:LessonE0($E0), #LINK:LessonE1($E1), #LINK:LessonE2($E2), #LINK:LessonE3($E3), #LINK:LessonF1($F1), #LINK:LessonF6($F6), #LINK:LessonF7($F7), #LINK:LessonF8($F8), #LINK:LessonF9($F9), #LINK:LessonFA($FA), #LINK:LessonFB($FB), #LINK:LessonFE($FE) and #LINK:LessonFF($FF).
+D $424E Used by MR WACKER in lesson #LINK(LessonFE)($FE); by MR ROCKITT in lessons #LINK(LessonE0)($E0), #LINK(LessonE1)($E1), #LINK(LessonF7)($F7), #LINK(LessonF9)($F9) and #LINK(LessonFE)($FE); by MR WITHIT in lessons #LINK(LessonF7)($F7), #LINK(LessonF8)($F8), #LINK(LessonFA)($FA), #LINK(LessonFB)($FB), #LINK(LessonFE)($FE) and #LINK(LessonFF)($FF); and by MR CREAK in lessons #LINK(LessonE0)($E0), #LINK(LessonE1)($E1), #LINK(LessonE2)($E2), #LINK(LessonE3)($E3), #LINK(LessonF1)($F1), #LINK(LessonF6)($F6), #LINK(LessonF7)($F7), #LINK(LessonF8)($F8), #LINK(LessonF9)($F9), #LINK(LessonFA)($FA), #LINK(LessonFB)($FB), #LINK(LessonFE)($FE) and #LINK(LessonFF)($FF).
 W $424E,2,2 Go to...
 B $4250,2,2 ...the staff room.
 W $4252,2,2 Move about until...
 B $4254,1,1 ...the bell rings.
 b $4255 Command list $BE: Walkabout - teacher
 D $4255 #ZX$FD73
-D $4255 Used by MR WACKER in lessons #LINK:LessonE3($E3), #LINK:LessonE5($E5), #LINK:LessonE6($E6), #LINK:LessonF0($F0), #LINK:LessonF2($F2), #LINK:LessonF3($F3), #LINK:LessonF6($F6), #LINK:LessonF8($F8), #LINK:LessonF9($F9), #LINK:LessonFA($FA), #LINK:LessonFB($FB), #LINK:LessonFC($FC) and #LINK:LessonFF($FF); by MR ROCKITT in lessons #LINK:LessonF4($F4), #LINK:LessonF5($F5) and #LINK:LessonF6($F6); by MR WITHIT in lessons #LINK:LessonE3($E3), #LINK:LessonF3($F3), #LINK:LessonF4($F4), #LINK:LessonF5($F5) and #LINK:LessonF6($F6); and by MR CREAK in lessons #LINK:LessonF3($F3), #LINK:LessonF4($F4) and #LINK:LessonF5($F5).
+D $4255 Used by MR WACKER in lessons #LINK(LessonE3)($E3), #LINK(LessonE5)($E5), #LINK(LessonE6)($E6), #LINK(LessonF0)($F0), #LINK(LessonF2)($F2), #LINK(LessonF3)($F3), #LINK(LessonF6)($F6), #LINK(LessonF8)($F8), #LINK(LessonF9)($F9), #LINK(LessonFA)($FA), #LINK(LessonFB)($FB), #LINK(LessonFC)($FC) and #LINK(LessonFF)($FF); by MR ROCKITT in lessons #LINK(LessonF4)($F4), #LINK(LessonF5)($F5) and #LINK(LessonF6)($F6); by MR WITHIT in lessons #LINK(LessonE3)($E3), #LINK(LessonF3)($F3), #LINK(LessonF4)($F4), #LINK(LessonF5)($F5) and #LINK(LessonF6)($F6); and by MR CREAK in lessons #LINK(LessonF3)($F3), #LINK(LessonF4)($F4) and #LINK(LessonF5)($F5).
 W $4255,2,2 Go to...
 B $4257,2,2 ...the Head's study.
 W $4259,2,2 Go to a random location.
 W $425B,2,2 Restart the command list.
 b $425D Command list $C0: Write on the boards - BOY WONDER
 D $425D #ZX$FD7C
-D $425D Used by BOY WONDER in lessons #LINK:LessonF6($F6), #LINK:LessonF8($F8), #LINK:LessonF9($F9), #LINK:LessonFA($FA) and #LINK:LessonFE($FE).
+D $425D Used by BOY WONDER in lessons #LINK(LessonF6)($F6), #LINK(LessonF8)($F8), #LINK(LessonF9)($F9), #LINK(LessonFA)($FA) and #LINK(LessonFE)($FE).
 W $425D,2,2 Go to...
 B $425F,2,2 ...the Exam Room board.
 W $4261,2,2 Write on the board unless...
@@ -5600,7 +5600,7 @@ B $4271,1,1 ...playtime has ended (which is never the case).
 E $425D This command list continues at #A$4272.
 b $4272 Command list $C2: Walkabout - BOY WONDER
 D $4272 #ZX$FDDC
-D $4272 Used by BOY WONDER in lessons #LINK:LessonF7($F7), #LINK:LessonFB($FB), #LINK:LessonFC($FC), #LINK:LessonFD($FD) and #LINK:LessonFF($FF). Command list #R$425D($C0) also continues here.
+D $4272 Used by BOY WONDER in lessons #LINK(LessonF7)($F7), #LINK(LessonFB)($FB), #LINK(LessonFC)($FC), #LINK(LessonFD)($FD) and #LINK(LessonFF)($FF). Command list #R$425D($C0) also continues here.
 W $4272,2,2 Put the next address in BOY WONDER's buffer, making him...
 W $4274,2,2 ...fire the catapult now and then.
 W $4276,2,2 Go to a random location.
@@ -5618,35 +5618,35 @@ B $428C,2,2 ...20 times.
 W $428E,2,2 Restart the command list.
 b $4290 Command list $C4: Walkabout
 D $4290 #ZX$FD92
-D $4290 Used by little boy no. 1 and little boy no. 3 in lessons #LINK:LessonF3($F3), #LINK:LessonF4($F4), #LINK:LessonF5($F5), #LINK:LessonFA($FA), #LINK:LessonFB($FB) and #LINK:LessonFF($FF); by little boy no. 2 in lessons #LINK:LessonF3($F3), #LINK:LessonF4($F4), #LINK:LessonF5($F5), #LINK:LessonFA($FA) and #LINK:LessonFB($FB); by little boy no. 4, little boy no. 5, little boy no. 6, little boy no. 7 and little boy no. 8 in lessons #LINK:LessonF3($F3), #LINK:LessonF4($F4), #LINK:LessonF5($F5) and #LINK:LessonFB($FB); by little boy no. 9 in lessons #LINK:LessonF3($F3), #LINK:LessonF4($F4), #LINK:LessonF5($F5), #LINK:LessonF8($F8) and #LINK:LessonFB($FB); by little boy no. 10 in lessons #LINK:LessonF8($F8), #LINK:LessonF9($F9) and #LINK:LessonFB($FB); by little boy no. 11 in lessons #LINK:LessonF3($F3), #LINK:LessonF4($F4), #LINK:LessonF5($F5), #LINK:LessonF8($F8), #LINK:LessonF9($F9), #LINK:LessonFB($FB) and #LINK:LessonFF($FF); by MR WACKER in lesson #LINK:LessonFD($FD); by MR ROCKITT in lessons #LINK:LessonE2($E2), #LINK:LessonF8($F8), #LINK:LessonFA($FA), #LINK:LessonFB($FB), #LINK:LessonFC($FC), #LINK:LessonFD($FD) and #LINK:LessonFF($FF); by MR WITHIT in lessons #LINK:LessonF1($F1), #LINK:LessonF9($F9), #LINK:LessonFC($FC) and #LINK:LessonFD($FD); by MR CREAK in lessons #LINK:LessonFC($FC) and #LINK:LessonFD($FD); by ANGELFACE in lessons #LINK:LessonF4($F4) and #LINK:LessonF5($F5); by BOY WONDER in lessons #LINK:LessonF3($F3) and #LINK:LessonF4($F4); and by EINSTEIN in lessons #LINK:LessonF3($F3), #LINK:LessonF5($F5), #LINK:LessonF6($F6), #LINK:LessonF7($F7), #LINK:LessonF8($F8), #LINK:LessonF9($F9), #LINK:LessonFA($FA), #LINK:LessonFB($FB), #LINK:LessonFC($FC), #LINK:LessonFD($FD), #LINK:LessonFE($FE) and #LINK:LessonFF($FF).
+D $4290 Used by little boy no. 1 and little boy no. 3 in lessons #LINK(LessonF3)($F3), #LINK(LessonF4)($F4), #LINK(LessonF5)($F5), #LINK(LessonFA)($FA), #LINK(LessonFB)($FB) and #LINK(LessonFF)($FF); by little boy no. 2 in lessons #LINK(LessonF3)($F3), #LINK(LessonF4)($F4), #LINK(LessonF5)($F5), #LINK(LessonFA)($FA) and #LINK(LessonFB)($FB); by little boy no. 4, little boy no. 5, little boy no. 6, little boy no. 7 and little boy no. 8 in lessons #LINK(LessonF3)($F3), #LINK(LessonF4)($F4), #LINK(LessonF5)($F5) and #LINK(LessonFB)($FB); by little boy no. 9 in lessons #LINK(LessonF3)($F3), #LINK(LessonF4)($F4), #LINK(LessonF5)($F5), #LINK(LessonF8)($F8) and #LINK(LessonFB)($FB); by little boy no. 10 in lessons #LINK(LessonF8)($F8), #LINK(LessonF9)($F9) and #LINK(LessonFB)($FB); by little boy no. 11 in lessons #LINK(LessonF3)($F3), #LINK(LessonF4)($F4), #LINK(LessonF5)($F5), #LINK(LessonF8)($F8), #LINK(LessonF9)($F9), #LINK(LessonFB)($FB) and #LINK(LessonFF)($FF); by MR WACKER in lesson #LINK(LessonFD)($FD); by MR ROCKITT in lessons #LINK(LessonE2)($E2), #LINK(LessonF8)($F8), #LINK(LessonFA)($FA), #LINK(LessonFB)($FB), #LINK(LessonFC)($FC), #LINK(LessonFD)($FD) and #LINK(LessonFF)($FF); by MR WITHIT in lessons #LINK(LessonF1)($F1), #LINK(LessonF9)($F9), #LINK(LessonFC)($FC) and #LINK(LessonFD)($FD); by MR CREAK in lessons #LINK(LessonFC)($FC) and #LINK(LessonFD)($FD); by ANGELFACE in lessons #LINK(LessonF4)($F4) and #LINK(LessonF5)($F5); by BOY WONDER in lessons #LINK(LessonF3)($F3) and #LINK(LessonF4)($F4); and by EINSTEIN in lessons #LINK(LessonF3)($F3), #LINK(LessonF5)($F5), #LINK(LessonF6)($F6), #LINK(LessonF7)($F7), #LINK(LessonF8)($F8), #LINK(LessonF9)($F9), #LINK(LessonFA)($FA), #LINK(LessonFB)($FB), #LINK(LessonFC)($FC), #LINK(LessonFD)($FD), #LINK(LessonFE)($FE) and #LINK(LessonFF)($FF).
 W $4290,2,2 Go to a random location.
 W $4292,2,2 Walk up and down...
 B $4294,2,2 ...15 times.
 W $4296,2,2 Restart the command list.
 b $4298 Command list $C6: Walk around the fire escape
 D $4298 #ZX$FD9B
-D $4298 Used by little boy no. 1 in lesson #LINK:LessonF6($F6); by little boy no. 2 in lessons #LINK:LessonF6($F6), #LINK:LessonF7($F7) and #LINK:LessonFE($FE); by little boy no. 3 in lessons #LINK:LessonF6($F6) and #LINK:LessonF8($F8); by little boy no. 4 in lessons #LINK:LessonF8($F8), #LINK:LessonF9($F9) and #LINK:LessonFF($FF); by little boy no. 5 in lesson #LINK:LessonF7($F7); by little boy no. 6 in lessons #LINK:LessonF9($F9) and #LINK:LessonFE($FE); by little boy no. 8 in lessons #LINK:LessonF7($F7), #LINK:LessonFA($FA) and #LINK:LessonFF($FF); by little boy no. 9 in lesson #LINK:LessonFA($FA); and by MR WITHIT in lesson #LINK:LessonE1($E1).
+D $4298 Used by little boy no. 1 in lesson #LINK(LessonF6)($F6); by little boy no. 2 in lessons #LINK(LessonF6)($F6), #LINK(LessonF7)($F7) and #LINK(LessonFE)($FE); by little boy no. 3 in lessons #LINK(LessonF6)($F6) and #LINK(LessonF8)($F8); by little boy no. 4 in lessons #LINK(LessonF8)($F8), #LINK(LessonF9)($F9) and #LINK(LessonFF)($FF); by little boy no. 5 in lesson #LINK(LessonF7)($F7); by little boy no. 6 in lessons #LINK(LessonF9)($F9) and #LINK(LessonFE)($FE); by little boy no. 8 in lessons #LINK(LessonF7)($F7), #LINK(LessonFA)($FA) and #LINK(LessonFF)($FF); by little boy no. 9 in lesson #LINK(LessonFA)($FA); and by MR WITHIT in lesson #LINK(LessonE1)($E1).
 W $4298,2,2 Go to...
 B $429A,2,2 ...the far end of the fire escape.
 W $429C,2,2 Move about until...
 B $429E,1,1 ...the bell rings.
 b $429F Command list $C8: Walk around the gym
 D $429F #ZX$FDA3
-D $429F Used by little boy no. 3 in lessons #LINK:LessonF7($F7) and #LINK:LessonFE($FE); by little boy no. 4 in lessons #LINK:LessonF6($F6) and #LINK:LessonFA($FA); by little boy no. 5 in lessons #LINK:LessonF6($F6), #LINK:LessonF9($F9), #LINK:LessonFA($FA) and #LINK:LessonFF($FF); by little boy no. 6 in lessons #LINK:LessonF6($F6) and #LINK:LessonF8($F8); by little boy no. 7 in lessons #LINK:LessonF8($F8), #LINK:LessonF9($F9) and #LINK:LessonFE($FE); by little boy no. 9 in lessons #LINK:LessonF7($F7) and #LINK:LessonFF($FF); and by little boy no. 10 in lesson #LINK:LessonF7($F7).
+D $429F Used by little boy no. 3 in lessons #LINK(LessonF7)($F7) and #LINK(LessonFE)($FE); by little boy no. 4 in lessons #LINK(LessonF6)($F6) and #LINK(LessonFA)($FA); by little boy no. 5 in lessons #LINK(LessonF6)($F6), #LINK(LessonF9)($F9), #LINK(LessonFA)($FA) and #LINK(LessonFF)($FF); by little boy no. 6 in lessons #LINK(LessonF6)($F6) and #LINK(LessonF8)($F8); by little boy no. 7 in lessons #LINK(LessonF8)($F8), #LINK(LessonF9)($F9) and #LINK(LessonFE)($FE); by little boy no. 9 in lessons #LINK(LessonF7)($F7) and #LINK(LessonFF)($FF); and by little boy no. 10 in lesson #LINK(LessonF7)($F7).
 W $429F,2,2 Go to...
 B $42A1,2,2 ...the gym.
 W $42A3,2,2 Move about until...
 B $42A5,1,1 ...the bell rings.
 b $42A6 Command list $CA: Walk around the big window
 D $42A6 #ZX$FDAB
-D $42A6 Used by little boy no. 1, little boy no. 2 and little boy no. 3 in lesson #LINK:LessonF9($F9); by little boy no. 4 in lesson #LINK:LessonFE($FE); by little boy no. 5 in lesson #LINK:LessonF8($F8); by little boy no. 6 in lessons #LINK:LessonF7($F7), #LINK:LessonFA($FA) and #LINK:LessonFF($FF); by little boy no. 7 in lessons #LINK:LessonF6($F6) and #LINK:LessonFA($FA); by little boy no. 8 in lessons #LINK:LessonF6($F6), #LINK:LessonF8($F8) and #LINK:LessonFE($FE); by little boy no. 9 in lesson #LINK:LessonF6($F6); by little boy no. 10 in lesson #LINK:LessonFF($FF); by little boy no. 11 in lesson #LINK:LessonF7($F7); and by MR WITHIT in lesson #LINK:LessonE4($E4).
+D $42A6 Used by little boy no. 1, little boy no. 2 and little boy no. 3 in lesson #LINK(LessonF9)($F9); by little boy no. 4 in lesson #LINK(LessonFE)($FE); by little boy no. 5 in lesson #LINK(LessonF8)($F8); by little boy no. 6 in lessons #LINK(LessonF7)($F7), #LINK(LessonFA)($FA) and #LINK(LessonFF)($FF); by little boy no. 7 in lessons #LINK(LessonF6)($F6) and #LINK(LessonFA)($FA); by little boy no. 8 in lessons #LINK(LessonF6)($F6), #LINK(LessonF8)($F8) and #LINK(LessonFE)($FE); by little boy no. 9 in lesson #LINK(LessonF6)($F6); by little boy no. 10 in lesson #LINK(LessonFF)($FF); by little boy no. 11 in lesson #LINK(LessonF7)($F7); and by MR WITHIT in lesson #LINK(LessonE4)($E4).
 W $42A6,2,2 Go to...
 B $42A8,2,2 ...the vicinity of the big window.
 W $42AA,2,2 Move about until...
 B $42AC,1,1 ...the bell rings.
 b $42AD Command list $CC: Stampede - leader
 D $42AD #ZX$FDB3
-D $42AD Used by little boy no. 1 in lessons #LINK:LessonFC($FC) and #LINK:LessonFD($FD).
+D $42AD Used by little boy no. 1 in lessons #LINK(LessonFC)($FC) and #LINK(LessonFD)($FD).
 W $42AD,2,2 Walk up and down...
 B $42AF,2,2 ...15 times.
 W $42B1,2,2 Signal that...
@@ -5668,7 +5668,7 @@ B $42CC,1,1 ...the stampede leader is ready again.
 W $42CD,2,2 Restart the command list.
 b $42CF Command list $CE: Stampede - follower
 D $42CF #ZX$FDCF
-D $42CF Used by little boy no. 2, little boy no. 3, little boy no. 4, little boy no. 5, little boy no. 6, little boy no. 7, little boy no. 8, little boy no. 9, little boy no. 10 and little boy no. 11 in lessons #LINK:LessonFC($FC) and #LINK:LessonFD($FD).
+D $42CF Used by little boy no. 2, little boy no. 3, little boy no. 4, little boy no. 5, little boy no. 6, little boy no. 7, little boy no. 8, little boy no. 9, little boy no. 10 and little boy no. 11 in lessons #LINK(LessonFC)($FC) and #LINK(LessonFD)($FD).
 W $42CF,2,2 Move about until...
 B $42D1,1,1 ...the stampede leader is ready.
 W $42D2,2,2 Put the next address in the little boy's buffer, making him...
@@ -5682,7 +5682,7 @@ W $42DF,2,2 Find and follow little boy no. 1 (the stampede leader).
 W $42E1,2,2 Restart the command list.
 b $42E3 Command list $D0: Tell ERIC about BOY WONDER
 D $42E3 #ZX$FAE6
-D $42E3 Used by little boy no. 10 in lesson #LINK:LessonF5($F5).
+D $42E3 Used by little boy no. 10 in lesson #LINK(LessonF5)($F5).
 W $42E3,2,2 Go to...
 B $42E5,2,2 ...the gym.
 W $42E7,2,2 Move about until...
@@ -5699,7 +5699,7 @@ W $42F8,2,2 Move about until...
 B $42FA,1,1 ...the bell rings.
 b $42FB Command list $D2: Tell ERIC about ANGELFACE
 D $42FB #ZX$FAF0
-D $42FB Used by little boy no. 10 in lesson #LINK:LessonF3($F3).
+D $42FB Used by little boy no. 10 in lesson #LINK(LessonF3)($F3).
 W $42FB,2,2 Find ERIC.
 W $42FD,2,2 Tell ERIC that...
 W $42FF,2,2 ...ANGELFACE has mumps.
@@ -5710,7 +5710,7 @@ W $4306,2,2 Move about until...
 B $4308,1,1 ...the bell rings.
 b $4309 Command list $D4: Grass on ERIC
 D $4309 #ZX$FB09
-D $4309 Used by EINSTEIN in lesson #LINK:LessonF4($F4).
+D $4309 Used by EINSTEIN in lesson #LINK(LessonF4)($F4).
 W $4309,2,2 Go to...
 B $430B,2,2 ...the far end of the fire escape.
 W $430D,2,2 Signal that...
@@ -5726,7 +5726,7 @@ W $431C,2,2 Move about until...
 B $431E,1,1 ...the bell rings.
 b $431F Command list $D6: Wait for EINSTEIN to grass on ERIC
 D $431F #ZX$FB20
-D $431F Used by MR WACKER in lesson #LINK:LessonF4($F4).
+D $431F Used by MR WACKER in lesson #LINK(LessonF4)($F4).
 W $431F,2,2 Go to...
 B $4321,2,2 ...the doorway of the Head's study.
 W $4323,2,2 Signal that...
@@ -5741,7 +5741,7 @@ W $4331,2,2 Move about until...
 B $4333,1,1 ...the bell rings.
 b $4334 Command list $D8: Collect the pea-shooter
 D $4334 #ZX$FB3A
-D $4334 Used by BOY WONDER in lesson #LINK:LessonF5($F5).
+D $4334 Used by BOY WONDER in lesson #LINK(LessonF5)($F5).
 W $4334,2,2 Go to...
 B $4336,2,2 ...the left end of the Revision Library.
 W $4338,2,2 Signal that...
@@ -5761,7 +5761,7 @@ W $434F,2,2 Move about until...
 B $4351,1,1 ...the bell rings.
 b $4352 Command list $DA: Look for the pea-shooter
 D $4352 #ZX$FB55
-D $4352 Used by MR WACKER in lesson #LINK:LessonF5($F5).
+D $4352 Used by MR WACKER in lesson #LINK(LessonF5)($F5).
 W $4352,2,2 Go to...
 B $4354,2,2 ...just inside the Reading Room.
 W $4356,2,2 Signal that...
@@ -5780,14 +5780,14 @@ W $436B,2,2 Move about until...
 B $436D,1,1 ...the bell rings.
 b $436E Command list $DC: Mumps walkabout
 D $436E #ZX$FAFF
-D $436E Used by ANGELFACE in lesson #LINK:LessonF3($F3).
+D $436E Used by ANGELFACE in lesson #LINK(LessonF3)($F3).
 W $436E,2,2 Put the next address in ANGELFACE's buffer, making him...
 W $4370,2,2 ...hit now and then.
 W $4372,2,2 Go to a random location.
 W $4374,2,2 Restart the command list.
 b $4376 Command list $DE: Mumps duty
 D $4376 #ZX$FADB
-D $4376 Used by MR ROCKITT in lesson #LINK:LessonF3($F3).
+D $4376 Used by MR ROCKITT in lesson #LINK(LessonF3)($F3).
 W $4376,2,2 Go to...
 B $4378,2,2 ...the staff room
 W $437A,2,2 Move about until...
@@ -5801,7 +5801,7 @@ W $4386,2,2 Tell ERIC to go home because...
 W $4388,2,2 ...he's got mumps.
 b $438A Command list $E0: Tell ERIC about EINSTEIN
 D $438A #ZX$FAE6
-D $438A Used by little boy no. 10 in lesson #LINK:LessonF4($F4).
+D $438A Used by little boy no. 10 in lesson #LINK(LessonF4)($F4).
 W $438A,2,2 Go to...
 B $438C,2,2 ...the right end of the dinner hall.
 W $438E,2,2 Move about until...
@@ -5864,7 +5864,7 @@ B $441D,1,1 Event $1D: EINSTEIN has told MR WACKER what ERIC's up to. This signa
 B $441E,1,1 Event $1E (unused).
 B $441F,1,1 Event $1F (unused).
 b $4420 Blackboard buffers
-D $4420 Used by the routine at #A$13D5. See the #LINK:BlackboardBuffer(blackboard buffer documentation) for details of how the buffers are used.
+D $4420 Used by the routine at #A$13D5. See the #LINK(BlackboardBuffer)(blackboard buffer documentation) for details of how the buffers are used.
 B $4420,6,6 Reading Room blackboard.
 B $4426,6,6 White Room blackboard.
 B $442C,6,6 Exam Room blackboard.
@@ -6788,7 +6788,7 @@ B $5800,32,8
 b $5820 Score box graphic
 D $5820 #ZX$EE00
 D $5820 Used by the routine at #A$2F56. The colour information for the score box can be found at #A$5D48.
-D $5820 #UDGTABLE { #UDGARRAY8,$05;$5820-$58D8-8(scorebox) } TABLE#
+D $5820 #UDGTABLE { #UDGARRAY8,$05($5820-$58D8-8)(scorebox) } TABLE#
 B $5820,192,8
 b $58E0 Shield locations and status
 D $58E0 Used by the routines at #A$2BB0, #A$2E13 and #A$39C7. Each 3-byte entry in this table corresponds to a shield. The first two bytes of each entry are the shield's coordinates. The third byte indicates whether the shield has been hit.
@@ -6812,7 +6812,7 @@ B $590D,19,3,8
 b $5920 Skool Daze logo
 D $5920 #ZX$EF00
 D $5920 Used by the routine at #A$2F20. The colour information for the logo can be found at #A$5D48.
-D $5920 #UDGTABLE { #UDGARRAY8,$14;$5920-$59D8-8({ImagePath}/logo) } TABLE#
+D $5920 #UDGTABLE { #UDGARRAY8,$14($5920-$59D8-8)({ImagePath}/logo) } TABLE#
 B $5920,192,8
 u $59E0 Z80 code remnants
 D $59E0 #ZX$EFE0
@@ -6948,70 +6948,70 @@ B $5CF5,11,c11 11 spaces.
 b $5D00 Main timetable
 D $5D00 #ZX$FE00
 D $5D00 Used by the routine at #A$3AD5.
-B $5D00,1,1 $00: #LINK:LessonF6(PLAYTIME)
-B $5D01,1,1 $01: #LINK:LessonE2(MR WACKER - EXAM ROOM)
-B $5D02,1,1 $02: #LINK:LessonE7(MR WITHIT - MAP ROOM)
-B $5D03,1,1 $03: #LINK:LessonF7(PLAYTIME)
-B $5D04,1,1 $04: #LINK:LessonEE(MR ROCKITT - WHITE ROOM)
-B $5D05,1,1 $05: #LINK:LessonEA(MR CREAK - READING ROOM)
-B $5D06,1,1 $06: #LINK:LessonF8(PLAYTIME)
-B $5D07,1,1 $07: #LINK:LessonE0(DINNER (MR WITHIT))
-B $5D08,1,1 $08: #LINK:LessonF7(PLAYTIME)
-B $5D09,1,1 $09: #LINK:LessonED(MR WITHIT - WHITE ROOM)
-B $5D0A,1,1 $0A: #LINK:LessonE4(REVISION LIBRARY)
-B $5D0B,1,1 $0B: #LINK:LessonF9(PLAYTIME)
-B $5D0C,1,1 $0C: #LINK:LessonF2(MR CREAK - READING ROOM)
-B $5D0D,1,1 $0D: #LINK:LessonF1(MR ROCKITT - WHITE ROOM)
-B $5D0E,1,1 $0E: #LINK:LessonFA(PLAYTIME)
-B $5D0F,1,1 $0F: #LINK:LessonEC(MR WACKER - WHITE ROOM)
-B $5D10,1,1 $10: #LINK:LessonFB(PLAYTIME)
-B $5D11,1,1 $11: #LINK:LessonE8(MR WACKER - READING ROOM)
-B $5D12,1,1 $12: #LINK:LessonEB(MR CREAK - WHITE ROOM)
-B $5D13,1,1 $13: #LINK:LessonF8(PLAYTIME)
-B $5D14,1,1 $14: #LINK:LessonFF(PLAYTIME)
-B $5D15,1,1 $15: #LINK:LessonE9(MR ROCKITT - READING ROOM)
-B $5D16,1,1 $16: #LINK:LessonEF(MR WACKER - MAP ROOM)
-B $5D17,1,1 $17: #LINK:LessonFA(PLAYTIME)
-B $5D18,1,1 $18: #LINK:LessonE1(DINNER (MR WACKER))
-B $5D19,1,1 $19: #LINK:LessonFD(PLAYTIME (little boys stampede))
-B $5D1A,1,1 $1A: #LINK:LessonF2(MR CREAK - READING ROOM)
-B $5D1B,1,1 $1B: #LINK:LessonE3(MR ROCKITT - EXAM ROOM)
-B $5D1C,1,1 $1C: #LINK:LessonE5(REVISION LIBRARY)
-B $5D1D,1,1 $1D: #LINK:LessonF6(PLAYTIME)
-B $5D1E,1,1 $1E: #LINK:LessonED(MR WITHIT - WHITE ROOM)
-B $5D1F,1,1 $1F: #LINK:LessonE9(MR ROCKITT - READING ROOM)
-B $5D20,1,1 $20: #LINK:LessonF9(PLAYTIME)
-B $5D21,1,1 $21: #LINK:LessonF0(MR WITHIT - MAP ROOM)
-B $5D22,1,1 $22: #LINK:LessonE6(REVISION LIBRARY)
-B $5D23,1,1 $23: #LINK:LessonEB(MR CREAK - WHITE ROOM)
-B $5D24,1,1 $24: #LINK:LessonFB(PLAYTIME)
-B $5D25,1,1 $25: #LINK:LessonEA(MR CREAK - READING ROOM)
-B $5D26,1,1 $26: #LINK:LessonF1(MR ROCKITT - WHITE ROOM)
-B $5D27,1,1 $27: #LINK:LessonF7(PLAYTIME)
-B $5D28,1,1 $28: #LINK:LessonE0(DINNER (MR WITHIT))
-B $5D29,1,1 $29: #LINK:LessonF6(PLAYTIME)
-B $5D2A,1,1 $2A: #LINK:LessonFF(PLAYTIME)
-B $5D2B,1,1 $2B: #LINK:LessonEE(MR ROCKITT - WHITE ROOM)
-B $5D2C,1,1 $2C: #LINK:LessonF2(MR CREAK - READING ROOM)
-B $5D2D,1,1 $2D: #LINK:LessonFA(PLAYTIME)
-B $5D2E,1,1 $2E: #LINK:LessonE5(REVISION LIBRARY)
-B $5D2F,1,1 $2F: #LINK:LessonE7(MR WITHIT - MAP ROOM)
-B $5D30,1,1 $30: #LINK:LessonF8(PLAYTIME)
-B $5D31,1,1 $31: #LINK:LessonE7(MR WITHIT - MAP ROOM)
-B $5D32,1,1 $32: #LINK:LessonE8(MR WACKER - READING ROOM)
-B $5D33,1,1 $33: #LINK:LessonFA(PLAYTIME)
-B $5D34,1,1 $34: #LINK:LessonFE(PLAYTIME)
-B $5D35,1,1 $35: #LINK:LessonF1(MR ROCKITT - WHITE ROOM)
-B $5D36,1,1 $36: #LINK:LessonF2(MR CREAK - READING ROOM)
-B $5D37,1,1 $37: #LINK:LessonF7(PLAYTIME)
-B $5D38,1,1 $38: #LINK:LessonE1(DINNER (MR WACKER))
-B $5D39,1,1 $39: #LINK:LessonFE(PLAYTIME)
-B $5D3A,1,1 $3A: #LINK:LessonE2(MR WACKER - EXAM ROOM)
-B $5D3B,1,1 $3B: #LINK:LessonE6(REVISION LIBRARY)
-B $5D3C,1,1 $3C: #LINK:LessonF9(PLAYTIME)
-B $5D3D,1,1 $3D: #LINK:LessonED(MR WITHIT - WHITE ROOM)
-B $5D3E,1,1 $3E: #LINK:LessonEB(MR CREAK - WHITE ROOM)
-B $5D3F,1,1 $3F: #LINK:LessonEF(MR WACKER - MAP ROOM)
+B $5D00,1,1 $00: #LINK(LessonF6)(PLAYTIME)
+B $5D01,1,1 $01: #LINK(LessonE2)(MR WACKER - EXAM ROOM)
+B $5D02,1,1 $02: #LINK(LessonE7)(MR WITHIT - MAP ROOM)
+B $5D03,1,1 $03: #LINK(LessonF7)(PLAYTIME)
+B $5D04,1,1 $04: #LINK(LessonEE)(MR ROCKITT - WHITE ROOM)
+B $5D05,1,1 $05: #LINK(LessonEA)(MR CREAK - READING ROOM)
+B $5D06,1,1 $06: #LINK(LessonF8)(PLAYTIME)
+B $5D07,1,1 $07: #LINK(LessonE0)(DINNER (MR WITHIT))
+B $5D08,1,1 $08: #LINK(LessonF7)(PLAYTIME)
+B $5D09,1,1 $09: #LINK(LessonED)(MR WITHIT - WHITE ROOM)
+B $5D0A,1,1 $0A: #LINK(LessonE4)(REVISION LIBRARY)
+B $5D0B,1,1 $0B: #LINK(LessonF9)(PLAYTIME)
+B $5D0C,1,1 $0C: #LINK(LessonF2)(MR CREAK - READING ROOM)
+B $5D0D,1,1 $0D: #LINK(LessonF1)(MR ROCKITT - WHITE ROOM)
+B $5D0E,1,1 $0E: #LINK(LessonFA)(PLAYTIME)
+B $5D0F,1,1 $0F: #LINK(LessonEC)(MR WACKER - WHITE ROOM)
+B $5D10,1,1 $10: #LINK(LessonFB)(PLAYTIME)
+B $5D11,1,1 $11: #LINK(LessonE8)(MR WACKER - READING ROOM)
+B $5D12,1,1 $12: #LINK(LessonEB)(MR CREAK - WHITE ROOM)
+B $5D13,1,1 $13: #LINK(LessonF8)(PLAYTIME)
+B $5D14,1,1 $14: #LINK(LessonFF)(PLAYTIME)
+B $5D15,1,1 $15: #LINK(LessonE9)(MR ROCKITT - READING ROOM)
+B $5D16,1,1 $16: #LINK(LessonEF)(MR WACKER - MAP ROOM)
+B $5D17,1,1 $17: #LINK(LessonFA)(PLAYTIME)
+B $5D18,1,1 $18: #LINK(LessonE1)(DINNER (MR WACKER))
+B $5D19,1,1 $19: #LINK(LessonFD)(PLAYTIME (little boys stampede))
+B $5D1A,1,1 $1A: #LINK(LessonF2)(MR CREAK - READING ROOM)
+B $5D1B,1,1 $1B: #LINK(LessonE3)(MR ROCKITT - EXAM ROOM)
+B $5D1C,1,1 $1C: #LINK(LessonE5)(REVISION LIBRARY)
+B $5D1D,1,1 $1D: #LINK(LessonF6)(PLAYTIME)
+B $5D1E,1,1 $1E: #LINK(LessonED)(MR WITHIT - WHITE ROOM)
+B $5D1F,1,1 $1F: #LINK(LessonE9)(MR ROCKITT - READING ROOM)
+B $5D20,1,1 $20: #LINK(LessonF9)(PLAYTIME)
+B $5D21,1,1 $21: #LINK(LessonF0)(MR WITHIT - MAP ROOM)
+B $5D22,1,1 $22: #LINK(LessonE6)(REVISION LIBRARY)
+B $5D23,1,1 $23: #LINK(LessonEB)(MR CREAK - WHITE ROOM)
+B $5D24,1,1 $24: #LINK(LessonFB)(PLAYTIME)
+B $5D25,1,1 $25: #LINK(LessonEA)(MR CREAK - READING ROOM)
+B $5D26,1,1 $26: #LINK(LessonF1)(MR ROCKITT - WHITE ROOM)
+B $5D27,1,1 $27: #LINK(LessonF7)(PLAYTIME)
+B $5D28,1,1 $28: #LINK(LessonE0)(DINNER (MR WITHIT))
+B $5D29,1,1 $29: #LINK(LessonF6)(PLAYTIME)
+B $5D2A,1,1 $2A: #LINK(LessonFF)(PLAYTIME)
+B $5D2B,1,1 $2B: #LINK(LessonEE)(MR ROCKITT - WHITE ROOM)
+B $5D2C,1,1 $2C: #LINK(LessonF2)(MR CREAK - READING ROOM)
+B $5D2D,1,1 $2D: #LINK(LessonFA)(PLAYTIME)
+B $5D2E,1,1 $2E: #LINK(LessonE5)(REVISION LIBRARY)
+B $5D2F,1,1 $2F: #LINK(LessonE7)(MR WITHIT - MAP ROOM)
+B $5D30,1,1 $30: #LINK(LessonF8)(PLAYTIME)
+B $5D31,1,1 $31: #LINK(LessonE7)(MR WITHIT - MAP ROOM)
+B $5D32,1,1 $32: #LINK(LessonE8)(MR WACKER - READING ROOM)
+B $5D33,1,1 $33: #LINK(LessonFA)(PLAYTIME)
+B $5D34,1,1 $34: #LINK(LessonFE)(PLAYTIME)
+B $5D35,1,1 $35: #LINK(LessonF1)(MR ROCKITT - WHITE ROOM)
+B $5D36,1,1 $36: #LINK(LessonF2)(MR CREAK - READING ROOM)
+B $5D37,1,1 $37: #LINK(LessonF7)(PLAYTIME)
+B $5D38,1,1 $38: #LINK(LessonE1)(DINNER (MR WACKER))
+B $5D39,1,1 $39: #LINK(LessonFE)(PLAYTIME)
+B $5D3A,1,1 $3A: #LINK(LessonE2)(MR WACKER - EXAM ROOM)
+B $5D3B,1,1 $3B: #LINK(LessonE6)(REVISION LIBRARY)
+B $5D3C,1,1 $3C: #LINK(LessonF9)(PLAYTIME)
+B $5D3D,1,1 $3D: #LINK(LessonED)(MR WITHIT - WHITE ROOM)
+B $5D3E,1,1 $3E: #LINK(LessonEB)(MR CREAK - WHITE ROOM)
+B $5D3F,1,1 $3F: #LINK(LessonEF)(MR WACKER - MAP ROOM)
 u $5D40 Z80 code remnants
 D $5D40 #ZX$FE40
 B $5D40,1,1 PUSH BC
@@ -7085,7 +7085,7 @@ D $7800 Used by the routine at #A$3326.
 B $7800,96,8
 b $7860 Character buffer for little boy no. 1
 D $7860 #ZX$9860
-D $7860 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $7860 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $7860,32,8
 b $7880 Skool colour information for row 0
 D $7880 #ZX$9880
@@ -7094,45 +7094,45 @@ B $7880,96,8
 b $78E0 Personal timetable for little boy no. 1
 D $78E0 #ZX$98E0
 D $78E0 Used by the routine at #A$3AD5.
-B $78E0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
-B $78E1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
-B $78E2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$4118($92) (Reading Room)
-B $78E3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$415B($9A) (Exam Room)
-B $78E4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
-B $78E5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$40DC($88) (Map Room)
-B $78E6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
-B $78E7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
-B $78E8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$419E($A2) (White Room)
-B $78E9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$415B($9A) (Exam Room)
-B $78EA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$4118($92) (Reading Room)
-B $78EB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$4118($92) (Reading Room)
-B $78EC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$40DC($88) (Map Room)
-B $78ED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$4118($92) (Reading Room)
-B $78EE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$40DC($88) (Map Room)
-B $78EF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$415B($9A) (Exam Room)
-B $78F0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
-B $78F1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $78F2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
-B $78F3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
-B $78F4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
-B $78F5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
-B $78F6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $78F7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $78F8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $78F9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $78FA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $78FB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $78FC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$42AD($CC) (Stampede)
-B $78FD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$42AD($CC) (Stampede)
-B $78FE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $78FF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $78E0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
+B $78E1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
+B $78E2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$4118($92) (Reading Room)
+B $78E3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$415B($9A) (Exam Room)
+B $78E4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
+B $78E5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$40DC($88) (Map Room)
+B $78E6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
+B $78E7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
+B $78E8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$419E($A2) (White Room)
+B $78E9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$415B($9A) (Exam Room)
+B $78EA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$4118($92) (Reading Room)
+B $78EB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$4118($92) (Reading Room)
+B $78EC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$40DC($88) (Map Room)
+B $78ED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$4118($92) (Reading Room)
+B $78EE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$40DC($88) (Map Room)
+B $78EF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$415B($9A) (Exam Room)
+B $78F0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
+B $78F1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $78F2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
+B $78F3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
+B $78F4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
+B $78F5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
+B $78F6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $78F7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $78F8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $78F9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $78FA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $78FB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $78FC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$42AD($CC) (Stampede)
+B $78FD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$42AD($CC) (Stampede)
+B $78FE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $78FF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$4290($C4) (Walkabout)
 b $7900 Skool tile references (LSBs) for row 1
 D $7900 #ZX$9900
 D $7900 Used by the routine at #A$3326.
 B $7900,96,8
 b $7960 Character buffer for little boy no. 2
 D $7960 #ZX$9960
-D $7960 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $7960 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $7960,32,8
 b $7980 Skool colour information for row 1
 D $7980 #ZX$9980
@@ -7141,45 +7141,45 @@ B $7980,96,8
 b $79E0 Personal timetable for little boy no. 2
 D $79E0 #ZX$99E0
 D $79E0 Used by the routine at #A$3AD5.
-B $79E0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
-B $79E1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
-B $79E2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$4118($92) (Reading Room)
-B $79E3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$415B($9A) (Exam Room)
-B $79E4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$4118($92) (Reading Room)
-B $79E5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$40DC($88) (Map Room)
-B $79E6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$419E($A2) (White Room)
-B $79E7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
-B $79E8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$4118($92) (Reading Room)
-B $79E9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$415B($9A) (Exam Room)
-B $79EA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
-B $79EB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$40DC($88) (Map Room)
-B $79EC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$4118($92) (Reading Room)
-B $79ED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$419E($A2) (White Room)
-B $79EE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $79EF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$419E($A2) (White Room)
-B $79F0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
-B $79F1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $79F2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
-B $79F3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
-B $79F4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
-B $79F5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
-B $79F6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $79F7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $79F8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $79F9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $79FA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $79FB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $79FC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $79FD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $79FE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $79FF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $79E0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
+B $79E1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
+B $79E2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$4118($92) (Reading Room)
+B $79E3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$415B($9A) (Exam Room)
+B $79E4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$4118($92) (Reading Room)
+B $79E5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$40DC($88) (Map Room)
+B $79E6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$419E($A2) (White Room)
+B $79E7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
+B $79E8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$4118($92) (Reading Room)
+B $79E9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$415B($9A) (Exam Room)
+B $79EA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
+B $79EB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$40DC($88) (Map Room)
+B $79EC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$4118($92) (Reading Room)
+B $79ED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$419E($A2) (White Room)
+B $79EE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $79EF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$419E($A2) (White Room)
+B $79F0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
+B $79F1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $79F2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
+B $79F3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
+B $79F4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
+B $79F5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
+B $79F6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $79F7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $79F8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $79F9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $79FA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $79FB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $79FC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $79FD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $79FE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $79FF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$4206($B0) (Revision Library)
 b $7A00 Skool tile references (LSBs) for row 2
 D $7A00 #ZX$9A00
 D $7A00 Used by the routine at #A$3326.
 B $7A00,96,8
 b $7A60 Character buffer for little boy no. 3
 D $7A60 #ZX$9A60
-D $7A60 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $7A60 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $7A60,32,8
 b $7A80 Skool colour information for row 2
 D $7A80 #ZX$9A80
@@ -7188,45 +7188,45 @@ B $7A80,96,8
 b $7AE0 Personal timetable for little boy no. 3
 D $7AE0 #ZX$9AE0
 D $7AE0 Used by the routine at #A$3AD5.
-B $7AE0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
-B $7AE1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
-B $7AE2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$4118($92) (Reading Room)
-B $7AE3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$415B($9A) (Exam Room)
-B $7AE4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$4118($92) (Reading Room)
-B $7AE5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$40DC($88) (Map Room)
-B $7AE6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
-B $7AE7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
-B $7AE8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$40DC($88) (Map Room)
-B $7AE9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$415B($9A) (Exam Room)
-B $7AEA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
-B $7AEB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $7AEC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$40DC($88) (Map Room)
-B $7AED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $7AEE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$40DC($88) (Map Room)
-B $7AEF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$415B($9A) (Exam Room)
-B $7AF0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$40DC($88) (Map Room)
-B $7AF1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $7AF2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
-B $7AF3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
-B $7AF4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
-B $7AF5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
-B $7AF6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $7AF7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $7AF8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $7AF9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $7AFA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $7AFB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $7AFC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $7AFD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $7AFE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $7AFF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $7AE0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
+B $7AE1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
+B $7AE2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$4118($92) (Reading Room)
+B $7AE3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$415B($9A) (Exam Room)
+B $7AE4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$4118($92) (Reading Room)
+B $7AE5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$40DC($88) (Map Room)
+B $7AE6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
+B $7AE7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
+B $7AE8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$40DC($88) (Map Room)
+B $7AE9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$415B($9A) (Exam Room)
+B $7AEA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
+B $7AEB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $7AEC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$40DC($88) (Map Room)
+B $7AED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $7AEE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$40DC($88) (Map Room)
+B $7AEF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$415B($9A) (Exam Room)
+B $7AF0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$40DC($88) (Map Room)
+B $7AF1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $7AF2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
+B $7AF3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
+B $7AF4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
+B $7AF5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
+B $7AF6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $7AF7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7AF8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $7AF9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $7AFA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $7AFB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $7AFC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $7AFD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $7AFE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7AFF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$4290($C4) (Walkabout)
 b $7B00 Skool tile references (LSBs) for row 3
 D $7B00 #ZX$9B00
 D $7B00 Used by the routine at #A$3326.
 B $7B00,96,8
 b $7B60 Character buffer for little boy no. 4
 D $7B60 #ZX$9B60
-D $7B60 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $7B60 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $7B60,32,8
 b $7B80 Skool colour information for row 3
 D $7B80 #ZX$9B80
@@ -7235,45 +7235,45 @@ B $7B80,96,8
 b $7BE0 Personal timetable for little boy no. 4
 D $7BE0 #ZX$9BE0
 D $7BE0 Used by the routine at #A$3AD5.
-B $7BE0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
-B $7BE1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
-B $7BE2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$4118($92) (Reading Room)
-B $7BE3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$419E($A2) (White Room)
-B $7BE4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$4118($92) (Reading Room)
-B $7BE5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$4118($92) (Reading Room)
-B $7BE6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
-B $7BE7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
-B $7BE8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$415B($9A) (Exam Room)
-B $7BE9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$419E($A2) (White Room)
-B $7BEA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$415B($9A) (Exam Room)
-B $7BEB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$4118($92) (Reading Room)
-B $7BEC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$4118($92) (Reading Room)
-B $7BED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$40DC($88) (Map Room)
-B $7BEE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$40DC($88) (Map Room)
-B $7BEF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$419E($A2) (White Room)
-B $7BF0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
-B $7BF1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $7BF2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
-B $7BF3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
-B $7BF4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
-B $7BF5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
-B $7BF6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $7BF7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $7BF8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $7BF9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $7BFA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $7BFB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $7BFC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $7BFD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $7BFE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $7BFF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $7BE0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
+B $7BE1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
+B $7BE2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$4118($92) (Reading Room)
+B $7BE3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$419E($A2) (White Room)
+B $7BE4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$4118($92) (Reading Room)
+B $7BE5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$4118($92) (Reading Room)
+B $7BE6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
+B $7BE7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
+B $7BE8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$415B($9A) (Exam Room)
+B $7BE9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$419E($A2) (White Room)
+B $7BEA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$415B($9A) (Exam Room)
+B $7BEB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$4118($92) (Reading Room)
+B $7BEC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$4118($92) (Reading Room)
+B $7BED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$40DC($88) (Map Room)
+B $7BEE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$40DC($88) (Map Room)
+B $7BEF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$419E($A2) (White Room)
+B $7BF0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
+B $7BF1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $7BF2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
+B $7BF3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
+B $7BF4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
+B $7BF5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
+B $7BF6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7BF7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $7BF8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $7BF9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $7BFA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7BFB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $7BFC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $7BFD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $7BFE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $7BFF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
 b $7C00 Skool tile references (LSBs) for row 4
 D $7C00 #ZX$9C00
 D $7C00 Used by the routine at #A$3326.
 B $7C00,96,8
 b $7C60 Character buffer for little boy no. 5
 D $7C60 #ZX$9C60
-D $7C60 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $7C60 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $7C60,32,8
 b $7C80 Skool colour information for row 4
 D $7C80 #ZX$9C80
@@ -7282,45 +7282,45 @@ B $7C80,96,8
 b $7CE0 Personal timetable for little boy no. 5
 D $7CE0 #ZX$9CE0
 D $7CE0 Used by the routine at #A$3AD5.
-B $7CE0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
-B $7CE1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
-B $7CE2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$4118($92) (Reading Room)
-B $7CE3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$419E($A2) (White Room)
-B $7CE4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$419E($A2) (White Room)
-B $7CE5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
-B $7CE6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$419E($A2) (White Room)
-B $7CE7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
-B $7CE8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$40DC($88) (Map Room)
-B $7CE9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$4118($92) (Reading Room)
-B $7CEA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
-B $7CEB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$40DC($88) (Map Room)
-B $7CEC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $7CED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$4118($92) (Reading Room)
-B $7CEE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$419E($A2) (White Room)
-B $7CEF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$415B($9A) (Exam Room)
-B $7CF0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
-B $7CF1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $7CF2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
-B $7CF3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
-B $7CF4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
-B $7CF5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
-B $7CF6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $7CF7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $7CF8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $7CF9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $7CFA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $7CFB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $7CFC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $7CFD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $7CFE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $7CFF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7CE0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
+B $7CE1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
+B $7CE2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$4118($92) (Reading Room)
+B $7CE3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$419E($A2) (White Room)
+B $7CE4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$419E($A2) (White Room)
+B $7CE5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
+B $7CE6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$419E($A2) (White Room)
+B $7CE7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
+B $7CE8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$40DC($88) (Map Room)
+B $7CE9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$4118($92) (Reading Room)
+B $7CEA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
+B $7CEB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$40DC($88) (Map Room)
+B $7CEC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $7CED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$4118($92) (Reading Room)
+B $7CEE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$419E($A2) (White Room)
+B $7CEF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$415B($9A) (Exam Room)
+B $7CF0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
+B $7CF1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $7CF2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
+B $7CF3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
+B $7CF4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
+B $7CF5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
+B $7CF6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7CF7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $7CF8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $7CF9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7CFA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7CFB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $7CFC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $7CFD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $7CFE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $7CFF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$429F($C8) (Walk around the gym)
 b $7D00 Skool tile references (LSBs) for row 5
 D $7D00 #ZX$9D00
 D $7D00 Used by the routine at #A$3326.
 B $7D00,96,8
 b $7D60 Character buffer for little boy no. 6
 D $7D60 #ZX$9D60
-D $7D60 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $7D60 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $7D60,32,8
 b $7D80 Skool colour information for row 5
 D $7D80 #ZX$9D80
@@ -7329,45 +7329,45 @@ B $7D80,96,8
 b $7DE0 Personal timetable for little boy no. 6
 D $7DE0 #ZX$9DE0
 D $7DE0 Used by the routine at #A$3AD5.
-B $7DE0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
-B $7DE1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
-B $7DE2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$415B($9A) (Exam Room)
-B $7DE3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$419E($A2) (White Room)
-B $7DE4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$419E($A2) (White Room)
-B $7DE5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$4118($92) (Reading Room)
-B $7DE6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$419E($A2) (White Room)
-B $7DE7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
-B $7DE8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$415B($9A) (Exam Room)
-B $7DE9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$419E($A2) (White Room)
-B $7DEA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$415B($9A) (Exam Room)
-B $7DEB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $7DEC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$40DC($88) (Map Room)
-B $7DED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$419E($A2) (White Room)
-B $7DEE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$4118($92) (Reading Room)
-B $7DEF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$415B($9A) (Exam Room)
-B $7DF0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
-B $7DF1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $7DF2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
-B $7DF3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
-B $7DF4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
-B $7DF5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
-B $7DF6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $7DF7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $7DF8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $7DF9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $7DFA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $7DFB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $7DFC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $7DFD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $7DFE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $7DFF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $7DE0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
+B $7DE1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
+B $7DE2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$415B($9A) (Exam Room)
+B $7DE3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$419E($A2) (White Room)
+B $7DE4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$419E($A2) (White Room)
+B $7DE5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$4118($92) (Reading Room)
+B $7DE6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$419E($A2) (White Room)
+B $7DE7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
+B $7DE8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$415B($9A) (Exam Room)
+B $7DE9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$419E($A2) (White Room)
+B $7DEA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$415B($9A) (Exam Room)
+B $7DEB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $7DEC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$40DC($88) (Map Room)
+B $7DED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$419E($A2) (White Room)
+B $7DEE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$4118($92) (Reading Room)
+B $7DEF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$415B($9A) (Exam Room)
+B $7DF0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
+B $7DF1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $7DF2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
+B $7DF3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
+B $7DF4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
+B $7DF5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
+B $7DF6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7DF7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $7DF8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7DF9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $7DFA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $7DFB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $7DFC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $7DFD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $7DFE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $7DFF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
 b $7E00 Skool tile references (LSBs) for row 6
 D $7E00 #ZX$9E00
 D $7E00 Used by the routine at #A$3326.
 B $7E00,96,8
 b $7E60 Character buffer for little boy no. 7
 D $7E60 #ZX$9E60
-D $7E60 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $7E60 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $7E60,32,8
 b $7E80 Skool colour information for row 6
 D $7E80 #ZX$9E80
@@ -7376,45 +7376,45 @@ B $7E80,96,8
 b $7EE0 Personal timetable for little boy no. 7
 D $7EE0 #ZX$9EE0
 D $7EE0 Used by the routine at #A$3AD5.
-B $7EE0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
-B $7EE1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
-B $7EE2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$415B($9A) (Exam Room)
-B $7EE3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$419E($A2) (White Room)
-B $7EE4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
-B $7EE5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$4118($92) (Reading Room)
-B $7EE6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
-B $7EE7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$415B($9A) (Exam Room)
-B $7EE8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$4118($92) (Reading Room)
-B $7EE9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$419E($A2) (White Room)
-B $7EEA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
-B $7EEB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$4118($92) (Reading Room)
-B $7EEC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$419E($A2) (White Room)
-B $7EED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $7EEE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$40DC($88) (Map Room)
-B $7EEF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$4118($92) (Reading Room)
-B $7EF0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
-B $7EF1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $7EF2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
-B $7EF3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
-B $7EF4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
-B $7EF5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
-B $7EF6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $7EF7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $7EF8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $7EF9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $7EFA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $7EFB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $7EFC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $7EFD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $7EFE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $7EFF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $7EE0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
+B $7EE1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
+B $7EE2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$415B($9A) (Exam Room)
+B $7EE3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$419E($A2) (White Room)
+B $7EE4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
+B $7EE5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$4118($92) (Reading Room)
+B $7EE6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
+B $7EE7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$415B($9A) (Exam Room)
+B $7EE8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$4118($92) (Reading Room)
+B $7EE9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$419E($A2) (White Room)
+B $7EEA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
+B $7EEB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$4118($92) (Reading Room)
+B $7EEC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$419E($A2) (White Room)
+B $7EED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $7EEE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$40DC($88) (Map Room)
+B $7EEF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$4118($92) (Reading Room)
+B $7EF0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
+B $7EF1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $7EF2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
+B $7EF3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
+B $7EF4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
+B $7EF5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
+B $7EF6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $7EF7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $7EF8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7EF9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7EFA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $7EFB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $7EFC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $7EFD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $7EFE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $7EFF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$4206($B0) (Revision Library)
 b $7F00 Skool tile references (LSBs) for row 7
 D $7F00 #ZX$9F00
 D $7F00 Used by the routine at #A$3326.
 B $7F00,96,8
 b $7F60 Character buffer for little boy no. 8
 D $7F60 #ZX$9F60
-D $7F60 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $7F60 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $7F60,32,8
 b $7F80 Skool colour information for row 7
 D $7F80 #ZX$9F80
@@ -7423,45 +7423,45 @@ B $7F80,96,8
 b $7FE0 Personal timetable for little boy no. 8
 D $7FE0 #ZX$9FE0
 D $7FE0 Used by the routine at #A$3AD5.
-B $7FE0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
-B $7FE1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
-B $7FE2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$415B($9A) (Exam Room)
-B $7FE3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$419E($A2) (White Room)
-B $7FE4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
-B $7FE5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$4118($92) (Reading Room)
-B $7FE6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$419E($A2) (White Room)
-B $7FE7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
-B $7FE8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$415B($9A) (Exam Room)
-B $7FE9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$40DC($88) (Map Room)
-B $7FEA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$415B($9A) (Exam Room)
-B $7FEB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$40DC($88) (Map Room)
-B $7FEC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$4118($92) (Reading Room)
-B $7FED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$40DC($88) (Map Room)
-B $7FEE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$4118($92) (Reading Room)
-B $7FEF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$415B($9A) (Exam Room)
-B $7FF0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
-B $7FF1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $7FF2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
-B $7FF3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
-B $7FF4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
-B $7FF5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
-B $7FF6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $7FF7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $7FF8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $7FF9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $7FFA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $7FFB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $7FFC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $7FFD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $7FFE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $7FFF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $7FE0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
+B $7FE1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
+B $7FE2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$415B($9A) (Exam Room)
+B $7FE3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$419E($A2) (White Room)
+B $7FE4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
+B $7FE5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$4118($92) (Reading Room)
+B $7FE6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$419E($A2) (White Room)
+B $7FE7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
+B $7FE8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$415B($9A) (Exam Room)
+B $7FE9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$40DC($88) (Map Room)
+B $7FEA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$415B($9A) (Exam Room)
+B $7FEB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$40DC($88) (Map Room)
+B $7FEC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$4118($92) (Reading Room)
+B $7FED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$40DC($88) (Map Room)
+B $7FEE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$4118($92) (Reading Room)
+B $7FEF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$415B($9A) (Exam Room)
+B $7FF0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
+B $7FF1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $7FF2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
+B $7FF3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
+B $7FF4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
+B $7FF5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
+B $7FF6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $7FF7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $7FF8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $7FF9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $7FFA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $7FFB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $7FFC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $7FFD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $7FFE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $7FFF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
 b $8000 Skool tile references (LSBs) for row 8
 D $8000 #ZX$A000
 D $8000 Used by the routine at #A$3326.
 B $8000,96,8
 b $8060 Character buffer for little boy no. 9
 D $8060 #ZX$A060
-D $8060 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8060 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8060,32,8
 b $8080 Skool colour information for row 8
 D $8080 #ZX$A080
@@ -7470,45 +7470,45 @@ B $8080,96,8
 b $80E0 Personal timetable for little boy no. 9
 D $80E0 #ZX$A0E0
 D $80E0 Used by the routine at #A$3AD5.
-B $80E0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
-B $80E1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
-B $80E2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$415B($9A) (Exam Room)
-B $80E3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$415B($9A) (Exam Room)
-B $80E4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
-B $80E5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$40DC($88) (Map Room)
-B $80E6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$419E($A2) (White Room)
-B $80E7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$415B($9A) (Exam Room)
-B $80E8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$40DC($88) (Map Room)
-B $80E9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$40DC($88) (Map Room)
-B $80EA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
-B $80EB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $80EC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $80ED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$4118($92) (Reading Room)
-B $80EE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $80EF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$4118($92) (Reading Room)
-B $80F0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
-B $80F1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $80F2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
-B $80F3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
-B $80F4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
-B $80F5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
-B $80F6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $80F7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $80F8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $80F9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $80FA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
-B $80FB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $80FC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $80FD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $80FE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $80FF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $80E0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
+B $80E1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
+B $80E2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$415B($9A) (Exam Room)
+B $80E3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$415B($9A) (Exam Room)
+B $80E4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
+B $80E5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$40DC($88) (Map Room)
+B $80E6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$419E($A2) (White Room)
+B $80E7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$415B($9A) (Exam Room)
+B $80E8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$40DC($88) (Map Room)
+B $80E9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$40DC($88) (Map Room)
+B $80EA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
+B $80EB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $80EC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $80ED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$4118($92) (Reading Room)
+B $80EE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $80EF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$4118($92) (Reading Room)
+B $80F0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$4118($92) (Reading Room)
+B $80F1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $80F2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
+B $80F3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
+B $80F4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
+B $80F5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
+B $80F6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $80F7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $80F8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $80F9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $80FA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$4298($C6) (Walk around the fire escape)
+B $80FB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $80FC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $80FD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $80FE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $80FF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$429F($C8) (Walk around the gym)
 b $8100 Skool tile references (LSBs) for row 9
 D $8100 #ZX$A100
 D $8100 Used by the routine at #A$3326.
 B $8100,96,8
 b $8160 Character buffer for little boy no. 10
 D $8160 #ZX$A160
-D $8160 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8160 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8160,32,8
 b $8180 Skool colour information for row 9
 D $8180 #ZX$A180
@@ -7517,45 +7517,45 @@ B $8180,96,8
 b $81E0 Personal timetable for little boy no. 10
 D $81E0 #ZX$A1E0
 D $81E0 Used by the routine at #A$3AD5.
-B $81E0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
-B $81E1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
-B $81E2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$415B($9A) (Exam Room)
-B $81E3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$415B($9A) (Exam Room)
-B $81E4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
-B $81E5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$40DC($88) (Map Room)
-B $81E6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
-B $81E7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$415B($9A) (Exam Room)
-B $81E8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$419E($A2) (White Room)
-B $81E9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$40DC($88) (Map Room)
-B $81EA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
-B $81EB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$4118($92) (Reading Room)
-B $81EC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $81ED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $81EE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$4118($92) (Reading Room)
-B $81EF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$415B($9A) (Exam Room)
-B $81F0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
-B $81F1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
-B $81F2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
-B $81F3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$42FB($D2) (Tell ERIC about ANGELFACE)
-B $81F4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$438A($E0) (Tell ERIC about EINSTEIN)
-B $81F5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$42E3($D0) (Tell ERIC about BOY WONDER)
-B $81F6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $81F7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$429F($C8) (Walk around the gym)
-B $81F8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $81F9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $81FA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $81FB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $81FC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $81FD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $81FE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $81FF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $81E0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
+B $81E1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
+B $81E2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$415B($9A) (Exam Room)
+B $81E3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$415B($9A) (Exam Room)
+B $81E4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
+B $81E5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$40DC($88) (Map Room)
+B $81E6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
+B $81E7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$415B($9A) (Exam Room)
+B $81E8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$419E($A2) (White Room)
+B $81E9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$40DC($88) (Map Room)
+B $81EA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$40DC($88) (Map Room)
+B $81EB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$4118($92) (Reading Room)
+B $81EC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $81ED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $81EE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$4118($92) (Reading Room)
+B $81EF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$415B($9A) (Exam Room)
+B $81F0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$419E($A2) (White Room)
+B $81F1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$415B($9A) (Exam Room)
+B $81F2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$419E($A2) (White Room)
+B $81F3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$42FB($D2) (Tell ERIC about ANGELFACE)
+B $81F4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$438A($E0) (Tell ERIC about EINSTEIN)
+B $81F5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$42E3($D0) (Tell ERIC about BOY WONDER)
+B $81F6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $81F7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$429F($C8) (Walk around the gym)
+B $81F8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $81F9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $81FA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $81FB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $81FC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $81FD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $81FE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $81FF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
 b $8200 Skool tile references (LSBs) for row 10
 D $8200 #ZX$A200
 D $8200 Used by the routine at #A$3326.
 B $8200,96,8
 b $8260 Character buffer for little boy no. 11
 D $8260 #ZX$A260
-D $8260 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8260 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8260,32,8
 b $8280 Skool colour information for row 10
 D $8280 #ZX$A280
@@ -7564,45 +7564,45 @@ B $8280,96,8
 b $82E0 Personal timetable for little boy no. 11
 D $82E0 #ZX$A2E0
 D $82E0 Used by the routine at #A$3AD5.
-B $82E0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
-B $82E1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
-B $82E2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$415B($9A) (Exam Room)
-B $82E3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$415B($9A) (Exam Room)
-B $82E4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
-B $82E5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
-B $82E6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
-B $82E7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$40DC($88) (Map Room)
-B $82E8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$4118($92) (Reading Room)
-B $82E9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$4118($92) (Reading Room)
-B $82EA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$4118($92) (Reading Room)
-B $82EB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$419E($A2) (White Room)
-B $82EC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$419E($A2) (White Room)
-B $82ED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$419E($A2) (White Room)
-B $82EE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$419E($A2) (White Room)
-B $82EF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$40DC($88) (Map Room)
-B $82F0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$40DC($88) (Map Room)
-B $82F1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$419E($A2) (White Room)
-B $82F2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$4118($92) (Reading Room)
-B $82F3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
-B $82F4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
-B $82F5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
-B $82F6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $82F7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
-B $82F8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $82F9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $82FA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $82FB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $82FC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $82FD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
-B $82FE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$4206($B0) (Revision Library)
-B $82FF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $82E0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
+B $82E1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
+B $82E2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$415B($9A) (Exam Room)
+B $82E3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$415B($9A) (Exam Room)
+B $82E4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
+B $82E5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
+B $82E6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
+B $82E7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$40DC($88) (Map Room)
+B $82E8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$4118($92) (Reading Room)
+B $82E9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$4118($92) (Reading Room)
+B $82EA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$4118($92) (Reading Room)
+B $82EB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$419E($A2) (White Room)
+B $82EC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$419E($A2) (White Room)
+B $82ED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$419E($A2) (White Room)
+B $82EE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$419E($A2) (White Room)
+B $82EF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$40DC($88) (Map Room)
+B $82F0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$40DC($88) (Map Room)
+B $82F1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$419E($A2) (White Room)
+B $82F2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$4118($92) (Reading Room)
+B $82F3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
+B $82F4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
+B $82F5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
+B $82F6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $82F7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$42A6($CA) (Walk around the big window)
+B $82F8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $82F9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $82FA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $82FB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $82FC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $82FD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$42CF($CE) (Stampede)
+B $82FE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$4206($B0) (Revision Library)
+B $82FF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$4290($C4) (Walkabout)
 b $8300 Skool tile references (LSBs) for row 11
 D $8300 #ZX$A300
 D $8300 Used by the routine at #A$3326.
 B $8300,96,8
 b $8360 Character buffer for MR WACKER
 D $8360 #ZX$A360
-D $8360 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8360 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8360,32,8
 b $8380 Skool colour information for row 11
 D $8380 #ZX$A380
@@ -7611,45 +7611,45 @@ B $8380,96,8
 b $83E0 Personal timetable for MR WACKER
 D $83E0 #ZX$A3E0
 D $83E0 Used by the routine at #A$3AD5.
-B $83E0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$4247($BA) (Head's study)
-B $83E1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$423B($B8) (Dinner duty)
-B $83E2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$40AE($84) (Exam Room)
-B $83E3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$4255($BE) (Walkabout)
-B $83E4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$4095($82) (Reading Room)
-B $83E5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$4255($BE) (Walkabout)
-B $83E6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$4255($BE) (Walkabout)
-B $83E7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$40AE($84) (Exam Room)
-B $83E8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$4095($82) (Reading Room)
-B $83E9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$40AE($84) (Exam Room)
-B $83EA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$40C3($86) (White Room)
-B $83EB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$4095($82) (Reading Room)
-B $83EC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$40C3($86) (White Room)
-B $83ED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$4080($80) (Map Room)
-B $83EE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$40AE($84) (Exam Room)
-B $83EF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$4080($80) (Map Room)
-B $83F0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$4255($BE) (Walkabout)
-B $83F1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$40AE($84) (Exam Room)
-B $83F2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$4255($BE) (Walkabout)
-B $83F3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4255($BE) (Walkabout)
-B $83F4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$431F($D6) (Wait for EINSTEIN to grass on ERIC)
-B $83F5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4352($DA) (Look for the pea-shooter)
-B $83F6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$4255($BE) (Walkabout)
-B $83F7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$4247($BA) (Head's study)
-B $83F8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$4255($BE) (Walkabout)
-B $83F9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$4255($BE) (Walkabout)
-B $83FA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$4255($BE) (Walkabout)
-B $83FB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4255($BE) (Walkabout)
-B $83FC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$4255($BE) (Walkabout)
-B $83FD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
-B $83FE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$424E($BC) (Staff room)
-B $83FF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$4255($BE) (Walkabout)
+B $83E0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$4247($BA) (Head's study)
+B $83E1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$423B($B8) (Dinner duty)
+B $83E2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$40AE($84) (Exam Room)
+B $83E3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$4255($BE) (Walkabout)
+B $83E4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$4095($82) (Reading Room)
+B $83E5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$4255($BE) (Walkabout)
+B $83E6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$4255($BE) (Walkabout)
+B $83E7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$40AE($84) (Exam Room)
+B $83E8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$4095($82) (Reading Room)
+B $83E9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$40AE($84) (Exam Room)
+B $83EA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$40C3($86) (White Room)
+B $83EB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$4095($82) (Reading Room)
+B $83EC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$40C3($86) (White Room)
+B $83ED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$4080($80) (Map Room)
+B $83EE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$40AE($84) (Exam Room)
+B $83EF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$4080($80) (Map Room)
+B $83F0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$4255($BE) (Walkabout)
+B $83F1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$40AE($84) (Exam Room)
+B $83F2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$4255($BE) (Walkabout)
+B $83F3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4255($BE) (Walkabout)
+B $83F4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$431F($D6) (Wait for EINSTEIN to grass on ERIC)
+B $83F5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4352($DA) (Look for the pea-shooter)
+B $83F6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$4255($BE) (Walkabout)
+B $83F7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$4247($BA) (Head's study)
+B $83F8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$4255($BE) (Walkabout)
+B $83F9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$4255($BE) (Walkabout)
+B $83FA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$4255($BE) (Walkabout)
+B $83FB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4255($BE) (Walkabout)
+B $83FC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$4255($BE) (Walkabout)
+B $83FD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
+B $83FE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$424E($BC) (Staff room)
+B $83FF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$4255($BE) (Walkabout)
 b $8400 Skool tile references (LSBs) for row 12
 D $8400 #ZX$A400
 D $8400 Used by the routine at #A$3326.
 B $8400,96,8
 b $8460 Character buffer for MR ROCKITT
 D $8460 #ZX$A460
-D $8460 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8460 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8460,32,8
 b $8480 Skool colour information for row 12
 D $8480 #ZX$A480
@@ -7658,45 +7658,45 @@ B $8480,96,8
 b $84E0 Personal timetable for MR ROCKITT
 D $84E0 #ZX$A4E0
 D $84E0 Used by the routine at #A$3AD5.
-B $84E0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$424E($BC) (Staff room)
-B $84E1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$424E($BC) (Staff room)
-B $84E2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$4290($C4) (Walkabout)
-B $84E3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$40AE($84) (Exam Room)
-B $84E4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$40AE($84) (Exam Room)
-B $84E5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
-B $84E6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$40C3($86) (White Room)
-B $84E7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$40C3($86) (White Room)
-B $84E8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$40AE($84) (Exam Room)
-B $84E9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$4095($82) (Reading Room)
-B $84EA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$40AE($84) (Exam Room)
-B $84EB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$40AE($84) (Exam Room)
-B $84EC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$40AE($84) (Exam Room)
-B $84ED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$40AE($84) (Exam Room)
-B $84EE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$40C3($86) (White Room)
-B $84EF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$4095($82) (Reading Room)
-B $84F0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$4095($82) (Reading Room)
-B $84F1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$40C3($86) (White Room)
-B $84F2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$40C3($86) (White Room)
-B $84F3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4376($DE) (Mumps duty)
-B $84F4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4255($BE) (Walkabout)
-B $84F5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4255($BE) (Walkabout)
-B $84F6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$4255($BE) (Walkabout)
-B $84F7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$424E($BC) (Staff room)
-B $84F8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $84F9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$424E($BC) (Staff room)
-B $84FA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $84FB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $84FC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
-B $84FD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
-B $84FE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$424E($BC) (Staff room)
-B $84FF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $84E0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$424E($BC) (Staff room)
+B $84E1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$424E($BC) (Staff room)
+B $84E2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$4290($C4) (Walkabout)
+B $84E3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$40AE($84) (Exam Room)
+B $84E4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$40AE($84) (Exam Room)
+B $84E5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$415B($9A) (Exam Room)
+B $84E6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$40C3($86) (White Room)
+B $84E7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$40C3($86) (White Room)
+B $84E8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$40AE($84) (Exam Room)
+B $84E9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$4095($82) (Reading Room)
+B $84EA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$40AE($84) (Exam Room)
+B $84EB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$40AE($84) (Exam Room)
+B $84EC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$40AE($84) (Exam Room)
+B $84ED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$40AE($84) (Exam Room)
+B $84EE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$40C3($86) (White Room)
+B $84EF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$4095($82) (Reading Room)
+B $84F0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$4095($82) (Reading Room)
+B $84F1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$40C3($86) (White Room)
+B $84F2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$40C3($86) (White Room)
+B $84F3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4376($DE) (Mumps duty)
+B $84F4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4255($BE) (Walkabout)
+B $84F5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4255($BE) (Walkabout)
+B $84F6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$4255($BE) (Walkabout)
+B $84F7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$424E($BC) (Staff room)
+B $84F8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $84F9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$424E($BC) (Staff room)
+B $84FA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $84FB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $84FC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
+B $84FD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
+B $84FE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$424E($BC) (Staff room)
+B $84FF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$4290($C4) (Walkabout)
 b $8500 Skool tile references (LSBs) for row 13
 D $8500 #ZX$A500
 D $8500 Used by the routine at #A$3326.
 B $8500,96,8
 b $8560 Character buffer for MR WITHIT
 D $8560 #ZX$A560
-D $8560 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8560 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8560,32,8
 b $8580 Skool colour information for row 13
 D $8580 #ZX$A580
@@ -7705,45 +7705,45 @@ B $8580,96,8
 b $85E0 Personal timetable for MR WITHIT
 D $85E0 #ZX$A5E0
 D $85E0 Used by the routine at #A$3AD5.
-B $85E0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$423B($B8) (Dinner duty)
-B $85E1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$4298($C6) (Walk around the fire escape)
-B $85E2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$4095($82) (Reading Room)
-B $85E3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$4255($BE) (Walkabout)
-B $85E4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$42A6($CA) (Walk around the big window)
-B $85E5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$4080($80) (Map Room)
-B $85E6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$40AE($84) (Exam Room)
-B $85E7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$4080($80) (Map Room)
-B $85E8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$4080($80) (Map Room)
-B $85E9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$4080($80) (Map Room)
-B $85EA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$4080($80) (Map Room)
-B $85EB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$4080($80) (Map Room)
-B $85EC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$4080($80) (Map Room)
-B $85ED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$40C3($86) (White Room)
-B $85EE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$4080($80) (Map Room)
-B $85EF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$40AE($84) (Exam Room)
-B $85F0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$4080($80) (Map Room)
-B $85F1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$4290($C4) (Walkabout)
-B $85F2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$4080($80) (Map Room)
-B $85F3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4255($BE) (Walkabout)
-B $85F4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4255($BE) (Walkabout)
-B $85F5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4255($BE) (Walkabout)
-B $85F6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$4255($BE) (Walkabout)
-B $85F7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$424E($BC) (Staff room)
-B $85F8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$424E($BC) (Staff room)
-B $85F9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $85FA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$424E($BC) (Staff room)
-B $85FB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$424E($BC) (Staff room)
-B $85FC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
-B $85FD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
-B $85FE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$424E($BC) (Staff room)
-B $85FF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$424E($BC) (Staff room)
+B $85E0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$423B($B8) (Dinner duty)
+B $85E1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$4298($C6) (Walk around the fire escape)
+B $85E2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$4095($82) (Reading Room)
+B $85E3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$4255($BE) (Walkabout)
+B $85E4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$42A6($CA) (Walk around the big window)
+B $85E5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$4080($80) (Map Room)
+B $85E6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$40AE($84) (Exam Room)
+B $85E7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$4080($80) (Map Room)
+B $85E8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$4080($80) (Map Room)
+B $85E9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$4080($80) (Map Room)
+B $85EA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$4080($80) (Map Room)
+B $85EB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$4080($80) (Map Room)
+B $85EC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$4080($80) (Map Room)
+B $85ED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$40C3($86) (White Room)
+B $85EE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$4080($80) (Map Room)
+B $85EF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$40AE($84) (Exam Room)
+B $85F0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$4080($80) (Map Room)
+B $85F1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$4290($C4) (Walkabout)
+B $85F2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$4080($80) (Map Room)
+B $85F3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4255($BE) (Walkabout)
+B $85F4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4255($BE) (Walkabout)
+B $85F5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4255($BE) (Walkabout)
+B $85F6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$4255($BE) (Walkabout)
+B $85F7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$424E($BC) (Staff room)
+B $85F8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$424E($BC) (Staff room)
+B $85F9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $85FA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$424E($BC) (Staff room)
+B $85FB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$424E($BC) (Staff room)
+B $85FC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
+B $85FD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
+B $85FE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$424E($BC) (Staff room)
+B $85FF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$424E($BC) (Staff room)
 b $8600 Skool tile references (LSBs) for row 14
 D $8600 #ZX$A600
 D $8600 Used by the routine at #A$3326.
 B $8600,96,8
 b $8660 Character buffer for MR CREAK
 D $8660 #ZX$A660
-D $8660 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8660 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8660,32,8
 b $8680 Skool colour information for row 14
 D $8680 #ZX$A680
@@ -7752,45 +7752,45 @@ B $8680,96,8
 b $86E0 Personal timetable for MR CREAK
 D $86E0 #ZX$A6E0
 D $86E0 Used by the routine at #A$3AD5.
-B $86E0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$424E($BC) (Staff room)
-B $86E1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$424E($BC) (Staff room)
-B $86E2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$424E($BC) (Staff room)
-B $86E3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$424E($BC) (Staff room)
-B $86E4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$40C3($86) (White Room)
-B $86E5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$4095($82) (Reading Room)
-B $86E6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$4095($82) (Reading Room)
-B $86E7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$4095($82) (Reading Room)
-B $86E8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$40C3($86) (White Room)
-B $86E9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$40C3($86) (White Room)
-B $86EA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$4095($82) (Reading Room)
-B $86EB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$40C3($86) (White Room)
-B $86EC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$4095($82) (Reading Room)
-B $86ED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$4095($82) (Reading Room)
-B $86EE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$4095($82) (Reading Room)
-B $86EF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$40C3($86) (White Room)
-B $86F0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$40C3($86) (White Room)
-B $86F1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$424E($BC) (Staff room)
-B $86F2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$4095($82) (Reading Room)
-B $86F3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4255($BE) (Walkabout)
-B $86F4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4255($BE) (Walkabout)
-B $86F5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4255($BE) (Walkabout)
-B $86F6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$424E($BC) (Staff room)
-B $86F7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$424E($BC) (Staff room)
-B $86F8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$424E($BC) (Staff room)
-B $86F9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$424E($BC) (Staff room)
-B $86FA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$424E($BC) (Staff room)
-B $86FB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$424E($BC) (Staff room)
-B $86FC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
-B $86FD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
-B $86FE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$424E($BC) (Staff room)
-B $86FF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$424E($BC) (Staff room)
+B $86E0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$424E($BC) (Staff room)
+B $86E1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$424E($BC) (Staff room)
+B $86E2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$424E($BC) (Staff room)
+B $86E3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$424E($BC) (Staff room)
+B $86E4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$40C3($86) (White Room)
+B $86E5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$4095($82) (Reading Room)
+B $86E6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$4095($82) (Reading Room)
+B $86E7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$4095($82) (Reading Room)
+B $86E8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$40C3($86) (White Room)
+B $86E9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$40C3($86) (White Room)
+B $86EA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$4095($82) (Reading Room)
+B $86EB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$40C3($86) (White Room)
+B $86EC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$4095($82) (Reading Room)
+B $86ED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$4095($82) (Reading Room)
+B $86EE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$4095($82) (Reading Room)
+B $86EF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$40C3($86) (White Room)
+B $86F0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$40C3($86) (White Room)
+B $86F1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$424E($BC) (Staff room)
+B $86F2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$4095($82) (Reading Room)
+B $86F3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4255($BE) (Walkabout)
+B $86F4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4255($BE) (Walkabout)
+B $86F5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4255($BE) (Walkabout)
+B $86F6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$424E($BC) (Staff room)
+B $86F7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$424E($BC) (Staff room)
+B $86F8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$424E($BC) (Staff room)
+B $86F9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$424E($BC) (Staff room)
+B $86FA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$424E($BC) (Staff room)
+B $86FB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$424E($BC) (Staff room)
+B $86FC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
+B $86FD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
+B $86FE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$424E($BC) (Staff room)
+B $86FF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$424E($BC) (Staff room)
 b $8700 Skool tile references (LSBs) for row 15
 D $8700 #ZX$A700
 D $8700 Used by the routine at #A$3326.
 B $8700,96,8
 b $8760 Character buffer for ANGELFACE
 D $8760 #ZX$A760
-D $8760 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8760 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8760,32,8
 b $8780 Skool colour information for row 15
 D $8780 #ZX$A780
@@ -7799,45 +7799,45 @@ B $8780,96,8
 b $87E0 Personal timetable for ANGELFACE
 D $87E0 #ZX$A8E0
 D $87E0 Used by the routine at #A$3AD5.
-B $87E0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41F7($AE) (Dinner)
-B $87E1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41F7($AE) (Dinner)
-B $87E2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$4180($9E) (Exam Room)
-B $87E3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$4180($9E) (Exam Room)
-B $87E4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$41C3($A6) (White Room)
-B $87E5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$421C($B4) (Revision Library)
-B $87E6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$421C($B4) (Revision Library)
-B $87E7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$40FA($8E) (Map Room)
-B $87E8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$41C3($A6) (White Room)
-B $87E9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$413D($96) (Reading Room)
-B $87EA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$413D($96) (Reading Room)
-B $87EB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$41C3($A6) (White Room)
-B $87EC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$41C3($A6) (White Room)
-B $87ED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$421C($B4) (Revision Library)
-B $87EE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$421C($B4) (Revision Library)
-B $87EF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$40FA($8E) (Map Room)
-B $87F0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$40FA($8E) (Map Room)
-B $87F1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$41C3($A6) (White Room)
-B $87F2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$413D($96) (Reading Room)
-B $87F3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$436E($DC) (Mumps walkabout)
-B $87F4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
-B $87F5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
-B $87F6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$422B($B6) (Walkabout)
-B $87F7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$422B($B6) (Walkabout)
-B $87F8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$422B($B6) (Walkabout)
-B $87F9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$422B($B6) (Walkabout)
-B $87FA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$422B($B6) (Walkabout)
-B $87FB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$422B($B6) (Walkabout)
-B $87FC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$422B($B6) (Walkabout)
-B $87FD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$422B($B6) (Walkabout)
-B $87FE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$422B($B6) (Walkabout)
-B $87FF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$422B($B6) (Walkabout)
+B $87E0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41F7($AE) (Dinner)
+B $87E1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41F7($AE) (Dinner)
+B $87E2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$4180($9E) (Exam Room)
+B $87E3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$4180($9E) (Exam Room)
+B $87E4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$41C3($A6) (White Room)
+B $87E5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$421C($B4) (Revision Library)
+B $87E6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$421C($B4) (Revision Library)
+B $87E7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$40FA($8E) (Map Room)
+B $87E8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$41C3($A6) (White Room)
+B $87E9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$413D($96) (Reading Room)
+B $87EA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$413D($96) (Reading Room)
+B $87EB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$41C3($A6) (White Room)
+B $87EC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$41C3($A6) (White Room)
+B $87ED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$421C($B4) (Revision Library)
+B $87EE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$421C($B4) (Revision Library)
+B $87EF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$40FA($8E) (Map Room)
+B $87F0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$40FA($8E) (Map Room)
+B $87F1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$41C3($A6) (White Room)
+B $87F2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$413D($96) (Reading Room)
+B $87F3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$436E($DC) (Mumps walkabout)
+B $87F4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
+B $87F5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
+B $87F6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$422B($B6) (Walkabout)
+B $87F7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$422B($B6) (Walkabout)
+B $87F8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$422B($B6) (Walkabout)
+B $87F9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$422B($B6) (Walkabout)
+B $87FA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$422B($B6) (Walkabout)
+B $87FB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$422B($B6) (Walkabout)
+B $87FC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$422B($B6) (Walkabout)
+B $87FD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$422B($B6) (Walkabout)
+B $87FE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$422B($B6) (Walkabout)
+B $87FF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$422B($B6) (Walkabout)
 b $8800 Skool tile references (LSBs) for row 16
 D $8800 #ZX$A800
 D $8800 Used by the routine at #A$3326.
 B $8800,96,8
 b $8860 Character buffer for BOY WONDER
 D $8860 #ZX$A860
-D $8860 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8860 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8860,32,8
 b $8880 Skool colour information for row 16
 D $8880 #ZX$A880
@@ -7846,45 +7846,45 @@ B $8880,96,8
 b $88E0 Personal timetable for BOY WONDER
 D $88E0 #ZX$A7E0
 D $88E0 Used by the routine at #A$3AD5.
-B $88E0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E8($AC) (Dinner)
-B $88E1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E8($AC) (Dinner)
-B $88E2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$4166($9C) (Exam Room)
-B $88E3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$4166($9C) (Exam Room)
-B $88E4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$420D($B2) (Revision Library)
-B $88E5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$40E7($8C) (Map Room)
-B $88E6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$420D($B2) (Revision Library)
-B $88E7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$4166($9C) (Exam Room)
-B $88E8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$4123($94) (Reading Room)
-B $88E9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$4123($94) (Reading Room)
-B $88EA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$4123($94) (Reading Room)
-B $88EB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$41A9($A4) (White Room)
-B $88EC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$420D($B2) (Revision Library)
-B $88ED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$420D($B2) (Revision Library)
-B $88EE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$41A9($A4) (White Room)
-B $88EF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$4166($9C) (Exam Room)
-B $88F0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$40E7($8C) (Map Room)
-B $88F1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$41A9($A4) (White Room)
-B $88F2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$4123($94) (Reading Room)
-B $88F3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
-B $88F4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
-B $88F5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4334($D8) (Collect the pea-shooter)
-B $88F6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$425D($C0) (Write on the boards)
-B $88F7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$4272($C2) (Walkabout)
-B $88F8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$425D($C0) (Write on the boards)
-B $88F9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$425D($C0) (Write on the boards)
-B $88FA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$425D($C0) (Write on the boards)
-B $88FB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4272($C2) (Walkabout)
-B $88FC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$4272($C2) (Walkabout)
-B $88FD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$4272($C2) (Walkabout)
-B $88FE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$425D($C0) (Write on the boards)
-B $88FF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$4272($C2) (Walkabout)
+B $88E0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E8($AC) (Dinner)
+B $88E1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E8($AC) (Dinner)
+B $88E2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$4166($9C) (Exam Room)
+B $88E3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$4166($9C) (Exam Room)
+B $88E4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$420D($B2) (Revision Library)
+B $88E5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$40E7($8C) (Map Room)
+B $88E6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$420D($B2) (Revision Library)
+B $88E7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$4166($9C) (Exam Room)
+B $88E8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$4123($94) (Reading Room)
+B $88E9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$4123($94) (Reading Room)
+B $88EA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$4123($94) (Reading Room)
+B $88EB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$41A9($A4) (White Room)
+B $88EC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$420D($B2) (Revision Library)
+B $88ED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$420D($B2) (Revision Library)
+B $88EE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$41A9($A4) (White Room)
+B $88EF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$4166($9C) (Exam Room)
+B $88F0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$40E7($8C) (Map Room)
+B $88F1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$41A9($A4) (White Room)
+B $88F2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$4123($94) (Reading Room)
+B $88F3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
+B $88F4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4290($C4) (Walkabout)
+B $88F5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4334($D8) (Collect the pea-shooter)
+B $88F6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$425D($C0) (Write on the boards)
+B $88F7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$4272($C2) (Walkabout)
+B $88F8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$425D($C0) (Write on the boards)
+B $88F9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$425D($C0) (Write on the boards)
+B $88FA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$425D($C0) (Write on the boards)
+B $88FB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4272($C2) (Walkabout)
+B $88FC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$4272($C2) (Walkabout)
+B $88FD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$4272($C2) (Walkabout)
+B $88FE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$425D($C0) (Write on the boards)
+B $88FF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$4272($C2) (Walkabout)
 b $8900 Skool tile references (LSBs) for row 17
 D $8900 #ZX$A900
 D $8900 Used by the routine at #A$3326.
 B $8900,96,8
 b $8960 Character buffer for EINSTEIN
 D $8960 #ZX$A960
-D $8960 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8960 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8960,32,8
 b $8980 Skool colour information for row 17
 D $8980 #ZX$A980
@@ -7893,45 +7893,45 @@ B $8980,96,8
 b $89E0 Personal timetable for EINSTEIN
 D $89E0 #ZX$A9E0
 D $89E0 Used by the routine at #A$3AD5.
-B $89E0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
-B $89E1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
-B $89E2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$4193($A0) (Exam Room)
-B $89E3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$4193($A0) (Exam Room)
-B $89E4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
-B $89E5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
-B $89E6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
-B $89E7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$410D($90) (Map Room)
-B $89E8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$4150($98) (Reading Room)
-B $89E9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$4150($98) (Reading Room)
-B $89EA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$4150($98) (Reading Room)
-B $89EB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$41D6($A8) (White Room)
-B $89EC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$41D6($A8) (White Room)
-B $89ED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$41D6($A8) (White Room)
-B $89EE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$41D6($A8) (White Room)
-B $89EF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$410D($90) (Map Room)
-B $89F0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$410D($90) (Map Room)
-B $89F1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$41D6($A8) (White Room)
-B $89F2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$4150($98) (Reading Room)
-B $89F3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
-B $89F4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4309($D4) (Grass on ERIC)
-B $89F5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
-B $89F6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $89F7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $89F8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $89F9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $89FA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $89FB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $89FC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
-B $89FD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
-B $89FE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$4290($C4) (Walkabout)
-B $89FF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $89E0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$41E1($AA) (Dinner)
+B $89E1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$41E1($AA) (Dinner)
+B $89E2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$4193($A0) (Exam Room)
+B $89E3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$4193($A0) (Exam Room)
+B $89E4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
+B $89E5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
+B $89E6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$4206($B0) (Revision Library)
+B $89E7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$410D($90) (Map Room)
+B $89E8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$4150($98) (Reading Room)
+B $89E9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$4150($98) (Reading Room)
+B $89EA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$4150($98) (Reading Room)
+B $89EB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$41D6($A8) (White Room)
+B $89EC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$41D6($A8) (White Room)
+B $89ED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$41D6($A8) (White Room)
+B $89EE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$41D6($A8) (White Room)
+B $89EF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$410D($90) (Map Room)
+B $89F0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$410D($90) (Map Room)
+B $89F1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$41D6($A8) (White Room)
+B $89F2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$4150($98) (Reading Room)
+B $89F3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$4290($C4) (Walkabout)
+B $89F4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$4309($D4) (Grass on ERIC)
+B $89F5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$4290($C4) (Walkabout)
+B $89F6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $89F7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $89F8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $89F9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $89FA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $89FB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $89FC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
+B $89FD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$4290($C4) (Walkabout)
+B $89FE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$4290($C4) (Walkabout)
+B $89FF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$4290($C4) (Walkabout)
 b $8A00 Skool tile references (LSBs) for row 18
 D $8A00 #ZX$AA00
 D $8A00 Used by the routine at #A$3326.
 B $8A00,96,8
 b $8A60 Character buffer for BOY WONDER's pellet
 D $8A60 #ZX$AA60
-D $8A60 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8A60 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8A60,32,8
 b $8A80 Skool colour information for row 18
 D $8A80 #ZX$AA80
@@ -7940,45 +7940,45 @@ B $8A80,96,8
 b $8AE0 Personal timetable for BOY WONDER's pellet
 D $8AE0 #ZX$AAE0
 D $8AE0 This timetable is not used, but every entry points at command list #R$40E5($8A).
-B $8AE0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$40E5($8A) (Do nothing)
-B $8AE1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$40E5($8A) (Do nothing)
-B $8AE2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$40E5($8A) (Do nothing)
-B $8AE3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$40E5($8A) (Do nothing)
-B $8AE4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$40E5($8A) (Do nothing)
-B $8AE5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$40E5($8A) (Do nothing)
-B $8AE6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$40E5($8A) (Do nothing)
-B $8AE7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$40E5($8A) (Do nothing)
-B $8AE8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$40E5($8A) (Do nothing)
-B $8AE9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$40E5($8A) (Do nothing)
-B $8AEA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$40E5($8A) (Do nothing)
-B $8AEB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$40E5($8A) (Do nothing)
-B $8AEC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$40E5($8A) (Do nothing)
-B $8AED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$40E5($8A) (Do nothing)
-B $8AEE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$40E5($8A) (Do nothing)
-B $8AEF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$40E5($8A) (Do nothing)
-B $8AF0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$40E5($8A) (Do nothing)
-B $8AF1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$40E5($8A) (Do nothing)
-B $8AF2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$40E5($8A) (Do nothing)
-B $8AF3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$40E5($8A) (Do nothing)
-B $8AF4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$40E5($8A) (Do nothing)
-B $8AF5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$40E5($8A) (Do nothing)
-B $8AF6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8AF7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8AF8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8AF9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8AFA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8AFB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8AFC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$40E5($8A) (Do nothing)
-B $8AFD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$40E5($8A) (Do nothing)
-B $8AFE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8AFF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8AE0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$40E5($8A) (Do nothing)
+B $8AE1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$40E5($8A) (Do nothing)
+B $8AE2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$40E5($8A) (Do nothing)
+B $8AE3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$40E5($8A) (Do nothing)
+B $8AE4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$40E5($8A) (Do nothing)
+B $8AE5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$40E5($8A) (Do nothing)
+B $8AE6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$40E5($8A) (Do nothing)
+B $8AE7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$40E5($8A) (Do nothing)
+B $8AE8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$40E5($8A) (Do nothing)
+B $8AE9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$40E5($8A) (Do nothing)
+B $8AEA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$40E5($8A) (Do nothing)
+B $8AEB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$40E5($8A) (Do nothing)
+B $8AEC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$40E5($8A) (Do nothing)
+B $8AED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$40E5($8A) (Do nothing)
+B $8AEE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$40E5($8A) (Do nothing)
+B $8AEF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$40E5($8A) (Do nothing)
+B $8AF0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$40E5($8A) (Do nothing)
+B $8AF1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$40E5($8A) (Do nothing)
+B $8AF2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$40E5($8A) (Do nothing)
+B $8AF3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$40E5($8A) (Do nothing)
+B $8AF4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$40E5($8A) (Do nothing)
+B $8AF5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$40E5($8A) (Do nothing)
+B $8AF6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8AF7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8AF8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8AF9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8AFA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8AFB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8AFC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$40E5($8A) (Do nothing)
+B $8AFD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$40E5($8A) (Do nothing)
+B $8AFE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8AFF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$40E5($8A) (Do nothing)
 b $8B00 Skool tile references (LSBs) for row 19
 D $8B00 #ZX$AB00
 D $8B00 Used by the routine at #A$3326.
 B $8B00,96,8
 b $8B60 Character buffer for ERIC's pellet
 D $8B60 #ZX$AB60
-D $8B60 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8B60 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8B60,32,8
 b $8B80 Skool colour information for row 19
 D $8B80 #ZX$AB80
@@ -7987,45 +7987,45 @@ B $8B80,96,8
 b $8BE0 Personal timetable for ERIC's pellet
 D $8BE0 #ZX$ABE0
 D $8BE0 This timetable is not used, but every entry points at command list #R$40E5($8A).
-B $8BE0,1,1 Lesson #LINK:LessonE0($E0) (DINNER (MR WITHIT)): #R$40E5($8A) (Do nothing)
-B $8BE1,1,1 Lesson #LINK:LessonE1($E1) (DINNER (MR WACKER)): #R$40E5($8A) (Do nothing)
-B $8BE2,1,1 Lesson #LINK:LessonE2($E2) (MR WACKER - EXAM ROOM): #R$40E5($8A) (Do nothing)
-B $8BE3,1,1 Lesson #LINK:LessonE3($E3) (MR ROCKITT - EXAM ROOM): #R$40E5($8A) (Do nothing)
-B $8BE4,1,1 Lesson #LINK:LessonE4($E4) (REVISION LIBRARY): #R$40E5($8A) (Do nothing)
-B $8BE5,1,1 Lesson #LINK:LessonE5($E5) (REVISION LIBRARY): #R$40E5($8A) (Do nothing)
-B $8BE6,1,1 Lesson #LINK:LessonE6($E6) (REVISION LIBRARY): #R$40E5($8A) (Do nothing)
-B $8BE7,1,1 Lesson #LINK:LessonE7($E7) (MR WITHIT - MAP ROOM): #R$40E5($8A) (Do nothing)
-B $8BE8,1,1 Lesson #LINK:LessonE8($E8) (MR WACKER - READING ROOM): #R$40E5($8A) (Do nothing)
-B $8BE9,1,1 Lesson #LINK:LessonE9($E9) (MR ROCKITT - READING ROOM): #R$40E5($8A) (Do nothing)
-B $8BEA,1,1 Lesson #LINK:LessonEA($EA) (MR CREAK - READING ROOM): #R$40E5($8A) (Do nothing)
-B $8BEB,1,1 Lesson #LINK:LessonEB($EB) (MR CREAK - WHITE ROOM): #R$40E5($8A) (Do nothing)
-B $8BEC,1,1 Lesson #LINK:LessonEC($EC) (MR WACKER - WHITE ROOM): #R$40E5($8A) (Do nothing)
-B $8BED,1,1 Lesson #LINK:LessonED($ED) (MR WITHIT - WHITE ROOM): #R$40E5($8A) (Do nothing)
-B $8BEE,1,1 Lesson #LINK:LessonEE($EE) (MR ROCKITT - WHITE ROOM): #R$40E5($8A) (Do nothing)
-B $8BEF,1,1 Lesson #LINK:LessonEF($EF) (MR WACKER - MAP ROOM): #R$40E5($8A) (Do nothing)
-B $8BF0,1,1 Lesson #LINK:LessonF0($F0) (MR WITHIT - MAP ROOM): #R$40E5($8A) (Do nothing)
-B $8BF1,1,1 Lesson #LINK:LessonF1($F1) (MR ROCKITT - WHITE ROOM): #R$40E5($8A) (Do nothing)
-B $8BF2,1,1 Lesson #LINK:LessonF2($F2) (MR CREAK - READING ROOM): #R$40E5($8A) (Do nothing)
-B $8BF3,1,1 Lesson #LINK:LessonF3($F3) (PLAYTIME (ANGELFACE has mumps)): #R$40E5($8A) (Do nothing)
-B $8BF4,1,1 Lesson #LINK:LessonF4($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$40E5($8A) (Do nothing)
-B $8BF5,1,1 Lesson #LINK:LessonF5($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$40E5($8A) (Do nothing)
-B $8BF6,1,1 Lesson #LINK:LessonF6($F6) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8BF7,1,1 Lesson #LINK:LessonF7($F7) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8BF8,1,1 Lesson #LINK:LessonF8($F8) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8BF9,1,1 Lesson #LINK:LessonF9($F9) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8BFA,1,1 Lesson #LINK:LessonFA($FA) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8BFB,1,1 Lesson #LINK:LessonFB($FB) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8BFC,1,1 Lesson #LINK:LessonFC($FC) (PLAYTIME (little boys stampede)): #R$40E5($8A) (Do nothing)
-B $8BFD,1,1 Lesson #LINK:LessonFD($FD) (PLAYTIME (little boys stampede)): #R$40E5($8A) (Do nothing)
-B $8BFE,1,1 Lesson #LINK:LessonFE($FE) (PLAYTIME): #R$40E5($8A) (Do nothing)
-B $8BFF,1,1 Lesson #LINK:LessonFF($FF) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8BE0,1,1 Lesson #LINK(LessonE0)($E0) (DINNER (MR WITHIT)): #R$40E5($8A) (Do nothing)
+B $8BE1,1,1 Lesson #LINK(LessonE1)($E1) (DINNER (MR WACKER)): #R$40E5($8A) (Do nothing)
+B $8BE2,1,1 Lesson #LINK(LessonE2)($E2) (MR WACKER - EXAM ROOM): #R$40E5($8A) (Do nothing)
+B $8BE3,1,1 Lesson #LINK(LessonE3)($E3) (MR ROCKITT - EXAM ROOM): #R$40E5($8A) (Do nothing)
+B $8BE4,1,1 Lesson #LINK(LessonE4)($E4) (REVISION LIBRARY): #R$40E5($8A) (Do nothing)
+B $8BE5,1,1 Lesson #LINK(LessonE5)($E5) (REVISION LIBRARY): #R$40E5($8A) (Do nothing)
+B $8BE6,1,1 Lesson #LINK(LessonE6)($E6) (REVISION LIBRARY): #R$40E5($8A) (Do nothing)
+B $8BE7,1,1 Lesson #LINK(LessonE7)($E7) (MR WITHIT - MAP ROOM): #R$40E5($8A) (Do nothing)
+B $8BE8,1,1 Lesson #LINK(LessonE8)($E8) (MR WACKER - READING ROOM): #R$40E5($8A) (Do nothing)
+B $8BE9,1,1 Lesson #LINK(LessonE9)($E9) (MR ROCKITT - READING ROOM): #R$40E5($8A) (Do nothing)
+B $8BEA,1,1 Lesson #LINK(LessonEA)($EA) (MR CREAK - READING ROOM): #R$40E5($8A) (Do nothing)
+B $8BEB,1,1 Lesson #LINK(LessonEB)($EB) (MR CREAK - WHITE ROOM): #R$40E5($8A) (Do nothing)
+B $8BEC,1,1 Lesson #LINK(LessonEC)($EC) (MR WACKER - WHITE ROOM): #R$40E5($8A) (Do nothing)
+B $8BED,1,1 Lesson #LINK(LessonED)($ED) (MR WITHIT - WHITE ROOM): #R$40E5($8A) (Do nothing)
+B $8BEE,1,1 Lesson #LINK(LessonEE)($EE) (MR ROCKITT - WHITE ROOM): #R$40E5($8A) (Do nothing)
+B $8BEF,1,1 Lesson #LINK(LessonEF)($EF) (MR WACKER - MAP ROOM): #R$40E5($8A) (Do nothing)
+B $8BF0,1,1 Lesson #LINK(LessonF0)($F0) (MR WITHIT - MAP ROOM): #R$40E5($8A) (Do nothing)
+B $8BF1,1,1 Lesson #LINK(LessonF1)($F1) (MR ROCKITT - WHITE ROOM): #R$40E5($8A) (Do nothing)
+B $8BF2,1,1 Lesson #LINK(LessonF2)($F2) (MR CREAK - READING ROOM): #R$40E5($8A) (Do nothing)
+B $8BF3,1,1 Lesson #LINK(LessonF3)($F3) (PLAYTIME (ANGELFACE has mumps)): #R$40E5($8A) (Do nothing)
+B $8BF4,1,1 Lesson #LINK(LessonF4)($F4) (PLAYTIME (EINSTEIN is going to grass on ERIC)): #R$40E5($8A) (Do nothing)
+B $8BF5,1,1 Lesson #LINK(LessonF5)($F5) (PLAYTIME (BOY WONDER has hidden a pea-shooter)): #R$40E5($8A) (Do nothing)
+B $8BF6,1,1 Lesson #LINK(LessonF6)($F6) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8BF7,1,1 Lesson #LINK(LessonF7)($F7) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8BF8,1,1 Lesson #LINK(LessonF8)($F8) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8BF9,1,1 Lesson #LINK(LessonF9)($F9) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8BFA,1,1 Lesson #LINK(LessonFA)($FA) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8BFB,1,1 Lesson #LINK(LessonFB)($FB) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8BFC,1,1 Lesson #LINK(LessonFC)($FC) (PLAYTIME (little boys stampede)): #R$40E5($8A) (Do nothing)
+B $8BFD,1,1 Lesson #LINK(LessonFD)($FD) (PLAYTIME (little boys stampede)): #R$40E5($8A) (Do nothing)
+B $8BFE,1,1 Lesson #LINK(LessonFE)($FE) (PLAYTIME): #R$40E5($8A) (Do nothing)
+B $8BFF,1,1 Lesson #LINK(LessonFF)($FF) (PLAYTIME): #R$40E5($8A) (Do nothing)
 b $8C00 Skool tile references (LSBs) for row 20
 D $8C00 #ZX$AC00
 D $8C00 Used by the routine at #A$3326.
 B $8C00,96,8
 b $8C60 Character buffer for ERIC
 D $8C60 #ZX$AC60
-D $8C60 See the #LINK:CharacterBuffer(character buffer documentation) for details of how the buffer is used.
+D $8C60 See the #LINK(CharacterBuffer)(character buffer documentation) for details of how the buffer is used.
 B $8C60,32,8
 b $8C80 Skool colour information for row 20
 D $8C80 #ZX$AC80
@@ -8038,38 +8038,38 @@ D $8CE0 Each entry in this table defines the teacher for the corresponding perio
 D $8CE0 #TABLE(default) { =h Bits | =h Teacher } { 0000    | MR WACKER } { 0001    | MR ROCKITT  } { 0010    | MR WITHIT } { 0011    | MR CREAK } { 0100    | None } TABLE#
 D $8CE0 The room is identified by bits 0-3:
 D $8CE0 #TABLE(default) { =h Bits | =h Room } { 0001    | READING ROOM } { 0010    | MAP ROOM } { 0011    | WHITE ROOM } { 0100    | EXAM ROOM } { 0101    | REVISION LIBRARY } { 0110    | DINNER } { 0111    | PLAYTIME } TABLE#
-B $8CE0,1,1 Lesson #LINK:LessonE0($E0): DINNER (MR WITHIT)
-B $8CE1,1,1 Lesson #LINK:LessonE1($E1): DINNER (MR WACKER)
-B $8CE2,1,1 Lesson #LINK:LessonE2($E2): MR WACKER - EXAM ROOM
-B $8CE3,1,1 Lesson #LINK:LessonE3($E3): MR ROCKITT - EXAM ROOM
-B $8CE4,1,1 Lesson #LINK:LessonE4($E4): REVISION LIBRARY
-B $8CE5,1,1 Lesson #LINK:LessonE5($E5): REVISION LIBRARY
-B $8CE6,1,1 Lesson #LINK:LessonE6($E6): REVISION LIBRARY
-B $8CE7,1,1 Lesson #LINK:LessonE7($E7): MR WITHIT - MAP ROOM
-B $8CE8,1,1 Lesson #LINK:LessonE8($E8): MR WACKER - READING ROOM
-B $8CE9,1,1 Lesson #LINK:LessonE9($E9): MR ROCKITT - READING ROOM
-B $8CEA,1,1 Lesson #LINK:LessonEA($EA): MR CREAK - READING ROOM
-B $8CEB,1,1 Lesson #LINK:LessonEB($EB): MR CREAK - WHITE ROOM
-B $8CEC,1,1 Lesson #LINK:LessonEC($EC): MR WACKER - WHITE ROOM
-B $8CED,1,1 Lesson #LINK:LessonED($ED): MR WITHIT - WHITE ROOM
-B $8CEE,1,1 Lesson #LINK:LessonEE($EE): MR ROCKITT - WHITE ROOM
-B $8CEF,1,1 Lesson #LINK:LessonEF($EF): MR WACKER - MAP ROOM
-B $8CF0,1,1 Lesson #LINK:LessonF0($F0): MR WITHIT - MAP ROOM
-B $8CF1,1,1 Lesson #LINK:LessonF1($F1): MR ROCKITT - WHITE ROOM
-B $8CF2,1,1 Lesson #LINK:LessonF2($F2): MR CREAK - READING ROOM
-B $8CF3,1,1 Lesson #LINK:LessonF3($F3): PLAYTIME (ANGELFACE has mumps)
-B $8CF4,1,1 Lesson #LINK:LessonF4($F4): PLAYTIME (EINSTEIN is going to grass on ERIC)
-B $8CF5,1,1 Lesson #LINK:LessonF5($F5): PLAYTIME (BOY WONDER has hidden a pea-shooter)
-B $8CF6,1,1 Lesson #LINK:LessonF6($F6): PLAYTIME
-B $8CF7,1,1 Lesson #LINK:LessonF7($F7): PLAYTIME
-B $8CF8,1,1 Lesson #LINK:LessonF8($F8): PLAYTIME
-B $8CF9,1,1 Lesson #LINK:LessonF9($F9): PLAYTIME
-B $8CFA,1,1 Lesson #LINK:LessonFA($FA): PLAYTIME
-B $8CFB,1,1 Lesson #LINK:LessonFB($FB): PLAYTIME
-B $8CFC,1,1 Lesson #LINK:LessonFC($FC): PLAYTIME (little boys stampede)
-B $8CFD,1,1 Lesson #LINK:LessonFD($FD): PLAYTIME (little boys stampede)
-B $8CFE,1,1 Lesson #LINK:LessonFE($FE): PLAYTIME
-B $8CFF,1,1 Lesson #LINK:LessonFF($FF): PLAYTIME
+B $8CE0,1,1 Lesson #LINK(LessonE0)($E0): DINNER (MR WITHIT)
+B $8CE1,1,1 Lesson #LINK(LessonE1)($E1): DINNER (MR WACKER)
+B $8CE2,1,1 Lesson #LINK(LessonE2)($E2): MR WACKER - EXAM ROOM
+B $8CE3,1,1 Lesson #LINK(LessonE3)($E3): MR ROCKITT - EXAM ROOM
+B $8CE4,1,1 Lesson #LINK(LessonE4)($E4): REVISION LIBRARY
+B $8CE5,1,1 Lesson #LINK(LessonE5)($E5): REVISION LIBRARY
+B $8CE6,1,1 Lesson #LINK(LessonE6)($E6): REVISION LIBRARY
+B $8CE7,1,1 Lesson #LINK(LessonE7)($E7): MR WITHIT - MAP ROOM
+B $8CE8,1,1 Lesson #LINK(LessonE8)($E8): MR WACKER - READING ROOM
+B $8CE9,1,1 Lesson #LINK(LessonE9)($E9): MR ROCKITT - READING ROOM
+B $8CEA,1,1 Lesson #LINK(LessonEA)($EA): MR CREAK - READING ROOM
+B $8CEB,1,1 Lesson #LINK(LessonEB)($EB): MR CREAK - WHITE ROOM
+B $8CEC,1,1 Lesson #LINK(LessonEC)($EC): MR WACKER - WHITE ROOM
+B $8CED,1,1 Lesson #LINK(LessonED)($ED): MR WITHIT - WHITE ROOM
+B $8CEE,1,1 Lesson #LINK(LessonEE)($EE): MR ROCKITT - WHITE ROOM
+B $8CEF,1,1 Lesson #LINK(LessonEF)($EF): MR WACKER - MAP ROOM
+B $8CF0,1,1 Lesson #LINK(LessonF0)($F0): MR WITHIT - MAP ROOM
+B $8CF1,1,1 Lesson #LINK(LessonF1)($F1): MR ROCKITT - WHITE ROOM
+B $8CF2,1,1 Lesson #LINK(LessonF2)($F2): MR CREAK - READING ROOM
+B $8CF3,1,1 Lesson #LINK(LessonF3)($F3): PLAYTIME (ANGELFACE has mumps)
+B $8CF4,1,1 Lesson #LINK(LessonF4)($F4): PLAYTIME (EINSTEIN is going to grass on ERIC)
+B $8CF5,1,1 Lesson #LINK(LessonF5)($F5): PLAYTIME (BOY WONDER has hidden a pea-shooter)
+B $8CF6,1,1 Lesson #LINK(LessonF6)($F6): PLAYTIME
+B $8CF7,1,1 Lesson #LINK(LessonF7)($F7): PLAYTIME
+B $8CF8,1,1 Lesson #LINK(LessonF8)($F8): PLAYTIME
+B $8CF9,1,1 Lesson #LINK(LessonF9)($F9): PLAYTIME
+B $8CFA,1,1 Lesson #LINK(LessonFA)($FA): PLAYTIME
+B $8CFB,1,1 Lesson #LINK(LessonFB)($FB): PLAYTIME
+B $8CFC,1,1 Lesson #LINK(LessonFC)($FC): PLAYTIME (little boys stampede)
+B $8CFD,1,1 Lesson #LINK(LessonFD)($FD): PLAYTIME (little boys stampede)
+B $8CFE,1,1 Lesson #LINK(LessonFE)($FE): PLAYTIME
+B $8CFF,1,1 Lesson #LINK(LessonFF)($FF): PLAYTIME
 b $8D00 Tile references for animatory states $00-$67 at row 0, column 0
 D $8D00 #ZX$AD00
 D $8D00 Used by the routines at #A$322E and #A$3326.

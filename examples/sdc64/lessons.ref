@@ -1,4 +1,4 @@
-; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+; © 2021, 2026 Richard Dymond (rjdymond@gmail.com)
 
 [Links+]
 LessonIndex=Lessons
@@ -39,38 +39,38 @@ LessonFE=Lesson $FE
 LessonFF=Lesson $FF
 
 [PageHeaders+]
-LessonE0=#LINK:LessonIndex(Lessons)
-LessonE1=#LINK:LessonIndex(Lessons)
-LessonE2=#LINK:LessonIndex(Lessons)
-LessonE3=#LINK:LessonIndex(Lessons)
-LessonE4=#LINK:LessonIndex(Lessons)
-LessonE5=#LINK:LessonIndex(Lessons)
-LessonE6=#LINK:LessonIndex(Lessons)
-LessonE7=#LINK:LessonIndex(Lessons)
-LessonE8=#LINK:LessonIndex(Lessons)
-LessonE9=#LINK:LessonIndex(Lessons)
-LessonEA=#LINK:LessonIndex(Lessons)
-LessonEB=#LINK:LessonIndex(Lessons)
-LessonEC=#LINK:LessonIndex(Lessons)
-LessonED=#LINK:LessonIndex(Lessons)
-LessonEE=#LINK:LessonIndex(Lessons)
-LessonEF=#LINK:LessonIndex(Lessons)
-LessonF0=#LINK:LessonIndex(Lessons)
-LessonF1=#LINK:LessonIndex(Lessons)
-LessonF2=#LINK:LessonIndex(Lessons)
-LessonF3=#LINK:LessonIndex(Lessons)
-LessonF4=#LINK:LessonIndex(Lessons)
-LessonF5=#LINK:LessonIndex(Lessons)
-LessonF6=#LINK:LessonIndex(Lessons)
-LessonF7=#LINK:LessonIndex(Lessons)
-LessonF8=#LINK:LessonIndex(Lessons)
-LessonF9=#LINK:LessonIndex(Lessons)
-LessonFA=#LINK:LessonIndex(Lessons)
-LessonFB=#LINK:LessonIndex(Lessons)
-LessonFC=#LINK:LessonIndex(Lessons)
-LessonFD=#LINK:LessonIndex(Lessons)
-LessonFE=#LINK:LessonIndex(Lessons)
-LessonFF=#LINK:LessonIndex(Lessons)
+LessonE0=#LINK(LessonIndex)(Lessons)
+LessonE1=#LINK(LessonIndex)(Lessons)
+LessonE2=#LINK(LessonIndex)(Lessons)
+LessonE3=#LINK(LessonIndex)(Lessons)
+LessonE4=#LINK(LessonIndex)(Lessons)
+LessonE5=#LINK(LessonIndex)(Lessons)
+LessonE6=#LINK(LessonIndex)(Lessons)
+LessonE7=#LINK(LessonIndex)(Lessons)
+LessonE8=#LINK(LessonIndex)(Lessons)
+LessonE9=#LINK(LessonIndex)(Lessons)
+LessonEA=#LINK(LessonIndex)(Lessons)
+LessonEB=#LINK(LessonIndex)(Lessons)
+LessonEC=#LINK(LessonIndex)(Lessons)
+LessonED=#LINK(LessonIndex)(Lessons)
+LessonEE=#LINK(LessonIndex)(Lessons)
+LessonEF=#LINK(LessonIndex)(Lessons)
+LessonF0=#LINK(LessonIndex)(Lessons)
+LessonF1=#LINK(LessonIndex)(Lessons)
+LessonF2=#LINK(LessonIndex)(Lessons)
+LessonF3=#LINK(LessonIndex)(Lessons)
+LessonF4=#LINK(LessonIndex)(Lessons)
+LessonF5=#LINK(LessonIndex)(Lessons)
+LessonF6=#LINK(LessonIndex)(Lessons)
+LessonF7=#LINK(LessonIndex)(Lessons)
+LessonF8=#LINK(LessonIndex)(Lessons)
+LessonF9=#LINK(LessonIndex)(Lessons)
+LessonFA=#LINK(LessonIndex)(Lessons)
+LessonFB=#LINK(LessonIndex)(Lessons)
+LessonFC=#LINK(LessonIndex)(Lessons)
+LessonFD=#LINK(LessonIndex)(Lessons)
+LessonFE=#LINK(LessonIndex)(Lessons)
+LessonFF=#LINK(LessonIndex)(Lessons)
 
 [Page:LessonIndex]
 PageContent=#INCLUDE(LessonIndex)
@@ -78,38 +78,38 @@ PageContent=#INCLUDE(LessonIndex)
 [LessonIndex]
 #TABLE(default)
 { =h ID | =h Lesson }
-{ $E0 | #LINK:LessonE0(DINNER (MR WITHIT)) }
-{ $E1 | #LINK:LessonE1(DINNER (MR WACKER)) }
-{ $E2 | #LINK:LessonE2(MR WACKER - EXAM ROOM) }
-{ $E3 | #LINK:LessonE3(MR ROCKITT - EXAM ROOM) }
-{ $E4 | #LINK:LessonE4(REVISION LIBRARY) }
-{ $E5 | #LINK:LessonE5(REVISION LIBRARY) }
-{ $E6 | #LINK:LessonE6(REVISION LIBRARY) }
-{ $E7 | #LINK:LessonE7(MR WITHIT - MAP ROOM) }
-{ $E8 | #LINK:LessonE8(MR WACKER - READING ROOM) }
-{ $E9 | #LINK:LessonE9(MR ROCKITT - READING ROOM) }
-{ $EA | #LINK:LessonEA(MR CREAK - READING ROOM) }
-{ $EB | #LINK:LessonEB(MR CREAK - WHITE ROOM) }
-{ $EC | #LINK:LessonEC(MR WACKER - WHITE ROOM) }
-{ $ED | #LINK:LessonED(MR WITHIT - WHITE ROOM) }
-{ $EE | #LINK:LessonEE(MR ROCKITT - WHITE ROOM) }
-{ $EF | #LINK:LessonEF(MR WACKER - MAP ROOM) }
-{ $F0 | #LINK:LessonF0(MR WITHIT - MAP ROOM) }
-{ $F1 | #LINK:LessonF1(MR ROCKITT - WHITE ROOM) }
-{ $F2 | #LINK:LessonF2(MR CREAK - READING ROOM) }
-{ $F3 | #LINK:LessonF3(PLAYTIME (ANGELFACE has mumps)) }
-{ $F4 | #LINK:LessonF4(PLAYTIME (EINSTEIN is going to grass on ERIC)) }
-{ $F5 | #LINK:LessonF5(PLAYTIME (BOY WONDER has hidden a pea-shooter)) }
-{ $F6 | #LINK:LessonF6(PLAYTIME) }
-{ $F7 | #LINK:LessonF7(PLAYTIME) }
-{ $F8 | #LINK:LessonF8(PLAYTIME) }
-{ $F9 | #LINK:LessonF9(PLAYTIME) }
-{ $FA | #LINK:LessonFA(PLAYTIME) }
-{ $FB | #LINK:LessonFB(PLAYTIME) }
-{ $FC | #LINK:LessonFC(PLAYTIME (little boys stampede)) }
-{ $FD | #LINK:LessonFD(PLAYTIME (little boys stampede)) }
-{ $FE | #LINK:LessonFE(PLAYTIME) }
-{ $FF | #LINK:LessonFF(PLAYTIME) }
+{ $E0 | #LINK(LessonE0)(DINNER (MR WITHIT)) }
+{ $E1 | #LINK(LessonE1)(DINNER (MR WACKER)) }
+{ $E2 | #LINK(LessonE2)(MR WACKER - EXAM ROOM) }
+{ $E3 | #LINK(LessonE3)(MR ROCKITT - EXAM ROOM) }
+{ $E4 | #LINK(LessonE4)(REVISION LIBRARY) }
+{ $E5 | #LINK(LessonE5)(REVISION LIBRARY) }
+{ $E6 | #LINK(LessonE6)(REVISION LIBRARY) }
+{ $E7 | #LINK(LessonE7)(MR WITHIT - MAP ROOM) }
+{ $E8 | #LINK(LessonE8)(MR WACKER - READING ROOM) }
+{ $E9 | #LINK(LessonE9)(MR ROCKITT - READING ROOM) }
+{ $EA | #LINK(LessonEA)(MR CREAK - READING ROOM) }
+{ $EB | #LINK(LessonEB)(MR CREAK - WHITE ROOM) }
+{ $EC | #LINK(LessonEC)(MR WACKER - WHITE ROOM) }
+{ $ED | #LINK(LessonED)(MR WITHIT - WHITE ROOM) }
+{ $EE | #LINK(LessonEE)(MR ROCKITT - WHITE ROOM) }
+{ $EF | #LINK(LessonEF)(MR WACKER - MAP ROOM) }
+{ $F0 | #LINK(LessonF0)(MR WITHIT - MAP ROOM) }
+{ $F1 | #LINK(LessonF1)(MR ROCKITT - WHITE ROOM) }
+{ $F2 | #LINK(LessonF2)(MR CREAK - READING ROOM) }
+{ $F3 | #LINK(LessonF3)(PLAYTIME (ANGELFACE has mumps)) }
+{ $F4 | #LINK(LessonF4)(PLAYTIME (EINSTEIN is going to grass on ERIC)) }
+{ $F5 | #LINK(LessonF5)(PLAYTIME (BOY WONDER has hidden a pea-shooter)) }
+{ $F6 | #LINK(LessonF6)(PLAYTIME) }
+{ $F7 | #LINK(LessonF7)(PLAYTIME) }
+{ $F8 | #LINK(LessonF8)(PLAYTIME) }
+{ $F9 | #LINK(LessonF9)(PLAYTIME) }
+{ $FA | #LINK(LessonFA)(PLAYTIME) }
+{ $FB | #LINK(LessonFB)(PLAYTIME) }
+{ $FC | #LINK(LessonFC)(PLAYTIME (little boys stampede)) }
+{ $FD | #LINK(LessonFD)(PLAYTIME (little boys stampede)) }
+{ $FE | #LINK(LessonFE)(PLAYTIME) }
+{ $FF | #LINK(LessonFF)(PLAYTIME) }
 TABLE#
 
 [Page:LessonE0]

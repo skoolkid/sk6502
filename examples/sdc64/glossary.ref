@@ -1,11 +1,11 @@
-; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+; © 2021, 2026 Richard Dymond (rjdymond@gmail.com)
 
 [Glossary:Animatory state]
-Number denoting one of the #LINK:AnimatoryStates(phases of animation) of a
+Number denoting one of the #LINK(AnimatoryStates)(phases of animation) of a
 character's sprite.
 
 [Glossary:Character buffer]
-#LINK:CharacterBuffer(Buffer) containing data on the current state of a
+#LINK(CharacterBuffer)(Buffer) containing data on the current state of a
 character.
 
 [Glossary:Command list]
