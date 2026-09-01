@@ -5,7 +5,7 @@ from skoolkit.components import get_component
 from sk6502.assembler import get_size
 
 def get_address(operation):
-    search = re.search('(\A|[\s,(+-])(\$[0-9A-Fa-f]+|%[01]+|\d+)', operation)
+    search = re.search(r'(\A|[\s,(+-])(\$[0-9A-Fa-f]+|%[01]+|\d+)', operation)
     if search:
         return search.group(2)
 
@@ -91,7 +91,7 @@ class InstructionUtility:
         for p in re.split(r'("(?:[^"\\]|\\.)*")', operand):
             if p:
                 if not p.startswith('"'):
-                    pieces = re.split('(\A|(?<=[\s,(+-]))(\$[0-9A-Fa-f]+|%[01]+|\d+)', p)
+                    pieces = re.split(r'(\A|(?<=[\s,(+-]))(\$[0-9A-Fa-f]+|%[01]+|\d+)', p)
                     for i in range(2, len(pieces), 3):
                         label = self._get_label(entry, instruction, pieces[i])
                         if label:
