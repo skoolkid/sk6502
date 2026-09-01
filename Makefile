@@ -1,11 +1,12 @@
 NOSE ?= nose2-3
+COVERAGE ?= /usr/bin/python3-coverage
 
 .PHONY: usage
 usage:
 	@echo "Targets:"
 	@echo "  usage       show this help"
 	@echo "  test        run tests with default Python 3 interpreter"
-	@echo "  test3X      run tests with Python 3.X (5<=X<=7)"
+	@echo "  test3X      run tests with Python 3.X"
 	@echo "  test-cover  run tests with coverage info"
 
 .PHONY: test
@@ -22,4 +23,5 @@ test%:
 
 .PHONY: test-cover
 test-cover:
-	$(NOSE) -C --coverage sk6502 --coverage-report term-missing
+	$(COVERAGE) run -m nose2 -s tests
+	$(COVERAGE) report -m
