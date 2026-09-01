@@ -199,7 +199,7 @@ xBarFrame=#INCLUDE(xBarFrame)
 )
 
 #DEF(#SKOOLIMG(x,y,w,h)
-  #UDGARRAY#($w,,2,256(#FOR($y,$y+$h-1)(y,#FOR($x,$x+$w-1)(x,#STSPEC(x,y),;))))
+  #UDGARRAY#($w,,2,256(#FOR($y,$y+$h-1)(y,#FOR($x,$x+$w-1)(x,#STSPEC(x,y),;),;)))
 )
 
 #DEF(#PLACECHAR(cnum,x,y,state)
