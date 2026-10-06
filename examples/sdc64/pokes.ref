@@ -1,4 +1,4 @@
-; Copyright 2021 Richard Dymond (rjdymond@gmail.com)
+; © 2021, 2026 Richard Dymond (rjdymond@gmail.com)
 
 [Poke:infiniteLines:Infinite lines]
 To stop MR WACKER expelling ERIC after 10000 lines:
@@ -17,7 +17,7 @@ finds the pea-shooter on the fire escape). For that you need:
 POKE 10127,0 #R$278E(($278F,$00))
 
 One harmless side effect of this POKE is that the lines total will be printed
-as '00' instead of '0' when WACKER delivers his 'TAKE 2000 LINES...' speech. 
+as '00' instead of '0' when WACKER delivers his 'TAKE 2000 LINES...' speech.
 
 [Poke:silentSnitch:Silent snitch]
 To make sure that EINSTEIN never tells tales:
@@ -32,7 +32,7 @@ POKE 9561,0 #R$2558(($2559,$00))
 
 [Poke:singleShield:Single shield]
 Hitting all 15 shields before obtaining the safe combination, and then hitting
-all 15 shields again after opening the safe can be hard work for a busy
+all 15 shields again after opening the safe, can be hard work for a busy
 skoolboy. To reduce ERIC's task to hitting just one shield (any shield):
 
 POKE 11313,1 #R$2C30(($2C31,$01))

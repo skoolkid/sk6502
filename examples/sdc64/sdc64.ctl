@@ -108,7 +108,7 @@ g $002D Sound effect timer
 D $002D Used by the routines at #A$189D, #A$2BB0, #A$2D47, #A$3AD5 and #A$BD00.
 B $002D,1,1
 g $002E Timing counter
-D $002E Used by the routines at #A$0800 at #A$39C7.
+D $002E Used by the routines at #A$0800 and #A$39C7.
 B $002E,1,1
 b $002F Temporary variable
 D $002F Used by the routines at #A$17E5, #A$2696 and #A$29C8.
@@ -272,12 +272,12 @@ B $00A9,1,1
 b $00AA Interruptible subcommand routine address
 D $00AA Used by the routines at #A$0C3F, #A$0EB4, #A$1129, #A$12B5, #A$136F, #A$16E9, #A$1A04, #A$1D28, #A$1EE3, #A$1F77, #A$1FA0, #A$2241, #A$2387, #A$2E13 and #A$3B5E.
 W $00AA,2,2
-b $00AC Bytes $6B and and $6C of the character's buffer
+b $00AC Bytes $6B and $6C of the character's buffer
 D $00AC Holds one of the following:
 D $00AC #LIST { address of the next character in the message being written on a blackboard or spoken } { coordinates of the next location to move to in pursuit of ERIC } { number of movements remaining to navigate a staircase ($AC) } { walkabout or intermediate destination x-coordinate ($AC) } { walkabout or intermediate destination pace counter ($AD) } { number of movements remaining to wipe the blackboard ($AC) } { x-coordinate of the next column of the blackboard to wipe ($AD) } LIST#
 D $00AC Used by the routines at #A$09E9, #A$0A58, #A$0C3F, #A$0E35, #A$108B, #A$1129, #A$12B5, #A$136F, #A$13F3, #A$16E9, #A$1A04, #A$1EE3, #A$1FA0, #A$2241, #A$246B, #A$2500, #A$2757, #A$277D, #A$28BC, #A$2E13 and #A$BE09.
 B $00AC,2,1
-b $00AE Bytes $6D and and $6E of the character's buffer
+b $00AE Bytes $6D and $6E of the character's buffer
 D $00AE Holds one of the following:
 D $00AE #LIST { address of the next character in the submessage being written on a blackboard or spoken } { address of the routine to call after the character has found ERIC } { y-coordinate of the top row of the blackboard being wiped ($AE) } LIST#
 D $00AE Used by the routines at #A$0B3B, #A$108B, #A$1129, #A$16E9, #A$2387, #A$2A99 and #A$2E13.
@@ -291,7 +291,7 @@ D $00B2 #LIST { counter determining how much longer the character will stay down
 D $00B2 Used by the routines at #A$0FBA, #A$1042, #A$29C8, #A$2A43, #A$2B52, #A$2BB0 and #A$2E13.
 B $00B2,1,1
 b $00B3 Pre-action animatory state
-D $00B3 Holds a character's animatory state as it was before he is knocked over, throws a punch (ANGELFACE), or fires a catapult (BOY WONDER).
+D $00B3 Holds a character's animatory state as it was before he was knocked over, threw a punch (ANGELFACE), or fired a catapult (BOY WONDER).
 D $00B3 Used by the routines at #A$267A, #A$26E0, #A$2A43, #A$2B21 and #A$2E13.
 B $00B3,1,1
 b $00B4 Unused variable
@@ -702,7 +702,7 @@ C $0AD3,3 Make the teacher give lines to ERIC, BOY WONDER or EINSTEIN.
 M $0AD6,5 Place the address of the interruptible subcommand routine at #A$16E9 into the teacher's buffer and jump to it. This makes the teacher wipe the blackboard and return here when he's done.
 W $0AD9,2,2
 C $0ADB,2 Pick up the teacher's x-coordinate from #A$FC.
-C $0ADD,7 Add 3 to this x-coordinate and store the result in the the teacher's buffer at #A$AC and #A$AD.
+C $0ADD,7 Add 3 to this x-coordinate and store the result in the teacher's buffer at #A$AC and #A$AD.
 M $0AE4,5 Place the address of the interruptible subcommand routine at #A$136F into the teacher's buffer and jump to it. This makes the teacher walk to the middle of the blackboard before returning here.
 W $0AE7,2,2
 C $0AE9,3 Generate a random value in `A`.
@@ -975,7 +975,7 @@ C $0D83,2 Return with the carry flag reset if so.
 C $0D85,2 Increment the maximum y-coordinate at #A$74. (This is a #BUG(creaksSuperiorVision)(bug).)
 C $0D87,2 Is the character's y-coordinate greater than the maximum y-coordinate?
 C $0D89,2 Return with the carry flag reset if so.
-C $0D8B,4 Return with the the carry flag set.
+C $0D8B,4 Return with the carry flag set.
 C $0D8F,1 Clear the carry flag.
 c $0D91 Get the identifier for ERIC's location
 D $0D91 Used by the routines at #A$0B3B, #A$0E35, #A$149F and #A$2745. Obtains the identifier for ERIC's current location, which has one of the following values:
@@ -1007,8 +1007,8 @@ R $0DD4 /(#A$57)/ $06 (top line) or $21 (bottom line)
 C $0DD4,8 $45C0 is in the text graphic buffer at #A$4500. Store this address at #A$4E.
 C $0DDC,11 Store the address $CAC6 or $CAE1 (in the upper and lower portions of the graphic data for the lines message sprite at $CAC0) at #A$50.
 C $0DE7,2 Initialise the index in `Y`.
-C $0DE9,4 Initialise the tile counter at #A$57 to 8
-C $0DED,4 Initialise the byte counter at #A$56 to 8
+C $0DE9,4 Initialise the tile counter at #A$57 to 8.
+C $0DED,4 Initialise the byte counter at #A$56 to 8.
 C $0DF1,2 Pick up a byte from the text graphic buffer.
 C $0DF3,2 Copy it into the sprite graphic data area at $CAC0, $CB00 or $CB40.
 C $0DF5,6 Increment the text graphic buffer address at #A$4E.
@@ -1140,7 +1140,7 @@ C $0F36,2 Is it greater than any x-coordinate difference already calculated?
 C $0F38,2 Branch if so.
 C $0F3A,6 Otherwise store this new minimum x-coordinate difference at #A$79, and EINSTEIN's character number at #A$7B.
 N $0F40 Next we check whether BOY WONDER is in range.
-C $0F40,4 Character number $11 is BOY WONDER. Store this potential target character number at #A$07.
+C $0F40,4 Character number $10 is BOY WONDER. Store this potential target character number at #A$07.
 C $0F44,3 Is BOY WONDER close to the teacher?
 C $0F47,2 Branch if not to check ANGELFACE.
 C $0F49,11 Prepare to address BOY WONDER's character buffer at #A$8860.
@@ -1177,7 +1177,7 @@ C $0FAC,2 Return if not.
 C $0FAE,4 Pick up the character number of the closest main kid and store it at #A$72.
 C $0FB2,2 Lines reprimand #R$4B80($08): NOW DON'T DO IT AGAIN.
 C $0FB4,2 Store this lines reprimand identifier at #A$D8.
-C $0FB6,3 Make the teacher gives lines to the closest main kid.
+C $0FB6,3 Make the teacher give lines to the closest main kid.
 c $0FBA Control the horizontal flight of a catapult pellet
 D $0FBA #ZX$6D1C
 D $0FBA The address of this uninterruptible subcommand routine is placed into a pellet's buffer by the routine at #A$2B52.
@@ -1191,7 +1191,7 @@ C $0FC9,3 Return.
 C $0FCC,2 Pick up the pellet's animatory state from #A$26.
 C $0FCE,1 Is the pellet moving right?
 C $0FCF,2 Branch if so.
-C $0FD1,2 Decerement the pellet's x-coordinate at #A$FC.
+C $0FD1,2 Decrement the pellet's x-coordinate at #A$FC.
 C $0FD3,3 Jump forward.
 C $0FD6,2 Increment the pellet's x-coordinate at #A$FC.
 C $0FD8,2 Pick up the pellet's new x-coordinate from #A$FC.
@@ -1334,7 +1334,7 @@ C $1144,2 Branch if not.
 C $1146,1 Set the carry flag to prepare for subtraction.
 C $1147,2 Subtract 1. Now `A` holds 4.
 C $1149,5 Add $53 to obtain the base page number of the blackboard messages for this character ($53-$57) and store it at #A$AD.
-C $114E,5 Generate random value between 0 and 7.
+C $114E,5 Generate a random value between 0 and 7.
 C $1153,5 Multiply by 32, giving the LSB of the address of a blackboard message.
 C $1158,2 Store this LSB at #A$AC.
 C $115A,8 Replace the address of this interruptible subcommand routine in the character's buffer with that of #A$1167 below.
@@ -1440,7 +1440,7 @@ C $1257,2 Increment the target blackboard cell x-coordinate at #A$15.
 C $1259,3 Get the address of the skool tile corresponding to the blackboard character cell.
 C $125C,2 Have we drawn every pixel column in the font character bitmap now?
 C $125E,2 Branch if so.
-C $1260,3 Otherwise shift the reset bit in the mask at #A$23 one place to right, ready for the next pixel column.
+C $1260,3 Otherwise shift the reset bit in the mask at #A$23 one place to the right, ready for the next pixel column.
 C $1263,2 Branch unless the reset bit fell into the carry flag.
 C $1265,2 Rotate the reset bit into bit 7.
 C $1267,3 Jump back to start drawing the next pixel column.
@@ -1732,7 +1732,7 @@ C $1531,2 Branch if ERIC is standing up.
 C $1533,3 Otherwise jump forward.
 C $1536,2 Lines reprimand #R$49E0($03): NOW FIND A SEAT.
 C $1538,2 Store the lines reprimand identifier at #A$D8.
-C $153A,2 Pick up the lines giving delay counter from #A$C6.
+C $153A,2 Pick up the lines-giving delay counter from #A$C6.
 C $153C,2 Is the high nibble equal to 1?
 C $153E,2 Branch if so.
 C $1540,2 Pick up the character number of the teacher who last gave ERIC lines from #A$71.
@@ -1805,10 +1805,10 @@ C $15D1,2 Pick up ERIC's knockout delay counter from #A$30.
 C $15D3,2 Branch if it's zero (ERIC's just been knocked over).
 C $15D5,2 Is ERIC's knockout delay counter less than $0B?
 C $15D7,2 Branch if so (this always happens).
-C $15D9,5 Set voice #3 attack length to 8ms and and decay length to 1.5s.
+C $15D9,5 Set voice #3 attack length to 8ms and decay length to 1.5s.
 C $15DE,5 Set voice #3 control register: voice on, attack-decay-sustain cycle; noise enabled.
 C $15E3,4 Initialise ERIC's knockout delay counter at #A$30 to $0A.
-C $15E7,3 Update the SRB for the ERIC's current animatory state and location.
+C $15E7,3 Update the SRB for ERIC's current animatory state and location.
 C $15EA,2 Pick up ERIC's animatory state from #A$26.
 C $15EC,2 Keep only bits 1 and 2.
 C $15EE,2 Compare the result with $05.
@@ -1821,7 +1821,7 @@ C $15FC,2 Pick up ERIC's animatory state from #A$26.
 C $15FE,2 Keep only the direction bit (bit 7).
 C $1600,3 Now `A`=#AS$06($06 or $86): ERIC sitting on the floor.
 C $1603,2 Update ERIC's animatory state.
-C $1605,3 Update the SRB for the ERIC's new animatory state.
+C $1605,3 Update the SRB for ERIC's new animatory state.
 C $1608,2 Decrement ERIC's knockout delay counter at #A$30.
 C $160A,2 Branch unless it's zero now.
 C $160C,4 Clear ERIC's status flags at #A$2B.
@@ -2151,7 +2151,7 @@ C $1908,2 Branch if so.
 C $190A,2 Was 'L' (jump) pressed?
 C $190C,2 Branch if so.
 C $190E,3 Otherwise return.
-C $1911,3 Is ERIC is standing on a boy?
+C $1911,3 Is ERIC standing on a boy?
 C $1914,2 Return if not.
 C $1916,4 Set the action timer for ERIC at #A$FE to $90. It will remain at $80 or more until the jump above the boy has finished.
 c $191B Deal with ERIC when he's firing the catapult
@@ -2184,7 +2184,7 @@ C $1954,3 Set the pellet on its way from ERIC's catapult.
 C $1957,10 Set voice #2 frequency to $3000.
 C $1961,5 Set voice #2 attack length to 8ms and decay length to 2.4s.
 C $1966,5 Set voice #2 sustain volume to 0 and release length to 6ms.
-C $196B,5 Set voice #2 control register: voice on, attack-sustain-decay cycle; triangle waveform enabled.
+C $196B,5 Set voice #2 control register: voice on, attack-decay-sustain cycle; triangle waveform enabled.
 C $1970,2 Lines reprimand #R$4CA0($0D): CATAPULTS ARE FORBIDDEN.
 N $1972 This entry point is used by the routines at #A$17E5 (with `A`=#R$4CC0($0E): DON'T HIT YOUR MATES) and #A$189D (with `A`=#R$4CE0($0F): YOU ARE NOT A KANGAROO).
 C $1972,2 Store the lines reprimand identifier at #A$D8.
@@ -2214,7 +2214,7 @@ C $19A5,2 Pick up ERIC's posture indicator from #A$14.
 C $19A7,2 Branch if ERIC is standing up.
 C $19A9,3 Otherwise return.
 C $19AC,2 Pick up ERIC's y-coordinate from #A$FB.
-C $19AE,2 is ERIC on the top floor?
+C $19AE,2 Is ERIC on the top floor?
 C $19B0,2 Branch if so.
 C $19B2,2 Is ERIC on the middle floor?
 C $19B4,2 Branch if so.
@@ -2418,7 +2418,7 @@ N $1B6E The follower is not on a staircase.
 C $1B6E,2 Pick up the follower's y-coordinate from #A$FB.
 C $1B70,2 Does it match the target's y-coordinate?
 C $1B72,2 Branch if not.
-C $1B74,2 Pick up the follower's x-coordinate from #A$FB.
+C $1B74,2 Pick up the follower's x-coordinate from #A$FC.
 C $1B76,2 Does it match the target's x-coordinate?
 C $1B78,2 Branch if not.
 C $1B7A,5 Return with `A`=0: the follower is at the same coordinates as the target.
@@ -2701,13 +2701,13 @@ C $1E3D,3 Add this value to the score and print it.
 C $1E40,3 Jump forward.
 C $1E43,2 Pick up the number of lines to give from #A$85.
 C $1E45,3 Add them to ERIC's lines total.
-C $1E48,5 Set voice #1 attack length to 2ms and and decay length to 6ms.
+C $1E48,5 Set voice #1 attack length to 2ms and decay length to 6ms.
 C $1E4D,3 Set the LSB of voice #1's frequency to 0.
 C $1E50,5 Set voice #1 sustain volume to $0F and release length to 300ms.
 C $1E55,5 Set voice #1 frequency to $3100.
 C $1E5A,5 Set voice #1 control register: voice on, attack-decay-sustain cycle; saw waveform enabled.
 C $1E5F,3 Print the lines message above the teacher's head.
-C $1E62,14 Change the address at #A$86 to #A$4980 (the address of the first line of the first lines reprimand message) and the address at #A$88 to #A$4990 (the address of the second line of the first lines reprimand message.
+C $1E62,14 Change the address at #A$86 to #A$4980 (the address of the first line of the first lines reprimand message) and the address at #A$88 to #A$4990 (the address of the second line of the first lines reprimand message).
 C $1E70,2 Pick up the lines reprimand identifier from #A$D8.
 C $1E72,24 Add 0, 1, 2 or 3 to the MSBs of the lines reprimand message addresses at #A$86 and #A$88 depending on whether bits 3 and 2 of `A` are 00, 01, 10 or 11.
 C $1E8A,2 Pick up the lines reprimand identifier from #A$D8.
@@ -2832,7 +2832,7 @@ C $1FDE,2 $59 is the LSB of #A$5B59 (MR ROCKITT's sit down message).
 C $1FE0,3 Jump forward.
 C $1FE3,2 Is the current character number $0D (MR WITHIT)?
 C $1FE5,2 Branch if not.
-C $1FE7,2 $7B is the LSB of #A$5B7B (MR WITHIT's sit down messaage).
+C $1FE7,2 $7B is the LSB of #A$5B7B (MR WITHIT's sit down message).
 C $1FE9,3 Jump forward.
 C $1FEC,2 Is the current character number $0E (MR CREAK)?
 C $1FEE,2 Branch if not.
@@ -2853,7 +2853,7 @@ C $200A,4 Collect a character code from the message to be written and store it a
 C $200E,2 Return if the message is finished.
 C $2010,2 Is the character printable?
 C $2012,2 Branch if so.
-C $2014,8 Store #A$4780 (ERIC) at #A$D6
+C $2014,8 Store #A$4780 (ERIC) at #A$D6.
 C $201C,2 Pick up the unprintable character code from #A$57.
 C $201E,2 Reset bit 4. Now 1 <= `A` <= 15.
 C $2020,13 Multiply `A` by 14.
@@ -2986,7 +2986,7 @@ C $218E,2 Branch if so.
 C $2190,9 Increment the character code of the first digit at #A$8A from space to '1', '1' to '2' etc.
 C $2199,8 Set the character code of the second, third and fourth digits at #A$8B, #A$8C and #A$8D to '0'.
 C $21A1,18 Subtract $2774 (10100) from the number at #A$A3. (This is a #BUG(mistrialSubtraction)(bug).)
-C $21B3,3 Jump back to consider the 10000's digit again.
+C $21B3,3 Jump back to consider the 10000s digit again.
 C $21B6,2 Is the MSB of the number 39 (meaning the number is at least 9984)?
 C $21B8,2 Branch if not.
 C $21BA,2 Pick up the LSB of the number.
@@ -3346,7 +3346,7 @@ C $2672,7 Copy 24 bytes (3 character cells) from the text graphic buffer to the 
 c $267A Make ANGELFACE throw a punch (1)
 D $267A #ZX$6F80
 D $267A The address of this uninterruptible subcommand routine is placed into ANGELFACE's buffer by the routine at #A$270D.
-C $267A,8 Replace the address of this uninterruptible subcommand routine in ANGERLFACE's buffer with that of #A$2696.
+C $267A,8 Replace the address of this uninterruptible subcommand routine in ANGELFACE's buffer with that of #A$2696.
 C $2682,3 Update the SRB for ANGELFACE's current animatory state and location.
 C $2685,4 Copy ANGELFACE's pre-punch animatory state from #A$26 to #A$B3.
 C $2689,7 Set ANGELFACE's animatory state to #AS$2A($2A/$AA): hitting phase 1.
@@ -3608,7 +3608,7 @@ M $28EF,5 Place the address of the interruptible subcommand routine at #A$2387 i
 W $28F2,2,2
 N $28F4 Control returns here after little boy no. 10 has asked ERIC if he understands.
 C $28F4,2 Pick up ERIC's status flags from #A$2B.
-C $28F6,2 Is bit 6 set, indicating that he is still immobolised?
+C $28F6,2 Is bit 6 set, indicating that he is still immobilised?
 C $28F8,2 Branch if so.
 C $28FA,4 Reset the MSB of the lesson clock to $0F.
 C $28FE,3 Terminate this primary command.
@@ -3802,7 +3802,7 @@ C $2AE8,2 Store this battle year message address LSB at #A$1D.
 C $2AEA,14 Copy the battle year to #R$94($94-$97).
 c $2AF9 Raise the signal for a certain event and move to the next command
 D $2AF9 #ZX$6B58
-D $2AF9 Used by command lists #R$4080($80), #R$4095($82), #R$40AE($84), #R$40C3($86), #R$42AD($CC), #R$42E3($D0), #R$42FB($D2), #R$4309($D4), #R$431F($D6), #R$4334($D8), #R$4352($DA) and #R$438A($E0),
+D $2AF9 Used by command lists #R$4080($80), #R$4095($82), #R$40AE($84), #R$40C3($86), #R$42AD($CC), #R$42E3($D0), #R$42FB($D2), #R$4309($D4), #R$431F($D6), #R$4334($D8), #R$4352($DA) and #R$438A($E0).
 C $2AF9,4 Collect the event identifier from the command list and transfer it to `Y`.
 C $2AFD,8 Prepare to address the signal flags table at #A$4400.
 C $2B05,4 Raise the signal for the given event.
@@ -4021,7 +4021,7 @@ C $2D57,8 Store the screen bitmap start address ($E000) at #A$5A. This is redund
 C $2D5F,8 Store the colour information start address ($CC00) at #A$5C. This is redundant because the routines that use the address stored there will reinitialise it.
 C $2D67,4 Initialise the current character number at #A$60 to $FF.
 C $2D6B,2 Initialise ERIC's posture indicator at #A$14 to $FF: ERIC is standing up.
-C $2D6D,4 Initialise MSB of the lesson clock at #A$40 to $0F.
+C $2D6D,4 Initialise the MSB of the lesson clock at #A$40 to $0F.
 C $2D71,4 Initialise the LSB of the lesson clock at #A$FD to 0.
 C $2D75,2 Initialise the shield counter at #A$D9 to 0.
 C $2D77,2 Clear ERIC's midstride indicator at #A$4B.
@@ -4035,7 +4035,7 @@ C $2D86,4 Initialise the keyboard/joystick input timer at #A$E5 to 1.
 C $2D8A,4 Initialise ERIC's action timer at #A$FE to 4.
 C $2D8E,7 Generate a random value between $00 and $14 in `A`.
 C $2D95,1 Transfer the random value to `Y`.
-C $2D96,8 Prepare to address of the table of initial lesson numbers at #A$4650.
+C $2D96,8 Prepare to address the table of initial lesson numbers at #A$4650.
 C $2D9E,6 Pick up a randomly chosen value from this table and store it at #A$41; this initialises the lesson number.
 C $2DA4,4 Initialise the keyboard delay counter at #A$EB to 5.
 C $2DA8,4 Initialise the value at #A$44 to $44 (this is never used).
@@ -4046,7 +4046,7 @@ C $2DB5,14 Fill addresses $E000-$FEFF with zeroes.
 C $2DC3,7 Fill addresses $FF00-$FF37 with zeroes.
 c $2DCB Initialise colour information
 D $2DCB Used by the routine at #A$2CD9.
-C $2DCB,8 Prepare to address the colour information  at $CC00.
+C $2DCB,8 Prepare to address the colour information at $CC00.
 C $2DD3,5 Set the border colour to blue.
 C $2DD8,16 Fill addresses $CC00-$CEFF with the value $66 (blue background and blue foreground).
 C $2DE8,9 Fill addresses $CF00-$CF47 with the value $66 (blue background and blue foreground).
@@ -4093,7 +4093,7 @@ C $2E59,2 This branch is always made (no new hi-score).
 C $2E5B,2 Pick up the LSB of the score from #A$7C.
 C $2E5D,2 Compare it with the MSB of the hi-score.
 C $2E5F,2 Branch unless we have a new hi-score.
-C $2E61,8 Copy the current score from #A$7C into the hi-score at at #A$F7.
+C $2E61,8 Copy the current score from #A$7C into the hi-score at #A$F7.
 C $2E69,4 Set the current character number at #A$60 to $00 (little boy no. 1).
 C $2E6D,4 Reset the score to 0.
 C $2E71,4 Reset the lines total to 0.
@@ -4148,16 +4148,16 @@ c $2F20 Draw the Skool Daze logo
 D $2F20 Used by the routines at #A$2CD9 and #A$2E13.
 C $2F20,8 Prepare to address the Skool Daze logo at #A$5920.
 C $2F28,8 Store the screen bitmap address $FA60 at #A$50.
-C $2F30,11 Draw the top row of 8 cells in Skool Daze logo.
-C $2F3B,13 Draw the middle row of 8 cells in Skool Daze logo.
-C $2F48,13 Draw the bottom row of 8 cells in Skool Daze logo.
+C $2F30,11 Draw the top row of 8 cells in the Skool Daze logo.
+C $2F3B,13 Draw the middle row of 8 cells in the Skool Daze logo.
+C $2F48,13 Draw the bottom row of 8 cells in the Skool Daze logo.
 c $2F56 Draw the score box
 D $2F56 Used by the routines at #A$2CD9 and #A$2E13.
 C $2F56,8 Prepare to address the score box graphic at #A$5820.
 C $2F5E,8 Store the screen bitmap address $FB20 at #A$50.
-C $2F66,11 Draw the top row of 8 cells in score box graphic.
-C $2F71,13 Draw the middle row of 8 cells in score box graphic.
-C $2F7E,13 Draw the bottom row of 8 cells in score box graphic.
+C $2F66,11 Draw the top row of 8 cells in the score box graphic.
+C $2F71,13 Draw the middle row of 8 cells in the score box graphic.
+C $2F7E,13 Draw the bottom row of 8 cells in the score box graphic.
 c $2F8C Print the play area tiles in a single column of the screen
 D $2F8C Used by the routines at #A$3072 and #A$3113.
 R $2F8C Y x-coordinate of the column
@@ -4197,7 +4197,7 @@ D $302A Used by the routines at #A$2CD9, #A$BA00 and #A$BA48.
 C $302A,8 Set voice #3 frequency to $8080.
 C $3032,3 Set voice #3 control register: voice off, noise enabled.
 C $3035,5 Set volume to maximum.
-C $303A,5 Set voice #3 attack length to 2ms and delay length to 6ms.
+C $303A,5 Set voice #3 attack length to 2ms and decay length to 6ms.
 C $303F,5 Set voice #3 sustain volume to 0 and release length to 6ms.
 C $3044,2 Set `A` to $80 for no particular reason.
 c $3047 Initialise speech bubble sprites
@@ -4465,7 +4465,7 @@ C $3393,2 Are we dealing with a teacher?
 C $3395,2 Branch if not.
 C $3397,2 The sprite graphic data for the teachers is in pages #R$A900($A9-$B8).
 C $3399,2 Set the MSB of the sprite tile graphic data address at #A$51.
-C $339B,2 `X` will count the bytes in sprite tile.
+C $339B,2 `X` will count the bytes in the sprite tile.
 C $339D,12 Modify a byte of the tile in the back buffer at #A$4000 by superimposing a sprite tile byte (using a mask).
 C $33A9,2 Point at the next sprite tile mask byte.
 C $33AB,1 Have we superimposed the entire sprite tile yet?
@@ -4703,7 +4703,7 @@ C $35D2,2 Branch if not.
 C $35D4,2 Pick up ERIC's x-coordinate from #A$FC.
 C $35D6,2 Is ERIC next to the White Room wall?
 C $35D8,2 Return if so (ERIC can't walk through walls).
-C $35DA,2 Is ERIC next to wall outside the Exam Room door?
+C $35DA,2 Is ERIC next to the wall outside the Exam Room door?
 C $35DC,2 Return if so (ERIC can't walk through walls).
 C $35DE,3 Otherwise move ERIC midstride.
 C $35E1,2 Is ERIC on the bottom floor?
@@ -4779,7 +4779,7 @@ C $3699,3 Update the SRB for ERIC's current animatory state and location.
 C $369C,3 Is ERIC on a staircase?
 C $369F,2 Branch if not.
 C $36A1,2 Pick up ERIC's x-coordinate from #A$FC.
-C $36A3,2 Is ERIC on s staircase on the right side of the skool?
+C $36A3,2 Is ERIC on a staircase on the right side of the skool?
 C $36A5,2 Branch if so.
 C $36A7,2 #AS$05($85) is the animatory state of ERIC sitting (as on a staircase) facing right.
 C $36A9,3 Jump forward.
@@ -4915,7 +4915,7 @@ C $38EF,25 Restore sprite coordinates from #R$B900($B900-$B910) to $D000-$D010.
 C $3908,6 Restore the sprite enable register from $B915 to $D015.
 C $390E,6 Restore the sprite double width register from $B91D to $D01D.
 C $3914,11 Restore the sprite colours from $B927-$B92E to $D027-$D02E.
-C $391F,13 Restore the sprite pointers from $B390-$B397 to $CFF8-$CFFF.
+C $391F,13 Restore the sprite pointers from $B930-$B937 to $CFF8-$CFFF.
 c $392D Clear all the signal flags
 D $392D Used by the routine at #A$3AD5.
 C $392D,8 Prepare to address the signal flags table at #A$4400.
@@ -5565,7 +5565,7 @@ b $4247 Command list $BA: Head's study - MR WACKER
 D $4247 #ZX$FD65
 D $4247 Used by MR WACKER in lessons #LINK(LessonE0)($E0) and #LINK(LessonF7)($F7).
 W $4247,2,2 Go to...
-B $4249,2,2 ...the doorway of the Head's study.
+B $4249,2,2 ...the doorway of the head's study.
 W $424B,2,2 Move about until...
 B $424D,1,1 ...the bell rings.
 b $424E Command list $BC: Staff room - teacher
@@ -5579,7 +5579,7 @@ b $4255 Command list $BE: Walkabout - teacher
 D $4255 #ZX$FD73
 D $4255 Used by MR WACKER in lessons #LINK(LessonE3)($E3), #LINK(LessonE5)($E5), #LINK(LessonE6)($E6), #LINK(LessonF0)($F0), #LINK(LessonF2)($F2), #LINK(LessonF3)($F3), #LINK(LessonF6)($F6), #LINK(LessonF8)($F8), #LINK(LessonF9)($F9), #LINK(LessonFA)($FA), #LINK(LessonFB)($FB), #LINK(LessonFC)($FC) and #LINK(LessonFF)($FF); by MR ROCKITT in lessons #LINK(LessonF4)($F4), #LINK(LessonF5)($F5) and #LINK(LessonF6)($F6); by MR WITHIT in lessons #LINK(LessonE3)($E3), #LINK(LessonF3)($F3), #LINK(LessonF4)($F4), #LINK(LessonF5)($F5) and #LINK(LessonF6)($F6); and by MR CREAK in lessons #LINK(LessonF3)($F3), #LINK(LessonF4)($F4) and #LINK(LessonF5)($F5).
 W $4255,2,2 Go to...
-B $4257,2,2 ...the Head's study.
+B $4257,2,2 ...the head's study.
 W $4259,2,2 Go to a random location.
 W $425B,2,2 Restart the command list.
 b $425D Command list $C0: Write on the boards - BOY WONDER
@@ -5718,7 +5718,7 @@ B $430F,1,1 ...EINSTEIN is ready.
 W $4310,2,2 Move about until...
 B $4312,1,1 ...ERIC has been told about EINSTEIN.
 W $4313,2,2 Go to...
-B $4315,2,2 ...just inside the Head's study.
+B $4315,2,2 ...just inside the head's study.
 W $4317,2,2 Signal that...
 B $4319,1,1 ...EINSTEIN has grassed on ERIC.
 W $431A,2,2 Go to a random location.
@@ -5728,7 +5728,7 @@ b $431F Command list $D6: Wait for EINSTEIN to grass on ERIC
 D $431F #ZX$FB20
 D $431F Used by MR WACKER in lesson #LINK(LessonF4)($F4).
 W $431F,2,2 Go to...
-B $4321,2,2 ...the doorway of the Head's study.
+B $4321,2,2 ...the doorway of the head's study.
 W $4323,2,2 Signal that...
 B $4325,1,1 ...MR WACKER is ready.
 W $4326,2,2 Move about until...
@@ -5736,7 +5736,7 @@ B $4328,1,1 ...EINSTEIN has grassed on ERIC.
 W $4329,2,2 Find ERIC.
 W $432B,2,2 Give ERIC 2000 lines.
 W $432D,2,2 Go to...
-B $432F,2,2 ...the doorway of the Head's study.
+B $432F,2,2 ...the doorway of the head's study.
 W $4331,2,2 Move about until...
 B $4333,1,1 ...the bell rings.
 b $4334 Command list $D8: Collect the pea-shooter
@@ -5775,7 +5775,7 @@ B $4362,1,1 ...BOY WONDER has got the pea-shooter.
 W $4363,2,2 Find ERIC.
 W $4365,2,2 Give ERIC 2000 lines.
 W $4367,2,2 Go to...
-B $4369,2,2 ...the doorway of the Head's study.
+B $4369,2,2 ...the doorway of the head's study.
 W $436B,2,2 Move about until...
 B $436D,1,1 ...the bell rings.
 b $436E Command list $DC: Mumps walkabout
@@ -8196,7 +8196,7 @@ B $917F,105,8*13,1
 c $91E8 Move sprites #0-#6 left by 64 pixels (2)
 D $91E8 Used by the routine at #A$98E8.
 R $91E8 X Bit 8 of the sprites' x-coordinates
-C $91E8,2 Bits 0-7 of the x-coordinate of sprite #7 is at $D00E.
+C $91E8,2 Bits 0-7 of the x-coordinate of sprite #7 are at $D00E.
 C $91EA,1 Compensate for the TAX instruction coming next.
 N $91EB This entry point is used by the routine at #A$92E8.
 C $91EB,1 Transfer bit 8 of the sprites' x-coordinates to `X`.
@@ -8328,7 +8328,7 @@ D $96E8 Used by the routines at #A$9868 and #A$98E8.
 C $96E8,2 The character buffer for little boy no. 10 (the only little boy who ever speaks) is in page $81.
 N $96EA This entry point is used by the routine at #A$97E8.
 C $96EA,1 Point at the next character.
-C $96EB,2 Have we reached character buffer for BOY WONDER's pellet yet?
+C $96EB,2 Have we reached the character buffer for BOY WONDER's pellet yet?
 C $96ED,2 Branch if not.
 C $96F0,3 Modify the MSB of the 'LDA nnnn' instruction at #A$96F9 below.
 C $96F3,3 Modify the MSB of the 'LDA nnnn' instruction at #A$97EC.
@@ -8355,7 +8355,7 @@ D $97E8 Used by the routine at #A$96E8.
 R $97E8 A LSB of the character's interruptible subcommand routine address
 C $97E8,2 Does the LSB of the character's interruptible subcommand routine address match that of #A$2458?
 C $97EA,2 Branch if not.
-C $97EC,3 Pick up the MSB of a character's uninterruptible subcommand routine address. The operand of this instruction is modified by the routine at #A$96E8.
+C $97EC,3 Pick up the MSB of the character's interruptible subcommand routine address. The operand of this instruction is modified by the routine at #A$96E8.
 C $97EF,2 Does the MSB of the character's interruptible subcommand routine address match that of #A$2458?
 C $97F1,2 Branch if not (this character is not speaking).
 C $97F3,5 Replace the address of the interruptible subcommand routine in the character's buffer with that of #A$2462, effectively terminating the subcommand. The operand of the 'STA nnnn' instruction here is modified by the routine at #A$96E8.
@@ -8442,7 +8442,7 @@ C $B9AA,5 Set voice #3 attack length to 16ms and decay length to 3s.
 C $B9AF,5 Set voice #1 sustain volume to 0 and release length to 6ms.
 C $B9B4,5 Set voice #2 sustain volume to 0 and release length to 6ms.
 C $B9B9,5 Set voice #3 sustain volume to 0 and release length to 6ms.
-C $B9BE,15 Initialise the voice control registers in the in the tune buffer at #A$BBB4: voice off; saw waveform enabled.
+C $B9BE,15 Initialise the voice control registers in the tune buffer at #A$BBB4: voice off; saw waveform enabled.
 C $B9CD,10 Set voice #1 pulse width to $8080.
 C $B9D7,10 Set voice #2 pulse width to 0.
 C $B9E1,10 Set voice #3 pulse width to 0.
@@ -8664,7 +8664,7 @@ C $BD6C,2 Branch if not.
 C $BD6E,10 Set voice #2 frequency to $A000.
 C $BD78,5 Set voice #2 attack length to 2ms and decay length to 6ms.
 C $BD7D,5 Set voice #2 sustain volume to maximum and release length to 6ms.
-C $BD82,5 Set voice #2 control register: voice on, attack-sustain-decay cycle; saw waveform enabled.
+C $BD82,5 Set voice #2 control register: voice on, attack-decay-sustain cycle; saw waveform enabled.
 C $BD87,3 Return.
 C $BD8A,2 Is the sound effect timer equal to 0?
 C $BD8C,2 Branch if not.
@@ -8693,7 +8693,7 @@ C $BDEE,6 Reset the sound effect identifier at #A$2C and the sound effect timer 
 C $BDF4,3 Return.
 C $BDF7,1 Is the sound effect timer value even?
 C $BDF8,2 Branch if so.
-C $BDFA,2 This will be the MSB of voice 2's frequency.
+C $BDFA,2 This will be the MSB of voice #2's frequency.
 C $BDFC,3 Jump forward.
 C $BDFF,2 This will be the MSB of voice 2's frequency.
 C $BE01,3 Set the MSB of voice #2's frequency to $37 or $39.
@@ -8710,7 +8710,7 @@ C $BE10,8 Prepare to address the character buffers, starting with little boy no.
 C $BE18,1 Set `A` to 0.
 C $BE19,14 Set the x-coordinate of every character to 0. Given that the leftmost column of the skool on screen has been initialised to 32, this places the character off screen to the left.
 C $BE27,18 Change the instructions at #A$333F and #A$334B to 'LDA #$06' and 'LDA #$00'. This makes the routine at #A$3326 draw blank blue tiles.
-C $BE39,3 Bring  a blank screen into view.
+C $BE39,3 Bring a blank screen into view.
 C $BE3C,8 #A$4468 is the address of the message 'Do you want to put in'. Store it at #A$D6.
 C $BE44,4 The message will be 16 character cells wide. Store this width at #A$9D.
 C $BE48,4 Store the number of bytes to copy from the text graphic buffer at #A$31.
@@ -8788,7 +8788,7 @@ C $BF3C,8 Store the address of the (empty) character name entry buffer at #A$D6.
 C $BF44,3 Write this blank message into the text graphic buffer and centre it.
 C $BF47,4 These are the coordinates at which to print the message.
 C $BF4B,3 Copy the text graphic buffer to the screen.
-C $BF4E,2 `Y` will counter the number of letters entered so far.
+C $BF4E,2 `Y` will count the number of letters entered so far.
 C $BF50,4 Initialise the keyboard reading at #A$4C to 0.
 C $BF54,2 Pick up the keyboard reading at #A$4C.
 C $BF56,2 Branch back until a key has been pressed.

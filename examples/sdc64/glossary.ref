@@ -35,7 +35,7 @@ character is moved, unless the character is under the control of an
 uninterruptible or interruptible subcommand (see #A$3B5E).
 
 [Glossary:SRB]
-Screen refresh buffer at #A$4012.
+Screen refresh buffer at #A$4008.
 
 [Glossary:Uninterruptible subcommand]
 One of various character-controlling command routines whose address is stored

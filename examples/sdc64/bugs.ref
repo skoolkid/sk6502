@@ -375,7 +375,7 @@ When S&gt;T&#8722;4 (meaning there is a gap of one, two or three cell columns
 between the teacher and the left edge of the visible play area), the
 x-coordinate of sprite #1 is set to 32. This puts a 1-cell-wide gap between the
 message box and the left edge of the visible play area. (Remember that sprite
-x-coordinates 0-23 and 344-512 are outside the visible area of the screen, and
+x-coordinates 0-23 and 344-511 are outside the visible area of the screen, and
 only x-coordinates 24-343 are within it.)
 
 But when S&lt;=T&#8722;4, the x-coordinate of sprite #1 is set to
@@ -399,8 +399,8 @@ and the right edge of the visible play area, which means it's nowhere near
 being centred over the teacher's head.
 
 In summary, it's as if the routine at #A$2043 assumes that the x-coordinate of
-the left edge of visible area of the screen, as far as sprites are concerned,
-is 0 instead of 24.
+the left edge of the visible area of the screen, as far as sprites are
+concerned, is 0 instead of 24.
 
 POKE 8297,0 #R$2067(($2069,$00)) - sets the x-coordinate of sprite #1 to
 8(T&#8722;S) when S&lt;=T&#8722;4 or S'&gt;T+5, which roughly centres the
