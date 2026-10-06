@@ -815,7 +815,7 @@ N $A6B3 LIST [n]-m; the - was there so set m as the end value
   $A6CB clear open quote flag
   $A6CD get next line pointer high byte
   $A6CF if null all done so exit
-  $A6D1 do CRTL-C check vector
+  $A6D1 do CTRL-C check vector
   $A6D4 print CR/LF
   $A6D7 increment index for line
   $A6D8 get line number low byte
@@ -942,7 +942,7 @@ N $A799 was step so ....
   $A7AD push on stack
 
 c $A7AE interpreter inner loop
-  $A7AE do CRTL-C check vector
+  $A7AE do CTRL-C check vector
   $A7B1 get the BASIC execute pointer low byte
   $A7B3 get the BASIC execute pointer high byte
   $A7B5 compare the high byte with $02xx
@@ -957,7 +957,7 @@ c $A7AE interpreter inner loop
   $A7C6 get next line pointer high byte
   $A7C8 clear carry for no "BREAK" message
   $A7C9 branch if not end of program
-  $A7CB else go to immediate mode,was immediate or [EOT] marker
+  $A7CB else go to immediate mode, was immediate or [EOT] marker
   $A7CE increment index
   $A7CF get line number low byte
   $A7D1 save current line number low byte
@@ -1013,7 +1013,7 @@ c $A81D perform RESTORE
   $A829 set DATA pointer high byte
   $A82B
 
-c $A82C do CRTL-C check vector
+c $A82C do CTRL-C check vector
   $A82C scan stop key
 
 c $A82F perform STOP
@@ -1288,7 +1288,7 @@ N $A9D9 assign value to numeric variable
   $A9DC was it TI$ pointer
   $A9DE branch if not
 N $A9E0 else it's TI$ = <expr$>
-  $A9E0 pop string off descriptor stack, or from top of string; space returns with `A` = length, `X` = pointer low byte, `Y` = pointer high byte
+  $A9E0 pop string off descriptor stack, or from top of string space; returns with `A` = length, `X` = pointer low byte, `Y` = pointer high byte
   $A9E3 compare length with 6
   $A9E5 if length not 6 do illegal quantity error then warm start
   $A9E7 clear index
@@ -1452,7 +1452,7 @@ c $AAE8 skip to the next TAB position
 N $AB09 else was TAB(
   $AB09 copy TAB() byte to `A`
   $AB0A subtract current cursor position
-  $AB0C go loop for next if already past requited position
+  $AB0C go loop for next if already past required position
   $AB0E copy [SPACE] count to `X`
   $AB0F increment count
   $AB10 decrement count
@@ -1774,7 +1774,7 @@ N $AD61 loop back and do it all again
   $AD70 get BASIC execute pointer high byte
   $AD73 save BASIC execute pointer high byte
   $AD75 go do interpreter inner loop
-N $AD78 NEXT loop comlete
+N $AD78 NEXT loop complete
   $AD78 stack copy to `A`
   $AD79 add $12, $11 + carry, to dump FOR structure
   $AD7B copy back to index
@@ -1796,7 +1796,7 @@ N $AD8F check if source and destination are string
 N $AD90 type match check, set C for string, clear C for numeric
   $AD90 test data type flag, $FF = string, $00 = numeric
   $AD92 branch if string
-  $AD94 if destiantion is numeric do type missmatch error
+  $AD94 if destination is numeric do type mismatch error
   $AD96
   $AD97 exit if destination is string
 N $AD99 do type mismatch error
@@ -1817,7 +1817,7 @@ B $ADA8,1 makes next line BIT $48
   $ADAE check room on stack for `A`*2 bytes
   $ADB1 get value from line
   $ADB4 clear `A`
-  $ADB6 clear comparrison evaluation flag
+  $ADB6 clear comparison evaluation flag
   $ADB8 scan memory
   $ADBB set carry for subtract
   $ADBC subtract the token for ">"
@@ -1881,7 +1881,7 @@ c $AE20 get vector, execute function then continue evaluation
   $AE24 get function vector low byte onto stack
 N $AE28 now push sign, round FAC1 and put on stack
   $AE28 function will return here, then the next RTS will call the function
-  $AE2B get comparrison evaluation flag
+  $AE2B get comparison evaluation flag
   $AE2D continue evaluating expression
 
 c $AE30 do syntax error then warm start
@@ -2090,7 +2090,7 @@ N $AF5D variable name set-up, variable is numeric
   $AF66 increment index
   $AF67 get integer variable high byte
   $AF69 copy to `Y`
-  $AF6A copy loa byte to `A`
+  $AF6A copy low byte to `A`
   $AF6B convert fixed integer `AY` to float FAC1 and return
 N $AF6E variable name set-up, variable is float
   $AF6E check address range
@@ -2210,7 +2210,7 @@ N $B01B do numeric < compare
 N $B02E do string < compare
   $B02E clear byte
   $B030 clear data type flag, $FF = string, $00 = numeric
-  $B032 clear < bit in comparrison evaluation flag
+  $B032 clear < bit in comparison evaluation flag
   $B034 pop string off descriptor stack, or from top of string space
 N $B037 returns with `A` = length, `X` = pointer low byte, `Y` = pointer high byte
   $B037 save length
@@ -2594,9 +2594,9 @@ N $B261 array not found, so build it
   $B292 copy low byte to `X`
   $B293 pull dimension size high byte
   $B294 add carry to high byte
-  $B296 incement index to dimension size high byte
+  $B296 increment index to dimension size high byte
   $B297 save dimension size high byte
-  $B299 incement index to dimension size low byte
+  $B299 increment index to dimension size low byte
   $B29A copy dimension size low byte
   $B29B save dimension size low byte
   $B29D compute array size
@@ -2617,7 +2617,7 @@ N $B261 array not found, so build it
   $B2B9 check available memory, do out of memory error if no room
   $B2BC set end of arrays low byte
   $B2BE set end of arrays high byte
-N $B2C0 now the aray is created we need to zero all the elements in it
+N $B2C0 now the array is created we need to zero all the elements in it
   $B2C0 clear `A` for array clear
   $B2C2 increment array size high byte, now block count
   $B2C4 get array size low byte, now index to block
@@ -3072,7 +3072,7 @@ N $B59B was possibly string array so ...
   $B5A6 add pointer low byte
   $B5A8 save pointer low byte
   $B5AA branch if no rollover
-  $B5AC else increment pointer hgih byte
+  $B5AC else increment pointer high byte
   $B5AE get pointer high byte
   $B5B0 compare pointer high byte with end of this array high byte
   $B5B2 branch if not there yet
@@ -3436,11 +3436,11 @@ c $B7E2 restore BASIC execute pointer from temp
 
 c $B7EB get parameters for POKE/WAIT
   $B7EB evaluate expression and check is numeric, else do type mismatch
-  $B7EE convert FAC_1 to integer in temporary integer
+  $B7EE convert FAC1 to integer in temporary integer
   $B7F1 scan for ",", else do syntax error then warm start
   $B7F4 get byte parameter and return
 
-c $B7F7 convert FAC_1 to integer in temporary integer
+c $B7F7 convert FAC1 to integer in temporary integer
   $B7F7 get FAC1 sign
   $B7F9 if -ve do illegal quantity error then warm start
   $B7FB get FAC1 exponent
@@ -3458,7 +3458,7 @@ c $B80D perform PEEK()
   $B80F save line number high byte
   $B810 get line number low byte
   $B812 save line number low byte
-  $B813 convert FAC_1 to integer in temporary integer
+  $B813 convert FAC1 to integer in temporary integer
   $B816 clear index
   $B818 read byte
   $B81A copy byte to `A`
@@ -3466,7 +3466,7 @@ c $B80D perform PEEK()
   $B81C restore line number low byte
   $B81E pull byte
   $B81F restore line number high byte
-  $B821 convert `Y` to byte in FAC_1 and return
+  $B821 convert `Y` to byte in FAC1 and return
 
 c $B824 perform POKE
   $B824 get parameters for POKE/WAIT
@@ -3680,7 +3680,7 @@ c $B97E do overflow error then warm start
   $B97E error $0F, overflow error
   $B980 do error #`X` then warm start
 
-c $B983 shift FCAtemp << `A`+8 times
+c $B983 shift FACtemp << `A`+8 times
   $B983 set the offset to FACtemp
   $B985 get FACX mantissa 4
   $B987 save as FAC1 rounding byte
@@ -3757,7 +3757,7 @@ c $B9EA perform LOG()
   $BA24 pointer to LOG(2) low byte
   $BA26 pointer to LOG(2) high byte
 
-c $BA28 do convert `AY`, FCA1*(`AY`)
+c $BA28 do convert `AY`, FAC1*(`AY`)
   $BA28 unpack memory (`AY`) into FAC2
   $BA2B multiply FAC1 by FAC2 ??
   $BA2D exit if zero
@@ -3779,7 +3779,7 @@ c $BA28 do convert `AY`, FCA1*(`AY`)
   $BA53 go do shift/add FAC2
   $BA56 copy temp to FAC1, normalise and return
   $BA59 branch if byte <> zero
-  $BA5B shift FCAtemp << `A`+8 times
+  $BA5B shift FACtemp << `A`+8 times
 N $BA5E else do shift and add
   $BA5E shift byte
   $BA5F set top bit (mark for 8 times)
@@ -3826,7 +3826,7 @@ c $BA8C unpack memory (`AY`) into FAC2
   $BAA5 EOR with FAC1 sign (b7)
   $BAA7 save sign compare (FAC1 EOR FAC2)
   $BAA9 recover FAC2 sign (b7)
-  $BAAB set 1xxx xxx (set normal bit)
+  $BAAB set 1xxx xxxx (set normal bit)
   $BAAD save FAC2 mantissa 1
   $BAAF decrement index
   $BAB0 get exponent byte
@@ -4065,7 +4065,7 @@ c $BC1B round FAC1
 N $BC23 round FAC1 (no check)
   $BC23 increment FAC1 mantissa
   $BC26 branch if no overflow
-  $BC28 nornalise FAC1 for C=1 and return
+  $BC28 normalise FAC1 for C=1 and return
 
 c $BC2B get FAC1 sign
 D $BC2B return `A` = $FF, Cb = 1/-ve `A` = $01, Cb = 0/+ve, `A` = $00, Cb = ?/0
@@ -4182,7 +4182,7 @@ c $BCBB shift FAC1 `A` times right
 c $BCCC perform INT()
   $BCCC get FAC1 exponent
   $BCCE compare with max int
-  $BCD0 exit if >= (allready int, too big for fractional part!)
+  $BCD0 exit if >= (already int, too big for fractional part!)
   $BCD2 convert FAC1 floating to fixed
   $BCD5 save FAC1 rounding byte
   $BCD7 get FAC1 sign (b7)
@@ -4357,7 +4357,7 @@ N $BDF8 FAC1 is some non zero value
   $BDFE branch if FAC1=>1
   $BE00 set 1000000000 pointer low byte
   $BE02 set 1000000000 pointer high byte
-  $BE04 do convert `AY`, FCA1*(`AY`)
+  $BE04 do convert `AY`, FAC1*(`AY`)
   $BE07 set number exponent count
   $BE09 save number exponent count
   $BE0B set 999999999.25 pointer low byte (max before sci note)
@@ -4491,7 +4491,7 @@ N $BED9 exponent isn't zero so write exponent
   $BEEF increment 10's character
   $BEF0 subtract 10 from exponent count
   $BEF2 loop while still >= 0
-  $BEF4,c add character ":" ($30+$0A, result is 10 less that value)
+  $BEF4,c add character ":" ($30+$0A, result is 10 less than value)
   $BEF6 save to output string
   $BEF9 copy 10's character
   $BEFA save to output string
@@ -4570,7 +4570,7 @@ N $BF8F else FAC2 is -ve and can only be raised to an integer power which gives 
   $BFA3 perform LOG()
   $BFA6 set pointer low byte
   $BFA8 set pointer high byte
-  $BFAA do convert `AY`, FCA1*(`AY`)
+  $BFAA do convert `AY`, FAC1*(`AY`)
   $BFAD perform EXP()
   $BFB0 pull sign from stack
   $BFB1 b0 is to be tested
@@ -4598,7 +4598,7 @@ b $BFBF exp(n) constant and series
 c $BFED perform EXP()
   $BFED set 1.443 pointer low byte
   $BFEF set 1.443 pointer high byte
-  $BFF1 do convert `AY`, FCA1*(`AY`)
+  $BFF1 do convert `AY`, FAC1*(`AY`)
   $BFF4 get FAC1 rounding byte
   $BFF6 +$50/$100
   $BFF8 skip rounding if no carry
@@ -4650,11 +4650,11 @@ c $E043 ^2 then series evaluation
   $E045 save count pointer high byte
   $E047 pack FAC1 into $57
   $E04A set pointer low byte (Y already $00)
-  $E04C do convert `AY`, FCA1*(`AY`)
+  $E04C do convert `AY`, FAC1*(`AY`)
   $E04F go do series evaluation
   $E052 pointer to original # low byte
   $E054 pointer to original # high byte
-  $E056 do convert `AY`, FCA1*(`AY`)
+  $E056 do convert `AY`, FAC1*(`AY`)
 
 c $E059 do series evaluation
   $E059 save count pointer low byte
@@ -4669,7 +4669,7 @@ c $E059 do series evaluation
   $E06A else increment high byte
   $E06C save low byte
   $E06E get high byte
-  $E070 do convert `AY`, FCA1*(`AY`)
+  $E070 do convert `AY`, FAC1*(`AY`)
   $E073 get constants pointer low byte
   $E075 get constants pointer high byte
   $E077 clear carry for add
@@ -4716,7 +4716,7 @@ N $E09E else n=0 so get the RND() number from VIA 1 timers
   $E0C2 unpack memory (`AY`) into FAC1
   $E0C5 set 11879546 pointer low byte
   $E0C7 set 11879546 pointer high byte
-  $E0C9 do convert `AY`, FCA1*(`AY`)
+  $E0C9 do convert `AY`, FAC1*(`AY`)
   $E0CC set 3.927677739E-8 pointer low byte
   $E0CE set 3.927677739E-8 pointer high byte
   $E0D0 add (`AY`) to FAC1
@@ -4780,7 +4780,7 @@ c $E124 get character from input device with error check
 
 c $E12A perform SYS
   $E12A evaluate expression and check is numeric, else do type mismatch
-  $E12D convert FAC_1 to integer in temporary integer
+  $E12D convert FAC1 to integer in temporary integer
   $E130 get return address high byte
   $E132 push as return address
   $E133 get return address low byte
@@ -5131,7 +5131,7 @@ N $E3E0 copy the character get subroutine from #R$E3A2 to $0074
   $E3E5 save the byte in page zero
   $E3E7 decrement the count
   $E3E8 loop if not all done
-N $E3EA clear descriptors, strings, program area and mamory pointers
+N $E3EA clear descriptors, strings, program area and memory pointers
   $E3EA set the step size, collecting descriptors
   $E3EC save the garbage collection step size
   $E3EE clear `A`
@@ -5141,7 +5141,7 @@ N $E3EA clear descriptors, strings, program area and mamory pointers
   $E3F6 set `X`
   $E3F8 set the chain link pointer low byte
   $E3FB set the chain link pointer high byte
-  $E3FE initial the value for descriptor stack
+  $E3FE initialise the value for descriptor stack
   $E400 set descriptor stack pointer
   $E402 set Cb = 1 to read the bottom of memory
   $E403 read/set the bottom of memory
@@ -5155,7 +5155,7 @@ N $E3EA clear descriptors, strings, program area and mamory pointers
   $E414 set the bottom of string space high byte
   $E416 clear the index
   $E418 clear the `A`
-  $E419 clear the the first byte of memory
+  $E419 clear the first byte of memory
   $E41B increment the start of memory low byte
   $E41D if no rollover skip the high byte increment
   $E41F increment start of memory high byte
@@ -5212,7 +5212,7 @@ c $E4AD open channel for output
   $E4AD save the flag byte
   $E4AE open channel for output
   $E4B1 copy the returned flag byte
-  $E4B2 restore the alling flag byte
+  $E4B2 restore the calling flag byte
   $E4B3 if there is no error skip copying the error flag
   $E4B5 else copy the error flag
   $E4B6
@@ -5538,7 +5538,7 @@ c $E6B6 advance the cursor
   $E6D8 get the cursor row
 N $E6DA add this row to the current logical line
   $E6DA shift start of line `X` pointer high byte
-  $E6DC shift start of line `X` pointer high byte back,
+  $E6DC shift start of line `X` pointer high byte back
 N $E6DE make next screen line start of logical line, increment line length and set pointers. clear b7, start of logical line
   $E6DE increment screen row
   $E6DF get start of line `X` pointer high byte
@@ -6401,7 +6401,7 @@ c $ED0C command devices on the serial bus to LISTEN
 c $ED11 send a control character
   $ED11 save device address
   $ED12 test deferred character flag
-  $ED14 if no defered character continue
+  $ED14 if no deferred character continue
   $ED16 else flag EOI
   $ED17 rotate into EOI flag byte
   $ED19 Tx byte on serial bus
@@ -6410,7 +6410,7 @@ c $ED11 send a control character
   $ED20 restore the device address
 
 c $ED21 defer a command
-  $ED21 save as serial defered character
+  $ED21 save as serial deferred character
   $ED23 disable the interrupts
   $ED24 set the serial data out high
   $ED27 compare read byte with $3F
@@ -6469,7 +6469,7 @@ N $ED62 now the C64 has to send the eight bits, LSB first. first it sets the ser
   $ED8B save VIA 2 DRA, serial port and video address
   $ED8E decrement the serial bus bit count
   $ED90 loop if not all done
-N $ED92 now all eight bits have been sent it's up to the peripheral to signal the byte was received by pulling the serial data low. this should be done within one milisecond
+N $ED92 now all eight bits have been sent it's up to the peripheral to signal the byte was received by pulling the serial data low. this should be done within one millisecond
   $ED92 wait for up to about 1ms
   $ED94 save VIA 1 timer B high byte
   $ED97 load timer B, timer B single shot, start timer B
@@ -6493,7 +6493,7 @@ N $EDB0 timeout on serial bus
   $EDB7 ATN high, delay, clock high then data high, branch always
 
 c $EDB9 send secondary address after LISTEN
-  $EDB9 save the defered Tx byte
+  $EDB9 save the deferred Tx byte
   $EDBB set the serial clk/data, wait and Tx the byte
 
 c $EDBE set serial ATN high
@@ -6503,7 +6503,7 @@ c $EDBE set serial ATN high
   $EDC6
 
 c $EDC7 send secondary address after TALK
-  $EDC7 save the defered Tx byte
+  $EDC7 save the deferred Tx byte
   $EDC9 set the serial clk/data, wait and Tx the byte
 
 c $EDCC wait for the serial bus end after send
@@ -6519,14 +6519,14 @@ D $EDCC return address from patch 6
 
 c $EDDD output a byte to the serial bus
   $EDDD test the deferred character flag
-  $EDDF if there is a defered character go send it
+  $EDDF if there is a deferred character go send it
   $EDE1 set carry
   $EDE2 shift into the deferred character flag
   $EDE4 save the byte and exit, branch always
   $EDE6 save the byte
   $EDE7 Tx byte on serial bus
   $EDEA restore the byte
-  $EDEB save the defered Tx byte
+  $EDEB save the deferred Tx byte
   $EDED flag ok
   $EDEE
 
@@ -6554,7 +6554,7 @@ N $EE06 1ms delay, clock high then data high
 
 c $EE13 input a byte from the serial bus
   $EE13 disable the interrupts
-  $EE14 set 0 bits to do, will flag EOI on timeour
+  $EE14 set 0 bits to do, will flag EOI on timeout
   $EE16 save the serial bus bit count
   $EE18 set the serial clock out high
   $EE1B get the serial data status in Cb
@@ -6574,7 +6574,7 @@ c $EE13 input a byte from the serial bus
 N $EE3E timer A timed out
   $EE3E get the serial bus bit count
   $EE40 if not already EOI then go flag EOI
-  $EE42 else error $02, read timeour
+  $EE42 else error $02, read timeout
   $EE44 set the serial status and exit
   $EE47 set the serial data out low
   $EE4A set the serial clock out high
@@ -6633,7 +6633,7 @@ c $EEA0 set the serial data out low
 c $EEA9 get the serial data status in Cb
   $EEA9 read VIA 2 DRA, serial port and video address
   $EEAC compare it with itself
-  $EEAF if changing got try again
+  $EEAF if changing go try again
   $EEB1 shift the serial data into Cb
   $EEB2
 
@@ -6699,7 +6699,7 @@ N $EF00 decrement stop bit count, set stop bit = 1 and exit. $FF is one stop bit
 
 c $EF06 setup next RS232 Tx byte
   $EF06 read the 6551 pseudo command register
-  $EF09 handshake bit inot Cb
+  $EF09 handshake bit into Cb
   $EF0A if 3 line interface go ??
   $EF0C test VIA 2 DRB, RS232 port
   $EF0F if DSR = 0 set DSR signal not present and exit
@@ -6837,7 +6837,7 @@ c $EFE1 open RS232 channel for output
   $EFF0 if RTS = 1 just exit
   $EFF2 get the RS-232 interrupt enable byte
   $EFF5 mask 0000 00x0, timer B interrupt
-  $EFF7 loop while the timer B interrupt is enebled
+  $EFF7 loop while the timer B interrupt is enabled
   $EFF9 test VIA 2 DRB, RS232 port
   $EFFC loop while CTS high
   $EFFE read VIA 2 DRB, RS232 port
@@ -7142,7 +7142,7 @@ c $F250 open channel for output
   $F25D if the device is not the keyboard go ??
   $F25F go do 'not output file' error and return
   $F262 compare the device with the screen
-  $F264 if the device is the screen go save output the output device number and exit
+  $F264 if the device is the screen go save the output device number and exit
   $F266 if > screen then go handle a serial bus device
   $F268 compare the device with the RS232 device
   $F26A if not the RS232 device then it must be the tape device
@@ -7164,7 +7164,7 @@ N $F26F open a tape channel for output
   $F289 copy device number back to `A`
   $F28A test the serial status byte
   $F28C if the device is present go save the output device number and exit
-  $F28E else do 'device not present error' and return
+  $F28E else do 'device not present' error and return
 
 c $F291 close a specified logical file
   $F291 find file `A`
@@ -7244,7 +7244,7 @@ c $F30F find a file
 
 c $F314 find file `A`
   $F314 get the open file count
-  $F316 decrememnt the count to give the index
+  $F316 decrement the count to give the index
   $F317 if no files just exit
   $F319 compare the logical file number with the table logical file number
   $F31C if no match go try again
@@ -7279,14 +7279,14 @@ c $F333 close input and output channels
 c $F34A open a logical file
   $F34A get the logical file
   $F34C if there is a file continue
-  $F34E else do 'not input file error' and return
+  $F34E else do 'not input file' error and return
   $F351 find a file
   $F354 if file not found continue
   $F356 else do 'file already open' error and return
   $F359 get the open file count
   $F35B compare it with the maximum + 1
   $F35D if less than maximum + 1 go open the file
-  $F35F else do 'too many files error' and return
+  $F35F else do 'too many files' error and return
   $F362 increment the open file count
   $F364 get the logical file
   $F366 save it to the logical file table
@@ -7401,7 +7401,7 @@ c $F409 open RS232 device
   $F44A
   $F44D read the pseudo 6551 command register
   $F450 shift the `X` line/3 line bit into Cb
-  $F451 if 3 line skip the DRS test
+  $F451 if 3 line skip the DSR test
   $F453 read VIA 2 DRB, RS232 port
   $F456 shift DSR in into Cb
   $F457 if DSR present skip the error set
@@ -7534,7 +7534,7 @@ c $F533 ??
   $F54D find specific tape header
   $F550 if no error continue
   $F552 exit if ??
-  $F554 , branch always
+  $F554 branch always
   $F556 find tape header, exit with header in buffer
   $F559 exit if ??
   $F55B
@@ -7717,7 +7717,7 @@ c $F69B increment the real time clock
   $F6A1 increment the jiffy clock mid byte
   $F6A3 branch if no rollover
   $F6A5 increment the jiffy clock high byte
-N $F6A7 now subtract a days worth of jiffies from current count and remember only the Cb result
+N $F6A7 now subtract a day's worth of jiffies from current count and remember only the Cb result
   $F6A7 set carry for subtract
   $F6A8 get the jiffy clock low byte
   $F6AA subtract $4F1A01 low byte
@@ -8014,7 +8014,7 @@ N $F87D check RS232 bus idle
   $F87D read VIA 1 CRA
   $F880 load timer B, timer B single shot, start timer B
   $F882 save VIA 1 CRB
-  $F885,b mask x00x 000x, TOD clock, load timer `A`, start timer `A`
+  $F885,b mask x00x 000x, TOD clock, load timer A, start timer A
   $F887 save VIA 1 CRB shadow copy
   $F88A
   $F88D read the vertical fine scroll and control register
@@ -8117,7 +8117,7 @@ D $F92C #LIST
 . { A long pulse, whose cycle time typically ranges from 600 to 744
 . microseconds, depending on the computer model. }
 . LIST#
-D $F92C The actual interpretation of the serial data takes a little more work to explain. The typical ROM tape loader (and the turbo loaders) will initialize a timer with a specified value and start it counting down. If either the tape data changes or the timer runs out, an IRQ will occur. The loader will determine which condition caused the IRQ. If the tape data changed before the timer ran out, we have a short pulse, or a "0" bit. If the timer ran out first, we have a long pulse, or a "1" bit. Doing this continuously and we decode the entire file.
+D $F92C The actual interpretation of the serial data takes a little more work to explain. The typical ROM tape loader (and the turbo loaders) will initialize a timer with a specified value and start it counting down. If either the tape data changes or the timer runs out, an IRQ will occur. The loader will determine which condition caused the IRQ. If the tape data changed before the timer ran out, we have a short pulse, or a "0" bit. If the timer ran out first, we have a long pulse, or a "1" bit. Do this continuously and we decode the entire file.
 N $F92C read T2C which has been counting down from $FFFF. subtract this from $FFFF
   $F92C read VIA 1 timer B high byte
   $F92F set $FF
@@ -8201,7 +8201,7 @@ N $F962 min + $3C < ($FFFF - T2C) >> 2
   $F9C3 get EOI flag byte
   $F9C5
   $F9C7
-  $F9C9 set timimg max byte
+  $F9C9 set timing max byte
   $F9CB set timing
   $F9CE
   $F9D0
@@ -8234,7 +8234,7 @@ B $F9DD,1 makes next line BIT $B0E6
   $FA02
   $FA04
   $FA06 parity count
-  $FA08 set timimg max byte
+  $FA08 set timing max byte
   $FA0A set timing
   $FA0D restore registers and exit interrupt
   $FA10 get cassette block synchronization number
@@ -8250,7 +8250,7 @@ B $F9DD,1 makes next line BIT $B0E6
   $FA24 subtract tape timing constant max byte
   $FA26 add tape timing constant min byte
   $FA28
-  $FA29 copy timimg high byte
+  $FA29 copy timing high byte
   $FA2A set timing
   $FA2D
   $FA2F
@@ -8280,7 +8280,7 @@ B $F9DD,1 makes next line BIT $B0E6
 c $FA60 store character
   $FA60 new tape byte setup
   $FA63 clear byte received flag
-  $FA65 set timimg max byte
+  $FA65 set timing max byte
   $FA67 set timing
   $FA6A get copies count
   $FA6C
@@ -8441,7 +8441,7 @@ c $FB97 new tape byte setup
   $FBA5
 
 c $FBA6 send lsb from tape write byte to tape
-D $FBA6 this routine tests the least significant bit in the tape write byte and sets VIA 2 T2 depending on the state of the bit. if the bit is a 1 a time of $00B0 cycles is set, if the bot is a 0 a time of $0060 cycles is set. note that this routine does not shift the bits of the tape write byte but uses a copy of that byte, the byte itself is shifted elsewhere
+D $FBA6 this routine tests the least significant bit in the tape write byte and sets VIA 2 T2 depending on the state of the bit. if the bit is a 1 a time of $00B0 cycles is set, if the bit is a 0 a time of $0060 cycles is set. note that this routine does not shift the bits of the tape write byte but uses a copy of that byte, the byte itself is shifted elsewhere
   $FBA6 get tape write byte
   $FBA8 shift lsb into Cb
   $FBA9 set time constant low byte for bit = 0
@@ -8484,7 +8484,7 @@ N $FBD1 each byte sent starts with two half cycles of $0110 system clocks and th
 N $FBE3 continue tape byte write. the first start cycle, both half cycles of it, is complete so the routine drops straight through to here
   $FBE3 get start bit check flag
   $FBE5 if the start bit is complete go send the byte bits
-N $FBE7 after the two half cycles of $0110 ststem clocks the start bit is completed with two half cycles of $00B0 system clocks. this is the same as the first part of a 1 bit
+N $FBE7 after the two half cycles of $0110 system clocks the start bit is completed with two half cycles of $00B0 system clocks. this is the same as the first part of a 1 bit
   $FBE7 set time constant for bit = 1 and toggle tape
   $FBEA if first half cycle go restore registers and exit interrupt
   $FBEC set start bit check flag
@@ -8651,7 +8651,7 @@ c $FD02 scan for autostart ROM at $8000
 D $FD02 returns Zb=1 if ROM found
   $FD02 five characters to test
   $FD04 get test character
-  $FD07 compare wiith byte in ROM space
+  $FD07 compare with byte in ROM space
   $FD0A exit if no match
   $FD0C decrement index
   $FD0D loop if not all done
@@ -8679,7 +8679,7 @@ D $FD1A Cb = 1 to read, Cb = 0 to set
   $FD2D loop if more to do
   $FD2F
 @ $FD1A ignoreua:e
-E $FD1A The above code works but it tries to write to the ROM. while this is usually harmless systems that use flash ROM may suffer. Here is a version that makes the extra write to RAM instead but is otherwise identical in function.
+E $FD1A The above code works but it tries to write to the ROM. while this is usually harmless, systems that use flash ROM may suffer. Here is a version that makes the extra write to RAM instead but is otherwise identical in function.
 E $FD1A
 . #TABLE(asm,address-1,instruction,comment-1)
 . { FD1A | STX $C3     | save pointer low byte }
@@ -8780,7 +8780,7 @@ c $FDA3 initialise SID, CIA and IRQ
   $FDC4 clear the volume and filter select register
   $FDC7 set `X` = $FF
   $FDC8 save VIA 1 DDRA, keyboard column
-  $FDCB DATA out high, CLK out high, ATN out high, RE232 Tx DATA high, video address 15 = 1, video address 14 = 1
+  $FDCB DATA out high, CLK out high, ATN out high, RS232 Tx DATA high, video address 15 = 1, video address 14 = 1
   $FDCD save VIA 2 DRA, serial port and video address
   $FDD0 set serial DATA input, serial CLK input
   $FDD2 save VIA 2 DDRA, serial port and video address
@@ -9083,7 +9083,7 @@ D $FF9F this routine will scan the keyboard and check for pressed keys. It is th
   $FF9F scan keyboard
 
 c $FFA2 set timeout on serial bus
-D $FFA2 this routine sets the timeout flag for the serial bus. When the timeout flag is set, the computer will wait for a device on the serial port for 64 milliseconds. If the device does not respond to the computer's DAV signal within that time the computer will recognize an error condition and leave the handshake sequence. When this routine is called and the accumulator contains a 0 in bit 7, timeouts are enabled. A 1 in bit 7 will disable the timeouts. NOTE: The the timeout feature is used to communicate that a disk file is not found on an attempt to OPEN a file.
+D $FFA2 this routine sets the timeout flag for the serial bus. When the timeout flag is set, the computer will wait for a device on the serial port for 64 milliseconds. If the device does not respond to the computer's DAV signal within that time the computer will recognize an error condition and leave the handshake sequence. When this routine is called and the accumulator contains a 0 in bit 7, timeouts are enabled. A 1 in bit 7 will disable the timeouts. NOTE: The timeout feature is used to communicate that a disk file is not found on an attempt to OPEN a file.
   $FFA2 set timeout on serial bus
 
 c $FFA5 input byte from serial bus
@@ -9104,7 +9104,7 @@ D $FFAE this routine commands all devices on the serial bus to stop receiving da
   $FFAE command serial bus to UNLISTEN
 
 c $FFB1 command devices on the serial bus to LISTEN
-D $FFB1 this routine will command a device on the serial bus to receive data. The accumulator must be loaded with a device number between 4 and 31 before calling this routine. LISTEN convert this to a listen address then transmit this data as a command on the serial bus. The specified device will then go into listen mode and be ready to accept information.
+D $FFB1 this routine will command a device on the serial bus to receive data. The accumulator must be loaded with a device number between 4 and 31 before calling this routine. LISTEN converts this to a listen address then transmits this data as a command on the serial bus. The specified device will then go into listen mode and be ready to accept information.
   $FFB1 command devices on the serial bus to LISTEN
 
 c $FFB4 command serial bus device to TALK
@@ -9132,7 +9132,7 @@ D $FFBA a command to the device is sent as a secondary address on the serial bus
   $FFBA set logical, first and second addresses
 
 c $FFBD set the filename
-D $FFBD this routine is used to set up the file name for the OPEN, SAVE, or LOAD routines. The accumulator must be loaded with the length of the file and `XY` with the pointer to file name, `X` being th low byte. The address can be any valid memory address in the system where a string of characters for the file name is stored. If no file name desired the accumulator must be set to 0, representing a zero file length, in that case `XY` may be set to any memory address.
+D $FFBD this routine is used to set up the file name for the OPEN, SAVE, or LOAD routines. The accumulator must be loaded with the length of the file and `XY` with the pointer to file name, `X` being the low byte. The address can be any valid memory address in the system where a string of characters for the file name is stored. If no file name is desired the accumulator must be set to 0, representing a zero file length, in that case `XY` may be set to any memory address.
   $FFBD set the filename
 
 c $FFC0 open a logical file
@@ -9156,7 +9156,7 @@ D $FFC6 #LIST
   $FFC6 do open channel for input
 
 c $FFC9 open channel for output
-D $FFC9 any logical file that has already been opened by the OPEN routine, #R$FFC0, can be defined as an output channel by this routine the device on the channel must be an output device or an error will occur and the routine will abort.
+D $FFC9 any logical file that has already been opened by the OPEN routine, #R$FFC0, can be defined as an output channel by this routine. the device on the channel must be an output device or an error will occur and the routine will abort.
 D $FFC9 if you are sending data to anywhere other than the screen this routine must be called before using the CHROUT routine, #R$FFD2. if you are sending data to the screen and no other output channels are open then the calls to this routine and to the OPEN routine, #R$FFC0, are not needed.
 D $FFC9 when used with a device on the serial bus this routine will automatically send the listen address specified by the OPEN routine, #R$FFC0, and any secondary address.
 D $FFC9 possible errors are:
@@ -9178,11 +9178,11 @@ D $FFCF input from the keyboard is handled in a special way. first, the cursor i
   $FFCF do input character from channel
 
 c $FFD2 output character to channel
-D $FFD2 this routine will output a character to an already opened channel. Use the OPEN routine, #R$FFC0, and the CHKOUT routine, #R$FFC9, to set up the output channel before calling this routine. If these calls are omitted, data will be sent to the default output device, device 3, the screen. The data byte to be output is loaded into the accumulator, and this routine is called. The data is then sent to the specified output device. The channel is left open after the call. NOTE: Care must be taken when using routine to send data to a serial device since data will be sent to all open output channels on the bus. Unless this is desired, all open output channels on the serial bus other than the actually intended destination channel must be closed by a call to the KERNAL close channel routine.
+D $FFD2 this routine will output a character to an already opened channel. Use the OPEN routine, #R$FFC0, and the CHKOUT routine, #R$FFC9, to set up the output channel before calling this routine. If these calls are omitted, data will be sent to the default output device, device 3, the screen. The data byte to be output is loaded into the accumulator, and this routine is called. The data is then sent to the specified output device. The channel is left open after the call. NOTE: Care must be taken when using this routine to send data to a serial device since data will be sent to all open output channels on the bus. Unless this is desired, all open output channels on the serial bus other than the actually intended destination channel must be closed by a call to the KERNAL close channel routine.
   $FFD2 do output character to channel
 
 c $FFD5 load RAM from a device
-D $FFD5 this routine will load data bytes from any input device directly into the memory of the computer. It can also be used for a verify operation comparing data from a device with the data already in memory, leaving the data stored in RAM unchanged. The accumulator must be set to 0 for a load operation or 1 for a verify. If the input device was OPENed with a secondary address of 0 the header information from device will be ignored. In this case `XY` must contain the starting address for the load. If the device was addressed with a secondary address of 1 or 2 the data will load into memory starting at the location specified by the header. This routine returns the address of the highest RAM location which was loaded. Before this routine can be called, the SETLFS, #R$FFBA, and SETNAM, #R$FFBD, routines must be called.
+D $FFD5 this routine will load data bytes from any input device directly into the memory of the computer. It can also be used for a verify operation comparing data from a device with the data already in memory, leaving the data stored in RAM unchanged. The accumulator must be set to 0 for a load operation or 1 for a verify. If the input device was OPENed with a secondary address of 0 the header information from the device will be ignored. In this case `XY` must contain the starting address for the load. If the device was addressed with a secondary address of 1 or 2 the data will load into memory starting at the location specified by the header. This routine returns the address of the highest RAM location which was loaded. Before this routine can be called, the SETLFS, #R$FFBA, and SETNAM, #R$FFBD, routines must be called.
   $FFD5 load RAM from a device
 
 c $FFD8 save RAM to a device
